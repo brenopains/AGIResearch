@@ -1,0 +1,42 @@
+# Ignore python virtual environments
+novamind/venv/
+venv/
+
+# Ignore cache and compiled files
+**/__pycache__/
+**/.pytest_cache/
+**/*.pyc
+
+# Ignore large data files and logs
+novamind/wikitext_corpus.txt
+**/*.log
+**/*.pt
+**/*.png
+**/*.jpg
+**/*.jpeg
+
+# Keep experiment files in tmp/ but ignore temporary execution outputs or caches if any
+# We want to push the python scripts inside tmp/
+# So do NOT ignore novamind/tmp/ as a whole
+novamind/tmp/checkpoints/
+novamind/tmp/dataset/
+novamind/tmp/data/
+novamind/tmp/arc_data/
+
+# Private recordings, transcripts and credentials
+.env
+.env.*
+!.env.example
+**/kaggle.json
+**/transcricao_introspeccao*
+*.m4a
+*.mp3
+*.wav
+*.ogg
+*.flac
+*.aac
+*.opus
+
+**/tmp/mc/server/logs/
+**/tmp/mc/server/usercache.json
+**/tmp/mc/server/srv.out
