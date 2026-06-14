@@ -1,0 +1,112 @@
+{
+ "tag": "v2smoke",
+ "hot": true,
+ "n_tasks": 3,
+ "cfg": {
+  "gens": 3,
+  "refine": 1
+ },
+ "duration_s": 83.94250321388245,
+ "drives": {
+  "geometra": 1.0,
+  "pintor": 1.0,
+  "objetista": 1.0,
+  "escalador": 1.0,
+  "relacional": 1.0
+ },
+ "library_size": 0,
+ "solved_test": [
+  "6150a2bd.json",
+  "25ff71a9.json"
+ ],
+ "calibration": {
+  "2": [
+   1,
+   1
+  ],
+  "3": [
+   1,
+   1
+  ]
+ },
+ "results": [
+  {
+   "solved_train": true,
+   "n_experts": 2,
+   "agree": 2,
+   "total_experts": 2,
+   "robustness": [
+    1.0,
+    1.0
+   ],
+   "used_personas": [
+    "pintor",
+    "geometra",
+    "escalador"
+   ],
+   "refine_solves": 1,
+   "compose_solves": 0,
+   "debate_best": 1,
+   "task": "6150a2bd.json",
+   "index": 1,
+   "test_correct": true
+  },
+  {
+   "solved_train": true,
+   "n_experts": 3,
+   "agree": 3,
+   "total_experts": 3,
+   "robustness": [
+    1.0,
+    0.0,
+    1.0
+   ],
+   "used_personas": [
+    "geometra",
+    "objetista",
+    "pintor"
+   ],
+   "refine_solves": 0,
+   "compose_solves": 0,
+   "debate_best": 0,
+   "task": "25ff71a9.json",
+   "index": 2,
+   "test_correct": true
+  },
+  {
+   "solved_train": false,
+   "used_personas": [
+    "geometra",
+    "objetista",
+    "geometra"
+   ],
+   "n_experts": 0,
+   "task": "0ca9ddb6.json",
+   "index": 3,
+   "test_correct": false
+  }
+ ],
+ "task_ids": [
+  "6150a2bd.json",
+  "25ff71a9.json",
+  "0ca9ddb6.json"
+ ],
+ "final": {
+  "test": 2,
+  "rate": 0.6666666666666666,
+  "first_half": 1,
+  "second_half": 1,
+  "refine_solves": 1,
+  "compose_solves": 0,
+  "calibration": {
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    1,
+    1
+   ]
+  }
+ }
+}

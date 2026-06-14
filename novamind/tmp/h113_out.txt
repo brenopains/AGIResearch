@@ -1,0 +1,10 @@
+H113 | construindo corpus de 4000 tarefas sinteticas (prior tipo-LLM)...
+  corpus=4000 programas | features=(4000, 13) | teto=101
+  busca GUIADA pelo prior de corpus no residuo...
+==========================================================================
+H113 prior tipo-LLM (corpus 4000) | teto 101
+  NOVAS guiado vs teto: 0 []
+  novo TETO: 101/400 = 25.2%
+  tempo 222s
+  Honesto: prior de corpus sintetico guia a busca DENTRO do fecho (eficiencia), nao cria primitiva fora.
+  E a forma barata da receita LLM (corpus->prior->guia); um modelo treinado seria a versao pesada.

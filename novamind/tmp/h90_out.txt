@@ -1,0 +1,15 @@
+  ... 50/400 (mesmo-shape=34, solved=1, NOVAS=0)
+  ... 150/400 (mesmo-shape=102, solved=5, NOVAS=0)
+  ... 200/400 (mesmo-shape=135, solved=7, NOVAS=0)
+  ... 250/400 (mesmo-shape=163, solved=8, NOVAS=0)
+  ... 350/400 (mesmo-shape=231, solved=11, NOVAS=0)
+========================================================================
+H90 AutoML-Zero para ARC (evolui primitivas de baixo nivel, so-CPU)
+  budget/tarefa=5.0s | mesmo-shape=262/400 | union(H85)=84
+  resolveu: 13/400 | NOVAS vs union: 0 []
+  nova UNIAO: 84/400 = 21.0%
+  instrucoes mais uteis: [('NCOUNT', 13), ('REPLACE', 9), ('OR', 8), ('CMAP', 7), ('FLIP', 7), ('AND', 6), ('COPY', 6), ('SHIFT', 5)]
+  tempo 1258s
+  Honesto: se NOVAS>0, primitivas NOVAS emergiram de ops cruas (largura nova real).
+  Se 0, o espaco de baixo nivel e grande demais p/ o orcamento de CPU — a largura
+  precisa de bias melhor, nao de mais forca bruta.

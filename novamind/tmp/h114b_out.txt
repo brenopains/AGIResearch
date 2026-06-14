@@ -1,0 +1,33 @@
+H114 carregando Qwen/Qwen2.5-0.5B-Instruct em cuda...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<03:43,  1.29it/s]Loading weights:  92%|#########2| 267/290 [00:00<00:00, 407.61it/s]Loading weights: 100%|##########| 290/290 [00:00<00:00, 317.09it/s]
+C:\Users\usuario\AppData\Roaming\Python\Python312\site-packages\torch\nn\modules\module.py:1329: UserWarning: expandable_segments not supported on this platform (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\c10/cuda/CUDAAllocatorConfig.h:28.)
+  return t.to(
+  carregado | VRAM 996MB | teto=101 | k=2
+  ... 20/299 (NOVAS=0, skip=13) 115s
+  ... 40/299 (NOVAS=0, skip=26) 222s
+[[5 0 5]
+ [0 5 0]]
+[[1 1 1 1]
+ [1 1 1 1]
+ [1 1 1 1]]
+  ... 60/299 (NOVAS=0, skip=40) 308s
+  ... 80/299 (NOVAS=0, skip=55) 383s
+  ... 100/299 (NOVAS=0, skip=67) 503s
+  ... 120/299 (NOVAS=0, skip=82) 575s
+  ... 140/299 (NOVAS=0, skip=92) 721s
+  ... 160/299 (NOVAS=0, skip=106) 840s
+  ... 180/299 (NOVAS=0, skip=119) 958s
+[0 0 0 0 0 0 0 0 0 1]
+  ... 200/299 (NOVAS=0, skip=129) 1119s
+  ... 220/299 (NOVAS=0, skip=140) 1264s
+  ... 240/299 (NOVAS=0, skip=146) 1529s
+  ... 260/299 (NOVAS=0, skip=156) 1714s
+  ... 280/299 (NOVAS=0, skip=170) 1814s
+==========================================================================
+H114 LLM codegen (Qwen2.5-0.5B) | tentou 299 do residuo | k=2
+  NOVAS: 0 []
+  novo TETO: 101/400 = 25.2%
+  tempo 1894s | VRAM 1201MB
+  Honesto: sinal EXTERNO real (conhecimento humano no LLM, fora do nosso fecho). 0.5B e fraco; teto maior viria de modelo maior.

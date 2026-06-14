@@ -1,0 +1,199 @@
+<!doctype html><html lang="pt-br"><head><meta charset="utf-8">
+<title>NovaMind — Cortex ao Vivo (ARC)</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#06080f;color:#cfe;font:13px/1.4 system-ui,Segoe UI,Roboto}
+#top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 12px;background:linear-gradient(90deg,#0a1020,#0d1530);border-bottom:1px solid #1d2b48;position:sticky;top:0;z-index:5}
+#top h1{font-size:15px;margin:0 10px 0 0;color:#7fd1ff;white-space:nowrap}
+#top .grp{display:flex;gap:5px;align-items:center;background:#0c1424;border:1px solid #1d2b48;border-radius:8px;padding:4px 8px}
+input,select,button{font:12px system-ui;color:#cfe;background:#11203a;border:1px solid #28406a;border-radius:6px;padding:4px 7px}
+button{cursor:pointer}button:hover{border-color:#4b9}button:disabled{opacity:.4;cursor:default}
+button.go{background:#1c6b3a;border-color:#2e9e57}button.stop{background:#7a2330;border-color:#b3424f}
+button.warn{background:#7a5a20;border-color:#c79334}
+.pill{padding:2px 8px;border-radius:20px;font-size:11px;background:#11203a;border:1px solid #28406a}
+#frbar{width:90px;height:9px;background:#16202e;border-radius:5px;overflow:hidden;display:inline-block;vertical-align:middle}
+#frbar>i{display:block;height:100%;background:#4dd2a0}
+#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px;padding:10px;align-content:start}
+.card{background:#0b1322;border:1px solid #1b2a47;border-radius:10px;padding:9px 10px;min-height:150px;display:flex;flex-direction:column;overflow:hidden}
+.card h3{margin:0 0 6px;font-size:12px;color:#9fd0ff;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #16233c;padding-bottom:4px}
+.card h3 .tag{font-size:10px;color:#8aa;font-weight:400}
+.body{flex:1;overflow:auto}
+.row{display:flex;gap:4px;align-items:center;margin:2px 0;font-size:11px}
+.sbar{flex:1;height:8px;background:#16202e;border-radius:4px;overflow:hidden}.sbar>i{display:block;height:100%}
+.muted{color:#7a89a0}.ok{color:#4dd2a0}.bad{color:#ff7a8a}.mono{font-family:ui-monospace,Consolas,monospace}
+.chip{display:inline-block;padding:1px 6px;margin:2px 2px 0 0;border-radius:5px;font-size:10px;border:1px solid #2a3e63;background:#0e1a30}
+.chip.forge{border-color:#7a5acb;background:#1a1330}.chip.seed{border-color:#2e9e57;background:#0e2418}
+.gridwrap{display:flex;flex-wrap:wrap;gap:8px}
+.pair{display:flex;gap:4px;align-items:center;background:#0e1830;border:1px solid #1b2a47;border-radius:6px;padding:3px}
+.arrow{color:#5a7;font-weight:700}
+canvas{image-rendering:pixelated;background:#000;border-radius:3px}
+.cap{font-size:9px;color:#7a89a0;text-align:center}
+.big{grid-column:span 2}
+@media(max-width:680px){.big{grid-column:span 1}}
+.flash{animation:fl .5s}@keyframes fl{from{background:#1c3a26}to{background:#0b1322}}
+</style></head><body>
+<div id="top">
+  <h1>🧠 Cortex ao Vivo</h1>
+  <div class="grp">
+    <span class="muted">tarefa</span>
+    <input id="taskin" list="tasklist" placeholder="id (ex: 007bbfb7)" style="width:120px">
+    <datalist id="tasklist"></datalist>
+    <button onclick="rnd()">🎲</button>
+  </div>
+  <div class="grp">
+    <span class="muted">steps</span><input id="steps" type="number" value="80" min="5" max="2000" style="width:64px">
+    <span class="muted">modo</span>
+    <select id="mode">
+      <option value="com_priors">com priors (templates+forge+neural)</option>
+      <option value="criacao_pura">CRIAÇÃO PURA (só o que a máquina cria)</option>
+    </select>
+  </div>
+  <div class="grp">
+    <span class="muted">veloc.</span><input id="speed" type="range" min="0.25" max="6" step="0.25" value="1.5" oninput="setSpeed(this.value)" style="width:80px">
+  </div>
+  <div class="grp">
+    <button class="go" id="bRun" onclick="run()">▶ Rodar</button>
+    <button id="bPause" onclick="post('/pause')" disabled>⏸</button>
+    <button id="bResume" onclick="post('/resume')" disabled>⏵</button>
+    <button class="warn" id="bStep" onclick="post('/step')" disabled>⤳ passo</button>
+    <button class="stop" id="bStop" onclick="post('/stop')" disabled>⏹</button>
+  </div>
+  <div class="grp" style="margin-left:auto">
+    <span class="pill" id="pStatus">ocioso</span>
+    <span class="pill">rota: <b id="pRoute">—</b></span>
+    <span class="pill">frust <span id="frbar"><i style="width:0"></i></span></span>
+    <span class="pill" id="pScore">0/0 resolvidas</span>
+  </div>
+</div>
+<div id="grid">
+  <div class="card" id="c-maestro"><h3>🎼 Maestro <span class="tag" id="m-phase">ocioso</span></h3><div class="body" id="m-body"></div></div>
+  <div class="card" id="c-perc"><h3>👁 Percepção <span class="tag">fingerprint</span></h3><div class="body" id="p-body"></div></div>
+  <div class="card" id="c-mem"><h3>🧩 Memória multidomínio <span class="tag" id="mem-n"></span></h3><div class="body" id="mem-body"></div></div>
+  <div class="card" id="c-forge"><h3>⚒️ Criação autônoma — Forge <span class="tag" id="forge-n"></span></h3><div class="body" id="forge-body"></div></div>
+  <div class="card big" id="c-sim"><h3>🔣 Símbolo + Composição <span class="tag" id="sim-best"></span></h3><div class="body mono" id="sim-body"></div></div>
+  <div class="card" id="c-hip"><h3>💡 Hipóteses <span class="tag"></span></h3><div class="body mono" id="hip-body"></div></div>
+  <div class="card" id="c-neu"><h3>🌀 Criação autônoma NEURAL <span class="tag" id="neu-it"></span></h3><div class="body" id="neu-body"></div></div>
+  <div class="card" id="c-prior"><h3>🌱 Dados & Priors <span class="tag">gramática-semente</span></h3><div class="body" id="prior-body"></div></div>
+  <div class="card big" id="c-grids"><h3>🟦 Grades (entrada → esperado | predição) <span class="tag" id="grid-tag"></span></h3><div class="body" id="grids-body"></div></div>
+</div>
+<script>
+const PAL=['#000000','#0074D9','#FF4136','#2ECC40','#FFDC00','#AAAAAA','#F012BE','#FF851B','#7FDBFF','#870C25'];
+let CURTASK=null;
+async function jget(u){return (await fetch(u)).json()}
+async function post(u,b){try{await fetch(u,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b||{})})}catch(e){}}
+function setSpeed(v){post('/speed',{v:+v})}
+function el(id){return document.getElementById(id)}
+
+function drawGrid(g,cell){
+  const c=document.createElement('canvas');
+  if(!g||!g.length){c.width=c.height=4;return c}
+  const h=g.length,w=g[0].length||1;c.width=w*cell;c.height=h*cell;const x=c.getContext('2d');
+  for(let i=0;i<h;i++)for(let j=0;j<w;j++){x.fillStyle=PAL[(g[i][j]||0)%10]||'#000';x.fillRect(j*cell,i*cell,cell,cell)}
+  return c;
+}
+function gridNode(g,cell,cap){const c=drawGrid(g,cell||10);const d=document.createElement('div');d.appendChild(c);if(cap){const p=document.createElement('div');p.className='cap';p.textContent=cap;d.appendChild(p)}return d}
+
+async function loadTasks(){
+  const r=await jget('/tasks');const dl=el('tasklist');
+  dl.innerHTML=r.items.slice(0,400).map(t=>`<option value="${t.id}">${t.id} · ${t.ntr}ex ${t.din.join('x')}→${t.dout.join('x')}</option>`).join('');
+  window.ALLIDS=r.items.map(t=>t.id);
+}
+function rnd(){if(window.ALLIDS)el('taskin').value=window.ALLIDS[Math.floor(Math.random()*window.ALLIDS.length)]}
+
+async function run(){
+  const id=el('taskin').value.trim();if(!id){alert('escolha uma tarefa (ou 🎲)');return}
+  await post('/stop'); clearAll();
+  await post('/run',{id,steps:+el('steps').value,mode:el('mode').value,speed:+el('speed').value});
+}
+function clearAll(){ // corrige o bug de mostrar o experimento anterior
+  ['m-body','p-body','mem-body','forge-body','sim-body','hip-body','neu-body','prior-body','grids-body'].forEach(i=>el(i).innerHTML='');
+  el('grid-tag').textContent='';el('neu-it').textContent='';el('sim-best').textContent='';
+}
+
+function sbar(score,ntr,gate){
+  const pct=ntr?Math.round(score/ntr*100):0;const col=gate?'#4dd2a0':(score>0?'#e6c84d':'#3a4a66');
+  return `<div class="sbar"><i style="width:${pct}%;background:${col}"></i></div>`;
+}
+function attemptRow(a){
+  const oc={template:'#6aa6ff',extra:'#6aa6ff',hipotese:'#e6c84d',seed:'#4dd2a0',forge:'#a98be6',composicao:'#ff9d6a'}[a.origem]||'#8aa';
+  return `<div class="row"><span style="color:${oc};width:14px">●</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${a.nome}</span>${sbar(a.score,a.ntr,a.gate)}<span style="width:34px;text-align:right">${a.score}/${a.ntr}</span>${a.gate?'<span class="ok">✔</span>':''}</div>`;
+}
+
+let lastTask=null, lastSimLen=0;
+async function poll(){
+  let s;try{s=await jget('/state')}catch(e){setTimeout(poll,300);return}
+  const running=s.status==='running';
+  el('bRun').disabled=running;el('bPause').disabled=!running;el('bResume').disabled=!running;el('bStep').disabled=!running;el('bStop').disabled=!running;
+  el('pStatus').textContent=running?(s.paused?'⏸ pausado':'▶ rodando'):(s.status==='done'?'✓ concluído':'ocioso');
+  el('pScore').textContent=`${s.solved_count}/${s.run_count} resolvidas`;
+  const m=s.modules;
+  // reset visual ao trocar de tarefa
+  if(s.task_id!==lastTask){lastTask=s.task_id;lastSimLen=0;clearAll()}
+  // MAESTRO
+  el('m-phase').textContent=m.maestro.phase;el('pRoute').textContent=m.maestro.route||'—';
+  el('frbar').firstChild.style.width=Math.round((m.maestro.frust||0)*100)+'%';
+  el('frbar').firstChild.style.background=m.maestro.frust>0.6?'#ff6b6b':m.maestro.frust>0.3?'#e6c84d':'#4dd2a0';
+  el('m-body').innerHTML=`<div class="row"><span class="muted">fase</span>&nbsp;<b>${m.maestro.phase}</b></div>
+    <div class="row"><span class="muted">rota</span>&nbsp;<b class="${m.maestro.route?'ok':''}">${m.maestro.route||'decidindo…'}</b></div>
+    <div class="row"><span class="muted">decisão</span></div><div class="mono" style="font-size:11px;color:#cfe">${m.maestro.decision||'—'}</div>
+    <div class="row" style="margin-top:6px"><span class="muted">passo</span>&nbsp;<b>${s.step}</b> / ${s.steps_target}</div>
+    <div class="row"><span class="muted">frustração (afeto)</span>&nbsp;<b>${(m.maestro.frust||0).toFixed(2)}</b></div>`;
+  // PERCEPCAO
+  const fpL=['mesma forma','nº cores','nº objetos','ratio H','ratio W'];const f=m.percepcao.feats||[];
+  el('p-body').innerHTML=f.length?f.map((v,i)=>`<div class="row"><span class="muted" style="width:90px">${fpL[i]||('f'+i)}</span><b>${v}</b></div>`).join(''):'<span class="muted">aguardando…</span>';
+  // MEMORIA
+  el('mem-n').textContent=`store ${m.memoria.store_size||0}`;
+  const rc=m.memoria.recalls||[];
+  el('mem-body').innerHTML=(rc.length?rc.map(r=>`<div class="row"><span class="${r.gate?'ok':'muted'}" style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.recipe}</span><span>${r.score}/${r.ntr}</span>${r.gate?'<span class="ok">✔reuso</span>':''}</div>`).join(''):'<span class="muted">sem receita recuperada (tarefa nova p/ a memória)</span>')+(m.memoria.hit?`<div class="ok" style="margin-top:5px">✔ resolvida por REUSO: ${m.memoria.hit}</div>`:'');
+  // FORGE
+  el('forge-n').textContent=`${m.forge.n||0} inventadas`;
+  el('forge-body').innerHTML=(m.forge.criadas&&m.forge.criadas.length)?m.forge.criadas.map(c=>`<span class="chip forge">${c.nome}</span>`).join(''):'<span class="muted">a máquina inventa primitivas (selector×ação) ajustadas a esta tarefa</span>';
+  // SIMBOLO
+  const at=m.simbolo.attempts||[];
+  el('sim-best').textContent=m.simbolo.best?`melhor ${m.simbolo.best.score}/${m.simbolo.best.ntr}`:'';
+  el('sim-body').innerHTML=at.length?at.slice().reverse().map(attemptRow).join(''):'<span class="muted">tentativas aparecem aqui (1 por step)…</span>';
+  // HIPOTESES
+  const hp=m.hipotese.attempts||[];
+  el('hip-body').innerHTML=hp.length?hp.slice().reverse().map(attemptRow).join(''):'<span class="muted">indutores de hipótese (linhas/periodicidade)…</span>';
+  // NEURAL
+  el('neu-it').textContent=m.neural.on?`iter ${m.neural.iter}`:'';
+  let neu='';
+  if(m.neural.on){
+    neu+=sparkline(m.neural.loss,'#ff9d6a','loss');
+    if(m.neural.solved!==null)neu+=`<div class="${m.neural.solved?'ok':'bad'}" style="margin-top:4px">${m.neural.solved?'✔ criou a regra (gate exato)':'✗ não fechou o gate'}</div>`;
+  }else neu='<span class="muted">só dispara quando símbolo+forge falham e a forma é preservada (gradiente no próprio puzzle, sem primitiva minha)</span>';
+  el('neu-body').innerHTML=neu;
+  // PRIORS
+  el('prior-body').innerHTML=(m.priors.seed&&m.priors.seed.length)?m.priors.seed.map(n=>`<span class="chip seed">${n}</span>`).join(''):'<span class="muted">gramática-semente que a composição usa</span>';
+  // GRADES
+  renderGrids(m.grids,s.task_id);
+  setTimeout(poll,200);
+}
+function sparkline(arr,col,lab){
+  if(!arr||arr.length<2)return `<span class="muted">${lab}: …</span>`;
+  const w=240,h=46,mx=Math.max(...arr),mn=Math.min(...arr);
+  const pts=arr.map((v,i)=>`${(i/(arr.length-1)*w).toFixed(1)},${(h-2-(v-mn)/(mx-mn+1e-9)*(h-4)).toFixed(1)}`).join(' ');
+  return `<div class="muted">${lab} (${arr[arr.length-1]})</div><svg width="${w}" height="${h}"><polyline fill="none" stroke="${col}" stroke-width="1.6" points="${pts}"/></svg>`;
+}
+let gridSig=null;
+function renderGrids(g,tid){
+  const sig=tid+'|'+(g.pred?JSON.stringify(g.pred).length+(''+g.pred[0]):'np');
+  if(sig===gridSig && el('grids-body').childElementCount) {return}
+  gridSig=sig;
+  const b=el('grids-body');b.innerHTML='';
+  el('grid-tag').textContent=tid||'';
+  const trainWrap=document.createElement('div');trainWrap.className='gridwrap';
+  (g.train||[]).slice(0,4).forEach(p=>{
+    const pr=document.createElement('div');pr.className='pair';
+    pr.appendChild(gridNode(p.in,9));const a=document.createElement('span');a.className='arrow';a.textContent='→';pr.appendChild(a);pr.appendChild(gridNode(p.out,9));
+    trainWrap.appendChild(pr);
+  });
+  b.appendChild(trainWrap);
+  const testWrap=document.createElement('div');testWrap.className='gridwrap';testWrap.style.marginTop='8px';
+  if(g.test_in)testWrap.appendChild(gridNode(g.test_in,11,'teste: entrada'));
+  if(g.test_out)testWrap.appendChild(gridNode(g.test_out,11,'esperado'));
+  if(g.pred){const pn=gridNode(g.pred,11,'predição');pn.classList.add('flash');testWrap.appendChild(pn)}
+  b.appendChild(testWrap);
+}
+loadTasks();poll();
+</script></body></html>

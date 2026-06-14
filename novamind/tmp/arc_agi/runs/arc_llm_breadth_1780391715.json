@@ -1,0 +1,613 @@
+{
+ "tag": "llm_breadth",
+ "n_tasks": 20,
+ "duration_s": 603.1894686222076,
+ "by_library": 0,
+ "by_llm": 3,
+ "unsolved": 17,
+ "llm_calls_total": 79,
+ "library": [
+  {
+   "name": "rotate_90_seed",
+   "category": "rotate_90",
+   "code": "def transform(g):\n import numpy as np\n return np.rot90(np.array(g),1).tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "rotate_180_seed",
+   "category": "rotate_180",
+   "code": "def transform(g):\n import numpy as np\n return np.rot90(np.array(g),2).tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "rotate_270_seed",
+   "category": "rotate_270",
+   "code": "def transform(g):\n import numpy as np\n return np.rot90(np.array(g),3).tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "flip_h_seed",
+   "category": "flip_h",
+   "code": "def transform(g):\n return [row[::-1] for row in g]",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "flip_v_seed",
+   "category": "flip_v",
+   "code": "def transform(g):\n return g[::-1]",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "transpose_seed",
+   "category": "transpose",
+   "code": "def transform(g):\n import numpy as np\n return np.array(g).T.tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "anti_transpose_seed",
+   "category": "anti_transpose",
+   "code": "def transform(g):\n import numpy as np\n return np.rot90(np.array(g).T,2).tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "tile_2x2_seed",
+   "category": "tile_2x2",
+   "code": "def transform(g):\n import numpy as np\n return np.tile(np.array(g),(2,2)).tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "tile_1x2_seed",
+   "category": "tile_1x2",
+   "code": "def transform(g):\n import numpy as np\n return np.tile(np.array(g),(1,2)).tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "tile_2x1_seed",
+   "category": "tile_2x1",
+   "code": "def transform(g):\n import numpy as np\n return np.tile(np.array(g),(2,1)).tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "mirror_right_seed",
+   "category": "mirror_right",
+   "code": "def transform(g):\n return [row+row[::-1] for row in g]",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "mirror_down_seed",
+   "category": "mirror_down",
+   "code": "def transform(g):\n return g+g[::-1]",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "scale_2x_seed",
+   "category": "scale_2x",
+   "code": "def transform(g):\n import numpy as np\n return np.kron(np.array(g),np.ones((2,2),int)).tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "scale_3x_seed",
+   "category": "scale_3x",
+   "code": "def transform(g):\n import numpy as np\n return np.kron(np.array(g),np.ones((3,3),int)).tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "recolor_swap_freq_seed",
+   "category": "recolor_swap_freq",
+   "code": "def transform(g):\n import numpy as np\n from collections import Counter\n a=np.array(g); c=Counter(a.flatten().tolist())\n c.pop(0,None)\n if len(c)<2: return g\n mc=max(c,key=c.get); lc=min(c,key=c.get)\n b=a.copy(); b[a==mc]=lc; b[a==lc]=mc; return b.tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "gravity_down_seed",
+   "category": "gravity_down",
+   "code": "def transform(g):\n import numpy as np\n a=np.array(g); h,w=a.shape; b=np.zeros_like(a)\n for j in range(w):\n  col=[v for v in a[:,j] if v!=0]; b[h-len(col):,j]=col\n return b.tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "crop_content_seed",
+   "category": "crop_content",
+   "code": "def transform(g):\n import numpy as np\n a=np.array(g); nz=np.argwhere(a!=0)\n if len(nz)==0: return g\n (y0,x0),(y1,x1)=nz.min(0),nz.max(0)+1; return a[y0:y1,x0:x1].tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "keep_border_seed",
+   "category": "keep_border",
+   "code": "def transform(g):\n import numpy as np\n a=np.array(g).copy()\n if a.shape[0]>2 and a.shape[1]>2: a[1:-1,1:-1]=0\n return a.tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "identity_seed",
+   "category": "identity",
+   "code": "def transform(g):\n return [list(r) for r in g]",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "gravity_up_seed",
+   "category": "gravity_up",
+   "code": "def transform(g):\n import numpy as np\n a=np.array(g);h,w=a.shape;b=np.zeros_like(a)\n for j in range(w):\n  col=[v for v in a[:,j] if v!=0];b[:len(col),j]=col\n return b.tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "gravity_left_seed",
+   "category": "gravity_left",
+   "code": "def transform(g):\n import numpy as np\n a=np.array(g);h,w=a.shape;b=np.zeros_like(a)\n for i in range(h):\n  row=[v for v in a[i,:] if v!=0];b[i,:len(row)]=row\n return b.tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "gravity_right_seed",
+   "category": "gravity_right",
+   "code": "def transform(g):\n import numpy as np\n a=np.array(g);h,w=a.shape;b=np.zeros_like(a)\n for i in range(h):\n  row=[v for v in a[i,:] if v!=0];b[i,w-len(row):]=row\n return b.tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "keep_most_color_seed",
+   "category": "keep_most_color",
+   "code": "def transform(g):\n import numpy as np\n from collections import Counter\n a=np.array(g);c=Counter(a.flatten().tolist());c.pop(0,None)\n if not c: return g\n mc=max(c,key=c.get);b=a.copy();b[a!=mc]=0;return b.tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "remove_most_color_seed",
+   "category": "remove_most_color",
+   "code": "def transform(g):\n import numpy as np\n from collections import Counter\n a=np.array(g);c=Counter(a.flatten().tolist())\n if not c: return g\n mc=max(c,key=c.get);b=a.copy();b[a==mc]=0;return b.tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "binarize_dominant_seed",
+   "category": "binarize_dominant",
+   "code": "def transform(g):\n import numpy as np\n from collections import Counter\n a=np.array(g);c=Counter(a.flatten().tolist());c.pop(0,None)\n if not c: return g\n mc=max(c,key=c.get);b=a.copy();b[a!=0]=mc;return b.tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "outline_objects_seed",
+   "category": "outline_objects",
+   "code": "def transform(g):\n import numpy as np\n a=np.array(g);h,w=a.shape;b=a.copy()\n for i in range(h):\n  for j in range(w):\n   if a[i,j]!=0:\n    nb=[a[i+dy,j+dx] for dy,dx in((1,0),(-1,0),(0,1),(0,-1)) if 0<=i+dy<h and 0<=j+dx<w]\n    if nb and all(v!=0 for v in nb): b[i,j]=0\n return b.tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "top_half_seed",
+   "category": "top_half",
+   "code": "def transform(g):\n return g[:max(1,len(g)//2)]",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "left_half_seed",
+   "category": "left_half",
+   "code": "def transform(g):\n return [r[:max(1,len(r)//2)] for r in g]",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "invert_bg_seed",
+   "category": "invert_bg",
+   "code": "def transform(g):\n import numpy as np\n from collections import Counter\n a=np.array(g);c=Counter(a.flatten().tolist());c.pop(0,None)\n if not c: return g\n mc=max(c,key=c.get);b=a.copy();b[a==0]=mc;b[a==mc]=0;return b.tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "rot90_flip_seed",
+   "category": "rot90_flip",
+   "code": "def transform(g):\n import numpy as np\n return np.fliplr(np.rot90(np.array(g),1)).tolist()",
+   "strength": 1,
+   "version": 0.0,
+   "source_task": "SEED",
+   "rob": 0.0,
+   "fingerprint": null,
+   "seed": true
+  },
+  {
+   "name": "create_frame_v1",
+   "category": "create_frame",
+   "code": "def transform(g):\n    # REGRA: Criar uma moldura de 8s ao redor do grid, preenchendo o interior com 0s, exceto a primeira e ultima linha que sao 8s.\n    import numpy as np\n    rows = len(g)\n    cols = len(g[0])\n    # Cria um grid de 0s\n    new_grid = np.zeros((rows, cols), dtype=int)\n    # Preenche tudo com 8\n    new_grid[:, :] = 8\n    # Se houver mais de 2 linhas, preenche o interior (exceto bordas) com 0s\n    if rows > 2:\n        new_grid[1:-1, 1:-1] = 0\n    # Se houver mais de 2 colunas, preenche o interior (exceto bordas) com 0s\n    if cols > 2:\n        new_grid[1:-1, 1:-1] = 0\n    return new_grid.tolist()\n",
+   "strength": 1,
+   "version": 1.0,
+   "source_task": "6f8cd79b.json",
+   "rob": 0.0,
+   "fingerprint": [
+    4.25,
+    4.0,
+    4.25,
+    4.0,
+    0.9999999999305555,
+    0.9374999997697917,
+    0.9374999997697917,
+    0.0,
+    0.7555555555555556,
+    1.0,
+    2.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    0.25,
+    1.0,
+    0.0
+   ]
+  },
+  {
+   "name": "interleave_rows_merge_v1",
+   "category": "interleave_rows_merge",
+   "code": "def transform(g):\n    # REGRA: A grade e dividida horizontalmente pela linha de separacao (5s); a parte superior e a inferior sao intercaladas linha a linha, comecando pela linha superior, e as cores dos pixels sao fundidas (soma) onde se sobrepoem.\n    import numpy as np\n    arr = np.array(g)\n    # Encontrar a linha de separacao (linha cheia de 5s)\n    sep_row_idx = np.where(np.all(arr == 5, axis=1))[0][0]\n    \n    # Dividir em superior e inferior\n    top = arr[:sep_row_idx, :]\n    bottom = arr[sep_row_idx+1:, :]\n    \n    # Determinar o numero de linhas do resultado (maximo entre as partes)\n    # A logica de intercalacao sugere que pegamos linhas alternadas.\n    # O numero de linhas no output parece ser o numero de linhas da parte superior.\n    # Vamos iterar pelo numero de linhas da parte superior.\n    h_top = top.shape[0]\n    \n    # Criar matriz de resultado com zeros\n    # A largura deve ser a mesma da entrada\n    result = np.zeros((h_top, arr.shape[1]), dtype=int)\n    \n    for i in range(h_top):\n        # Pega linha i do topo\n        t_row = top[i]\n        # Pega linha i do fundo (se existir)\n        if i < bottom.shape[0]:\n            b_row = bottom[i]\n            # Funde as linhas. Se ambos sao != 0, soma.\n            # Se um e 0, mantem o outro.\n            # A soma funciona para os casos:\n            # 0 + 0 = 0\n            # 0 + X = X\n            # X + 0 = X\n            # X + Y = X+Y (ex: 1+8=9, 3+7=10, 2+0=2)\n            # Precisamos garantir que a soma nao \"estoure\" para cores invalidas?\n            # Nos exemplos, as cores sao distintas e a soma parece ser a regra.\n            # Ex 1: 1+8=9 (azul+azul claro=marrom? ou apenas fusao)\n            # Ex 2: 3+7=10 (verde+laranja=azul? ou apenas fusao)\n            # Ex 3: 1+2=3 (azul+vermelho=verde)\n            # Parece ser uma soma simples.\n            merged = t_row + b_row\n            result[i] = merged\n        else:\n            result[i] = t_row\n            \n    return result.tolist()\n",
+   "strength": 1,
+   "version": 1.0,
+   "source_task": "e98196ab.json",
+   "rob": 0.0,
+   "fingerprint": [
+    11.0,
+    11.0,
+    5.0,
+    11.0,
+    0.454545454541698,
+    0.9999999999090909,
+    2.19999999956,
+    0.2038567493112948,
+    0.24848484848484845,
+    4.0,
+    3.0,
+    0.0,
+    0.0,
+    0.3333333333333333,
+    0.0,
+    0.0,
+    4.0,
+    6.0
+   ]
+  },
+  {
+   "name": "draw_centered_x_v1",
+   "category": "draw_centered_x",
+   "code": "def transform(g):\n    # REGRA: Desenhar um 'X' centrado na posicao do pixel colorido, usando a cor desse pixel, em uma grade vazia.\n    import numpy as np\n    arr = np.array(g)\n    rows, cols = arr.shape\n    output = np.zeros((rows, cols), dtype=int)\n    \n    # Encontrar o pixel colorido (diferente de 0)\n    ys, xs = np.where(arr != 0)\n    if len(ys) == 0:\n        return output.tolist()\n    \n    # Assumindo que existe apenas um pixel de cor ou todos sao da mesma cor\n    color = arr[ys[0], xs[0]]\n    y, x = ys[0], xs[0]\n    \n    # Desenhar o X\n    # Diagonal principal (top-left to bottom-right)\n    # A linha do X passa por (y, x). A equacao da linha relativa ao centro (y,x) \u00e9 r = c e r = -c\n    # Iterar sobre todas as celulas\n    for r in range(rows):\n        for c in range(cols):\n            # Verifica se esta na diagonal principal ou secundaria relativa ao ponto (y, x)\n            if (r - y) == (c - x) or (r - y) == -(c - x):\n                output[r, c] = color\n                \n    return output.tolist()\n",
+   "strength": 1,
+   "version": 1.0,
+   "source_task": "623ea044.json",
+   "rob": 0.0,
+   "fingerprint": [
+    12.333333333333334,
+    12.333333333333334,
+    12.333333333333334,
+    12.333333333333334,
+    0.9999999999902344,
+    0.9999999999079364,
+    0.9999999999079364,
+    0.009765684051398335,
+    0.13705215419501135,
+    2.0,
+    2.0,
+    1.0,
+    0.0,
+    0.0,
+    0.3333333333333333,
+    0.0,
+    2.0,
+    1.0
+   ]
+  }
+ ],
+ "results": [
+  {
+   "task": "22168020.json",
+   "solved_by": "none",
+   "test_correct": false,
+   "llm_calls": 3,
+   "lib_size": 30
+  },
+  {
+   "task": "6f8cd79b.json",
+   "solved_by": "llm",
+   "new_prim": "create_frame_v1",
+   "test_correct": true,
+   "llm_calls": 3,
+   "lib_size": 31
+  },
+  {
+   "task": "0ca9ddb6.json",
+   "solved_by": "none",
+   "test_correct": false,
+   "llm_calls": 4,
+   "lib_size": 31
+  },
+  {
+   "task": "363442ee.json",
+   "solved_by": "none",
+   "test_correct": false,
+   "llm_calls": 4,
+   "lib_size": 31
+  },
+  {
+   "task": "d406998b.json",
+   "solved_by": "none",
+   "test_correct": false,
+   "llm_calls": 4,
+   "lib_size": 31
+  },
+  {
+   "task": "c8cbb738.json",
+   "solved_by": "none",
+   "test_correct": false,
+   "llm_calls": 4,
+   "lib_size": 31
+  },
+  {
+   "task": "681b3aeb.json",
+   "solved_by": "none",
+   "test_correct": false,
+   "llm_calls": 4,
+   "lib_size": 31
+  },
+  {
+   "task": "a48eeaf7.json",
+   "solved_by": "none",
+   "test_correct": false,
+   "llm_calls": 4,
+   "lib_size": 31
+  },
+  {
+   "task": "4522001f.json",
+   "solved_by": "none",
+   "test_correct": false,
+   "llm_calls": 4,
+   "lib_size": 31
+  },
+  {
+   "task": "4290ef0e.json",
+   "solved_by": "none",
+   "test_correct": false,
+   "llm_calls": 4,
+   "lib_size": 31
+  },
+  {
+   "task": "54d82841.json",
+   "solved_by": "none",
+   "test_correct": false,
+   "llm_calls": 4,
+   "lib_size": 31
+  },
+  {
+   "task": "f5b8619d.json",
+   "solved_by": "none",
+   "test_correct": false,
+   "llm_calls": 4,
+   "lib_size": 31
+  },
+  {
+   "task": "0a938d79.json",
+   "solved_by": "none",
+   "test_correct": false,
+   "llm_calls": 4,
+   "lib_size": 31
+  },
+  {
+   "task": "e98196ab.json",
+   "solved_by": "llm",
+   "new_prim": "interleave_rows_merge_v1",
+   "test_correct": true,
+   "llm_calls": 3,
+   "lib_size": 32
+  },
+  {
+   "task": "045e512c.json",
+   "solved_by": "none",
+   "test_correct": false,
+   "llm_calls": 4,
+   "lib_size": 32
+  },
+  {
+   "task": "6d58a25d.json",
+   "solved_by": "none",
+   "test_correct": false,
+   "llm_calls": 4,
+   "lib_size": 32
+  },
+  {
+   "task": "623ea044.json",
+   "solved_by": "llm",
+   "new_prim": "draw_centered_x_v1",
+   "test_correct": true,
+   "llm_calls": 6,
+   "lib_size": 33
+  },
+  {
+   "task": "234bbc79.json",
+   "solved_by": "none",
+   "test_correct": false,
+   "llm_calls": 4,
+   "lib_size": 33
+  },
+  {
+   "task": "e5062a87.json",
+   "solved_by": "none",
+   "test_correct": false,
+   "llm_calls": 4,
+   "lib_size": 33
+  },
+  {
+   "task": "e8dc4411.json",
+   "solved_by": "none",
+   "test_correct": false,
+   "llm_calls": 4,
+   "lib_size": 33
+  }
+ ],
+ "task_ids": [
+  "22168020.json",
+  "6f8cd79b.json",
+  "0ca9ddb6.json",
+  "363442ee.json",
+  "d406998b.json",
+  "c8cbb738.json",
+  "681b3aeb.json",
+  "a48eeaf7.json",
+  "4522001f.json",
+  "4290ef0e.json",
+  "54d82841.json",
+  "f5b8619d.json",
+  "0a938d79.json",
+  "e98196ab.json",
+  "045e512c.json",
+  "6d58a25d.json",
+  "623ea044.json",
+  "234bbc79.json",
+  "e5062a87.json",
+  "e8dc4411.json"
+ ],
+ "final": {
+  "test": 3,
+  "rate": 0.15,
+  "by_library": 0,
+  "by_llm": 3,
+  "unsolved": 17,
+  "lib_rate_thirds": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "call_rate_thirds": [
+   3.6666666666666665,
+   4.0,
+   4.125
+  ],
+  "n_primitives": 33
+ }
+}

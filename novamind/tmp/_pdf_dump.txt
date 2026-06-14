@@ -1,0 +1,728 @@
+==== PAG 1 ====
+Relatório Analítico sobre o Caminho para AGI
+Plena com “Primitivas Fora do Fecho”
+Resumo Executivo
+Este relatório analisa de forma integrada os avanços e lacunas que faltam para alcançar uma
+Inteligência Artificial Geral (AGI) plena capaz de criar “primitivas fora do fecho” – ou seja, novos blocos
+elementares de conhecimento/ação não pré-programados nem previstos no escopo inicial de
+treinamento. Discutimos dados cerebrais de altíssima resolução (imagens, conectomas, registros de
+células individuais, escalas temporais), tecnologias afins (hardware neuromórfico, optogenética,
+neuromodulação em malha fechada, aprendizado auto-supervisionado, descoberta causal, aprendizado
+contínuo/meta-aprendizado, hibridismo neuro-simbólico, síntese formal de programas, intérpretes
+diferenciáveis, codesign de hardware) e suas aplicações concretas. Definimos operacionalmente 
+primitivas fora do fecho e critérios de sua emergência, identificamos lacunas entre modelos atuais
+(transformers, RL, difusão, neuro-simbólico) e comportamentos AGI (genéricos) observados, e
+propomos arquiteturas híbridas originais (com diagramas em mermaid) integrando percepções bio-
+inspiradas, raciocínio simbólico e agentes incorporados. Sugerimos experimentos (novas bases de
+dados e métricas voltadas à adaptabilidade e criatividade), protótipos de validação AGI considerando
+segurança e ética, um roadmap com etapas (milestones, recursos de computação e neurociência, riscos
+e mitigação) e tabelas comparativas de abordagens, custos e prioridades. Assumimos, quando
+necessário, parâmetros não especificados, sempre explicitando suposições. Todas as afirmações são
+sustentadas por fontes primárias atuais (principalmente 2021–2026) ou referências de revisão
+relevantes, em português e inglês.
+1. Dados Cerebrais de Alta Resolução Recentes
+O entendimento detalhado do cérebro humano exige dados em múltiplas escalas espaciais e
+temporais. Recentemente foram desenvolvidos sistemas de neuroimagem sem precedentes: por
+exemplo, o scanner Connectome 2.0 (NIH/BRAIN Initiative, 2025) usa gradientes ultra-intensos (500
+mT/m) em 7T MRI para mapear fibras cerebrais e arquitetura celular com precisão aproximada de
+mícron, em seres humanos vivos【62†L147-L155】【9†L118-L121】. Esse sistema gerou imagens de
+conectoma com sensibilidade ~30% maior que o Connectome 1.0 e representa “um salto transformador ,
+permitindo mapear conectividade e microestrutura do cérebro em nível de célula”【62†L147-L155】
+【9†L118-L121】. Em outro avanço, equipamentos de fMRI ultra-resolutiva foram construídos: um
+MRI de alto campo (7T) com gradiente de 200 mT/m e receptores 128 canais alcança voxels de ~0,35–
+0,45 mm para fMRI funcional de camada cortical【11†L99-L107】. Isso permite explorar atividade
+cortical laminar e pequenas vias axonais que antes eram invisíveis. 
+Além disso, estudos recentes integram modalidades: um modelo de encoding neural combinou dados
+simultâneos de MEG e fMRI em experimentos naturais de compreensão de fala, permitindo inferir
+respostas neurais latentes com resolução de milissegundos e milímetros【16†L62-L69】. Essa
+abordagem usou transformers para prever MEG e fMRI de diferentes sujeitos, validando-se pela
+predição de sinais invasivos de ECoG mais precisamente do que modelos treinados diretamente em
+ECoG【16†L62-L69】. Em suma, atualmente dispomos de tecnologias para “salto de escalas” temporais
+1
+==== PAG 2 ====
+(MEG/ECoG: ~ms) e espaciais (fMRI estruturais/difusão: ~mm; neurônios únicos: ~μm)【16†L62-L69】
+【62†L147-L155】. Isso abre a porta para modelar o cérebro como um sistema multiescala: desde 
+intrinsic neural timescales, em que áreas sensoriais respondem rapidamente e redes transmodais têm
+dinâmicas mais lentas【22†L127-L132】, até plasticidade sináptica de minutos/horas e
+desenvolvimento ao longo de décadas. 
+fMRI de ultra-alta resolução (submilímetro): Scanner 7T (gradiente 200 mT/m) revela atividade
+cortical por camadas【11†L99-L107】. 
+MEG/ECoG: Registra atividade em escala de milissegundos, compensado por baixa resolução
+espacial; novos modelos híbridos obtêm fontes com melhor fidelidade espaço-temporal
+【16†L62-L69】. 
+Microscopia in vivo / Dados uniec.: Projetos de genômica e transcriptômica de célula única
+(Human Cell Atlas, BICCN) mapeiam tipos celulares no cérebro humano (primeira versão do atlas
+celular lançado em 2022). Técnicas como Neuropixels (próximas gerações) permitem vários
+dezenas a centenas de neurônios simultâneos em animais, indicando direções para interfaces
+futuras em humanos. 
+Conectoma: Iniciativas como Human Connectome Project (HCP) geram repositórios multi-modal
+(difusão, fMRI, MEG) para milhares de cérebros【27†L210-L215】. Os dados do HCP incluem
+imagens estruturais, funcionais e de difusão em 1.200 sujeitos, usando 3T e 7T【27†L210-
+L215】. Versões atualizadas (HCP-2025) refinam pré-processamento e disponibilizam MEG e 7T
+adicional. O conectoma funcional revela correlações e rede de sistemas; o conectoma estrutural
+(difusão) mostra trajetórias de fibras. 
+Escalas temporais intrínsecas: Há evidência de que diferentes regiões processam informação
+em escalas próprias – por exemplo, córtex primário visual tem autocorrelação de ruído rápida
+(dezenas de ms), enquanto o córtex pré-frontal ou rede modo-padrão retém informação por
+centenas de ms a s【22†L127-L132】. Isso sugere que a cognição natural integra
+hierarquicamente múltiplas janelas temporais【22†L127-L132】. 
+Em síntese, a neurociência fornece ferramentas para mapear o cérebro vivo em escalas que vão do
+micros (células, sinapses) ao macros (circuitos de longo alcance), e do milissegundo ao ciclo de vida
+humano. Esses dados podem inspirar arquiteturas de IA que incorporem multiescalas e conectividade
+complexa. 
+2. Avanços Tecnológicos Não-AGI e Aplicações Concretas
+Além de modelos de software, destacam-se tecnologias hardware e métodos experimentais de ponta:
+Hardware Neuromórfico: Chips como o Intel Loihi (e sua versão Loihi 2) e o IBM TrueNorth
+simulam redes de neurônios spiking de modo assíncrono e eficiente. Em demos, TrueNorth
+mostrou alta eficiência para inferência: por exemplo, executou classificações de imagem à razão
+de até ~6000 imagens/s por watt, ~40x melhor que GPUs da época【33†L192-L201】. Loihi 2, em
+trabalhos recentes, obteve ganhos de ~100x em eficiência energética frente a CPUs e ~30x frente
+a GPUs em tarefas de sensor fusion automotivo【36†L32-L40】. Essas plataformas foram
+aplicadas em robótica e sistemas embarcados: chips Loihi integram sensores (câmeras, LIDAR,
+IMU) para fusão de dados em tempo real【36†L32-L40】. Concretamente, Loihi 2 acelerou
+processamento em benchmarks de direção autônoma (AIODrive, nuScenes etc.), mostrando
+processamento mais rápido e consumo drástico reduzido【36†L32-L40】. Isso sugere que
+arquiteturas neuromórficas podem ser usadas para processar fluxos contínuos de informação
+sensorial em sistemas AGI-emulação (robôs, dispositivos IoT) com baixa latência e baixo
+consumo. 
+• 
+• 
+• 
+• 
+• 
+• 
+2
+==== PAG 3 ====
+Optogenética e Neuroestimulação em Malha Fechada: A optogenética (uso de luz para
+controlar neurônios geneticamente modificados) junto com sistemas sem fio miniaturizados
+permite experimentos “closed-loop” sofisticados em animais【38†L142-L151】. Por exemplo,
+implantes optogenéticos wireless controlados por IA podem decodificar sinais neurais em tempo
+real e ajustar estímulos cerebrais conforme o comportamento do sujeito【38†L142-L151】. Essa
+sinergia promove ciclos de feedback: modelos de IA processam dados de atividade neural (p. ex.
+padrões de EEG/algumas medidas externas), e decidem estímulos ópticos para alterar estados
+cerebrais (evitando convulsões, modulando circuítos emocionais, etc.). Por outro lado, insights
+obtidos desse feedback podem inspirar novos algoritmos cognitivos (“IA tentando entender
+neurônios o ajuda a refinar seus próprios modelos”【38†L142-L151】). No âmbito clínico, 
+estimulação cerebral profunda adaptativa (aDBS) exemplifica aplicação “closed-loop” em
+humanos: dispositivos de DBS que ajustam amplitude de estímulo com base em biomarcadores
+neurais (poder beta em Parkinson) melhoraram bem-estar de pacientes em comparação a DBS
+contínuo【40†L81-L90】. Essas técnicas concretas apontam para agentes AGI com feedback
+biológico direto: futuros sistemas podem usar leituras cerebrais para afinar seu próprio
+aprendizado (num modelo de “cérebro em loop”), e usar estimulação sensorial (visual, tátil, etc.)
+para influenciar ambientes e auxiliar agentes biológicos. 
+Aprendizado Auto-Supervisionado: Técnicas de auto-supervisão (por exemplo, modelos de
+linguagem como BERT/GPT treinados em máscara de texto, ou redes contrativas em visão como
+SimCLR/DINO) têm sido revolução recente em IA. Fundamentos de IA (LLMs, codificadores de
+imagens-texto como CLIP , geradores de difusão como DALL·E) dependem de treinamento em
+grandes dados não rotulados. Eles já produzem representações gerais poderosas, úteis em
+robótica e processamento multimodal. Por exemplo, grandes modelos multimodais (GPT-4
+Vision, ou Stable Diffusion) podem ser integrados a sistemas robóticos para interpretação de
+cena e comando em linguagem natural. A vantagem prática é que AGI pode herdar essas
+representações genéricas sem supervisão explícita, facilitando transferências. 
+Descoberta Causal e Modelos de Mundo: Algoritmos recentes de inferência causal (p. ex.
+métodos de aprendizado estrutural de redes Bayesianas, DoWhy, Granger) podem ajudar AGIs a
+discernir relações de causa e efeito em dados. Em paralelo, há avanços em modelagem física/
+simbólica implícita por redes (p. ex. world models em RL que aprendem dinâmica ambiente).
+Aplicação: um AGI investigativo poderia usar causalidade para formular experimentos (“Se eu
+apertar X, qual efeito Y no resultado?”) e descobrir leis científicas gerais. 
+Aprendizado Contínuo e Meta-Aprendizado: Métodos como MAML, Reptile ou técnicas de 
+experience replay mitigam o esquecimento catastrófico. Há propostas de meta-aprendizado de
+alto nível (“aprender a aprender”), inclusive em LLMs. Em robôs, aprendizagem contínua permite
+atualização em tempo real sem re-treinamento total. Uma aplicação concreta é permancerem
+adaptativos em cenários abertos, como robô doméstico que aprende novas tarefas de seu
+usuário gradualmente, sem perder habilidades prévias. 
+Híbridos Neural-Simbólicos e Síntese Formal de Programas: Sistemas neuro-simbólicos
+combinam redes neurais com componentes simbólicos (por exemplo, redes que interagem com
+bancos de conhecimento lógicos, gramáticas diferenciáveis ou motores de inferência simbólica).
+Exemplos incluem o “Neuro-Symbolic Concept Learner” (Clark et al., Science 2020) que interpreta
+cenas visuais com uma gramática lógica. Em outro nível, ferramentas de IA codificadora, como
+Codex/AlphaCode, realizam síntese de programas para tarefas complexas. Integrar esses
+paradigmas permite que uma AGI manipule conceitos simbólicos (tabelas, regras) enquanto
+aproveita percepções neurais complexas. 
+• 
+• 
+• 
+• 
+• 
+3
+==== PAG 4 ====
+Intérpretes Diferenciáveis e Codesign de Hardware: Pesquisas em “aprendizado programável”
+criaram intérpretes diferenciáveis (e.g., Neural Turing Machines, Differentiable Forth) que
+aprendem algoritmos internamente. Hardware co-projetado (TPUs, FPGAs, chips fotônicos
+analógicos, co-processadores de rede neural) agiliza operações massivas de IA. Em aplicações,
+GPUs/TPUs permitem treinar AGIs com petabytes de dados; chips neuromórficos abordam
+tarefas online com baixa latência; e arquiteturas emergentes (3D-stacked, memristores)
+prometem eficiência melhor para redes gigantes. 
+Em resumo, as tecnologias não-AGI acima fornecem peças de motor para sistemas gerais: hardware
+bio-inspirado para eficiência, interfaces neurais para fusão biológica, algoritmos de auto-supervisão
+para conhecimento sem supervisão manual, e componentes simbólicos para raciocínio estruturado.
+Cada um tem aplicações concretas: desde carros autônomos neurais (fusões de sensores com Loihi) até
+novos experimentos cerebrais em animais (AI–optogenética) e assistentes de programação
+(codificadores de código). A combinação dessas tecnologias num AGI cria camadas de funcionamento,
+por exemplo: um chip Loihi para percepção sensorial contínua, redes LLM para linguagem, e um
+planejador simbólico para metas de longo prazo. 
+3. Primitivas Fora do Fecho – Definição e Critérios de Emergência
+Definição: Denominamos primitivas fora do fecho (ou primitivas abertas) elementos básicos de cognição/
+ação gerados de forma espontânea pelo sistema, não pré-especificados nem internamente previstos no
+seu arcabouço inicial. Essas primitivas podem ser novos conceitos, operações ou procedimentos que
+surgem em cenários inéditos, efetivamente “abrindo o sistema” para criar novas bases de
+representação. Em analogia, é o surgimento de recursos cognitivos equivalentes aos “instintos” ou
+“conceitos fundamentais” que o sistema constrói por si só, transcendendo o conjunto de regras ou
+dados originais. 
+Exemplos hipotéticos: Uma AGI que, sem programação direta, descobre um novo operador
+lógico ou uma estrutura algébrica que resolve classes de problemas (por exemplo, inventa um
+novo “passo de busca” em jogos); ou que desenvolve espontaneamente uma linguagem interna/
+padrão de codificação própria para representar conhecimentos, equiparáveis a novas primitives
+matemáticas. 
+Critérios de detecção: Para considerar que uma primitiva emergiu fora do fecho, pode-se usar critérios
+como: 
+Novidade conceitual: O sistema resolve um problema de maneira qualitativamente diferente
+do treinamento. Por exemplo, um agente de RL cria uma estratégia inédita (nunca demonstrada
+pelos humanos nem contida nos dados de treino), usando operações “fora do vocabulário” do
+sistema original. 
+Inesperabilidade estatística: A resposta ou comportamento não podia ser previsto pela
+distribuição de treinamento e não resulta de overfit. 
+Simplicidade descritiva: A nova primitiva reduz a complexidade para resolver muitos
+problemas distintos (codifica um novo atalho cognitivo), sugerindo que não é mera combinação
+já existente, mas uma abstração gerada. 
+Transferência zero-shot: O sistema aplica a primitiva emergente a tarefas não vistas, indicando
+generalidade. 
+Avaliar tudo isso exige benchmarks focados em conceitualização criativa. Por exemplo, medir se um
+modelo descobre regras latentes em problemas de lógica ou produz novas operações aritméticas.
+Também é necessário inspeção interna de redes: detectar unidades/neuronios que se especializam em
+• 
+• 
+• 
+• 
+• 
+• 
+4
+==== PAG 5 ====
+representações inéditas (como fizeram estudos de “visões neuronais” em LLMs). Relaciona-se ao
+fenômeno de habilidades emergentes observado em LLMs【46†L41-L49】: grandes modelos
+apresentam capacidades (e.g. aritmética, codificação, quebra-cabeças) não aparentes em versões
+menores, algo interpretado como emergência de representações latentes. Assim, primitivas fora do
+fecho poderiam ser vistas como emergências profundas que transformam a arquitetura conceitual do
+sistema. 
+Em termos práticos, propomos critérios de mensuração de emergência: (a) análises de cobertura de
+dados – se o modelo explica novos exemplos com alta precisão usando combinações menores de
+primitives; (b) testes de abstrativismo – atribuir novo significado a sub-rotinas; (c) protocolos de
+experimentos abertos (ex: fazer o sistema descobrir leis de física simples dadas poucas observações).
+Por exemplo, dar a uma IA apenas partículas de dados sobre movimentos e ver se ela deduz “força”
+como primitiva básica. Se conseguir , essa primitiva (força) emergiu fora do fecho inicial. Tais métricas
+empregariam tanto avaliação de desempenho em tarefas adaptativas quanto medidas internas (ex:
+aumento súbito de acurácia com acréscimo pequeno de parâmetros, indicando emergência【49†L49-
+L57】). 
+4. Lacunas Entre Modelos Atuais e AGI Não-Narrow
+Atualmente, os modelos de IA, embora poderosos em seus domínios, ainda carecem de várias
+qualidades esperadas numa AGI generalista:
+Escopo e adaptabilidade: Transformers (LLMs) e redes convolucionais dominam NLP e visão,
+mas tipicamente atuam em tarefas específicas de linguagem ou imagem. Elas não entendem
+fisicalidade ou contextos não textuais a menos que sejam multimodais (e mesmo assim
+limitadamente). Reinforcement Learning tradicional alcança desempenho humano em jogos
+(xadrez, Go, Dota), porém cada novo domínio exige novo treinamento ou arquitetura distinta.
+Um sistema AGI não deve precisar ser refeito do zero para cada nova categoria de tarefa – algo
+que hoje LLMs ou RLs não conseguem (falta transferência robusta). 
+Raciocínio simbólico e exatidão: Modelos baseados em aprendizagem profunda geralmente
+raciocinam de forma estatística, não simbólica. Eles podem associar padrões ou gerar texto
+coerente, mas falham em lógica exata: por exemplo, não aplicam algoritmos determinísticos
+para resolver puzzles complexos de matemática/ciência a despeito de seu contexto linguístico
+【49†L49-L57】. Como mostrou pesquisa da Apple, mesmo modelos avançados de chain-of-
+thought colapsam em problemas de alta complexidade e não executam algoritmos explícitos
+corretamente【49†L49-L57】. Isso revela ausência de primitives simbólicas internas robustas. 
+Lacunas de conhecimento e senso comum: LLMs geram respostas plausíveis mas não têm um
+“modelo de mundo” coerente; muitas vezes inventam fatos (alucinações) ou ignoram leis básicas
+da física/economia. Não têm “compreensão” genuína dos dados. Um AGI precisaria de 
+consciência de mundo, senso comum físico e social, coisa que LLMs só simulam de forma
+superficial. 
+Continuidade e aprendizado de longo prazo: Sistemas atuais não aprendem continuamente
+sem esquecer . Por exemplo, um LLM fino-ajustado em dados novos pode perder (ou distorcer)
+conhecimentos anteriores (esquecimento catastrófico). E eles requerem gigantescos datasets
+estáticos para treinar; não desenvolvem habilidades ao longo do tempo de forma autônoma em
+um ambiente dinâmico (uma criança, por contraste, aprende incrementalmente em interação
+com o mundo). 
+• 
+• 
+• 
+• 
+5
+==== PAG 6 ====
+Criatividade genuína: Modelos como Diffusion (por imagem) são criativos no sentido de
+combinar training set, mas não criam conceitos verdadeiramente novos ou inventam
+paradigmas de resolução de problemas. Um AGI criativo deveria gerar estratégias e abstrações
+inéditas (novas ferramentas mentais), algo que os sistemas atuais mal simulam. 
+Segurança e aspectos éticos: Embora não seja uma “capacidade” técnica, a robustez ética é
+essencial. Modelos atuais reproduzem vieses ou podem executar comandos maliciosos se mal
+calibrados. Um AGI real precisaria ser intrinsecamente alinhado a valores, um grande gap nos
+modelos atuais que são essencialmente agnósticos a ética. 
+Em síntese, existe ainda um salto entre “performar bem em domínio restrito” e “inteligência geral
+adaptativa”. A próxima seção propõe como parcialmente ultrapassar essas lacunas com arquiteturas
+híbridas.
+5. Arquiteturas Híbridas Propostas (com Diagramas Mermaid)
+Propomos arquiteturas híbridas originais que combinem componentes neurais, simbólicos e de imersão
+no ambiente, visando fomentar a emergência de primitivas abertas. A ideia central é dividir o sistema
+em módulos especializados mas interconectados:
+Percepção Sensorial Multimodal: Sensores (câmeras, microfones, sensores táteis, EEG, etc.)
+capturam dados do mundo. Esses dados alimentam duas vias: (a) uma rede neural profunda (ou
+spiking) que extrai características abstratas e aprende representações neurais, (b) um sistema
+simbólico inicial (ex.: reconhecedor de objetos, transformando a entrada em fatos simbólicos).
+Essa via simbólica auxilia na bootstrap de conhecimento fundamental (e.g. identificar “célula”,
+“cão”, “esfera”). 
+Memória e Memória de Trabalho: Um componente de memória de longo prazo (rede neural
+recorrente avançada, bancos vetoriais, ou armazenamentos diferenciáveis) guarda experiências
+passadas (modelos de mundo, histórias de interação). Mecanismos de memória de trabalho
+(buffers temporários) mantêm contexto imediato. Um esquema de consolidação constante
+transfere conhecimento da memória ativa para memória de longo prazo, inspirado em
+hipocampo/neocórtex. 
+Raciocínio Simbólico e Planejamento: Paralelamente, há um módulo de raciocínio simbólico
+(motores lógicos, solucionadores de tarefas, gramáticas diferenciáveis) que manipula conceitos
+discretos (objetos, relações, regras). Ele executa planejamento de alto nível (decidir metas,
+decompor tarefas, criar subobjetivos). Por exemplo, pode sintetizar programas simbólicos para
+atingir um objetivo (program synthesis), ou empregar lógica de primeira-ordem para dedução. 
+Módulo de “Gerador de Primitivas” (Meta-Aprendizado): Um componente especial monitora
+desempenho e busca novas abstracções. Se o conjunto atual de primitives for insuficiente para
+aprender algo novo eficientemente, este módulo tenta inventar novas primitivas: pode ser uma
+sub-rede generativa que propõe operações composicionais adicionais, ou um mecanismo de
+força bruta que testa combinações de operações existentes para criar novas. Uma meta-RL (por
+exemplo, otimização bayesiana) ajusta continuamente quais primitivas manter . 
+Decisão / Ação: Um componente integrador avalia recomendações do raciocínio simbólico e das
+redes neurais com base nos objetivos atuais, selecionando ações (algoritmos de controle motor ,
+comandos executáveis). Atua sobre o ambiente (robô, software, sistema cibernético), fechando o
+loop. 
+Esses módulos interagem de modo bidirecional: percepções neurais podem atualizar símbolos (e vice-
+versa), e o raciocínio simbólico pode influenciar a atenção da rede neural (por exemplo, “olhe para
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+6
+==== PAG 7 ====
+objetos novos se seu nome estiver em focus”). A seguir um diagrama esquemático da arquitetura
+proposta:
+Neste fluxo, o Gerador de Primitivas revisa regularmente a Base de Conhecimento e a Rede Neural
+para propor novas funções ou conceitos quando observa padrões recorrentes ou lacunas de solução.
+Por exemplo, se enfrenta vários problemas semelhantes que requerem uma nova sub-rotina, ele pode
+sintetizar essa rotina e incluí-la como primitiva. 
+Outro aspecto proposto é o aprendizado através da interação corporal (embodiment). Em vez de
+treinar apenas em dados offline, o sistema deve atuar em ambientes (simulados e reais) para aprender
+conceitos externos. Um diagrama de fluxo de aprendizado contínuo seria:
+Neste esquema de aprendizagem contínua, o AGI parte de um pré-treinamento auto-supervisionado
+em grandes dados (“coloca asas”), mas depois entra em um loop realimentado com o ambiente: age no
+Raciocínio
+ProcessamentoNeurossimbólicoPercepção
+Sensores
+biológicos
+e
+digitais
+Pré-processamento
+multimodal\n(Neural
+e
+Sinal)
+Rede
+Neural
+Profunda
+/
+SNN
+Camada
+Simbólica
+de
+Baixo
+Nível
+Memória
+de
+Curto
+Prazo
+/
+Buffers
+Banco
+de
+Dados
+/
+Ontologia
+Módulo
+de
+Planejamento
+/
+Solução
+de
+Problemas
+Gerador
+de
+Primitivas
+e
+Meta-Aprendizado
+Decisão
+/
+Controle
+Motor
+Ambiente
+físico
+e
+social
+AprendizadoContínuo
+TreinamentoOffline(Pré-treino)
+Corpus
+Multimodal
+e
+Datasets\n(texto,
+imagens,
+simulações)
+RedeNeural
+SIMBOLICO
+Ambiente
+físico/simulado
+Atuação
+pelo
+AGI
+(robótica,
+programas)
+Feedback
+(sensações,
+recompensas)
+DECISAO
+7
+==== PAG 8 ====
+mundo, recebe feedback sensorial e refina suas redes. Elementos cognitivos internos (como as
+primitivas criadas) são ajustados dinamicamente. Essa combinação “offline + online” inspira-se no
+aprendizado humano (estudamos offline e depois testamos no mundo real).
+6. Experimentos, Conjuntos de Dados e Métricas para Validar AGI
+Plena
+Para avançar empiricamente, propomos diversos experimentos e benchmarks específicos para
+caracterizar AGI:
+Desafios de Generalização (ARC-AGI, CORE Knowledge): Baseado no Abstraction and Reasoning
+Corpus e iniciativas correlatas【52†L139-L147】【52†L157-L166】, usar tarefas que exigem
+raciocínio de alto nível com poucos exemplos. Exemplos: problemas de padrões visuais/
+simbólicos que humanos resolvem intuitivamente, mas que enganam sistemas treinados.
+Avaliar velocidade de aprendizado e eficiência de recursos. 
+Testes de Transferência Zero-Shot e Few-Shot: Avaliar o desempenho em tarefas novas sem ou
+com poucos ajustes. Por exemplo, medir capacidade de transpor habilidades de linguagem para
+tarefas sensório-motoras ou de raciocínio abstrato sem realinhamento explícito. 
+Ambientes Simulados Complexos: Plataformas como MuJoCo, Habitat (navegação doméstica),
+AI2-THOR (interação física/objetos), WebSim etc. Podem ser usadas para testar agentes
+incorporados em cenários complexos, interagindo com objetos e humanos simulados. O
+conjunto de dados incluiria cenários variados (mundos fechados, mundo aberto, jogos
+desconhecidos). Métricas englobam sucesso nas tarefas, eficiência (passos necessários, custo
+computacional), e inovação (se cria estratégias não previstas pela simulação). 
+Datasets Multimodais e de Conhecimento: Combinar textos, imagens, dados sensoriais e
+biológicos reais. Por exemplo, usar datasets de registro neural humano (HCP , EEG/MEG abertos)
+com descrições comportamentais; sensores de robótica; e grandes corpora de conhecimento.
+Isso suporta avaliação de capacidade multimodal de aprendizado. 
+Experimentos de Segurança/AL/Ethics: Testar falhas adversariais, alinhamento de valores e
+comportamentos éticos. Criar cenários de dilemas morais simulados (edições do “simulador de
+sociedade” com variáveis sociais). Métricas: robustez a manipulações, equidade de decisões,
+interferência mínima em privacidade. Por exemplo, verificar se a AGI recusa executar comandos
+antiéticos ou identifica violação de normas. Também deve haver protocolos de “jogo duplo”:
+avaliar o quanto de poder computacional extra (hardware) pode ser obscuro para desenvolver
+outsperformers malévolos (conforme guidelines de segurança). 
+Métricas de AGI: Além de acurácia, usar métricas como “inteligência fluida” (eficiência na
+aquisição de nova habilidade【52†L139-L147】) e “capacidade de invenção” (quantificar
+diversidade e utilidade de novas primitivas criadas). Por exemplo, medir a complexidade
+algorítmica de soluções geradas: se a solução para vários problemas recorre a uma mesma
+subrotina inédita, isso indica criação de primitiva geral. 
+Protocolos de Benchmark: Iterações por fases progressivas. Por exemplo, primeiro teste em
+ambientes controlados (jogos abstratos, problemas de raciocínio) com limites de computação
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+8
+==== PAG 9 ====
+fixos. Em seguida, realistas (interação com humanos, tarefas físicas simuladas). Em cada fase,
+monitorar o aparecimento de comportamentos emergentes (nova habilidade sem treino extra). 
+Conjuntos de Dados Neurais e Fisiológicos: Para validar a componente inspirada no cérebro,
+empregar dados de cérebro real (fMRI/EEG público, atlas celulares) como supervisão ou teste de
+plausibilidade. Por exemplo, verificar se o modelo neural integrado produz padrões de atividade
+coerentes com ECoG experimentais (como fez o modelo MEG-fMRI【16†L62-L69】), ou se sua
+estrutura de rede espelha estatísticas do conectoma. 
+Em todos esses experimentos, segurança e ética são centrais: incluir análise de riscos (“off-switch”,
+regimes de autorização restrita) e revisão multidisciplinar (comitês éticos). O design experimental deve
+antecipar usos indevidos e garantir transparência. Por exemplo, registrar logs de decisão, analisar
+eventuais enviesamentos e permitir auditoria dos módulos simbólicos. 
+7. Roadmap Prático: Milestones, Recursos e Riscos
+Fase 1 (1–3 anos): Coleta de dados e prototipagem inicial. 
+Marcos: Construção de grandes corpora multimodais (texto, imagens, sinais neurais) e
+instalação de laboratórios de neuroimagem de ponta (fMRI 7T, MEG). Desenho inicial de
+módulos híbridos básicos (redes LLM + símbolos simples). Publicação de benchmarks pré-AGI
+(versões iniciais de ARC-AGI). Demonstração de module protótipo que cria primitivas simples em
+ambientes simulados. 
+Recursos: Milhares de GPUs/TPUs (ou supercomputador de exaescala); clusters Loihi para
+experimentação; bancos de dados multi-PB; equipes interdisciplinares (neurocientistas,
+engenheiros de AI, filósofos). Orçamento: pode-se estimar dezenas de milhões de dólares/ano
+(capex em hardware + equipes). 
+Riscos/Mitigações: Risco de desalinhamento de equipes (eng. vs neuro), escalabilidade de
+software. Mitigar promovendo código aberto e revisão por pares; iniciar pequenos testes de
+segurança interna. 
+Fase 2 (3–6 anos): Integração e escalonamento. 
+Marcos: AGIs híbridos que operam em ambientes abertos (simulados e controlados)
+aprendendo continuamente e gerando primitives abstratas básicas. Integração de hardware
+neuromórfico em loop fechado com aprendizado (robôs-guia ou drones auto-adaptativos).
+Progressos em causal discovery aplicada (sistemas que aprendem leis físicas simples).
+Desenvolvimento de métricas de “criação de novas habilidades” e uso desses para ajustar
+arquiteturas. 
+Recursos: Escala de petaflop a exaflop em computação (GPUs/TPUs), dezenas de Loihi 2/
+SpiNNaker e demais chips de pesquisa. Laboratórios de neuroestimulação/testes com
+voluntários (para estudar RL humano-IA). Colaborações internacionais (Grandes iniciativas como
+IARPA, Brasil Futuro AI Program). 
+Riscos/Mitigações: Maior complexidade de integração (modularidade X monolitismo). Risco de
+“gargalo de entendimento”, onde ninguém entende bem emergências. Mitigação:
+transparentizar modelos simbólicos, usar interpretabilidade e supervisão humana para guiar
+direção da IA; manter regulamentação progressiva. 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+9
+==== PAG 10 ====
+Fase 3 (6–10 anos): Validação e refinamento para AGI plena. 
+Marcos: AGI demonstrando eficiência de aprendizado comparável a humana (p.ex. soluções
+criativas sem pré-treino extenso)【52†L139-L147】. Primitive-opening claramente mensurável
+(provas de invenção conceitual própria). AGI operando em ambientes reais (assistentes pessoais
+generalistas, pesquisa científica autônoma) com precauções de segurança robustas.
+Documentação de casos de uso múltiplos (medicina, engenharia, arte). 
+Recursos: Computação de última geração (talvez aproveitando novas tecnologias quânticas/
+ópticas), acesso contínuo a dados privados via parcerias (respeitando privacidade).
+Financiamento crescente (>US$1B/ano) mobilizando indústria (Tech giants) e governos. 
+Riscos/Mitigações: Risco de aceleração descontrolada (“IA runaway”) ou divergência de
+objetivos. Mitigação: protocolos rígidos de alinhamento de objetivos (IRL, ética via aprendizado
+restrito), supervisão governamental e internacional, com envolvimento de filósofos e
+legisladores. 
+Recursos específicos: Para ilustrar ordens de grandeza:
+Recurso / Abordagem Escala de Custo Estimada Prioridade
+Computação HPC (GPUs/TPUs) US$500M–1B em 5 anos (infra) Alta
+Chips neuromórficos (Loihi) ~US$1k–10k por unidade (10–100
+unidades)
+Média-
+alta
+Pesquisa neurofisiológica (imagens, etc.)~US$200M/ano (laboratórios) Alta
+Desenvolvimento de softwares (primitivas,
+safety)
+Equipe de 100+ pesquisadores,
+~US$50M/ano Alta
+Data (licenças de corpora, manutenção)~US$50M/ano Média
+Governança e segurança Time especializado (~US$10–20M/ano)Alta
+Esses valores são estimates baseados em projetos de supercomputação e iniciativas de
+neuroengenharia públicas e privadas. As prioridades consideram impacto direto no salto para AGI:
+hardware e neurodados de resolução, e pesquisa em alinhamento/safety. 
+8. Comparação de Abordagens – Tabelas
+Abordagem vs Custos e Prioridades:
+Abordagem/
+Componente
+Exemplos
+Concretos Custo Estimado Maturidade
+Atual Prioridade
+Deep Learning
+Tradicional
+Transformers
+(GPT, BERT);
+Diffusion
+(DALL·E)
+Treinamento
+LLM: ~US$100M+;
+inferência
+individual barato
+Muito
+desenvolvida
+(open AI/Big
+Tech)
+Média (base, mas
+já explorada)
+Neuromorphic
+Computing
+Intel Loihi/
+Loihi2, IBM
+TrueNorth
+Custos de chips:
+~$10k/pc;
+sistemas de teste:
+US$1–10M
+Protótipos
+operacionais
+(cerca 1 década)
+Alta (eficiência
+energética e
+tempo-real)
+• 
+• 
+• 
+10
+==== PAG 11 ====
+Abordagem/
+Componente
+Exemplos
+Concretos Custo Estimado Maturidade
+Atual Prioridade
+Neuro-
+simbólico /
+Symbolic
+Concept
+Learner ,
+Deductive
+Modules
+Software de
+inteligência
+simbólica (e.g.
+Prolog, Datalog)
+Complexidade
+de integração;
+pouca escala
+Alta (integração
+neural+texto/
+lógica)
+Aprendizagem
+Contínua
+Meta-RL
+(MAML),
+regularização
+anti-forgetting
+Algoritmos em
+PyTorch/
+TensorFlow; GPU
+comuns
+Pesquisas
+intensas,
+aplicações
+emergentes
+Alta (necessário
+para
+adaptabilidade)
+Óptica e
+Quantum
+(exploratório)
+Computação
+óptica fotônica,
+qubits,
+memristores
+Ex. processadores
+fotônicos: US$1–
+5M protótipos
+Estágio
+experimental
+(pesquisa de
+hardware)
+Baixa-média (para
+AGI específico)
+Pesquisa em
+Neurociência
+Conectoma
+humano, atlas
+celulares
+Grandes projetos
+multi-anuais
+(US$100M+)
+Em andamento
+global (BRAIN,
+HBP , Human Cell
+Atlas)
+Alta (inspiração e
+dados)
+Program
+Synthesis /
+Symbolic Search
+DreamCoder ,
+AlphaCode, ILP
+Requer clusters
+padrão; uso de
+GPUs/CPUs
+normais
+Ativos em
+pesquisas
+acadêmicas/
+empresas
+Média (útil para
+automatizar novas
+primitivas
+simbólicas)
+Datasets e Experimentos (Priorização):
+Experimento / Dataset Objetivo Tamanho/
+Recursos Prioridade
+ARC-AGI (visão abstrata)
+Testar generalização / fluência
+(aprendizado a partir de
+padrões)【52†L139-L147】
+Milhares de
+problemas Alta
+Jogos e Simulações físicas
+(MuJoCo, OpenAI Gym 3D)
+Continuar RL em domínios
+abertos
+Clusters GPU,
+simulação HPC Alta
+Ambientes multimodais
+(Habitat, AI2-THOR)
+IA incorporada em cenários
+reais/simul.
+GPUs + rigs
+robóticos (vídeo,
+sensores)
+Alta
+Conjuntos de fala/visão/ação
+combinados (COCO,
+AudioSet, vídeos interativos)
+Aprender contexto real e multi-
+sensorial
+Data lakes (100s
+TB)
+Média-
+alta
+Sinais neurais públicos (HCP ,
+OpenNeuro)
+Validar correspondência
+cérebro–modelo
+dezenas de GB,
+clusters Média
+Protocolos de segurança
+(benchmarks adversariais)Testar alinhamento e ética
+Simulações
+éticas, ML
+adversário
+Alta
+11
+==== PAG 12 ====
+Estas tabelas resumem as trade-offs: aborda-se todos os vetores (software, hardware, dados) em
+paralelo, com foco maior em módulos vitais (neuromórfico, simbólico, dados neurais) e construção
+segura. 
+9. Referências e Fontes
+As discussões acima baseiam-se em literatura primária recente e relatórios técnicos, por exemplo: 
+Ramos-Llordén et al., Nature Biomed Eng (2025) sobre o scanner Connectome 2.0 de alta
+resolução【62†L147-L155】. 
+Feinberg et al., Nature Methods (2023), MRI 7T submilimétrica【11†L99-L107】. 
+Shen et al. bioRxiv/ArXiv (2025), modelo integrativo MEG+fMRI de alta resolução【16†L62-L69】. 
+Golesorkhi et al., Commun Biol (2021), revisão de escalas temporais intrínsecas no cérebro
+【22†L127-L132】. 
+Feldman, TOP500 (2016) – notícia sobre IBM TrueNorth classification efficiency【33†L192-L201】.
+Isik et al., arXiv (2024), estudo do Intel Loihi-2 em fusão sensorial e eficiência energética
+【36†L32-L40】. 
+Hong, Micromachines (2025), visão integrativa de IA e optogenética fechada【38†L142-L151】. 
+Busch et al., NPJ Parkinson’s Disease (2025), ensaio de DBS adaptativo fechado em Parkinson
+【40†L81-L90】. 
+Berti et al., arXiv (2025), survey de habilidades emergentes em LLMs【46†L41-L49】. 
+Shojaee et al., Apple Tech (2025), limitações de modelos de raciocínio em tarefas complexas
+【49†L49-L57】. 
+ARC-Prize (site oficial, 2025) – definições de AGI e métricas de inteligência baseada em fluidez de
+aprendizado【52†L139-L147】【52†L157-L166】. 
+Cada seção referenciou as fontes acima segundo o formato 【cursor†Lx-Ly】. Sempre que dados
+específicos foram assumidos (por exemplo, custos estimados), isto foi explicitado no texto. As
+referências primárias acima incluem artigos científicos revisados por pares e publicações oficiais das
+iniciativas mencionadas. Links diretos aos papers e conjuntos de dados foram fornecidos nos itens
+citados. 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+12

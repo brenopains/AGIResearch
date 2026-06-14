@@ -1,0 +1,19 @@
+  ... 50/400 (solved=7, NOVAS=1)
+  ... 100/400 (solved=14, NOVAS=1)
+  ... 150/400 (solved=20, NOVAS=1)
+  ... 200/400 (solved=27, NOVAS=1)
+  ... 250/400 (solved=31, NOVAS=2)
+  ... 300/400 (solved=35, NOVAS=2)
+  ... 350/400 (solved=39, NOVAS=2)
+  ... 400/400 (solved=42, NOVAS=2)
+========================================================================
+H89 Sintese evolutiva de programas (MAP-Elites + priores auto-adaptativos)
+  budget/tarefa=3.0s | union(H85)=84
+  evolucao resolveu: 42/400 = 10.5%
+  NOVAS vs union(busca fixa): 2 ['2013d3e2.json', '90c28cc7.json']
+  nova UNIAO: 86/400 = 21.5%  (era 21.0%)
+  profundidade dos programas que resolveram: media 2.3 max 7 (busca fixa ia ate ~4)
+  ops mais uteis aprendidos: [('crop', 16), ('mirror_v', 6), ('dedup_cols', 6), ('connect_h', 5), ('mirror_h', 5), ('cmap', 4), ('compress', 4), ('rot180', 4), ('grav_u', 4), ('dedup_rows', 4), ('transpose', 3), ('flipud', 3)]
+  tempo 1091s
+  Honesto: se NOVAS>0, profundidade/diversidade evolutiva era gargalo real (eixo novo).
+  Se NOVAS=0, o teto e LARGURA de primitiva (Solomonoff), nao a busca — confirma H62/H63.
