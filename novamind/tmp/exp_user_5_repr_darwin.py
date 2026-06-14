@@ -109,7 +109,7 @@ def make_composed_data(n=400, seed=48):
     
     r2 = x**2 + y**2
     z1 = r2
-    z2 = np.sin(r2) + np.cos(r2)
+    z2 = np.sin(r2)
     
     y1 = z1 + z2
     y2 = z1 - z2
