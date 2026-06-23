@@ -17,6 +17,11 @@ import random
 from collections import Counter, defaultdict, deque
 from typing import Dict, List, Optional, Tuple
 
+try:
+    from .neuromodulator_state import NeuromodulatorState
+except ImportError:
+    NeuromodulatorState = None
+
 
 class ArchetypeEngine:
     """
@@ -48,6 +53,14 @@ class ArchetypeEngine:
         self.compression_history = deque(maxlen=50)
         self._last_progress = 0.0
 
+        # === Neuromodulação contextual ===
+        # Cada arquétipo carrega sua assinatura NT base
+        # Contextos ativos modificam como o arquétipo é avaliado
+        self.nt_state: Optional[object] = (
+            NeuromodulatorState() if NeuromodulatorState is not None else None
+        )
+        self._active_contexts: List[str] = []  # contextos globais ativos
+
     def _load_base_primitives(self) -> Dict:
         """Carrega as primitivas cognitivas do spelke_cognitive como vocabulário base."""
         primitives = {}
@@ -68,10 +81,37 @@ class ArchetypeEngine:
                 primitives[p] = {"family": family, "type": "cognitive"}
         return primitives
 
+    def set_contexts(self, contexts: List[str]):
+        """Define contextos globais ativos (ex: ['kitchen', 'nighttime'])."""
+        self._active_contexts = list(contexts)
+        if self.nt_state is not None:
+            self.nt_state.set_contexts(contexts)
+
+    def activate_concept(self, concept_key: str, strength: float = 0.3):
+        """
+        Ativa um conceito no estado NT com modificadores causais do contexto atual.
+        Exemplo: activate_concept('fire') com contexto ['gas_leak'] → CRH dispara.
+        """
+        if self.nt_state is not None:
+            self.nt_state.activate_concept(
+                concept_key,
+                context_keys=self._active_contexts,
+                strength=strength
+            )
+
+    def get_nt_signature(self, concept_key: str) -> Optional[Dict]:
+        """Retorna a assinatura NT resolvida para um conceito no contexto atual."""
+        if self.nt_state is None:
+            return None
+        nt_vec = self.nt_state.resolve_concept_nt(concept_key, self._active_contexts)
+        return {name: round(float(nt_vec[i]), 3)
+                for i, name in enumerate(["DA", "NA", "ACh", "5HT", "CRH", "OXT"])}
+
     def observe(self, concepts: List[str]):
         """
         Registra uma observação de conceitos.
         Extrai pares e padrões que podem virar arquétipos.
+        Ativa NTs dos conceitos no contexto atual.
         """
         if not concepts:
             return
@@ -89,6 +129,13 @@ class ArchetypeEngine:
             for prim_name, prim_info in self.base_primitives.items():
                 if prim_name in c_up or c_up in prim_name:
                     self.archetype_usage[prim_name] += 1
+
+            # Ativa NT do conceito com modificadores causais do contexto
+            if self.nt_state is not None:
+                self.nt_state.activate_concept(
+                    c.lower().strip(), self._active_contexts, strength=0.15
+                )
+                self.nt_state.tick(dt=0.1)  # simula passagem de tempo
 
     def consolidate(self) -> List[str]:
         """
@@ -123,11 +170,15 @@ class ArchetypeEngine:
         for saving, a, b in sorted(candidates, key=lambda x: -x[0])[:5]:
             name = self._name_archetype(a, b)
             if name not in self.archetypes:
+                # Gera assinatura NT do arquétipo com contexto atual
+                nt_sig = self.get_nt_signature(a.lower())
                 self.archetypes[name] = {
                     "pattern": (a, b),
                     "compression_saving": saving,
                     "created_at": time.time(),
                     "times_used": 0,
+                    "nt_signature": nt_sig,     # assinatura emocional do arquétipo
+                    "contexts": list(self._active_contexts),  # contexto de criação
                 }
                 new_archetypes.append(name)
 
@@ -204,6 +255,8 @@ class ArchetypeEngine:
         return score
 
     def get_state(self) -> Dict:
+        nt_mood = self.nt_state.mood if self.nt_state else "n/a"
+        nt_dict = self.nt_state.as_dict() if self.nt_state else {}
         return {
             "total_archetypes": len(self.archetypes),
             "archetype_list": list(self.archetypes.keys())[-20:],
@@ -212,4 +265,7 @@ class ArchetypeEngine:
             "curiosity": self.get_curiosity_score(),
             "observation_buffer_size": len(self.observation_buffer),
             "observation_buffer": len(self.observation_buffer),
+            "active_contexts": self._active_contexts,
+            "nt_mood": nt_mood,
+            "nt_state": nt_dict,
         }

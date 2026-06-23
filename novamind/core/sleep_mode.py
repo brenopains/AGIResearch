@@ -1,11 +1,12 @@
 """
-SleepMode — Replay Offline + Consolidação de Archetypes
-========================================================
+SleepMode — Replay Offline + Consolidação de Archetypes + L2→L3 Multi-Escala
+==============================================================================
 Quando o neuromodulador indica sono (5HT baixo + ACh alto):
   1. Busca N chunks aleatórios da memória HDV
   2. Recombina pares no Sandbox (bind aleatório)
   3. Mede Energia Livre de cada combinação
   4. Se FE cai significativamente, consolida como novo Archetype
+  5. [NOVO] Consolida memórias emocionalmente salientes L2 → L3
 """
 
 import random, time
@@ -16,9 +17,11 @@ from .coglang import Manifold, calculate_free_energy, bind_roles
 
 class SleepMode:
     """
-    Ciclo de sono: recombinação offline de memórias.
+    Ciclo de sono: recombinação offline de memórias + consolidação multi-escala.
     O cérebro "sonha" combinando experiências passadas para
     descobrir analogias e consolidar intuições.
+    Memórias emocionalmente salientes (CRH alto ou DA alto) do L2
+    são transferidas para o L3 permanente durante o sono.
 
     Uso:
         sm = SleepMode(mind)
@@ -30,12 +33,14 @@ class SleepMode:
         self.mind = mind
         self.sleep_count = 0
         self.total_discoveries = 0
+        self.total_l3_consolidations = 0
 
     def replay(self, num_pairs: int = 100) -> List[str]:
         """
         Ciclo principal de replay offline.
         Pega chunks aleatórios da memória, recombina no Sandbox,
-        e consolida descobertas como novos archetypes.
+        consolida descobertas como novos archetypes, e transfere
+        memórias salientes para o L3 permanente.
 
         Args:
             num_pairs: número de combinações aleatórias a testar
@@ -87,11 +92,44 @@ class SleepMode:
             except Exception:
                 continue
 
+        # 4. [NOVO] Consolidação L2→L3 na memória multi-escala
+        n_l3 = self._consolidate_multiscale()
+        self.total_l3_consolidations += n_l3
+
         self.sleep_count += 1
-        if novos:
-            print(f"[SLEEP] Ciclo {self.sleep_count}: +{len(novos)} descobertas ({self.total_discoveries} total)")
+        if novos or n_l3 > 0:
+            print(f"[SLEEP] Ciclo {self.sleep_count}: +{len(novos)} arquétipos, "
+                  f"+{n_l3} mem L3 ({self.total_discoveries} total)")
 
         return novos
+
+    def _consolidate_multiscale(self) -> int:
+        """
+        Consolida memórias emocionalmente salientes do L2 → L3 permanente.
+        Chamado ao final de cada ciclo de sono.
+        Retorna o número de itens consolidados.
+        """
+        try:
+            # Tenta via mind.multiscale_hdv (injetado diretamente no mind)
+            mhdv = getattr(self.mind, 'multiscale_hdv', None)
+            if mhdv is not None:
+                n = mhdv.consolidate()
+                if n > 0:
+                    print(f"[SLEEP:L3] {n} memórias episódicas → L3 permanente")
+                return n
+
+            # Tenta via maestro (caso tenham sido injetados ali)
+            maestro = getattr(self.mind, 'maestro', None)
+            if maestro is not None:
+                mhdv = getattr(maestro, 'multiscale_hdv', None)
+                if mhdv is not None:
+                    n = mhdv.consolidate()
+                    if n > 0:
+                        print(f"[SLEEP:L3] {n} memórias → L3 (via maestro)")
+                    return n
+        except Exception as e:
+            print(f"[SLEEP:L3] Erro na consolidação multiscale: {e}")
+        return 0
 
     def _sample_texts(self, n: int) -> List[str]:
         """Amostra textos da memória HDV."""

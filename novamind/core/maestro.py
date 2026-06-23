@@ -467,6 +467,38 @@ class CausalActor(Actor):
 # ═══════════════════════════════════════════════════════════════
 from .neuromodulator import Neuromodulator
 
+# Novos módulos de incorporação (import defensivo: não quebra se ausentes)
+try:
+    from .neuromodulator_state import NeuromodulatorState
+except ImportError:
+    NeuromodulatorState = None
+
+try:
+    from .multiscale_hdv import MultiScaleHDV
+except ImportError:
+    MultiScaleHDV = None
+
+try:
+    from .temporal_binder import TemporalBinder
+except ImportError:
+    TemporalBinder = None
+
+try:
+    from .simulated_body import SimulatedBody, Actuator
+except ImportError:
+    SimulatedBody = None
+    Actuator = None
+
+try:
+    from .body_encoder import BodyEncoder
+except ImportError:
+    BodyEncoder = None
+
+try:
+    from .cerebellum import Cerebellum
+except ImportError:
+    Cerebellum = None
+
 
 class CognitiveMaestro:
     """
@@ -536,8 +568,34 @@ class CognitiveMaestro:
         self.running = False
 
         # === Sistema Límbico: Neuromodulação Multi-Dimensional ===
-        self.neuromodulator = Neuromodulator()
+        self.neuromodulator = Neuromodulator()        # 4 NTs legado (compat)
         self._last_pe = 0.5  # prediction error anterior (para delta)
+
+        # === Fase 1: NT State com 6 dimensões + causalidade contextual ===
+        self.nt_state = NeuromodulatorState() if NeuromodulatorState else None
+
+        # === Fase 2: Memória Multi-Escala L1/L2/L3 ===
+        l3_path = None
+        try:
+            import os
+            l3_path = os.path.join(
+                os.path.dirname(__file__), '..', '..', 'knowledge', 'ltm_l3.npz'
+            )
+        except Exception:
+            pass
+        self.multiscale_hdv = MultiScaleHDV(l3_path=l3_path) if MultiScaleHDV else None
+
+        # === Fase 3: Binding Temporal para Memória Episódica ===
+        self.temporal_binder = TemporalBinder(seed=77) if TemporalBinder else None
+
+        # === Fase 4: Corpo Simulado + Codificador Corporal ===
+        self.body = SimulatedBody() if SimulatedBody else None
+        self.body_encoder = BodyEncoder(seed=88) if BodyEncoder else None
+        self._body_concept = "stable"    # conceito corporal atual
+        self._body_nt_update_interval = 5  # a cada 5 ciclos
+
+        # === Fase 5: Cerebelo (Forward + Inverse Model) ===
+        self.cerebellum = Cerebellum() if Cerebellum else None
 
     def start(self):
         """Inicia todos os atores em paralelo."""
@@ -609,6 +667,10 @@ class CognitiveMaestro:
 
         # 7. Decisões do maestro
         self._decide_next()
+
+        # 8. [NOVO] Loop corpo→NT→gain (a cada N ciclos para não sobrecarregar)
+        if self.cycle_count % self._body_nt_update_interval == 0:
+            self._body_nt_loop()
 
     def _on_thought(self, result: Dict):
         """Um pensamento foi gerado pelo córtex cognitivo."""
@@ -861,3 +923,118 @@ class CognitiveMaestro:
     def get_learning_state(self) -> Dict:
         """Apenas o estado de aprendizado (para compatibilidade)."""
         return dict(self.state)
+
+    # ─── Loop de Incorporação: Corpo → NT → Gain Control → Ação ──────────────
+
+    def _body_nt_loop(self):
+        """
+        Ciclo de incorporação:
+          1. Lê sensores corporais
+          2. Atualiza NeuromodulatorState via corpo
+          3. Ajusta gain de operações cognitivas
+          4. Guarda episódio no MultiScaleHDV + TemporalBinder
+          5. Atualiza Cerebelo com consequência da última ação
+        """
+        if self.body is None:
+            return
+
+        try:
+            import time
+
+            # 1. Lê sensores
+            reading = self.body.read_sensors()
+
+            # 2. Atualiza NT via corpo
+            if self.nt_state is not None:
+                self.nt_state.update_from_body(reading.to_dict())
+                nt_dict = self.nt_state.as_dict()
+                self._body_concept = (
+                    self.body_encoder.get_body_concept(reading)
+                    if self.body_encoder else "unknown"
+                )
+
+                # Propagate mood to state for UI
+                self.state["body_concept"] = self._body_concept
+                self.state["nt_state_6d"] = nt_dict
+                self.state["nt_mood"] = self.nt_state.mood
+
+                # 3. Gain control: ajusta intervalos de sono e aprendizado
+                threat = self.nt_state.get_gain("threat_bias")
+                if threat > 0.7 and self.nt_state.should_flee():
+                    # Ameaça alta: entra em modo de foco estreito
+                    print(f"[MAESTRO:corpo] Ameaça detectada! '{self._body_concept}' "
+                          f"CRH={nt_dict.get('CRH', 0):.2f} → modo alerta")
+
+                # 4. Guarda episódio na memória multi-escala
+                if self.body_encoder and self.multiscale_hdv:
+                    body_vec = self.body_encoder.encode_sensors(reading)
+                    self.multiscale_hdv.write(
+                        key=f"body:{self._body_concept}:{int(time.time())}",
+                        vector=body_vec,
+                        nt_state=nt_dict,
+                        metadata={"concept": self._body_concept,
+                                  "pain": reading.pain,
+                                  "balance": reading.balance,
+                                  "reward": reading.reward}
+                    )
+
+                # 5. Guarda episódio no TemporalBinder
+                if self.temporal_binder and self.body_encoder:
+                    body_vec = self.body_encoder.encode_sensors(reading)
+                    self.temporal_binder.write_episodic(
+                        concept_vec=body_vec,
+                        context_keys=list(getattr(self.nt_state, '_active_contexts', [])),
+                        nt_state=nt_dict,
+                        t=time.time(),
+                        metadata={"concept": self._body_concept}
+                    )
+
+                # 6. Atualiza Cerebelo com leitura atual
+                if self.cerebellum:
+                    # Converte leitura em vetor de estado e registra erro
+                    state_vec = reading.to_array()[:15]
+                    # Ação neutra (corpo parado) — o cerebelo aprende a prever repouso
+                    action_vec = [0.0, 0.0, 0.0, 0.0]
+                    import numpy as np
+                    err = self.cerebellum.get_prediction_error()
+                    if err > 0:
+                        self.state["cerebellum_error"] = round(err, 4)
+
+                # Tick temporal na memória multi-escala
+                if self.multiscale_hdv:
+                    self.multiscale_hdv.tick()
+
+        except Exception as e:
+            # Não quebra o loop principal por causa do corpo
+            import traceback
+            if self.cycle_count % 100 == 0:  # log apenas ocasionalmente
+                print(f"[MAESTRO:corpo] Erro no loop: {e}")
+
+    def get_embodiment_state(self) -> Dict:
+        """Estado completo do sistema de incorporação para a UI."""
+        out = {}
+
+        if self.body:
+            out["body"] = self.body.get_state()
+            out["body_concept"] = self._body_concept
+
+        if self.nt_state:
+            out["nt_state_6d"] = self.nt_state.as_dict()
+            out["nt_mood"] = self.nt_state.mood
+            out["nt_gains"] = {
+                "learning_rate":   round(self.nt_state.get_gain("learning_rate"), 3),
+                "attention_width": round(self.nt_state.get_gain("attention_width"), 3),
+                "threat_bias":     round(self.nt_state.get_gain("threat_bias"), 3),
+                "trust_level":     round(self.nt_state.get_gain("trust_level"), 3),
+            }
+
+        if self.multiscale_hdv:
+            out["memory_scales"] = self.multiscale_hdv.get_state()
+
+        if self.temporal_binder:
+            out["episodic_binder"] = self.temporal_binder.get_state()
+
+        if self.cerebellum:
+            out["cerebellum"] = self.cerebellum.get_state()
+
+        return out
