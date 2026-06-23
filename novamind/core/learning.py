@@ -91,6 +91,7 @@ class ContinuousLearningEngine:
         self.accuracy_history: List[float] = []
         self.surprise_history: List[float] = []
         self.compression_progress: List[float] = []
+        self._max_history = 200
 
     def learn(self, perception: Dict, reasoning: Dict, metacognition: Dict,
               memory_stats: Dict) -> Dict:
@@ -181,6 +182,9 @@ class ContinuousLearningEngine:
                 most_similar = past_pattern
 
         self.seen_patterns[input_sig] = 1
+        if len(self.seen_patterns) > 1000:
+            for k in list(self.seen_patterns)[:500]:
+                del self.seen_patterns[k]
         is_novel = min_ncd > self.novelty_threshold
 
         return {
@@ -243,6 +247,9 @@ class ContinuousLearningEngine:
 
                 # Increase importance for this concept (it's been used)
                 self.parameter_importance[concept_id] += 0.1
+                if len(self.parameter_importance) > 2000:
+                    for k in list(self.parameter_importance)[:500]:
+                        del self.parameter_importance[k]
 
         return events
 
@@ -267,6 +274,8 @@ class ContinuousLearningEngine:
         # Track accuracy
         overall_confidence = metacognition.get('confidence', {}).get('overall', 0.5)
         self.accuracy_history.append(overall_confidence)
+        if len(self.accuracy_history) > self._max_history:
+            self.accuracy_history = self.accuracy_history[-self._max_history:]
 
         # If we have enough history, adjust weights
         if len(self.accuracy_history) >= 5:
@@ -303,6 +312,8 @@ class ContinuousLearningEngine:
             compression = semantic_stats.get('total_compression', {})
             ratio = compression.get('overall_ratio', 0)
             self.compression_progress.append(ratio)
+            if len(self.compression_progress) > self._max_history:
+                self.compression_progress = self.compression_progress[-self._max_history:]
 
             if len(self.compression_progress) >= 3:
                 recent_progress = self.compression_progress[-1] - self.compression_progress[-3]

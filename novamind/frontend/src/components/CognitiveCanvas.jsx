@@ -1,133 +1,158 @@
 import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Text, Sphere, Line } from '@react-three/drei';
+import { OrbitControls, Text } from '@react-three/drei';
 import * as THREE from 'three';
 
-// Node component for a representation or entity
-const CognitiveNode = ({ position, label, color = "#3b82f6", size = 1 }) => {
-  const meshRef = useRef();
+// Color map for different manifold modalities
+const MODALITY_COLORS = {
+  archetype: '#f87171', // Red
+  visual: '#34d399',    // Green
+  audio: '#22d3ee',     // Cyan
+  text: '#f59e0b',      // Yellow/Gold
+  unknown: '#94a3b8'    // Gray
+};
 
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y += 0.01;
-      meshRef.current.rotation.x += 0.005;
+// Render causal edges from the SCM (Structural Causal Model)
+const CausalLink = ({ start, end, type }) => {
+  const points = useMemo(() => [
+    new THREE.Vector3(...start),
+    new THREE.Vector3(...end)
+  ], [start, end]);
+
+  const lineGeometry = useMemo(() => 
+    new THREE.BufferGeometry().setFromPoints(points)
+  , [points]);
+
+  const color = type === 'pytorch_latent_edge' ? '#34d399' : '#a78bfa';
+
+  return (
+    <line geometry={lineGeometry}>
+      <lineBasicMaterial 
+        attach="material" 
+        color={color} 
+        transparent 
+        opacity={0.3} 
+        linewidth={1.5} 
+      />
+    </line>
+  );
+};
+
+// Poincaré Sphere containing all manifolds, causal links, and semantic rules
+const PoincareSphere = ({ state }) => {
+  const groupRef = useRef();
+  
+  const concepts = state?.perception?.all_concepts || [];
+  const edges = state?.world_model?.edges || [];
+  const predError = state?.autonomous_learning?.prediction_error || 0;
+
+  // Map concepts by label for quick link lookups
+  const conceptsMap = useMemo(() => {
+    const m = {};
+    concepts.forEach(c => {
+      m[c.label] = c;
+    });
+    return m;
+  }, [concepts]);
+
+  // Slowly rotate the entire manifold space, speeding up during prediction errors (frustration)
+  useFrame((_, delta) => {
+    if (groupRef.current) {
+      const speed = 0.05 + predError * 0.5;
+      groupRef.current.rotation.y += speed * delta;
+      groupRef.current.rotation.z += (speed * 0.2) * delta;
     }
   });
 
   return (
-    <group position={position}>
-      <Sphere ref={meshRef} args={[size, 16, 16]}>
-        <meshStandardMaterial color={color} wireframe transparent opacity={0.8} />
-      </Sphere>
-      <Text
-        position={[0, size + 0.5, 0]}
-        fontSize={0.5}
-        color="white"
-        anchorX="center"
-        anchorY="middle"
-      >
-        {label}
-      </Text>
-    </group>
-  );
-};
-
-const WorldModelGraph = ({ entities, links }) => {
-  // Simple layout logic for entities
-  const nodes = useMemo(() => {
-    const keys = Object.keys(entities);
-    return keys.map((key, i) => {
-      // Circular layout
-      const angle = (i / keys.length) * Math.PI * 2;
-      const radius = 8;
-      return {
-        id: key,
-        position: [Math.cos(angle) * radius, Math.sin(angle) * radius, -10],
-        label: key
-      };
-    });
-  }, [entities]);
-
-  // Create links between nodes if any
-  const lines = useMemo(() => {
-    return links.map((link, idx) => {
-      const sourceNode = nodes.find(n => n.id === link.cause);
-      const targetNode = nodes.find(n => n.id === link.effect);
-      if (sourceNode && targetNode) {
-        return (
-          <Line
-            key={idx}
-            points={[sourceNode.position, targetNode.position]}
-            color="#94a3b8"
-            lineWidth={1}
-            transparent
-            opacity={0.5}
-          />
-        );
-      }
-      return null;
-    });
-  }, [links, nodes]);
-
-  return (
-    <group>
-      {nodes.map(n => (
-        <CognitiveNode key={n.id} position={n.position} label={n.label} color="#10b981" size={0.8} />
-      ))}
-      {lines}
-    </group>
-  );
-};
-
-const RepresentationTree = ({ library }) => {
-  // Layout logic for DAG
-  const nodes = useMemo(() => {
-    const keys = Object.keys(library);
-    return keys.map((key, i) => {
-      return {
-        id: key,
-        position: [i * 3 - (keys.length * 1.5), -5, i * 2],
-        label: library[key].id
-      };
-    });
-  }, [library]);
-
-  return (
-    <group>
-      {nodes.map(n => (
-        <CognitiveNode key={n.id} position={n.position} label={n.label} color="#8b5cf6" size={1.2} />
-      ))}
-    </group>
-  );
-};
-
-const Scene = ({ state }) => {
-  return (
-    <>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} />
-      <OrbitControls makeDefault enableDamping dampingFactor={0.05} />
+    <group ref={groupRef}>
+      {/* 1. Poincaré Hyperbolic Bound Sphere (Futuristic grid overlay) */}
+      <mesh>
+        <sphereGeometry args={[12, 24, 24]} />
+        <meshBasicMaterial 
+          color="#3b82f6" 
+          wireframe 
+          transparent 
+          opacity={0.2} 
+        />
+      </mesh>
       
-      {/* Central "Nucleus" */}
-      <CognitiveNode position={[0, 0, 0]} label="Cognitive Core" color="#ef4444" size={2} />
+      {/* 2. Concept Nodes (Projected 3D Manifolds) */}
+      {concepts.map((c, idx) => {
+        const coords = c.coords3d || [0, 0, 0];
+        const color = MODALITY_COLORS[c.modality] || MODALITY_COLORS.unknown;
+        const size = 0.15 + (c.activation || 0.5) * 0.15;
+        
+        return (
+          <group key={idx} position={coords}>
+            {/* Core Node Particle */}
+            <mesh>
+              <sphereGeometry args={[size, 16, 16]} />
+              <meshBasicMaterial color={color} />
+            </mesh>
+            
+            {/* Halo ring for high-activation manifolds */}
+            {c.activation > 0.6 && (
+              <mesh>
+                <ringGeometry args={[size * 1.3, size * 1.5, 16]} />
+                <meshBasicMaterial color={color} transparent opacity={0.6} side={THREE.DoubleSide} />
+              </mesh>
+            )}
+            
+            <Text 
+              position={[0, size + 0.3, 0]} 
+              fontSize={0.25} 
+              color="#f1f5f9"
+              anchorX="center" 
+              anchorY="middle"
+            >
+              {c.label}
+            </Text>
+          </group>
+        );
+      })}
 
-      {/* World Models around nucleus */}
-      <WorldModelGraph 
-        entities={state.world_model?.entities || {}} 
-        links={state.world_model?.causal_links || []} 
-      />
-
-      {/* Representation Evolutionary Tree */}
-      <RepresentationTree library={state.representations || {}} />
-    </>
+      {/* 3. Causal Connections (Causal Links from SCM) */}
+      {edges.map((edge, idx) => {
+        const srcNode = conceptsMap[edge.source];
+        const tgtNode = conceptsMap[edge.target];
+        if (srcNode && tgtNode && srcNode.coords3d && tgtNode.coords3d) {
+          return (
+            <CausalLink 
+              key={idx} 
+              start={srcNode.coords3d} 
+              end={tgtNode.coords3d} 
+              type={edge.type}
+            />
+          );
+        }
+        return null;
+      })}
+    </group>
   );
 };
 
 const CognitiveCanvas = ({ state }) => {
   return (
-    <Canvas camera={{ position: [0, 0, 20], fov: 60 }}>
-      <color attach="background" args={['#0f172a']} />
-      <Scene state={state} />
+    <Canvas
+      camera={{ position: [0, 5, 20], fov: 60 }}
+      gl={{ antialias: true, powerPreference: 'high-performance' }}
+      dpr={window.devicePixelRatio || 1}
+    >
+      <color attach="background" args={['#020617']} />
+      <ambientLight intensity={0.6} />
+      <pointLight position={[10, 10, 10]} intensity={0.8} />
+      <pointLight position={[-10, -10, -10]} intensity={0.3} />
+      
+      <OrbitControls 
+        makeDefault 
+        enableDamping 
+        dampingFactor={0.05} 
+        maxDistance={35} 
+        minDistance={3} 
+      />
+
+      <PoincareSphere state={state} />
     </Canvas>
   );
 };

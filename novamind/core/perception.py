@@ -103,6 +103,12 @@ class PerceptionEngine:
         
         self.novacrush_enabled = NOVACRUSH_ENABLED
 
+        # Homeostatic regulation
+        self.target_mean_activation = 0.3
+        self.homeostasis_rate = 0.01
+        self.activation_history: list = []
+        self.synaptic_scale = 1.0
+
     def perceive(self, raw_input: str) -> Dict:
         start_time = time.time()
         
@@ -208,6 +214,32 @@ class PerceptionEngine:
     def get_concept_by_label(self, label: str) -> Optional[ConceptNode]:
         concept_id = hashlib.md5(label.encode()).hexdigest()[:12]
         return self.concept_registry.get(concept_id)
+
+    def homeostatic_regulation(self):
+        """
+        Maintain target mean activation (synaptic scaling + metaplasticity).
+        Prevents runaway excitation/inhibition like real neural circuits.
+        """
+        if not self.concept_registry:
+            return
+        activations = np.array([c.activation for c in self.concept_registry.values()])
+        current_mean = float(np.mean(activations))
+        self.activation_history.append(current_mean)
+        if len(self.activation_history) > 50:
+            self.activation_history.pop(0)
+
+        if current_mean > self.target_mean_activation * 1.5:
+            scale = self.target_mean_activation / (current_mean + 1e-6)
+            self.synaptic_scale *= (1 - self.homeostasis_rate) + self.homeostasis_rate * scale
+            self.synaptic_scale = max(0.5, min(2.0, self.synaptic_scale))
+            for c in self.concept_registry.values():
+                c.activation *= self.synaptic_scale
+        elif current_mean < self.target_mean_activation * 0.2:
+            scale = self.target_mean_activation / (current_mean + 1e-6)
+            self.synaptic_scale *= (1 - self.homeostasis_rate) + self.homeostasis_rate * scale
+            self.synaptic_scale = max(0.5, min(2.0, self.synaptic_scale))
+            for c in self.concept_registry.values():
+                c.activation *= self.synaptic_scale
 
     def get_all_concepts(self) -> List[Dict]:
         return [c.to_dict() for c in self.concept_registry.values()]

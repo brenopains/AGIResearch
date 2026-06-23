@@ -24,6 +24,13 @@ novamind/tmp/dataset/
 novamind/tmp/data/
 novamind/tmp/arc_data/
 
+# Ignore node_modules (npm dependencies)
+**/node_modules/
+
+# Ignore large binary/data directories
+novamind/brainstate/
+novamind/knowledge/
+
 # Private recordings, transcripts and credentials
 .env
 .env.*

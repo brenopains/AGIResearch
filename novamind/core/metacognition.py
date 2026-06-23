@@ -86,24 +86,29 @@ class MetacognitionSystem:
         self.history: List[Dict] = []
         self.consistency_violations: List[Dict] = []
         self.knowledge_gaps: List[Dict] = []
+        self._max_history = 200
 
         # Internal models of cognitive performance
         self.paradigm_accuracy: Dict[str, List[float]] = defaultdict(list)
         self.prediction_errors: List[float] = []
 
     def assess(self, perception: Dict, reasoning: Dict, memory: Dict,
-               world_model: Dict) -> Dict:
+               world_model: Dict, hdc_retrieval_score: float = 0.0) -> Dict:
         """
         Perform a full metacognitive assessment of the current cognitive cycle.
 
         This is the "thinking about thinking" — a higher-order process
         that monitors all first-order processes.
+
+        Args:
+            hdc_retrieval_score: melhor similaridade da memória HDV (0-1).
+                Quando > 0.3, a AGI "sabe do que se trata" e a confiança sobe.
         """
         report = {}
         start_time = time.time()
 
         # 1. Confidence Assessment
-        report['confidence'] = self._assess_confidence(reasoning)
+        report['confidence'] = self._assess_confidence(reasoning, hdc_retrieval_score)
 
         # 2. Coherence Check (consistency of beliefs)
         report['coherence'] = self._check_coherence(reasoning, world_model)
@@ -142,10 +147,12 @@ class MetacognitionSystem:
             'coherence': self.state.coherence,
             'surprise': self.state.surprise_level,
         })
+        if len(self.history) > self._max_history:
+            self.history = self.history[-self._max_history:]
 
         return report
 
-    def _assess_confidence(self, reasoning: Dict) -> Dict:
+    def _assess_confidence(self, reasoning: Dict, hdc_retrieval_score: float = 0.0) -> Dict:
         """
         Assess confidence in the reasoning results.
 
@@ -153,27 +160,39 @@ class MetacognitionSystem:
         - Agreement between reasoning paradigms
         - Historical accuracy of each paradigm
         - Strength of supporting evidence
+        - HDV retrieval score (memória de longo prazo)
         """
         paradigms = reasoning.get('paradigms', {})
 
-        # Agreement score: how much do paradigms agree?
         confidences = []
         for name, result in paradigms.items():
             confidences.append(result.get('confidence', 0.5))
 
         if confidences:
-            agreement = 1 - np.std(confidences)  # Low variance = high agreement
+            agreement = 1 - np.std(confidences)
             avg_confidence = np.mean(confidences)
         else:
             agreement = 0.5
             avg_confidence = 0.5
 
-        # Overall confidence = f(agreement, individual confidences)
-        overall = float(agreement * 0.3 + avg_confidence * 0.5 + 0.2 * (1 if not reasoning.get('consensus', {}).get('conflict_detected') else 0))
+        # HDV retrieval score: se a memoria HDV achou algo relevante,
+        # a confianca sobe proporcionalmente
+        hdc_conf = min(1.0, hdc_retrieval_score * 1.5)
+
+        # Overall confidence = f(agreement, avg_confidence, hdc, conflict)
+        conflict_penalty = 0.2 if reasoning.get('consensus', {}).get('conflict_detected') else 0
+        overall = float(
+            agreement * 0.2 +
+            avg_confidence * 0.3 +
+            hdc_conf * 0.35 +
+            0.15 * (1 - conflict_penalty)
+        )
+        overall = max(0.05, min(1.0, overall))
 
         return {
             'overall': overall,
             'agreement': float(agreement),
+            'hdc_retrieval': hdc_retrieval_score,
             'per_paradigm': {name: result.get('confidence', 0.5)
                            for name, result in paradigms.items()},
             'conflict_detected': reasoning.get('consensus', {}).get('conflict_detected', False),
@@ -209,6 +228,8 @@ class MetacognitionSystem:
                         })
 
         self.consistency_violations.extend(violations)
+        if len(self.consistency_violations) > self._max_history:
+            self.consistency_violations = self.consistency_violations[-self._max_history:]
 
         score = max(0.1, 1.0 - len(violations) * 0.2)
         return {
@@ -300,6 +321,8 @@ class MetacognitionSystem:
             })
 
         self.knowledge_gaps.extend(gaps)
+        if len(self.knowledge_gaps) > self._max_history:
+            self.knowledge_gaps = self.knowledge_gaps[-self._max_history:]
         return gaps
 
     def _control_attention(self, report: Dict) -> Dict:

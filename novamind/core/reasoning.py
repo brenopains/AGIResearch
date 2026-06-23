@@ -560,6 +560,7 @@ class HybridReasoningEngine:
 
         # History for learning from past reasoning
         self.reasoning_history: List[Dict] = []
+        self._max_reasoning_history = 100
 
     def reason(self, query_concepts: List[Dict], knowledge_base: Dict) -> Dict:
         """
@@ -609,6 +610,8 @@ class HybridReasoningEngine:
                 'geometric': geometric_result.confidence,
             },
         })
+        if len(self.reasoning_history) > self._max_reasoning_history:
+            self.reasoning_history = self.reasoning_history[-self._max_reasoning_history:]
 
         return report
 

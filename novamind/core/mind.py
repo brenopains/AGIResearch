@@ -33,6 +33,30 @@ from .goals import GoalSystem
 from .learning import ContinuousLearningEngine
 from .language_cortex import NativeLanguageCortex
 from .grounded_semantics import CulturalRuleCompiler
+from .predictive_coding import PredictiveCodingEngine
+from .active_inference import ActiveInferenceEngine
+from .motor_cortex import MotorCortex
+from .archetypes import ArchetypeEngine
+from .visual_cortex import VisualCortex
+from .auditory_cortex import AuditoryCortex
+from .working_memory import WorkingMemory
+from .intrinsic_rl import IntrinsicRL
+from .causal_reasoning import CausalReasoningEngine
+from .world_model_4d import WorldModel4D
+from .emergent_language import EmergentLanguage
+from .diva_controller import DIVAController
+from .somatosensory_cortex import SomatosensoryCortex
+from .premotor_cortex import PremotorCortex
+from .basal_ganglia import BasalGanglia
+from .cerebellum import Cerebellum
+from .syllable_oscillator import SyllableOscillator
+
+# HDV Memory Integration
+try:
+    from .hdc_memory import HDCMemory
+    HDCMEMORY_AVAILABLE = True
+except ImportError:
+    HDCMEMORY_AVAILABLE = False
 
 # NovaCrush Integration
 try:
@@ -58,6 +82,25 @@ class NovaMind:
         self.perception = PerceptionEngine()
         self.world_model = WorldModel()
         self.memory = MemorySystem()
+        self.memory.start_consolidation()
+        self.predictor = PredictiveCodingEngine()
+        self.actor = ActiveInferenceEngine()
+        self.motor = MotorCortex()
+        self.visual_cortex = VisualCortex()
+        self.auditory_cortex = AuditoryCortex()
+        self.motor.auditory_cortex = self.auditory_cortex  # self-hearing loop
+        self.diva = DIVAController()
+        self.somatosensory = SomatosensoryCortex()
+        self.premotor = PremotorCortex()
+        self.basal_ganglia = BasalGanglia()
+        self.cerebellum = Cerebellum()
+        self.syllable_oscillator = SyllableOscillator()
+        self.motor.diva_controller = self.diva
+        self.motor.somatosensory_cortex = self.somatosensory
+        self.motor.premotor_cortex = self.premotor
+        self.motor.basal_ganglia = self.basal_ganglia
+        self.motor.cerebellum = self.cerebellum
+        self.motor.syllable_oscillator = self.syllable_oscillator
 
         # Real semantic recall (MiniLM embeddings) instead of Jaccard/NCD.
         # ~99MB VRAM, ~770MB RAM, ~5ms/query warm. Disable for ultra-low-RAM.
@@ -75,6 +118,7 @@ class NovaMind:
         self.language = NativeLanguageCortex(substrate=getattr(self.perception, 'neural_substrate', None))
         self.rule_compiler = CulturalRuleCompiler()
         self.semantic_facts: List[Dict] = []
+        self._max_semantic_facts = 500
         self.unanswered_questions: List[Dict] = []
 
         if NOVACRUSH_AVAILABLE:
@@ -84,11 +128,36 @@ class NovaMind:
         else:
             self.genetic_optimizer = None
 
+        self.archetypes = ArchetypeEngine()
+        self.wm = WorkingMemory()
+        self.intrinsic_rl = IntrinsicRL()
+
+        # Memória HDV (conhecimento compilado do disco D)
+        if HDCMEMORY_AVAILABLE:
+            try:
+                self.hdc_memory = HDCMemory(device=self.perception.device if hasattr(self.perception, 'device') else None)
+                if not self.hdc_memory.matrices:
+                    print("[NovaMind] Nenhum .hdv encontrado — rode coglang_compiler.ingest_all() primeiro")
+            except Exception as e:
+                print(f"[NovaMind] HDCMemory indisponível ({e})")
+                self.hdc_memory = None
+        else:
+            self.hdc_memory = None
+
+        # Injeta GroundingEngine + HDCMemory no PredictiveCoding para erro HDC
+        if self.hdc_memory is not None and hasattr(self.hdc_memory, 'engine'):
+            self.predictor.set_engine(self.hdc_memory.engine)
+            self.predictor.set_hdc_memory(self.hdc_memory)
+
+        self.causal = CausalReasoningEngine()
+        self.world_4d = WorldModel4D()
+        self.emergent_lang = EmergentLanguage()
         self.cycle_count = 0
         self.thought_history: List[Dict] = []
         self.start_time = time.time()
+        self._last_emotional_valence = 0.0
 
-    def think(self, raw_input: str) -> Dict:
+    def think(self, raw_input: str, confidence: float = 1.0) -> Dict:
         cycle_start = time.time()
         self.cycle_count += 1
 
@@ -100,13 +169,38 @@ class NovaMind:
         }
 
         # ═══════════════════════════════════════════════
+        # LAYER 0: PREDICTIVE CODING (Top-down expectation)
+        # ═══════════════════════════════════════════════
+        prediction = self.predictor.predict_next(raw_input, self.world_model, self.memory)
+        pred_error = self.predictor.compute_prediction_error(raw_input, prediction)
+        # Uncertainty weighting: low confidence → amplify prediction error → more learning
+        uncertainty_multiplier = 1.0 + max(0, (1.0 - confidence) * 2.0)
+        pred_error = min(1.0, pred_error * uncertainty_multiplier)
+        self.predictor.update_precision(pred_error)
+        attention_wt = self.predictor.get_attention_weight()
+        lr_mod = self.predictor.get_learning_rate_modulator()
+
+        thought['predictive_coding'] = {
+            'prediction': prediction[:100] if prediction else "",
+            'prediction_error': pred_error,
+            'precision': self.predictor.precision,
+            'attention_weight': attention_wt,
+            'learning_rate_modulator': lr_mod,
+        }
+
+        # ═══════════════════════════════════════════════
         # LAYER 1: PURE GEOMETRIC PERCEPTION (No LLMs)
         # ═══════════════════════════════════════════════
         perception_report = self.perception.perceive(raw_input)
         thought['layers']['perception'] = perception_report
 
-        # Decay old concept activations
+        # Observe concepts in archetype engine (padrões → arquétipos)
+        concept_labels = [c.get('label', '') for c in perception_report.get('concepts', [])]
+        self.archetypes.observe(concept_labels)
+
+        # Decay old concept activations + homeostatic regulation
         self.perception.decay_activations(rate=0.03)
+        self.perception.homeostatic_regulation()
 
         # ═══════════════════════════════════════════════
         # LAYER 2: WORLD MODEL
@@ -114,12 +208,18 @@ class NovaMind:
         self.world_model.integrate_perception(perception_report)
         world_model_data = self.world_model.get_graph_data()
 
+        # Structural plasticity: prune/grow based on prediction error
+        self.world_model.apply_structural_plasticity(pred_error)
+        self.world_model.homeostatic_plasticity()
+
         # Extract semantic facts from declarative statements
         new_facts = self._extract_semantic_facts(raw_input)
         self._detect_contradictions(new_facts, thought)
         for fact in new_facts:
             self.memory.store_semantic_rule(fact)
             self.semantic_facts.append(fact)
+            if len(self.semantic_facts) > self._max_semantic_facts:
+                self.semantic_facts = self.semantic_facts[-self._max_semantic_facts:]
             # Link concepts in world model
             if fact.get('type') == 'cognitive_rule':
                 # Complex rule, handled by advanced world model logic/compilation
@@ -144,7 +244,7 @@ class NovaMind:
         thought['layers']['world_model'] = world_model_data
 
         # ═══════════════════════════════════════════════
-        # LAYER 3: MEMORY
+        # LAYER 3: MEMORY (Adaptive Relevance)
         # ═══════════════════════════════════════════════
         episode = self.memory.store_episode(
             content={
@@ -154,7 +254,10 @@ class NovaMind:
                 'type': 'interaction',
             },
             episode_type='interaction',
-            importance=0.5 + 0.3 * (perception_report.get('new_concepts', 0) > 0)
+            importance=0.5 + 0.3 * (perception_report.get('new_concepts', 0) > 0),
+            emotional_valence=self._last_emotional_valence,
+            surprise=pred_error,
+            expected_input=prediction,
         )
 
         relevant_episodes = self.memory.recall_episodic({'input': raw_input}, top_k=3)
@@ -170,10 +273,32 @@ class NovaMind:
         self.memory.decay_all()
 
         # ═══════════════════════════════════════════════
+        # LAYER 3.5: HDC MEMORY (Conhecimento Compilado)
+        # ═══════════════════════════════════════════════
+        hdc_context = ""
+        if hasattr(self, 'hdc_memory') and self.hdc_memory is not None and self.hdc_memory.matrices:
+            try:
+                hdc_context = self.hdc_memory.get_context(raw_input, top_k=3)
+                hdc_mem_stats = self.hdc_memory.get_stats()
+                if hdc_context:
+                    # Alimenta working memory com o contexto HDV
+                    self.wm.focus(hdc_context, ["hdc_memory"], "hdc", attention=0.6)
+            except Exception as e:
+                hdc_context = ""
+                hdc_mem_stats = {"error": str(e)}
+        else:
+            hdc_mem_stats = {"sources": [], "total_items": 0}
+
+        thought['layers']['hdc_memory'] = {
+            'context': hdc_context[:300],
+            'stats': hdc_mem_stats,
+        }
+
+        # ═══════════════════════════════════════════════
         # LAYER 4: REASONING 
         # ═══════════════════════════════════════════════
         knowledge_base = self._build_knowledge_base(
-            perception_report, world_model_data, relevant_rules
+            perception_report, world_model_data, relevant_rules, hdc_context
         )
         reasoning_report = self.reasoning.reason(
             perception_report.get('concepts', []),
@@ -184,10 +309,27 @@ class NovaMind:
         # ═══════════════════════════════════════════════
         # LAYER 5: METACOGNITION
         # ═══════════════════════════════════════════════
+        # Extrai a melhor similaridade HDV para alimentar a confiança
+        hdc_retrieval_score = 0.0
+        hdc_ctx_str = thought.get('layers', {}).get('hdc_memory', {}).get('context', '')
+        if hdc_ctx_str:
+            import re as _re
+            scores = _re.findall(r'sim=([\d.]+)', hdc_ctx_str)
+            if scores:
+                hdc_retrieval_score = min(1.0, max(float(s) for s in scores))
+
         metacognition_report = self.metacognition.assess(
-            perception_report, reasoning_report, memory_report['stats'], world_model_data
+            perception_report, reasoning_report, memory_report['stats'], world_model_data,
+            hdc_retrieval_score=hdc_retrieval_score
         )
         thought['layers']['metacognition'] = metacognition_report
+
+        # Update emotional valence for memory system (used in next cycle)
+        meta_emotion = metacognition_report.get('emotional_state', {})
+        satisfaction = meta_emotion.get('satisfaction', 0.5)
+        confusion = meta_emotion.get('confusion', 0.0)
+        self._last_emotional_valence = max(-1.0, min(1.0, satisfaction - confusion * 0.5 - 0.3))
+        self.memory.set_emotional_context(self._last_emotional_valence)
 
         # ═══════════════════════════════════════════════
         # LAYER 6: GOALS
@@ -207,6 +349,116 @@ class NovaMind:
         )
         thought['layers']['learning'] = learning_report
 
+        # Active Inference: suggest next action
+        suggested_action = self.actor.suggest_action(
+            self.world_model, self.metacognition, self.memory, self.predictor
+        )
+        thought['action'] = suggested_action
+
+        # ═══════════════════════════════════════════════
+        # LAYER 8: MOTOR CORTEX (Mirror Neurons + Play + Articulatory)
+        # ═══════════════════════════════════════════════
+        self.motor.observe_action(raw_input)
+
+        motor_output = ""
+        if self.cycle_count % 5 == 0:
+            motor_output = self.motor.play(raw_input)
+
+        # Aplica DIVA learning nos sons produzidos recentemente
+        diva_state = {}
+        if self.cycle_count % 3 == 0 and self.diva:
+            diva_state = self.diva.get_state()
+
+        # Self-hearing: alimenta dorsal stream no DIVA para aprendizado inverso
+        if self.cycle_count % 2 == 0 and hasattr(self.motor, '_last_formants'):
+            f0, f1, f2, f3 = self.motor._last_formants
+            if f0 > 0:
+                self.diva.inverse_map(f0, f1, f2, f3)
+
+        # Syllable Oscillator: mantém ritmo interno
+        if self.cycle_count % 2 == 0:
+            self.syllable_oscillator.tick()
+
+        # BasalGanglia: atualiza ciclo de dopamina tônica
+        if self.cycle_count % 10 == 0:
+            self.basal_ganglia.tonic_update()
+
+        thought['motor'] = {
+            **self.motor.get_state(),
+            "latest_output": motor_output,
+            "diva": diva_state,
+            "premotor": self.premotor.get_state(),
+            "basal_ganglia": self.basal_ganglia.get_state(),
+            "cerebellum": self.cerebellum.get_state(),
+            "oscillator": self.syllable_oscillator.get_state(),
+        }
+
+        # Somatosensory: atualiza a propriocepção
+        if self.motor._last_babbled_cfg:
+            somato = self.somatosensory.sense(
+                self.motor._last_babbled_cfg,
+                {"f0": 0, "f1": 0, "f2": 0, "f3": 0},  # será preenchido pelo próximo ciclo
+            )
+            thought['somatosensory'] = somato.get("self_description", "")
+
+        # ═══════════════════════════════════════════════
+        # LAYER 9: WORKING MEMORY
+        # ═══════════════════════════════════════════════
+        self.wm.focus(raw_input, concept_labels, "text",
+                       attention=attention_wt)
+        self.wm.decay()
+        thought['working_memory'] = self.wm.get_state()
+
+        # ═══════════════════════════════════════════════
+        # LAYER 10: INTRINSIC RL
+        # ═══════════════════════════════════════════════
+        reward = self.intrinsic_rl.compute_reward(
+            pred_error,
+            learning_report.get('compression_progress', [0])[-1] if learning_report.get('compression_progress') else 0,
+            learning_report.get('novelty_analysis', {}).get('is_novel', False),
+            attention_wt
+        )
+        state_str = "|".join(concept_labels[:5]) if concept_labels else "empty"
+        action_str = suggested_action.get("action", "observar") if suggested_action else "observar"
+        self.intrinsic_rl.observe(state_str, action_str, reward, state_str)
+        thought['intrinsic_rl'] = self.intrinsic_rl.get_state()
+
+        # ═══════════════════════════════════════════════
+        # LAYER 11: CAUSAL REASONING
+        # ═══════════════════════════════════════════════
+        causal_insight = {}
+        if self.cycle_count % 5 == 0 and len(concept_labels) >= 2:
+            cause = concept_labels[0]
+            effect = concept_labels[-1]
+            if cause != effect:
+                cf = self.causal.simulate_counterfactual(self.world_model, cause, effect)
+                causal_insight['counterfactual'] = cf
+                plan = self.causal.plan(self.world_model, concept_labels, effect)
+                causal_insight['plan'] = plan
+        thought['causal'] = causal_insight
+
+        # ═══════════════════════════════════════════════
+        # LAYER 12: 4D WORLD MODEL
+        # ═══════════════════════════════════════════════
+        if motor_output and "avancar" in motor_output or "recuar" in motor_output or "virar" in motor_output:
+            sim = self.world_4d.simulate_step(motor_output, (0, 0, 0))
+            thought['world_4d'] = sim
+        thought['world_4d_observe'] = self.world_4d.observe((0, 0, 0))
+
+        # ═══════════════════════════════════════════════
+        # LAYER 13: EMERGENT LANGUAGE
+        # ═══════════════════════════════════════════════
+        lang_output = ""
+        if self.cycle_count % 7 == 0:
+            seq = self.emergent_lang.babble_sequence(length=2)
+            self.emergent_lang.learn_from_self_play(seq)
+            lang_output = seq
+        thought['emergent_language'] = {
+            "output": lang_output,
+            "state": self.emergent_lang.get_state(),
+        }
+
+        # ═══════════════════════════════════════════════
         # NovaCrush: Periodic genetic compression checkpoint (saves genome snapshot)
         if (self.genetic_optimizer and 
             self.cycle_count % self.genome_checkpoint_interval == 0 and
@@ -224,6 +476,15 @@ class NovaMind:
                 )
             except Exception:
                 pass  # Non-critical — genome checkpoint is optional
+
+        # Apply archetypes to compress thinking (padrões → atalhos)
+        compressed_concepts = self.archetypes.apply_archetypes(concept_labels)
+        if compressed_concepts != concept_labels:
+            thought['archetype_compression'] = {
+                'before': len(concept_labels),
+                'after': len(compressed_concepts),
+                'ratio': len(compressed_concepts) / max(1, len(concept_labels)),
+            }
 
         # ═══════════════════════════════════════════════
         # SYNTHESIS (Generating Native Signal Array)
@@ -489,18 +750,30 @@ class NovaMind:
                 self.memory.episodic, key=lambda e: e.activation * e.importance
             )[-self.max_episodes:]
 
+        if len(self.memory.semantic) > 2000:
+            self.memory.semantic = sorted(
+                self.memory.semantic, key=lambda r: r.confidence * r.activation
+            )[-2000:]
+
+        if len(self.memory.procedural) > 200:
+            self.memory.procedural = self.memory.procedural[-200:]
+
+        if len(self.wm.slots) > 0:
+            self.wm.decay()
+
         import gc
         gc.collect()
         if __import__('torch').cuda.is_available():
             __import__('torch').cuda.empty_cache()
 
     def _build_knowledge_base(self, perception: Dict, world_model: Dict,
-                               semantic_rules: List) -> Dict:
+                               semantic_rules: List, hdc_context: str = "") -> Dict:
         return {
             'concepts': self.perception.get_all_concepts(),
             'causal_edges': world_model.get('edges', []),
             'causal_chains': self.world_model.get_causal_chains(),
             'semantic_rules': [r.to_dict() for r in semantic_rules],
+            'hdc_context': hdc_context,
         }
 
     STOPWORDS = {'the','a','an','is','are','was','were','be','been','has','have',
@@ -851,6 +1124,18 @@ class NovaMind:
             'metacognition': self.metacognition.get_full_state(),
             'goals': self.goals.get_state(),
             'learning': self.learning.get_stats(),
+            'predictive_coding': self.predictor.get_state(),
+            'active_inference': self.actor.get_state(),
+            'motor_cortex': self.motor.get_state(),
+            'visual_cortex': self.visual_cortex.get_state(),
+            'auditory_cortex': self.auditory_cortex.get_state(),
+            'working_memory': self.wm.get_state(),
+            'intrinsic_rl': self.intrinsic_rl.get_state(),
+            'causal_reasoning': self.causal.get_state(),
+            'world_4d': self.world_4d.get_state(),
+            'emergent_language': self.emergent_lang.get_state(),
+            'diva_controller': self.diva.get_state(),
+            'somatosensory_cortex': self.somatosensory.get_state(),
             'thought_history': self.thought_history,
         }
 

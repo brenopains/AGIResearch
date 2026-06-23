@@ -116,6 +116,7 @@ class GoalSystem:
     def __init__(self):
         self.goals: Dict[str, Goal] = {}
         self.goal_history: List[Dict] = []
+        self._max_goal_history = 100
         self.reward_signal: float = 0.5  # Internal satisfaction metric
 
         # Intrinsic motivation parameters
@@ -263,6 +264,8 @@ class GoalSystem:
                 'success': success,
                 'timestamp': time.time(),
             })
+            if len(self.goal_history) > self._max_goal_history:
+                self.goal_history = self.goal_history[-self._max_goal_history:]
 
             # Update reward signal
             if success:

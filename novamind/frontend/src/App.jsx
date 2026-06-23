@@ -1,42 +1,60 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import HUD from './components/HUD';
 import CognitiveCanvas from './components/CognitiveCanvas';
 import './index.css';
 
 function App() {
-  const [state, setState] = useState({
-    sensory_recent: [],
-    episodic_uncompressed: [],
-    world_model: { entities: {}, causal_links: [], beliefs: {} },
-    representations: {},
-    curiosity: { active_questions: [], attention: {} }
-  });
+  const [state, setState] = useState({});
+  const [chatHistory, setChatHistory] = useState([]);
+  const wsRef = useRef(null);
+  const reconnectTimer = useRef(null);
 
   useEffect(() => {
-    // Attempt connection to the Cognitive OS backend
-    const ws = new WebSocket('ws://localhost:8000/ws');
-    
-    ws.onmessage = (event) => {
-      try {
-        const data = JSON.parse(event.data);
-        setState(data);
-      } catch (e) {
-        console.error("Error parsing websocket data", e);
-      }
-    };
+    function connect() {
+      const ws = new WebSocket('ws://localhost:8000/ws');
+      wsRef.current = ws;
 
-    ws.onclose = () => {
-      console.log("WebSocket connection closed.");
-    };
+      ws.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          if (data.type === "chat_response") {
+            setChatHistory(prev => [...prev, { sender: 'agi', text: data.text, vocal_audio_url: data.vocal_audio_url }]);
+          } else {
+            setState(data);
+          }
+        } catch (e) {
+          console.error("Error parsing websocket data", e);
+        }
+      };
+
+      ws.onclose = () => {
+        console.log("WebSocket closed. Reconnecting in 5s...");
+        // DO NOT reload the page. Just reconnect silently.
+        reconnectTimer.current = setTimeout(connect, 5000);
+      };
+
+      ws.onerror = () => {
+        ws.close();
+      };
+    }
+
+    connect();
 
     return () => {
-      ws.close();
+      if (reconnectTimer.current) clearTimeout(reconnectTimer.current);
+      if (wsRef.current) wsRef.current.close();
     };
   }, []);
 
+  const sendMessage = (msg) => {
+    if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+      wsRef.current.send(JSON.stringify(msg));
+    }
+  };
+
   return (
     <>
-      <HUD state={state} />
+      <HUD state={state} sendMessage={sendMessage} chatHistory={chatHistory} setChatHistory={setChatHistory} />
       <div className="canvas-container">
         <CognitiveCanvas state={state} />
       </div>

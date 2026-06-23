@@ -124,6 +124,7 @@ class WorldModel:
         self.adjacency: Dict[str, Set[str]] = defaultdict(set)  # outgoing edges
         self.reverse_adjacency: Dict[str, Set[str]] = defaultdict(set)  # incoming edges
         self.temporal_events: List[Dict] = []  # History of events for temporal reasoning
+        self._max_temporal_events = 100
         self.update_count = 0
 
     def add_node(self, concept_id: str, label: str, node_type: str = "variable") -> WorldNode:
@@ -280,6 +281,8 @@ class WorldModel:
             'concepts': [c['label'] for c in perception_report.get('concepts', [])],
             'relations': len(perception_report.get('relations', [])),
         })
+        if len(self.temporal_events) > self._max_temporal_events:
+            self.temporal_events = self.temporal_events[-self._max_temporal_events:]
 
     def query_association(self, target: str, evidence: Dict[str, float]) -> Dict:
         """
@@ -615,3 +618,99 @@ class WorldModel:
         
         # Limit length
         return best_chain[:max_length]
+
+    # ═══════════════════════════════════════════════════
+    # STRUCTURAL PLASTICITY
+    # ═══════════════════════════════════════════════════
+    PLASTICITY_INTERVAL = 50  # Run plasticity every N updates
+    PRUNE_STRENGTH_THRESHOLD = 0.15
+    GROW_CO_OCCUR_THRESHOLD = 0.3
+    TARGET_CONNECTIONS_PER_NODE = 5
+
+    def apply_structural_plasticity(self, surprise: float = 0.5):
+        """
+        Homeostatic structural plasticity: prune weak edges, grow new ones,
+        and regulate connection density.
+
+        - surprise: prediction error from predictive coding [0,1]
+        - High surprise → more pruning (make room for new patterns)
+        - Low surprise → more consolidation (strengthen existing)
+        """
+        if self.update_count % self.PLASTICITY_INTERVAL != 0:
+            return
+
+        prune_bonus = surprise * 0.5  # more surprise = more pruning
+
+        # 1. Prune weak edges
+        pruned = 0
+        for edge_key in list(self.edges.keys()):
+            edge = self.edges[edge_key]
+            threshold = self.PRUNE_STRENGTH_THRESHOLD * (1 + prune_bonus)
+            if edge.strength * edge.confidence < threshold:
+                del self.edges[edge_key]
+                self.adjacency[edge_key[0]].discard(edge_key[1])
+                self.reverse_adjacency[edge_key[1]].discard(edge_key[0])
+                pruned += 1
+
+        # 2. Prune isolated nodes (no edges, low usage)
+        isolated = [nid for nid in self.nodes
+                    if nid not in self.adjacency and nid not in self.reverse_adjacency]
+        for nid in isolated:
+            usage = getattr(self.nodes[nid], 'usage_count', 0)
+            if usage < 2:
+                del self.nodes[nid]
+
+        # 3. Potentiate strong edges (increase strength for frequently co-activated)
+        for edge in self.edges.values():
+            if edge.evidence_count > 5 and edge.strength > 0.5:
+                edge.strength = min(1.0, edge.strength + 0.02)
+                edge.confidence = min(1.0, edge.confidence + 0.01)
+
+        # 4. Depress very old unused edges
+        now = time.time()
+        for edge in self.edges.values():
+            age_hours = (now - edge.last_updated) / 3600
+            if age_hours > 24:
+                edge.strength *= 0.95
+                edge.confidence *= 0.98
+
+        if pruned > 0:
+            self._cleanup_adjacency()
+            print(f"[WM] Structural plasticity: pruned {pruned} edges, {len(isolated)} isolated nodes, surprise={surprise:.2f}")
+
+    def homeostatic_plasticity(self):
+        """
+        Maintain target connection density per node.
+        Overconnected nodes lose weak edges, underconnected nodes don't grow
+        (they need more evidence before connecting).
+        """
+        if self.update_count % (self.PLASTICITY_INTERVAL * 2) != 0:
+            return
+
+        # Count connections per node
+        conn_count = defaultdict(int)
+        for source, target in self.edges:
+            conn_count[source] += 1
+            conn_count[target] += 1
+
+        # Demote overconnected nodes' weakest edges
+        for nid, count in conn_count.items():
+            if count > self.TARGET_CONNECTIONS_PER_NODE * 2:
+                n_edges = [(eid, e) for eid, e in self.edges.items()
+                           if eid[0] == nid or eid[1] == nid]
+                n_edges.sort(key=lambda x: x[1].strength * x[1].confidence)
+                excess = count - self.TARGET_CONNECTIONS_PER_NODE
+                for eid, edge in n_edges[:excess]:
+                    if edge.evidence_count < 3:
+                        del self.edges[eid]
+                        self.adjacency[eid[0]].discard(eid[1])
+                        self.reverse_adjacency[eid[1]].discard(eid[0])
+
+    def _cleanup_adjacency(self):
+        """Remove orphaned entries from adjacency structures."""
+        for nid in list(self.adjacency.keys()):
+            if nid not in self.nodes:
+                del self.adjacency[nid]
+        for nid in list(self.reverse_adjacency.keys()):
+            if nid not in self.nodes:
+                del self.reverse_adjacency[nid]

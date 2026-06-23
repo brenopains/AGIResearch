@@ -1,439 +1,863 @@
 """
-MAESTRO — Arquitetura baseada em Global Workspace Theory + Predictive Processing
-================================================================================
+MAESTRO — Orquestrador Cognitivo Paralelo em Tempo Real
+=========================================================
+Cada córtex (visual, auditivo, cognitivo, memória, mundo modelo,
+arquétipos, motor) roda em THREAD PRÓPRIA, em PARALELO.
 
-Implementa a arquitetura do "maestro" que o usuário descreveu:
-- DMN (Default Mode Network) gera hipóteses paralelas
-- Salience Network seleciona a mais saliente
-- Global Workspace mantém UMA hipótese ativa
-- Executive Control monitora e decide quando parar
-- Predictive Processing: cada ator prevê, erro de predição dirige atenção
+O Maestro:
+1. Coleta saídas de todos os atores continuamente
+2. Salience Network decide o que é relevante AGORA
+3. Global Workspace mantém o conteúdo "consciente" atual
+4. Executive Control monitora e decide estratégia
 
-Referências 2026:
-- Baars (1988), Dehaene (2001), Shanahan (2006) — Global Workspace Theory
-- Friston — Free Energy Principle, Active Inference
-- Seeley, Menon — Salience Network, Triple Network Model
-- Smallwood et al. (2025 Nature Neuro) — DMN cytoarchitecture
-- VERSES.ai (2026) — Active Inference agents
+Referências: Baars GWT, Friston FEP, Seeley Salience Network
 """
-import numpy as np
-from typing import List, Dict, Any, Tuple, Optional, Callable
-from dataclasses import dataclass, field
-from collections import deque
+import os
+import threading
+import queue
 import time
+import random
+import traceback
+import re
+from collections import deque
+from typing import Dict, List, Optional, Any, Tuple
 
 
-@dataclass
-class Hypothesis:
-    """Uma hipótese de regra no Global Workspace."""
-    rules: List[Dict]
-    grids: List[np.ndarray]
-    error: float
-    surprise: float = 0.0  # prediction error
-    salience: float = 0.0
-    depth: int = 0
-    parent: Optional['Hypothesis'] = None
-    actor_source: str = ""
-    timestamp: float = 0.0
-
-    def copy_with(self, **kwargs) -> 'Hypothesis':
-        h = Hypothesis(
-            rules=self.rules + ([kwargs['rule']] if 'rule' in kwargs else []),
-            grids=kwargs.get('grids', self.grids),
-            error=kwargs.get('error', self.error),
-            surprise=kwargs.get('surprise', self.surprise),
-            salience=kwargs.get('salience', self.salience),
-            depth=self.depth + (1 if 'rule' in kwargs else 0),
-            parent=self,
-            actor_source=kwargs.get('actor_source', self.actor_source),
-            timestamp=time.time(),
-        )
-        return h
-
-
-class Actor:
-    """Um 'ator' paralelo — módulo especializado que gera hipóteses.
-
-    Inspirado no GWT: cada processador inconsciente (percepção, simetria, etc.)
-    compete por entrar no Global Workspace.
-    """
-    def __init__(self, name: str, fn: Callable, weight: float = 1.0):
+# ═══════════════════════════════════════════════════════════════
+# ATOR BASE — cada módulo cognitivo roda em sua própria thread
+# ═══════════════════════════════════════════════════════════════
+class Actor(threading.Thread):
+    """Um módulo cognitivo que roda em loop contínuo na própria thread."""
+    def __init__(self, name: str, mind=None, knowledge=None, playground=None):
+        super().__init__(daemon=True)
         self.name = name
-        self.fn = fn
-        self.weight = weight  # viés de saliência deste ator
-        self.calls = 0
-        self.useful_calls = 0  # quantas vezes produziu hipótese que reduziu erro
+        self.mind = mind
+        self.knowledge = knowledge
+        self.playground = playground
+        self.input_q: queue.Queue = queue.Queue()
+        self.output_q: queue.Queue = queue.Queue()
+        self.running = True
+        self.state: Dict = {}
+        self._pause = threading.Event()
+        self._pause.set()  # começa rodando
 
-    def process(self, current_grids, train, target_grids) -> List[Hypothesis]:
-        """Processa o estado atual e retorna lista de hipóteses candidatas.
+    def send(self, data):
+        self.input_q.put(data)
 
-        Cada hipótese inclui:
-        - rules (opcional)
-        - new_grids
-        - error (quão longe do target)
-        - surprise (quanto mudou do input — "novidade")
-        - actor_source (qual ator gerou)
-        """
-        self.calls += 1
+    def recv(self, timeout=0.1):
         try:
-            results = self.fn(current_grids, train, target_grids)
-            hyps = []
-            for r in results:
-                h = Hypothesis(
-                    rules=[],
-                    grids=r['grids'],
-                    error=r['error'],
-                    surprise=r.get('surprise', 0.0),
-                    salience=r.get('salience', 0.0) * self.weight,
-                    actor_source=self.name,
-                    timestamp=time.time(),
-                )
-                hyps.append(h)
-            return hyps
-        except Exception as e:
-            return []
+            return self.output_q.get(timeout=timeout)
+        except queue.Empty:
+            return None
 
+    def pause(self):
+        self._pause.clear()
 
-class SalienceNetwork:
-    """Salience Network (Menon, Seeley) — decide o que entra no Global Workspace.
+    def resume(self):
+        self._pause.set()
 
-    Implementação:
-    - Surprise (prediction error) → alta saliência
-    - Novelty (diferença do que já foi tentado) → bônus
-    - Goal-relevance (redução de erro) → bônus
-    - Actor weight → viés do módulo
+    def stop(self):
+        self.running = False
+        self._pause.set()
 
-    No cérebro: anterior insula + dACC fazem isso.
-    """
-    def __init__(self, novelty_window: int = 50):
-        self.history = deque(maxlen=1000)
-        self.novelty_window = deque(maxlen=novelty_window)
+    def run(self):
+        while self.running:
+            self._pause.wait()
+            try:
+                data = self.input_q.get(timeout=0.3)
+                result = self.process(data)
+                if result is not None:
+                    self.output_q.put(result)
+            except queue.Empty:
+                self.idle_tick()
+            except Exception as e:
+                print(f"[MAESTRO:{self.name}] Erro: {e}")
+                traceback.print_exc()
 
-    def compute_salience(self, hyp: Hypothesis, goal_error: float = 0.0) -> float:
-        """Computa saliência de uma hipótese. Quanto maior, mais provável de entrar no Workspace."""
-        # 1. Erro de predição (Friston) — surpresa
-        surprise = hyp.surprise if hyp.surprise > 0 else hyp.error
-
-        # 2. Redução do erro (relevância ao objetivo)
-        if goal_error > 0:
-            improvement = max(0, (goal_error - hyp.error) / goal_error)
-        else:
-            improvement = 0
-
-        # 3. Novidade — quão diferente das hipóteses recentes
-        novelty = self._novelty(hyp)
-
-        # 4. Combina
-        salience = (1.0 * surprise + 2.0 * improvement + 0.5 * novelty) * (1 + hyp.salience)
-
-        return salience
-
-    def _novelty(self, hyp: Hypothesis) -> float:
-        """Quão diferente esta hipótese é das recentes."""
-        if not self.novelty_window:
-            return 1.0
-        # novelty = 1 - (max_similarity_to_history)
-        # similarity = 1 / (1 + abs(err_diff))
-        max_sim = 0
-        for past in self.novelty_window:
-            sim = 1.0 / (1.0 + abs(past.error - hyp.error))
-            if sim > max_sim:
-                max_sim = sim
-        return 1.0 - max_sim
-
-    def update(self, hyp: Hypothesis):
-        """Registra hipótese no histórico."""
-        self.history.append(hyp)
-        self.novelty_window.append(hyp)
-
-
-class GlobalWorkspace:
-    """Global Workspace (Baars, Dehaene) — APENAS UMA hipótese ativa por vez.
-
-    No cérebro: 'palco' iluminado pelo spotlight da consciência.
-    Aqui: o 'winner' do broadcasting entre atores paralelos.
-    """
-    def __init__(self, salience: SalienceNetwork):
-        self.salience = salience
-        self.current: Optional[Hypothesis] = None
-        self.broadcast_count = 0
-        self.max_broadcasts = 0  # 0 = sem limite
-        self.ignition_threshold = 0.1  # quão menor a saliência precisa ser para "ignite"
-
-    def compete(self, candidates: List[Hypothesis]) -> Optional[Hypothesis]:
-        """Atores competem. A hipótese mais saliente 'ignite' no Workspace."""
-        if not candidates:
-            return self.current
-        # Computa saliência para cada
-        goal = self.current.error if self.current else 0.0
-        scored = []
-        for c in candidates:
-            s = self.salience.compute_salience(c, goal_error=goal)
-            c.salience = s
-            scored.append((s, c))
-        # Ordena por saliência
-        scored.sort(key=lambda x: -x[0])
-        winner_salience, winner = scored[0]
-        # "Ignite" se saliência acima do threshold OU se é estritamente melhor que atual
-        if self.current is None or winner.error < self.current.error or winner_salience > self.ignition_threshold:
-            self.current = winner
-            self.salience.update(winner)
-            self.broadcast_count += 1
-            return winner
-        return self.current
-
-    def is_solved(self) -> bool:
-        return self.current is not None and self.current.error == 0
-
-
-class ExecutiveControl:
-    """Executive Control Network — o 'maestro' que monitora e decide parar.
-
-    No cérebro: córtex pré-frontal dorsolateral, ACC.
-    Funções:
-    - Define objetivo (resolver task com error=0)
-    - Decide estratégia (paralelo, sequencial, recursivo)
-    - Monitora progresso (history.error_trend)
-    - Decide parar (quando certainty > threshold OU budget exausto)
-    """
-    def __init__(self, max_iterations: int = 100, max_time_s: float = 60.0,
-                 confidence_threshold: float = 0.99):
-        self.goal_error = 0.0
-        self.max_iterations = max_iterations
-        self.max_time_s = max_time_s
-        self.confidence_threshold = confidence_threshold
-        self.iteration = 0
-        self.start_time = 0
-        self.error_history = deque(maxlen=20)
-        self.useful_iterations = 0  # quantas iter. reduziram erro
-
-    def start(self):
-        self.start_time = time.time()
-        self.iteration = 0
-        self.error_history.clear()
-        self.useful_iterations = 0
-
-    def should_continue(self) -> bool:
-        if self.iteration >= self.max_iterations:
-            return False
-        if time.time() - self.start_time > self.max_time_s:
-            return False
-        return True
-
-    def observe(self, hyp: Optional[Hypothesis]):
-        """Observa o estado atual e atualiza histórico."""
-        self.iteration += 1
-        if hyp is not None:
-            if self.error_history and hyp.error < self.error_history[-1]:
-                self.useful_iterations += 1
-            self.error_history.append(hyp.error)
-
-    def confidence(self) -> float:
-        """Quão confiante estamos de que o current está bom o suficiente?"""
-        if not self.error_history:
-            return 0.0
-        # confidence = 1 se erro=0; decai com erro
-        last_err = self.error_history[-1]
-        if last_err == 0:
-            return 1.0
-        # penaliza estagnação
-        recent = list(self.error_history)[-5:]
-        if len(recent) >= 2 and max(recent) - min(recent) < 0.001:
-            # estagnado
-            return min(0.5, 1.0 / (1.0 + last_err))
-        return 1.0 / (1.0 + last_err)
-
-    def is_satisfied(self) -> bool:
-        return self.confidence() >= self.confidence_threshold
-
-
-class DefaultModeNetwork:
-    """Default Mode Network — gerador de contrafactuais e hipóteses alternativas.
-
-    No cérebro: 30-50% do tempo de vigília em self-generated thought.
-    Funções:
-    - Imaginar alternativas ('e se X fosse diferente?')
-    - Recuperação de memórias de situações similares
-    - Simulação de futuros (NO_FUTURO)
-    """
-    def __init__(self, max_alternatives: int = 20):
-        self.max_alternatives = max_alternatives
-        self.memory = deque(maxlen=200)  # episodic memory of past hypotheses
-        self.novelty_bonus = 1.5
-
-    def generate_alternatives(self, current: Optional[Hypothesis],
-                              actors: List[Actor]) -> List[Hypothesis]:
-        """Gera hipóteses alternativas — 'e se fosse diferente?'"""
-        alternatives = []
-        # 1. Recupera memórias similares (episodic)
-        for mem in list(self.memory)[-10:]:
-            # Varia a memória (mutação leve)
-            mutated = self._mutate(mem)
-            alternatives.append(mutated)
-        # 2. Atores paralelos (default mode 'brooding')
-        # (já é feito pelos actors — aqui só anotamos)
-        return alternatives[:self.max_alternatives]
-
-    def _mutate(self, hyp: Hypothesis) -> Hypothesis:
-        """Muta levemente a hipótese para criar alternativa."""
-        import copy
-        new_h = copy.deepcopy(hyp)
-        if new_h.grids:
-            # troca cor de uma célula aleatória
-            import random
-            r = random.randint(0, new_h.grids[0].shape[0] - 1)
-            c = random.randint(0, new_h.grids[0].shape[1] - 1)
-            current = int(new_h.grids[0][r, c])
-            new_color = (current + random.choice([-1, 1, 2])) % 10
-            new_h.grids[0][r, c] = new_color
-        new_h.salience += self.novelty_bonus  # bônus por novidade
-        return new_h
-
-    def remember(self, hyp: Hypothesis):
-        self.memory.append(hyp)
-
-
-class PredictiveModel:
-    """Predictive Processing (Friston) — modelo gerador + prediction error.
-
-    No cérebro: cada região gera previsões top-down; erro de predição bottom-up
-    dirige atenção (Friston's Free Energy Principle).
-    """
-    def __init__(self):
-        self.predictions = {}  # cache
-
-    def predict(self, actor_name: str, grid: np.ndarray) -> np.ndarray:
-        """Prediz a saída esperada dado um ator."""
-        return self.predictions.get((actor_name, hash(grid.tobytes())), grid)
-
-    def compute_error(self, predicted: np.ndarray, actual: np.ndarray) -> float:
-        """Prediction error — surprise (Friston)."""
-        if predicted.shape != actual.shape:
-            return float('inf')
-        return float(np.sum(predicted != actual))
-
-
-class Maestro:
-    """O MAESTRO — orquestra todos os módulos.
-
-    Inspirado no exemplo da água do usuário:
-    - DMN gerando paralelamente (cheiro, queda, barulho, contaminação)
-    - Salience decidindo o que é relevante
-    - Global Workspace focado em uma coisa
-    - ECN monitorando e decidindo quando parar
-    - Tudo flexível, context-dependent
-    """
-    def __init__(self, max_iterations: int = 100, max_time_s: float = 60.0):
-        self.executive = ExecutiveControl(max_iterations, max_time_s)
-        self.salience = SalienceNetwork()
-        self.workspace = GlobalWorkspace(self.salience)
-        self.dmn = DefaultModeNetwork()
-        self.predictor = PredictiveModel()
-        self.actors: List[Actor] = []
-        self.iteration_log = []
-
-    def add_actor(self, actor: Actor):
-        self.actors.append(actor)
-
-    def solve(self, train: List[Tuple[np.ndarray, np.ndarray]],
-              test_in: np.ndarray,
-              initial_actor_fn: Optional[Callable] = None) -> Optional[List[Dict]]:
-        """Resolve uma task ARC usando a arquitetura do maestro.
-
-        Fluxo:
-        1. Inicializa Workspace com hipótese nula (input=output?)
-        2. Para cada iteração:
-           a. Todos os atores processam em paralelo (DMN)
-           b. Salience ranqueia
-           c. Winner entra no Workspace (broadcast)
-           d. ECN observa e decide parar
-        3. Retorna a hipótese vencedora
-        """
-        self.executive.start()
-        initial_grids = [gi.copy() for gi, go in train]
-        initial_err = sum(self._err(gi, go) for gi, go in train)
-
-        # Inicializa workspace com hipótese nula
-        null_hyp = Hypothesis(
-            rules=[], grids=initial_grids, error=initial_err,
-            surprise=0, salience=0, actor_source="null", timestamp=time.time()
-        )
-        self.workspace.current = null_hyp
-        self.executive.observe(null_hyp)
-
-        while self.executive.should_continue():
-            iteration_start = time.time()
-
-            # 1. DMN + atores paralelos geram hipóteses
-            candidates = []
-            for actor in self.actors:
-                hyps = actor.process(
-                    self.workspace.current.grids if self.workspace.current else initial_grids,
-                    train,
-                    [go for gi, go in train]
-                )
-                candidates.extend(hyps)
-
-            # 2. Adiciona alternativas do DMN (contrafactuais)
-            if self.workspace.current is not None:
-                alternatives = self.dmn.generate_alternatives(self.workspace.current, self.actors)
-                candidates.extend(alternatives)
-
-            # 3. Salience ranqueia; winner entra no Workspace
-            if candidates:
-                winner = self.workspace.compete(candidates)
-                if winner is not None and winner.error < (self.workspace.current.error if self.workspace.current else float('inf')):
-                    self.dmn.remember(winner)
-            else:
-                winner = self.workspace.current
-
-            # 4. ECN observa
-            self.executive.observe(self.workspace.current)
-
-            # 5. Verifica solução
-            if self.workspace.is_solved():
-                self.iteration_log.append({
-                    'iter': self.executive.iteration,
-                    'solved': True,
-                    'rules': len(self.workspace.current.rules) if self.workspace.current.rules else 0,
-                })
-                return self.workspace.current.rules
-
-            # 6. Verifica confiança
-            if self.executive.is_satisfied():
-                break
-
-        # Retorna o melhor encontrado
-        if self.workspace.current and self.workspace.current.rules:
-            return self.workspace.current.rules
+    def process(self, data) -> Optional[Any]:
         return None
 
-    @staticmethod
-    def _err(pred, target):
-        if pred.shape != target.shape:
-            return 999999.0
-        return float(np.sum(pred != target))
+    def idle_tick(self):
+        pass
+
+    def get_state(self) -> Dict:
+        return self.state
 
 
-# ============================================================================
-# FACTORY: cria maestro com atores padrão
-# ============================================================================
-def make_maestro_with_actors(actors_dict: Dict[str, Callable],
-                              max_iterations: int = 100,
-                              max_time_s: float = 60.0) -> Maestro:
-    """Cria um Maestro com atores pré-configurados."""
-    m = Maestro(max_iterations, max_time_s)
-    for name, fn in actors_dict.items():
-        m.add_actor(Actor(name, fn))
-    return m
+# ═══════════════════════════════════════════════════════════════
+# ATORES DA PERCEPÇÃO (rodam em tempo real)
+# ═══════════════════════════════════════════════════════════════
+
+class PerceptualActor(Actor):
+    """
+    Ator de percepção: busca conhecimento continuamente (YouTube, Wikipedia, etc.)
+    e alimenta a mente com o que encontra — em tempo real, sem esperar.
+    """
+    def __init__(self, mind, knowledge):
+        super().__init__("percepcao", mind=mind, knowledge=knowledge)
+        self.current_topic = ""
+        self.current_source = ""
+        self.topics_completed = 0
+        self.sentences_processed = 0
+        self.crutch_mode = True  # Whisper/BLIP ativos
+
+    def process(self, data):
+        if data == "next_topic":
+            return self._fetch_and_process()
+        elif isinstance(data, str) and data.startswith("force_topic:"):
+            forced = data.split(":", 1)[1]
+            return self._fetch_and_process(forced_topic=forced)
+        return None
+
+    def idle_tick(self):
+        # Ocioso: apenas mantém estado
+        pass
+
+    def _fetch_and_process(self, forced_topic=None) -> Optional[Dict]:
+        """Busca UM tópico e retorna as sentenças processadas."""
+        if forced_topic:
+            topic = forced_topic
+        else:
+            curiosities = list(self.mind.unanswered_questions) if self.mind.unanswered_questions else []
+            topic = self.knowledge.pick_next_topic(curiosities, self.mind)
+
+        approved = True
+        if hasattr(self.mind, 'permission_handler') and self.mind.permission_handler:
+            details = f"Pesquisar '{topic}' na Web / Wikipedia / YouTube"
+            approved = self.mind.permission_handler("web_search", details)
+            
+        if not approved:
+            print(f"[MAESTRO:percepcao] Permissao negada para buscar '{topic}'. Ignorando.")
+            return None
+
+        self.current_topic = topic
+        print(f"\n[MAESTRO:percepcao] === Tópico: {topic} ===")
+
+        result = self.knowledge.fetch_knowledge(topic, self.mind)
+        content = result.get("content", "")
+        source = result.get("source", "")
+        content_type = result.get("type", "text")
+
+        self.current_source = f"{source} ({content_type})"
+        self.sentences_processed = 0
+
+        # ─── PROCESSAMENTO SENSORIAL REAL — INPUT PRIMÁRIO ───────────
+        # A AGI vê e ouve por SI MESMA. A transcrição Whisper/BLIP
+        # é apenas rótulo secundário. O que alimenta mind.think() é
+        # a auto-descrição sensorial, não o texto da muleta.
+        sensory_lines = []
+
+        if content_type == "youtube":
+            # Córtex visual: processa frames brutos → input primário
+            frames_raw = result.get("frames_raw", [])
+            for i, fb in enumerate(frames_raw[:5]):  # primeiros 5 frames
+                vresult = self.mind.visual_cortex.process(fb)
+                sensory_lines.append(f"[Visao t={i*20}s]: {vresult['self_description']}")
+
+            # Córtex auditivo: processa waveform bruto → input primário
+            audio_raw = result.get("audio_raw")
+            audio_sr = result.get("audio_sample_rate", 16000)
+            if audio_raw is not None:
+                aresult = self.mind.auditory_cortex.process(audio_raw, audio_sr)
+                sensory_lines.append(f"[Audio t=0s]: {aresult['self_description']}")
+
+            # Extrai alvos auditivos do dorsal stream para imitação
+            if audio_raw is not None:
+                try:
+                    ds = self.mind.auditory_cortex._extract_dorsal(audio_raw, audio_sr)
+                    est_f1 = ds.get("estimated_f1", 0)
+                    est_f2 = ds.get("estimated_f2", 0)
+                    est_pitch = ds.get("estimated_pitch", 0)
+                    if est_f1 > 0 and est_f2 > 0:
+                        self.mind.motor.imitate_sound(
+                            f0=est_pitch, f1=est_f1, f2=est_f2, f3=0,
+                            source=f"youtube_{topic[:20]}"
+                        )
+                except Exception:
+                    pass
+
+        # O conteúdo primário é a auto-descrição sensorial
+        if sensory_lines:
+            content = " | ".join(sensory_lines)
+            print(f"[MAESTRO:percepcao] Input sensorial primario: {content[:120]}...")
+        # Transcrição da muleta (Whisper) vai como contexto secundário
+        whisper_text = result.get("content", "")
+        if whisper_text and len(whisper_text) > 20:
+            content += "\n[Transcricao: " + whisper_text[:500] + "]"
+        # ─── FIM PROCESSAMENTO SENSORIAL ────────────────────────────────
+
+        if not content or len(content) < 20:
+            return {"topic": topic, "source": source, "type": content_type,
+                    "sentences": [], "confidence": 1.0}
+
+        # Extrai confiança do Whisper (se for YouTube)
+        confidence = 1.0
+        if content_type == "youtube":
+            conf_match = re.search(r'^\[AudioConfidence:\s*([\d.]+)\]', content, re.MULTILINE)
+            if conf_match:
+                confidence = float(conf_match.group(1))
+
+        sentences = self.knowledge.__class__.split_into_sentences(content)
+        self.sentences_processed = len(sentences)
+        self.topics_completed += 1
+
+        return {
+            "topic": topic, "source": source, "type": content_type,
+            "sentences": sentences, "confidence": confidence,
+        }
+
+    def get_state(self) -> Dict:
+        return {
+            "current_topic": self.current_topic,
+            "current_source": self.current_source,
+            "topics_completed": self.topics_completed,
+            "sentences_processed": self.sentences_processed,
+            "crutch_mode": self.crutch_mode,
+        }
 
 
-def count_modules():
-    return {
-        'actors_in_maestro': 'variable',
-        'salience_network': 1,
-        'global_workspace': 1,
-        'executive_control': 1,
-        'default_mode_network': 1,
-        'predictive_model': 1,
-    }
+class CognitiveActor(Actor):
+    """
+    Ator cognitivo: processa conteúdo através do NovaMind.
+    Recebe sentenças da percepção, roda mind.think(), e gera pensamentos.
+    """
+    def __init__(self, mind):
+        super().__init__("cognitivo", mind=mind)
+        self.current_sentence = ""
+        self.cycle_count = 0
+        self.last_thought = None
+
+    def process(self, data) -> Optional[Dict]:
+        if isinstance(data, dict) and "sentence" in data:
+            sentence = data["sentence"]
+            confidence = data.get("confidence", 1.0)
+            self.current_sentence = sentence[:100]
+            self.cycle_count += 1
+            thought = self.mind.think(sentence, confidence=confidence)
+            self.last_thought = thought
+            return {
+                "type": "thought",
+                "cycle": self.cycle_count,
+                "sentence": sentence[:100],
+                "thought": thought,
+                "attention": thought.get('predictive_coding', {}).get('attention_weight', 0.5),
+                "prediction_error": thought.get('predictive_coding', {}).get('prediction_error', 0),
+            }
+        return None
+
+    def remote_think(self, sentence, confidence=1.0):
+        """Permite que outros atores enviem conteúdo diretamente."""
+        self.send({"sentence": sentence, "confidence": confidence})
+
+    def get_state(self) -> Dict:
+        return {
+            "current_sentence": self.current_sentence,
+            "cycle_count": self.cycle_count,
+        }
+
+
+class MotorActor(Actor):
+    """
+    Ator motor: gera ações motoras e interage com o playground.
+    Roda ciclos de brincadeira entre processamentos cognitivos.
+    """
+    def __init__(self, mind, playground):
+        super().__init__("motor", mind=mind, playground=playground)
+        self.last_action = ""
+        self.last_result = ""
+        self.play_count = 0
+
+    def process(self, data) -> Optional[Dict]:
+        if data == "play":
+            return self._play_tick()
+        elif isinstance(data, dict) and data.get("type") == "imitate":
+            return self._imitate(data.get("description", ""))
+        return None
+
+    def _play_tick(self) -> Dict:
+        observation = self.playground.observe()
+        bg = getattr(self.mind, 'basal_ganglia', None)
+        use_bg = bg is not None and self.mind.motor.babbling_cycle % 4 != 0
+
+        if use_bg and hasattr(self.mind, 'auditory_cortex'):
+            # BasalGanglia decide se vocaliza ou faz outra ação
+            bg_decisions = []
+            for act in self.mind.motor.PRIMITIVES:
+                decision = bg.decide(act, {"observation": observation[:50]})
+                if decision.get("go"):
+                    bg_decisions.append((act, decision["score"]))
+            if bg_decisions:
+                bg_decisions.sort(key=lambda x: -x[1])
+                selected = bg_decisions[0][0]
+                if selected.startswith("vocalizar_"):
+                    action = self.mind.motor.babble()
+                else:
+                    neuron = self.mind.motor.mirror_neurons[selected]
+                    action = neuron.execute()
+                result = self.playground.apply_action(action)
+                bg.update("motor_context", selected, 0.3)
+            else:
+                action = self.mind.motor.babble()
+                result = self.playground.apply_action(action)
+        elif self.mind.motor.babbling_cycle % 4 == 0 and hasattr(self.mind, 'auditory_cortex'):
+            action = self.mind.motor.babble()
+            result = self.playground.apply_action(action)
+            # Self-hearing: AGI ouve o proprio som e pensa sobre ele
+            hear_desc = getattr(self.mind.motor, '_last_hear_desc', '')
+            if hear_desc:
+                sensory_input = f"[Auto-audicao]: {hear_desc}\n{result}"
+                if self.mind:
+                    self.mind.think(sensory_input, confidence=0.6)
+        else:
+            action = self.mind.motor.play(observation)
+            result = self.playground.apply_action(action)
+        self.last_action = action
+        self.last_result = result
+        self.play_count += 1
+
+        return {
+            "type": "motor",
+            "action": action,
+            "result": result[:100],
+        }
+
+    def _imitate(self, description: str) -> Dict:
+        action = self.mind.motor.imitate(description)
+        if action:
+            result = self.playground.apply_action(action)
+            self.last_action = action
+            self.last_result = result
+            return {"type": "motor_imitate", "action": action, "result": result[:100]}
+        return {"type": "motor_imitate", "action": None, "result": "nada acontece"}
+
+    def get_state(self) -> Dict:
+        return {
+            "last_action": self.last_action,
+            "last_result": self.last_result,
+            "play_count": self.play_count,
+            "last_audio_path": self.mind.motor.last_audio_path if (self.mind and hasattr(self.mind, 'motor')) else "",
+            "position": self.playground.position if self.playground else None,
+            "held_object": self.playground.held_object if self.playground else None,
+        }
+
+
+class SleepActor(Actor):
+    """
+    Ator de sono: consolida memória + arquétipos periodicamente.
+    Roda em background, acordado pelo maestro a cada N ciclos.
+    """
+    def __init__(self, mind):
+        super().__init__("sono", mind=mind)
+        self.last_sleep_time = 0
+        self.sleep_count = 0
+        self.new_archetypes = []
+
+    def process(self, data) -> Optional[Dict]:
+        if data == "sleep":
+            return self._sleep_cycle()
+        return None
+
+    def _sleep_cycle(self) -> Dict:
+        results = {"memory": False, "archetypes": []}
+
+        # Consolidação de memória (hippocampal replay)
+        try:
+            self.mind.memory.trigger_sleep_cycle()
+            results["memory"] = True
+        except Exception as e:
+            print(f"[MAESTRO:sono] Memory error: {e}")
+
+        # Consolidação de arquétipos (MDL compression)
+        try:
+            new_arqs = self.mind.archetypes.consolidate()
+            if new_arqs:
+                results["archetypes"] = new_arqs
+                self.new_archetypes.extend(new_arqs)
+                print(f"[MAESTRO:sono] +{len(new_arqs)} arquétipos: {', '.join(new_arqs)}")
+        except Exception as e:
+            print(f"[MAESTRO:sono] Archetype error: {e}")
+
+        self.last_sleep_time = time.time()
+        self.sleep_count += 1
+        return results
+
+    def get_state(self) -> Dict:
+        return {
+            "sleep_count": self.sleep_count,
+            "last_sleep": self.last_sleep_time,
+            "new_archetypes": self.new_archetypes[-5:],
+        }
+
+
+class LanguageActor(Actor):
+    """
+    Ator de linguagem emergente: gera auto-fala, aprende fonemas,
+    e realimenta o sistema auditivo com seus próprios sons.
+    """
+    def __init__(self, mind):
+        super().__init__("linguagem", mind=mind)
+
+    def process(self, data) -> Optional[Dict]:
+        if data == "babble":
+            return self._babble_cycle()
+        return None
+
+    def _babble_cycle(self) -> Dict:
+        seq = self.mind.emergent_lang.babble_sequence(length=2 + (self.mind.cycle_count % 3))
+        self.mind.emergent_lang.learn_from_self_play(seq)
+        wav_path = self.mind.emergent_lang.vocalize_sequence(seq)
+        result = {
+            "type": "language",
+            "sequence": seq,
+            "audio_path": wav_path,
+            "lexicon_size": len(self.mind.emergent_lang.lexicon),
+        }
+        if wav_path:
+            self.mind.motor.last_audio_path = wav_path
+            # Self-hearing: ouve a própria fala
+            if hasattr(self.mind, 'auditory_cortex'):
+                try:
+                    import wave, numpy as npp
+                    with wave.open(wav_path, 'rb') as wf:
+                        sr_wav = wf.getframerate()
+                        frames = wf.readframes(wf.getnframes())
+                    raw_sig = npp.frombuffer(frames, dtype=npp.int16).astype(npp.float32) / 32768.0
+                    hear = self.mind.auditory_cortex.process(raw_sig, sr_wav)
+                    hear_desc = hear.get("self_description", "")
+                    if hear_desc:
+                        self.mind.think(f"[Auto-audicao linguagem]: {hear_desc}", confidence=0.6)
+                except Exception:
+                    pass
+        return result
+
+    def get_state(self) -> Dict:
+        return self.mind.emergent_lang.get_state() if self.mind else {}
+
+
+class CausalActor(Actor):
+    """
+    Ator de raciocínio causal: explora contra-factuais e planejamento
+    em background, sem bloquear o ciclo principal.
+    """
+    def __init__(self, mind):
+        super().__init__("causal", mind=mind)
+
+    def process(self, data) -> Optional[Dict]:
+        if data == "reason":
+            return self._causal_cycle()
+        return None
+
+    def _causal_cycle(self) -> Dict:
+        results = {"counterfactuals": [], "plans": []}
+        try:
+            concepts = list(self.mind.perception.concept_registry.keys())[:10]
+            if len(concepts) >= 2:
+                for i in range(min(3, len(concepts) - 1)):
+                    cf = self.mind.causal.simulate_counterfactual(
+                        self.mind.world_model, concepts[i], concepts[i + 1]
+                    )
+                    results["counterfactuals"].append(cf)
+        except Exception:
+            pass
+        return results
+
+
+# ═══════════════════════════════════════════════════════════════
+# O MAESTRO — orquestrador principal
+# ═══════════════════════════════════════════════════════════════
+from .neuromodulator import Neuromodulator
+
+
+class CognitiveMaestro:
+    """
+    O Maestro — orquestrador cognitivo paralelo em tempo real.
+
+    Gerencia:
+    - Percepção: busca conhecimento continuamente
+    - Cognição: processa conteúdo através do NovaMind
+    - Motor: gera ações e interage com o playground
+    - Sono: consolida memória e arquétipos
+    - Salience: decide o que é relevante agora
+    - Executive: monitora progresso e decide estratégia
+    - Límbico: neuromoduladores [DA, NA, ACh, 5HT] dirigem atenção,
+      plasticidade e comportamento
+
+    Tudo roda em PARALELO, cada módulo em sua própria thread.
+    O Maestro coordena: coleta resultados, decide o que processar,
+    e mantém o ciclo de aprendizado contínuo.
+    """
+    def __init__(self, mind, knowledge_manager, playground):
+        self.mind = mind
+        self.knowledge = knowledge_manager
+        self.playground = playground
+
+        # Estado compartilhado com a UI
+        self.state = {
+            "status": "booting",
+            "current_topic": "",
+            "current_source": "",
+            "current_sentence": "",
+            "sentences_processed": 0,
+            "total_sentences": 0,
+            "topics_completed": 0,
+            "stream_vision": "Standby",
+            "stream_audio": "Standby",
+            "stream_reading": "Standby",
+            "media_type": None,
+            "media_audio_url": None,
+            "media_frame_url": None,
+            "media_caption": None,
+            "media_timestamp": None,
+        }
+
+        self.autonomous_learning_enabled = False
+
+        # Cria atores
+        self.percepcao = PerceptualActor(mind, knowledge_manager)
+        self.cognitivo = CognitiveActor(mind)
+        self.motor = MotorActor(mind, playground)
+        self.sono = SleepActor(mind)
+        self.linguagem = LanguageActor(mind)
+        self.causal = CausalActor(mind)
+
+        self.actors = {
+            "percepcao": self.percepcao,
+            "cognitivo": self.cognitivo,
+            "motor": self.motor,
+            "sono": self.sono,
+            "linguagem": self.linguagem,
+            "causal": self.causal,
+        }
+
+        # Estatísticas do maestro
+        self.cycle_count = 0
+        self.topics_completed = 0
+        self.thought_history = deque(maxlen=50)
+        self.running = False
+
+        # === Sistema Límbico: Neuromodulação Multi-Dimensional ===
+        self.neuromodulator = Neuromodulator()
+        self._last_pe = 0.5  # prediction error anterior (para delta)
+
+    def start(self):
+        """Inicia todos os atores em paralelo."""
+        print("\n" + "=" * 60)
+        print("  MAESTRO: Orquestrador Cognitivo Paralelo")
+        print("  Percepção | Cognição | Motor | Sono | Linguagem | Causal")
+        print("=" * 60 + "\n")
+
+        self.running = True
+        self.state["status"] = "listening"
+
+        for name, actor in self.actors.items():
+            actor.start()
+            print(f"[MAESTRO] Ator '{name}' iniciado")
+
+        # Dispara o primeiro tópico se o aprendizado autônomo estiver ativado
+        if self.autonomous_learning_enabled:
+            self.percepcao.send("next_topic")
+
+    def stop(self):
+        """Para todos os atores."""
+        self.running = False
+        for actor in self.actors.values():
+            actor.stop()
+        print("[MAESTRO] Todos os atores parados")
+
+    def tick(self):
+        """
+        Um ciclo do maestro: coleta saídas dos atores, decide processamento.
+        Chamado pelo loop principal (não é thread própria).
+        """
+        self.cycle_count += 1
+
+        # 1. Coleta resultado da cognição
+        thought_result = self.cognitivo.recv(timeout=0.05)
+        if thought_result:
+            self._on_thought(thought_result)
+
+        # 2. Coleta resultado da percepção (tópico completo)
+        perception_result = self.percepcao.recv(timeout=0.05)
+        if perception_result:
+            self._on_topic_complete(perception_result)
+
+        # 3. Coleta resultado motor
+        motor_result = self.motor.recv(timeout=0.05)
+        if motor_result:
+            self._on_motor(motor_result)
+
+        # 4. Coleta resultado do sono
+        sleep_result = self.sono.recv(timeout=0.05)
+        if sleep_result:
+            self._on_sleep(sleep_result)
+
+        # 5. Coleta resultado da linguagem emergente
+        lang_result = self.linguagem.recv(timeout=0.05)
+        if lang_result:
+            self.state["current_sentence"] = f"Fala: {lang_result.get('sequence', '')[:60]}"
+            audio_path = lang_result.get("audio_path", "")
+            if audio_path:
+                fname = os.path.basename(audio_path)
+                self.state["vocal_audio_url"] = f"http://localhost:8000/static/vocal/{fname}"
+
+        # 6. Coleta resultado do raciocínio causal
+        causal_result = self.causal.recv(timeout=0.05)
+        if causal_result:
+            cfs = causal_result.get("counterfactuals", [])
+            if cfs:
+                self.state["current_sentence"] = f"Causal: {cfs[0].get('concept_a','?')}->{cfs[0].get('concept_b','?')}"
+
+        # 7. Decisões do maestro
+        self._decide_next()
+
+    def _on_thought(self, result: Dict):
+        """Um pensamento foi gerado pelo córtex cognitivo."""
+        thought = result["thought"]
+        attention = result.get("attention", 0.5)
+        prediction_error = result.get("prediction_error", 0)
+        sentence = result["sentence"]
+
+        self.state["current_sentence"] = sentence
+        self.state["sentences_processed"] = result["cycle"]
+
+        # Media state parsing para YouTube (atualiza frame/caption por sentença)
+        if self.state.get("media_type") == "video":
+            vis_match = re.match(r'^\[Visual t=(\d+)s\]:\s*(.*)', sentence)
+            aud_match = re.match(r'^\[Audio t=(\d+)s\]:\s*(.*)', sentence)
+            if vis_match:
+                t_sec = int(vis_match.group(1))
+                cap = vis_match.group(2)
+                frame_idx = t_sec // 20 + 1
+                self.state["media_timestamp"] = t_sec
+                self.state["media_caption"] = f"[VISÃO] {cap}"
+                self.state["media_frame_url"] = f"http://localhost:8000/static/yt/frames/frame_{frame_idx:03d}.jpg"
+            elif aud_match:
+                t_sec = int(aud_match.group(1))
+                cap = aud_match.group(2)
+                frame_idx = t_sec // 20 + 1
+                self.state["media_timestamp"] = t_sec
+                self.state["media_caption"] = f"[ÁUDIO] {cap}"
+                self.state["media_frame_url"] = f"http://localhost:8000/static/yt/frames/frame_{frame_idx:03d}.jpg"
+
+        # Atenção adaptativa via Neuromodulação
+        if self.neuromodulator.attention_narrow():
+            time.sleep(0.15)  # foco estreito: processa devagar
+        elif attention > 0.3:
+            time.sleep(0.02)
+        # else: segue rápido (baixa atenção, baixa NA)
+
+        # Registra no histórico
+        nm_state = self.neuromodulator.as_dict()
+        self.thought_history.append({
+            "cycle": result["cycle"],
+            "input": sentence,
+            "attention": attention,
+            "prediction_error": prediction_error,
+            "neuromodulation": nm_state,
+        })
+
+        # === Sistema Límbico: atualiza neuromoduladores ===
+        delta_pe = prediction_error - self._last_pe
+        self._last_pe = prediction_error
+        self.neuromodulator.step(prediction_error, delta_pe)
+
+        # Dispara Forja se Surpresa + Plasticidade
+        forge, reason = self.neuromodulator.should_forge()
+        if forge:
+            concepts = thought.get("layers", {}).get("perception", {}).get("concepts", [])
+            unfamiliar = [c for c in concepts if c.get("access_count", 1) <= 1]
+            concept_to_learn = unfamiliar[0].get("label") if unfamiliar else sentence[:30]
+            print(f"[MAESTRO:limbico] Forja disparada! mood={self.neuromodulator.mood} "
+                  f"NM={nm_state} conceito='{concept_to_learn}'")
+            # Forja cria novo archetype para reduzir o PE
+            try:
+                if hasattr(self.mind, 'archetypes') and hasattr(self.mind.archetypes, 'forge'):
+                    self.mind.archetypes.forge(concept_to_learn, prediction_error)
+            except Exception as e:
+                print(f"[MAESTRO:forge] Erro: {e}")
+            # Busca ativa para entender o conceito
+            self.percepcao.send(f"force_topic:{concept_to_learn}")
+
+    def _on_topic_complete(self, result: Dict):
+        """Um tópico foi completamente processado."""
+        topic = result["topic"]
+        source = result["source"]
+        content_type = result["type"]
+        sentences = result["sentences"]
+        confidence = result["confidence"]
+
+        self.state["current_topic"] = topic
+        self.state["current_source"] = source
+        self.state["total_sentences"] = len(sentences)
+        self.state["sentences_processed"] = 0
+
+        # Atualiza streams para UI
+        if content_type == "youtube":
+            self.state["stream_vision"] = f"Assistindo: {topic}"
+            self.state["stream_audio"] = f"Ouvindo: {topic}"
+            self.state["stream_reading"] = "—"
+            self.state["media_type"] = "video"
+            self.state["media_audio_url"] = "http://localhost:8000/static/yt/audio.wav"
+            self.state["media_frame_url"] = "http://localhost:8000/static/yt/frames/frame_001.jpg"
+            self.state["media_caption"] = "Carregando..."
+            self.state["media_timestamp"] = 0
+        elif content_type == "wikipedia":
+            self.state["stream_vision"] = "—"
+            self.state["stream_audio"] = "—"
+            self.state["stream_reading"] = f"Lendo: {source} — {topic}"
+            self.state["media_type"] = "text"
+            self.state["media_audio_url"] = None
+            self.state["media_frame_url"] = None
+            self.state["media_caption"] = None
+            self.state["media_timestamp"] = None
+        else:
+            self.state["stream_vision"] = "—"
+            self.state["stream_audio"] = "—"
+            self.state["stream_reading"] = f"Navegando: {source} — {topic}"
+            self.state["media_type"] = "text"
+            self.state["media_audio_url"] = None
+            self.state["media_frame_url"] = None
+            self.state["media_caption"] = None
+            self.state["media_timestamp"] = None
+
+        # Alimenta sentenças no córtex cognitivo (uma por tick)
+        self._pending_sentences = [
+            {"sentence": s, "confidence": confidence}
+            for s in sentences
+            if not s.startswith("[AudioConfidence") and not s.startswith("[Assistindo Vídeo")
+        ]
+        self._current_sentence_queue = iter(self._pending_sentences)
+        self._topic_sentences_remaining = len(self._pending_sentences)
+        self.state["total_sentences"] = self._topic_sentences_remaining
+
+        print(f"[MAESTRO] Tópico '{topic}' → {self._topic_sentences_remaining} sentenças na fila")
+
+        # Feedback: mira curiosidade respondida
+        curiosities = list(self.mind.unanswered_questions) if self.mind.unanswered_questions else []
+        if curiosities:
+            try:
+                self.mind.unanswered_questions.pop(0)
+            except IndexError:
+                pass
+
+        self.topics_completed += 1
+        self.state["topics_completed"] = self.topics_completed
+
+    def _on_motor(self, result: Dict):
+        """Uma ação motora foi executada."""
+        self.state["stream_vision"] = f"Brincando: {result.get('action', '?')}"
+        self.state["current_sentence"] = result.get("result", "")[:100]
+        audio_path = self.motor.get_state().get("last_audio_path", "")
+        if audio_path:
+            fname = os.path.basename(audio_path)
+            self.state["vocal_audio_url"] = f"http://localhost:8000/static/vocal/{fname}"
+        else:
+            self.state["vocal_audio_url"] = None
+
+    def _on_sleep(self, result: Dict):
+        """Ciclo de sono concluído."""
+        if result.get("archetypes"):
+            self.state["current_sentence"] = f"Sono: +{len(result['archetypes'])} arquétipos"
+
+    def _decide_next(self):
+        """Decisões do maestro dirigidas por neuromodulação."""
+        # Se há sentenças pendentes da percepção, alimenta uma no cognitivo
+        if hasattr(self, '_pending_sentences') and self._pending_sentences:
+            if self._current_sentence_queue:
+                try:
+                    item = next(self._current_sentence_queue)
+                    self.cognitivo.send(item)
+                    self.state["sentences_processed"] += 1
+                except StopIteration:
+                    self._current_sentence_queue = None
+                    self._pending_sentences = []
+                    self._on_topic_done()
+            return
+
+        # Sem sentenças: decisões dirigidas por neuromodulação
+        nm = self.neuromodulator
+
+        # 1. Sono: confiança baixa + plasticidade alta
+        sleep_b, sleep_reason = nm.should_sleep()
+        if sleep_b:
+            if self.cycle_count % 2 == 0:  # espaçamento para não travar
+                print(f"[MAESTRO:limbico] Sono necessário. mood={nm.mood} NM={nm.as_dict()}")
+                self.sono.send("sleep")
+            return
+
+        # 2. Forja: surpresa + plasticidade (já tratado em _on_thought)
+        #    Aqui só reforçamos se não houver sentenças para processar
+
+        # 3. Exploração vs Aprofundamento
+        if nm.should_explore():
+            # Dopamina alta → confiante para explorar coisas novas
+            if self.cycle_count % 2 == 0 and self.autonomous_learning_enabled:
+                self.linguagem.send("babble")
+            if self.cycle_count % 3 == 0:
+                self.motor.send("play")
+        elif nm.should_exploit():
+            # Dopamina baixa → focar no que já temos
+            if self.cycle_count % 3 == 0:
+                self.causal.send("reason")
+        else:
+            # Neutro: alterna entre atividades
+            if self.cycle_count % 2 == 0:
+                self.linguagem.send("babble")
+            if self.cycle_count % 3 == 0:
+                self.motor.send("play")
+            elif self.cycle_count % 5 == 0:
+                self.causal.send("reason")
+
+        # 4. Troca de tópico por tédio ou falta de progresso
+        if nm.should_switch_topic():
+            if self.cycle_count % 3 == 0 and self.autonomous_learning_enabled:
+                print(f"[MAESTRO:limbico] Tédio detectado. Buscando novo tópico. NM={nm.as_dict()}")
+                self.percepcao.send("next_topic")
+
+        # 5. Fallback: busca novo tópico periódica se autônomo
+        if self.cycle_count % 7 == 0 and self.autonomous_learning_enabled:
+            if self.topics_completed % 3 == 0 and self.topics_completed > 0:
+                self.sono.send("sleep")
+            self.percepcao.send("next_topic")
+
+    def _on_topic_done(self):
+        """Um tópico foi completamente processado pela cognição."""
+        print(f"[MAESTRO] Tópico concluído. Total: {self.topics_completed}")
+
+        # Sono a cada 3 tópicos
+        if self.topics_completed % 3 == 0:
+            self.sono.send("sleep")
+
+        # Playground: brincadeira entre tópicos
+        self.motor.send("play")
+
+        # Limpeza YouTube
+        try:
+            if hasattr(self.knowledge, 'adapters') and "youtube" in self.knowledge.adapters:
+                self.knowledge.adapters["youtube"].cleanup_temp_files()
+        except Exception:
+            pass
+
+        # Próximo tópico se ativado
+        if self.autonomous_learning_enabled:
+            self.percepcao.send("next_topic")
+
+    def get_state(self) -> Dict:
+        """Estado completo para broadcast na UI."""
+        actor_states = {name: actor.get_state() for name, actor in self.actors.items()}
+        return {
+            "maestro": {
+                "cycle": self.cycle_count,
+                "topics_completed": self.topics_completed,
+                "status": self.state["status"],
+                "actors": actor_states,
+                "autonomous_learning_enabled": self.autonomous_learning_enabled,
+                "neuromodulation": self.neuromodulator.as_dict(),
+                "mood": self.neuromodulator.mood,
+            },
+            "learning": dict(self.state),
+        }
+
+    def get_learning_state(self) -> Dict:
+        """Apenas o estado de aprendizado (para compatibilidade)."""
+        return dict(self.state)

@@ -327,6 +327,7 @@ def load_checkpoint(path: str, embedding_dim: int = 32) -> CrushedSubstrate:
     substrate.token_to_id = state['token_to_id']
     substrate.id_to_token = state['id_to_token']
     substrate.vocab_size = state['vocab_size']
+    substrate.capacity = state['vocab_size']
     
     return substrate
 

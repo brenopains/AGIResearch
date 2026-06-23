@@ -17,6 +17,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
+import threading
 from typing import Dict, List, Optional
 
 from .bitlinear import BitLinear, BitLinearDynamic, ternary_quantize
@@ -47,6 +48,7 @@ class CrushedSubstrate(nn.Module):
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
         self.vocab_size = initial_concepts
+        self.capacity = initial_concepts
         self.embedding_dim = embedding_dim
         self.hdc_dim = hdc_dim
 
@@ -76,6 +78,7 @@ class CrushedSubstrate(nn.Module):
         # Learning parameters
         self.lr = 0.01
         self.neurogenesis_threshold = 0.8
+        self._train_lock = threading.Lock()
 
         # Token mapping
         self.token_to_id: Dict[str, int] = {}
@@ -88,13 +91,15 @@ class CrushedSubstrate(nn.Module):
         self._ff_trained = False
 
     def get_token_id(self, token: str) -> int:
-        """Get or create token ID, with neurogenesis if needed."""
+        """Get or create token ID, with batch-allocated neurogenesis if needed."""
         if token not in self.token_to_id:
-            if len(self.token_to_id) >= self.vocab_size:
-                self._spawn_neuron()
             new_id = len(self.token_to_id)
+            if new_id >= self.capacity:
+                self._grow_capacity(grow_by=500)
+            
             self.token_to_id[token] = new_id
             self.id_to_token[new_id] = token
+            self.vocab_size = len(self.token_to_id)
 
             # Store in HDC memory for one-shot retrieval
             self.hdc_memory.store(token, f"concept_{new_id}")
@@ -123,7 +128,14 @@ class CrushedSubstrate(nn.Module):
         
         The transition matrix learns: given embedding[A], predict embedding[B].
         Over thousands of sentences, it learns real grammar patterns.
+
+        Thread-safe via internal lock (required because mind.think() can be
+        called from multiple actor threads simultaneously).
         """
+        with self._train_lock:
+            return self._continuous_train_unlocked(tokens_stream)
+
+    def _continuous_train_unlocked(self, tokens_stream: List[str]) -> float:
         indices = [self.get_token_id(t) for t in tokens_stream]
         if len(indices) < 2:
             return 0.0
@@ -181,19 +193,15 @@ class CrushedSubstrate(nn.Module):
 
         return total_surprise
 
-    def _spawn_neuron(self):
-        """
-        Neural growth with ternary weights.
-        New neurons start with near-zero weights (quantize to 0),
-        meaning they're initially silent until learning activates them.
-        """
+    def _grow_capacity(self, grow_by: int = 500):
+        """Grow embedding tensor capacity in batches to avoid fragmentation and memory leaks."""
         with torch.no_grad():
             new_embedding = torch.randn(
-                1, self.embedding_dim, device=self.device
+                grow_by, self.embedding_dim, device=self.device
             ) * 0.02
             new_matrix = torch.cat([self.embeddings, new_embedding], dim=0)
             self.embeddings = nn.Parameter(new_matrix)
-            self.vocab_size += 1
+            self.capacity += grow_by
             self._neurogenesis_events += 1
 
     def get_topology_submatrix(self, indices: List[int]) -> np.ndarray:

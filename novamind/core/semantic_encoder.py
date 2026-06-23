@@ -17,6 +17,7 @@ all inference is local.
 """
 from typing import List, Optional
 import numpy as np
+from collections import OrderedDict
 
 _MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 
@@ -30,7 +31,8 @@ class SemanticEncoder:
         self._tokenizer = None
         self._model = None
         self._device = device
-        self._cache: dict = {}            # text -> np.ndarray (normalized)
+        self._cache: OrderedDict = OrderedDict()
+        self._max_cache = 1000
         self._dim = 384
 
     @classmethod
@@ -44,13 +46,18 @@ class SemanticEncoder:
         if self._model is not None:
             return
         import torch
-        from transformers import AutoTokenizer, AutoModel
-        if self._device is None:
-            self._device = "cuda" if torch.cuda.is_available() else "cpu"
-        self._tokenizer = AutoTokenizer.from_pretrained(_MODEL_NAME)
-        self._model = AutoModel.from_pretrained(_MODEL_NAME).to(self._device)
-        self._model.eval()
-        self._dim = self._model.config.hidden_size
+        try:
+            from transformers import AutoTokenizer, AutoModel
+            if self._device is None:
+                self._device = "cuda" if torch.cuda.is_available() else "cpu"
+            self._tokenizer = AutoTokenizer.from_pretrained(_MODEL_NAME)
+            self._model = AutoModel.from_pretrained(_MODEL_NAME).to(self._device)
+            self._model.eval()
+            self._dim = self._model.config.hidden_size
+        except Exception as e:
+            print(f"[SEMANTIC] transformers failed ({e}), using fallback bag-of-words encoder")
+            self._model = "fallback"
+            self._dim = 128
 
     @staticmethod
     def _mean_pool(last_hidden, attention_mask):
@@ -63,6 +70,10 @@ class SemanticEncoder:
     def encode(self, texts: List[str]) -> np.ndarray:
         """Return L2-normalized embeddings, shape (len(texts), dim)."""
         self._ensure_loaded()
+
+        if self._model == "fallback":
+            return self._encode_fallback(texts)
+
         import torch
 
         out = np.zeros((len(texts), self._dim), dtype=np.float32)
@@ -70,8 +81,12 @@ class SemanticEncoder:
         for i, t in enumerate(texts):
             key = t.strip().lower()
             cached = self._cache.get(key)
-            if cached is not None:
+            if cached is not None and cached.shape[0] == self._dim:
                 out[i] = cached
+            elif cached is not None:
+                del self._cache[key]
+                todo.append(t)
+                todo_idx.append(i)
             else:
                 todo.append(t)
                 todo_idx.append(i)
@@ -88,8 +103,40 @@ class SemanticEncoder:
                 vecs = pooled.cpu().numpy().astype(np.float32)
             for j, i in enumerate(todo_idx):
                 out[i] = vecs[j]
-                self._cache[todo[j].strip().lower()] = vecs[j]
+                k = todo[j].strip().lower()
+                self._cache[k] = vecs[j]
+                self._cache.move_to_end(k)
+            while len(self._cache) > self._max_cache:
+                self._cache.popitem(last=False)
 
+        return out
+
+    def _encode_fallback(self, texts: List[str]) -> np.ndarray:
+        """Bag-of-words fallback when transformers is unavailable."""
+        out = np.zeros((len(texts), self._dim), dtype=np.float32)
+        for i, t in enumerate(texts):
+            key = t.strip().lower()
+            cached = self._cache.get(key)
+            if cached is not None and cached.shape[0] == self._dim:
+                out[i] = cached
+                continue
+            elif cached is not None:
+                del self._cache[key]
+            words = key.split()
+            if not words:
+                vec = np.random.RandomState(hash(key) % 2**31).randn(self._dim).astype(np.float32)
+            else:
+                seed = sum(hash(w) for w in words) % 2**31
+                rng = np.random.RandomState(seed)
+                vec = rng.randn(self._dim).astype(np.float32) / np.sqrt(len(words) + 1)
+            norm = np.linalg.norm(vec)
+            if norm > 0:
+                vec = vec / norm
+            out[i] = vec
+            self._cache[key] = vec
+            self._cache.move_to_end(key)
+        while len(self._cache) > self._max_cache:
+            self._cache.popitem(last=False)
         return out
 
     def encode_one(self, text: str) -> np.ndarray:
