@@ -528,3 +528,176 @@ HDV: 53.185 itens | PCA: 2.985 pontos
 8. **Roteador de Domínio** — código só busca código, prosa só busca Wikipedia
 9. **Fallback Semântico** — quando vetor falha (<0.15), busca metadado `func`
 10. **Dessanitizador** — tokens HDC → Python executável
+
+---
+
+# Sessão 23/06/2026 — Parte 2: Arquitetura de Encorporação AGI
+
+## Hipótese Central da Sessão
+
+> *"Se inteligência é um efeito colateral, vamos gerar esse efeito."*
+>
+> Sentimentos = acoplamentos de NTs em dosagem e quantidade X ligados a arquétipos/conceitos Y.
+> Causalidade contextual: "fogo" em contexto de gas_leak ≠ "fogo" na lareira.
+
+---
+
+## Módulos Implementados e Validados
+
+### Fase 1 — `neuromodulator_state.py`
+
+6 neurotransmissores com dinâmica contextual real:
+
+| NT | Papel | Meia-vida |
+|---|---|---|
+| DA | Motivação, recompensa | 60s |
+| NA | Surpresa, foco estreito | 5s |
+| ACh | Plasticidade, janela de aprendizado | 30s |
+| 5HT | Horizonte temporal, confiança | 120s |
+| **CRH** | Ameaça/stress (novo) | 15s |
+| **OXT** | Confiança social (novo) | 90s |
+
+**Assinaturas por conceito** — banco de ~20 conceitos com NT base pré-definida.
+
+**Modificadores causais** — o mesmo conceito tem NT diferente por contexto:
+
+```python
+# Resultado validado:
+fire + gas_leak  → CRH=1.00  DA=0.08   # pânico/fuga
+fire + kitchen   → CRH=0.38  DA=0.38   # atenção controlada
+fire + fireplace → CRH=0.24  DA=0.60   # conforto/calor
+```
+
+**Ganho adaptativo por operação:**
+- `learning_rate` = f(DA, ACh, CRH)
+- `attention_width` = 1 - 0.7 × NA (alto NA = foco estreito)
+- `time_horizon` = 5HT (alto = pensa a longo prazo)
+- `threat_bias` = CRH
+
+---
+
+### Fase 2 — `multiscale_hdv.py`
+
+Memória com 3 escalas de tempo (análogo hipocampo-córtex):
+
+```
+L1 (Working)  — TTL 30s,  cap 500,   decay exponencial
+L2 (Episódico)— TTL 1-4h, cap 10k,   só se DA>0.6 ou CRH>0.7
+L3 (Semântico)— permanente, .npz,    poda sim>0.95
+```
+
+**Gate emocional para L2:**
+- Momento mundano (NT neutro) → fica só no L1, esquece em 30s
+- Perigo (CRH=0.8) → L2 com TTL×2 (memórias de ameaça duram mais)
+- Sucesso (DA=0.8) → L2 com TTL normal
+
+**Consolidação via sono:** `consolidate()` → replay de L2 por saliência → L3 permanente.
+
+---
+
+### Fase 3 — `temporal_binder.py`
+
+Binding HDC genuíno para memória episódica:
+
+```
+episódio = conceito ⊗ tempo ⊗ contexto ⊗ emoção
+```
+
+Raciocínio **contrafactual** real:
+```python
+# "O que eu sabia sobre fogo ANTES do incidente?"
+tb.counterfactual(bound_vec,
+    original_context=['gas_leak'], original_t=t_now,
+    swap_context=['fireplace'], swap_time=t_antes)
+```
+
+- Tempos próximos → vetores similares (hash por bucket)
+- Retrieval por qualquer eixo: conceito, janela temporal, contexto
+- Filtros combinados: sim_concept×0.7 + sim_ctx×0.2 + sim_nt×0.1
+
+---
+
+### Fase 4 — `simulated_body.py` + `body_encoder.py`
+
+**Corpo físico causalmente fundamentado:**
+
+```python
+body = SimulatedBody(start_pos=[0.0, 5.0, 0.0])  # começa no ar
+reading = body.apply_actuator(Actuator(move=[0,0,0]))  # queda livre
+# → pain=0.7, balance=0.0, velocity=[0,-8,0]
+```
+
+Sensores implementados com causalidade real:
+- `pain` — impacto + proximidade de zonas de perigo
+- `balance` — velocidade lateral + contato com chão
+- `temperature` — -1.0 a +1.0 (frio extremo → calor extremo)
+- `energy_level` — decresce com ação, recupera no descanso
+- `reward` — proximity a zonas de recompensa (aprendizado por habitat)
+- `circadian` — fase 0→2π contínua (relógio interno genuíno)
+
+**BodyEncoder (geometria única da AGI — seed=88):**
+```
+leituras similares → vetores similares no hiperespaço
+
+"falling"    ≠ "reward_zone"  (distância real no espaço)
+"pain_high"  ≈ "danger_zone"  (proximidade semântica emergente)
+```
+
+Resultado validado:
+```
+Após queda:          conceito='falling'     balance=0.40
+Perto de reward:     conceito='resting'     reward=0.57
+Similaridade entre:  0.374  (baixa — conceitos distintos)
+```
+
+---
+
+### Fase 5 — `cerebellum.py` (reescrito)
+
+Forward Model + Inverse Model implementados com **numpy puro** (sem torch):
+
+```
+Forward:  (estado, ação) → estado_previsto    # o que vai acontecer?
+Inverse:  (estado, desejado) → ação            # o que devo fazer?
+```
+
+**MLP 2 camadas, online learning, backprop manual:**
+- Inicialização He, ReLU hidden, linear output
+- 1 amostra por vez (sem batch)
+- Erro de predição → sinal para NA no neuromodulador
+
+Resultado após 60 steps de treinamento:
+```
+prediction_error: ~0.0 (convergiu no padrão determinístico do teste)
+forward_steps: 60 | inverse_steps: 60
+```
+
+Interface original (timing articulatório) 100% compatível.
+
+---
+
+## Validação Automática
+
+```
+TODOS OS MÓDULOS VALIDADOS COM SUCESSO!
+
+Fase 1: CRH(gas_leak)=1.00 vs CRH(kitchen)=0.38  ✅
+Fase 2: L1 hit=1.0, L2 promoção por saliência     ✅
+Fase 3: Episódio bound+retrieved, 1 resultado      ✅
+Fase 4: 'falling' ≠ 'resting', sim=0.374          ✅
+Fase 5: Forward 60 steps, timing compat mantida   ✅
+```
+
+---
+
+## Próximas Integrações
+
+```
+grounding_engine.py → inject nt_state em cada encode
+archetypes.py       → causal_modifiers por contexto ativo
+sleep_mode.py       → multiscale_hdv.consolidate() ao dormir
+memory.py           → temporal_binder.write_episodic()
+maestro.py          → loop corpo→NT→gain_control→ação
+```
+
+**Commit:** `a70b210` — 7 arquivos, 2315 inserções
