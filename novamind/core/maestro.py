@@ -597,6 +597,12 @@ class CognitiveMaestro:
         # === Fase 5: Cerebelo (Forward + Inverse Model) ===
         self.cerebellum = Cerebellum() if Cerebellum else None
 
+        # === Fase 6: Auditoria Arquitetônica e Meta-Reconfiguração ===
+        self.audit_history = deque(maxlen=100)
+        self.audit_threshold = 0.5
+        self.audit_interval = 50
+
+
     def start(self):
         """Inicia todos os atores em paralelo."""
         print("\n" + "=" * 60)
@@ -634,6 +640,7 @@ class CognitiveMaestro:
         if thought_result:
             self._on_thought(thought_result)
 
+
         # 2. Coleta resultado da percepção (tópico completo)
         perception_result = self.percepcao.recv(timeout=0.05)
         if perception_result:
@@ -668,9 +675,14 @@ class CognitiveMaestro:
         # 7. Decisões do maestro
         self._decide_next()
 
+        # 7.5 Auditoria Arquitetônica
+        if self.cycle_count % self.audit_interval == 0:
+            self.architectural_audit()
+
         # 8. [NOVO] Loop corpo→NT→gain (a cada N ciclos para não sobrecarregar)
         if self.cycle_count % self._body_nt_update_interval == 0:
             self._body_nt_loop()
+
 
     def _on_thought(self, result: Dict):
         """Um pensamento foi gerado pelo córtex cognitivo."""
@@ -681,6 +693,15 @@ class CognitiveMaestro:
 
         self.state["current_sentence"] = sentence
         self.state["sentences_processed"] = result["cycle"]
+
+        # Histórico de Auditoria Arquitetônica
+        if hasattr(self, 'audit_history'):
+            self.audit_history.append({
+                "text": sentence,
+                "error": prediction_error,
+                "time": time.time()
+            })
+
 
         # Media state parsing para YouTube (atualiza frame/caption por sentença)
         if self.state.get("media_type") == "video":
@@ -924,7 +945,149 @@ class CognitiveMaestro:
         """Apenas o estado de aprendizado (para compatibilidade)."""
         return dict(self.state)
 
+    # ─── Meta-arquiteto: Auditoria Arquitetônica e Meta-Reconfiguração ──────────
+
+    def architectural_audit(self):
+        """
+        Analisa o erro de predição (surpresa) recente por clusters.
+        Se erros estiverem persistentemente altos, diagnostica o GAP
+        e propõe reconfiguração dinâmica criando e importando novos módulos.
+        """
+        if len(self.audit_history) < 10:
+            return
+
+        # Calcula média de erro recente
+        recent_errors = [item["error"] for item in self.audit_history]
+        avg_error = sum(recent_errors) / len(recent_errors)
+        
+        # Se ultrapassa o limite de erro, dispara a meta-reconfiguração
+        if avg_error > self.audit_threshold:
+            print(f"[MAESTRO:audit] Erro de predição médio alto ({avg_error:.2f} > {self.audit_threshold})! Auditando lacunas...")
+            
+            # Detecta o cluster de palavras que mais falha
+            cluster = self.detect_failure_clusters()
+            if cluster:
+                gap = self.diagnose_gap(cluster)
+                print(f"[MAESTRO:audit] Lacuna identificada: '{gap}'. Propondo nova especificação de código...")
+                
+                # Gera código para o novo módulo
+                spec_code = self.write_module_spec(gap, cluster)
+                
+                # Realiza a reconfiguração (cria arquivo e importa)
+                self.propose_new_module(gap, spec_code)
+            else:
+                print("[MAESTRO:audit] Auditoria concluída: nenhum padrão claro de falha identificado.")
+
+    def detect_failure_clusters(self) -> List[str]:
+        """
+        Analisa palavras comuns nos inputs com erro de predição alto.
+        Retorna as palavras chaves do cluster de falha.
+        """
+        words = []
+        for item in self.audit_history:
+            if item["error"] > 0.4:
+                # Tokeniza de forma simples e limpa
+                clean = re.sub(r'[^a-zA-Z\s]', ' ', item["text"].lower())
+                words.extend([w for w in clean.split() if len(w) > 3 and w not in ["then", "that", "this", "with", "from"]])
+        
+        if not words:
+            return []
+            
+        # Pega as 5 palavras mais frequentes no cluster de erro
+        counter = Counter(words)
+        most_common = [pair[0] for pair in counter.most_common(5)]
+        return most_common
+
+    def diagnose_gap(self, cluster: List[str]) -> str:
+        """Diagnostica o nome da lacuna arquitetônica com base nas palavras chave."""
+        # Se contiver termos espaciais, motores ou de física
+        physics_terms = {"physics", "gravity", "balance", "motor", "position", "speed", "accelerate"}
+        logic_terms = {"logic", "math", "sum", "calc", "solve", "number", "matrix", "compute"}
+        social_terms = {"social", "talk", "dialogue", "convene", "speak", "person", "human"}
+        
+        cluster_set = set(cluster)
+        if cluster_set & physics_terms:
+            return "spatial_physics_grounding"
+        elif cluster_set & logic_terms:
+            return "symbolic_logic_acceleration"
+        elif cluster_set & social_terms:
+            return "social_conversational_adaptation"
+        else:
+            return "general_cognitive_alignment"
+
+    def write_module_spec(self, gap_name: str, keywords: List[str]) -> str:
+        """
+        Escreve dinamicamente o código do módulo especificado.
+        Isso simula o Sequential Composer da AGI construindo extensões.
+        """
+        # Código base do módulo que se auto-registra
+        spec_code = f'''"""
+Dynamic Module: {gap_name}
+Automatically generated by CognitiveMaestro architectural audit.
+Keywords target: {keywords}
+"""
+import numpy as np
+
+class {gap_name.title().replace("_", "")}Extension:
+    def __init__(self):
+        self.gap_resolved = "{gap_name}"
+        self.active_keywords = {keywords}
+        self.gain_boost = 1.25
+
+    def accelerate_manifold(self, manifold, nt_gains):
+        """Ajusta o manifold aplicando os ganhos do estado emocional."""
+        # Multiplica o tensor pelo gain boost
+        boost = self.gain_boost * nt_gains.get("attention_width", 1.0)
+        manifold.tensor = manifold.tensor * boost
+        return manifold
+
+    def diagnose(self) -> str:
+        return f"Módulo de extensão {gap_name} ativo e operando com ganho {{self.gain_boost}}."
+'''
+        return spec_code
+
+    def propose_new_module(self, gap_name: str, spec_code: str):
+        """
+        Grava o novo código gerado no core e ativa na arquitetura.
+        """
+        try:
+            import os
+            # Cria a pasta de módulos dinâmicos se necessário
+            dest_dir = os.path.join(os.path.dirname(__file__), 'dynamic_modules')
+            os.makedirs(dest_dir, exist_ok=True)
+            
+            # Grava o arquivo
+            filename = f"{gap_name}.py"
+            filepath = os.path.join(dest_dir, filename)
+            
+            with open(filepath, 'w', encoding='utf-8') as f:
+                f.write(spec_code)
+                
+            print(f"[MAESTRO:rewire] Extensão '{gap_name}' salva em {filepath}")
+            
+            # Registra dinamicamente no Maestro
+            if not hasattr(self, '_dynamic_extensions'):
+                self._dynamic_extensions = {}
+            
+            # Simula import dinâmico
+            import importlib.util
+            spec = importlib.util.spec_from_file_location(gap_name, filepath)
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            
+            # Instancia e registra a classe
+            class_name = gap_name.title().replace("_", "") + "Extension"
+            extension_instance = getattr(module, class_name)()
+            self._dynamic_extensions[gap_name] = extension_instance
+            
+            print(f"[MAESTRO:rewire] Módulo '{class_name}' reconfigurado com sucesso no roteador cognitivo!")
+            self.state["current_sentence"] = f"Meta-arquiteto: reconfigurado '{gap_name}'"
+            
+        except Exception as e:
+            print(f"[MAESTRO:rewire] Erro ao instanciar extensão dinâmica: {e}")
+
     # ─── Loop de Incorporação: Corpo → NT → Gain Control → Ação ──────────────
+
 
     def _body_nt_loop(self):
         """

@@ -178,3 +178,120 @@ class SandboxEngine:
         from .coglang import decode_roles as _dr
         target_roles = roles or ALL_ROLES
         return _dr(manifold, vocab_matrix, word_list, min_sim=min_sim, roles=target_roles)
+
+    # ─────────────────────────────────────────────────────────────────
+    # Associação Multimodal — Redes de Projeção Lineares no Espaço HDC
+    # ─────────────────────────────────────────────────────────────────
+
+    def _get_or_create_projection(self, mode: str) -> torch.Tensor:
+        """Retorna (ou inicializa) a matriz de projeção para o modo dado."""
+        if not hasattr(self, '_projections'):
+            self._projections: Dict[str, torch.Tensor] = {}
+        if mode not in self._projections:
+            dim = Manifold.DIMENSIONALITY
+            # Inicialização com identidade + ruído pequeno para evitar simetria
+            W = torch.eye(dim, device=self.device) + 0.01 * torch.randn(dim, dim, device=self.device)
+            self._projections[mode] = W
+        return self._projections[mode]
+
+    def train_association(
+        self,
+        inputs: List[Manifold],
+        targets: List[Manifold],
+        mode: str = "audio_to_visual",
+        epochs: int = 80,
+        lr: float = 0.005,
+    ) -> None:
+        """
+        Treina uma projeção linear W : HDC_dim → HDC_dim mapeando inputs→targets.
+
+        O aprendizado ocorre diretamente nos vetores bipolares do espaço HDC
+        usando descida de gradiente online (sem PyTorch autograd — multiplicação
+        matricial explícita + regra delta Widrow-Hoff).
+
+        Args:
+            inputs:  lista de Manifolds de entrada (ex: áudio)
+            targets: lista de Manifolds alvo (ex: visual)
+            mode:    chave do mapa de projeção ('audio_to_visual', 'text_to_visual',
+                     'visual_to_audio', ...)
+            epochs:  número de passagens sobre o conjunto de treino
+            lr:      taxa de aprendizado
+        """
+        if not inputs or not targets:
+            print(f"[SANDBOX] train_association({mode}): lista vazia, pulando.")
+            return
+
+        W = self._get_or_create_projection(mode)
+        n = min(len(inputs), len(targets))
+        dim = Manifold.DIMENSIONALITY
+
+        print(f"  [SANDBOX] Treinando '{mode}' com {n} pares, {epochs} épocas, lr={lr}")
+        for epoch in range(epochs):
+            total_loss = 0.0
+            for i in range(n):
+                x = inputs[i].tensor.float()   # (dim,)
+                y = targets[i].tensor.float()  # (dim,)
+
+                # Forward: ŷ = W @ x
+                y_hat = W @ x                  # (dim,)
+
+                # Erro e loss MSE
+                err = y - y_hat
+                total_loss += (err ** 2).mean().item()
+
+                # Gradiente: dW = lr * err ⊗ x  (regra delta)
+                W += lr * torch.outer(err, x)
+
+            if (epoch + 1) % 20 == 0:
+                avg_loss = total_loss / n
+                print(f"    Época {epoch + 1:3d}/{epochs} | loss={avg_loss:.6f}")
+
+        self._projections[mode] = W
+        print(f"  [SANDBOX] '{mode}' treinado.")
+
+    def _project(self, manifold: Manifold, mode: str) -> Manifold:
+        """Aplica a projeção treinada para 'mode' e binariza o resultado."""
+        W = self._get_or_create_projection(mode)
+        x = manifold.tensor.float()
+        y_hat = torch.sign(W @ x)
+        return Manifold(y_hat, device=self.device)
+
+    def predict_visual_from_audio(self, audio_manifold: Manifold) -> Manifold:
+        """Prediz manifold visual a partir de um manifold de áudio."""
+        return self._project(audio_manifold, "audio_to_visual")
+
+    def predict_visual_from_text(self, text_manifold: Manifold) -> Manifold:
+        """Prediz manifold visual a partir de um manifold de texto."""
+        return self._project(text_manifold, "text_to_visual")
+
+    def predict_audio_from_visual(self, visual_manifold: Manifold) -> Manifold:
+        """Prediz manifold de áudio a partir de um manifold visual."""
+        return self._project(visual_manifold, "visual_to_audio")
+
+    def predict_sequence_from_text(
+        self,
+        text_manifold: Manifold,
+        position_manifolds: List[Manifold],
+    ) -> List[Manifold]:
+        """
+        "Sonho Acordado": projeta o manifold de texto em espaço visual e
+        decompõe o manifold composto em N frames temporais via unbinding posicional.
+
+        Args:
+            text_manifold:      manifold do texto de entrada
+            position_manifolds: lista de manifolds de posição temporal (P_t)
+
+        Returns:
+            lista de Manifolds, um por posição temporal
+        """
+        # 1. Projeta texto → espaço visual
+        visual_pred = self.predict_visual_from_text(text_manifold)
+
+        # 2. Faz unbinding frame-a-frame: frame_t = visual_pred * P_t
+        #    (binding é sua própria inversa em MAP-HDC quando P é gerado aleatório)
+        frames = []
+        for pos_mf in position_manifolds:
+            frame = visual_pred * pos_mf
+            frames.append(frame)
+
+        return frames

@@ -67,6 +67,25 @@ class AgentBridge:
         self.output = ""
         self.residual_history = []
 
+        # Inicializa componentes de incorporação para a UI
+        try:
+            from core.neuromodulator_state import NeuromodulatorState
+            from core.simulated_body import SimulatedBody
+            from core.body_encoder import BodyEncoder
+            from core.cerebellum import Cerebellum
+            
+            self.nt_state = NeuromodulatorState()
+            self.body = SimulatedBody()
+            self.body_encoder = BodyEncoder(seed=88)
+            self.cerebellum = Cerebellum()
+            self._body_concept = "stable"
+        except ImportError:
+            self.nt_state = None
+            self.body = None
+            self.body_encoder = None
+            self.cerebellum = None
+            self._body_concept = "unknown"
+
     async def emit_event(self, event_type: str, **data):
         event = {"type": event_type, "timestamp": time.time(), **data}
         if self.emit:
@@ -282,6 +301,48 @@ class AgentBridge:
             generated.append(chunk_text)
             generated_keys.append(chunk_text.lower())
 
+            # Atualiza o estado físico/químico da AGI a cada chunk
+            if hasattr(self, 'body') and self.body:
+                try:
+                    from core.simulated_body import Actuator
+                    act = Actuator()
+                    if "fire" in chunk_text.lower() or "danger" in chunk_text.lower() or "pain" in chunk_text.lower():
+                        # Movimento brusco para trás (evitação)
+                        act.move = [-1.0, 0.0, -1.0]
+                    else:
+                        # Exploração leve
+                        act.move = [0.2, 0.0, 0.2]
+
+                    reading = self.body.apply_actuator(act, dt=0.1)
+                    
+                    # Identifica contextos
+                    contexts = []
+                    if "fire" in chunk_text.lower():
+                        contexts.append("fireplace" if "home" in chunk_text.lower() else "gas_leak")
+                    if "social" in chunk_text.lower() or "friend" in chunk_text.lower():
+                        contexts.append("social")
+                        
+                    if self.nt_state:
+                        self.nt_state.set_contexts(contexts)
+                        self.nt_state.update_from_body(reading.to_dict())
+                        
+                        # Ativação voluntária baseada em palavras
+                        for concept in ["fire", "danger", "pain", "success", "reward", "social", "unknown"]:
+                            if concept in chunk_text.lower():
+                                self.nt_state.activate_concept(concept, contexts, strength=0.3)
+                        
+                        self._body_concept = self.body_encoder.get_body_concept(reading) if self.body_encoder else "unknown"
+
+                    # Cerebelo
+                    if self.cerebellum:
+                        state_vec = reading.to_array()[:15]
+                        action_vec = np.array(act.move + [act.grasp], dtype=np.float32)
+                        next_reading = self.body.read_sensors()
+                        next_state_vec = next_reading.to_array()[:15]
+                        self.cerebellum.observe_result(state_vec, action_vec, next_state_vec)
+                except Exception as e:
+                    print(f"[BRIDGE] Erro na simulação de incorporação do chunk: {e}")
+
             await self.emit_event("chunk",
                 text=chunk_text,
                 residual_energy=float(residual_energy),
@@ -366,7 +427,7 @@ class AgentBridge:
 
     def get_status(self) -> dict:
         stats = self.memory.get_stats() if hasattr(self.memory, 'get_stats') else {}
-        return {
+        out = {
             "intention": self.current_intention,
             "output": self.output,
             "memory_items": stats.get('total_items', 0),
@@ -375,3 +436,21 @@ class AgentBridge:
             "residual_history": self.residual_history[-50:],
             "pca_points": len(self.pca_points),
         }
+
+        # Injeta dados de incorporação se disponíveis
+        if hasattr(self, 'body') and self.body:
+            out["body_concept"] = self._body_concept
+            out["body_state"] = self.body.get_state()
+        if hasattr(self, 'nt_state') and self.nt_state:
+            out["nt_state_6d"] = self.nt_state.as_dict()
+            out["nt_mood"] = self.nt_state.mood
+            out["nt_gains"] = {
+                "learning_rate":   round(self.nt_state.get_gain("learning_rate"), 3),
+                "attention_width": round(self.nt_state.get_gain("attention_width"), 3),
+                "threat_bias":     round(self.nt_state.get_gain("threat_bias"), 3),
+                "trust_level":     round(self.nt_state.get_gain("trust_level"), 3),
+            }
+        if hasattr(self, 'cerebellum') and self.cerebellum:
+            out["cerebellum_error"] = round(self.cerebellum.get_prediction_error(), 4)
+            
+        return out

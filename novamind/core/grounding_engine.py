@@ -82,7 +82,31 @@ class GroundingEngine:
         self.resample_22_to_24 = torchaudio.transforms.Resample(orig_freq=22050, new_freq=24000).to(self.device)
 
         
-    def encode_video(self, video_path, num_frames=8):
+    def _inject_nt_state(self, manifold, concept_key: str, contexts=None):
+        """
+        Injeta a nt_signature e causal_modifiers no Manifold de acordo com o conceito e contextos ativos.
+        """
+        try:
+            from .neuromodulator_state import NeuromodulatorState, NT_NAMES, CAUSAL_MODIFIERS
+            nts = NeuromodulatorState()
+            if contexts:
+                nts.set_contexts(contexts)
+            sig = nts.resolve_concept_nt(concept_key, contexts)
+            manifold.nt_signature = {name: float(val) for name, val in zip(NT_NAMES, sig)}
+            
+            if concept_key in CAUSAL_MODIFIERS:
+                manifold.causal_modifiers = []
+                for mod in CAUSAL_MODIFIERS[concept_key]:
+                    delta_dict = {name: float(val) for name, val in zip(NT_NAMES, mod["delta"])}
+                    manifold.causal_modifiers.append({
+                        "context": mod["context"],
+                        "delta": delta_dict
+                    })
+        except Exception:
+            pass
+        return manifold
+
+    def encode_video(self, video_path, num_frames=8, contexts=None):
         """
         Lê frames uniformemente do vídeo, extrai features visuais e agrupa em um Manifold.
         """
@@ -130,18 +154,13 @@ class GroundingEngine:
             else:
                 bundled = bundled + fm
             
-        return bundled
+        return self._inject_nt_state(bundled, "unknown", contexts)
 
-    def encode_video_stream(self, video_path: str, num_frames: int = 8):
+    def encode_video_stream(self, video_path: str, num_frames: int = 8, contexts=None):
         """
         Generator: processa vídeo frame a frame sem acumular em RAM.
         Para CADA frame: extrai features -> projeta HDC -> descarta o raw.
         No final, faz bundle temporal e YIELD o manifold do vídeo inteiro.
-
-        Uso:
-            for mf in engine.encode_video_stream("video.mp4"):
-                # mf é o manifold de todo o vídeo
-                salvar_hdv(mf)
         """
         if not os.path.exists(video_path):
             return
@@ -188,7 +207,7 @@ class GroundingEngine:
         cap.release()
 
         if bundled is not None:
-            yield bundled
+            yield self._inject_nt_state(bundled, "unknown", contexts)
 
     def synthesize_dog_bark(self):
         """
@@ -256,7 +275,7 @@ class GroundingEngine:
             
         return torch.cat(full_audio_list[:-1])
         
-    def encode_audio(self, audio_tensor):
+    def encode_audio(self, audio_tensor, contexts=None):
         """
         Recebe a waveform de áudio, calcula o MelSpectrogram e projeta em um Manifold.
         """
@@ -284,9 +303,10 @@ class GroundingEngine:
             hdc_vec = torch.matmul(self.proj_audio, mel_flat)
             hdc_vec = torch.sign(hdc_vec)
             
-        return Manifold(hdc_vec, device=self.device)
+        manifold = Manifold(hdc_vec, device=self.device)
+        return self._inject_nt_state(manifold, "unknown", contexts)
 
-    def encode_audio_encodec(self, audio_tensor):
+    def encode_audio_encodec(self, audio_tensor, contexts=None):
         """
         Converte a waveform de áudio em Manifold usando EnCodec e binding HDC.
         Recebe waveform de 22kHz, resampleia para 24kHz e codifica.
@@ -320,7 +340,9 @@ class GroundingEngine:
                     
             # Bipolariza
             summed_vector = torch.sign(summed_vector)
-            return Manifold(summed_vector, device=self.device)
+            
+        manifold = Manifold(summed_vector, device=self.device)
+        return self._inject_nt_state(manifold, "unknown", contexts)
 
     def decode_audio_encodec(self, audio_manifold):
         """
@@ -343,7 +365,7 @@ class GroundingEngine:
             decoded_audio = self.encodec_model.decode(decoded_frames)
             return decoded_audio.squeeze(0).squeeze(0) # Retorna tensor 1D
         
-    def encode_text_sync(self, text):
+    def encode_text_sync(self, text, contexts=None):
         """Versão síncrona (CPU, sem await). Usada internamente."""
         global _PROJ_SEMANTIC
         if _PROJ_SEMANTIC is None:
@@ -361,17 +383,20 @@ class GroundingEngine:
             semantic_vec = semantic_vec / semantic_vec.norm()
             hdc_float = torch.matmul(semantic_vec, _PROJ_SEMANTIC)
             hdc_bipolar = torch.sign(hdc_float)
-        return Manifold(hdc_bipolar, device=self.device)
+            
+        manifold = Manifold(hdc_bipolar, device=self.device)
+        clean_text = text.strip().lower()
+        return self._inject_nt_state(manifold, clean_text, contexts)
 
-    async def encode_text_async(self, text):
+    async def encode_text_async(self, text, contexts=None):
         """Versão assíncrona: roda spaCy num thread executor para não travar o event loop."""
         import asyncio
         loop = asyncio.get_event_loop()
-        return await loop.run_in_executor(None, self.encode_text_sync, text)
+        return await loop.run_in_executor(None, self.encode_text_sync, text, contexts)
 
-    def encode_text(self, text):
+    def encode_text(self, text, contexts=None):
         """Versão síncrona (compatível com código existente)."""
-        return self.encode_text_sync(text)
+        return self.encode_text_sync(text, contexts)
 
     # Palavras funcionais (stopwords) ignoradas na extração SVO
     STOPWORDS_SVO = frozenset({
@@ -408,7 +433,7 @@ class GroundingEngine:
 
         return suj, ver, obj
 
-    def encode_phrase(self, text: str) -> Manifold:
+    def encode_phrase(self, text: str, contexts=None) -> Manifold:
         """
         Codifica uma frase como Role-Filler Structure no espaço HDC.
 
@@ -423,14 +448,16 @@ class GroundingEngine:
 
         pairs = []
         if suj:
-            pairs.append(("suj", self.encode_text(suj)))
+            pairs.append(("suj", self.encode_text(suj, contexts)))
         if ver:
-            pairs.append(("ver", self.encode_text(ver)))
+            pairs.append(("ver", self.encode_text(ver, contexts)))
         if obj:
-            pairs.append(("obj", self.encode_text(obj)))
+            pairs.append(("obj", self.encode_text(obj, contexts)))
 
         if len(pairs) < 2:
-            return self.encode_text(text)
+            return self.encode_text(text, contexts)
 
-        return bind_roles(*pairs)
+        manifold = bind_roles(*pairs)
+        clean_text = text.strip().lower()
+        return self._inject_nt_state(manifold, clean_text, contexts)
 

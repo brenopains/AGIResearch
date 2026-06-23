@@ -45,6 +45,12 @@ import numpy as np
 
 from .math.information import MDLCompactor, InformationEngine
 
+try:
+    from .temporal_binder import TemporalBinder
+except ImportError:
+    TemporalBinder = None
+
+
 # Memory configuration
 EPISODIC_BUFFER_SIZE = 500    # Max episodes before compaction triggers
 COMPACTION_THRESHOLD = 10     # Minimum episodes to attempt compaction
@@ -247,6 +253,7 @@ class MemorySystem:
 
         self.encoder = None
         self.compactor = MDLCompactor()
+        self.temporal_binder = TemporalBinder(seed=77) if TemporalBinder else None
 
         # Metrics
         self.total_episodes_stored = 0
@@ -287,6 +294,46 @@ class MemorySystem:
         episode.importance = episode._compute_initial_importance()
         if importance is not None:
             episode.importance = importance
+
+        # Grava no TemporalBinder se disponível
+        if self.temporal_binder:
+            try:
+                concept_text = content.get("input", str(content))
+                concept_vec = None
+                if self.encoder:
+                    try:
+                        concept_manifold = self.encoder.encode_text(concept_text)
+                        concept_vec = concept_manifold.tensor.detach().cpu().numpy()
+                    except Exception:
+                        pass
+                
+                if concept_vec is None:
+                    from .temporal_binder import _stable_random
+                    concept_vec = _stable_random(concept_text, self.temporal_binder.seed)
+
+                # Cria o dict de estado emocional para o binder
+                nt_state = {
+                    "DA": max(0.0, min(1.0, 0.5 + emotional_valence * 0.3)),
+                    "5HT": max(0.0, min(1.0, 0.5 + emotional_valence * 0.2)),
+                    "ACh": max(0.0, min(1.0, 0.5 + surprise * 0.3)),
+                    "NE": max(0.0, min(1.0, 0.5 + surprise * 0.4)),
+                    "CRH": max(0.0, min(1.0, 0.5 - emotional_valence * 0.3 if emotional_valence < 0 else 0.1)),
+                    "OXT": max(0.0, min(1.0, 0.5 + emotional_valence * 0.2 if emotional_valence > 0 else 0.1))
+                }
+                
+                contexts = content.get("contexts", [])
+                
+                # Grava no binder e associa o vetor bound ao episódio
+                bound_vec = self.temporal_binder.write_episodic(
+                    concept_vec=concept_vec,
+                    context_keys=contexts,
+                    nt_state=nt_state,
+                    t=episode.timestamp,
+                    metadata={"episode_id": episode.id}
+                )
+                episode.hdc_vector = bound_vec
+            except Exception as e:
+                print(f"[MEMORY] Erro no TemporalBinder: {e}")
 
         self.episodic.append(episode)
         self.total_episodes_stored += 1
@@ -414,6 +461,21 @@ class MemorySystem:
         query_str = str(query)
         query_input = query.get('input', query_str)
 
+        # Se temos o temporal_binder, tentamos fazer a query nele
+        if self.temporal_binder:
+            try:
+                contexts = query.get("contexts")
+                res = self._recall_episodic_temporal_binder(
+                    query_input=query_input,
+                    top_k=top_k,
+                    contexts=contexts,
+                    emotional_bias=emotional_bias
+                )
+                if res:
+                    return res
+            except Exception as e:
+                print(f"[MEMORY] Erro no recall do TemporalBinder: {e}")
+
         if self.encoder is not None:
             return self._recall_episodic_embedding(query_input, top_k)
 
@@ -488,6 +550,59 @@ class MemorySystem:
         for _, ep in scored[:top_k]:
             ep.access()
             results.append(ep)
+        return results
+
+    def _recall_episodic_temporal_binder(self, query_input: str, top_k: int,
+                                         contexts: List[str] = None,
+                                         emotional_bias: float = 0.0) -> List[Episode]:
+        """Usa o temporal binder para realizar a busca no hiperespaço por similaridade."""
+        active = [ep for ep in self.episodic if ep.activation >= MIN_ACTIVATION]
+        if not active or not self.temporal_binder:
+            return []
+        
+        # Codifica o conceito de busca
+        concept_vec = None
+        if self.encoder:
+            try:
+                concept_manifold = self.encoder.encode_text(query_input)
+                concept_vec = concept_manifold.tensor.detach().cpu().numpy()
+            except Exception:
+                pass
+        
+        if concept_vec is None:
+            from .temporal_binder import _stable_random
+            concept_vec = _stable_random(query_input, self.temporal_binder.seed)
+            
+        # Constrói o filtro de NT a partir do bias emocional
+        nt_filter = {
+            "DA": 0.5 + emotional_bias * 0.3,
+            "5HT": 0.5 + emotional_bias * 0.2
+        } if emotional_bias != 0.0 else None
+        
+        # Realiza a query no temporal binder
+        try:
+            binder_results = self.temporal_binder.query_episodic(
+                concept_vec=concept_vec,
+                context_filter=contexts,
+                nt_filter=nt_filter,
+                top_k=top_k * 2
+            )
+        except Exception:
+            return []
+        
+        # Mapeia os episódios ativos por ID para busca rápida
+        ep_map = {ep.id: ep for ep in active}
+        
+        results = []
+        for res in binder_results:
+            ep_id = res.get("metadata", {}).get("episode_id")
+            if ep_id in ep_map:
+                ep = ep_map[ep_id]
+                ep.access()
+                results.append(ep)
+                if len(results) >= top_k:
+                    break
+                    
         return results
 
     def recall_semantic(self, query: Dict, top_k: int = 5,
