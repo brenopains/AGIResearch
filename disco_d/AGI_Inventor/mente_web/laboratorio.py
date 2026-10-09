@@ -93,6 +93,7 @@ MIN_PONTOS_INVENTA = 20
 EXP_CANDIDATOS = 300      # maos: cenas sorteadas entre as quais ela escolhe
 EXP_HORIZONTES = (1.0, 2.0, 3.0)
 EXP_A_VISTA = (1.0, 2.0, 3.0, 4.0, 5.0, 6.0)   # a teoria atual preve que fica no quadro por 6 s
+MAX_CENAS = 40            # video mental: aparencia (fundo + coisas) so dos ultimos videos
 EXP_FATOR = (0.7, 1.3)    # intervencao: a rapidez de uma situacao que ela VIU, vezes isto
 EXP_GIRO = math.pi / 6    # ... e a direcao girada ate 30 graus
 EXP_INVERTE = 0.25        # ... ou invertida
@@ -343,6 +344,63 @@ def percebe(quadros, tempos, religa=True):
                     "cor": [int(c) for c in T["cor"]]})
     return {"trilhas": out, "motivo": "ok" if out else "sem_objetos", "eventos": eventos, "L": L,
             "forma": [int(forma[0]), int(forma[1])]}
+
+
+def cena(quadros, percepcao, raio=5):
+    """O que a IMAGINACAO precisa de um video que ela viu: o FUNDO (o que fica parado) e a
+    APARENCIA de cada coisa que ela seguiu (um recorte em volta dela no meio da trilha, com a
+    mascara do que difere do fundo). Pequeno (~13 KB): fica so para os ultimos videos."""
+    if not percepcao.get("trilhas"):
+        return None
+    qs = [reduz(q) for q in quadros]
+    forma = tuple(percepcao.get("forma") or qs[0].shape[:2])
+    from PIL import Image
+    qs = [q if q.shape[:2] == forma else np.asarray(Image.fromarray(q).resize((forma[1], forma[0])), np.uint8) for q in qs]
+    Q = np.stack(qs)
+    fundo = np.median(Q[np.linspace(0, len(Q) - 1, min(60, len(Q))).astype(int)], 0).astype(np.uint8)
+    L = max(forma)
+    centro = np.array([forma[1] / 2, forma[0] / 2])
+    esc = max(1, int(round(raio * L / 128)))
+    sprites = []
+    for tr in percepcao["trilhas"]:
+        j = len(tr["k"]) // 2
+        k = int(tr["k"][j])
+        if k >= len(Q):
+            continue
+        c = tr["p"][j].astype(float) * (L / 2) + centro
+        x0, y0 = int(round(c[0])) - esc, int(round(c[1])) - esc
+        if x0 < 0 or y0 < 0 or x0 + 2 * esc + 1 > forma[1] or y0 + 2 * esc + 1 > forma[0]:
+            continue
+        rec = Q[k, y0:y0 + 2 * esc + 1, x0:x0 + 2 * esc + 1]
+        mask = np.abs(rec.astype(np.int16) - fundo[y0:y0 + 2 * esc + 1, x0:x0 + 2 * esc + 1].astype(np.int16)).sum(2) > LIMIAR_FG
+        if mask.sum() >= 3:
+            sprites.append((rec.copy(), mask))
+    if not sprites:
+        return None
+    return {"fundo": fundo, "sprites": sprites, "L": L, "forma": forma}
+
+
+def desenha_cena(c, posicoes):
+    """um quadro: o fundo da cena com cada coisa colada onde a imaginacao a pos.
+    posicoes: (n, 2) normalizadas (centro 0, meia-largura 1)."""
+    img = c["fundo"].copy()
+    H, W = c["forma"][:2]
+    L = c["L"]
+    for i, p in enumerate(posicoes):
+        if not np.all(np.isfinite(p)):
+            continue
+        rec, mask = c["sprites"][i % len(c["sprites"])]
+        r = rec.shape[0] // 2
+        cx, cy = int(round(p[0] * L / 2 + W / 2)), int(round(p[1] * L / 2 + H / 2))
+        x0, y0 = cx - r, cy - r
+        a0, b0 = max(0, -x0), max(0, -y0)
+        a1, b1 = min(rec.shape[1], W - x0), min(rec.shape[0], H - y0)
+        if a1 <= a0 or b1 <= b0:
+            continue
+        reg = img[y0 + b0:y0 + b1, x0 + a0:x0 + a1]
+        m = mask[b0:b1, a0:a1]
+        reg[m] = rec[b0:b1, a0:a1][m]
+    return img
 
 
 # ═════════════════════════════════════════════════════════════════════════════
@@ -1483,6 +1541,70 @@ class Laboratorio:
             return None
         m = float(np.median(prev))
         return float(np.clip((m - ep["razao_1a"]) / max(m, 1e-3), -1, 1))
+
+    # ═════════════════════════════════════════════════════════════════════════
+    # 6. VIDEO MENTAL: imaginar um filme com as leis dela (transplante 11)
+    # ═════════════════════════════════════════════════════════════════════════
+    def guarda_cena(self, eid, c):
+        """a aparencia de um video (fundo + coisas), so dos MAX_CENAS mais recentes."""
+        if c is None or eid not in self.eps:
+            return
+        if not hasattr(self, "cenas"):
+            self.cenas = {}
+        self.cenas[eid] = c
+        for e in sorted(self.cenas)[:-MAX_CENAS]:
+            del self.cenas[e]
+
+    def estados_imaginaveis(self, T, n, rng, a_vista=True):
+        """n comecos para imaginar: situacoes que ela VIU nesta teoria, mudadas como nas maos
+        (rapidez x 0,7-1,3, direcao girada ate 30 graus ou invertida); com a_vista, so os que a
+        propria lei preve que ficam no quadro por 6 s. -> (n, 4) ou None"""
+        vistos = [self._der(e)["z0"] for e in T["membros"][-60:]]
+        vistos = [z for z in vistos if len(z)]
+        if not vistos:
+            return None
+        Zv = np.concatenate(vistos)
+        m = max(4 * n, 60)
+        base = Zv[rng.integers(len(Zv), size=m)]
+        f = rng.uniform(*EXP_FATOR, m)
+        th = rng.uniform(-EXP_GIRO, EXP_GIRO, m) + np.where(rng.random(m) < EXP_INVERTE, np.pi, 0.0)
+        vx, vy = base[:, 2] * f, base[:, 3] * f
+        p = np.clip(base[:, :2] + rng.normal(0, 0.05, (m, 2)), -0.85, 0.85)
+        Z0 = np.column_stack([p, np.cos(th) * vx - np.sin(th) * vy, np.sin(th) * vx + np.cos(th) * vy])
+        if a_vista:
+            ok = (np.abs(self._posicoes(T["lei"], Z0, EXP_A_VISTA)) <= 0.9).all(axis=(1, 2))
+            if ok.sum() >= n:
+                Z0 = Z0[ok]
+        return Z0[:n]
+
+    def imagina_video(self, c, estados, lei, ts):
+        """O FILME que ela imagina: as coisas da cena c, comecando nos estados dados, movidas
+        pela lei (None = 'nada acelera'), desenhadas sobre o fundo nos instantes ts.
+        -> (quadros uint8 [T,H,W,3], posicoes [n,T,2])"""
+        ts = np.asarray(ts, float)
+        P = self._posicoes(lei, np.asarray(estados, float), tuple(ts[ts > 0]))
+        P = np.concatenate([np.asarray(estados, float)[:, None, :2], P], 1) if ts[0] <= 0 else P
+        return np.stack([desenha_cena(c, P[:, k]) for k in range(P.shape[1])]), P
+
+    def video_mental(self, rng, fonte="arena", n=3, dur=6.0, fps=5.0):
+        """Para o painel: um filme que ela IMAGINA agora, com a teoria atual da fonte, numa cena
+        que ela viu, com comecos que ela nunca viu; e o mesmo comeco pela inercia. So leitura."""
+        T = self.teoria_atual(fonte)
+        cenas = getattr(self, "cenas", {})
+        if T is None or not cenas:
+            return None
+        da_teoria = [e for e in T["membros"] if e in cenas]
+        e = da_teoria[-1] if da_teoria else max(cenas)
+        Z0 = self.estados_imaginaveis(T, n, rng)
+        if Z0 is None:
+            return None
+        ts = np.arange(int(dur * fps) + 1) / fps
+        qs, P = self.imagina_video(cenas[e], Z0, T["lei"], ts)
+        _qi, Pi = self.imagina_video(cenas[e], Z0, None, ts)
+        return {"quadros": qs, "teoria": T["id"], "lei": formula_lei(T["lei"]),
+                "conceito": T["lei"].get("conceito"), "cena_do_episodio": int(e), "fonte": self.eps.get(e, {}).get("fonte"),
+                "estados": Z0.round(4).tolist(), "caminhos": P.round(4).tolist(), "inercia": Pi.round(4).tolist(),
+                "fps": fps, "forma": list(cenas[e]["forma"][:2])}
 
     # ── vitrine e holograma: SO LEITURA, para o painel (nada aqui decide nada) ──
     def _caminho(self, lei, z0, ts):
