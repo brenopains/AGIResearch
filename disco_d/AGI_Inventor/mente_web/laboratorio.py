@@ -45,9 +45,18 @@ O laco, por episodio (um video, da internet ou da arena):
 O que e meu (declarado): o alfabeto (14 monomios + o conceito e o quadrado dele vezes
 cada variavel), o horizonte de 2 s, os limiares de percepcao herdados da Etapa 1, o
 alarme de 1% (convencao estatistica), e os tetos de memoria (orcamento do PC).
-O que NAO faz ainda: agir no mundo (so assiste), linguagem, outros agentes. E o
-laboratorio NAO entra na economia dela neste transplante: aprende e e medido, mas o
-que ela escolhe fazer continua decidido pela moeda unica de antes.
+O que NAO faz ainda: linguagem, outros agentes. E o laboratorio NAO entra na economia
+dela neste transplante: aprende e e medido, mas o que ela escolhe fazer continua
+decidido pela moeda unica de antes.
+
+TRANSPLANTE 11 (secao 5, MAOS): na arena ela pode MONTAR a cena em vez de so assistir.
+As rivais sao as explicacoes que competem hoje (a lei da teoria atual, a mesma teoria
+com cada outra opcao de conceito, e re-ajustes em reamostras das trajetorias dela); o
+experimento e o lugar e a velocidade de cada coisa em que as rivais MAIS DISCORDAM do
+que vai acontecer. Depois de ver, ganha a rival que previu melhor, trajetoria a
+trajetoria; se for outra opcao de conceito, a sala de espera e refeita na hora.
+Teste com controle (escolha ao acaso do MESMO sorteio de candidatos):
+PRE_REGISTRO_experimento_ativo.md.
 """
 from __future__ import annotations
 
@@ -81,6 +90,16 @@ MAX_TEORIAS = 40
 K_CONCEITOS = 5
 MIN_TRAJ_INVENTA = 16       # 8 para achar, 8 para validar fora (com 3 arcos qualquer forma quadratica 'se conserva')
 MIN_PONTOS_INVENTA = 20
+EXP_CANDIDATOS = 300      # maos: cenas sorteadas entre as quais ela escolhe
+EXP_HORIZONTES = (1.0, 2.0, 3.0)
+EXP_A_VISTA = (1.0, 2.0, 3.0, 4.0, 5.0, 6.0)   # a teoria atual preve que fica no quadro por 6 s
+EXP_FATOR = (0.7, 1.3)    # intervencao: a rapidez de uma situacao que ela VIU, vezes isto
+EXP_GIRO = math.pi / 6    # ... e a direcao girada ate 30 graus
+EXP_INVERTE = 0.25        # ... ou invertida
+EXP_CORPOS = 3
+EXP_SEPARACAO = 0.2       # meias-larguras entre as coisas, no comeco e no caminho previsto (nao se fundirem)
+EXP_CAMINHO = tuple(np.arange(0.5, 6.01, 0.5))
+EXP_BOOT = 4              # reamostras das trajetorias no comite de rivais
 
 NOMES_MON = ["x", "y", "vx", "vy", "x²", "x·y", "x·vx", "x·vy", "y²", "y·vx", "y·vy", "vx²", "vx·vy", "vy²"]
 NOMES_BASE = ["1"] + NOMES_MON
@@ -1203,7 +1222,7 @@ class Laboratorio:
         melhor = min(errs, key=lambda z: z[0]) if errs else None      # a PREVISAO: a melhor teoria, qualquer
         res.update(inercia=round(inercia, 3), primeira=round(melhor[1] if melhor else inercia, 3),
                    razao=round(melhor[0], 4) if melhor else 1.0, teoria_prevista=melhor[2]["id"] if melhor else None)
-        self.eps[eid].update(erro_1a=res["primeira"], inercia=inercia)
+        self.eps[eid].update(erro_1a=res["primeira"], inercia=inercia, razao_1a=res["razao"])
         m_tr = self._m(eid)
         expl = [z for z in errs if self._explica(z[2], eid, z[0], z[1])]
         expl = min(expl, key=lambda z: z[0]) if expl else None
@@ -1254,6 +1273,194 @@ class Laboratorio:
                     self._consenso(T, T["membros"][-1])
                 feitas += 1
         return feitas
+
+    # ═════════════════════════════════════════════════════════════════════════
+    # 5. MAOS: o experimento que ELA escolhe para separar rivais (transplante 11)
+    # ═════════════════════════════════════════════════════════════════════════
+    def _rng_exp(self, fluxo):
+        """sorteios das maos fora do self.rng (que decide o resto do laboratorio)."""
+        return np.random.default_rng([self.n_ep, self.n_teo, self.n_conc, int(fluxo)])
+
+    def teoria_atual(self, fonte="arena"):
+        """a teoria que explica o episodio mais recente dessa fonte."""
+        for e in reversed(self.ordem):
+            ep = self.eps[e]
+            if ep["fonte"] == fonte and ep.get("teoria") in self.teorias:
+                return self.teorias[ep["teoria"]]
+        return None
+
+    def rivais(self, fonte="arena", n_boot=EXP_BOOT):
+        """As explicacoes que competem HOJE pelo que ela ve nessa fonte: a lei da teoria atual;
+        a mesma teoria com cada outra opcao da sala de espera (outro conceito, ou nenhum); e a
+        mesma teoria re-ajustada em reamostras das suas trajetorias (o quanto os dados dela
+        ainda deixam a lei em aberto). Um comite feito so do que ela tem — nenhum oraculo."""
+        T = self.teoria_atual(fonte)
+        if T is None or T["lei"] is None:
+            return []
+        c_at = T["lei"].get("conceito")
+        rv = [{"nome": f"T{T['id']}" + (f"·{c_at}" if c_at else ""), "tipo": "atual", "lei": T["lei"], "conceito": c_at}]
+        for c in self._opcoes(T):
+            if c == c_at:
+                continue
+            lei = self._lei(T["membros"], c)
+            if c is not None and not any(j >= len(NOMES_BASE) for j in lei["termos"]):
+                continue
+            rv.append({"nome": f"T{T['id']}" + (f"·{c}" if c else "·sem conceito"), "tipo": "conceito", "lei": lei,
+                       "conceito": c})
+        por = [pt for e in T["membros"] for pt in self._der(e)["por_trilha"] if len(pt[0]) >= 5]
+        rng = self._rng_exp(1)
+        if len(por) >= 2:
+            for b in range(n_boot):
+                sel = rng.integers(len(por), size=len(por))
+                Z = np.concatenate([por[i][0] for i in sel])
+                A = np.concatenate([por[i][1] for i in sel])
+                if len(Z) < 8:
+                    continue
+                Z, A = _limpa(Z, A)
+                qv = valor_conceito(self.conceitos[c_at], Z) if c_at is not None else None
+                lei = ajusta(Z, A, qv)
+                lei["conceito"] = c_at
+                if qv is not None:
+                    lei["q_faixa"] = (float(qv.min()), float(qv.max()))
+                rv.append({"nome": f"reamostra {b + 1}", "tipo": "reamostra", "lei": lei, "conceito": c_at})
+        for r in rv:
+            r["teoria"] = T["id"]
+        return rv
+
+    def _posicoes(self, lei, Z0, horizontes):
+        """posicoes previstas por uma lei (a mesma rolagem da previsao) em varios horizontes: (n, h, 2)."""
+        z = np.asarray(Z0, float).copy()
+        out, t = [], 0.0
+        for th in horizontes:
+            n = max(1, int(math.ceil((th - t) / DT_ROLA - 1e-9)))
+            h = (th - t) / n
+            for _ in range(n):
+                if lei is not None:
+                    z[:, 2:] += acel_lei(lei, z, self.conceitos) * h
+                z[:, :2] += z[:, 2:] * h
+                z = np.clip(z, -20, 20)
+            t = th
+            out.append(z[:, :2].copy())
+        return np.stack(out, 1)
+
+    def propoe_experimento(self, rivais=None, fonte="arena", n_corpos=EXP_CORPOS, n_cand=EXP_CANDIDATOS,
+                           aleatorio=False):
+        """MAOS: onde por cada coisa e com que velocidade para que as rivais DISCORDEM o mais
+        possivel do que vai acontecer nos 3 s seguintes — o experimento que mais separa as
+        explicacoes dela.
+        Candidatos = INTERVENCOES em situacoes que ela VIU (o estado de uma coisa num episodio da
+        teoria atual, com a rapidez vezes 0,7-1,3 e a direcao girada ate 30 graus ou invertida):
+        mudar uma coisa de cada vez num caso real. So valem os que a teoria atual preve que ficam
+        no quadro por 6 s, cujo desfecho fica a vista sob TODAS as rivais, que os olhos DELA
+        acompanham (nunca mais que meio passo maximo de rastreio por quadro) e que nao se
+        encostam no caminho previsto.
+        Checagens dev 101-103: (1) candidatos uniformes numa faixa de rapidez que crescia com o
+        que ela mesma pedia -> corrida ate rapidezes que ela nao rastreava (episodios sem
+        objeto, repetidos para sempre); (2) sem as regras de "a vista sob todas" e "nao se
+        encostam", a maior discordancia caia na borda do quadro e em corpos que se fundiam.
+        aleatorio=True e o CONTROLE: os mesmos candidatos e regras, escolha ao acaso.
+        -> {estados (coordenadas percebidas), divergencia prevista, o que cada rival preve}"""
+        rv = self.rivais(fonte) if rivais is None else rivais
+        if len(rv) < 2:
+            return None
+        T = self.teorias.get(rv[0]["teoria"])
+        vistos = [self._der(e)["z0"] for e in (T["membros"][-60:] if T else [])]
+        vistos = [z for z in vistos if len(z)]
+        if not vistos:
+            return None
+        Zv = np.concatenate(vistos)
+        dts = [np.median(np.diff(tr["t"])) for e in T["membros"][-10:] for tr in self.eps[e]["trilhas"] if len(tr["t"]) > 1]
+        olho = 0.5 * MAX_PASSO / max(float(np.median(dts)) if dts else 0.2, 1e-3) / PX   # meias-larguras/s
+        self.n_exp = getattr(self, "n_exp", 0) + 1
+        rng = np.random.default_rng([self.n_ep, self.n_teo, self.n_conc, self.n_exp, 2])
+        base = Zv[rng.integers(len(Zv), size=n_cand)]
+        f = rng.uniform(*EXP_FATOR, n_cand)
+        th = rng.uniform(-EXP_GIRO, EXP_GIRO, n_cand) + np.where(rng.random(n_cand) < EXP_INVERTE, np.pi, 0.0)
+        vx, vy = base[:, 2] * f, base[:, 3] * f
+        p = np.clip(base[:, :2] + rng.normal(0, 0.05, (n_cand, 2)), -0.85, 0.85)
+        Z0 = np.column_stack([p, np.cos(th) * vx - np.sin(th) * vy, np.sin(th) * vx + np.cos(th) * vy])
+        Pv = self._posicoes(rv[0]["lei"], Z0, EXP_A_VISTA)
+        passo = np.linalg.norm(np.diff(np.concatenate([Z0[:, None, :2], Pv], 1), axis=1), axis=2) \
+            / np.diff((0.0,) + EXP_A_VISTA)[None]
+        P = [self._posicoes(r["lei"], Z0, EXP_HORIZONTES) for r in rv]
+        # o desfecho tem de ficar A VISTA sob TODAS as rivais (experimento cujo resultado sai do
+        # quadro numa delas nao decide nada), e a vista da atual por 6 s; e os olhos acompanham
+        ok = (np.abs(Pv) <= 0.9).all(axis=(1, 2)) & (np.linalg.norm(Z0[:, 2:], axis=1) <= olho) & (passo <= olho).all(1)
+        for Pr in P:
+            ok &= (np.abs(Pr) <= 0.9).all(axis=(1, 2))
+        dif = np.stack([np.minimum(np.linalg.norm(Pr - P[0], axis=2), 1.0) for Pr in P[1:]], 0)
+        div = dif.mean(0).mean(1) * PX                                 # px (em 128), media das rivais e dos horizontes
+        cand = np.nonzero(ok)[0]
+        if not len(cand):
+            return None
+        ordem = rng.permutation(cand) if aleatorio else cand[np.argsort(-div[cand], kind="stable")]
+        # as coisas nao podem se encostar: separadas no comeco e no caminho que a atual preve
+        Pc = np.concatenate([Z0[:, None, :2], self._posicoes(rv[0]["lei"], Z0, EXP_CAMINHO)], 1)
+        esc = []
+        for i in ordem:
+            if all(np.linalg.norm(Pc[i] - Pc[j], axis=1).min() >= EXP_SEPARACAO for j in esc):
+                esc.append(int(i))
+            if len(esc) >= n_corpos:
+                break
+        ruido = float(np.median(T["ruido_px"])) if T.get("ruido_px") is not None and len(T["ruido_px"]) else None
+        return {"estados": Z0[esc].round(4).tolist(), "divergencia_px": div[esc].round(2).tolist(),
+                "divergencia_tipica_px": round(float(np.median(div[cand])), 2), "ruido_teoria_px": ruido,
+                "teoria": T["id"], "rivais": [r["nome"] for r in rv], "aleatorio": bool(aleatorio),
+                "candidatos_validos": int(len(cand)), "rapidez_max_olho": round(olho, 3),
+                "horizontes": list(EXP_HORIZONTES),
+                "previsto": {r["nome"]: P[k][esc].round(4).tolist() for k, r in enumerate(rv)}}
+
+    def resolve_experimento(self, eid, rivais, proposta=None):
+        """Depois de ver o que aconteceu: qual rival previu melhor, trajetoria a trajetoria (bits
+        pareados contra a atual). Se vence uma rival de OUTRA opcao de conceito por mais do que o
+        custo de ter escolhido entre elas, a sala de espera da teoria que guardou o episodio e
+        refeita agora: o experimento e evidencia como qualquer outra, so que pedida."""
+        if eid is None or eid not in self.eps or len(rivais) < 2:
+            return None
+        ets = [self._erros_traj(r["lei"], [eid])[0] for r in rivais]
+        if not len(ets[0]):
+            return None
+        base = np.maximum(ets[0], 0.05)
+        bits = [float(np.sum(np.log2(base / np.maximum(e, 0.05)))) for e in ets]
+        custo = math.log2(len(rivais))
+        k = int(np.argmax(bits))
+        venc = rivais[k]
+        self.contas["experimentos"] = self.contas.get("experimentos", 0) + 1
+        decisivo = (max(bits) - min(bits)) > custo
+        if decisivo:
+            self.contas["experimentos_decisivos"] = self.contas.get("experimentos_decisivos", 0) + 1
+        revisou = False
+        if venc["tipo"] == "conceito" and bits[k] > custo:
+            Th = self.teorias.get(self.eps[eid].get("teoria"))
+            if Th is not None and Th["id"] == venc["teoria"] and self._sala_de_espera(Th, "experimento"):
+                self._consenso(Th, eid)
+                revisou = True
+        out = {"episodio": eid, "teoria": rivais[0]["teoria"], "vencedora": venc["nome"], "tipo": venc["tipo"],
+               "bits_vencedora": round(bits[k], 1), "discriminacao_bits": round(max(bits) - min(bits), 1),
+               "decisivo": bool(decisivo), "revisou": revisou,
+               "erros_px": {r["nome"]: round(float(np.median(e)), 3) for r, e in zip(rivais, ets) if len(e)},
+               "pedido": bool(proposta is not None and not proposta.get("aleatorio"))}
+        self._log("experimento", **{k_: v for k_, v in out.items() if k_ != "erros_px"},
+                  erros_px=dict(list(out["erros_px"].items())[:6]))
+        self.ultimo_experimento = dict(out, proposta=proposta, quando=time.time())
+        return out
+
+    def preve_sem_aprender(self, percepcao, tid):
+        """TESTE: o erro da 1a tentativa (2 s) da teoria tid num episodio que ela NAO guarda e do
+        qual nao aprende nada; e o da inercia. -> (erro px, inercia px) ou None."""
+        if not percepcao["trilhas"]:
+            return None
+        tmp = ("teste", self.n_ep)
+        self.eps[tmp] = {"trilhas": [{k: tr[k] for k in ("t", "p", "quebras")} for tr in percepcao["trilhas"]]}
+        try:
+            if not len(self._der(tmp)["z0"]):
+                return None
+            T = self.teorias.get(tid)
+            ine = self._erro_ep(None, [tmp])[0]
+            return (self._erro_ep(T["lei"], [tmp])[0] if T else ine), ine
+        finally:
+            self.eps.pop(tmp, None)
+            self._cache.pop(tmp, None)
 
     # ── vitrine e holograma: SO LEITURA, para o painel (nada aqui decide nada) ──
     def _caminho(self, lei, z0, ts):
