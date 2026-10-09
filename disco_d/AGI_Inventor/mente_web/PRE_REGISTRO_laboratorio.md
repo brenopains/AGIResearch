@@ -124,3 +124,44 @@ parecida e ruído de 5 quadros/s — propriedade daquela vida, não defeito; esp
 
 ≤ 30 min de máquina (4 processos), sem re-rodar sementes registradas. Se o código quebrar
 no meio: conserto declarado e re-execução INTEIRA, registrada como tal.
+
+## RESULTADO (sementes 20261010–20261019, 612 s, código do commit df5d358, nada re-rodado)
+
+| código | resultado | veredito | previsão |
+|---|---|---|---|
+| L1 inventa s² no giro | 5/10 com \|corr\| ≥ 0,99 (mais 2 com 0,97 e 0,94; 2 com 0,87 e 0,83; 1 sem conceito) | **FALHA** | 0,35 |
+| L2 revisa para h na mola_h | **9/10** | PASSA | 0,70 |
+| L3 o MESMO conceito no contragiro, \|corr(s²)\| ≥ 0,99 | 5/10 (s² ≥ 0,99 no fim do contragiro em 7/10, mas em 2 era outro conceito, reinventado mais preciso) | **FALHA** | 0,30 |
+| L4 mola sem conceito | **9/10** | PASSA | 0,50 |
+| L5 o conceito paga | erro 1ª tentativa 2,57 px × 4,82 sem conceito (**0,53×**); melhor em **10/10** | PASSA | 0,50 |
+| L6 placebo não paga | placebo 4,24 px = **0,88×** do sem-conceito (exigia ≥ 0,90); COMPLETO melhor que placebo em **10/10** | **FALHA** | 0,60 |
+| L7a crise em ≤ 5 episódios após cada troca | **10/10** | PASSA | 0,50 |
+| L7b reconhece o giro de volta | **9/10** | PASSA | 0,55 |
+| L8 reanalisar vence acumular conclusões | 6/10 (razão 0,81) | **FALHA** | 0,30 |
+| L9 reutilizar paga (início do contragiro) | **10/10** (mediana 3,6 × 4,9 px) | PASSA | 0,40 |
+| P1 permanência | religar **0,714** × congelada 0,182 | PASSA | 0,65 |
+| C1 controle | reais com alguma grandeza 10/10; permutadas sem nenhuma 10/10 | PASSA | 0,85 |
+
+Inércia (nada acelera) erra 13,3 px na mesma medida.
+
+**Leitura, pela regra fixada antes.** O marco "descobrir → reutilizar → revisar" passou
+na parte de REVISAR (L2 9/10, crises 10/10, mola recusada 9/10) e na de o conceito PAGAR
+(L5, L9 10/10); falhou na IDENTIDADE exata do primeiro conceito (L1 5/10, L3 5/10): o s²
+inventado no giro muitas vezes é uma forma aproximada (0,83–0,97), que paga na previsão
+mas não passa na régua de 0,99. A causa já estava medida no desenvolvimento: a 5 quadros/s
+o ruído da velocidade deixa s² mal conservado em parte das vidas. O conceito aproximado
+foi reutilizado e pagou (L9 10/10) — o que transferiu foi uma ideia ÚTIL, nem sempre a
+EXATA.
+
+**L6 falhou por pouco e de um jeito que importa:** o placebo (mesmo alfabeto, pontos
+sorteados) ganhou 12% sobre não ter conceito — parte do ganho é "mais variáveis na lei",
+como o `inventa.py` já tinha visto (p = r·vr ajudou a reescrever o termo fraco). Mas o
+conceito de verdade vale 0,53× e o placebo 0,88×: a maior parte do ganho é estrutura.
+
+**L8 (6/10, razão 0,81):** reanalisar com olhos frescos foi melhor que acumular
+conclusões na mediana, mas não em 7 de 10 vidas. O efeito grande do caderno (+36 pontos)
+não se repetiu neste substrato; aqui a lei de nascimento + correções empilhadas fica
+perto. Registrado como resultado fraco, não como confirmação.
+
+**Instrumento sem poder:** "falhas antigas recuperadas" deu 4/4 em todas as fases, nos
+dois braços — não discrimina nada e não deve ser citado como evidência.
