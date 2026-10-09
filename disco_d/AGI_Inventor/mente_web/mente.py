@@ -48,6 +48,14 @@ pela continuidade, episodios crus guardados, teorias de movimento com crise e re
 conceitos inventados julgados pelo que pagam. A arena e um mundo fisico cujas leis trocam
 sem aviso. O laboratorio aprende e e medido; NAO entra na economia dela neste transplante.
 
+TRANSPLANTE 11 (09/10): MAOS e o laboratorio NA ECONOMIA. (1) Cada episodio do laboratorio
+paga na moeda unica o PROGRESSO de aprendizagem daquela regiao (1a tentativa, sempre fora da
+amostra, contra a mediana das 10 anteriores da mesma fonte e tipo). (2) Acao nova
+"experimentar": quando ha teoria da arena, ela pode MONTAR a cena (laboratorio.
+propoe_experimento: onde e com que velocidade por cada coisa para as rivais dela mais
+discordarem) em vez de so assistir; depois de ver, o laboratorio julga qual rival previu
+melhor. Nao ha regra dizendo quando experimentar: a economia dela decide pelo que paga.
+
 ESQUECER: o dado bruto passa. Ficam modelo de bytes, estruturas, fusoes,
 prototipos, associacoes, lacunas (com suas janelas) e resumos.
 """
@@ -635,6 +643,27 @@ class Mente:
         url = self._arena().nova_visita()
         return Pagina(url, "arena.local", tipo="arena", origem="porta:arena", midias=[("video", url, b"")])
 
+    def _pagina_experimento(self):
+        """MAOS: o laboratorio propoe a cena que mais separa as rivais dela; a arena a monta.
+        Sem proposta possivel (sem rivais, nenhum candidato valido): uma visita comum."""
+        url = self._arena().nova_visita()
+        try:
+            lab = self._lab()
+            rv = lab.rivais("arena")
+            prop = lab.propoe_experimento(rv) if len(rv) >= 2 else None
+        except Exception as e:
+            rv, prop = [], None
+            self.ev("erro_orgao", orgao="maos", msg=str(e)[:200])
+        if prop is None:
+            self.ev("experimento_sem_proposta", rivais=len(rv))
+            return Pagina(url, "arena.local", tipo="arena", origem="experimentar", midias=[("video", url, b"")])
+        url = ARENA.url_experimento(int(url.split("//", 1)[1]), prop["estados"])
+        self._exp_pendente = {"url": url, "rivais": rv, "proposta": prop}
+        self.ev("experimento_proposto", teoria=prop["teoria"], rivais=prop["rivais"][:8], estados=prop["estados"],
+                divergencia_px=prop["divergencia_px"], divergencia_tipica_px=prop["divergencia_tipica_px"],
+                ruido_teoria_px=prop["ruido_teoria_px"], candidatos_validos=prop["candidatos_validos"])
+        return Pagina(url, "arena.local", tipo="arena", origem="experimentar", midias=[("video", url, b"")])
+
     def _laboratorio(self, quadros, tempos, fonte, url):
         """o video que ela acabou de assistir, de novo, pelo laboratorio (depois de assistir:
         o tempo conta como o dela com a experiencia, nao como viagem)."""
@@ -646,6 +675,18 @@ class Mente:
         t0 = time.time()
         try:
             r = lab.observa(quadros, tempos, fonte=fonte, url=url, t_vida=self.t)
+            pend = getattr(self, "_exp_pendente", None)
+            if pend is not None and pend["url"] == str(url):
+                self._exp_pendente = None
+                x = lab.resolve_experimento(r.get("episodio"), pend["rivais"], pend["proposta"])
+                if x is not None:
+                    r["experimento"] = {k: x[k] for k in ("vencedora", "tipo", "bits_vencedora", "discriminacao_bits",
+                                                          "decisivo", "revisou")}
+            # transplante 11: o laboratorio paga na moeda unica o PROGRESSO daquela regiao do mundo
+            g = lab.progresso(r["episodio"]) if r.get("episodio") is not None else None
+            if g is not None:
+                r["progresso"] = round(g, 3)
+                self._soma_ganho(g)
             r["segundos"] = round(time.time() - t0, 2)
             r["fonte"] = fonte
             self.lab_ultimos.append({"t": self.t, **{k: v for k, v in r.items() if k != "motivo" or v != "ok"}})
@@ -665,7 +706,11 @@ class Mente:
             v = self.lab.vitrine(r["episodio"]) if r.get("episodio") is not None else None
             info = {"quando": time.time(), "t": self.t, "vitrine": v,
                     "resultado": {k: r.get(k) for k in ("motivo", "trilhas", "pontos", "religou", "crise", "teoria",
-                                                        "conceito", "primeira", "inercia", "fonte", "segundos")}}
+                                                        "conceito", "primeira", "inercia", "fonte", "segundos",
+                                                        "progresso", "experimento")}}
+            ue = getattr(self.lab, "ultimo_experimento", None)
+            if ue is not None and ue.get("episodio") == r.get("episodio"):
+                info["experimento"] = ue
             if quadro is not None:
                 arq = os.path.join(self.pasta, "lab_quadro.jpg")
                 with open(arq + ".tmp", "wb") as f:
@@ -1422,6 +1467,9 @@ class Mente:
         out = [f"porta:{p}" for p in PORTAS]
         if LAB is not None:
             out.append("porta:arena")              # transplante 10
+            lab = getattr(self, "lab", None)
+            if lab is not None and lab.teoria_atual("arena") is not None:
+                out.append("experimentar")         # transplante 11: montar a cena na arena
         if self.corpo.pode_voltar():                 # botao "voltar" so acende com historico
             out.append("voltar")
         if pg is not None and pg.links:
@@ -1543,6 +1591,8 @@ class Mente:
             u_a = {k: self._u(k) for k in [key] + ctrl}
         if estr == "porta:arena":
             nova = self._pagina_arena()
+        elif estr == "experimentar":
+            nova = self._pagina_experimento()
         elif estr.startswith("porta:"):
             nova = self.corpo.aleatorio(estr.split(":")[1])
         elif estr == "voltar":
@@ -1593,7 +1643,7 @@ class Mente:
             elif estr == "porta:imagem" and nova.midias:
                 prog, _u = self._ver(nova)            # a porta das imagens: abrir = olhar
                 modal = "midia"
-            if estr in ("porta:video", "porta:arena") and nova.midias:
+            if estr in ("porta:video", "porta:arena", "experimentar") and nova.midias:
                 prog, _u = self._assistir(nova)       # a porta dos videos (e a da arena): abrir = assistir
                 modal = "midia"
         if nova is not None and nova.tipo == "erro" and nova.origem == "sem_rede":
@@ -2296,7 +2346,8 @@ class Mente:
             if getattr(self, "lab", None) is not None:
                 c = self.lab.contas
                 tel["laboratorio"] = {k: c.get(k, 0) for k in ("episodios", "crises", "explicados", "reinterpretados",
-                                                               "conceitos_inventados", "conceitos_reusados", "religacoes")}
+                                                               "conceitos_inventados", "conceitos_reusados", "religacoes",
+                                                               "experimentos", "experimentos_decisivos")}
                 tel["laboratorio"]["teorias"] = len(self.lab.teorias)
             self._telemetria_extra(tel)
             if agora - getattr(self, "_det_t", 0.0) > 10:
@@ -2501,7 +2552,7 @@ class Mente:
         pasta = os.path.join(self.pasta, sub) if sub else self.pasta
         os.makedirs(pasta, exist_ok=True)
         estado = {k: v for k, v in self.__dict__.items() if k not in ("corpo", "texto", "log", "cortex", "verbos", "lab")
-                  and k not in ("_imag_pend", "_arena_mundo")}
+                  and k not in ("_imag_pend", "_arena_mundo", "_exp_pendente")}
         if getattr(self, "lab", None) is not None:
             self._salva_lab(pasta, comprimido=bool(sub))
         if self.cortex is not None:

@@ -6,6 +6,8 @@ Sem argumento: mente recem-nascida numa pasta temporaria. Com argumento: COPIA a
 (nunca toca a vida real) e acorda a copia com o codigo novo.
 Confere: a porta arena aparece; ir a arena = assistir; o laboratorio percebe objetos,
 cria teoria, salva em laboratorio.pkl; a mente dorme, salva, ACORDA e continua.
+Transplante 11: com teoria da arena aparece a acao "experimentar"; ela monta a cena
+(arena://k?exp=...), o laboratorio julga as rivais, e o progresso entra na moeda unica.
 """
 import json
 import os
@@ -65,9 +67,20 @@ try:
         m.escolhe = lambda pg: ("porta:arena", None, origem(m, pg)[2])
         m.passo()
     del m.escolhe
+    assert "experimentar" in m.disponiveis(m.pagina), "acao experimentar nao aparece com teoria da arena"
+    for _ in range(3):                                  # e 3 experimentos FORCADOS (transplante 11)
+        m.escolhe = lambda pg: ("experimentar", None, origem(m, pg)[2])
+        m.passo()
+    del m.escolhe
     m.dorme()
     m.salva()
     lab = m.lab
+    exps = [json.loads(ln) for ln in open(os.path.join(pasta, "ontogenia.jsonl"), encoding="utf-8")
+            if '"experimento' in ln or '"laboratorio_experimento"' in ln]
+    propostos = [e for e in exps if e["ev"] == "experimento_proposto"]
+    assert propostos, f"nenhum experimento proposto: {[e['ev'] for e in exps]}"
+    assert lab.contas.get("experimentos", 0) >= 1, f"nenhum experimento julgado: {lab.contas}"
+    assert any("?exp=" in lab.eps[e]["url"] for e in lab.ordem), "episodio montado nao chegou ao laboratorio"
     assert lab is not None and lab.contas["episodios"] >= 4, f"laboratorio nao aprendeu: {lab and lab.contas}"
     assert os.path.exists(os.path.join(pasta, "laboratorio.pkl")), "laboratorio.pkl nao foi salvo"
     m2 = Mente.carrega(pasta, 2)
@@ -92,6 +105,9 @@ try:
     assert not erros, "erros no diario:\n" + "".join(erros[:5])
     print(f"OK: escolhas livres {escolhas}; laboratorio {m2.lab.contas}; teorias {len(m2.lab.teorias)}; "
           f"arena.json visitas {m2._arena().st['visitas']}")
+    print("experimentos:", [(e["ev"], e.get("vencedora"), e.get("discriminacao_bits")) for e in exps][-6:])
+    vivo = json.load(open(os.path.join(pasta, "laboratorio_vivo.json"), encoding="utf-8"))
+    print("progresso no ultimo episodio:", vivo["resultado"].get("progresso"))
     print("ultimos:", list(m2.lab_ultimos)[-3:])
     sys.exit(0)
 except SystemExit:

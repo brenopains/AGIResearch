@@ -202,7 +202,7 @@
   #lab-cena { width: 100%; height: 100%; min-height: 0; background: #000; border: 1px solid var(--linha); }
   .meio-lab { grid-template-rows: 1.15fr 1fr; } .dir-lab { grid-template-rows: auto 1fr; }
   .resultado-lab { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 12px; min-height: 18px; }
-  .resultado-lab b { color: var(--holo); font-weight: 600; } .resultado-lab .crise { color: var(--vermelho); } .resultado-lab .ok { color: var(--verde); }
+  .resultado-lab b { color: var(--holo); font-weight: 600; } .resultado-lab .crise { color: var(--vermelho); } .resultado-lab .ok { color: var(--verde); } .resultado-lab .exp { color: rgb(255,140,60); }
   .cards { display: flex; flex-direction: column; gap: 7px; overflow: hidden; height: calc(100% - 24px); mask-image: linear-gradient(180deg, #000 82%, transparent); }
   .card { border: 1px solid var(--linha); padding: 7px 10px; background: rgba(0,0,0,.28); flex-shrink: 0; }
   .card.ativa { border-color: var(--verde); box-shadow: 0 0 14px rgba(89,255,176,.22) inset; }
@@ -219,7 +219,7 @@
   .linha-tempo li { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 8px; font-size: 11.2px; line-height: 1.35; animation: entra .5s ease-out; }
   .linha-tempo li b { font-family: var(--display); letter-spacing: .14em; font-weight: 600; }
   .linha-tempo li span { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-  .ev-crise b { color: var(--vermelho); } .ev-conceito_inventado b, .ev-conceito_escolhido b { color: var(--verde); }
+  .ev-crise b { color: var(--vermelho); } .ev-experimento b { color: rgb(255,140,60); } .ev-conceito_inventado b, .ev-conceito_escolhido b { color: var(--verde); }
   .ev-conceito_revisado b { color: var(--ambar); } .ev-reinterpretou b { color: #a98bff; } .ev-largou b { color: var(--apagado); }
   #desc { grid-template-columns: minmax(230px, .55fr) minmax(0, 2.7fr); }
   .tipos-desc { display: flex; flex-direction: column; gap: 6px; }
@@ -323,7 +323,7 @@
       <h2>O QUE ELA ACABOU DE ANALISAR <span id="lab-fonte">—</span></h2>
       <canvas id="lab-cena" aria-label="o último vídeo que o laboratório analisou: as coisas que ela seguiu e o que previu"></canvas>
       <div class="resultado-lab" id="lab-resultado"><span class="vazio">o laboratório analisa cada vídeo depois que ela assiste</span></div>
-      <p class="nota">Linhas coloridas: o caminho de cada coisa que ela seguiu (inclusive atrás de obstáculos). <b style="color:var(--verde)">Verde tracejado</b>: onde a teoria dela PREVIU que a coisa estaria 2 s depois, antes de aprender com o vídeo. Cinza: o palpite burro (“nada acelera”). <b style="color:#fff">Anel branco</b>: onde a coisa estava de verdade.</p>
+      <p class="nota">Linhas coloridas: o caminho de cada coisa que ela seguiu (inclusive atrás de obstáculos). <b style="color:var(--verde)">Verde tracejado</b>: onde a teoria dela PREVIU que a coisa estaria 2 s depois, antes de aprender com o vídeo. Cinza: o palpite burro (“nada acelera”). <b style="color:#fff">Anel branco</b>: onde a coisa estava de verdade. <b style="color:rgb(255,140,60)">Quadrado laranja</b> (só em experimento dela): onde ELA pôs cada coisa, com a seta da velocidade pedida; linhas finas = o que cada teoria rival previa; laranja grosso = a rival que acertou.</p>
     </section>
     <div class="col meio-lab">
       <section class="quadro"><h2>AS TEORIAS DELA <span>leis de movimento escritas por ela</span></h2><div class="cards" id="lab-teorias"></div></section>
@@ -570,6 +570,10 @@ function dispara(e) {
     case "laboratorio_conceito_escolhido": brilho.laboratorio = 1; viaja("laboratorio", "mundo", VERDE, 3);
       conta(e.para ? `LABORATÓRIO passou a pensar com o conceito ${e.formula}` : "LABORATÓRIO largou um conceito que deixou de pagar"); break;
     case "laboratorio_reinterpretou": brilho.laboratorio = 1; conta("LABORATÓRIO reinterpretou um vídeo antigo com a teoria nova"); break;
+    case "experimento_proposto": brilho.laboratorio = 1; viaja("laboratorio", "mundo", "255,140,60", 2);
+      conta("MÃOS: ela montou um experimento na arena onde as teorias rivais dela mais discordam"); break;
+    case "laboratorio_experimento": brilho.laboratorio = 1;
+      conta(`EXPERIMENTO: quem previu melhor foi ${e.vencedora}${e.decisivo ? " (decisivo)" : " (não decidiu)"}`); break;
   }
 }
 function vivo(k) {
@@ -1103,7 +1107,7 @@ const NOME_B = {enciclopedia_pt: "Wikipédia (pt)", enciclopedia_en: "Wikipédia
 const NOME_A = {seguir_novo: "link para lugar novo", seguir_familiar: "link familiar", seguir_acaso: "link ao acaso", seguir_lacuna: "link por uma pergunta",
   assistir: "assistir vídeo", ver: "olhar imagens", voltar: "voltar", "porta:wiki_pt": "Wikipédia aleatória (pt)", "porta:wiki_en": "Wikipédia aleatória (en)",
   "porta:pequena_web": "site pequeno qualquer", "porta:imagem": "imagem qualquer", "porta:video": "vídeo qualquer",
-  "porta:arena": "arena (mundo físico)"};
+  "porta:arena": "arena (mundo físico)", experimentar: "montar experimento (arena)"};
 const nomeB = (b) => b.startsWith("pesquisar:@") ? "buscar em " + b.slice(11) : b.startsWith("pesquisar:") ? "buscar na " + (NOME_B[b.slice(10)] || b.slice(10)) : (NOME_A[b] || b);
 setInterval(() => {
   if (!tel) { $("confianca").innerHTML = '<p class="vazio">aparece quando a vida contínua ligar (hoje à noite)</p>'; return; }
@@ -1143,7 +1147,8 @@ function resultadoLab() {
   el.innerHTML = `<span><b>${fmt(r.trilhas)}</b> coisa(s) seguida(s)</span><span>reconheceu <b>${fmt(r.religou || 0)}</b> que sumiram e voltaram</span>`
     + `<span>1ª tentativa: <b>${(r.primeira ?? 0).toLocaleString("pt-BR", {maximumFractionDigits: 1})} px</b> de erro (o palpite burro: ${(r.inercia ?? 0).toLocaleString("pt-BR", {maximumFractionDigits: 1})} px)</span>`
     + (r.crise ? `<span class="crise">CRISE: a teoria que ela tinha não explicou → teoria ${r.teoria} nova</span>` : `<span class="ok">explicado pela teoria ${r.teoria}</span>`)
-    + `<span>conceito em uso: <b>${esc(r.conceito || "nenhum")}</b></span>`;
+    + `<span>conceito em uso: <b>${esc(r.conceito || "nenhum")}</b></span>`
+    + (labVivo.experimento ? `<span class="exp">EXPERIMENTO DELA: ${(labVivo.experimento.proposta && labVivo.experimento.proposta.rivais || []).length} rivais · venceu <b>${esc(labVivo.experimento.vencedora)}</b>${labVivo.experimento.decisivo ? " (decisivo)" : " (não decidiu)"}</span>` : "");
 }
 function desenhaLab() {
   if ($("lab").hidden) return;
@@ -1167,6 +1172,18 @@ function desenhaLab() {
     g.strokeStyle = "rgba(255,255,255,.95)"; g.lineWidth = 1.8; g.beginPath(); g.arc(re[0], re[1], 6, 0, 7); g.stroke();
     if (pr.teoria && fase <= 1) { const k = Math.min(pr.teoria.length - 1, Math.floor(fase * (pr.teoria.length - 1))), q = P(pr.teoria[k]);
       g.fillStyle = "rgb(89,255,176)"; g.shadowColor = "rgb(89,255,176)"; g.shadowBlur = 12; g.beginPath(); g.arc(q[0], q[1], 3.5, 0, 7); g.fill(); g.shadowBlur = 0; } });
+  // o EXPERIMENTO dela: onde pôs cada coisa (quadrado laranja + seta da velocidade pedida) e o que cada
+  // rival previa em 1, 2 e 3 s (a vencedora em traço grosso)
+  const ex = labVivo.experimento, pp = ex && ex.proposta;
+  if (pp && pp.estados) {
+    Object.entries(pp.previsto || {}).forEach(([nome, cams], ri) => { const venc = nome === ex.vencedora;
+      g.strokeStyle = venc ? "rgba(255,140,60,.95)" : `rgba(${CORES_T[(ri + 2) % CORES_T.length]},.45)`; g.lineWidth = venc ? 2.6 : 1;
+      cams.forEach((cam, b) => { const s = P(pp.estados[b]); g.beginPath(); g.moveTo(s[0], s[1]);
+        cam.forEach((p) => { const q = P(p); g.lineTo(q[0], q[1]); }); g.stroke(); }); });
+    pp.estados.forEach((u) => { const s = P(u), f = P([u[0] + u[2], u[1] + u[3]]);
+      g.strokeStyle = "rgb(255,140,60)"; g.lineWidth = 2; g.strokeRect(s[0] - 5, s[1] - 5, 10, 10);
+      g.beginPath(); g.moveTo(s[0], s[1]); g.lineTo(f[0], f[1]); g.stroke(); });
+  }
 }
 (function laco() { requestAnimationFrame(laco); if (!$("lab").hidden && labVivo && labVivo.vitrine) desenhaLab(); })();
 addEventListener("resize", () => { desenhaLab(); });
@@ -1188,18 +1205,21 @@ function listasLab() {
   const c = l.contas || {}, cel = (n, t) => `<div><b>${fmt(n || 0)}</b><span>${t}</span></div>`;
   $("lab-placar").innerHTML = cel(c.episodios, "vídeos analisados") + cel(c.crises, "crises (teoria falhou)") + cel(c.explicados, "explicados pela teoria")
     + cel(c.reinterpretados, "vídeos antigos reinterpretados") + cel(c.conceitos_inventados, "conceitos inventados") + cel(c.conceitos_reusados, "reaproveitados em outro mundo")
-    + cel(c.conceitos_revisados, "conceitos revisados") + cel(c.religacoes, "coisas que sumiram e ela reconheceu");
-  const NOME = {crise: "CRISE", conceito_inventado: "INVENTOU", conceito_escolhido: "ADOTOU", conceito_revisado: "REVISOU", reinterpretou: "REVIU"};
+    + cel(c.conceitos_revisados, "conceitos revisados") + cel(c.religacoes, "coisas que sumiram e ela reconheceu")
+    + cel(c.experimentos, "experimentos que ela montou") + cel(c.experimentos_decisivos, "experimentos que decidiram");
+  const NOME = {crise: "CRISE", conceito_inventado: "INVENTOU", conceito_escolhido: "ADOTOU", conceito_revisado: "REVISOU", reinterpretou: "REVIU", experimento: "EXPERIMENTO"};
   $("lab-tempo").innerHTML = (l.recentes || []).slice().reverse().map((e) => { const larg = e.ev === "conceito_escolhido" && !e.para;
     const txt = e.ev === "crise" ? `teoria ${e.teoria_que_falhou ?? "—"} falhou (${e.fonte || ""}, ${e.erro_px ?? "—"} px) → teoria ${e.nova_teoria}`
       : e.ev === "reinterpretou" ? `vídeo ${e.episodio}: teoria ${e.de_teoria} → ${e.para_teoria}`
-      : e.ev === "conceito_revisado" ? `${e.conceito}: ${e.agora}` : larg ? `teoria ${e.teoria} largou ${e.de}` : `${e.conceito || e.para || ""} ${e.formula || ""}`;
+      : e.ev === "conceito_revisado" ? `${e.conceito}: ${e.agora}` : larg ? `teoria ${e.teoria} largou ${e.de}`
+      : e.ev === "experimento" ? `venceu ${e.vencedora} (${e.discriminacao_bits} bits entre rivais${e.decisivo ? ", decidiu" : ", não decidiu"})${e.revisou ? " → trocou o conceito" : ""}`
+      : `${e.conceito || e.para || ""} ${e.formula || ""}`;
     return `<li class="ev-${larg ? "largou" : e.ev}"><b>${larg ? "LARGOU" : (NOME[e.ev] || esc(e.ev))}</b><span>${esc(txt)}</span></li>`; }).join("") || '<li class="vazio">nada ainda</li>';
 }
 
 /* ---- DESCOBERTAS ---- */
 const TIPOS_DESC = {conceito: ["CONCEITOS", "89,255,176"], teoria: ["TEORIAS E CRISES", "255,90,90"], linguagem: ["LINGUAGEM", "255,174,66"],
-  ligacao: ["LIGAÇÕES ENTRE SENTIDOS", "169,139,255"], verbo: ["VERBOS VISUAIS", "79,216,255"], pergunta: ["PERGUNTAS RESOLVIDAS", "200,180,255"],
+  ligacao: ["LIGAÇÕES ENTRE SENTIDOS", "169,139,255"], experimento: ["EXPERIMENTOS", "255,140,60"], verbo: ["VERBOS VISUAIS", "79,216,255"], pergunta: ["PERGUNTAS RESOLVIDAS", "200,180,255"],
   unidade: ["UNIDADES ALTAS", "120,200,230"], ferramenta: ["FERRAMENTAS", "200,240,90"], orgao: ["ÓRGÃOS NOVOS", "255,220,120"]};
 function fmtVal(x) {
   if (x === null || x === undefined) return "—";

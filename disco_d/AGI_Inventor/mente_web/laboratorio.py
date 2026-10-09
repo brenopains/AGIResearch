@@ -1462,6 +1462,28 @@ class Laboratorio:
             self.eps.pop(tmp, None)
             self._cache.pop(tmp, None)
 
+    def progresso(self, eid, n=10):
+        """O que este episodio diz do APRENDIZADO dela naquela regiao do mundo (progresso de
+        aprendizagem, Oudeyer, Kaplan e Hafner 2007): a 1a tentativa — sempre fora da amostra —
+        comparada a mediana das n anteriores da mesma fonte e do mesmo tipo (assistida ou montada
+        por ela). Fracao do erro relativo que deixou de existir, em [-1, 1]; None sem historia."""
+        ep = self.eps.get(eid)
+        if ep is None or ep.get("razao_1a") is None:
+            return None
+        montado = "?exp=" in ep["url"]
+        prev = []
+        for e in reversed(self.ordem):
+            x = self.eps[e]
+            if e != eid and x["fonte"] == ep["fonte"] and ("?exp=" in x["url"]) == montado \
+                    and x.get("razao_1a") is not None:
+                prev.append(x["razao_1a"])
+                if len(prev) >= n:
+                    break
+        if len(prev) < 3:
+            return None
+        m = float(np.median(prev))
+        return float(np.clip((m - ep["razao_1a"]) / max(m, 1e-3), -1, 1))
+
     # ── vitrine e holograma: SO LEITURA, para o painel (nada aqui decide nada) ──
     def _caminho(self, lei, z0, ts):
         """a mesma rolagem da previsao, guardando a posicao nos instantes pedidos."""
