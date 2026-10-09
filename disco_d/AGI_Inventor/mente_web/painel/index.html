@@ -195,6 +195,66 @@
   .letreiro span { margin-right: 46px; } .letreiro em { color: var(--holo); font-style: normal; }
   @keyframes corre { to { transform: translateX(-100%); } }
   @media (prefers-reduced-motion: reduce) { .letreiro { animation: none; padding-left: 12px; } ol.fluxo li { animation: none; } }
+  /* ---- transplante 10: abas LABORATÓRIO, DESCOBERTAS, HOLOGRAMA ---- */
+  .abas button { padding: 7px 12px; letter-spacing: .2em; font-size: 12px; }
+  #lab { grid-template-columns: minmax(0, 1.9fr) minmax(0, 1.25fr) minmax(0, 1fr); }
+  .cena-lab { display: grid; grid-template-rows: auto minmax(0, 1fr) auto auto; gap: 8px; }
+  #lab-cena { width: 100%; height: 100%; min-height: 0; background: #000; border: 1px solid var(--linha); }
+  .meio-lab { grid-template-rows: 1.15fr 1fr; } .dir-lab { grid-template-rows: auto 1fr; }
+  .resultado-lab { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 12px; min-height: 18px; }
+  .resultado-lab b { color: var(--holo); font-weight: 600; } .resultado-lab .crise { color: var(--vermelho); } .resultado-lab .ok { color: var(--verde); }
+  .cards { display: flex; flex-direction: column; gap: 7px; overflow: hidden; height: calc(100% - 24px); mask-image: linear-gradient(180deg, #000 82%, transparent); }
+  .card { border: 1px solid var(--linha); padding: 7px 10px; background: rgba(0,0,0,.28); flex-shrink: 0; }
+  .card.ativa { border-color: var(--verde); box-shadow: 0 0 14px rgba(89,255,176,.22) inset; }
+  .card h5 { margin: 0 0 3px; font-family: var(--display); letter-spacing: .16em; font-size: 12.5px; color: var(--holo); display: flex; justify-content: space-between; gap: 8px; }
+  .card h5 em { font-style: normal; color: var(--apagado); letter-spacing: .05em; font-family: var(--mono); font-size: 10.5px; }
+  .card .lei { font-size: 10.5px; color: #9fd9ea; line-height: 1.45; max-height: 3em; overflow: hidden; }
+  .card canvas.spark { height: 30px; margin-top: 4px; }
+  .placar { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+  .placar div { border: 1px solid var(--linha); padding: 5px 8px; background: rgba(0,0,0,.25); }
+  .placar b { display: block; font-family: var(--display); font-size: 21px; color: var(--holo); line-height: 1.1; }
+  .placar span { font-size: 10.5px; color: var(--apagado); line-height: 1.25; display: block; }
+  .linha-tempo { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; overflow: hidden; height: calc(100% - 24px);
+                 mask-image: linear-gradient(180deg, #000 80%, transparent); }
+  .linha-tempo li { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 8px; font-size: 11.2px; line-height: 1.35; animation: entra .5s ease-out; }
+  .linha-tempo li b { font-family: var(--display); letter-spacing: .14em; font-weight: 600; }
+  .linha-tempo li span { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .ev-crise b { color: var(--vermelho); } .ev-conceito_inventado b, .ev-conceito_escolhido b { color: var(--verde); }
+  .ev-conceito_revisado b { color: var(--ambar); } .ev-reinterpretou b { color: #a98bff; } .ev-largou b { color: var(--apagado); }
+  #desc { grid-template-columns: minmax(230px, .55fr) minmax(0, 2.7fr); }
+  .tipos-desc { display: flex; flex-direction: column; gap: 6px; }
+  .tipo-btn { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; border: 1px solid var(--linha);
+    background: rgba(0,0,0,.25); color: var(--texto); padding: 6px 10px; cursor: pointer; font-family: var(--display); letter-spacing: .14em; font-size: 12px; text-align: left; }
+  .tipo-btn b { font-size: 19px; color: rgb(var(--cor, 79,216,255)); }
+  .tipo-btn.ativo { border-color: rgb(var(--cor, 79,216,255)); box-shadow: 0 0 12px rgba(var(--cor, 79,216,255), .28) inset; }
+  .desc-direita { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: 10px; }
+  .grade-desc { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 12px; min-height: 0; }
+  .desc-card { border: 1px solid var(--linha); border-left: 3px solid rgb(var(--cor)); background: rgba(0,0,0,.3); padding: 9px 12px;
+    overflow: hidden; display: flex; flex-direction: column; gap: 6px; min-height: 0; animation: entra .5s ease-out; }
+  .desc-card .topo { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+  .desc-card h5 { margin: 0; font-family: var(--display); letter-spacing: .16em; font-size: 13px; color: rgb(var(--cor)); }
+  .desc-card time { color: var(--apagado); font-size: 10.5px; white-space: nowrap; }
+  .desc-card p { margin: 0; line-height: 1.45; font-size: 11.8px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; }
+  .desc-card dl { margin: auto 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1px 8px; font-size: 10.5px; color: var(--apagado); }
+  .desc-card dd { margin: 0; color: #9fd9ea; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .pager { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .pager button:disabled { opacity: .35; cursor: default; }
+  #holo { grid-template-columns: minmax(240px, .85fr) minmax(0, 2.4fr) minmax(230px, .9fr); }
+  .holo-lista { display: flex; flex-direction: column; gap: 9px; overflow: hidden; height: calc(100% - 24px); }
+  .holo-grupo h4 { margin: 0 0 5px; font-family: var(--display); letter-spacing: .2em; font-size: 11px; color: var(--apagado); }
+  .holo-grupo .itens { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+  .holo-item { text-align: left; border: 1px solid var(--linha); background: rgba(0,0,0,.25); color: var(--texto); font-family: var(--mono);
+    font-size: 11px; padding: 5px 7px; cursor: pointer; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .holo-item.ativo { border-color: var(--holo); background: rgba(79,216,255,.13); box-shadow: 0 0 14px rgba(79,216,255,.3); color: #fff; }
+  .holo-item:focus-visible, .tipo-btn:focus-visible { outline: 2px solid var(--holo); outline-offset: 2px; }
+  .palco-holo { position: relative; min-height: 0; }
+  #holo-canvas { width: 100%; height: 100%; }
+  .holo-titulo { position: absolute; top: 10px; left: 0; right: 0; text-align: center; font-family: var(--display); letter-spacing: .4em;
+    color: var(--holo); text-shadow: 0 0 14px rgba(79,216,255,.7); font-size: 15px; pointer-events: none; }
+  .holo-legenda { position: absolute; left: 18px; right: 18px; bottom: 10px; font-size: 11.5px; color: var(--apagado); text-align: center; pointer-events: none; }
+  .holo-info { font-size: 12px; line-height: 1.55; }
+  .holo-info b { color: var(--holo); font-weight: 600; } .holo-info .formula { color: var(--verde); font-size: 13px; }
+  @media (max-width: 1000px) { #lab, #desc, #holo { grid-template-columns: 1fr; } #lab-cena, #holo-canvas { height: 60vh; } .grade-desc { grid-template-columns: 1fr; grid-template-rows: none; } }
   @media (max-width: 1000px) { html, body { overflow: auto; } .app { height: auto; min-height: 100vh; }
     #geral, #organismo { grid-template-columns: 1fr; } #reator, #anatomia { height: 70vh; } }
 </style>
@@ -208,6 +268,9 @@
       <button type="button" data-aba="geral" class="ativa">VISÃO GERAL</button>
       <button type="button" data-aba="organismo">ORGANISMO</button>
       <button type="button" data-aba="ve">O QUE ELA VÊ</button>
+      <button type="button" data-aba="lab">LABORATÓRIO</button>
+      <button type="button" data-aba="desc">DESCOBERTAS</button>
+      <button type="button" data-aba="holo">HOLOGRAMA</button>
     </nav>
     <div class="direita">
       <span id="pilula" class="pilula DORMINDO">…</span>
@@ -255,6 +318,40 @@
     </div>
   </main>
 
+  <main id="lab" hidden>
+    <section class="quadro cena-lab">
+      <h2>O QUE ELA ACABOU DE ANALISAR <span id="lab-fonte">—</span></h2>
+      <canvas id="lab-cena" aria-label="o último vídeo que o laboratório analisou: as coisas que ela seguiu e o que previu"></canvas>
+      <div class="resultado-lab" id="lab-resultado"><span class="vazio">o laboratório analisa cada vídeo depois que ela assiste</span></div>
+      <p class="nota">Linhas coloridas: o caminho de cada coisa que ela seguiu (inclusive atrás de obstáculos). <b style="color:var(--verde)">Verde tracejado</b>: onde a teoria dela PREVIU que a coisa estaria 2 s depois, antes de aprender com o vídeo. Cinza: o palpite burro (“nada acelera”). <b style="color:#fff">Anel branco</b>: onde a coisa estava de verdade.</p>
+    </section>
+    <div class="col meio-lab">
+      <section class="quadro"><h2>AS TEORIAS DELA <span>leis de movimento escritas por ela</span></h2><div class="cards" id="lab-teorias"></div></section>
+      <section class="quadro"><h2>CONCEITOS QUE ELA INVENTOU <span>linha reta = se conserva</span></h2><div class="cards" id="lab-conceitos"></div></section>
+    </div>
+    <div class="col dir-lab">
+      <section class="quadro"><h2>PLACAR DO LABORATÓRIO</h2><div class="placar" id="lab-placar"></div></section>
+      <section class="quadro"><h2>LINHA DO TEMPO <span>crises, conceitos, revisões</span></h2><ol class="linha-tempo" id="lab-tempo"></ol></section>
+    </div>
+  </main>
+
+  <main id="desc" hidden>
+    <section class="quadro"><h2>O QUE ELA CRIOU <span>sem ninguém ensinar</span></h2><div class="tipos-desc" id="desc-tipos"></div>
+      <p class="nota">Cada cartão é um evento real do diário dela, com a evidência que o órgão mediu. Nada aqui é escrito à mão.</p></section>
+    <section class="quadro desc-direita"><h2 id="desc-titulo">DESCOBERTAS <span id="desc-pag">—</span></h2>
+      <div class="grade-desc" id="desc-grade"></div>
+      <div class="pager"><button class="voz" type="button" id="desc-novas">◀ MAIS NOVAS</button><span id="desc-conta" class="nota"></span><button class="voz" type="button" id="desc-antigas">MAIS ANTIGAS ▶</button></div>
+    </section>
+  </main>
+
+  <main id="holo" hidden>
+    <section class="quadro"><h2>O QUE ELA SABE IMAGINAR <span>clique</span></h2><div class="holo-lista" id="holo-lista"></div></section>
+    <section class="quadro sem-borda palco-holo"><canvas id="holo-canvas" aria-label="holograma: o que ela imagina com o que aprendeu"></canvas>
+      <div class="holo-titulo" id="holo-titulo">HOLOGRAMA</div><div class="holo-legenda" id="holo-legenda"></div></section>
+    <section class="quadro"><h2>ISTO É REAL? <span>de onde veio</span></h2><div id="holo-info" class="holo-info"></div>
+      <p class="nota">Tudo aqui é desenhado só a partir do que ela aprendeu: posições reais vêm da memória dela (vídeos que ela assistiu); o caminho imaginado é a lei DELA rodando a partir do mesmo começo; as imagens dos verbos são o córtex DELA aplicando a transformação. Nada é animação inventada. Ela ainda não representa profundidade (3D): o que aprendeu é plano + tempo.</p></section>
+  </main>
+
   <section id="orgao" hidden role="dialog" aria-modal="true" aria-labelledby="orgao-titulo">
     <header><h3 id="orgao-titulo">—<small id="orgao-sub"></small></h3><button class="fechar" type="button" id="orgao-fechar">FECHAR ✕</button></header>
     <div id="orgao-corpo"></div>
@@ -289,11 +386,13 @@ setInterval(() => { $("relogio").textContent = new Date().toLocaleTimeString("pt
 
 /* ---------- abas ---------- */
 const abas = document.querySelectorAll(".abas button");
+const ABAS = ["geral", "organismo", "ve", "lab", "desc", "holo"];
 function mostra(a) { abas.forEach((b) => b.classList.toggle("ativa", b.dataset.aba === a));
-  $("geral").hidden = a !== "geral"; $("organismo").hidden = a !== "organismo"; $("ve").hidden = a !== "ve";
-  history.replaceState(null, "", a === "geral" ? "#" : "#" + a); }
+  ABAS.forEach((k) => { $(k).hidden = a !== k; });
+  history.replaceState(null, "", a === "geral" ? "#" : "#" + a);
+  if (typeof novasAbas === "function") setTimeout(() => novasAbas(a), 0); }
 abas.forEach((b) => b.addEventListener("click", () => mostra(b.dataset.aba)));
-const abaDoHash = () => ({"#organismo": "organismo", "#ve": "ve"}[location.hash] || "geral");
+const abaDoHash = () => ({"#organismo": "organismo", "#ve": "ve", "#lab": "lab", "#desc": "desc", "#holo": "holo"}[location.hash] || "geral");
 mostra(abaDoHash());
 addEventListener("hashchange", () => mostra(abaDoHash()));
 
@@ -607,7 +706,7 @@ $("anatomia").style.cursor = "pointer";
 /* ---------- o decodificador: cada coisa interna mostrada no sentido onde nasceu ---------- */
 let det = null, orgaoAberto = null;
 async function puxaDetalhe() {
-  if ($("organismo").hidden && $("ve").hidden && !orgaoAberto) return;
+  if ($("organismo").hidden && $("ve").hidden && $("lab").hidden && $("holo").hidden && !orgaoAberto) return;
   try { const d = await (await fetch("/api/detalhe")).json(); det = d.indisponivel ? null : d; } catch (e) {}
   if (orgaoAberto) abreOrgao(orgaoAberto, true);
 }
@@ -825,6 +924,12 @@ function mostraPercepto(p) {
     $("ve-tipo").textContent = "OLHANDO"; $("ve-url").textContent = p.dominio + " · " + p.urls.length + " imagem(ns)";
     trocaPalco(`<div class="grade-img">${p.urls.map((u, i) => `<figure><img src="${esc(u)}" alt="" referrerpolicy="no-referrer"><figcaption>${esc(p.legendas[i] || "")}</figcaption></figure>`).join("")}</div>`);
     if (historico[0] && historico[0].tipo === "imagem") historico[0].img = p.urls[0];
+  } else if (p.tipo === "video" && String(p.url || "").startsWith("arena://")) {
+    $("ve-tipo").textContent = "NA ARENA"; $("ve-url").textContent = "a arena: um mundo físico em que as leis mudam sem aviso";
+    const n = trocaPalco(`<div class="video-caixa"><img data-arena src="/api/tela.jpg?t=${Date.now()}" alt="o que ela vê na arena, ao vivo" style="width:100%;height:100%;min-height:0;object-fit:contain;image-rendering:pixelated;background:#000;border:1px solid var(--linha)">
+      <div class="linha-video"><span class="nota">ao vivo, 5 quadros por segundo. Depois de assistir, o laboratório analisa este vídeo (aba LABORATÓRIO).</span></div></div>`);
+    clearInterval(window._arenaTimer);
+    window._arenaTimer = setInterval(() => { const im = n.querySelector("[data-arena]"); if (!im || !im.isConnected || $("ve").hidden) { clearInterval(window._arenaTimer); return; } im.src = "/api/tela.jpg?t=" + Date.now(); }, 500);
   } else if (p.tipo === "video") {
     $("ve-tipo").textContent = "ASSISTINDO"; $("ve-url").textContent = p.legenda || p.url;
     const n = trocaPalco(`<div class="video-caixa"><video src="${esc(p.url)}" muted autoplay playsinline loop referrerpolicy="no-referrer"></video>
@@ -1005,6 +1110,235 @@ setInterval(() => {
   $("confianca").innerHTML = tel.bracos.filter((b) => b.usos > 0).slice(0, 8).map((b) => { const v = b.pagou ?? 0;
     return `<div class="barra-conf"><span class="nome">${esc(nomeB(b.braco))}</span><i class="${v < 0.08 ? "ruim" : ""}"><b style="width:${Math.round(100 * Math.min(1, v))}%"></b></i><em>${Math.round(100 * v)}%</em></div>`; }).join("");
 }, 3000);
+
+
+/* ================= transplante 10: LABORATÓRIO, DESCOBERTAS, HOLOGRAMA (só dados reais) ================= */
+const CORES_T = ["79,216,255", "89,255,176", "255,174,66", "169,139,255", "255,110,150", "200,240,90", "120,170,255", "255,220,120"];
+function ajusta(c) { const r = devicePixelRatio || 1, w = c.clientWidth, h = c.clientHeight;
+  if (c.width !== Math.round(w * r) || c.height !== Math.round(h * r)) { c.width = Math.round(w * r); c.height = Math.round(h * r); }
+  const g = c.getContext("2d"); g.setTransform(r, 0, 0, r, 0, 0); return [g, w, h]; }
+const MOTIVO = {fundo_instavel: "a câmera mexia (nada fica parado ao fundo): ela ainda não segue coisas assim",
+  sem_objetos: "nada se movia contra o fundo", olho_pequeno: "vídeo pequeno demais para seguir coisas", curto: "vídeo curto demais",
+  sem_previsao: "as trilhas foram curtas demais para prever 2 s"};
+let labVivo = null, labImg = null, labImgQ = 0, holo = null, holoSel = null, holoT0 = performance.now();
+let verbosAnim = null, verbosAnimT = 0, descs = null, filtroDesc = "todas", paginaDesc = 0;
+
+function novasAbas(a) { if (a === "lab") { puxaDetalhe(); puxaLab(); puxaHolo(); } if (a === "desc") puxaDesc(); if (a === "holo") { puxaDetalhe(); puxaHolo(); } }
+
+/* ---- LABORATÓRIO ---- */
+async function puxaLab() {
+  if ($("lab").hidden) return;
+  try { const v = await (await fetch("/api/lab_vivo")).json(); labVivo = v.indisponivel ? null : v; } catch (e) {}
+  if (labVivo && labVivo.quando !== labImgQ) { labImgQ = labVivo.quando; const im = new Image();
+    im.onload = () => { labImg = im; desenhaLab(); }; im.src = "/api/lab_quadro.jpg?t=" + labVivo.quando; }
+  resultadoLab(); listasLab();
+}
+setInterval(puxaLab, 3000);
+function resultadoLab() {
+  const el = $("lab-resultado");
+  if (!labVivo) { el.innerHTML = '<span class="vazio">o laboratório ainda não analisou nenhum vídeo nesta vida (ele nasce no primeiro vídeo depois do transplante 10)</span>'; $("lab-fonte").textContent = "—"; return; }
+  const r = labVivo.resultado || {}, v = labVivo.vitrine;
+  $("lab-fonte").textContent = (r.fonte === "arena" ? "ARENA" : "INTERNET") + (v && v.url ? " · " + v.url.slice(0, 60) : "") + ` · há ${Math.max(0, Math.round(labVivo.atraso_s || 0))} s`;
+  if (!v) { el.innerHTML = `<span>não achou coisas para seguir: <b>${esc(MOTIVO[r.motivo] || r.motivo || "—")}</b></span>`; return; }
+  el.innerHTML = `<span><b>${fmt(r.trilhas)}</b> coisa(s) seguida(s)</span><span>reconheceu <b>${fmt(r.religou || 0)}</b> que sumiram e voltaram</span>`
+    + `<span>1ª tentativa: <b>${(r.primeira ?? 0).toLocaleString("pt-BR", {maximumFractionDigits: 1})} px</b> de erro (o palpite burro: ${(r.inercia ?? 0).toLocaleString("pt-BR", {maximumFractionDigits: 1})} px)</span>`
+    + (r.crise ? `<span class="crise">CRISE: a teoria que ela tinha não explicou → teoria ${r.teoria} nova</span>` : `<span class="ok">explicado pela teoria ${r.teoria}</span>`)
+    + `<span>conceito em uso: <b>${esc(r.conceito || "nenhum")}</b></span>`;
+}
+function desenhaLab() {
+  if ($("lab").hidden) return;
+  const [g, w, h] = ajusta($("lab-cena")); g.clearRect(0, 0, w, h);
+  const v = labVivo && labVivo.vitrine;
+  const forma = v && v.forma ? v.forma : (labImg ? [labImg.height, labImg.width] : [128, 128]);
+  const H_ = forma[0], W_ = forma[1], L = Math.max(H_, W_), sc = Math.min(w / W_, h / H_), ox = (w - W_ * sc) / 2, oy = (h - H_ * sc) / 2;
+  if (labImg) { g.imageSmoothingEnabled = false; g.globalAlpha = .75; g.drawImage(labImg, ox, oy, W_ * sc, H_ * sc); g.globalAlpha = 1; }
+  if (!v) return;
+  const P = (p) => [ox + (p[0] * L / 2 + W_ / 2) * sc, oy + (p[1] * L / 2 + H_ / 2) * sc];
+  v.trilhas.forEach((tr, i) => { const cor = CORES_T[i % CORES_T.length];
+    g.lineWidth = 2; for (let k = 1; k < tr.length; k++) { const a = P(tr[k - 1]), b = P(tr[k]);
+      g.strokeStyle = `rgba(${cor},${0.15 + 0.75 * k / tr.length})`; g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke(); }
+    const u = P(tr[tr.length - 1]); g.fillStyle = `rgb(${cor})`; g.shadowColor = `rgb(${cor})`; g.shadowBlur = 10; g.beginPath(); g.arc(u[0], u[1], 4, 0, 7); g.fill(); g.shadowBlur = 0; });
+  const fase = ((performance.now() / 1000) % 2.6) / 2;
+  (v.previsoes || []).forEach((pr) => { const de = P(pr.de), re = P(pr.real);
+    const linha = (cam, cor, tr) => { if (!cam) return; g.setLineDash(tr); g.strokeStyle = cor; g.lineWidth = 1.6; g.beginPath();
+      cam.forEach((p, k) => { const q = P(p); k ? g.lineTo(q[0], q[1]) : g.moveTo(q[0], q[1]); }); g.stroke(); g.setLineDash([]); };
+    linha(pr.inercia, "rgba(160,180,190,.55)", [2, 4]); linha(pr.teoria, "rgba(89,255,176,.95)", [6, 4]);
+    g.fillStyle = "#fff"; g.beginPath(); g.arc(de[0], de[1], 2.5, 0, 7); g.fill();
+    g.strokeStyle = "rgba(255,255,255,.95)"; g.lineWidth = 1.8; g.beginPath(); g.arc(re[0], re[1], 6, 0, 7); g.stroke();
+    if (pr.teoria && fase <= 1) { const k = Math.min(pr.teoria.length - 1, Math.floor(fase * (pr.teoria.length - 1))), q = P(pr.teoria[k]);
+      g.fillStyle = "rgb(89,255,176)"; g.shadowColor = "rgb(89,255,176)"; g.shadowBlur = 12; g.beginPath(); g.arc(q[0], q[1], 3.5, 0, 7); g.fill(); g.shadowBlur = 0; } });
+}
+(function laco() { requestAnimationFrame(laco); if (!$("lab").hidden && labVivo && labVivo.vitrine) desenhaLab(); })();
+addEventListener("resize", () => { desenhaLab(); });
+function spark(c, trajs) {
+  const [g, w, h] = ajusta(c); g.clearRect(0, 0, w, h); if (!trajs || !trajs.length) return;
+  const todos = trajs.flatMap((t) => t.q), lo = Math.min(...todos), hi = Math.max(...todos), d = hi - lo || 1;
+  trajs.forEach((t, i) => { g.strokeStyle = `rgba(${CORES_T[i % CORES_T.length]},.9)`; g.lineWidth = 1.4; g.beginPath();
+    t.q.forEach((q, k) => { const x = k / Math.max(1, t.q.length - 1) * w, y = h - 3 - (q - lo) / d * (h - 6); k ? g.lineTo(x, y) : g.moveTo(x, y); }); g.stroke(); });
+}
+function listasLab() {
+  const l = det && det.laboratorio, v = labVivo && labVivo.vitrine;
+  if (!l) { $("lab-teorias").innerHTML = '<p class="vazio">nenhuma teoria ainda</p>'; $("lab-conceitos").innerHTML = '<p class="vazio">nenhum conceito ainda</p>';
+    $("lab-placar").innerHTML = '<p class="vazio">aguardando o primeiro vídeo</p>'; $("lab-tempo").innerHTML = ""; return; }
+  $("lab-teorias").innerHTML = (l.teorias || []).map((t) => `<div class="card ${v && v.teoria === t.id ? "ativa" : ""}"><h5>TEORIA ${t.id} <em>${fmt(t.episodios)} vídeos · conceito ${esc(t.conceito || "nenhum")}</em></h5><div class="lei">${esc(t.lei)}</div></div>`).join("") || '<p class="vazio">nenhuma teoria ainda</p>';
+  const hc = {}; ((holo && holo.conceitos) || []).forEach((c) => { hc[c.id] = c; });
+  const cs = (l.conceitos || []).slice().reverse();
+  $("lab-conceitos").innerHTML = cs.map((c) => `<div class="card"><h5>${esc(c.id)} <em>${c.teorias.length} teoria(s)${hc[c.id] && hc[c.id].em_uso ? " · EM USO" : ""}${c.placebo ? " · placebo" : ""}</em></h5><div class="lei" style="color:var(--verde)">${esc(c.formula)}</div><canvas class="spark" data-c="${esc(c.id)}"></canvas></div>`).join("") || '<p class="vazio">nenhum ainda: precisa de pelo menos 16 trajetórias parecidas</p>';
+  $("lab-conceitos").querySelectorAll("canvas.spark").forEach((cv) => spark(cv, hc[cv.dataset.c] && hc[cv.dataset.c].trajetorias));
+  const c = l.contas || {}, cel = (n, t) => `<div><b>${fmt(n || 0)}</b><span>${t}</span></div>`;
+  $("lab-placar").innerHTML = cel(c.episodios, "vídeos analisados") + cel(c.crises, "crises (teoria falhou)") + cel(c.explicados, "explicados pela teoria")
+    + cel(c.reinterpretados, "vídeos antigos reinterpretados") + cel(c.conceitos_inventados, "conceitos inventados") + cel(c.conceitos_reusados, "reaproveitados em outro mundo")
+    + cel(c.conceitos_revisados, "conceitos revisados") + cel(c.religacoes, "coisas que sumiram e ela reconheceu");
+  const NOME = {crise: "CRISE", conceito_inventado: "INVENTOU", conceito_escolhido: "ADOTOU", conceito_revisado: "REVISOU", reinterpretou: "REVIU"};
+  $("lab-tempo").innerHTML = (l.recentes || []).slice().reverse().map((e) => { const larg = e.ev === "conceito_escolhido" && !e.para;
+    const txt = e.ev === "crise" ? `teoria ${e.teoria_que_falhou ?? "—"} falhou (${e.fonte || ""}, ${e.erro_px ?? "—"} px) → teoria ${e.nova_teoria}`
+      : e.ev === "reinterpretou" ? `vídeo ${e.episodio}: teoria ${e.de_teoria} → ${e.para_teoria}`
+      : e.ev === "conceito_revisado" ? `${e.conceito}: ${e.agora}` : larg ? `teoria ${e.teoria} largou ${e.de}` : `${e.conceito || e.para || ""} ${e.formula || ""}`;
+    return `<li class="ev-${larg ? "largou" : e.ev}"><b>${larg ? "LARGOU" : (NOME[e.ev] || esc(e.ev))}</b><span>${esc(txt)}</span></li>`; }).join("") || '<li class="vazio">nada ainda</li>';
+}
+
+/* ---- DESCOBERTAS ---- */
+const TIPOS_DESC = {conceito: ["CONCEITOS", "89,255,176"], teoria: ["TEORIAS E CRISES", "255,90,90"], linguagem: ["LINGUAGEM", "255,174,66"],
+  ligacao: ["LIGAÇÕES ENTRE SENTIDOS", "169,139,255"], verbo: ["VERBOS VISUAIS", "79,216,255"], pergunta: ["PERGUNTAS RESOLVIDAS", "200,180,255"],
+  unidade: ["UNIDADES ALTAS", "120,200,230"], ferramenta: ["FERRAMENTAS", "200,240,90"], orgao: ["ÓRGÃOS NOVOS", "255,220,120"]};
+function fmtVal(x) {
+  if (x === null || x === undefined) return "—";
+  if (typeof x === "number") return x.toLocaleString("pt-BR", {maximumFractionDigits: 3});
+  if (typeof x === "boolean") return x ? "sim" : "não";
+  if (Array.isArray(x)) return x.map(fmtVal).join(" · ");
+  if (typeof x === "object") return Object.entries(x).map(([k, v]) => `${k === "None" ? "nenhum" : k}: ${fmtVal(v)}`).join(", ");
+  return String(x);
+}
+async function puxaDesc() {
+  if ($("desc").hidden) return;
+  try { descs = await (await fetch("/api/descobertas")).json(); } catch (e) { return; }
+  renderDesc();
+}
+setInterval(puxaDesc, 5000);
+function renderDesc() {
+  if (!descs) return;
+  const cont = descs.contagem || {}, tot = Object.values(cont).reduce((a, b) => a + b, 0);
+  $("desc-tipos").innerHTML = `<button type="button" class="tipo-btn ${filtroDesc === "todas" ? "ativo" : ""}" data-t="todas"><span>TODAS</span><b>${fmt(tot)}</b></button>`
+    + Object.entries(TIPOS_DESC).map(([k, [nome, cor]]) => `<button type="button" class="tipo-btn ${filtroDesc === k ? "ativo" : ""}" data-t="${k}" style="--cor:${cor}"><span>${nome}</span><b>${fmt(cont[k] || 0)}</b></button>`).join("");
+  $("desc-tipos").querySelectorAll(".tipo-btn").forEach((bt) => bt.addEventListener("click", () => { filtroDesc = bt.dataset.t; paginaDesc = 0; renderDesc(); }));
+  const lista = (descs.lista || []).filter((d) => filtroDesc === "todas" || d.tipo === filtroDesc), por = 9;
+  const npag = Math.max(1, Math.ceil(lista.length / por)); paginaDesc = Math.min(paginaDesc, npag - 1);
+  $("desc-titulo").firstChild.textContent = filtroDesc === "todas" ? "DESCOBERTAS " : TIPOS_DESC[filtroDesc][0] + " ";
+  $("desc-pag").textContent = `página ${paginaDesc + 1} de ${npag}`;
+  $("desc-conta").textContent = lista.length ? `${fmt(lista.length)} no total · as mais novas primeiro` : "";
+  $("desc-novas").disabled = paginaDesc === 0; $("desc-antigas").disabled = paginaDesc >= npag - 1;
+  const pag = lista.slice(paginaDesc * por, paginaDesc * por + por);
+  $("desc-grade").innerHTML = pag.map((d) => { const cor = (TIPOS_DESC[d.tipo] || ["", H])[1];
+    const ev = Object.entries(d.evidencia || {}).filter(([, x]) => x !== null && x !== undefined).slice(0, 4)
+      .map(([k, x]) => `<dt>${esc(k)}</dt><dd title="${esc(fmtVal(x))}">${esc(fmtVal(x))}</dd>`).join("");
+    return `<article class="desc-card" style="--cor:${cor}"><div class="topo"><h5>${esc(d.titulo)}</h5><time>${idade(d.vida_s)} de vida</time></div><p>${esc(d.texto)}</p>${ev ? `<dl>${ev}</dl>` : ""}</article>`; }).join("")
+    || `<p class="vazio">${filtroDesc === "todas" ? "nada ainda: as descobertas aparecem aqui assim que acontecem" : "nada deste tipo ainda"}</p>`;
+}
+$("desc-novas").addEventListener("click", () => { paginaDesc = Math.max(0, paginaDesc - 1); renderDesc(); });
+$("desc-antigas").addEventListener("click", () => { paginaDesc += 1; renderDesc(); });
+
+/* ---- HOLOGRAMA ---- */
+async function puxaHolo() {
+  if ($("holo").hidden && $("lab").hidden) return;
+  try { const v = await (await fetch("/api/holograma")).json(); holo = v.indisponivel ? null : v; } catch (e) {}
+  if (Date.now() - verbosAnimT > 30000) { verbosAnimT = Date.now(); const im = new Image(); im.onload = () => { verbosAnim = im; listaHolo(); }; im.onerror = () => {}; im.src = "/api/verbos_anim.jpg?t=" + verbosAnimT; }
+  listaHolo(); if (!$("lab").hidden) listasLab();
+}
+setInterval(puxaHolo, 10000);
+function itensHolo() {
+  const it = [];
+  ((holo && holo.teorias) || []).forEach((t) => it.push({tipo: "teoria", id: "t" + t.id, rot: `teoria ${t.id} · ${t.episodios} vídeos`, d: t}));
+  ((holo && holo.conceitos) || []).forEach((c) => it.push({tipo: "conceito", id: "c" + c.id, rot: `${c.id}${c.em_uso ? " · em uso" : ""}`, d: c}));
+  if (verbosAnim) { const ns = (det && det.verbos && det.verbos.verbos) || []; for (let j = 0; j < Math.min(6, verbosAnim.height / 64 | 0); j++)
+    it.push({tipo: "verbo", id: "v" + j, rot: `verbo ${ns[j] ? ns[j].id : j + 1}${ns[j] ? " · " + fmt(ns[j].n) + "×" : ""}`, d: {linha: j, info: ns[j]}}); }
+  (((det && det.imaginacao) || {}).construcoes || []).slice(-6).forEach((c, i) => it.push({tipo: "construcao", id: "k" + i, rot: `“${c.molde}”`, d: c}));
+  return it;
+}
+function listaHolo() {
+  if ($("holo").hidden) return;
+  const it = itensHolo(), grupos = {teoria: "LEIS QUE ELA ESCREVEU", conceito: "CONCEITOS QUE ELA INVENTOU", verbo: "VERBOS VISUAIS (o córtex dela)", construcao: "CONSTRUÇÕES DE LINGUAGEM"};
+  if (!holoSel || !it.find((x) => x.id === holoSel.id)) holoSel = it[0] || null;
+  else holoSel = it.find((x) => x.id === holoSel.id);
+  $("holo-lista").innerHTML = Object.entries(grupos).map(([k, nome]) => { const xs = it.filter((x) => x.tipo === k);
+    return `<div class="holo-grupo"><h4>${nome}</h4><div class="itens">${xs.length ? xs.map((x) => `<button type="button" class="holo-item ${holoSel && holoSel.id === x.id ? "ativo" : ""}" data-id="${x.id}" title="${esc(x.rot)}">${esc(x.rot)}</button>`).join("") : '<span class="vazio" style="font-size:11px">ainda nada</span>'}</div></div>`; }).join("");
+  $("holo-lista").querySelectorAll(".holo-item").forEach((bt) => bt.addEventListener("click", () => { holoSel = it.find((x) => x.id === bt.dataset.id); holoT0 = performance.now(); listaHolo(); }));
+  infoHolo();
+}
+function infoHolo() {
+  const s = holoSel, el = $("holo-info");
+  if (!s) { el.innerHTML = '<p class="vazio">ela ainda não aprendeu nada que dê para imaginar aqui: leis e conceitos nascem no laboratório; verbos, quando o córtex dela junta experiência de vídeo e de olhar</p>'; $("holo-titulo").textContent = "HOLOGRAMA"; $("holo-legenda").textContent = ""; return; }
+  if (s.tipo === "teoria") { const t = s.d, c0 = t.cenas[0] || {};
+    $("holo-titulo").textContent = `TEORIA ${t.id} · O QUE ELA IMAGINA`;
+    $("holo-legenda").innerHTML = '<b style="color:#fff">branco</b>: o que aconteceu de verdade (memória dela) · <b style="color:rgb(79,216,255)">ciano</b>: o que a lei DELA imagina a partir do mesmo começo';
+    el.innerHTML = `<p><b>Lei escrita por ela</b> (aceleração a partir da posição x, y e da velocidade vx, vy${t.conceito ? ", e do conceito q" : ""}):</p><p class="formula">${esc(t.lei)}</p>
+      <p>Explica <b>${fmt(t.episodios)}</b> vídeo(s). Conceito em uso: <b>${esc(t.conceito || "nenhum")}</b>.</p>
+      <p>Cena mostrada: vídeo <b>${c0.episodio ?? "—"}</b> (${esc(c0.fonte || "")}${c0.url ? ": " + esc(String(c0.url).slice(0, 50)) : ""}). Quanto mais tempo a bolinha ciano fica perto da branca, melhor ela entende aquele mundo.</p>`; }
+  else if (s.tipo === "conceito") { const c = s.d;
+    $("holo-titulo").textContent = `CONCEITO ${c.id} · O QUE SE CONSERVA`;
+    $("holo-legenda").innerHTML = "trajetórias reais coloridas pelo valor do conceito · à direita, o valor ao longo do tempo: <b>linha reta = se conserva</b>";
+    el.innerHTML = `<p><b>Fórmula que ela achou</b> (ninguém deu):</p><p class="formula">${esc(c.formula)}</p>
+      <p>Variação dentro de cada trajetória / variação total: <b>${c.lam}</b> (perto de 0 = constante em cada coisa e diferente entre coisas).</p>
+      <p>Usado por ${c.teorias.length} teoria(s)${c.em_uso ? " — <b>em uso agora</b>" : ""}; revisado ${c.revisoes || 0}×; nasceu no vídeo ${c.nasceu ?? "—"}.${c.placebo ? " <b>Placebo</b> (braço de controle)." : ""}</p>`; }
+  else if (s.tipo === "verbo") { const n = s.d.info;
+    $("holo-titulo").textContent = `VERBO VISUAL ${n ? n.id : s.d.linha + 1} · COMO ELA TRANSFORMA`;
+    $("holo-legenda").innerHTML = "a mesma imagem dela, com o verbo aplicado de novo e de novo pelo córtex DELA (0 → 6 vezes)";
+    el.innerHTML = `<p>Um <b>verbo</b> é uma transformação separada da cena: o “como mudou” sem o “o quê”. Ela tirou este dos vídeos e dos movimentos do próprio olho, sem nome.</p>
+      <p>${n ? `Usado <b>${fmt(n.n)}</b> vezes na vida dela.` : ""} A animação é o córtex dela desenhando a própria imaginação: o mapa interno da imagem, transformado pelo verbo, decodificado em pixels.</p>`; }
+  else { const c = s.d;
+    $("holo-titulo").textContent = "CONSTRUÇÃO DE LINGUAGEM";
+    $("holo-legenda").innerHTML = "o molde com lacuna e as peças que ela já viu encaixarem nele de verdade";
+    el.innerHTML = `<p>Ela imaginou combinações nunca lidas trocando uma peça pela “vizinha de uso”, e o mundo confirmou mais de uma: nasceu um <b>molde</b>.</p><p class="formula">“${esc(c.molde)}”</p><p>Peças confirmadas: ${(c.pecas || []).map((p) => "“" + esc(p) + "”").join(", ")}</p>`; }
+}
+function holoQuadro() {
+  requestAnimationFrame(holoQuadro);
+  if ($("holo").hidden) return;
+  const [g, w, h] = ajusta($("holo-canvas")); g.clearRect(0, 0, w, h);
+  const cx = w / 2, cy = h / 2 + 6, R = Math.min(w, h) * 0.42, t = (performance.now() - holoT0) / 1000;
+  const fundo = g.createRadialGradient(cx, cy, R * .1, cx, cy, R * 1.25); fundo.addColorStop(0, "rgba(79,216,255,.10)"); fundo.addColorStop(1, "rgba(79,216,255,0)");
+  g.fillStyle = fundo; g.fillRect(0, 0, w, h);
+  for (let k = 1; k <= 3; k++) { g.strokeStyle = `rgba(79,216,255,${.05 + .03 * k})`; g.lineWidth = 1; g.beginPath(); g.arc(cx, cy, R * (0.42 * k), 0, 7); g.stroke(); }
+  if (!reduz) { g.strokeStyle = "rgba(79,216,255,.25)"; g.beginPath(); g.arc(cx, cy, R * 1.24, t * .4, t * .4 + 1.1); g.stroke(); g.beginPath(); g.arc(cx, cy, R * 1.24, t * .4 + 3.1, t * .4 + 4.2); g.stroke(); }
+  const s = holoSel; if (!s) return;
+  const P = (p) => [cx + p[0] * R, cy + p[1] * R];
+  if (s.tipo === "teoria") {
+    const cenas = s.d.cenas || []; if (!cenas.length) return;
+    const dur = Math.max(...cenas.flatMap((c) => c.trilhas.map((tr) => tr.t[tr.t.length - 1] || 1)));
+    const volta = Math.floor(t / (dur / 2 + 1.5)), cena = cenas[volta % cenas.length], tt = (t % (dur / 2 + 1.5)) * 2;
+    cena.trilhas.forEach((tr, i) => { let k = 0; while (k < tr.t.length - 1 && tr.t[k + 1] <= tt) k++;
+      const desenha = (cam, cor, larg) => { g.strokeStyle = cor; g.lineWidth = larg; g.beginPath(); for (let j = 0; j <= k; j++) { const q = P(cam[j]); j ? g.lineTo(q[0], q[1]) : g.moveTo(q[0], q[1]); } g.stroke(); };
+      desenha(tr.real, "rgba(255,255,255,.55)", 1.5); desenha(tr.imaginado, "rgba(79,216,255,.85)", 2);
+      const a = P(tr.real[k]), b = P(tr.imaginado[k]);
+      g.strokeStyle = "rgba(255,90,90,.35)"; g.setLineDash([2, 3]); g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke(); g.setLineDash([]);
+      g.fillStyle = "#fff"; g.beginPath(); g.arc(a[0], a[1], 4, 0, 7); g.fill();
+      g.fillStyle = "rgb(79,216,255)"; g.shadowColor = "rgb(79,216,255)"; g.shadowBlur = 16; g.beginPath(); g.arc(b[0], b[1], 5, 0, 7); g.fill(); g.shadowBlur = 0; });
+    g.fillStyle = "rgba(223,247,255,.8)"; g.font = "12px JetBrains Mono, Consolas"; g.textAlign = "left"; g.fillText(`t = ${tt.toFixed(1)} s · vídeo ${cena.episodio} (${cena.fonte})`, 16, h - 34);
+  } else if (s.tipo === "conceito") {
+    const trs = s.d.trajetorias || []; if (!trs.length) return;
+    const todos = trs.flatMap((x) => x.q), lo = Math.min(...todos), hi = Math.max(...todos), d = hi - lo || 1;
+    const cor = (q) => { const u = (q - lo) / d; return `rgb(${Math.round(79 + 176 * u)},${Math.round(216 - 42 * u)},${Math.round(255 - 189 * u)})`; };
+    const R2 = R * 0.85, cx2 = cx - R * 0.35, Q = (p) => [cx2 + p[0] * R2, cy + p[1] * R2];
+    trs.forEach((tr) => { for (let j = 1; j < tr.pos.length; j++) { const a = Q(tr.pos[j - 1]), b = Q(tr.pos[j]); g.strokeStyle = cor(tr.q[j]); g.lineWidth = 2.4; g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke(); }
+      const k = Math.floor((t * 6) % tr.pos.length), a = Q(tr.pos[k]); g.fillStyle = cor(tr.q[k]); g.shadowColor = cor(tr.q[k]); g.shadowBlur = 14; g.beginPath(); g.arc(a[0], a[1], 4.5, 0, 7); g.fill(); g.shadowBlur = 0; });
+    const x0 = cx + R * 0.62, x1 = w - 24, y0 = cy - R * 0.7, y1 = cy + R * 0.7;
+    g.strokeStyle = "rgba(79,216,255,.3)"; g.strokeRect(x0, y0, x1 - x0, y1 - y0);
+    trs.forEach((tr) => { g.strokeStyle = cor(tr.q[0]); g.lineWidth = 1.6; g.beginPath(); tr.q.forEach((q, j) => { const x = x0 + j / Math.max(1, tr.q.length - 1) * (x1 - x0), y = y1 - (q - lo) / d * (y1 - y0); j ? g.lineTo(x, y) : g.moveTo(x, y); }); g.stroke(); });
+    g.fillStyle = "rgba(223,247,255,.75)"; g.font = "11px JetBrains Mono, Consolas"; g.textAlign = "center"; g.fillText("valor do conceito ao longo do tempo", (x0 + x1) / 2, y0 - 8);
+  } else if (s.tipo === "verbo" && verbosAnim) {
+    const j = s.d.linha, quadro = Math.floor(t * 1.6) % 13, f = quadro <= 6 ? quadro : 12 - quadro, lado = Math.min(R * 1.5, h * 0.62);
+    g.imageSmoothingEnabled = false; g.shadowColor = "rgba(79,216,255,.7)"; g.shadowBlur = 24;
+    g.drawImage(verbosAnim, f * 64, j * 64, 64, 64, cx - lado / 2, cy - lado / 2 - 22, lado, lado); g.shadowBlur = 0;
+    const m = Math.min(56, (w - 60) / 7); for (let k = 0; k < 7; k++) { const x = cx - 3.5 * m + k * m, y = cy + lado / 2 - 12;
+      g.globalAlpha = k === f ? 1 : .45; g.drawImage(verbosAnim, k * 64, j * 64, 64, 64, x + 2, y, m - 4, m - 4); g.globalAlpha = 1;
+      if (k === f) { g.strokeStyle = "rgb(79,216,255)"; g.strokeRect(x + 1, y - 1, m - 2, m - 2); } }
+    g.fillStyle = "rgba(223,247,255,.85)"; g.font = "12px JetBrains Mono, Consolas"; g.textAlign = "center"; g.fillText(`aplicado ${f} vez(es)`, cx, cy - lado / 2 - 30);
+  } else if (s.tipo === "construcao") {
+    const c = s.d, pecas = c.pecas || [], k = pecas.length ? Math.floor(t / 1.3) % pecas.length : 0, molde = String(c.molde || "");
+    const partes = molde.split("___"), texto = partes.join(pecas[k] ? `[${pecas[k].trim()}]` : "___");
+    g.textAlign = "center"; g.font = "600 26px Rajdhani, Segoe UI"; g.fillStyle = "rgb(255,174,66)"; g.shadowColor = "rgb(255,174,66)"; g.shadowBlur = 18;
+    g.fillText(texto, cx, cy); g.shadowBlur = 0; g.font = "13px JetBrains Mono, Consolas"; g.fillStyle = "rgba(223,247,255,.7)"; g.fillText(`molde: “${molde}”`, cx, cy + 34);
+  }
+}
+holoQuadro();
 
 /* ---------- voz ---------- */
 async function falar() {

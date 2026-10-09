@@ -650,11 +650,33 @@ class Mente:
             r["fonte"] = fonte
             self.lab_ultimos.append({"t": self.t, **{k: v for k, v in r.items() if k != "motivo" or v != "ok"}})
             self.ev("laboratorio", **r)
+            self._publica_lab(r, quadros[-1] if len(quadros) else None)
         except Exception as e:                  # um orgao novo nunca pode matar a mente
             r = None
             self.ev("erro_orgao", orgao="laboratorio", msg=str(e)[:200])
         self._residencia = getattr(self, "_residencia", 0.0) + time.time() - t0
         return r
+
+    def _publica_lab(self, r, quadro):
+        """o que o laboratorio acabou de fazer, para o painel: o ultimo quadro do video, as
+        trilhas das coisas que ela seguiu e o que a teoria dela PREVIU contra o que aconteceu.
+        So leitura: nada disto entra em decisao."""
+        try:
+            v = self.lab.vitrine(r["episodio"]) if r.get("episodio") is not None else None
+            info = {"quando": time.time(), "t": self.t, "vitrine": v,
+                    "resultado": {k: r.get(k) for k in ("motivo", "trilhas", "pontos", "religou", "crise", "teoria",
+                                                        "conceito", "primeira", "inercia", "fonte", "segundos")}}
+            if quadro is not None:
+                arq = os.path.join(self.pasta, "lab_quadro.jpg")
+                with open(arq + ".tmp", "wb") as f:
+                    f.write(CX.jpg_de(np.asarray(quadro, np.uint8), 90))
+                os.replace(arq + ".tmp", arq)
+            arq = os.path.join(self.pasta, "laboratorio_vivo.json")
+            with open(arq + ".tmp", "w", encoding="utf-8") as f:
+                json.dump(info, f, ensure_ascii=False)
+            _troca(arq + ".tmp", arq)
+        except Exception as e:
+            self.ev("detalhe_falhou", orgao="laboratorio_vivo", msg=str(e)[:160])
 
     def _mostra_arena(self, q, tm):
         """o painel ve o que ela ve na arena (o navegador continua na ultima pagina)."""
@@ -2383,6 +2405,19 @@ class Mente:
                 with open(arq_v + ".tmp", "wb") as f:
                     f.write(CX.jpg_de(np.concatenate(linhas, 0), 85))
                 os.replace(arq_v + ".tmp", arq_v)
+                if agora - getattr(self, "_anim_t", 0.0) > 30:      # HOLOGRAMA: cada verbo aplicado 0..6 vezes
+                    self._anim_t = agora
+                    filas = []
+                    for j in ordem_v:
+                        m_, fila = zr.copy(), [ref]
+                        for _k in range(6):
+                            m_ = vb.aplica(m_, self.vocab_verbos.P[j], 1)
+                            fila.append(self.cortex.desenha(m_[None], mu_, sd_)[0])
+                        filas.append(np.concatenate(fila, 1))
+                    arq_a = os.path.join(self.pasta, "verbos_anim.jpg")
+                    with open(arq_a + ".tmp", "wb") as f:
+                        f.write(CX.jpg_de(np.concatenate(filas, 0), 88))
+                    os.replace(arq_a + ".tmp", arq_a)
                 verbos_info = {"passos": vb.passos, "curva": vb.curva[-120:], "pares": vb.n_pares, "trincas": vb.n_trincas,
                                "verbos": [{"id": int(j), "n": int(self.vocab_verbos.n[j])} for j in ordem_v],
                                "total": int(len(self.vocab_verbos.P)), "imaginacao_visual": dict(self.imag_vis),
@@ -2411,6 +2446,14 @@ class Mente:
                     "orcamento": self.orcamento_imag}
             if getattr(self, "lab", None) is not None:
                 d["laboratorio"] = {**self.lab.resumo(), "ultimos": list(self.lab_ultimos)[-10:]}
+                if agora - getattr(self, "_holo_t", 0.0) > 30:      # HOLOGRAMA: so o que ela aprendeu de verdade
+                    self._holo_t = agora
+                    h = self.lab.holograma()
+                    h["quando"] = agora
+                    arq_h = os.path.join(self.pasta, "holograma.json")
+                    with open(arq_h + ".tmp", "w", encoding="utf-8") as f:
+                        json.dump(h, f, ensure_ascii=False)
+                    _troca(arq_h + ".tmp", arq_h)
             self._detalhe_extra(d)
             arq = os.path.join(self.pasta, "detalhe.json")
             with open(arq + ".tmp", "w", encoding="utf-8") as f:

@@ -477,3 +477,6 @@ Critérios na vida (medidos com `python marco_laboratorio.py vidas/viva`, que s�
 Limites declarados: o alfabeto (14 monômios) e os mundos da arena são meus; ela só
 ASSISTE (não age); 5 quadros/s limitam a precisão das velocidades (a causa medida da
 falha de L1); o laboratório não fala com a linguagem nem com os verbos visuais ainda.
+Painel (só leitura, nada entra em decisão): abas LABORATÓRIO, DESCOBERTAS e HOLOGRAMA,
+com os arquivos `laboratorio_vivo.json`, `lab_quadro.jpg`, `holograma.json` e
+`verbos_anim.jpg` que a mente publica.
