@@ -1,0 +1,999 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mente Viva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  :root {
+    --fundo: #020509;
+    --holo: #4fd8ff;
+    --holo-fraco: #0f5d78;
+    --linha: rgba(79, 216, 255, .22);
+    --texto: #dff7ff;
+    --apagado: #6e9aab;
+    --ambar: #ffae42;
+    --verde: #59ffb0;
+    --vermelho: #ff5a5a;
+    --display: "Rajdhani", "Segoe UI", system-ui, sans-serif;
+    --mono: "JetBrains Mono", Consolas, "Cascadia Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; }
+  body { background: radial-gradient(ellipse at 50% 45%, #061724 0%, var(--fundo) 70%), var(--fundo);
+         color: var(--texto); font-family: var(--mono); font-size: clamp(11px, 0.78vw, 14px); }
+  #fundo { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+  body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 5;
+    background: repeating-linear-gradient(0deg, rgba(79,216,255,.035) 0 1px, transparent 1px 3px),
+                radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.55) 100%); }
+  .app { position: relative; z-index: 1; height: 100vh; display: grid; grid-template-rows: 54px 1fr 34px; }
+
+  header { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 22px;
+           border-bottom: 1px solid var(--linha); }
+  .marca { font-family: var(--display); font-weight: 700; font-size: 24px; letter-spacing: .55em; color: var(--holo);
+           text-shadow: 0 0 14px rgba(79,216,255,.6); line-height: 1; }
+  .marca small { display: block; font-size: 10px; letter-spacing: .32em; color: var(--apagado); font-weight: 500;
+                 text-shadow: none; margin-top: 4px; }
+  .abas { display: flex; gap: 2px; }
+  .abas button { font-family: var(--display); font-weight: 600; font-size: 13px; letter-spacing: .28em; color: var(--apagado);
+    background: rgba(79,216,255,.04); border: 1px solid var(--linha); padding: 7px 18px; cursor: pointer;
+    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%); }
+  .abas button.ativa { color: #001018; background: var(--holo); border-color: var(--holo); box-shadow: 0 0 18px rgba(79,216,255,.45); }
+  .abas button:focus-visible, .voz:focus-visible { outline: 2px solid var(--holo); outline-offset: 3px; }
+  .direita { display: flex; justify-content: flex-end; align-items: center; gap: 16px; font-family: var(--display);
+             letter-spacing: .14em; font-size: 14px; }
+  .pilula { padding: 3px 12px; border: 1px solid currentColor; font-weight: 700; letter-spacing: .24em; }
+  .pilula.VIVA { color: var(--verde); box-shadow: 0 0 12px rgba(89,255,176,.3) inset; }
+  .pilula.DORMINDO { color: var(--apagado); }
+  .pilula.PAUSADA, .pilula.PAUSANDO { color: var(--ambar); border-color: var(--ambar); }
+  #pausa.retomar { color: var(--ambar); border-color: var(--ambar); }
+  .pilula.SEM-INTERNET { color: var(--vermelho); animation: pisca 1.2s steps(2) infinite; }
+  @keyframes pisca { 50% { opacity: .35; } }
+  #relogio { color: var(--holo); font-variant-numeric: tabular-nums; }
+  .voz { font-family: var(--display); font-weight: 600; letter-spacing: .2em; color: var(--holo); background: transparent;
+         border: 1px solid var(--holo-fraco); padding: 6px 12px; cursor: pointer; }
+  .voz:hover { background: rgba(79,216,255,.1); }
+
+  main { min-height: 0; padding: 14px 18px; display: grid; gap: 14px; }
+  main[hidden] { display: none; }
+  #geral { grid-template-columns: minmax(0, 1fr) minmax(0, 2.1fr) minmax(0, 1fr); }
+  #organismo { grid-template-columns: minmax(0, 2.6fr) minmax(0, 1fr); }
+  .col { min-height: 0; display: grid; gap: 14px; }
+  #geral .col.esq { grid-template-rows: auto 1fr; }
+  #geral .col.dir { grid-template-rows: 1.15fr 1fr auto; }
+  #organismo .col.dir { grid-template-rows: 1.2fr 1fr; }
+
+  .quadro { position: relative; min-height: 0; overflow: hidden; padding: 12px 14px; background: rgba(6, 22, 32, .55);
+    border: 1px solid var(--linha);
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px)); }
+  .quadro::before { content: ""; position: absolute; top: 0; left: 0; width: 46px; height: 2px; background: var(--holo);
+                    box-shadow: 0 0 10px var(--holo); }
+  .quadro h2 { margin: 0 0 9px; font-family: var(--display); font-weight: 600; font-size: 12px; letter-spacing: .34em;
+               color: var(--holo); display: flex; justify-content: space-between; }
+  .quadro h2 span { color: var(--apagado); letter-spacing: .1em; font-weight: 500; }
+  .sem-borda { padding: 0; background: transparent; border: 0; clip-path: none; }
+  .sem-borda::before { display: none; }
+  canvas { display: block; width: 100%; height: 100%; }
+
+  .agora p { margin: 0; font-size: clamp(13px, 1.02vw, 18px); line-height: 1.45; text-wrap: balance; }
+  .agora p b { color: var(--holo); font-weight: 600; }
+  ol.fluxo { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px;
+             mask-image: linear-gradient(180deg, #000 70%, transparent); }
+  ol.fluxo li { display: grid; grid-template-columns: 58px 1fr; gap: 8px; line-height: 1.35; animation: entra .5s ease-out; }
+  ol.fluxo time { color: var(--apagado); font-variant-numeric: tabular-nums; }
+  ol.fluxo li.ouro span { color: var(--ambar); }
+  ol.fluxo li.alerta span { color: var(--vermelho); }
+  @keyframes entra { from { opacity: 0; transform: translateX(-8px); } }
+  ul.lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  ul.lista li { display: flex; justify-content: space-between; gap: 8px; }
+  ul.lista q { quotes: "“" "”"; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  ul.lista li span { color: var(--apagado); flex-shrink: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 5px; max-height: 64px; overflow: hidden; }
+  .chip { border: 1px solid var(--holo-fraco); padding: 1px 7px; font-size: 11px; color: var(--texto); }
+  .vazio { color: var(--apagado); font-style: italic; }
+  .barra-conf { display: grid; grid-template-columns: minmax(0, 1fr) 90px 38px; gap: 8px; align-items: center; margin-bottom: 7px; }
+  .barra-conf .nome { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .barra-conf i { display: block; height: 6px; background: rgba(79,216,255,.12); position: relative; }
+  .barra-conf i b { position: absolute; inset: 0 auto 0 0; background: linear-gradient(90deg, var(--holo-fraco), var(--holo)); }
+  .barra-conf i.ruim b { background: linear-gradient(90deg, #5a2a10, var(--ambar)); }
+  .barra-conf em { font-style: normal; text-align: right; color: var(--apagado); font-variant-numeric: tabular-nums; }
+  .nota { color: var(--apagado); font-size: 11px; line-height: 1.4; margin: 6px 0 0; }
+
+  #ve { grid-template-columns: minmax(0, 2.3fr) minmax(0, 1fr); }
+  #ve .col.dir { grid-template-rows: auto 1.4fr 1fr; }
+  #ve #olho { max-height: 22vh; }
+  .tela { display: grid; grid-template-rows: auto 1fr; gap: 10px; }
+  .barra-url { display: flex; gap: 10px; align-items: center; border: 1px solid var(--linha); padding: 6px 10px;
+               background: rgba(0,0,0,.35); font-size: 12px; overflow: hidden; white-space: nowrap; }
+  .barra-url b { color: var(--holo); font-family: var(--display); letter-spacing: .2em; flex-shrink: 0; }
+  .barra-url span { overflow: hidden; text-overflow: ellipsis; color: var(--apagado); }
+  .palco { position: relative; min-height: 0; overflow: hidden; border: 1px solid var(--linha); background: rgba(0,0,0,.3); }
+  .palco > div { position: absolute; inset: 0; padding: 18px 22px; overflow: hidden; transition: opacity .6s; }
+  .leitura { font-size: clamp(13px, 1vw, 17px); line-height: 1.75; mask-image: linear-gradient(180deg, #000 80%, transparent); }
+  .leitura .n0 { color: #3d5763; }
+  .leitura .n1 { color: #9fd9ea; }
+  .leitura .n2 { color: var(--holo); background: rgba(79,216,255,.08); }
+  .leitura .n3 { color: var(--ambar); background: rgba(255,174,66,.1); text-shadow: 0 0 8px rgba(255,174,66,.5); }
+  .grade-img { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; height: 100%; align-content: center; }
+  .grade-img figure { margin: 0; display: grid; gap: 6px; align-content: start; }
+  .grade-img img { width: 100%; max-height: 52vh; object-fit: contain; border: 1px solid var(--linha); background: #000; }
+  .grade-img figcaption { color: var(--apagado); font-size: 11px; }
+  .video-caixa { display: grid; grid-template-rows: 1fr auto; gap: 10px; height: 100%; }
+  .video-caixa video { width: 100%; height: 100%; min-height: 0; object-fit: contain; background: #000; border: 1px solid var(--linha); }
+  .linha-video { display: flex; gap: 12px; align-items: center; }
+  .linha-video i { flex: 1; height: 4px; background: rgba(79,216,255,.15); position: relative; }
+  .linha-video i b { position: absolute; inset: 0 auto 0 0; background: var(--holo); box-shadow: 0 0 8px var(--holo); }
+  .legenda-cor { display: flex; gap: 14px; flex-wrap: wrap; font-size: 11px; color: var(--apagado); margin-top: 8px; }
+  .legenda-cor span::before { content: ""; display: inline-block; width: 10px; height: 10px; margin-right: 5px; vertical-align: -1px; background: currentColor; }
+  #olho { image-rendering: pixelated; width: 100%; aspect-ratio: 1; max-height: 34vh; border: 1px solid var(--linha); background: #000; }
+  ol.historico { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  ol.historico li { display: grid; grid-template-columns: 54px 1fr auto; gap: 10px; align-items: center; animation: entra .5s ease-out; }
+  ol.historico img, ol.historico .icone { width: 54px; height: 38px; object-fit: cover; border: 1px solid var(--linha);
+    display: flex; align-items: center; justify-content: center; color: var(--holo); font-family: var(--display); font-size: 11px; }
+  ol.historico span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  ol.historico em { font-style: normal; color: var(--apagado); }
+  #orgao { position: fixed; inset: 6vh 7vw; z-index: 20; display: grid; grid-template-rows: auto 1fr; gap: 12px;
+           background: rgba(3, 14, 22, .96); border: 1px solid var(--holo); box-shadow: 0 0 40px rgba(79,216,255,.25);
+           padding: 16px 20px; clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px)); }
+  #orgao[hidden] { display: none; }
+  #orgao header { display: flex; justify-content: space-between; align-items: start; border: 0; padding: 0; gap: 16px; }
+  #orgao h3 { margin: 0; font-family: var(--display); font-size: 26px; letter-spacing: .3em; color: var(--holo); text-shadow: 0 0 12px rgba(79,216,255,.5); }
+  #orgao h3 small { display: block; font-size: 12px; letter-spacing: .1em; color: var(--apagado); font-family: var(--mono); text-shadow: none; margin-top: 4px; }
+  #orgao .fechar { font-family: var(--display); font-size: 14px; letter-spacing: .2em; color: var(--holo); background: transparent; border: 1px solid var(--holo-fraco); padding: 6px 12px; cursor: pointer; }
+  #orgao-corpo { min-height: 0; overflow: auto; display: grid; gap: 14px; align-content: start; }
+  .duas { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; }
+  .caixa { border: 1px solid var(--linha); padding: 12px 14px; background: rgba(0,0,0,.25); min-width: 0; }
+  .caixa h4 { margin: 0 0 8px; font-family: var(--display); letter-spacing: .25em; color: var(--holo); font-size: 13px; }
+  .explica { color: var(--apagado); line-height: 1.5; margin: 0 0 8px; }
+  .frase { line-height: 1.7; margin: 0 0 8px; }
+  .frase mark { background: rgba(169,139,255,.25); color: #e6dcff; padding: 1px 3px; box-shadow: 0 0 10px rgba(169,139,255,.35); }
+  .frase em { color: var(--apagado); font-style: normal; font-size: 11px; margin-left: 6px; }
+  .opcao { display: grid; grid-template-columns: minmax(0, 1.4fr) 2fr 70px; gap: 10px; align-items: center; margin-bottom: 6px; }
+  .opcao i { display: block; height: 10px; background: rgba(79,216,255,.1); position: relative; }
+  .opcao i b { position: absolute; inset: 0 auto 0 0; background: var(--holo-fraco); }
+  .opcao.escolhida span { color: var(--holo); font-weight: 600; } .opcao.escolhida i b { background: var(--holo); box-shadow: 0 0 10px var(--holo); }
+  .opcao em { font-style: normal; color: var(--apagado); text-align: right; font-variant-numeric: tabular-nums; }
+  .arvore, .arvore ul { list-style: none; margin: 0; padding-left: 18px; }
+  .arvore { padding-left: 0; }
+  .arvore li { position: relative; line-height: 1.7; }
+  .arvore li::before { content: ""; position: absolute; left: -12px; top: 0; bottom: 50%; border-left: 1px solid var(--linha); border-bottom: 1px solid var(--linha); width: 9px; }
+  .arvore summary { cursor: pointer; list-style: none; } .arvore summary::-webkit-details-marker { display: none; }
+  .nv { display: inline-block; font-size: 10px; padding: 0 5px; margin-left: 6px; border: 1px solid currentColor; }
+  .nv1 { color: #9fd9ea; } .nv2 { color: var(--holo); } .nv3 { color: var(--ambar); }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(46px, 1fr)); gap: 6px; }
+  .tiles canvas { width: 100%; aspect-ratio: 1; image-rendering: pixelated; border: 1px solid var(--linha); }
+  .tiles figure { margin: 0; display: grid; gap: 2px; } .tiles figcaption { font-size: 9px; color: var(--apagado); text-align: center; }
+  .teste { display: grid; grid-template-columns: 70px minmax(0, 1fr) 70px; gap: 8px; margin-bottom: 4px; }
+  .teste.ligou b { color: var(--verde); } .teste.desfez b { color: var(--vermelho); } .teste.rejeitou b, .teste.manteve b { color: var(--apagado); }
+  .tela-mini { border: 1px solid var(--linha); background: #00070c; padding: 10px 12px; }
+  .tela-mini .url { color: var(--apagado); font-size: 11px; border-bottom: 1px solid var(--linha); padding-bottom: 6px; margin-bottom: 8px; overflow-wrap: anywhere; }
+  .clique { color: #001018; background: var(--holo); padding: 1px 6px; box-shadow: 0 0 14px var(--holo); }
+  .busca-mock { border: 1px solid var(--holo); padding: 8px 12px; font-size: 15px; display: flex; gap: 10px; align-items: center; }
+  .busca-mock::after { content: "▍"; color: var(--holo); animation: pisca 1s steps(2) infinite; }
+  iframe.pagina { width: 100%; height: 100%; border: 0; background: #fff; }
+  .olho-tira { display: grid; gap: 6px; }
+  .olho-tira img { width: 100%; image-rendering: pixelated; border: 1px solid var(--linha); background: #000; display: block; }
+  .olho-rot { display: grid; grid-template-columns: repeat(var(--n, 2), 1fr); font-size: 11px; letter-spacing: .08em; color: var(--apagado); text-align: center; }
+  .olho-rot b { color: var(--holo); font-weight: 600; }
+  #curva-ver { width: 100%; height: 64px; display: block; }
+  .ao-vivo { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 14px; gap: 8px; padding: 10px; }
+  .ao-vivo .moldura { position: relative; min-height: 0; display: flex; align-items: center; justify-content: center; }
+  .ao-vivo img { max-width: 100%; max-height: 100%; display: block; border: 1px solid var(--linha); }
+  .ao-vivo canvas { position: absolute; pointer-events: none; }
+  .ao-vivo .trilho-rolagem { background: rgba(79,216,255,.08); position: relative; border: 1px solid var(--linha); }
+  .ao-vivo .trilho-rolagem b { position: absolute; left: 0; right: 0; background: var(--holo); box-shadow: 0 0 10px var(--holo); }
+  .nota-viva { position: absolute; left: 22px; bottom: 16px; background: rgba(0,0,0,.75); padding: 4px 10px; color: var(--texto);
+               font-size: 12px; border-left: 2px solid var(--holo); }
+  footer { border-top: 1px solid var(--linha); display: flex; align-items: center; overflow: hidden; white-space: nowrap; }
+  footer b { font-family: var(--display); letter-spacing: .3em; color: #001018; background: var(--holo);
+             padding: 0 14px; height: 100%; display: flex; align-items: center; flex-shrink: 0; position: relative; z-index: 2;
+             box-shadow: 12px 0 18px var(--fundo); }
+  footer .trilho { flex: 1; overflow: hidden; min-width: 0; }
+  .letreiro { display: inline-block; padding-left: 100%; animation: corre 60s linear infinite; color: var(--texto); }
+  .letreiro span { margin-right: 46px; } .letreiro em { color: var(--holo); font-style: normal; }
+  @keyframes corre { to { transform: translateX(-100%); } }
+  @media (prefers-reduced-motion: reduce) { .letreiro { animation: none; padding-left: 12px; } ol.fluxo li { animation: none; } }
+  @media (max-width: 1000px) { html, body { overflow: auto; } .app { height: auto; min-height: 100vh; }
+    #geral, #organismo { grid-template-columns: 1fr; } #reator, #anatomia { height: 70vh; } }
+</style>
+</head>
+<body>
+<canvas id="fundo"></canvas>
+<div class="app">
+  <header>
+    <div class="marca">MENTE<small>organismo vivo na internet real</small></div>
+    <nav class="abas" aria-label="vistas">
+      <button type="button" data-aba="geral" class="ativa">VISÃO GERAL</button>
+      <button type="button" data-aba="organismo">ORGANISMO</button>
+      <button type="button" data-aba="ve">O QUE ELA VÊ</button>
+    </nav>
+    <div class="direita">
+      <span id="pilula" class="pilula DORMINDO">…</span>
+      <span id="relogio">--:--</span>
+      <button class="voz" id="pausa" type="button" title="pausar ou retomar a mente">❚❚ PAUSAR</button>
+      <button class="voz" id="ouvir" type="button" title="ouvir o relatório">◉ VOZ</button>
+    </div>
+  </header>
+
+  <main id="geral">
+    <div class="col esq">
+      <section class="quadro agora"><h2>AGORA <span id="versao">—</span></h2><p id="pensamento">acordando…</p></section>
+      <section class="quadro"><h2>FLUXO DE CONSCIÊNCIA <span>ao vivo</span></h2><ol class="fluxo" id="fluxo"></ol></section>
+    </div>
+    <section class="quadro sem-borda"><canvas id="reator" aria-label="o núcleo da mente: anéis giram no ritmo das decisões dela"></canvas></section>
+    <div class="col dir">
+      <section class="quadro"><h2>O QUE ELA JÁ FORMOU <span>sem ninguém ensinar</span></h2><ul class="lista" id="altas"></ul></section>
+      <section class="quadro"><h2>APRENDIZADO <span>bits por letra</span></h2><canvas id="curva"></canvas></section>
+      <section class="quadro"><h2>DESCOBRIU SOZINHA</h2><div class="chips" id="barras"></div></section>
+    </div>
+  </main>
+
+  <main id="organismo" hidden>
+    <section class="quadro sem-borda"><canvas id="anatomia" aria-label="anatomia da mente: os órgãos e o caminho da informação entre eles"></canvas></section>
+    <div class="col dir">
+      <section class="quadro"><h2>PERGUNTAS VIVAS <span id="n-perguntas">—</span></h2><canvas id="constelacao"></canvas></section>
+      <section class="quadro"><h2>EM QUEM ELA CONFIA <span>o que rende</span></h2><div id="confianca"></div>
+        <p class="nota">Barra azul: quanto aquela ação trouxe de entendimento. Âmbar: quase nada — ela vai largando.</p></section>
+    </div>
+  </main>
+
+  <main id="ve" hidden>
+    <section class="quadro tela">
+      <div class="barra-url"><b id="ve-tipo">TELA</b><span id="ve-url">aguardando o que ela vai perceber…</span></div>
+      <div class="palco" id="palco"><div id="palco-a"></div><div id="palco-b" style="opacity:0"></div></div>
+    </section>
+    <div class="col dir">
+      <section class="quadro"><h2>O OLHO DELA <span id="olho-sub">fóvea 64 × 64, em cores</span></h2>
+        <div class="olho-tira" id="olho-tira" hidden><img id="olho-img" alt="o que chega na fóvea dela e o que o córtex dela reconstrói">
+          <div class="olho-rot" id="olho-rot"></div><canvas id="curva-ver"></canvas></div>
+        <canvas id="olho"></canvas>
+        <p class="nota" id="olho-nota">Esquerda: o que chega na fóvea dela. Meio: o que o córtex dela consegue reconstruir — o que ela de fato “vê”. Começa borrado; fica nítido conforme ela aprende a ver.</p></section>
+      <section class="quadro"><h2>DENTRO DELA AGORA <span id="dentro-sub">mapa do mundo dela</span></h2><canvas id="dentro"></canvas></section>
+      <section class="quadro"><h2>ACABOU DE PERCEBER</h2><ol class="historico" id="historico"></ol></section>
+    </div>
+  </main>
+
+  <section id="orgao" hidden role="dialog" aria-modal="true" aria-labelledby="orgao-titulo">
+    <header><h3 id="orgao-titulo">—<small id="orgao-sub"></small></h3><button class="fechar" type="button" id="orgao-fechar">FECHAR ✕</button></header>
+    <div id="orgao-corpo"></div>
+  </section>
+
+  <footer><b>AO VIVO</b><div class="trilho"><div class="letreiro" id="letreiro"><span>aguardando a mente…</span></div></div></footer>
+</div>
+
+<script>
+"use strict";
+const $ = (id) => document.getElementById(id);
+const fmt = (n) => (n ?? 0).toLocaleString("pt-BR");
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const reduz = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const idade = (s) => { s = Math.round(s || 0); const d = s / 86400, h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60);
+  return d >= 2 ? d.toFixed(1).replace(".", ",") + " dias" : h > 0 ? `${h} h ${String(m).padStart(2, "0")} min` : `${m} min`; };
+const H = "79,216,255", AMB = "255,174,66", VERDE = "89,255,176";
+let est = null, tel = null, atividade = 0, ultPassos = null, ultParede = null;
+
+/* ---------- fundo: grade hexagonal discreta ---------- */
+function fundo() {
+  const c = $("fundo"), r = devicePixelRatio || 1, w = innerWidth, h = innerHeight;
+  c.width = w * r; c.height = h * r; const g = c.getContext("2d"); g.scale(r, r);
+  g.strokeStyle = "rgba(79,216,255,.045)"; const s = 26, dx = s * 1.732;
+  for (let y = 0, k = 0; y < h + s; y += s * 1.5, k++)
+    for (let x = (k % 2) * dx / 2; x < w + dx; x += dx) { g.beginPath();
+      for (let i = 0; i < 6; i++) { const a = Math.PI / 3 * i + Math.PI / 6; g[i ? "lineTo" : "moveTo"](x + s * .55 * Math.cos(a), y + s * .55 * Math.sin(a)); }
+      g.closePath(); g.stroke(); }
+}
+fundo(); addEventListener("resize", fundo);
+setInterval(() => { $("relogio").textContent = new Date().toLocaleTimeString("pt-BR", {hour: "2-digit", minute: "2-digit"}); }, 1000);
+
+/* ---------- abas ---------- */
+const abas = document.querySelectorAll(".abas button");
+function mostra(a) { abas.forEach((b) => b.classList.toggle("ativa", b.dataset.aba === a));
+  $("geral").hidden = a !== "geral"; $("organismo").hidden = a !== "organismo"; $("ve").hidden = a !== "ve";
+  history.replaceState(null, "", a === "geral" ? "#" : "#" + a); }
+abas.forEach((b) => b.addEventListener("click", () => mostra(b.dataset.aba)));
+const abaDoHash = () => ({"#organismo": "organismo", "#ve": "ve"}[location.hash] || "geral");
+mostra(abaDoHash());
+addEventListener("hashchange", () => mostra(abaDoHash()));
+
+/* ---------- dados ---------- */
+async function puxaEstado() {
+  try { est = await (await fetch("/api/estado")).json(); } catch (e) { return; }
+  const p = $("pilula"); p.textContent = est.status; p.className = "pilula " + est.status.replace(" ", "-");
+  const pz = est.status === "PAUSADA" || est.status === "PAUSANDO", bp = $("pausa");
+  bp.textContent = pz ? (est.status === "PAUSANDO" ? "… SALVANDO" : "▶ RETOMAR") : "❚❚ PAUSAR";
+  bp.classList.toggle("retomar", pz); bp.dataset.pausada = pz ? "1" : "";
+  $("versao").textContent = "versão " + est.versao + " · " + idade(est.vida_s) + " de vida";
+  $("pensamento").innerHTML = esc(est.pensamento).replace(/“([^”]*)”/g, "<b>“$1”</b>");
+  $("altas").innerHTML = est.mente.altas.length ? est.mente.altas.slice(0, 7).map(([u, n]) =>
+    `<li><q>${esc(u)}</q><span>nível ${n}</span></li>`).join("") : '<li class="vazio">ainda formando…</li>';
+  $("barras").innerHTML = est.barras.length ? est.barras.slice(-10).map((b) => `<span class="chip">${esc(b)}</span>`).join("")
+    : '<span class="vazio">nenhuma ainda</span>';
+  $("fluxo").innerHTML = est.feed.slice(0, 12).map((f) =>
+    `<li class="${f.tipo}"><time>${idade(f.vida_s)}</time><span>${esc(f.texto)}</span></li>`).join("") || '<li class="vazio">aguardando…</li>';
+  if (ultPassos !== null) { const dt = (Date.now() - ultParede) / 60000; atividade = Math.min(1, 0.6 * atividade + 0.4 * Math.min(1, (est.passos - ultPassos) / dt / 40)); }
+  ultPassos = est.passos; ultParede = Date.now();
+  const q = est.pesquisas.slice(0, 10).map((x) => `<span>buscando <em>“${esc(x.consulta)}”</em> em ${esc(x.onde)}</span>`).join("");
+  $("letreiro").innerHTML = q || "<span>lendo e explorando…</span>";
+  curva(est.curva);
+}
+async function puxaOrg() { try { const t = await (await fetch("/api/organismo")).json(); tel = t.indisponivel ? null : t; } catch (e) {} }
+let ultSeq = null;
+async function puxaEventos() {
+  try { const r = await (await fetch("/api/eventos?desde=" + (ultSeq ?? 0))).json();
+    if (ultSeq === null) { ultSeq = r.ultimo; return; }
+    ultSeq = r.ultimo; r.eventos.forEach(dispara); } catch (e) {}
+}
+puxaEstado(); puxaOrg(); puxaEventos();
+setInterval(puxaEstado, 3000); setInterval(puxaOrg, 3000); setInterval(puxaEventos, 1500);
+
+/* ---------- curva de aprendizado ---------- */
+function curva(pts) {
+  const c = $("curva"), r = devicePixelRatio || 1, w = c.clientWidth, h = c.clientHeight;
+  c.width = w * r; c.height = h * r; const g = c.getContext("2d"); g.scale(r, r);
+  if (!pts || pts.length < 2) { g.fillStyle = "#6e9aab"; g.font = "11px JetBrains Mono, Consolas"; g.fillText("medindo…", 4, h / 2); return; }
+  const ys0 = pts.map((p) => p[1]), k = Math.max(1, Math.round(pts.length / 25));
+  const ys = ys0.map((_, i) => { const a = ys0.slice(Math.max(0, i - k), i + k + 1); return a.reduce((x, y) => x + y, 0) / a.length; });
+  pts = pts.map((p, i) => [p[0], ys[i]]);
+  const lo = Math.min(...ys0), hi = Math.max(...ys0), p = 10;
+  const X = (i) => p + (w - 2 * p) * i / (pts.length - 1), Y = (v) => p + (h - 2 * p) * (1 - (v - lo) / ((hi - lo) || 1));
+  const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, `rgba(${H},.3)`); gr.addColorStop(1, `rgba(${H},0)`);
+  g.beginPath(); ys0.forEach((v, i) => g[i ? "lineTo" : "moveTo"](X(i), Y(v))); g.strokeStyle = `rgba(${H},.18)`; g.lineWidth = 1; g.stroke();
+  g.beginPath(); pts.forEach((q, i) => g[i ? "lineTo" : "moveTo"](X(i), Y(q[1]))); g.lineTo(X(pts.length - 1), h); g.lineTo(X(0), h);
+  g.fillStyle = gr; g.fill();
+  g.beginPath(); pts.forEach((q, i) => g[i ? "lineTo" : "moveTo"](X(i), Y(q[1]))); g.strokeStyle = `rgb(${H})`; g.lineWidth = 1.6;
+  g.shadowColor = `rgb(${H})`; g.shadowBlur = 8; g.stroke(); g.shadowBlur = 0;
+  g.fillStyle = "#6e9aab"; g.font = "10px JetBrains Mono, Consolas"; g.fillText(hi.toFixed(2), 2, 10); g.fillText(lo.toFixed(2), 2, h - 3);
+  g.fillStyle = "#dff7ff"; g.textAlign = "right"; g.fillText("agora " + ys[ys.length - 1].toFixed(2) + " · descendo = entende mais rápido", w - 4, 10);
+}
+
+/* ---------- o reator (visão geral) ---------- */
+const pulsos = [];
+function arco(g, cx, cy, r, a0, a1, cor, lw, brilho) { g.beginPath(); g.arc(cx, cy, r, a0, a1); g.strokeStyle = cor; g.lineWidth = lw;
+  if (brilho) { g.shadowColor = cor; g.shadowBlur = brilho; } g.stroke(); g.shadowBlur = 0; }
+function reator(ts) {
+  requestAnimationFrame(reator);
+  if ($("geral").hidden) return;
+  const c = $("reator"), r = devicePixelRatio || 1, w = c.clientWidth, h = c.clientHeight;
+  if (c.width !== Math.round(w * r) || c.height !== Math.round(h * r)) { c.width = w * r; c.height = h * r; }
+  const g = c.getContext("2d"); g.setTransform(r, 0, 0, r, 0, 0); g.clearRect(0, 0, w, h);
+  const cx = w / 2, cy = h / 2, R = Math.min(w * 0.27, h * 0.36), s = ts / 1000;
+  const viva = est && (est.status === "VIVA" || est.status === "SEM INTERNET"), vel = reduz ? 0 : (viva ? 0.15 + 0.9 * atividade : 0.03);
+  const halo = g.createRadialGradient(cx, cy, 0, cx, cy, R * 1.3);
+  halo.addColorStop(0, `rgba(${H},${viva ? .22 : .08})`); halo.addColorStop(.5, `rgba(${H},.04)`); halo.addColorStop(1, "rgba(0,0,0,0)");
+  g.fillStyle = halo; g.beginPath(); g.arc(cx, cy, R * 1.3, 0, 7); g.fill();
+  // anel de marcas
+  g.save(); g.translate(cx, cy); g.rotate(s * vel * 0.12);
+  for (let i = 0; i < 144; i++) { const a = i / 144 * Math.PI * 2, l = i % 12 === 0 ? 14 : i % 4 === 0 ? 8 : 4;
+    g.strokeStyle = `rgba(${H},${i % 12 === 0 ? .8 : .35})`; g.lineWidth = 1; g.beginPath();
+    g.moveTo(Math.cos(a) * R, Math.sin(a) * R); g.lineTo(Math.cos(a) * (R - l), Math.sin(a) * (R - l)); g.stroke(); }
+  g.restore();
+  // segmentos girando em sentidos opostos
+  [[0.88, 1, 7, 3, 0.55], [0.78, -1.6, 22, 2, 0.75], [0.66, 2.2, 5, 5, 0.42], [0.55, -0.9, 36, 1.5, 0.6]].forEach(([k, v, n, lw, fr], i) => {
+    for (let j = 0; j < n; j++) { const a = s * v * vel + j / n * Math.PI * 2;
+      arco(g, cx, cy, R * k, a, a + Math.PI * 2 / n * fr, `rgba(${H},${0.35 + 0.12 * i})`, lw, i === 2 ? 10 : 0); } });
+  // indicadores: pressão até o sono (âmbar) e atividade (verde)
+  const pl = tel && tel.plasticidade, pres = pl && pl.limiar_sono ? Math.min(1, pl.pressao / pl.limiar_sono) : null;
+  arco(g, cx, cy, R * 0.45, -Math.PI / 2, Math.PI * 1.5, `rgba(${AMB},.12)`, 6);
+  if (pres !== null) arco(g, cx, cy, R * 0.45, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * pres, `rgba(${AMB},.95)`, 6, 14);
+  arco(g, cx, cy, R * 0.38, -Math.PI / 2, Math.PI * 1.5, `rgba(${VERDE},.1)`, 3);
+  arco(g, cx, cy, R * 0.38, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * Math.max(0.02, atividade), `rgba(${VERDE},.9)`, 3, 10);
+  // núcleo
+  const pul = 1 + (reduz ? 0 : (viva ? 0.06 + 0.06 * atividade : 0.01) * Math.sin(s * (2 + 5 * atividade)));
+  const nuc = g.createRadialGradient(cx, cy, 0, cx, cy, R * 0.3 * pul);
+  nuc.addColorStop(0, "rgba(220,250,255,.95)"); nuc.addColorStop(.35, `rgba(${H},.55)`); nuc.addColorStop(1, `rgba(${H},0)`);
+  g.fillStyle = nuc; g.beginPath(); g.arc(cx, cy, R * 0.3 * pul, 0, 7); g.fill();
+  pulsos.forEach((p) => { p.r += 1.6; p.a -= 0.012; arco(g, cx, cy, p.r, 0, 7, `rgba(${p.cor},${Math.max(0, p.a)})`, 2); });
+  while (pulsos.length && pulsos[0].a <= 0) pulsos.shift();
+  g.textAlign = "center"; g.fillStyle = "#dff7ff"; g.font = `700 ${Math.round(R * 0.13)}px Rajdhani, Segoe UI`;
+  g.shadowColor = `rgb(${H})`; g.shadowBlur = 12; g.fillText(est ? idade(est.vida_s).toUpperCase() : "—", cx, cy + R * 0.04); g.shadowBlur = 0;
+  g.font = `600 ${Math.round(R * 0.05)}px Rajdhani, Segoe UI`; g.fillStyle = "#6e9aab";
+  g.fillText("DE VIDA", cx, cy + R * 0.12);
+  g.fillText(viva ? `ATIVIDADE ${Math.round(atividade * 100)}%` : "EM REPOUSO", cx, cy - R * 0.12);
+  // chamadas ligadas ao reator
+  if (!est) return;
+  const m = est.mente, c2 = est.consumo, im = est.imaginacao;
+  const abertas = Object.values(m.lacunas || {}).reduce((a, b) => a + b, 0);
+  const forte = (m.perguntas[0] || [null, "—"])[1];
+  const ch = [
+    [-0.78, -0.62, "CONSUMO", [`${fmt(c2.paginas)} páginas lidas`, `${fmt(c2.mb_lidos)} MB de texto`, `${fmt(c2.sites)} sites · ${fmt(c2.imagens)} imagens · ${fmt(c2.videos)} vídeos`]],
+    [0.78, -0.62, "MEMÓRIA", [`${fmt(m.estruturas)} pedaços guardados`, `${fmt(m.fusoes)} junções de pedaços`, `chegou ao nível ${m.nivel_max}`]],
+    [-0.78, 0.62, "CURIOSIDADE", [`${fmt(abertas)} perguntas abertas`, `mais forte: “${String(forte).trim().slice(0, 18)}”`, `${fmt(m.fechadas)} já resolvidas`]],
+    [0.78, 0.62, "IMAGINAÇÃO", [`${fmt(im.confirmadas)} imaginadas e confirmadas`, `placebo: ${fmt(im.placebo)}`, `${fmt(im.sonhos)} sonos de consolidação`]],
+  ];
+  ch.forEach(([fx, fy, tit, linhas]) => {
+    // linha do anel ate a borda; o texto fica DENTRO da tela, alinhado a borda
+    const sx = Math.sign(fx), sy = Math.sign(fy);
+    const ax = cx + sx * R * 0.7, ay = cy + sy * R * 0.7;
+    const ex = sx < 0 ? 10 : w - 10, ey = cy + sy * Math.min(h / 2 - 70, R * 1.05);
+    const kx = cx + sx * R * 1.05;
+    g.strokeStyle = `rgba(${H},.5)`; g.lineWidth = 1; g.beginPath(); g.moveTo(ax, ay); g.lineTo(kx, ey); g.lineTo(ex, ey); g.stroke();
+    g.fillStyle = `rgb(${H})`; g.beginPath(); g.arc(ax, ay, 3, 0, 7); g.fill();
+    g.fillRect(sx < 0 ? ex : ex - 6, ey - 1, 6, 3);
+    g.textAlign = sx < 0 ? "left" : "right";
+    const ty = sy < 0 ? ey - 12 - (linhas.length) * 16 : ey + 20;
+    g.font = "700 15px Rajdhani, Segoe UI"; g.fillStyle = `rgb(${H})`; g.fillText(tit, ex, ty);
+    g.font = "12px JetBrains Mono, Consolas"; g.fillStyle = "#dff7ff";
+    linhas.forEach((l, i) => g.fillText(l, ex, ty + 17 + i * 16));
+  });
+}
+requestAnimationFrame(reator);
+
+/* ---------- anatomia (organismo) ---------- */
+const ORG = {
+  internet: {x: .07, y: .46, nome: "INTERNET", sub: "o mundo lá fora", cor: H},
+  olhos: {x: .25, y: .17, nome: "OLHOS", sub: "lê textos, vê imagens e vídeos", cor: H},
+  memoria: {x: .50, y: .11, nome: "MEMÓRIA", sub: "junta letras em pedaços e pedaços em palavras", cor: H},
+  curiosidade: {x: .75, y: .17, nome: "CURIOSIDADE", sub: "o que ela ainda não entende", cor: "169,139,255"},
+  vontade: {x: .91, y: .48, nome: "VONTADE", sub: "escolhe o que fazer agora", cor: H},
+  maos: {x: .52, y: .80, nome: "MÃOS", sub: "abre links, pesquisa, assiste", cor: H},
+  sono: {x: .33, y: .50, nome: "SONO", sub: "re-testa o que aprendeu e desfaz o que não serve", cor: AMB},
+  imaginacao: {x: .67, y: .50, nome: "IMAGINAÇÃO", sub: "inventa combinações e confere no mundo", cor: AMB},
+  mundo: {x: .50, y: .47, nome: "MODELO DE MUNDO", sub: "o que ela entende: palavras perto = usadas igual", cor: VERDE},
+};
+const VIAS = [["internet", "olhos"], ["olhos", "memoria"], ["memoria", "curiosidade"], ["curiosidade", "vontade"],
+  ["vontade", "maos"], ["maos", "internet"], ["memoria", "sono"], ["sono", "imaginacao"], ["imaginacao", "memoria"], ["olhos", "curiosidade"],
+  ["memoria", "mundo"], ["sono", "mundo"], ["mundo", "imaginacao"]];
+const particulas = [], brilho = {}, emis = [];
+Object.keys(ORG).forEach((k) => { brilho[k] = 0; });
+let agulha = 0, alvoAgulha = 0, sonoRipple = 0;
+function viaja(a, b, cor, n = 1, vel = 1) { for (let i = 0; i < n; i++) particulas.push({a, b, t: -i * 0.07, v: (0.005 + Math.random() * 0.004) * vel, cor}); }
+let legenda = "", legendaT = 0;
+function conta(t) { legenda = t; legendaT = performance.now(); }
+function dispara(e) {
+  historicoEvento(e);
+  switch (e.ev) {
+    case "leu": viaja("internet", "olhos", H, 2); viaja("olhos", "memoria", H, 1); brilho.olhos = 1; alvoAgulha = 0; conta(`OLHOS leram uma página de ${e.dominio}`); break;
+    case "viu": viaja("internet", "olhos", AMB, 3); brilho.olhos = 1; alvoAgulha = Math.PI; conta(`OLHOS viram ${e.n} imagem(ns)`); break;
+    case "assistiu": viaja("internet", "olhos", AMB, 5); brilho.olhos = 1; alvoAgulha = Math.PI; conta("OLHOS e ouvidos assistiram a um vídeo"); break;
+    case "nascimento": brilho.memoria = 1; viaja("olhos", "memoria", VERDE, 1, 1.5); conta(`MEMÓRIA juntou pedaços: “${String(e.pedaco || "").trim()}”`); break;
+    case "lacuna": viaja("memoria", "curiosidade", "169,139,255", 1); brilho.curiosidade = Math.max(brilho.curiosidade, .6); break;
+    case "fechou": brilho.curiosidade = 1; viaja("curiosidade", "memoria", AMB, 2); conta(`CURIOSIDADE resolveu “${String(e.alvo || "").trim()}”`); break;
+    case "pesquisa": viaja("curiosidade", "vontade", "169,139,255", 1); viaja("vontade", "maos", H, 1); brilho.vontade = 1; alvoAgulha = Math.PI / 2;
+      conta(`VONTADE decidiu pesquisar “${e.consulta}”`); break;
+    case "acao": viaja("maos", "internet", e.pagou ? VERDE : H, 1); brilho.maos = 1; emis.push({t: performance.now()});
+      if (e.estrategia === "voltar") alvoAgulha = -Math.PI / 2; break;
+    case "sonho": brilho.sono = 1; sonoRipple = 1; viaja("memoria", "sono", AMB, 3); if (e.ligou) viaja("sono", "memoria", VERDE, Math.min(6, e.ligou));
+      pulsos.push({r: 10, a: .8, cor: AMB}); conta(`SONO: ligou ${e.ligou} junções, desfez ${e.deprimiu}`); break;
+    case "imaginou_e_viu": brilho.imaginacao = 1; viaja("imaginacao", "memoria", AMB, 4, 1.3);
+      conta(`IMAGINAÇÃO acertou: imaginou “${(e.par || []).join("").trim()}” e o mundo confirmou`); break;
+    case "deprimiu": viaja("sono", "memoria", "255,90,90", 1); break;
+    case "barra_descoberta": brilho.maos = 1; conta(`MÃOS acharam uma ferramenta nova em ${e.dominio}`); break;
+    case "sem_rede": brilho.internet = 1; conta("A INTERNET SUMIU — ela parou e está consolidando"); break;
+    case "rede_voltou": brilho.internet = 1; conta("A internet voltou — ela seguiu de onde estava"); break;
+    case "transplante": conta(`ÓRGÃOS NOVOS: ${(e.orgaos || []).join(", ")}`); break;
+  }
+}
+function vivo(k) {
+  if (!est) return "";
+  const m = est.mente, c = est.consumo, im = est.imaginacao, p = tel && tel.plasticidade;
+  switch (k) {
+    case "internet": return `${fmt(c.sites)} sites conhecidos`;
+    case "olhos": return `${fmt(c.paginas)} páginas · ${fmt(c.imagens)} imagens · ${fmt(c.videos)} vídeos`;
+    case "memoria": return `${fmt(m.estruturas)} pedaços · nível ${m.nivel_max}`;
+    case "curiosidade": { const n = Object.values(m.lacunas || {}).reduce((a, b) => a + b, 0); return `${fmt(n)} perguntas abertas`; }
+    case "vontade": return est.status === "SEM INTERNET" ? "esperando o mundo voltar" : `${fmt(est.passos)} decisões tomadas`;
+    case "maos": return `${fmt(c.pedidos)} pedidos à internet`;
+    case "sono": return p ? `${Math.round(100 * Math.min(1, p.pressao / (p.limiar_sono || 1)))}% até dormir · desfez ${fmt(p.deprimidas)}` : `${fmt(im.sonhos)} sonos`;
+    case "imaginacao": return `${fmt(im.confirmadas)} confirmadas · placebo ${fmt(im.placebo)}`;
+    case "mundo": return det && det.mundo ? `${fmt(det.mundo.length)} palavras no mapa · clique para ver` : "clique para ver";
+  }
+}
+const ctrl = (x1, y1, x2, y2) => { const mx = (x1 + x2) / 2, my = (y1 + y2) / 2, dx = x2 - x1, dy = y2 - y1; return [mx - dy * 0.14, my + dx * 0.14]; };
+const bez = (p0, c, p1, t) => [(1 - t) * (1 - t) * p0[0] + 2 * (1 - t) * t * c[0] + t * t * p1[0], (1 - t) * (1 - t) * p0[1] + 2 * (1 - t) * t * c[1] + t * t * p1[1]];
+function hexa(g, x, y, r) { g.beginPath(); for (let i = 0; i < 6; i++) { const a = Math.PI / 3 * i; g[i ? "lineTo" : "moveTo"](x + r * Math.cos(a), y + r * Math.sin(a)); } g.closePath(); }
+function interior(g, k, x, y, R, s) {
+  const m = est ? est.mente : null, im = est ? est.imaginacao : null;
+  g.save(); g.beginPath(); g.arc(x, y, R * 0.92, 0, 7); g.clip();
+  if (k === "memoria" && m) {                       // favo: cada celula ~ um tanto de pedacos, cor = nivel
+    const niv = Object.entries(m.niveis || {}).map(([a, b]) => [+a, b]).sort((a, b) => a[0] - b[0]);
+    const tot = niv.reduce((a, b) => a + b[1], 0) || 1, nc = Math.min(37, Math.max(7, Math.round(Math.log2(tot + 1) * 2.4)));
+    const cel = []; for (let q = -3; q <= 3; q++) for (let r = -3; r <= 3; r++) { if (Math.abs(q + r) > 3) continue; cel.push([q, r]); }
+    cel.sort((a, b) => (Math.abs(a[0]) + Math.abs(a[1]) + Math.abs(a[0] + a[1])) - (Math.abs(b[0]) + Math.abs(b[1]) + Math.abs(b[0] + b[1])));
+    const hr = R * 0.13; let acum = 0, ni = 0;
+    cel.slice(0, nc).forEach(([q, r], i) => { while (ni < niv.length - 1 && i / nc >= (acum + niv[ni][1]) / tot) { acum += niv[ni][1]; ni++; }
+      const lv = niv[ni] ? niv[ni][0] : 1, cx2 = x + hr * 1.75 * (q + r / 2), cy2 = y + hr * 1.5 * r;
+      const cor = lv >= 3 ? AMB : lv === 2 ? H : "120,170,190", tw = reduz ? .7 : .55 + .35 * Math.sin(s * 2 + i);
+      hexa(g, cx2, cy2, hr * .92); g.fillStyle = `rgba(${cor},${.15 + .4 * tw})`; g.fill(); g.strokeStyle = `rgba(${cor},.8)`; g.lineWidth = 1; g.stroke(); });
+  } else if (k === "curiosidade" && m) {            // perguntas orbitando
+    const n = Math.min(14, Math.max(2, Math.round(Object.values(m.lacunas || {}).reduce((a, b) => a + b, 0) / 25)));
+    for (let i = 0; i < n; i++) { const a = i / n * 7 + s * (0.5 + (i % 3) * .2), rr = R * (.35 + .4 * ((i * 37) % 10) / 10);
+      g.fillStyle = "rgba(169,139,255,.9)"; g.beginPath(); g.arc(x + Math.cos(a) * rr, y + Math.sin(a) * rr, 2 + (i % 3), 0, 7); g.fill(); }
+    g.fillStyle = "rgba(169,139,255,.95)"; g.font = `700 ${R * .55}px Rajdhani, Segoe UI`; g.textAlign = "center"; g.fillText("?", x, y + R * .2);
+  } else if (k === "sono") {                        // tanque que enche com a incerteza
+    const p = tel && tel.plasticidade, f = p && p.limiar_sono ? Math.min(1, p.pressao / p.limiar_sono) : .5;
+    const nivelY = y + R * .9 - f * R * 1.8;
+    g.fillStyle = `rgba(${AMB},.28)`; g.beginPath(); g.moveTo(x - R, y + R);
+    for (let xx = -R; xx <= R; xx += 4) g.lineTo(x + xx, nivelY + (reduz ? 0 : 3 * Math.sin(xx / 9 + s * 2)));
+    g.lineTo(x + R, y + R); g.closePath(); g.fill();
+    g.fillStyle = `rgba(${AMB},.95)`; g.font = `700 ${R * .3}px Rajdhani, Segoe UI`; g.textAlign = "center"; g.fillText(Math.round(f * 100) + "%", x, y + R * .12);
+    if (sonoRipple > 0) { arco(g, x, y, R * (1 - sonoRipple), 0, 7, `rgba(${AMB},${sonoRipple})`, 2); sonoRipple -= .01; }
+  } else if (k === "imaginacao" && im) {            // faiscas: douradas = confirmadas pelo mundo, cinza = placebo
+    const ng = Math.min(24, im.confirmadas), nc = Math.min(24, im.placebo);
+    for (let i = 0; i < ng + nc; i++) { const a = i * 2.39996, rr = R * .8 * Math.sqrt((i + .5) / (ng + nc + 1)), tw = reduz ? 1 : .4 + .6 * Math.abs(Math.sin(s * 1.7 + i));
+      g.fillStyle = i < ng ? `rgba(${AMB},${tw})` : `rgba(140,160,170,${tw * .6})`; g.beginPath(); g.arc(x + Math.cos(a) * rr, y + Math.sin(a) * rr, i < ng ? 2.6 : 1.8, 0, 7); g.fill(); }
+  } else if (k === "vontade") {                     // agulha: ler / pesquisar / olhar / voltar
+    agulha += (alvoAgulha - agulha) * .05;
+    ["LER", "BUSCAR", "OLHAR", "VOLTAR"].forEach((t, i) => { const a = [0, Math.PI / 2, Math.PI, -Math.PI / 2][i];
+      g.fillStyle = "#6e9aab"; g.font = `600 ${R * .17}px Rajdhani, Segoe UI`; g.textAlign = "center"; g.fillText(t, x + Math.cos(a) * R * .66, y + Math.sin(a) * R * .66 + 4); });
+    g.strokeStyle = `rgb(${H})`; g.lineWidth = 2.5; g.shadowColor = `rgb(${H})`; g.shadowBlur = 10;
+    g.beginPath(); g.moveTo(x, y); g.lineTo(x + Math.cos(agulha) * R * .45, y + Math.sin(agulha) * R * .45); g.stroke(); g.shadowBlur = 0;
+  } else if (k === "internet") {                    // globo girando, pontos = sites conhecidos
+    const n = est ? Math.min(60, Math.round(Math.log2(est.consumo.sites + 1) * 6)) : 0;
+    for (let i = 0; i < 4; i++) { const ph = (s * .3 + i / 4) % 1, rx = Math.abs(Math.cos(ph * Math.PI)) * R * .8;
+      g.strokeStyle = `rgba(${H},.35)`; g.lineWidth = 1; g.beginPath(); g.ellipse(x, y, rx, R * .8, 0, 0, 7); g.stroke(); }
+    for (let i = 0; i < n; i++) { const a = i * 2.39996 + s * .2, rr = R * .75 * Math.sqrt((i + .5) / n);
+      g.fillStyle = `rgba(${VERDE},.8)`; g.fillRect(x + Math.cos(a) * rr, y + Math.sin(a) * rr * .9, 2, 2); }
+  } else if (k === "olhos") {                       // iris que reage a cada leitura
+    const b = brilho.olhos;
+    g.strokeStyle = `rgba(${H},.9)`; g.lineWidth = 1.5; g.beginPath(); g.moveTo(x - R * .8, y);
+    g.quadraticCurveTo(x, y - R * .8, x + R * .8, y); g.quadraticCurveTo(x, y + R * .8, x - R * .8, y); g.stroke();
+    for (let i = 0; i < 18; i++) { const a = i / 18 * 7 + s; g.strokeStyle = `rgba(${H},.5)`; g.beginPath();
+      g.moveTo(x + Math.cos(a) * R * .16, y + Math.sin(a) * R * .16); g.lineTo(x + Math.cos(a) * R * .34, y + Math.sin(a) * R * .34); g.stroke(); }
+    g.fillStyle = "rgba(220,250,255,.95)"; g.beginPath(); g.arc(x, y, R * (.12 + .1 * (1 - b)), 0, 7); g.fill();
+  } else if (k === "mundo") {                       // mini mapa do mundo dela
+    const pts = det && det.mundo ? det.mundo : [];
+    pts.forEach((p) => { const cor = p.nivel >= 3 ? AMB : p.nivel === 2 ? H : "130,190,210";
+      g.fillStyle = `rgba(${cor},.85)`; g.fillRect(x - R * .8 + p.x * R * 1.6, y - R * .8 + p.y * R * 1.6, 2, 2); });
+    if (!pts.length) glifo(g, "", x, y, R * .3, VERDE);
+  } else if (k === "maos") {                        // cada pedido a internet e um pulso
+    const agora = performance.now();
+    while (emis.length && agora - emis[0].t > 1500) emis.shift();
+    emis.forEach((e2) => { const t = (agora - e2.t) / 1500; arco(g, x, y, R * (.2 + .7 * t), 0, 7, `rgba(${H},${1 - t})`, 1.5); });
+    glifo(g, "maos", x, y - R * .1, R * .32, H);
+  } else { glifo(g, k, x, y, R * .42, ORG[k].cor); }
+  g.restore();
+}
+function glifo(g, k, x, y, r, cor) {
+  g.strokeStyle = `rgb(${cor})`; g.fillStyle = `rgb(${cor})`; g.lineWidth = 1.6; g.beginPath();
+  if (k === "maos") { g.moveTo(x - r * .4, y - r); g.lineTo(x - r * .4, y + r * .6); g.lineTo(x - r * .05, y + r * .25); g.lineTo(x + r * .3, y + r); g.lineTo(x + r * .55, y + r * .85); g.lineTo(x + r * .2, y + r * .1); g.lineTo(x + r * .7, y + r * .1); g.closePath(); g.fill(); return; }
+  g.arc(x, y, r, 0, 7); g.stroke();
+}
+function anatomia(ts) {
+  requestAnimationFrame(anatomia);
+  if ($("organismo").hidden) return;
+  const c = $("anatomia"), r = devicePixelRatio || 1, w = c.clientWidth, h = c.clientHeight;
+  if (c.width !== Math.round(w * r) || c.height !== Math.round(h * r)) { c.width = w * r; c.height = h * r; }
+  const g = c.getContext("2d"); g.setTransform(r, 0, 0, r, 0, 0); g.clearRect(0, 0, w, h);
+  const P = (k) => [ORG[k].x * w, ORG[k].y * (h - 70) + 18], R = Math.min(w, h) * 0.07, s = ts / 1000;
+  VIAS.forEach(([a, b]) => { const p0 = P(a), p1 = P(b), cc = ctrl(p0[0], p0[1], p1[0], p1[1]);
+    g.strokeStyle = `rgba(${H},.07)`; g.lineWidth = 6; g.beginPath(); g.moveTo(p0[0], p0[1]); g.quadraticCurveTo(cc[0], cc[1], p1[0], p1[1]); g.stroke();
+    g.strokeStyle = `rgba(${H},.22)`; g.lineWidth = 1; g.setLineDash([3, 7]); g.lineDashOffset = reduz ? 0 : -s * 14;
+    g.beginPath(); g.moveTo(p0[0], p0[1]); g.quadraticCurveTo(cc[0], cc[1], p1[0], p1[1]); g.stroke(); g.setLineDash([]); });
+  for (let i = particulas.length - 1; i >= 0; i--) { const p = particulas[i]; p.t += p.v;
+    if (p.t >= 1) { brilho[p.b] = Math.max(brilho[p.b], .5); particulas.splice(i, 1); continue; } if (p.t < 0) continue;
+    const p0 = P(p.a), p1 = P(p.b), [x, y] = bez(p0, ctrl(p0[0], p0[1], p1[0], p1[1]), p1, p.t);
+    g.fillStyle = `rgba(${p.cor},.95)`; g.shadowColor = `rgb(${p.cor})`; g.shadowBlur = 12; g.beginPath(); g.arc(x, y, 2.8, 0, 7); g.fill(); g.shadowBlur = 0; }
+  Object.entries(ORG).forEach(([k, o]) => {
+    const [x, y] = P(k), b = brilho[k]; brilho[k] = Math.max(0, b - 0.01);
+    const halo = g.createRadialGradient(x, y, R * .6, x, y, R * (2.1 + b));
+    halo.addColorStop(0, `rgba(${o.cor},${0.16 + 0.32 * b})`); halo.addColorStop(1, `rgba(${o.cor},0)`);
+    g.fillStyle = halo; g.beginPath(); g.arc(x, y, R * (2.1 + b), 0, 7); g.fill();
+    g.fillStyle = "rgba(2,10,16,.9)"; g.beginPath(); g.arc(x, y, R, 0, 7); g.fill();
+    interior(g, k, x, y, R, s);
+    arco(g, x, y, R, 0, 7, `rgba(${o.cor},${0.65 + 0.35 * b})`, 1.6, 8 + 16 * b);
+    const giro = reduz ? 0 : s * (0.35 + b);
+    for (let j = 0; j < 3; j++) arco(g, x, y, R * 1.16, giro + j * 2.1, giro + j * 2.1 + 1.2, `rgba(${o.cor},.5)`, 1);
+    for (let j = 0; j < 24; j++) { const a = j / 24 * 7 - giro * .5; g.strokeStyle = `rgba(${o.cor},.3)`; g.lineWidth = 1; g.beginPath();
+      g.moveTo(x + Math.cos(a) * R * 1.26, y + Math.sin(a) * R * 1.26); g.lineTo(x + Math.cos(a) * R * 1.31, y + Math.sin(a) * R * 1.31); g.stroke(); }
+    g.textAlign = "center"; g.font = "700 15px Rajdhani, Segoe UI"; g.fillStyle = `rgb(${o.cor})`; g.fillText(o.nome, x, y + R * 1.5 + 6);
+    g.font = "11px JetBrains Mono, Consolas"; g.fillStyle = "#6e9aab"; g.fillText(o.sub, x, y + R * 1.5 + 21);
+    g.fillStyle = "#dff7ff"; g.fillText(vivo(k), x, y + R * 1.5 + 36);
+  });
+  const idadeLeg = (performance.now() - legendaT) / 1000;
+  g.textAlign = "center"; g.font = "600 17px Rajdhani, Segoe UI";
+  g.fillStyle = `rgba(223,247,255,${legenda ? Math.max(.4, 1 - idadeLeg / 8) : .5})`;
+  g.fillText(legenda ? "▸ " + legenda : "▸ " + (est ? est.pensamento : "aguardando a mente"), w / 2, h - 12);
+}
+requestAnimationFrame(anatomia);
+$("anatomia").addEventListener("click", (ev) => {
+  const c = $("anatomia"), b = c.getBoundingClientRect(), x = ev.clientX - b.left, y = ev.clientY - b.top;
+  const w = c.clientWidth, h = c.clientHeight, R = Math.min(w, h) * 0.07;
+  for (const [k, o] of Object.entries(ORG)) { const ox = o.x * w, oy = o.y * (h - 70) + 18;
+    if (Math.hypot(x - ox, y - oy) < R * 1.3) { abreOrgao(k); return; } }
+});
+$("anatomia").style.cursor = "pointer";
+
+/* ---------- o decodificador: cada coisa interna mostrada no sentido onde nasceu ---------- */
+let det = null, orgaoAberto = null;
+async function puxaDetalhe() {
+  if ($("organismo").hidden && $("ve").hidden && !orgaoAberto) return;
+  try { const d = await (await fetch("/api/detalhe")).json(); det = d.indisponivel ? null : d; } catch (e) {}
+  if (orgaoAberto) abreOrgao(orgaoAberto, true);
+}
+setInterval(puxaDetalhe, 5000); puxaDetalhe();
+function fechaOrgao() { orgaoAberto = null; $("orgao").hidden = true; }
+$("orgao-fechar").addEventListener("click", fechaOrgao);
+addEventListener("keydown", (e) => { if (e.key === "Escape") fechaOrgao(); });
+const caixa = (t, html, ex) => `<div class="caixa"><h4>${t}</h4>${ex ? `<p class="explica">${ex}</p>` : ""}${html}</div>`;
+const SEM = '<p class="vazio">aparece quando a vida contínua ligar (hoje à noite): a mente nova publica o que acontece dentro dela.</p>';
+function tilesVisuais(lista) {
+  return `<div class="tiles">${lista.map((p, i) => `<figure><canvas data-px="${p.px.join(",")}" width="8" height="8"></canvas><figcaption>${p.n}×</figcaption></figure>`).join("")}</div>`;
+}
+function pintaTiles(raiz) {
+  raiz.querySelectorAll("canvas[data-px]").forEach((c) => { const px = c.dataset.px.split(",").map(Number), g = c.getContext("2d"), im = g.createImageData(8, 8);
+    px.forEach((v, i) => { im.data[i * 4] = v * .55; im.data[i * 4 + 1] = v * .92; im.data[i * 4 + 2] = v; im.data[i * 4 + 3] = 255; }); g.putImageData(im, 0, 0); });
+}
+function arvoreHTML(no) {
+  const nv = Math.min(no.nivel, 3), cab = `<span>${esc(no.u)}</span><span class="nv nv${nv}">nível ${no.nivel}</span> <em style="color:var(--apagado);font-style:normal">${no.n}×</em>`;
+  if (!no.partes) return `<li>${cab}</li>`;
+  return `<li><details open><summary>${cab}</summary><ul>${no.partes.map(arvoreHTML).join("")}</ul></details></li>`;
+}
+function cognicaoHtml(c) {
+  if (!c) return "";
+  const r = c.regra || {}, n = r.n || 0, pc = (x) => n ? Math.round(100 * (x || 0) / n) + "%" : "—";
+  const dv = c.divagar || {}, rl = c.releitura || {};
+  const linha = (rot, x, tot) => `<div class="opcao"><span>${rot}</span><i><b style="width:${tot ? 100 * x / tot : 0}%"></b></i><em>${tot ? Math.round(100 * x / tot) + "%" : "—"}</em></div>`;
+  return `<div class="duas">${caixa("INFERIR: A REGRA DO QUE ACONTECE", linha("a regra mais curta que ela inferiu acertou o próximo verbo", r.regra || 0, n)
+      + linha("aposta burra: “o mais frequente”", r.frequente || 0, n) + linha("aposta burra: “repete o último”", r.ultimo || 0, n)
+      + `<p class="nota">Regras mais escolhidas: ${Object.entries(c.regras_vistas || {}).map(([k, v]) => k + " " + v + "×").join(", ") || "—"}. ${fmt(n)} previsões feitas antes de ver.</p>`,
+      "O princípio do núcleo do ARC (a explicação mais curta) rodando sobre os vídeos que ela vê. Só conta como inferência o que bate as duas apostas burras.")}
+    ${caixa("DIVAGAR E VOLTAR PARA RELER", `<div class="opcao"><span>vezes que ela se voltou para dentro (revivendo / sonhando acordada)</span><em>${fmt(dv.reviver || 0)} / ${fmt(dv.sonhar || 0)}</em></div>
+      <div class="opcao"><span>ganho médio no presente (revivendo / sonhando)</span><em>${dv.reviver ? ((dv.reviver_ganho_x1000 || 0) / dv.reviver / 1000).toFixed(4) : "—"} / ${dv.sonhar ? ((dv.sonhar_ganho_x1000 || 0) / dv.sonhar / 1000).toFixed(4) : "—"}</em></div>
+      <div class="opcao"><span>releu o que não entendeu (páginas) · progresso médio</span><em>${fmt((rl.verdadeira || {}).n || 0)} · ${(rl.verdadeira || {}).progresso_medio ?? "—"}</em></div>
+      <div class="opcao"><span>placebo: releu um trecho que tinha entendido · progresso</span><em>${fmt((rl.placebo || {}).n || 0)} · ${(rl.placebo || {}).progresso_medio ?? "—"}</em></div>`,
+      "Ela divaga no tédio (quando as últimas experiências renderam pouco), e a chance de divagar é a fração das divagações recentes que AJUDARAM a ver o presente. Reler o que confundiu é comparado com reler, de placebo, o que já estava claro.")}</div>`;
+}
+function corpoHtml(c) {
+  const a = c && c.corpo && c.corpo.length ? c.corpo[c.corpo.length - 1] : null;
+  return caixa("O CORPO DELA: O PRÓPRIO OLHO", a ? `<div class="opcao"><span>só pelo que viu, acerta para onde mexeu o olho</span><i><b style="width:${100 * a.acerta_comando}%"></b></i><em>${Math.round(100 * a.acerta_comando)}%</em></div>
+      <div class="opcao"><span>placebo (comando sorteado)</span><i><b style="width:${100 * a.placebo}%"></b></i><em>${Math.round(100 * a.placebo)}%</em></div>
+      <div class="opcao"><span>mudanças do MUNDO (vídeo) que ela tomaria por movimento próprio</span><i><b style="width:${100 * (a.video_parece_eu || 0)}%"></b></i><em>${a.video_parece_eu == null ? "—" : Math.round(100 * a.video_parece_eu) + "%"}</em></div>`
+    : '<p class="vazio">o corpo se avalia a cada 5 sonos, depois de 120 movimentos do olho com o efeito registrado</p>',
+    "Cada micro-movimento do olho tem comando conhecido (8 px para um lado). Ela aprende o que o próprio olho faz — o começo de distinguir “fui eu” de “o mundo mudou”. Acaso: 25%.");
+}
+function verbosHtml(v) {
+  if (!v) return caixa("VERBOS VISUAIS", '<p class="vazio">o órgão dos verbos ainda está juntando experiência (micro-movimentos do olho e quadros de vídeo)</p>',
+    "Verbos são transformações separadas da cena — “como mudou”, sem “o quê”. Ela forma os dela sem ninguém nomear.");
+  const iv = v.imaginacao_visual || {}, n = iv.n || 0, ult = (v.sondas || []).slice(-1)[0];
+  const pct = (x) => n ? Math.round(100 * (x || 0) / n) + "%" : "—";
+  const sonda = ult ? `<div class="opcao"><span>transporte: verbo tirado de uma imagem prevê OUTRA imagem mudando</span><i><b style="width:${100 * ult.transporte_vence}%"></b></i><em>${Math.round(100 * ult.transporte_vence)}%</em></div>
+    ${Object.entries(ult.transporte_por_familia).map(([f, x]) => `<div class="opcao"><span>· ${f}</span><i><b style="width:${100 * x}%"></b></i><em>${Math.round(100 * x)}%</em></div>`).join("")}
+    <div class="opcao"><span>composição: girar e depois aproximar (nunca visto junto)</span><i><b style="width:${100 * ult.compor_vence}%"></b></i><em>${Math.round(100 * ult.compor_vence)}%</em></div>
+    <p class="nota">Linha de base de um órgão sem experiência: transporte 2%, composição 0%. Sonda de ${new Date(ult.quando * 1000).toLocaleTimeString("pt-BR", {hour: "2-digit", minute: "2-digit"})}; ela só mede, nunca treina.</p>`
+    : '<p class="vazio">a primeira sonda roda depois de 50 lições, a cada 10 sonos</p>';
+  return `<div class="duas">${caixa(`VERBOS VISUAIS (${fmt(v.total)} dela)`, `<img src="/api/verbos.jpg?t=${Date.now()}" alt="a mesma imagem antes e depois de cada verbo" style="width:min(100%,260px);image-rendering:pixelated;border:1px solid var(--linha)">`,
+      `Cada linha: a mesma imagem, e o que ela vira quando o córtex aplica um verbo dela (os 6 mais usados). ${fmt(v.pares)} pares vividos, ${fmt(v.passos)} lições.`)}
+    ${caixa("OS VERBOS PASSAM NA PROVA?", sonda + `<div class="opcao"><span>imaginação no vídeo: o que imaginou para daqui a 1 s bateu o placebo e o “nada muda”</span><i><b style="width:${n ? 100 * (iv.venceu || 0) / n : 0}%"></b></i><em>${pct(iv.venceu)} de ${fmt(n)}</em></div>`,
+      "A prova usa imagens dela com transformações conhecidas (girar, aproximar, deslizar, cor). Placebo = o verbo de outro momento qualquer da vida dela.")}</div>`;
+}
+function abreOrgao(k, atualizar) {
+  if (!atualizar && orgaoAberto === k) return;
+  orgaoAberto = k; const o = ORG[k]; $("orgao").hidden = false;
+  $("orgao-titulo").firstChild.textContent = o.nome; $("orgao-sub").textContent = o.sub;
+  const d = det, m = est ? est.mente : null; let html = "";
+  if (k === "memoria") {
+    html = `<div class="duas">${caixa("A HIERARQUIA QUE ELA CONSTRUIU", d && d.hierarquia.length ? `<ul class="arvore">${d.hierarquia.map(arvoreHTML).join("")}</ul>` : (d ? '<p class="vazio">ainda sem unidades de nível 3</p>' : SEM),
+      "Cada unidade alta é feita de unidades menores, que ela mesma juntou porque aparecem juntas mais que o acaso. Ninguém disse o que é palavra.")}
+      ${caixa("QUANTO HÁ EM CADA NÍVEL", m ? Object.entries(m.niveis || {}).map(([a, b]) => `<div class="opcao"><span>nível ${a}</span><i><b style="width:${Math.min(100, 100 * Math.log1p(b) / Math.log1p(Math.max(...Object.values(m.niveis))))}%"></b></i><em>${fmt(b)}</em></div>`).join("") : "",
+      "Nível 1: pedaços que voltam em vários sites. Nível 2: pedaços de pedaços (palavras). Nível 3+: expressões.")}</div>`;
+  } else if (k === "curiosidade") {
+    html = d ? d.perguntas.map((p) => caixa(`“${esc(p.alvo.trim())}” · ${({depois: "não sabe o que vem depois", inesperado: "não esperava isto aqui", divergente: "usado de jeitos diferentes", ligacao: "combina com aquela imagem?"})[p.tipo] || p.tipo}`,
+      p.janelas.map((j) => `<p class="frase">…${esc(j.antes)}<mark>${esc(j.alvo)}</mark>${esc(j.depois)}…<em>${esc(j.dominio)}</em></p>`).join("") +
+      `<p class="explica">foi atrás ${p.tent}× · resolveu algo ${p.pagou}× · intensidade ${p.ativ}</p>`)).join("") : SEM;
+    html = `<p class="explica">Onde exatamente ela ficou confusa: o trecho real em que a pergunta nasceu, com a parte que ela não conseguiu prever marcada.</p>` + html;
+  } else if (k === "vontade") {
+    if (d && d.decisao) { const mx = Math.max(...d.decisao.opcoes.map((o2) => o2.valor), 1e-9);
+      html = caixa("A ÚLTIMA ESCOLHA, E O QUANTO CADA OPÇÃO VALIA", d.decisao.opcoes.map((o2) => `<div class="opcao ${o2.acao === d.decisao.escolhida ? "escolhida" : ""}"><span>${esc(nomeB(o2.acao))}${o2.por ? ` <em style="color:var(--apagado);font-style:normal">(por “${esc(o2.por.trim())}”)</em>` : ""}</span><i><b style="width:${100 * o2.valor / mx}%"></b></i><em>${o2.custo} s</em></div>`).join(""),
+        "Para cada ação possível ela sorteia o quanto acha que vai aprender (pela experiência dela) e divide pelo tempo que custa. Fica com a maior. A barra é esse valor.");
+    } else html = SEM;
+  } else if (k === "maos") {
+    const a = d && d.ultima_acao;
+    if (a) { let tela;
+      if (a.estrategia.startsWith("pesquisar")) tela = `<div class="busca-mock">🔍 ${esc(a.consulta || "")}</div><p class="explica">digitou na busca de ${esc(nomeB(a.estrategia).replace("buscar em ", "").replace("buscar na ", ""))} — porque não entendia “${esc((a.lacuna || "").trim())}”</p>`;
+      else if (a.estrategia.startsWith("seguir")) tela = `<p>clicou no link <span class="clique">${esc(a.ancora || "(sem texto)")}</span></p><p class="explica">de ${esc(a.de || "")}</p>`;
+      else if (a.estrategia === "voltar") tela = `<p>⟵ apertou VOLTAR</p><p class="explica">voltou para ${esc(a.destino || "")}</p>`;
+      else tela = `<p>${esc(nomeB(a.estrategia))}</p>`;
+      html = caixa("O QUE AS MÃOS DELA FIZERAM AGORA", `<div class="tela-mini"><div class="url">${esc(a.destino || a.de || "")}</div>${tela}</div><p class="explica">levou ${a.segundos} s · ${a.pagou ? "valeu a pena (aprendeu mais que o típico)" : "não rendeu muito"}${a.erro ? " · falhou: " + esc(a.erro) : ""}</p>`);
+    } else html = SEM;
+  } else if (k === "sono") {
+    const sd = d && d.sono;
+    html = sd ? caixa(`O ÚLTIMO SONO (recurso: ${sd.recurso} testes)`, sd.testes.map((t) => `<div class="teste ${t.acao}"><b>${t.acao.toUpperCase()}</b><span>“${esc(t.u.trim())}”</span><em style="font-style:normal;text-align:right">${t.bits > 0 ? "+" : ""}${t.bits} bits</em></div>`).join(""),
+      "No sono ela re-percebe o que viveu agora há pouco COM e SEM cada junção que estava marcada, e mede quantos bits a junção economiza. Economiza: liga. Deixou de economizar: desfaz. É como uma optogenética que ela faz em si mesma.") : SEM;
+  } else if (k === "imaginacao") {
+    const im = d && d.imaginacao;
+    html = im ? `<div class="duas">${caixa("O QUE ELA IMAGINOU NO SONO", im.recentes.map((r) => `<div class="teste ${r.confirmada ? "ligou" : "manteve"}"><b>${r.confirmada ? "VIU!" : "esperando"}</b><span>“${esc(r.par.trim())}” <em style="color:var(--apagado);font-style:normal">(molde “${esc(r.molde.trim())}”)</em></span><span></span></div>`).join(""),
+      "Ela pega uma junção que conhece e troca uma peça por outra que ela usa de jeito parecido. Nunca leu o resultado. Se depois aparecer no mundo: VIU!"
+      + (im.orcamento != null ? ` Agora ela imagina ${im.orcamento} por sono: o orçamento cresce quando a imaginação acerta mais que o placebo e encolhe quando não acerta.` : ""))}
+      ${caixa("PLACEBO (imaginação sem parentesco)", im.placebo.map((r) => `<div class="teste ${r.confirmada ? "ligou" : "manteve"}"><b>${r.confirmada ? "viu" : "—"}</b><span>“${esc(r.par.trim())}”</span><span></span></div>`).join(""),
+      `Mesma quantidade, peças sorteadas sem parentesco de uso. Placar: real ${im.confirmadas.real} × placebo ${im.confirmadas.nulo}.`)}</div>` +
+      (im.construcoes.length ? caixa("CONSTRUÇÕES (moldes com lacuna que ela criou)", im.construcoes.map((c2) => `<p class="frase">“${esc(c2.molde)}” ← ${c2.pecas.map((x) => "“" + esc(x.trim()) + "”").join(", ")}</p>`).join("")) : "") : SEM;
+    html += cognicaoHtml(d && d.cognicao);
+  } else if (k === "olhos" && d && d.visao && d.visao.cortex) {
+    const cx = d.visao.cortex, lp = cx.lp || {};
+    const lps = Object.entries({ler: "ler", imagem: "imagens", olhar: "pontos que chamam a atenção", video: "vídeos"})
+      .map(([kk, nome]) => `<div class="opcao"><span>${nome}</span><i><b style="width:${Math.max(2, Math.min(100, 100 * ((lp[kk] ?? 0) + .1)))}%"></b></i><em>${(lp[kk] ?? 0).toFixed(3)}</em></div>`).join("");
+    html = `<div class="duas">${caixa("O OLHO AGORA", `<img src="/api/olho.jpg?t=${Date.now()}" alt="fóvea e reconstrução" style="width:100%;image-rendering:pixelated;border:1px solid var(--linha)">`,
+      `Esquerda: os 64×64 pixels coloridos que chegam na fóvea. Meio: o que o córtex dela reconstrói a partir de 64 números — o que ela de fato vê. ${fmt(cx.olhadas)} olhadas na vida; ${fmt(cx.passos_tempo)} lições de prever o próximo quadro de vídeo.`)}
+      ${caixa(`AS PALAVRAS VISUAIS DELA (${fmt(cx.total)})`, `<img src="/api/palavras_visuais.jpg?t=${Date.now()}" alt="as palavras visuais mais usadas, desenhadas pelo próprio córtex" style="width:100%;image-rendering:pixelated;border:1px solid var(--linha)">`,
+      "As 24 mais usadas, cada uma desenhada pelo próprio córtex no centro, sobre a palavra mais comum (o “fundo”). São pedaços de ~22 px — do tamanho de uma letra. Ninguém deu essas formas a ela.")}</div>
+      ${caixa("PALAVRA ↔ IMAGEM: LIGAÇÕES DE VERDADE?", `<div class="opcao"><span>ligações confirmadas</span><i><b style="width:${Math.min(100, (cx.ligacoes || 0) / 2)}%"></b></i><em>${fmt(cx.ligacoes || 0)}</em></div>
+        <div class="opcao"><span>no controle de mentira (texto × imagem de outra página)</span><i><b style="width:${Math.min(100, (cx.ligacoes_nulo || 0) / 2)}%"></b></i><em>${fmt(cx.ligacoes_nulo || 0)}</em></div>
+        <div class="opcao"><span><b>acima do acaso</b> (a palavra visual liga mais que no controle)</span><i><b style="width:${Math.min(100, (cx.ligacoes_acima_do_acaso || 0) / 2)}%"></b></i><em>${fmt(cx.ligacoes_acima_do_acaso || 0)}</em></div>`,
+        "Só conta como aprendizado a ligação cuja palavra visual se liga ao texto mais vezes do que quando o par é de mentira — teste binomial com correção para centenas de comparações ao mesmo tempo (Benjamini-Hochberg, 5%). O resto é frequência ou sorte.")}
+      ${verbosHtml(d.verbos)}
+      ${corpoHtml(d.cognicao)}
+      ${caixa("PARA ONDE A CURIOSIDADE DOS OLHOS PUXA", lps, "Progresso de aprendizagem de cada tipo de coisa (quanto o erro dela caiu, em fração): ela tende a olhar primeiro o tipo que mais está ensinando agora.")}`;
+  } else if (k === "olhos") {
+    const v = d && d.visao;
+    html = `<div class="duas">${caixa("AGORA", `<canvas id="olho-grande" width="32" height="32" style="width:min(100%, 320px);height:auto;aspect-ratio:1;image-rendering:pixelated;border:1px solid var(--linha);display:block"></canvas>`, "O quadro como chega a ela: 32×32 em cinza. A grade mostra que “palavra visual” casou com cada pedaço.")}
+      ${caixa(`O QUE ELA APRENDEU A VER (${v ? v.total : 0} palavras visuais)`, v && v.palavras_visuais.length ? tilesVisuais(v.palavras_visuais) : (d ? '<p class="vazio">ainda não viu imagens suficientes</p>' : SEM),
+      "Cada quadradinho é um padrão que ela mesma formou de pedaços 8×8 de imagens (bordas, texturas, degradês). Ninguém deu essas formas a ela.")}</div>`;
+  } else if (k === "internet") {
+    const doms = {}; historicoDom.forEach((x) => { doms[x] = (doms[x] || 0) + 1; });
+    html = caixa("SITES ABERTOS AGORA HÁ POUCO", Object.entries(doms).sort((a, b) => b[1] - a[1]).map(([x, n]) => `<div class="opcao"><span>${esc(x)}</span><i><b style="width:${Math.min(100, n * 10)}%"></b></i><em>${n}×</em></div>`).join("") || '<p class="vazio">nenhum ainda nesta sessão do painel</p>',
+      `Ninguém deu esses endereços a ela: ela chegou por portas aleatórias, links e buscas que ela mesma fez. Ela já conhece ${est ? fmt(est.consumo.sites) : "—"} sites.`);
+  } else if (k === "mundo") {
+    html = caixa("O MAPA DO MUNDO DELA", `<canvas id="mapa-grande" style="width:100%;height:62vh"></canvas>`,
+      "As palavras que ela mais usa, posicionadas pelo USO: perto = aparecem em contextos parecidos (ela agrupa sozinha números, nomes, conectivos…). O mapa se reorganiza enquanto ela vive e dorme. Azul: palavras que ela formou; âmbar: expressões.");
+  }
+  $("orgao-corpo").innerHTML = html;
+  pintaTiles($("orgao-corpo"));
+  if (k === "mundo") requestAnimationFrame(() => desenhaMundo($("mapa-grande"), new Set(), 60));
+  if (k === "olhos") desenhaOlhoGrande();
+}
+function desenhaOlhoGrande() {
+  const c = $("olho-grande"); if (!c || !visaoQ) return; const g = c.getContext("2d"), im = g.createImageData(32, 32);
+  visaoQ.quadro.forEach((v, i) => { im.data[i * 4] = v * .55; im.data[i * 4 + 1] = v * .92; im.data[i * 4 + 2] = v; im.data[i * 4 + 3] = 255; });
+  g.putImageData(im, 0, 0);
+  const mapa = det && det.visao && det.visao.mapa_atual; if (!mapa) return;
+  g.strokeStyle = "rgba(255,174,66,.7)"; g.lineWidth = .3; g.font = "3px monospace"; g.fillStyle = "rgba(255,174,66,.95)";
+  mapa.forEach((id, i) => { const r = Math.floor(i / 4), cc = i % 4; g.strokeRect(cc * 8, r * 8, 8, 8); g.fillText(String(id), cc * 8 + 1, r * 8 + 4); });
+}
+const posMundo = new Map();
+function desenhaMundo(c, acesas, nRotulos) {
+  if (!c) return; const r = devicePixelRatio || 1, w = c.clientWidth, h = c.clientHeight;
+  c.width = w * r; c.height = h * r; const g = c.getContext("2d"); g.scale(r, r);
+  const pts = det && det.mundo ? det.mundo : [];
+  if (!pts.length) { g.fillStyle = "#6e9aab"; g.font = "11px JetBrains Mono, Consolas"; g.textAlign = "center";
+    g.fillText(det ? "juntando palavras para o mapa…" : "aparece quando a vida contínua ligar", w / 2, h / 2); return; }
+  const pad = 16, ordem = [...pts].sort((a, b) => b.n - a.n), rot = new Set(ordem.slice(0, nRotulos).map((p) => p.u));
+  pts.forEach((p) => { const alvo = [pad + p.x * (w - 2 * pad), pad + p.y * (h - 2 * pad)], at = posMundo.get(p.u) || alvo;
+    const xy = [at[0] + (alvo[0] - at[0]) * .2, at[1] + (alvo[1] - at[1]) * .2]; posMundo.set(p.u, xy);
+    const aceso = acesas.has(p.u.toLowerCase()), cor = aceso ? "255,255,255" : p.nivel >= 3 ? AMB : p.nivel === 2 ? H : "120,180,200";
+    const rad = (aceso ? 3.5 : 1.6) + Math.log10(p.n + 1) * .8;
+    g.fillStyle = `rgba(${cor},${aceso ? 1 : .75})`; if (aceso) { g.shadowColor = "#fff"; g.shadowBlur = 12; }
+    g.beginPath(); g.arc(xy[0], xy[1], rad, 0, 7); g.fill(); g.shadowBlur = 0;
+    if (rot.has(p.u) || aceso) { g.fillStyle = aceso ? "#fff" : "rgba(223,247,255,.75)"; g.font = `${aceso ? 600 : 400} 10px JetBrains Mono, Consolas`;
+      g.textAlign = "left"; g.fillText(p.u, xy[0] + rad + 3, xy[1] + 3); } });
+}
+const historicoDom = [];
+
+/* ---------- o que ela ve ---------- */
+let percAtual = null, palcoVez = 0, visaoQ = null, ultimaVisao = 0;
+const historico = [];
+function historicoEvento(e) {
+  if (e.ev === "leu") { historico.unshift({tipo: "pagina", texto: e.dominio}); historicoDom.unshift(e.dominio); historicoDom.length = Math.min(historicoDom.length, 40); }
+  else if (e.ev === "viu") historico.unshift({tipo: "imagem", texto: `${e.n} imagem(ns)`});
+  else if (e.ev === "assistiu") historico.unshift({tipo: "video", texto: "vídeo assistido"});
+  else return;
+  historico.length = Math.min(historico.length, 9);
+  $("historico").innerHTML = historico.map((h0) => {
+    const ic = h0.img ? `<img src="${esc(h0.img)}" alt="">` : `<span class="icone">${{pagina: "TEXTO", imagem: "IMAGEM", video: "VÍDEO"}[h0.tipo]}</span>`;
+    return `<li>${ic}<span>${esc(h0.texto)}</span><em>${h0.extra || ""}</em></li>`; }).join("");
+}
+function trocaPalco(html) {
+  const a = $("palco-a"), b = $("palco-b"), vis = palcoVez % 2 ? b : a, nov = palcoVez % 2 ? a : b;
+  nov.innerHTML = html; nov.style.opacity = 1; vis.style.opacity = 0; palcoVez++;
+  setTimeout(() => { if (vis.style.opacity === "0") { vis.querySelectorAll("video").forEach((v) => v.pause()); vis.innerHTML = ""; } }, 700);
+  return nov;
+}
+function mostraPercepto(p) {
+  if (!p || (percAtual && p.quando === percAtual.quando)) return;
+  // um video em andamento continua na tela ate acabar
+  if (percAtual && percAtual.tipo === "video" && Date.now() / 1000 - percAtual.quando < (percAtual.duracao || 30) && p.tipo !== "video") return;
+  percAtual = p;
+  if (p.tipo === "pagina") {
+    $("ve-tipo").textContent = "LENDO"; $("ve-url").textContent = p.url;
+    const html = p.pecas.map(([t, n]) => `<span class="n${Math.min(n, 3)}">${esc(t)}</span>`).join("");
+    trocaPalco(`<div class="leitura">${html}</div><div class="legenda-cor" style="position:absolute;bottom:10px;left:22px">
+      <span style="color:#3d5763">ainda não reconhece</span><span style="color:#9fd9ea">pedaço (nível 1)</span>
+      <span style="color:var(--holo)">palavra que ela formou (nível 2)</span><span style="color:var(--ambar)">expressão (nível 3+)</span>
+      <span style="color:var(--texto)">ela reconhece ${Math.round(100 * p.reconhece)}% deste trecho</span></div>`);
+  } else if (p.tipo === "imagens") {
+    $("ve-tipo").textContent = "OLHANDO"; $("ve-url").textContent = p.dominio + " · " + p.urls.length + " imagem(ns)";
+    trocaPalco(`<div class="grade-img">${p.urls.map((u, i) => `<figure><img src="${esc(u)}" alt="" referrerpolicy="no-referrer"><figcaption>${esc(p.legendas[i] || "")}</figcaption></figure>`).join("")}</div>`);
+    if (historico[0] && historico[0].tipo === "imagem") historico[0].img = p.urls[0];
+  } else if (p.tipo === "video") {
+    $("ve-tipo").textContent = "ASSISTINDO"; $("ve-url").textContent = p.legenda || p.url;
+    const n = trocaPalco(`<div class="video-caixa"><video src="${esc(p.url)}" muted autoplay playsinline loop referrerpolicy="no-referrer"></video>
+      <div class="linha-video"><button class="voz" type="button" data-som>🔊 OUVIR (só para você)</button><i><b id="vid-prog" style="width:0%"></b></i><em id="vid-t">0 s</em></div></div>`);
+    const v = n.querySelector("video");
+    v.addEventListener("error", () => { v.outerHTML = '<p class="nota" style="align-self:center;text-align:center">o navegador não toca este formato de vídeo — mas ela está assistindo: à direita, o quadro do jeito que ela vê.</p>'; });
+    n.querySelector("[data-som]").addEventListener("click", (ev) => { v.muted = !v.muted; ev.target.textContent = v.muted ? "🔊 OUVIR (só para você)" : "🔇 SILENCIAR"; });
+  }
+}
+let telaInfo = null, telaQuando = 0, telaMontada = false;
+async function puxaTela() {
+  if ($("ve").hidden) return false;
+  let t; try { t = await (await fetch("/api/tela")).json(); } catch (e) { return false; }
+  if (t.indisponivel || t.atraso_s > 120) return false;
+  if (!telaMontada) {
+    trocaPalco(`<div class="ao-vivo"><div class="moldura"><img id="tela-img" alt="a tela que ela está vendo agora"><canvas id="tela-sobre"></canvas></div>
+      <div class="trilho-rolagem" title="onde ela está na página"><b id="tela-rolagem"></b></div></div><div class="nota-viva" id="tela-nota"></div>`);
+    telaMontada = true; percAtual = {tipo: "tela", quando: 0};
+  }
+  if (t.quando !== telaQuando) {
+    telaQuando = t.quando; telaInfo = t;
+    const img = $("tela-img"); img.onload = desenhaSobreTela; img.src = "/api/tela.jpg?t=" + t.quando;
+    const fx = (t.fixacao || [])[2];
+    $("ve-tipo").textContent = t.modo === "video" ? (t.som ? "ASSISTINDO · OUVINDO" : "ASSISTINDO · SEM SOM")
+      : t.modo === "divagando" ? "DIVAGANDO (OLHANDO PARA DENTRO)"
+      : t.clique ? "CLICANDO" : ({ler: "LENDO", imagem: "OLHANDO A IMAGEM", olhar: "OLHANDO", reler: "VOLTOU PARA RELER"}[fx] || "OLHANDO A TELA");
+    $("ve-url").textContent = t.url;
+    $("tela-rolagem").parentElement.style.visibility = t.modo === "video" ? "hidden" : "visible";
+    const tot = Math.max(t.altura_pagina, t.altura), b = $("tela-rolagem");
+    b.style.top = (100 * t.rolagem / tot) + "%"; b.style.height = Math.max(3, 100 * t.altura / tot) + "%";
+    $("tela-nota").textContent = (t.nota || "") + (t.modo !== "video" && t.reconhece != null ? ` · ela reconhece ${Math.round(100 * t.reconhece)}% do texto desta tela` : "")
+      + (t.modo !== "video" && t.fixacoes && t.fixacoes.length ? ` · ${t.fixacoes.length} paradas do olhar nesta tela` : "");
+  }
+  return true;
+}
+function desenhaSobreTela() {
+  const img = $("tela-img"), c = $("tela-sobre"), t = telaInfo; if (!img || !c || !t) return;
+  const w = img.clientWidth, h = img.clientHeight, r = devicePixelRatio || 1, ex = w / t.largura, ey = h / t.altura;
+  c.style.width = w + "px"; c.style.height = h + "px"; c.width = w * r; c.height = h * r;
+  const g = c.getContext("2d"); g.scale(r, r); g.clearRect(0, 0, w, h);
+  if (t.modo === "video") {                       // o som que ela esta ouvindo, em 24 faixas (grave -> agudo)
+    if (t.som) { const n = t.som.length, bw = w * .5 / n, base = h - 12;
+      g.fillStyle = "rgba(0,0,0,.55)"; g.fillRect(8, base - 70, w * .5 + 8, 78);
+      t.som.forEach((v, i) => { const a = Math.max(2, (v + 2.5) * 14); g.fillStyle = `rgba(${H},.9)`; g.fillRect(12 + i * bw, base - a, bw - 2, a); });
+      g.fillStyle = "#dff7ff"; g.font = "600 11px Rajdhani, Segoe UI"; g.fillText("O QUE ELA OUVE (grave → agudo)", 12, base - 56); }
+    if (t.surpresa && t.surpresa.length > 2) { const s = t.surpresa, mx = Math.max(...s, 1e-6), x0 = w * .58, sw = w * .38, base = h - 12;
+      g.fillStyle = "rgba(0,0,0,.55)"; g.fillRect(x0 - 4, base - 70, sw + 8, 78);
+      g.strokeStyle = `rgb(${AMB})`; g.lineWidth = 2; g.beginPath();
+      s.forEach((v, i) => { const x = x0 + sw * i / (s.length - 1), y = base - 50 * v / mx; i ? g.lineTo(x, y) : g.moveTo(x, y); }); g.stroke();
+      g.fillStyle = "#dff7ff"; g.font = "600 11px Rajdhani, Segoe UI"; g.fillText("SURPRESA AO PREVER O PRÓXIMO QUADRO", x0, base - 56); }
+    return;
+  }
+  const sl = (t.saliencia || []).slice().sort((p, q) => q[2] - p[2]), smx = sl.length ? sl[0][2] : 1, smn = sl.length ? sl[sl.length - 1][2] : 0;
+  sl.slice(0, 6).forEach(([x, y, e]) => { const a = Math.max(.25, (e - smn) / (smx - smn + 1e-9));   // onde o cortex dela MAIS erra
+    const gr = g.createRadialGradient(x * ex, y * ey, 0, x * ex, y * ey, 40 * ex);
+    gr.addColorStop(0, `rgba(169,139,255,${.45 * a})`); gr.addColorStop(1, "rgba(169,139,255,0)");
+    g.fillStyle = gr; g.beginPath(); g.arc(x * ex, y * ey, 40 * ex, 0, 7); g.fill(); });
+  const fx = t.fixacoes || [], COR = {ler: H, imagem: AMB, olhar: "169,139,255", reler: VERDE};
+  if (fx.length > 1) { g.strokeStyle = "rgba(255,255,255,.55)"; g.lineWidth = 1.5; g.setLineDash([4, 3]); g.beginPath();
+    fx.forEach(([x, y], i) => i ? g.lineTo(x * ex, y * ey) : g.moveTo(x * ex, y * ey)); g.stroke(); g.setLineDash([]); }
+  fx.forEach(([x, y, tp], i) => { const ult = i === fx.length - 1, cor = COR[tp] || H;
+    g.fillStyle = `rgba(${cor},${ult ? .95 : .6})`; g.beginPath(); g.arc(x * ex, y * ey, ult ? 9 : 7, 0, 7); g.fill();
+    g.fillStyle = "#001018"; g.font = "700 10px Rajdhani, Segoe UI"; g.textAlign = "center"; g.fillText(String(i + 1), x * ex, y * ey + 3.5); g.textAlign = "left";
+    if (ult) { g.strokeStyle = `rgb(${cor})`; g.lineWidth = 2; g.shadowColor = `rgb(${cor})`; g.shadowBlur = 10;
+      g.strokeRect((x - 32) * ex, (y - 32) * ey, 64 * ex, 64 * ey); g.shadowBlur = 0;
+      g.fillStyle = `rgb(${cor})`; g.font = "600 11px Rajdhani, Segoe UI"; g.fillText("FÓVEA", (x - 32) * ex, (y - 32) * ey - 4); } });
+  if (t.foco) { const [x, y, fw, fh] = t.foco; g.strokeStyle = `rgba(${H},.95)`; g.lineWidth = 2; g.shadowColor = `rgb(${H})`; g.shadowBlur = 10;
+    g.strokeRect(x * ex, y * ey, fw * ex, fh * ey); g.shadowBlur = 0; g.fillStyle = `rgb(${H})`; g.font = "600 12px Rajdhani, Segoe UI";
+    g.fillText("LENDO", x * ex + 4, Math.max(12, y * ey - 4)); }
+  (t.imagens || []).forEach(([x, y, iw, ih]) => { g.strokeStyle = `rgba(${AMB},.95)`; g.lineWidth = 2; g.strokeRect(x * ex, y * ey, iw * ex, ih * ey);
+    g.fillStyle = `rgb(${AMB})`; g.font = "600 12px Rajdhani, Segoe UI"; g.fillText("OLHANDO", x * ex + 4, y * ey + 14); });
+  if (t.clique) { const x = t.clique[0] * ex, y = t.clique[1] * ey;
+    for (let k = 1; k <= 3; k++) { g.strokeStyle = `rgba(255,255,255,${1 - k * .25})`; g.lineWidth = 2; g.beginPath(); g.arc(x, y, 8 * k, 0, 7); g.stroke(); }
+    g.fillStyle = "#fff"; g.beginPath(); g.arc(x, y, 4, 0, 7); g.fill(); }
+}
+addEventListener("resize", desenhaSobreTela);
+let olhoQuando = 0;
+async function puxaOlho() {
+  let o; try { o = await (await fetch("/api/olho")).json(); } catch (e) { return false; }
+  if (o.indisponivel || o.atraso_s > 300) return false;
+  $("olho-tira").hidden = false; $("olho").style.display = "none";
+  if (o.quando !== olhoQuando) {
+    olhoQuando = o.quando; $("olho-img").src = "/api/olho.jpg?t=" + o.quando;
+    const nomes = {fovea: "CHEGA NA FÓVEA", reconstrucao: "O QUE ELA VÊ", previsao: "O QUE ELA PREVIU",
+      imaginou_1s: "O QUE IMAGINOU PARA DAQUI A 1 s", sonhou_acordada: "O QUE IMAGINOU DIVAGANDO"};
+    const nomeP = (p) => nomes[p] || (p.startsWith("imaginou_verbo_") ? "IMAGINOU COM O VERBO " + p.slice(15) + " (sem conferir)" : p);
+    $("olho-rot").style.setProperty("--n", o.pecas.length);
+    $("olho-rot").innerHTML = o.pecas.map((p) => `<span><b>${nomeP(p)}</b></span>`).join("");
+    $("olho-sub").textContent = `${fmt(o.olhadas)} olhadas · ${fmt(o.palavras_visuais)} palavras visuais`;
+    $("olho-nota").textContent = ({ler: "lendo: a fóvea corre pelas linhas do texto", imagem: "a imagem inteira, de uma vez",
+      olhar: "um ponto da tela que chamou a atenção dela (onde o córtex ainda erra)", video: "vídeo em tempo real: à direita, o quadro que ela imaginou ANTES de ver"}[o.tipo] || "")
+      + (o.erro != null ? ` · erro de reconstrução ${o.erro.toFixed(3)}` : "");
+    const c = $("curva-ver"), r = devicePixelRatio || 1, w = c.clientWidth, h = c.clientHeight; c.width = w * r; c.height = h * r;
+    const g = c.getContext("2d"); g.scale(r, r); g.clearRect(0, 0, w, h);
+    const cv = o.curva || [];
+    if (cv.length > 1) { const mx = Math.max(...cv.map((p) => p[1])), mn = Math.min(...cv.map((p) => p[1]));
+      g.strokeStyle = `rgb(${H})`; g.lineWidth = 2; g.beginPath();
+      cv.forEach(([, e], i) => { const x = 4 + (w - 8) * i / (cv.length - 1), y = 14 + (h - 20) * (1 - (mx - e) / (mx - mn + 1e-9)); i ? g.lineTo(x, y) : g.moveTo(x, y); });
+      g.stroke(); }
+    g.fillStyle = "#9fb7c2"; g.font = "10px JetBrains Mono, Consolas";
+    g.fillText(cv.length > 1 ? "erro do córtex ao longo da vida (descendo = aprendendo a ver)" : "a curva de aprender a ver aparece em instantes", 4, 10);
+  }
+  return true;
+}
+async function puxaVisao() {
+  if ($("ve").hidden) return;
+  const temOlho = await puxaOlho();
+  if (await puxaTela()) { if (!temOlho) desenhaOlho(); return; }
+  if (telaMontada) { telaMontada = false; percAtual = null; }
+  try { const v = await (await fetch("/api/visao")).json(); if (!v.indisponivel) { visaoQ = v; ultimaVisao = Date.now(); } } catch (e) {}
+  if (tel) mostraPercepto(tel.percepto);
+  else if (est && est.url_atual && (!percAtual || percAtual.url !== est.url_atual)) {
+    // gemeas (codigo antigo): mostra a pagina real que ela esta lendo, como um humano a ve
+    percAtual = {url: est.url_atual, tipo: "iframe", quando: Date.now() / 1000};
+    $("ve-tipo").textContent = "LENDO"; $("ve-url").textContent = est.url_atual;
+    trocaPalco(`<iframe class="pagina" src="${esc(est.url_atual)}" sandbox referrerpolicy="no-referrer"></iframe>
+      <p class="nota" style="position:absolute;bottom:6px;right:12px;background:#000;padding:2px 6px">a página real (alguns sites não deixam aparecer aqui)</p>`);
+  }
+  const acesas = new Set();
+  if (percAtual && percAtual.pecas) percAtual.pecas.forEach(([t, n]) => { if (n) acesas.add(t.trim().toLowerCase()); });
+  desenhaMundo($("dentro"), acesas, 22);
+  $("dentro-sub").textContent = acesas.size ? `${acesas.size} palavras do trecho acesas no mapa` : "mapa do mundo dela";
+  if (percAtual && percAtual.tipo === "video") { const t = Math.min(percAtual.duracao || 30, Date.now() / 1000 - percAtual.quando);
+    const pb = $("vid-prog"); if (pb) { pb.style.width = (100 * t / (percAtual.duracao || 30)) + "%"; $("vid-t").textContent = Math.round(t) + " s"; } }
+  desenhaOlho();
+}
+function desenhaOlho() {
+  const c = $("olho"); c.width = 32; c.height = 32; const g = c.getContext("2d");
+  if (!visaoQ) { g.fillStyle = "#000"; g.fillRect(0, 0, 32, 32); $("olho-nota").textContent = "Ainda sem imagem: assim que ela olhar ou assistir algo, o quadro dela aparece aqui."; return; }
+  const im = g.createImageData(32, 32);
+  visaoQ.quadro.forEach((v, i) => { im.data[i * 4] = v * .55; im.data[i * 4 + 1] = v * .92; im.data[i * 4 + 2] = v; im.data[i * 4 + 3] = 255; });
+  g.putImageData(im, 0, 0);
+  $("olho-nota").textContent = (visaoQ.tipo === "video" ? `vídeo, ${visaoQ.t ?? 0} s — ` : "imagem — ") + "é isso que chega aos olhos dela: 1.024 pontos em cinza. Ninguém disse a ela o que há na imagem.";
+}
+setInterval(puxaVisao, 1000);
+
+/* ---------- perguntas vivas (constelação compacta) ---------- */
+const COR_Q = {depois: H, inesperado: "169,139,255", divergente: AMB, ligacao: VERDE};
+const nos = new Map(); let lampejos = [];
+const hashf = (t) => { let x = 2166136261; for (const ch of t) { x ^= ch.charCodeAt(0); x = Math.imul(x, 16777619); } return (x >>> 0) / 4294967295; };
+function constelacao(ts) {
+  requestAnimationFrame(constelacao);
+  if ($("organismo").hidden) return;
+  const c = $("constelacao"), r = devicePixelRatio || 1, w = c.clientWidth, h = c.clientHeight;
+  if (c.width !== Math.round(w * r) || c.height !== Math.round(h * r)) { c.width = w * r; c.height = h * r; }
+  const g = c.getContext("2d"); g.setTransform(r, 0, 0, r, 0, 0); g.clearRect(0, 0, w, h);
+  const lacs = tel ? tel.mesoestado.lacunas : (est ? est.mente.perguntas.map(([t, a], i) => ({tipo: t, alvo: a, ativ: 6 - i, tent: 0})) : []);
+  $("n-perguntas").textContent = tel ? fmt(tel.mesoestado.abertas) + " abertas" : (est ? fmt(Object.values(est.mente.lacunas || {}).reduce((a, b) => a + b, 0)) + " abertas (top 6)" : "aguardando");
+  const vistos = new Set();
+  lacs.forEach((q) => { const k = q.tipo + "|" + q.alvo; vistos.add(k);
+    if (!nos.has(k)) nos.set(k, {a: hashf(k) * 7, rr: .2 + .75 * hashf(k + "r"), f: hashf(k + "f") * 7});
+    Object.assign(nos.get(k), q); });
+  for (const [k, n] of nos) if (!vistos.has(k)) { lampejos.push({a: n.a, rr: n.rr, t: performance.now()}); nos.delete(k); }
+  const cx = w / 2, cy = h / 2, R = Math.min(w, h) * .44, s = ts / 1000;
+  arco(g, cx, cy, R, 0, 7, `rgba(${H},.1)`, 1); arco(g, cx, cy, R * .5, 0, 7, `rgba(${H},.08)`, 1);
+  const lst = [...nos.values()].sort((a, b) => b.ativ - a.ativ), mx = Math.max(1e-6, ...lst.map((n) => n.ativ));
+  lst.forEach((n, i) => { const a = n.a + (reduz ? 0 : s * .03), x = cx + Math.cos(a) * n.rr * R, y = cy + Math.sin(a) * n.rr * R;
+    const cor = COR_Q[n.tipo] || H, rad = 2 + 7 * Math.sqrt(n.ativ / mx);
+    g.fillStyle = `rgba(${cor},.9)`; g.shadowColor = `rgb(${cor})`; g.shadowBlur = 8; g.beginPath(); g.arc(x, y, rad, 0, 7); g.fill(); g.shadowBlur = 0;
+    if (n.tent) arco(g, x, y, rad + 3, 0, 7, `rgba(${cor},.4)`, 1);
+    if (i < 5) { g.fillStyle = "#dff7ff"; g.font = "10px JetBrains Mono, Consolas"; g.textAlign = "left"; g.fillText("“" + String(n.alvo).trim().slice(0, 14) + "”", x + rad + 4, y + 3); } });
+  lampejos = lampejos.filter((l) => { const t = (performance.now() - l.t) / 1600; if (t > 1) return false;
+    arco(g, cx + Math.cos(l.a) * l.rr * R, cy + Math.sin(l.a) * l.rr * R, 5 + 22 * t, 0, 7, `rgba(${AMB},${1 - t})`, 2); return true; });
+  if (!lst.length) { g.fillStyle = "#6e9aab"; g.font = "11px JetBrains Mono, Consolas"; g.textAlign = "center";
+    g.fillText(tel ? "nenhuma pergunta aberta" : "aparece quando a vida contínua ligar", cx, cy); }
+}
+requestAnimationFrame(constelacao);
+
+/* ---------- em quem ela confia ---------- */
+const NOME_B = {enciclopedia_pt: "Wikipédia (pt)", enciclopedia_en: "Wikipédia (en)", pequena_web: "pequena web", midia: "Commons", arquivo: "Internet Archive"};
+const NOME_A = {seguir_novo: "link para lugar novo", seguir_familiar: "link familiar", seguir_acaso: "link ao acaso", seguir_lacuna: "link por uma pergunta",
+  assistir: "assistir vídeo", ver: "olhar imagens", voltar: "voltar", "porta:wiki_pt": "Wikipédia aleatória (pt)", "porta:wiki_en": "Wikipédia aleatória (en)",
+  "porta:pequena_web": "site pequeno qualquer", "porta:imagem": "imagem qualquer"};
+const nomeB = (b) => b.startsWith("pesquisar:@") ? "buscar em " + b.slice(11) : b.startsWith("pesquisar:") ? "buscar na " + (NOME_B[b.slice(10)] || b.slice(10)) : (NOME_A[b] || b);
+setInterval(() => {
+  if (!tel) { $("confianca").innerHTML = '<p class="vazio">aparece quando a vida contínua ligar (hoje à noite)</p>'; return; }
+  $("confianca").innerHTML = tel.bracos.filter((b) => b.usos > 0).slice(0, 8).map((b) => { const v = b.pagou ?? 0;
+    return `<div class="barra-conf"><span class="nome">${esc(nomeB(b.braco))}</span><i class="${v < 0.08 ? "ruim" : ""}"><b style="width:${Math.round(100 * Math.min(1, v))}%"></b></i><em>${Math.round(100 * v)}%</em></div>`; }).join("");
+}, 3000);
+
+/* ---------- voz ---------- */
+async function falar() {
+  try { const r = await fetch("/api/fala_audio"); if (r.ok) { new Audio(URL.createObjectURL(await r.blob())).play(); return; } } catch (e) {}
+  const txt = await (await fetch("/api/fala")).text();
+  const u = new SpeechSynthesisUtterance(txt); u.lang = "pt-BR"; u.rate = 0.98; u.pitch = 0.82;
+  const vs = speechSynthesis.getVoices().filter((v) => /^pt/i.test(v.lang));
+  u.voice = vs.find((v) => /Antonio|Donato|Fabio|Humberto|Julio|Nicolau|Valerio|Daniel/i.test(v.name)) || vs.find((v) => /Natural/i.test(v.name)) || vs[0] || null;
+  speechSynthesis.cancel(); speechSynthesis.speak(u);
+}
+$("ouvir").addEventListener("click", falar);
+
+/* ---------- pausar / retomar ---------- */
+$("pausa").addEventListener("click", async () => {
+  const b = $("pausa"), pausada = b.dataset.pausada === "1";
+  if (!pausada && !confirm("Pausar a mente?\n\nEla termina o que está fazendo (até ~1 minuto se estiver num vídeo), salva tudo e para.\nVolta exatamente de onde parou quando você clicar em RETOMAR ou abrir o app de novo.")) return;
+  b.disabled = true; b.textContent = pausada ? "… ACORDANDO" : "… SALVANDO";
+  try { await fetch(pausada ? "/api/retomar" : "/api/pausar", {method: "POST"}); } catch (e) {}
+  setTimeout(() => { b.disabled = false; puxaEstado(); }, 2500);
+});
+</script>
+</body>
+</html>

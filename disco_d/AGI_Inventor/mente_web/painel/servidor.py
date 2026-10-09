@@ -37,6 +37,7 @@ NOME_ACAO = {
     "porta:wiki_pt": "abrindo uma página aleatória da Wikipédia em português",
     "porta:wiki_en": "abrindo uma página aleatória da Wikipédia em inglês",
     "porta:pequena_web": "pulando para um site pequeno qualquer da web",
+    "porta:arena": "indo à arena: um mundo físico onde as leis mudam sem aviso",
 }
 NOME_BARRA = {"enciclopedia_pt": "Wikipédia (pt)", "enciclopedia_en": "Wikipédia (en)",
               "pequena_web": "pequena web", "midia": "Wikimedia Commons", "arquivo": "Internet Archive"}

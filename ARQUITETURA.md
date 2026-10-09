@@ -3533,3 +3533,134 @@ altura (32×32 cinza). Próximos órgãos, a transplantar com ela viva:
    marginal, Charnov 1976) — a régua da vida resolve a armadilha, mas não aprende
    quando um ambiente genuinamente diferente vale a pena;
 4. olhos melhores (mais resolução, cor, movimento) sem semântica pronta.
+
+
+## 24 · A mente viva ganha um laboratório: descobrir, reutilizar, revisar (2026-10-09) — `D:/AGI_Inventor/mente_web`
+
+### 24.1 A revisão externa, conferida contra o código
+
+O GPT leu este documento inteiro e o código da mente viva. Conferido aqui:
+- **Procede:** os órgãos que passaram nos controles (`inventa`, `caderno`, `autonomo`,
+  `conceito_util`, `representacao/percepcao`, `sob_demanda`, `linguagem`, `encarnar`)
+  não eram importados por `mente.py` nem `mente2.py`.
+- **Procede, e é por regra:** a vida contínua é a v1 com transplantes. A v1 venceu as
+  gêmeas por 4 × 0 pela regra registrada antes do resultado (PRE_REGISTRO_vida1.md). A
+  plasticidade da v2 ficou fora por essa regra, não por esquecimento.
+- **Procede:** a seção 23 estava velha nos olhos. Desde os transplantes 5 e 6 a mente
+  tem fóvea colorida de 64×64 e córtex v2 (mapa 8×8×32), não "32×32 cinza".
+- O marco proposto foi adotado como teste: **ela descobrir um conceito que ninguém deu,
+  reutilizá-lo num problema diferente e revisá-lo quando o mundo o contradiz.**
+
+### 24.2 O órgão — `laboratorio.py` + `arena.py`
+
+São seis mecanismos medidos, num laço só. Todos rodam sobre o que ela assiste:
+1. **Objetos pela continuidade:** fundo = mediana no tempo; objeto = região conexa do
+   que difere dele; identidade por atribuição ótima. **Permanência:** o que some por até
+   3 s e reaparece onde iria estar é a mesma coisa.
+2. **Hipocampo de episódios crus:** guarda o que viu, não as conclusões. Tudo é
+   re-derivado do cru.
+3. **Teorias:** aceleração como combinação de termos do estado, com seleção por BIC.
+   **Primeira tentativa:** ela prevê a posição 2 s adiante antes de aprender com o
+   episódio.
+4. **Crise:** a teoria entra em crise quando o próprio vídeo, sozinho, prevê melhor que
+   ela (bits pareados por trajetória) ou quando o erro é anômalo nas duas escalas.
+   **Resposta:** reanálise por consenso, que **reinterpreta** episódios guardados.
+5. **Conceito:** combinações esparsas de até 4 monômios que se conservam em
+   trajetórias fora do ajuste. Os candidatos vão para uma **sala de espera** e são
+   julgados pelo que pagam na previsão. Quando a mesma ideia volta mais precisa, o
+   conceito é **revisado**.
+6. **Vocabulário compartilhado:** um conceito inventado num mundo serve a outro.
+
+A **arena** tem 4 mundos que trocam sem aviso: giro (precisa de s²), mola_h (precisa de
+h), contragiro (outra lei, o mesmo s²) e mola (h e a energia se conservam, mas a lei
+não precisa deles). A câmera é afim e desconhecida, há um oclusor e dois corpos podem
+ter a mesma cor.
+
+### 24.3 Desenvolvimento: onze defeitos meus, achados antes de registrar
+
+Isto rodou só nas sementes de desenvolvimento 101–103; a lista completa está em
+PRE_REGISTRO_laboratorio.md. O que mais ensinou:
+- **Inventor conjunto x esparso.** O inventor conjunto de 14 termos (o da Etapa 1, a
+  30 quadros/s) dava s² com correlação de só 0,68 a 5 quadros/s. A volta ao esparso do
+  `inventa.py` resolveu.
+- **Poucas trajetórias.** Com 3 arcos, *qualquer* forma quadrática "se conserva".
+- **A régua por mediana** premiava o que se conserva só na maioria (o centro do círculo
+  de quem gira numa velocidade parecida).
+- **Utilidade pareada.** Uma trajetória que explodia decidia a utilidade pela média dos
+  quadrados; a comparação passou a ser trajetória a trajetória.
+- **Hipótese-sumidouro.** Uma hipótese frouxa, nascida de uma crise falsa, "explicava"
+  mal o mundo seguinte e escondia a troca.
+- **Limiar fixo de ruído.** Todo limiar fixo confundiu "vídeo difícil" com "outro
+  mundo". Ficou o critério de bits: o episódio sozinho contra a teoria.
+
+### 24.4 Resultado registrado (10 vidas, sementes nunca tocadas)
+
+```
+L2  revisa para h quando o mundo muda              9/10   PASSA
+L4  recusa conceito conservado que não paga         9/10   PASSA
+L5  o conceito paga: 1ª tentativa 2,57 × 4,82 px   10/10   PASSA  (0,53×; inércia 13,3 px)
+L7a crise nos 5 episódios após cada troca          10/10   PASSA
+L7b reconhece o mundo de volta, sem crise           9/10   PASSA
+L9  reutilizar paga (início do contragiro)         10/10   PASSA
+P1  permanência: religar 0,71 × congelada 0,18             PASSA
+C1  controle: pontos permutados, nada aceito       10/10   PASSA
+L1  s² EXATO (|corr| ≥ 0,99) no fim do giro         5/10   FALHA  (+2 com 0,97 e 0,94)
+L3  o MESMO conceito, exato, no contragiro          5/10   FALHA
+L6  placebo não paga: 0,88× (exigia ≥ 0,90)                FALHA  (COMPLETO bate placebo 10/10)
+L8  reanalisar vence acumular conclusões            6/10   FALHA  (razão 0,81)
+```
+
+**A leitura.**
+- **Revisar e pagar:** passam com folga.
+- **Identidade exata do primeiro conceito:** falha. O s² do giro sai muitas vezes
+  aproximado (0,83 a 0,97); ainda assim paga e é reutilizado. O que transferiu foi uma
+  ideia **útil**, nem sempre a **exata**.
+- **Causa medida:** a 5 quadros/s a velocidade é ruidosa. Numa vida de desenvolvimento,
+  o s² verdadeiro se conservava 6× pior que nas outras.
+- **Placebo:** dá parte do ganho (12%), o "mais variáveis" que o `inventa` já tinha
+  visto. A maior parte do ganho é estrutura.
+- **Caderno:** o +36 do caderno **não** se repetiu neste substrato. Fica como resultado
+  fraco.
+
+### 24.5 Tradução cruzada: o que isto é, e o que ainda não é
+
+O conceito nasce num mundo, resolve o problema e passa a mudar como **outro** problema é
+visto. No contragiro, o vocabulário vindo do giro baixou o erro do início em 10/10.
+Também foi pedido um teste com três braços sob o mesmo orçamento: sem transferência,
+com transferência e placebo. Esse teste é este experimento.
+
+O que **não** é:
+- **Tradução entre órgãos diferentes:** o verbo visual τ, a lei do laboratório e a
+  palavra ainda não se falam. Aqui a tradução acontece dentro de um mesmo tipo de
+  experiência (trajetórias de objetos).
+- **Agir no mundo:** ela só assiste.
+
+### 24.6 Ligado à vida (transplante 10)
+
+Todo vídeo da internet passa também pelo laboratório. A arena virou uma porta da
+economia e paga como qualquer vídeo; o laboratório não entra na moeda única neste
+transplante. O painel ganhou o órgão LABORATÓRIO, com as teorias, as leis escritas por
+ela, os conceitos e as crises.
+
+Para conferir:
+- `teste_laboratorio.py`: mente nova, ou cópia da viva; salva, acorda, 0 erros.
+- `marco_laboratorio.py vidas/viva`: confere os conceitos dela contra a verdade da
+  arena, só lendo.
+
+Critérios na vida: PRE_REGISTRO_vida1.md, transplante 10.
+
+### 24.7 Próximos degraus, na ordem em que eu faria
+
+1. **Olhos mais rápidos para o laboratório.** Quadros da arena a 15–30/s só para o
+   laboratório (o córtex continua a 5/s). É a causa medida da L1. O teste é o mesmo
+   pré-registro com as mesmas sementes.
+2. **Agir na arena** (corpo próprio). Um "empurrar" com comando conhecido; as teorias
+   viram modelo de mundo para escolher o experimento. É o teste da bola e da caixa da
+   revisão externa: a regularidade descoberta com um objeto prevê o outro.
+3. **Tradução entre órgãos.** A pergunta é se o conceito do laboratório prevê a
+   sequência de verbos visuais τ do mesmo vídeo melhor que o placebo — a primeira ponte
+   entre duas linguagens internas diferentes.
+4. **Palavras na arena.** Eventos nomeados (empurrar, girar) aterrados nas teorias, com
+   o protocolo da `linguagem.py`.
+5. **O laboratório na economia.** O progresso dele entra na moeda única, mas só depois
+   de medir A2 e A3 na vida real.

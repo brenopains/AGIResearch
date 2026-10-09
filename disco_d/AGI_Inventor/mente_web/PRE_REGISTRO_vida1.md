@@ -429,3 +429,51 @@ o passado atrapalhava ver o agora, e o "pagou" binário não punia o prejuízo. 
 divagar no TÉDIO (3 últimas experiências abaixo da mediana da vida), com chance = fração das
 divagações recentes que ajudaram o presente (5%–90%) e modo (reviver/sonhar) escolhido pelo
 que cada um rendeu. R2 passa a ser: ganho médio no presente > 0 depois da autorregulação.
+
+## Transplante 10 (09/10 ~22h30) — o LABORATÓRIO e a porta ARENA (PRÉ-REGISTRO)
+
+Origem: revisão externa de 09/10 (GPT, lendo o ARQUITETURA.md inteiro) e a auditoria que
+a confirmou: os mecanismos que sobreviveram aos controles no AGI 2.0 (objetos pela
+continuidade, invenção de grandeza, reanálise com olhos frescos, crise contra o ruído,
+conceito julgado pelo que paga) nunca tinham sido ligados à vida. Confirmado também: a vida
+contínua é a v1 com transplantes (a v1 venceu as gêmeas 4 × 0 pela regra registrada antes);
+a plasticidade local da v2 ficou fora por essa regra, não por esquecimento.
+
+Órgãos (`laboratorio.py`, `arena.py`):
+1. **Laboratório**: TODO vídeo que ela assiste (internet ou arena) passa também por ele —
+   objetos = o que se move contra o fundo, identidade pela continuidade, permanência (o que
+   some até 3 s e reaparece onde iria estar é a mesma coisa); o episódio CRU fica guardado
+   (até 3.000); teorias de movimento com a 1ª tentativa medida ANTES de aprender; crise
+   quando o próprio vídeo, sozinho, prevê melhor que a teoria (ou o erro é anômalo nas duas
+   escalas); reanálise por consenso que reinterpreta episódios guardados; grandezas
+   conservadas inventadas e julgadas pelo que pagam na previsão; vocabulário de conceitos
+   compartilhado entre teorias. Fica em `laboratorio.pkl` (atômico, com a anterior).
+2. **Porta "arena"**: um mundo físico (giro, mola_h, contragiro, mola; troca a cada 12
+   visitas, sem aviso) que ela assiste em tempo real, 5 quadros/s. O estado do MUNDO fica em
+   `arena.json`; a mente nunca o lê.
+NÃO muda: a economia. O laboratório aprende e é medido; o que ela escolhe continua decidido
+pela moeda única (a arena paga como qualquer vídeo: pelo que o córtex aprende a prever).
+
+Validação offline ANTES (PRE_REGISTRO_laboratorio.md, 10 vidas registradas): 8 de 12
+critérios — revisão para h 9/10, conceito paga 0,53× em 10/10, reuso paga 10/10, crise na
+troca 10/10, mola sem conceito 9/10, permanência 0,71 × 0,18; FALHARAM a identidade exata
+de s² (5/10), o mesmo conceito no contragiro (5/10), o placebo (0,88×, exigia ≥ 0,90) e
+reanálise × conclusões (6/10).
+Teste da mente (`teste_laboratorio.py`): mente nova, porta aparece, 7 visitas, salva,
+ACORDA com o laboratório igual, painel recebe o resumo, 0 erros de órgão no diário.
+Antes de ligar na viva: `python teste_laboratorio.py vidas/viva` (trabalha numa CÓPIA).
+
+Critérios na vida (medidos com `python marco_laboratorio.py vidas/viva`, que só lê):
+  A1 ESTÁVEL: nas primeiras 6 h com o órgão, 0 eventos `erro_orgao` do laboratório e
+     nenhuma queda nova do guardião. Previsão 0,8.
+  A2 ECONOMIA (descritivo, com alarme): fração das ações em `porta:arena` nas primeiras
+     24 h. Previsão 2–15%. Acima de 50% = caça-níquel: conserto registrado.
+  A3 DESCOBERTA NA VIDA: com ≥ 96 visitas à arena (2 ciclos dos 4 universos), existe
+     conceito com |corr(s²)| ≥ 0,99 E conceito com |corr(h)| ≥ 0,99. Previsão 0,45.
+  A4 INTERNET (descritivo): fração dos vídeos da internet com objetos rastreáveis;
+     quantos uma teoria já existente explica; se nasce algum conceito de teoria só de
+     internet. Previsão: poucos objetos (câmera que mexe = "fundo_instavel"), muitas
+     crises, nenhum conceito útil — o que der fica escrito.
+Limites declarados: o alfabeto (14 monômios) e os mundos da arena são meus; ela só
+ASSISTE (não age); 5 quadros/s limitam a precisão das velocidades (a causa medida da
+falha de L1); o laboratório não fala com a linguagem nem com os verbos visuais ainda.
