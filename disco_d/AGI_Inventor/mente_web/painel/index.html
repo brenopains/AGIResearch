@@ -431,10 +431,11 @@ const ORG = {
   sono: {x: .33, y: .50, nome: "SONO", sub: "re-testa o que aprendeu e desfaz o que não serve", cor: AMB},
   imaginacao: {x: .67, y: .50, nome: "IMAGINAÇÃO", sub: "inventa combinações e confere no mundo", cor: AMB},
   mundo: {x: .50, y: .47, nome: "MODELO DE MUNDO", sub: "o que ela entende: palavras perto = usadas igual", cor: VERDE},
+  laboratorio: {x: .21, y: .80, nome: "LABORATÓRIO", sub: "objetos, leis e conceitos que ela inventa", cor: VERDE},
 };
 const VIAS = [["internet", "olhos"], ["olhos", "memoria"], ["memoria", "curiosidade"], ["curiosidade", "vontade"],
   ["vontade", "maos"], ["maos", "internet"], ["memoria", "sono"], ["sono", "imaginacao"], ["imaginacao", "memoria"], ["olhos", "curiosidade"],
-  ["memoria", "mundo"], ["sono", "mundo"], ["mundo", "imaginacao"]];
+  ["memoria", "mundo"], ["sono", "mundo"], ["mundo", "imaginacao"], ["olhos", "laboratorio"], ["laboratorio", "mundo"]];
 const particulas = [], brilho = {}, emis = [];
 Object.keys(ORG).forEach((k) => { brilho[k] = 0; });
 let agulha = 0, alvoAgulha = 0, sonoRipple = 0;
@@ -463,6 +464,13 @@ function dispara(e) {
     case "sem_rede": brilho.internet = 1; conta("A INTERNET SUMIU — ela parou e está consolidando"); break;
     case "rede_voltou": brilho.internet = 1; conta("A internet voltou — ela seguiu de onde estava"); break;
     case "transplante": conta(`ÓRGÃOS NOVOS: ${(e.orgaos || []).join(", ")}`); break;
+    case "laboratorio": viaja("olhos", "laboratorio", VERDE, 2); brilho.laboratorio = Math.max(brilho.laboratorio, .6); break;
+    case "laboratorio_crise": brilho.laboratorio = 1; viaja("laboratorio", "mundo", "255,90,90", 3);
+      conta("LABORATÓRIO: crise — a lei que ela tinha não explica este vídeo; nova teoria, e ela revê o que já viu"); break;
+    case "laboratorio_conceito_inventado": brilho.laboratorio = 1; conta(`LABORATÓRIO inventou uma grandeza que se conserva: ${e.formula}`); break;
+    case "laboratorio_conceito_escolhido": brilho.laboratorio = 1; viaja("laboratorio", "mundo", VERDE, 3);
+      conta(e.para ? `LABORATÓRIO passou a pensar com o conceito ${e.formula}` : "LABORATÓRIO largou um conceito que deixou de pagar"); break;
+    case "laboratorio_reinterpretou": brilho.laboratorio = 1; conta("LABORATÓRIO reinterpretou um vídeo antigo com a teoria nova"); break;
   }
 }
 function vivo(k) {
@@ -478,6 +486,7 @@ function vivo(k) {
     case "sono": return p ? `${Math.round(100 * Math.min(1, p.pressao / (p.limiar_sono || 1)))}% até dormir · desfez ${fmt(p.deprimidas)}` : `${fmt(im.sonhos)} sonos`;
     case "imaginacao": return `${fmt(im.confirmadas)} confirmadas · placebo ${fmt(im.placebo)}`;
     case "mundo": return det && det.mundo ? `${fmt(det.mundo.length)} palavras no mapa · clique para ver` : "clique para ver";
+    case "laboratorio": { const l = tel && tel.laboratorio; return l ? `${fmt(l.teorias)} teorias · ${fmt(l.conceitos_inventados)} conceitos · ${fmt(l.crises)} crises` : "nasce no 1º vídeo"; }
   }
 }
 const ctrl = (x1, y1, x2, y2) => { const mx = (x1 + x2) / 2, my = (y1 + y2) / 2, dx = x2 - x1, dy = y2 - y1; return [mx - dy * 0.14, my + dx * 0.14]; };
@@ -658,6 +667,25 @@ function verbosHtml(v) {
     ${caixa("OS VERBOS PASSAM NA PROVA?", sonda + `<div class="opcao"><span>imaginação no vídeo: o que imaginou para daqui a 1 s bateu o placebo e o “nada muda”</span><i><b style="width:${n ? 100 * (iv.venceu || 0) / n : 0}%"></b></i><em>${pct(iv.venceu)} de ${fmt(n)}</em></div>`,
       "A prova usa imagens dela com transformações conhecidas (girar, aproximar, deslizar, cor). Placebo = o verbo de outro momento qualquer da vida dela.")}</div>`;
 }
+function labHtml(l) {
+  if (!l) return caixa("LABORATÓRIO", '<p class="vazio">nasce no primeiro vídeo que ela assistir depois do transplante 10 (internet ou porta “arena”)</p>');
+  const c = l.contas || {};
+  const linha = (rot, v) => `<div class="opcao"><span>${rot}</span><em>${typeof v === "number" ? fmt(v) : (v ?? "0")}</em></div>`;
+  const nomeEv = {crise: "CRISE", conceito_inventado: "INVENTOU", conceito_escolhido: "ADOTOU", conceito_revisado: "REVISOU", reinterpretou: "REVIU"};
+  return `<div class="duas">${caixa("O QUE ELA JÁ FEZ COM OS VÍDEOS",
+      linha("vídeos analisados (internet + arena)", c.episodios || 0) + linha("vídeos sem objetos que ela consiga seguir", c.sem_objetos || 0)
+      + linha("coisas que sumiram e ela reconheceu ao voltar (permanência)", c.religacoes || 0)
+      + linha("vídeos que a teoria que ela já tinha explicou", c.explicados || 0) + linha("crises: a teoria falhou e ela abriu outra", c.crises || 0)
+      + linha("vídeos antigos reinterpretados por uma teoria nova", c.reinterpretados || 0)
+      + linha("grandezas inventadas · reaproveitadas · revisadas", `${fmt(c.conceitos_inventados || 0)} · ${fmt(c.conceitos_reusados || 0)} · ${fmt(c.conceitos_revisados || 0)}`),
+      "Cada vídeo vira objetos (o que se move contra o fundo, seguido pela continuidade, mesmo quando passa atrás de algo). Antes de aprender, ela PREVÊ onde cada coisa estará 2 s depois; se a teoria dela erra mais do que os próprios dados do vídeo errariam sozinhos, é crise.")}
+    ${caixa("CONCEITOS QUE ELA INVENTOU", (l.conceitos || []).length ? l.conceitos.slice(-10).reverse().map((x) => `<p class="frase"><b>${esc(x.id)}</b> = ${esc(x.formula)} <em>usado por ${x.teorias.length} teoria(s)${x.placebo ? " · placebo" : ""}</em></p>`).join("")
+      : '<p class="vazio">nenhum ainda: precisa de pelo menos 16 trajetórias parecidas</p>',
+      "Grandezas que ficam constantes em cada trajetória e mudam de uma para outra (como a rapidez de quem gira, ou o momento angular). Ninguém deu nomes nem fórmulas: ela procura, e só usa a que melhora a previsão.")}</div>
+    ${caixa("AS TEORIAS DELA (leis de movimento escritas por ela)", (l.teorias || []).map((t) => `<p class="frase"><b>teoria ${t.id}</b> · ${fmt(t.episodios)} vídeos · conceito ${esc(t.conceito || "nenhum")}<br><span style="font-size:.85em">${esc(t.lei)}</span></p>`).join("") || '<p class="vazio">nenhuma ainda</p>',
+      "ax e ay: a aceleração prevista, como soma de termos da posição (x, y) e da velocidade (vx, vy) — e de q, o conceito que ela inventou, quando ela usa um.")}
+    ${caixa("O QUE ACONTECEU AGORA HÁ POUCO", (l.recentes || []).slice(-10).reverse().map((e) => `<div class="teste ${e.ev === "crise" || (e.ev === "conceito_escolhido" && !e.para) ? "deprimiu" : "ligou"}"><b>${e.ev === "conceito_escolhido" && !e.para ? "LARGOU" : (nomeEv[e.ev] || esc(e.ev))}</b><span>${esc(e.formula || e.lei || (e.ev === "reinterpretou" ? `vídeo ${e.episodio}: teoria ${e.de_teoria} → ${e.para_teoria}` : ""))}</span><span></span></div>`).join("") || '<p class="vazio">nada ainda</p>')}`;
+}
 function abreOrgao(k, atualizar) {
   if (!atualizar && orgaoAberto === k) return;
   orgaoAberto = k; const o = ORG[k]; $("orgao").hidden = false;
@@ -724,6 +752,8 @@ function abreOrgao(k, atualizar) {
     const doms = {}; historicoDom.forEach((x) => { doms[x] = (doms[x] || 0) + 1; });
     html = caixa("SITES ABERTOS AGORA HÁ POUCO", Object.entries(doms).sort((a, b) => b[1] - a[1]).map(([x, n]) => `<div class="opcao"><span>${esc(x)}</span><i><b style="width:${Math.min(100, n * 10)}%"></b></i><em>${n}×</em></div>`).join("") || '<p class="vazio">nenhum ainda nesta sessão do painel</p>',
       `Ninguém deu esses endereços a ela: ela chegou por portas aleatórias, links e buscas que ela mesma fez. Ela já conhece ${est ? fmt(est.consumo.sites) : "—"} sites.`);
+  } else if (k === "laboratorio") {
+    html = labHtml(d && d.laboratorio);
   } else if (k === "mundo") {
     html = caixa("O MAPA DO MUNDO DELA", `<canvas id="mapa-grande" style="width:100%;height:62vh"></canvas>`,
       "As palavras que ela mais usa, posicionadas pelo USO: perto = aparecem em contextos parecidos (ela agrupa sozinha números, nomes, conectivos…). O mapa se reorganiza enquanto ela vive e dorme. Azul: palavras que ela formou; âmbar: expressões.");
@@ -967,7 +997,8 @@ requestAnimationFrame(constelacao);
 const NOME_B = {enciclopedia_pt: "Wikipédia (pt)", enciclopedia_en: "Wikipédia (en)", pequena_web: "pequena web", midia: "Commons", arquivo: "Internet Archive"};
 const NOME_A = {seguir_novo: "link para lugar novo", seguir_familiar: "link familiar", seguir_acaso: "link ao acaso", seguir_lacuna: "link por uma pergunta",
   assistir: "assistir vídeo", ver: "olhar imagens", voltar: "voltar", "porta:wiki_pt": "Wikipédia aleatória (pt)", "porta:wiki_en": "Wikipédia aleatória (en)",
-  "porta:pequena_web": "site pequeno qualquer", "porta:imagem": "imagem qualquer"};
+  "porta:pequena_web": "site pequeno qualquer", "porta:imagem": "imagem qualquer", "porta:video": "vídeo qualquer",
+  "porta:arena": "arena (mundo físico)"};
 const nomeB = (b) => b.startsWith("pesquisar:@") ? "buscar em " + b.slice(11) : b.startsWith("pesquisar:") ? "buscar na " + (NOME_B[b.slice(10)] || b.slice(10)) : (NOME_A[b] || b);
 setInterval(() => {
   if (!tel) { $("confianca").innerHTML = '<p class="vazio">aparece quando a vida contínua ligar (hoje à noite)</p>'; return; }
