@@ -1,0 +1,81 @@
+{
+  "status": "audit_passed",
+  "games": [
+    {
+      "game": "breakout",
+      "collection": [
+        {
+          "seed": 131,
+          "ale_calls": 19668,
+          "physical_events": 200,
+          "certified_replays": 8,
+          "common_program_coverage_complete": true
+        },
+        {
+          "seed": 137,
+          "ale_calls": 30683,
+          "physical_events": 328,
+          "certified_replays": 8,
+          "common_program_coverage_complete": true
+        }
+      ],
+      "partitions": {
+        "known_programs_new_contexts": "inconclusive_insufficient_contextual_contrast",
+        "new_programs_new_contexts": "inconclusive_insufficient_contextual_contrast"
+      },
+      "body_reexecution_max_error": 0.0,
+      "fit_equation_max_errors": {
+        "quadratic": 1.438849039914203e-13,
+        "affine": 1.883493361276578e-13,
+        "two_frames": 5.19306819768417e-14,
+        "shuffled_targets": 1.1324274851176597e-13,
+        "shuffled_histories": 9.214851104388799e-14,
+        "word_only": 2.899902540320909e-13,
+        "raw_rbf": 9.549305790557128e-14
+      },
+      "evaluation_events": 2690,
+      "report_sha256": "ab6491a248551ce2c7bb35f52b7837e621cb30d01110313e52b178892f4b00a5",
+      "verdicts_preserved": true
+    },
+    {
+      "game": "pong",
+      "collection": [
+        {
+          "seed": 131,
+          "ale_calls": 24484,
+          "physical_events": 200,
+          "certified_replays": 8,
+          "common_program_coverage_complete": true
+        },
+        {
+          "seed": 137,
+          "ale_calls": 41024,
+          "physical_events": 328,
+          "certified_replays": 8,
+          "common_program_coverage_complete": true
+        }
+      ],
+      "partitions": {
+        "known_programs_new_contexts": "failed_capability_gate",
+        "new_programs_new_contexts": "inconclusive_insufficient_contextual_contrast"
+      },
+      "body_reexecution_max_error": 0.0,
+      "fit_equation_max_errors": {
+        "quadratic": 2.220446049250313e-14,
+        "affine": 3.6415315207705135e-14,
+        "two_frames": 3.0531133177191805e-14,
+        "shuffled_targets": 3.290423489232808e-14,
+        "shuffled_histories": 1.6969065042005127e-14,
+        "word_only": 3.135269821541442e-13,
+        "raw_rbf": 2.375877272697835e-14
+      },
+      "evaluation_events": 2690,
+      "report_sha256": "e569e5f55d15704e56ce9a7a5862456365b24359f197fd5677b137029bee1da3",
+      "verdicts_preserved": true
+    }
+  ],
+  "resource_monitor_resume_verified": true,
+  "previous_failed_attempts_preserved": true,
+  "resources_sha256": "519ad43f89d170e0cb9ad74ab719a4de4f43cb16772f31bffc514cfa8bf8d010",
+  "human_level_goal_achieved": false
+}

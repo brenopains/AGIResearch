@@ -1,0 +1,147 @@
+{
+  "status": "post_pilot_oracle_diagnostic_not_promoted",
+  "game": "breakout",
+  "pilot_sha256_unchanged": "9059b02f634d28d3dcbf3769274fc3818667ce5278b3da979267bc3e080f346f",
+  "oracle_candidate_mean_return": 1.515625,
+  "proposed_mean_return": 0.9375,
+  "normal_model_reselection_mean_return": 1.125,
+  "oracle_selection_gap": 0.578125,
+  "oracle_gap_per_episode": [
+    0.375,
+    0.75,
+    0.875,
+    0.625,
+    0.625,
+    0.25,
+    0.875,
+    0.25
+  ],
+  "roots_with_strictly_better_measured_plan": 26,
+  "gain_ordering": [
+    {
+      "reference": "constant",
+      "informative_roots": 21,
+      "correct_gain_sign_fraction": 0.8095238095238095,
+      "predicted_mean_gain": 0.6506553622877038,
+      "actual_mean_gain": 0.28125
+    },
+    {
+      "reference": "distributed_constant",
+      "informative_roots": 24,
+      "correct_gain_sign_fraction": 0.7083333333333334,
+      "predicted_mean_gain": 0.47673436635795763,
+      "actual_mean_gain": -0.015625
+    },
+    {
+      "reference": "reward_search",
+      "informative_roots": 31,
+      "correct_gain_sign_fraction": 0.5806451612903226,
+      "predicted_mean_gain": 0.4324558960011032,
+      "actual_mean_gain": -0.21875
+    }
+  ],
+  "value_error_by_policy": {
+    "distributed_search": {
+      "bias": 0.48030079655411184,
+      "mse": 0.8398940041487121
+    },
+    "mean_search": {
+      "bias": -0.0561816347283917,
+      "mse": 0.20718822730146408
+    },
+    "successor_search": {
+      "bias": 0.15162380590606273,
+      "mse": 0.4197262940555224
+    },
+    "reward_search": {
+      "bias": -0.17090509944699134,
+      "mse": 0.6719018839936512
+    },
+    "action_search": {
+      "bias": -0.30315130474852475,
+      "mse": 0.6178824137937227
+    },
+    "constant": {
+      "bias": 0.110895434266408,
+      "mse": 0.5403638335615613
+    },
+    "distributed_constant": {
+      "bias": -0.012058569803845787,
+      "mse": 1.029432618785054
+    },
+    "direct_preferences": {
+      "bias": 0.060247287937816946,
+      "mse": 0.7039514588970126
+    }
+  },
+  "switches_mean": 7.703125,
+  "switches_per_root": [
+    6,
+    8,
+    0,
+    15,
+    14,
+    2,
+    13,
+    7,
+    0,
+    0,
+    7,
+    0,
+    3,
+    13,
+    2,
+    0,
+    2,
+    14,
+    0,
+    1,
+    13,
+    14,
+    14,
+    2,
+    15,
+    7,
+    7,
+    13,
+    11,
+    7,
+    2,
+    13,
+    14,
+    14,
+    12,
+    13,
+    13,
+    14,
+    2,
+    11,
+    15,
+    2,
+    15,
+    15,
+    13,
+    13,
+    0,
+    2,
+    1,
+    2,
+    0,
+    13,
+    12,
+    13,
+    2,
+    2,
+    12,
+    2,
+    15,
+    4,
+    13,
+    7,
+    0,
+    2
+  ],
+  "new_ale_steps": 0,
+  "known_candidate_count": 8,
+  "limit": "oracle_repertoire_is_not_a_usable_policy_and_does_not_localize_every_cause"
+}

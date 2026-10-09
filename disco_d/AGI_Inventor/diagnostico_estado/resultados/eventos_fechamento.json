@@ -1,0 +1,823 @@
+{
+  "status": "linear_event_readout_closes_into_old_predictor",
+  "games": {
+    "breakout": {
+      "no_generated_functions": {
+        "maximum_reward_coefficient_difference": 3.0779268023195527e-12,
+        "normal_equation_residual_per_action": [
+          5.098144129078719e-13,
+          2.078337502098293e-13,
+          7.087663789206999e-13,
+          3.7214675785435247e-13
+        ],
+        "partitions": {
+          "known": {
+            "4": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 20,
+                "prediction_ties": 0,
+                "mse": 0.3244987130261727,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.6
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 20,
+                "prediction_ties": 0,
+                "mse": 0.3244987130261937,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.6
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 20,
+                "prediction_ties": 0,
+                "mse": 0.22974085002621836,
+                "deterministic_left_tie_regret": 0.0625,
+                "fair_tie_regret": 0.0625,
+                "directional_accuracy_on_real_nonzero": 0.8
+              },
+              "maximum_prediction_difference": 3.437666817873719e-13,
+              "decision_changes": 0
+            },
+            "8": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.48141541640450936,
+                "deterministic_left_tie_regret": 0.28125,
+                "fair_tie_regret": 0.28125,
+                "directional_accuracy_on_real_nonzero": 0.28
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.4814154164044996,
+                "deterministic_left_tie_regret": 0.28125,
+                "fair_tie_regret": 0.28125,
+                "directional_accuracy_on_real_nonzero": 0.28
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.3487500804536431,
+                "deterministic_left_tie_regret": 0.171875,
+                "fair_tie_regret": 0.171875,
+                "directional_accuracy_on_real_nonzero": 0.56
+              },
+              "maximum_prediction_difference": 4.064665271030776e-13,
+              "decision_changes": 0
+            },
+            "16": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.518680869138781,
+                "deterministic_left_tie_regret": 0.078125,
+                "fair_tie_regret": 0.078125,
+                "directional_accuracy_on_real_nonzero": 0.8809523809523809
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.5186808691388136,
+                "deterministic_left_tie_regret": 0.078125,
+                "fair_tie_regret": 0.078125,
+                "directional_accuracy_on_real_nonzero": 0.8809523809523809
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.47512227066856216,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.8095238095238095
+              },
+              "maximum_prediction_difference": 4.620193116977589e-13,
+              "decision_changes": 0
+            }
+          },
+          "new": {
+            "4": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 2,
+                "prediction_ties": 0,
+                "mse": 0.05139403157012884,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 2,
+                "prediction_ties": 0,
+                "mse": 0.05139403157013979,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 2,
+                "prediction_ties": 3,
+                "mse": 0.04074591888701111,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "maximum_prediction_difference": 3.752553823233029e-13,
+              "decision_changes": 0
+            },
+            "8": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.729306692561903,
+                "deterministic_left_tie_regret": 0.359375,
+                "fair_tie_regret": 0.359375,
+                "directional_accuracy_on_real_nonzero": 0.3235294117647059
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.7293066925619056,
+                "deterministic_left_tie_regret": 0.359375,
+                "fair_tie_regret": 0.359375,
+                "directional_accuracy_on_real_nonzero": 0.3235294117647059
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 3,
+                "mse": 0.6842001071945547,
+                "deterministic_left_tie_regret": 0.34375,
+                "fair_tie_regret": 0.34375,
+                "directional_accuracy_on_real_nonzero": 0.35294117647058826
+              },
+              "maximum_prediction_difference": 3.301248163722903e-13,
+              "decision_changes": 0
+            },
+            "16": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 36,
+                "prediction_ties": 0,
+                "mse": 0.8173116218384944,
+                "deterministic_left_tie_regret": 0.28125,
+                "fair_tie_regret": 0.28125,
+                "directional_accuracy_on_real_nonzero": 0.5833333333333334
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 36,
+                "prediction_ties": 0,
+                "mse": 0.817311621838494,
+                "deterministic_left_tie_regret": 0.28125,
+                "fair_tie_regret": 0.28125,
+                "directional_accuracy_on_real_nonzero": 0.5833333333333334
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 36,
+                "prediction_ties": 3,
+                "mse": 0.9978786658787748,
+                "deterministic_left_tie_regret": 0.328125,
+                "fair_tie_regret": 0.328125,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "maximum_prediction_difference": 4.6074255521944e-13,
+              "decision_changes": 0
+            }
+          }
+        }
+      },
+      "future_pairs": {
+        "maximum_reward_coefficient_difference": 3.0779268023195527e-12,
+        "normal_equation_residual_per_action": [
+          5.098144129078719e-13,
+          2.078337502098293e-13,
+          7.087663789206999e-13,
+          3.7214675785435247e-13
+        ],
+        "partitions": {
+          "known": {
+            "4": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 20,
+                "prediction_ties": 0,
+                "mse": 0.3244987130261727,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.6
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 20,
+                "prediction_ties": 0,
+                "mse": 0.3244987130261937,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.6
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 20,
+                "prediction_ties": 0,
+                "mse": 0.22974085002621836,
+                "deterministic_left_tie_regret": 0.0625,
+                "fair_tie_regret": 0.0625,
+                "directional_accuracy_on_real_nonzero": 0.8
+              },
+              "maximum_prediction_difference": 3.437666817873719e-13,
+              "decision_changes": 0
+            },
+            "8": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.48141541640450936,
+                "deterministic_left_tie_regret": 0.28125,
+                "fair_tie_regret": 0.28125,
+                "directional_accuracy_on_real_nonzero": 0.28
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.4814154164044996,
+                "deterministic_left_tie_regret": 0.28125,
+                "fair_tie_regret": 0.28125,
+                "directional_accuracy_on_real_nonzero": 0.28
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.3487500804536431,
+                "deterministic_left_tie_regret": 0.171875,
+                "fair_tie_regret": 0.171875,
+                "directional_accuracy_on_real_nonzero": 0.56
+              },
+              "maximum_prediction_difference": 4.064665271030776e-13,
+              "decision_changes": 0
+            },
+            "16": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.518680869138781,
+                "deterministic_left_tie_regret": 0.078125,
+                "fair_tie_regret": 0.078125,
+                "directional_accuracy_on_real_nonzero": 0.8809523809523809
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.5186808691388136,
+                "deterministic_left_tie_regret": 0.078125,
+                "fair_tie_regret": 0.078125,
+                "directional_accuracy_on_real_nonzero": 0.8809523809523809
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.47512227066856216,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.8095238095238095
+              },
+              "maximum_prediction_difference": 4.620193116977589e-13,
+              "decision_changes": 0
+            }
+          },
+          "new": {
+            "4": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 2,
+                "prediction_ties": 0,
+                "mse": 0.05139403157012884,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 2,
+                "prediction_ties": 0,
+                "mse": 0.05139403157013979,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 2,
+                "prediction_ties": 3,
+                "mse": 0.04074591888701111,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "maximum_prediction_difference": 3.752553823233029e-13,
+              "decision_changes": 0
+            },
+            "8": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.729306692561903,
+                "deterministic_left_tie_regret": 0.359375,
+                "fair_tie_regret": 0.359375,
+                "directional_accuracy_on_real_nonzero": 0.3235294117647059
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.7293066925619056,
+                "deterministic_left_tie_regret": 0.359375,
+                "fair_tie_regret": 0.359375,
+                "directional_accuracy_on_real_nonzero": 0.3235294117647059
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 3,
+                "mse": 0.6842001071945547,
+                "deterministic_left_tie_regret": 0.34375,
+                "fair_tie_regret": 0.34375,
+                "directional_accuracy_on_real_nonzero": 0.35294117647058826
+              },
+              "maximum_prediction_difference": 3.301248163722903e-13,
+              "decision_changes": 0
+            },
+            "16": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 36,
+                "prediction_ties": 0,
+                "mse": 0.8173116218384944,
+                "deterministic_left_tie_regret": 0.28125,
+                "fair_tie_regret": 0.28125,
+                "directional_accuracy_on_real_nonzero": 0.5833333333333334
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 36,
+                "prediction_ties": 0,
+                "mse": 0.817311621838494,
+                "deterministic_left_tie_regret": 0.28125,
+                "fair_tie_regret": 0.28125,
+                "directional_accuracy_on_real_nonzero": 0.5833333333333334
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 36,
+                "prediction_ties": 3,
+                "mse": 0.9978786658787748,
+                "deterministic_left_tie_regret": 0.328125,
+                "fair_tie_regret": 0.328125,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "maximum_prediction_difference": 4.6074255521944e-13,
+              "decision_changes": 0
+            }
+          }
+        }
+      }
+    },
+    "pong": {
+      "no_generated_functions": {
+        "maximum_reward_coefficient_difference": 8.171241461241152e-12,
+        "normal_equation_residual_per_action": [
+          9.663381206337363e-13,
+          3.126388037344441e-13,
+          2.4158453015843406e-12,
+          1.0906830993917538e-12
+        ],
+        "partitions": {
+          "known": {
+            "4": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 10,
+                "prediction_ties": 0,
+                "mse": 0.15783068556574792,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.8
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 10,
+                "prediction_ties": 0,
+                "mse": 0.1578306855657638,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.8
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 10,
+                "prediction_ties": 0,
+                "mse": 0.16617391091233022,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.8
+              },
+              "maximum_prediction_difference": 1.290301199219357e-12,
+              "decision_changes": 0
+            },
+            "8": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.7236852462384372,
+                "deterministic_left_tie_regret": 0.109375,
+                "fair_tie_regret": 0.109375,
+                "directional_accuracy_on_real_nonzero": 0.5833333333333334
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.7236852462383965,
+                "deterministic_left_tie_regret": 0.109375,
+                "fair_tie_regret": 0.109375,
+                "directional_accuracy_on_real_nonzero": 0.5833333333333334
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.7406968464135302,
+                "deterministic_left_tie_regret": 0.15625,
+                "fair_tie_regret": 0.15625,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "maximum_prediction_difference": 1.4315215679516768e-12,
+              "decision_changes": 0
+            },
+            "16": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 23,
+                "prediction_ties": 0,
+                "mse": 1.2016031103393816,
+                "deterministic_left_tie_regret": 0.265625,
+                "fair_tie_regret": 0.265625,
+                "directional_accuracy_on_real_nonzero": 0.5217391304347826
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 23,
+                "prediction_ties": 0,
+                "mse": 1.2016031103393958,
+                "deterministic_left_tie_regret": 0.265625,
+                "fair_tie_regret": 0.265625,
+                "directional_accuracy_on_real_nonzero": 0.5217391304347826
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 23,
+                "prediction_ties": 0,
+                "mse": 1.3105464094852275,
+                "deterministic_left_tie_regret": 0.296875,
+                "fair_tie_regret": 0.296875,
+                "directional_accuracy_on_real_nonzero": 0.43478260869565216
+              },
+              "maximum_prediction_difference": 1.4639400802707314e-12,
+              "decision_changes": 0
+            }
+          },
+          "new": {
+            "4": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.1285011814221947,
+                "deterministic_left_tie_regret": 0.046875,
+                "fair_tie_regret": 0.046875,
+                "directional_accuracy_on_real_nonzero": 0.4
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.12850118142231204,
+                "deterministic_left_tie_regret": 0.046875,
+                "fair_tie_regret": 0.046875,
+                "directional_accuracy_on_real_nonzero": 0.4
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.13816708472896366,
+                "deterministic_left_tie_regret": 0.046875,
+                "fair_tie_regret": 0.046875,
+                "directional_accuracy_on_real_nonzero": 0.4
+              },
+              "maximum_prediction_difference": 3.1321611970724916e-12,
+              "decision_changes": 0
+            },
+            "8": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.31485000424389453,
+                "deterministic_left_tie_regret": 0.09375,
+                "fair_tie_regret": 0.09375,
+                "directional_accuracy_on_real_nonzero": 0.42857142857142855
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.31485000424408127,
+                "deterministic_left_tie_regret": 0.09375,
+                "fair_tie_regret": 0.09375,
+                "directional_accuracy_on_real_nonzero": 0.42857142857142855
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.5086688722497745,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.2857142857142857
+              },
+              "maximum_prediction_difference": 3.1037394876420876e-12,
+              "decision_changes": 0
+            },
+            "16": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 16,
+                "prediction_ties": 0,
+                "mse": 0.6016744172823245,
+                "deterministic_left_tie_regret": 0.140625,
+                "fair_tie_regret": 0.140625,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 16,
+                "prediction_ties": 0,
+                "mse": 0.6016744172826882,
+                "deterministic_left_tie_regret": 0.140625,
+                "fair_tie_regret": 0.140625,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 16,
+                "prediction_ties": 0,
+                "mse": 0.7549608095820141,
+                "deterministic_left_tie_regret": 0.171875,
+                "fair_tie_regret": 0.171875,
+                "directional_accuracy_on_real_nonzero": 0.4375
+              },
+              "maximum_prediction_difference": 3.1332714200971168e-12,
+              "decision_changes": 0
+            }
+          }
+        }
+      },
+      "future_pairs": {
+        "maximum_reward_coefficient_difference": 8.035794252236883e-12,
+        "normal_equation_residual_per_action": [
+          1.0373923942097463e-12,
+          2.3092638912203256e-13,
+          2.4442670110147446e-12,
+          1.1155520951433573e-12
+        ],
+        "partitions": {
+          "known": {
+            "4": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 10,
+                "prediction_ties": 0,
+                "mse": 0.16181690011055927,
+                "deterministic_left_tie_regret": 0.046875,
+                "fair_tie_regret": 0.046875,
+                "directional_accuracy_on_real_nonzero": 0.7
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 10,
+                "prediction_ties": 0,
+                "mse": 0.16181690011056804,
+                "deterministic_left_tie_regret": 0.046875,
+                "fair_tie_regret": 0.046875,
+                "directional_accuracy_on_real_nonzero": 0.7
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 10,
+                "prediction_ties": 0,
+                "mse": 0.1670378575398772,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.8
+              },
+              "maximum_prediction_difference": 1.248556813493451e-12,
+              "decision_changes": 0
+            },
+            "8": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.7262104117061317,
+                "deterministic_left_tie_regret": 0.15625,
+                "fair_tie_regret": 0.15625,
+                "directional_accuracy_on_real_nonzero": 0.4166666666666667
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.7262104117061241,
+                "deterministic_left_tie_regret": 0.15625,
+                "fair_tie_regret": 0.15625,
+                "directional_accuracy_on_real_nonzero": 0.4166666666666667
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.7228001945728708,
+                "deterministic_left_tie_regret": 0.15625,
+                "fair_tie_regret": 0.15625,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "maximum_prediction_difference": 1.3864465131518955e-12,
+              "decision_changes": 0
+            },
+            "16": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 23,
+                "prediction_ties": 0,
+                "mse": 1.1834498100392512,
+                "deterministic_left_tie_regret": 0.28125,
+                "fair_tie_regret": 0.28125,
+                "directional_accuracy_on_real_nonzero": 0.5652173913043478
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 23,
+                "prediction_ties": 0,
+                "mse": 1.1834498100393338,
+                "deterministic_left_tie_regret": 0.28125,
+                "fair_tie_regret": 0.28125,
+                "directional_accuracy_on_real_nonzero": 0.5652173913043478
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 23,
+                "prediction_ties": 0,
+                "mse": 1.1454917532920508,
+                "deterministic_left_tie_regret": 0.265625,
+                "fair_tie_regret": 0.265625,
+                "directional_accuracy_on_real_nonzero": 0.5217391304347826
+              },
+              "maximum_prediction_difference": 1.4011014570769476e-12,
+              "decision_changes": 0
+            }
+          },
+          "new": {
+            "4": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.11770672723103787,
+                "deterministic_left_tie_regret": 0.0625,
+                "fair_tie_regret": 0.0625,
+                "directional_accuracy_on_real_nonzero": 0.2
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.11770672723110262,
+                "deterministic_left_tie_regret": 0.0625,
+                "fair_tie_regret": 0.0625,
+                "directional_accuracy_on_real_nonzero": 0.2
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.12330368342303687,
+                "deterministic_left_tie_regret": 0.046875,
+                "fair_tie_regret": 0.046875,
+                "directional_accuracy_on_real_nonzero": 0.4
+              },
+              "maximum_prediction_difference": 2.903788320907097e-12,
+              "decision_changes": 0
+            },
+            "8": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.3153092136187514,
+                "deterministic_left_tie_regret": 0.09375,
+                "fair_tie_regret": 0.09375,
+                "directional_accuracy_on_real_nonzero": 0.42857142857142855
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.31530921361889147,
+                "deterministic_left_tie_regret": 0.09375,
+                "fair_tie_regret": 0.09375,
+                "directional_accuracy_on_real_nonzero": 0.42857142857142855
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.5455629168636384,
+                "deterministic_left_tie_regret": 0.140625,
+                "fair_tie_regret": 0.140625,
+                "directional_accuracy_on_real_nonzero": 0.14285714285714285
+              },
+              "maximum_prediction_difference": 2.978728375069295e-12,
+              "decision_changes": 0
+            },
+            "16": {
+              "old_before_decision": {
+                "count": 64,
+                "real_nonzero": 16,
+                "prediction_ties": 0,
+                "mse": 0.5834613182468212,
+                "deterministic_left_tie_regret": 0.140625,
+                "fair_tie_regret": 0.140625,
+                "directional_accuracy_on_real_nonzero": 0.5625
+              },
+              "recognition_transported_before_decision": {
+                "count": 64,
+                "real_nonzero": 16,
+                "prediction_ties": 0,
+                "mse": 0.5834613182469273,
+                "deterministic_left_tie_regret": 0.140625,
+                "fair_tie_regret": 0.140625,
+                "directional_accuracy_on_real_nonzero": 0.5625
+              },
+              "recognition_actual_future_diagnostic_only": {
+                "count": 64,
+                "real_nonzero": 16,
+                "prediction_ties": 0,
+                "mse": 0.7477575752563808,
+                "deterministic_left_tie_regret": 0.1875,
+                "fair_tie_regret": 0.1875,
+                "directional_accuracy_on_real_nonzero": 0.375
+              },
+              "maximum_prediction_difference": 3.0249136528937015e-12,
+              "decision_changes": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  "program_comparisons_checked": 1536,
+  "maximum_reward_coefficient_difference": 8.171241461241152e-12,
+  "maximum_normal_equation_residual": 2.4442670110147446e-12,
+  "maximum_program_prediction_difference": 3.1332714200971168e-12,
+  "fit_calls": 0,
+  "ale_calls": 0,
+  "manifest_sha256": "c1498f3b7adeeea401b85b8a0e5a6cfacda699fecffa5ec59a5bab4353d21649",
+  "human_level_goal_achieved": false,
+  "claim_scope": "same_features_same_training_same_alpha_linear_ridge_readout_and_transport",
+  "exact_symbolic_identity_numeric_instances_checked_not_exact_numeric_proof": true
+}

@@ -1,0 +1,11 @@
+# Terceiro ensaio: co-invenção de pergunta e estado
+
+Definido depois dos dois ensaios anteriores. Exploratório, com episódios de avaliação internos separados. O teste não usa nomes de objetos nem parâmetros particulares de Breakout/Pong.
+
+**Mecanismo:** de uma biblioteca composicional de 16 programas de duas ações, cada programa produz o contraste causal entre sua imagem final e a do programa neutro partindo do mesmo estado. Para cada programa, uma direção de consequência visual é aprendida somente nos episódios de construção. O erro fora do próprio episódio de um preditor da representação atual procura contraexemplos. Um gerador testa pequenas leituras executáveis de regiões em quadros anteriores, nos atrasos 2, 4, 8 e 15, incluindo diferenças entre atrasos. Pergunta e leitura são escolhidas conjuntamente em episódios de seleção e avaliadas somente nos episódios 6–7. Também são registrados os retornos: um ganho visual sozinho não será chamado ganho de decisão.
+
+O nulo embaralha histórias entre raízes dentro de construção/seleção/avaliação, preservando pixels atuais, ações, consequências e a distribuição de histórias. Cada nulo passa pela mesma seleção. Melhorar o erro visual no teste, mas não superar os nulos ou não melhorar escolhas em estados com retornos distintos, será apenas um resultado perceptivo local. Uma falha em produzir pelo menos quatro estados de avaliação com retorno diferencial é diagnosticada como falta de contraste de valor, não como impossibilidade de aprender.
+
+Portão explícito da rodada: ganho de erro visual positivo no teste, no máximo um dos 32 nulos iguala/supera esse ganho, pelo menos quatro raízes finais com diferença de recompensa para a pergunta escolhida **e** acurácia de escolha de recompensa melhor com a memória que sem ela. Caso contrário, o resultado é nulo/inconclusivo para a hipótese forte.
+
+Coleção: oito episódios, oito raízes por episódio, horizonte de 128 passos ALE, 16 programas por raiz, teto de 160.000 passos por jogo. Mesmo estado restaurado antes de cada programa; uma repetição por episódio verifica determinismo. Semente 29. Dois jogos de desenvolvimento, nenhum jogo lacrado. Não mudar gramática, divisão ou métricas após rodar.

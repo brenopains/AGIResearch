@@ -1,0 +1,439 @@
+{
+  "genome": {
+    "leak": 0.4,
+    "input_rate": 0.003,
+    "readout_rate": 0.01,
+    "eta": 0.005,
+    "trace_decay": 0.8,
+    "decay": 0.001,
+    "hebb": 0.0,
+    "recurrent_bound": 1.2,
+    "growth_every": 16,
+    "growth_limit": 64,
+    "prune_threshold": 1e-05,
+    "rule": [
+      "add",
+      [
+        "mul",
+        [
+          "var",
+          "eligibility"
+        ],
+        [
+          "var",
+          "error"
+        ]
+      ],
+      [
+        "mul",
+        [
+          "var",
+          "decay"
+        ],
+        [
+          "var",
+          "weight"
+        ]
+      ]
+    ]
+  },
+  "history": [
+    {
+      "generation": 0,
+      "index": 0,
+      "mse": 0.17975938186391058,
+      "domain_mse": [
+        0.26270648026962545,
+        0.0968122834581957
+      ],
+      "genome": {
+        "leak": 0.4,
+        "input_rate": 0.003,
+        "readout_rate": 0.01,
+        "eta": 0.005,
+        "trace_decay": 0.8,
+        "decay": 0.001,
+        "hebb": 0.0,
+        "recurrent_bound": 1.2,
+        "growth_every": 16,
+        "growth_limit": 64,
+        "prune_threshold": 1e-05,
+        "rule": [
+          "add",
+          [
+            "mul",
+            [
+              "var",
+              "eligibility"
+            ],
+            [
+              "var",
+              "error"
+            ]
+          ],
+          [
+            "mul",
+            [
+              "var",
+              "decay"
+            ],
+            [
+              "var",
+              "weight"
+            ]
+          ]
+        ]
+      },
+      "cost": [
+        {
+          "edge_ops": 68232,
+          "dense_ops": 10948608,
+          "rule_edge_updates": 45360,
+          "structural_proposals": 20
+        },
+        {
+          "edge_ops": 68232,
+          "dense_ops": 10948608,
+          "rule_edge_updates": 45360,
+          "structural_proposals": 15
+        }
+      ],
+      "split": "development_only"
+    },
+    {
+      "generation": 0,
+      "index": 1,
+      "mse": 0.18049329983111734,
+      "domain_mse": [
+        0.26414666840483775,
+        0.09683993125739694
+      ],
+      "genome": {
+        "leak": 0.4,
+        "input_rate": 0.002587138138749059,
+        "readout_rate": 0.01,
+        "eta": 0.005,
+        "trace_decay": 0.8,
+        "decay": 0.001,
+        "hebb": 0.0,
+        "recurrent_bound": 1.2,
+        "growth_every": 16,
+        "growth_limit": 64,
+        "prune_threshold": 1e-05,
+        "rule": [
+          "add",
+          [
+            "mul",
+            [
+              "var",
+              "eligibility"
+            ],
+            [
+              "var",
+              "error"
+            ]
+          ],
+          [
+            "mul",
+            [
+              "var",
+              "decay"
+            ],
+            [
+              "var",
+              "weight"
+            ]
+          ]
+        ]
+      },
+      "cost": [
+        {
+          "edge_ops": 68232,
+          "dense_ops": 10948608,
+          "rule_edge_updates": 45360,
+          "structural_proposals": 20
+        },
+        {
+          "edge_ops": 68232,
+          "dense_ops": 10948608,
+          "rule_edge_updates": 45360,
+          "structural_proposals": 15
+        }
+      ],
+      "split": "development_only"
+    },
+    {
+      "generation": 0,
+      "index": 2,
+      "mse": 0.18133847011126872,
+      "domain_mse": [
+        0.26562620174714713,
+        0.09705073847539032
+      ],
+      "genome": {
+        "leak": 0.32169775294951963,
+        "input_rate": 0.003,
+        "readout_rate": 0.01,
+        "eta": 0.005,
+        "trace_decay": 0.8,
+        "decay": 0.001,
+        "hebb": 0.0,
+        "recurrent_bound": 1.2,
+        "growth_every": 16,
+        "growth_limit": 64,
+        "prune_threshold": 1e-05,
+        "rule": [
+          "add",
+          [
+            "mul",
+            [
+              "var",
+              "eligibility"
+            ],
+            [
+              "var",
+              "error"
+            ]
+          ],
+          [
+            "mul",
+            [
+              "var",
+              "decay"
+            ],
+            [
+              "var",
+              "weight"
+            ]
+          ]
+        ]
+      },
+      "cost": [
+        {
+          "edge_ops": 68232,
+          "dense_ops": 10948608,
+          "rule_edge_updates": 45360,
+          "structural_proposals": 19
+        },
+        {
+          "edge_ops": 68232,
+          "dense_ops": 10948608,
+          "rule_edge_updates": 45360,
+          "structural_proposals": 15
+        }
+      ],
+      "split": "development_only"
+    },
+    {
+      "generation": 1,
+      "index": 0,
+      "mse": 0.17975938186391058,
+      "domain_mse": [
+        0.26270648026962545,
+        0.0968122834581957
+      ],
+      "genome": {
+        "leak": 0.4,
+        "input_rate": 0.003,
+        "readout_rate": 0.01,
+        "eta": 0.005,
+        "trace_decay": 0.8,
+        "decay": 0.001,
+        "hebb": 0.0,
+        "recurrent_bound": 1.2,
+        "growth_every": 16,
+        "growth_limit": 64,
+        "prune_threshold": 1e-05,
+        "rule": [
+          "add",
+          [
+            "mul",
+            [
+              "var",
+              "eligibility"
+            ],
+            [
+              "var",
+              "error"
+            ]
+          ],
+          [
+            "mul",
+            [
+              "var",
+              "decay"
+            ],
+            [
+              "var",
+              "weight"
+            ]
+          ]
+        ]
+      },
+      "cost": [
+        {
+          "edge_ops": 68232,
+          "dense_ops": 10948608,
+          "rule_edge_updates": 45360,
+          "structural_proposals": 20
+        },
+        {
+          "edge_ops": 68232,
+          "dense_ops": 10948608,
+          "rule_edge_updates": 45360,
+          "structural_proposals": 15
+        }
+      ],
+      "split": "development_only"
+    },
+    {
+      "generation": 1,
+      "index": 1,
+      "mse": 0.17994771898994938,
+      "domain_mse": [
+        0.26304327532301436,
+        0.09685216265688439
+      ],
+      "genome": {
+        "leak": 0.4,
+        "input_rate": 0.003,
+        "readout_rate": 0.01,
+        "eta": 0.005,
+        "trace_decay": 0.8,
+        "decay": 0.001,
+        "hebb": 0.0,
+        "recurrent_bound": 1.2,
+        "growth_every": 16,
+        "growth_limit": 64,
+        "prune_threshold": 1e-05,
+        "rule": [
+          "clip",
+          [
+            "add",
+            [
+              "add",
+              [
+                "mul",
+                [
+                  "var",
+                  "eligibility"
+                ],
+                [
+                  "var",
+                  "error"
+                ]
+              ],
+              [
+                "mul",
+                [
+                  "var",
+                  "decay"
+                ],
+                [
+                  "var",
+                  "weight"
+                ]
+              ]
+            ],
+            [
+              "mul",
+              [
+                "const",
+                0.09684703080155319
+              ],
+              [
+                "mul",
+                [
+                  "var",
+                  "pre"
+                ],
+                [
+                  "var",
+                  "post"
+                ]
+              ]
+            ]
+          ]
+        ]
+      },
+      "cost": [
+        {
+          "edge_ops": 68232,
+          "dense_ops": 10948608,
+          "rule_edge_updates": 45360,
+          "structural_proposals": 19
+        },
+        {
+          "edge_ops": 68232,
+          "dense_ops": 10948608,
+          "rule_edge_updates": 45360,
+          "structural_proposals": 15
+        }
+      ],
+      "split": "development_only"
+    },
+    {
+      "generation": 1,
+      "index": 2,
+      "mse": 0.18047299423866484,
+      "domain_mse": [
+        0.26401861557870865,
+        0.09692737289862104
+      ],
+      "genome": {
+        "leak": 0.3614813916214205,
+        "input_rate": 0.003,
+        "readout_rate": 0.01,
+        "eta": 0.005,
+        "trace_decay": 0.8,
+        "decay": 0.001,
+        "hebb": 0.0,
+        "recurrent_bound": 1.2,
+        "growth_every": 16,
+        "growth_limit": 64,
+        "prune_threshold": 1e-05,
+        "rule": [
+          "add",
+          [
+            "mul",
+            [
+              "var",
+              "eligibility"
+            ],
+            [
+              "var",
+              "error"
+            ]
+          ],
+          [
+            "mul",
+            [
+              "var",
+              "decay"
+            ],
+            [
+              "var",
+              "weight"
+            ]
+          ]
+        ]
+      },
+      "cost": [
+        {
+          "edge_ops": 68232,
+          "dense_ops": 10948608,
+          "rule_edge_updates": 45360,
+          "structural_proposals": 20
+        },
+        {
+          "edge_ops": 68232,
+          "dense_ops": 10948608,
+          "rule_edge_updates": 45360,
+          "structural_proposals": 15
+        }
+      ],
+      "split": "development_only"
+    }
+  ],
+  "evaluation_started": false
+}

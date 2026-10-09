@@ -1,0 +1,17 @@
+{
+  "body": "patch_response=sum(gray_patch[pixel]*weights[filter,pixel]);prepend_patch_mean",
+  "mode": "random_zero_mean_local_filters",
+  "parameters": "resolucao_compacta_pong_random_filters.npz",
+  "primitive_patch_shape": [
+    10,
+    10
+  ],
+  "origin": {
+    "training_seed": 149,
+    "construction_game": "pong",
+    "samples": 8192,
+    "no_reward_used": true
+  },
+  "no_action_reward_or_world_name_used_to_fit_filters": true,
+  "not_unrestricted_representation_invention": true
+}

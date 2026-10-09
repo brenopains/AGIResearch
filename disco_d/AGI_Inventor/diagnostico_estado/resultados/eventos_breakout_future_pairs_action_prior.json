@@ -1,0 +1,17 @@
+{
+  "mode": "action_prior",
+  "feature_reference": {
+    "path": "resultados/prospectiva_breakout_future_pairs_corpo.npz",
+    "sha256": "c677e5f6463e4e2e23612bed5ec7acb5e3e4f18bff8c220d80477a75c5eff6db"
+  },
+  "timing": "before_action",
+  "body": "design(phi_before,phi_after,mode)@coefficient[action]",
+  "parameters": "eventos_breakout_future_pairs_action_prior.npz",
+  "metadata": {
+    "training_seed": 149,
+    "arm": "action_prior",
+    "training_transitions": 1667,
+    "diagnostic_not_agi": true
+  },
+  "not_human_level_or_exact_proof": true
+}

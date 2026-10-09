@@ -1,0 +1,3758 @@
+{
+  "status": "context_choice_diagnostic_complete_no_promotion",
+  "games": {
+    "breakout": {
+      "known": {
+        "4": {
+          "count": 64,
+          "reference_arm": "learned_body_without_context",
+          "same_body_comparison_valid_only_for": "learned",
+          "retrospective_constant_per_pair_floor": 0.140625,
+          "constant_oracle_pairs": [
+            {
+              "program_pair": [
+                0,
+                1
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": 1,
+              "fair_regret_of_best_constant": 0.125,
+              "actual_positive": 10,
+              "actual_negative": 4
+            },
+            {
+              "program_pair": [
+                2,
+                3
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": 1,
+              "fair_regret_of_best_constant": 0.15625,
+              "actual_positive": 6,
+              "actual_negative": 5
+            }
+          ],
+          "arms": {
+            "coarse": {
+              "fair_tie_regret": 0.125,
+              "gain_over_learned_body_without_context": 0.015625,
+              "gain_over_retrospectively_best_constant_per_pair": 0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 31,
+                  "negative": 1,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 15,
+                  "negative": 17,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 18,
+              "beneficial_changed_choices": 4,
+              "harmful_changed_choices": 3,
+              "neutral_changed_choices": 11
+            },
+            "moments": {
+              "fair_tie_regret": 0.125,
+              "gain_over_learned_body_without_context": 0.015625,
+              "gain_over_retrospectively_best_constant_per_pair": 0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 31,
+                  "negative": 1,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 19,
+                  "negative": 13,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 14,
+              "beneficial_changed_choices": 2,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 11
+            },
+            "learned": {
+              "fair_tie_regret": 0.140625,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 32,
+                  "negative": 0,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 23,
+                  "negative": 9,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 9,
+              "beneficial_changed_choices": 1,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 7
+            },
+            "random": {
+              "fair_tie_regret": 0.125,
+              "gain_over_learned_body_without_context": 0.015625,
+              "gain_over_retrospectively_best_constant_per_pair": 0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 31,
+                  "negative": 1,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 21,
+                  "negative": 11,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 12,
+              "beneficial_changed_choices": 2,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 9
+            },
+            "transferred": {
+              "fair_tie_regret": 0.140625,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 32,
+                  "negative": 0,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 21,
+                  "negative": 11,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 11,
+              "beneficial_changed_choices": 1,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 9
+            },
+            "shuffled_outcomes": {
+              "fair_tie_regret": 0.140625,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 29,
+                  "negative": 3,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 32,
+                  "negative": 0,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 3,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 3
+            },
+            "no_context": {
+              "fair_tie_regret": 0.140625,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 32,
+                  "negative": 0,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 32,
+                  "negative": 0,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 0,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 0
+            },
+            "legacy": {
+              "fair_tie_regret": 0.15625,
+              "gain_over_learned_body_without_context": -0.015625,
+              "gain_over_retrospectively_best_constant_per_pair": -0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 32,
+                  "negative": 0,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 19,
+                  "negative": 13,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 13,
+              "beneficial_changed_choices": 1,
+              "harmful_changed_choices": 2,
+              "neutral_changed_choices": 10
+            },
+            "zero": {
+              "fair_tie_regret": 0.1953125,
+              "gain_over_learned_body_without_context": -0.0546875,
+              "gain_over_retrospectively_best_constant_per_pair": -0.0546875,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 64,
+              "beneficial_changed_choices": 9,
+              "harmful_changed_choices": 16,
+              "neutral_changed_choices": 39
+            }
+          }
+        },
+        "8": {
+          "count": 64,
+          "reference_arm": "learned_body_without_context",
+          "same_body_comparison_valid_only_for": "learned",
+          "retrospective_constant_per_pair_floor": 0.21875,
+          "constant_oracle_pairs": [
+            {
+              "program_pair": [
+                0,
+                1
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": 1,
+              "fair_regret_of_best_constant": 0.21875,
+              "actual_positive": 12,
+              "actual_negative": 6
+            },
+            {
+              "program_pair": [
+                2,
+                3
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": 1,
+              "fair_regret_of_best_constant": 0.21875,
+              "actual_positive": 9,
+              "actual_negative": 7
+            }
+          ],
+          "arms": {
+            "coarse": {
+              "fair_tie_regret": 0.25,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.03125,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 15,
+                  "negative": 17,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 8,
+                  "negative": 24,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 25,
+              "beneficial_changed_choices": 7,
+              "harmful_changed_choices": 8,
+              "neutral_changed_choices": 10
+            },
+            "moments": {
+              "fair_tie_regret": 0.296875,
+              "gain_over_learned_body_without_context": -0.046875,
+              "gain_over_retrospectively_best_constant_per_pair": -0.078125,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 20,
+                  "negative": 12,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 7,
+                  "negative": 25,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 19,
+              "beneficial_changed_choices": 4,
+              "harmful_changed_choices": 7,
+              "neutral_changed_choices": 8
+            },
+            "learned": {
+              "fair_tie_regret": 0.265625,
+              "gain_over_learned_body_without_context": -0.015625,
+              "gain_over_retrospectively_best_constant_per_pair": -0.046875,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 8,
+                  "negative": 24,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 5,
+                  "negative": 27,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 29,
+              "beneficial_changed_choices": 8,
+              "harmful_changed_choices": 10,
+              "neutral_changed_choices": 11
+            },
+            "random": {
+              "fair_tie_regret": 0.25,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.03125,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 17,
+                  "negative": 15,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 17,
+                  "negative": 15,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 32,
+              "beneficial_changed_choices": 9,
+              "harmful_changed_choices": 10,
+              "neutral_changed_choices": 13
+            },
+            "transferred": {
+              "fair_tie_regret": 0.234375,
+              "gain_over_learned_body_without_context": 0.015625,
+              "gain_over_retrospectively_best_constant_per_pair": -0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 11,
+                  "negative": 21,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 12,
+                  "negative": 20,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 33,
+              "beneficial_changed_choices": 11,
+              "harmful_changed_choices": 11,
+              "neutral_changed_choices": 11
+            },
+            "shuffled_outcomes": {
+              "fair_tie_regret": 0.21875,
+              "gain_over_learned_body_without_context": 0.03125,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 27,
+                  "negative": 5,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 23,
+                  "negative": 9,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 28,
+              "beneficial_changed_choices": 7,
+              "harmful_changed_choices": 5,
+              "neutral_changed_choices": 16
+            },
+            "no_context": {
+              "fair_tie_regret": 0.25,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.03125,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 32,
+                  "negative": 0,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 0,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 0
+            },
+            "legacy": {
+              "fair_tie_regret": 0.25,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.03125,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 17,
+                  "negative": 15,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 10,
+                  "negative": 22,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 25,
+              "beneficial_changed_choices": 8,
+              "harmful_changed_choices": 9,
+              "neutral_changed_choices": 8
+            },
+            "zero": {
+              "fair_tie_regret": 0.2734375,
+              "gain_over_learned_body_without_context": -0.0234375,
+              "gain_over_retrospectively_best_constant_per_pair": -0.0546875,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 64,
+              "beneficial_changed_choices": 15,
+              "harmful_changed_choices": 19,
+              "neutral_changed_choices": 30
+            }
+          }
+        },
+        "16": {
+          "count": 64,
+          "reference_arm": "learned_body_without_context",
+          "same_body_comparison_valid_only_for": "learned",
+          "retrospective_constant_per_pair_floor": 0.140625,
+          "constant_oracle_pairs": [
+            {
+              "program_pair": [
+                0,
+                1
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": -1,
+              "fair_regret_of_best_constant": 0.15625,
+              "actual_positive": 5,
+              "actual_negative": 14
+            },
+            {
+              "program_pair": [
+                2,
+                3
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": -1,
+              "fair_regret_of_best_constant": 0.125,
+              "actual_positive": 4,
+              "actual_negative": 19
+            }
+          ],
+          "arms": {
+            "coarse": {
+              "fair_tie_regret": 0.140625,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 1,
+                  "negative": 31,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 1,
+                  "negative": 31,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 2,
+              "beneficial_changed_choices": 1,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 0
+            },
+            "moments": {
+              "fair_tie_regret": 0.15625,
+              "gain_over_learned_body_without_context": -0.015625,
+              "gain_over_retrospectively_best_constant_per_pair": -0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 1,
+                  "negative": 31,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 1,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 0
+            },
+            "learned": {
+              "fair_tie_regret": 0.140625,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 1,
+                  "negative": 31,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 3,
+                  "negative": 29,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 4,
+              "beneficial_changed_choices": 2,
+              "harmful_changed_choices": 2,
+              "neutral_changed_choices": 0
+            },
+            "random": {
+              "fair_tie_regret": 0.140625,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 2,
+                  "negative": 30,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 2,
+              "beneficial_changed_choices": 1,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 0
+            },
+            "transferred": {
+              "fair_tie_regret": 0.140625,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 0,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 0
+            },
+            "shuffled_outcomes": {
+              "fair_tie_regret": 0.140625,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 1,
+                  "negative": 31,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 1,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 1
+            },
+            "no_context": {
+              "fair_tie_regret": 0.140625,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 0,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 0
+            },
+            "legacy": {
+              "fair_tie_regret": 0.140625,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 2,
+                  "negative": 30,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 2,
+              "beneficial_changed_choices": 1,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 0
+            },
+            "zero": {
+              "fair_tie_regret": 0.3828125,
+              "gain_over_learned_body_without_context": -0.2421875,
+              "gain_over_retrospectively_best_constant_per_pair": -0.2421875,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 64,
+              "beneficial_changed_choices": 9,
+              "harmful_changed_choices": 33,
+              "neutral_changed_choices": 22
+            }
+          }
+        }
+      },
+      "new": {
+        "4": {
+          "count": 64,
+          "reference_arm": "learned_body_without_context",
+          "same_body_comparison_valid_only_for": "learned",
+          "retrospective_constant_per_pair_floor": 0.03125,
+          "constant_oracle_pairs": [
+            {
+              "program_pair": [
+                4,
+                5
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": 0,
+              "fair_regret_of_best_constant": 0.0625,
+              "actual_positive": 2,
+              "actual_negative": 2
+            },
+            {
+              "program_pair": [
+                6,
+                7
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": 0,
+              "fair_regret_of_best_constant": 0.0,
+              "actual_positive": 0,
+              "actual_negative": 0
+            }
+          ],
+          "arms": {
+            "coarse": {
+              "fair_tie_regret": 0.046875,
+              "gain_over_learned_body_without_context": -0.015625,
+              "gain_over_retrospectively_best_constant_per_pair": -0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 3,
+                  "negative": 29,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 4,
+                  "negative": 28,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 7,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 6
+            },
+            "moments": {
+              "fair_tie_regret": 0.03125,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 16,
+                  "negative": 16,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 16,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 16
+            },
+            "learned": {
+              "fair_tie_regret": 0.046875,
+              "gain_over_learned_body_without_context": -0.015625,
+              "gain_over_retrospectively_best_constant_per_pair": -0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 7,
+                  "negative": 25,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 10,
+                  "negative": 22,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 17,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 16
+            },
+            "random": {
+              "fair_tie_regret": 0.03125,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 12,
+                  "negative": 20,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 12,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 12
+            },
+            "transferred": {
+              "fair_tie_regret": 0.015625,
+              "gain_over_learned_body_without_context": 0.015625,
+              "gain_over_retrospectively_best_constant_per_pair": 0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 3,
+                  "negative": 29,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 1,
+                  "negative": 31,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 4,
+              "beneficial_changed_choices": 1,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 3
+            },
+            "shuffled_outcomes": {
+              "fair_tie_regret": 0.03125,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 11,
+                  "negative": 21,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 11,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 11
+            },
+            "no_context": {
+              "fair_tie_regret": 0.03125,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 0,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 0
+            },
+            "legacy": {
+              "fair_tie_regret": 0.03125,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 15,
+                  "negative": 17,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 15,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 15
+            },
+            "zero": {
+              "fair_tie_regret": 0.03125,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 64,
+              "beneficial_changed_choices": 2,
+              "harmful_changed_choices": 2,
+              "neutral_changed_choices": 60
+            }
+          }
+        },
+        "8": {
+          "count": 64,
+          "reference_arm": "learned_body_without_context",
+          "same_body_comparison_valid_only_for": "learned",
+          "retrospective_constant_per_pair_floor": 0.125,
+          "constant_oracle_pairs": [
+            {
+              "program_pair": [
+                4,
+                5
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": 1,
+              "fair_regret_of_best_constant": 0.21875,
+              "actual_positive": 14,
+              "actual_negative": 7
+            },
+            {
+              "program_pair": [
+                6,
+                7
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": -1,
+              "fair_regret_of_best_constant": 0.03125,
+              "actual_positive": 1,
+              "actual_negative": 5
+            }
+          ],
+          "arms": {
+            "coarse": {
+              "fair_tie_regret": 0.3125,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.1875,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 5,
+                  "negative": 27,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 28,
+                  "negative": 4,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 9,
+              "beneficial_changed_choices": 1,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 7
+            },
+            "moments": {
+              "fair_tie_regret": 0.3125,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.1875,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 30,
+                  "negative": 2,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 2,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 2
+            },
+            "learned": {
+              "fair_tie_regret": 0.1875,
+              "gain_over_learned_body_without_context": 0.125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.0625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 13,
+                  "negative": 19,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 21,
+                  "negative": 11,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 24,
+              "beneficial_changed_choices": 9,
+              "harmful_changed_choices": 2,
+              "neutral_changed_choices": 13
+            },
+            "random": {
+              "fair_tie_regret": 0.3125,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.1875,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 27,
+                  "negative": 5,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 5,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 5
+            },
+            "transferred": {
+              "fair_tie_regret": 0.234375,
+              "gain_over_learned_body_without_context": 0.078125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.109375,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 2,
+                  "negative": 30,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 11,
+                  "negative": 21,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 23,
+              "beneficial_changed_choices": 5,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 18
+            },
+            "shuffled_outcomes": {
+              "fair_tie_regret": 0.234375,
+              "gain_over_learned_body_without_context": 0.078125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.109375,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 1,
+                  "negative": 31,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 33,
+              "beneficial_changed_choices": 6,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 26
+            },
+            "no_context": {
+              "fair_tie_regret": 0.3125,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.1875,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 32,
+                  "negative": 0,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 0,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 0
+            },
+            "legacy": {
+              "fair_tie_regret": 0.3125,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.1875,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 28,
+                  "negative": 4,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 4,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 4
+            },
+            "zero": {
+              "fair_tie_regret": 0.21875,
+              "gain_over_learned_body_without_context": 0.09375,
+              "gain_over_retrospectively_best_constant_per_pair": -0.09375,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 64,
+              "beneficial_changed_choices": 19,
+              "harmful_changed_choices": 8,
+              "neutral_changed_choices": 37
+            }
+          }
+        },
+        "16": {
+          "count": 64,
+          "reference_arm": "learned_body_without_context",
+          "same_body_comparison_valid_only_for": "learned",
+          "retrospective_constant_per_pair_floor": 0.203125,
+          "constant_oracle_pairs": [
+            {
+              "program_pair": [
+                4,
+                5
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": 1,
+              "fair_regret_of_best_constant": 0.21875,
+              "actual_positive": 16,
+              "actual_negative": 6
+            },
+            {
+              "program_pair": [
+                6,
+                7
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": -1,
+              "fair_regret_of_best_constant": 0.1875,
+              "actual_positive": 5,
+              "actual_negative": 7
+            }
+          ],
+          "arms": {
+            "coarse": {
+              "fair_tie_regret": 0.21875,
+              "gain_over_learned_body_without_context": -0.015625,
+              "gain_over_retrospectively_best_constant_per_pair": -0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 25,
+                  "negative": 7,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 29,
+                  "negative": 3,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 36,
+              "beneficial_changed_choices": 6,
+              "harmful_changed_choices": 8,
+              "neutral_changed_choices": 22
+            },
+            "moments": {
+              "fair_tie_regret": 0.3125,
+              "gain_over_learned_body_without_context": -0.109375,
+              "gain_over_retrospectively_best_constant_per_pair": -0.109375,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 3,
+                  "negative": 29,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 27,
+                  "negative": 5,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 56,
+              "beneficial_changed_choices": 11,
+              "harmful_changed_choices": 20,
+              "neutral_changed_choices": 25
+            },
+            "learned": {
+              "fair_tie_regret": 0.25,
+              "gain_over_learned_body_without_context": -0.046875,
+              "gain_over_retrospectively_best_constant_per_pair": -0.046875,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 24,
+                  "negative": 8,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 14,
+                  "negative": 18,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 22,
+              "beneficial_changed_choices": 2,
+              "harmful_changed_choices": 6,
+              "neutral_changed_choices": 14
+            },
+            "random": {
+              "fair_tie_regret": 0.265625,
+              "gain_over_learned_body_without_context": -0.0625,
+              "gain_over_retrospectively_best_constant_per_pair": -0.0625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 12,
+                  "negative": 20,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 22,
+                  "negative": 10,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 42,
+              "beneficial_changed_choices": 8,
+              "harmful_changed_choices": 13,
+              "neutral_changed_choices": 21
+            },
+            "transferred": {
+              "fair_tie_regret": 0.15625,
+              "gain_over_learned_body_without_context": 0.046875,
+              "gain_over_retrospectively_best_constant_per_pair": 0.046875,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 14,
+                  "negative": 18,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 5,
+                  "negative": 27,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 23,
+              "beneficial_changed_choices": 7,
+              "harmful_changed_choices": 6,
+              "neutral_changed_choices": 10
+            },
+            "shuffled_outcomes": {
+              "fair_tie_regret": 0.375,
+              "gain_over_learned_body_without_context": -0.171875,
+              "gain_over_retrospectively_best_constant_per_pair": -0.171875,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 11,
+                  "negative": 21,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 1,
+                  "negative": 31,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 22,
+              "beneficial_changed_choices": 3,
+              "harmful_changed_choices": 11,
+              "neutral_changed_choices": 8
+            },
+            "no_context": {
+              "fair_tie_regret": 0.203125,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 32,
+                  "negative": 0,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 0,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 0
+            },
+            "legacy": {
+              "fair_tie_regret": 0.203125,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 22,
+                  "negative": 10,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 29,
+                  "negative": 3,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 39,
+              "beneficial_changed_choices": 7,
+              "harmful_changed_choices": 9,
+              "neutral_changed_choices": 23
+            },
+            "zero": {
+              "fair_tie_regret": 0.3046875,
+              "gain_over_learned_body_without_context": -0.1015625,
+              "gain_over_retrospectively_best_constant_per_pair": -0.1015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 64,
+              "beneficial_changed_choices": 11,
+              "harmful_changed_choices": 23,
+              "neutral_changed_choices": 30
+            }
+          }
+        }
+      }
+    },
+    "pong": {
+      "known": {
+        "4": {
+          "count": 64,
+          "reference_arm": "learned_body_without_context",
+          "same_body_comparison_valid_only_for": "learned",
+          "retrospective_constant_per_pair_floor": 0.015625,
+          "constant_oracle_pairs": [
+            {
+              "program_pair": [
+                0,
+                1
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": -1,
+              "fair_regret_of_best_constant": 0.03125,
+              "actual_positive": 1,
+              "actual_negative": 4
+            },
+            {
+              "program_pair": [
+                2,
+                3
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": 1,
+              "fair_regret_of_best_constant": 0.0,
+              "actual_positive": 4,
+              "actual_negative": 0
+            }
+          ],
+          "arms": {
+            "coarse": {
+              "fair_tie_regret": 0.046875,
+              "gain_over_learned_body_without_context": 0.03125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.03125,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 8,
+                  "negative": 24,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 13,
+                  "negative": 19,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 21,
+              "beneficial_changed_choices": 2,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 19
+            },
+            "moments": {
+              "fair_tie_regret": 0.03125,
+              "gain_over_learned_body_without_context": 0.046875,
+              "gain_over_retrospectively_best_constant_per_pair": -0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 18,
+                  "negative": 14,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 18,
+              "beneficial_changed_choices": 3,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 15
+            },
+            "learned": {
+              "fair_tie_regret": 0.078125,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.0625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 7,
+                  "negative": 25,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 2,
+                  "negative": 30,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 9,
+              "beneficial_changed_choices": 1,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 7
+            },
+            "random": {
+              "fair_tie_regret": 0.09375,
+              "gain_over_learned_body_without_context": -0.015625,
+              "gain_over_retrospectively_best_constant_per_pair": -0.078125,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 11,
+                  "negative": 21,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 1,
+                  "negative": 31,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 12,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 11
+            },
+            "transferred": {
+              "fair_tie_regret": 0.046875,
+              "gain_over_learned_body_without_context": 0.03125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.03125,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 10,
+                  "negative": 22,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 10,
+                  "negative": 22,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 20,
+              "beneficial_changed_choices": 2,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 18
+            },
+            "shuffled_outcomes": {
+              "fair_tie_regret": 0.0625,
+              "gain_over_learned_body_without_context": 0.015625,
+              "gain_over_retrospectively_best_constant_per_pair": -0.046875,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 6,
+                  "negative": 26,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 12,
+                  "negative": 20,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 18,
+              "beneficial_changed_choices": 1,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 17
+            },
+            "no_context": {
+              "fair_tie_regret": 0.078125,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.0625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 0,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 0
+            },
+            "legacy": {
+              "fair_tie_regret": 0.046875,
+              "gain_over_learned_body_without_context": 0.03125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.03125,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 14,
+                  "negative": 18,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 13,
+                  "negative": 19,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 27,
+              "beneficial_changed_choices": 3,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 23
+            },
+            "zero": {
+              "fair_tie_regret": 0.0703125,
+              "gain_over_learned_body_without_context": 0.0078125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.0546875,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 64,
+              "beneficial_changed_choices": 5,
+              "harmful_changed_choices": 4,
+              "neutral_changed_choices": 55
+            }
+          }
+        },
+        "8": {
+          "count": 64,
+          "reference_arm": "learned_body_without_context",
+          "same_body_comparison_valid_only_for": "learned",
+          "retrospective_constant_per_pair_floor": 0.078125,
+          "constant_oracle_pairs": [
+            {
+              "program_pair": [
+                0,
+                1
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": -1,
+              "fair_regret_of_best_constant": 0.125,
+              "actual_positive": 3,
+              "actual_negative": 4
+            },
+            {
+              "program_pair": [
+                2,
+                3
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": 1,
+              "fair_regret_of_best_constant": 0.03125,
+              "actual_positive": 4,
+              "actual_negative": 1
+            }
+          ],
+          "arms": {
+            "coarse": {
+              "fair_tie_regret": 0.078125,
+              "gain_over_learned_body_without_context": 0.09375,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 7,
+                  "negative": 25,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 17,
+                  "negative": 15,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 24,
+              "beneficial_changed_choices": 3,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 21
+            },
+            "moments": {
+              "fair_tie_regret": 0.0625,
+              "gain_over_learned_body_without_context": 0.109375,
+              "gain_over_retrospectively_best_constant_per_pair": 0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 3,
+                  "negative": 29,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 23,
+                  "negative": 9,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 26,
+              "beneficial_changed_choices": 5,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 20
+            },
+            "learned": {
+              "fair_tie_regret": 0.09375,
+              "gain_over_learned_body_without_context": 0.078125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 8,
+                  "negative": 24,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 5,
+                  "negative": 27,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 13,
+              "beneficial_changed_choices": 3,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 10
+            },
+            "random": {
+              "fair_tie_regret": 0.09375,
+              "gain_over_learned_body_without_context": 0.078125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 11,
+                  "negative": 21,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 16,
+                  "negative": 16,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 27,
+              "beneficial_changed_choices": 4,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 22
+            },
+            "transferred": {
+              "fair_tie_regret": 0.109375,
+              "gain_over_learned_body_without_context": 0.0625,
+              "gain_over_retrospectively_best_constant_per_pair": -0.03125,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 8,
+                  "negative": 24,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 14,
+                  "negative": 18,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 22,
+              "beneficial_changed_choices": 2,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 20
+            },
+            "shuffled_outcomes": {
+              "fair_tie_regret": 0.1875,
+              "gain_over_learned_body_without_context": -0.015625,
+              "gain_over_retrospectively_best_constant_per_pair": -0.109375,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 15,
+                  "negative": 17,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 15,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 14
+            },
+            "no_context": {
+              "fair_tie_regret": 0.171875,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.09375,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 0,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 0
+            },
+            "legacy": {
+              "fair_tie_regret": 0.09375,
+              "gain_over_learned_body_without_context": 0.078125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 11,
+                  "negative": 21,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 17,
+                  "negative": 15,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 28,
+              "beneficial_changed_choices": 4,
+              "harmful_changed_choices": 2,
+              "neutral_changed_choices": 22
+            },
+            "zero": {
+              "fair_tie_regret": 0.140625,
+              "gain_over_learned_body_without_context": 0.03125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.0625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 64,
+              "beneficial_changed_choices": 7,
+              "harmful_changed_choices": 5,
+              "neutral_changed_choices": 52
+            }
+          }
+        },
+        "16": {
+          "count": 64,
+          "reference_arm": "learned_body_without_context",
+          "same_body_comparison_valid_only_for": "learned",
+          "retrospective_constant_per_pair_floor": 0.125,
+          "constant_oracle_pairs": [
+            {
+              "program_pair": [
+                0,
+                1
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": 1,
+              "fair_regret_of_best_constant": 0.15625,
+              "actual_positive": 8,
+              "actual_negative": 3
+            },
+            {
+              "program_pair": [
+                2,
+                3
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": 1,
+              "fair_regret_of_best_constant": 0.09375,
+              "actual_positive": 9,
+              "actual_negative": 2
+            }
+          ],
+          "arms": {
+            "coarse": {
+              "fair_tie_regret": 0.234375,
+              "gain_over_learned_body_without_context": -0.015625,
+              "gain_over_retrospectively_best_constant_per_pair": -0.109375,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 4,
+                  "negative": 28,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 22,
+                  "negative": 10,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 14,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 13
+            },
+            "moments": {
+              "fair_tie_regret": 0.1875,
+              "gain_over_learned_body_without_context": 0.03125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.0625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 2,
+                  "negative": 30,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 29,
+                  "negative": 3,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 5,
+              "beneficial_changed_choices": 2,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 2
+            },
+            "learned": {
+              "fair_tie_regret": 0.140625,
+              "gain_over_learned_body_without_context": 0.078125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 17,
+                  "negative": 15,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 23,
+                  "negative": 9,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 26,
+              "beneficial_changed_choices": 6,
+              "harmful_changed_choices": 2,
+              "neutral_changed_choices": 18
+            },
+            "random": {
+              "fair_tie_regret": 0.109375,
+              "gain_over_learned_body_without_context": 0.109375,
+              "gain_over_retrospectively_best_constant_per_pair": 0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 14,
+                  "negative": 18,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 29,
+                  "negative": 3,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 17,
+              "beneficial_changed_choices": 6,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 10
+            },
+            "transferred": {
+              "fair_tie_regret": 0.1875,
+              "gain_over_learned_body_without_context": 0.03125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.0625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 3,
+                  "negative": 29,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 26,
+                  "negative": 6,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 9,
+              "beneficial_changed_choices": 1,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 8
+            },
+            "shuffled_outcomes": {
+              "fair_tie_regret": 0.28125,
+              "gain_over_learned_body_without_context": -0.0625,
+              "gain_over_retrospectively_best_constant_per_pair": -0.15625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 8,
+                  "negative": 24,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 26,
+                  "negative": 6,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 14,
+              "beneficial_changed_choices": 3,
+              "harmful_changed_choices": 3,
+              "neutral_changed_choices": 8
+            },
+            "no_context": {
+              "fair_tie_regret": 0.21875,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.09375,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 32,
+                  "negative": 0,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 0,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 0
+            },
+            "legacy": {
+              "fair_tie_regret": 0.1875,
+              "gain_over_learned_body_without_context": 0.03125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.0625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 8,
+                  "negative": 24,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 20,
+                  "negative": 12,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 20,
+              "beneficial_changed_choices": 2,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 17
+            },
+            "zero": {
+              "fair_tie_regret": 0.265625,
+              "gain_over_learned_body_without_context": -0.046875,
+              "gain_over_retrospectively_best_constant_per_pair": -0.140625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    0,
+                    1
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    2,
+                    3
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 64,
+              "beneficial_changed_choices": 10,
+              "harmful_changed_choices": 12,
+              "neutral_changed_choices": 42
+            }
+          }
+        }
+      },
+      "new": {
+        "4": {
+          "count": 64,
+          "reference_arm": "learned_body_without_context",
+          "same_body_comparison_valid_only_for": "learned",
+          "retrospective_constant_per_pair_floor": 0.015625,
+          "constant_oracle_pairs": [
+            {
+              "program_pair": [
+                4,
+                5
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": -1,
+              "fair_regret_of_best_constant": 0.03125,
+              "actual_positive": 1,
+              "actual_negative": 2
+            },
+            {
+              "program_pair": [
+                6,
+                7
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": -1,
+              "fair_regret_of_best_constant": 0.0,
+              "actual_positive": 0,
+              "actual_negative": 2
+            }
+          ],
+          "arms": {
+            "coarse": {
+              "fair_tie_regret": 0.03125,
+              "gain_over_learned_body_without_context": 0.03125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 23,
+                  "negative": 9,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 18,
+                  "negative": 14,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 23,
+              "beneficial_changed_choices": 2,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 21
+            },
+            "moments": {
+              "fair_tie_regret": 0.03125,
+              "gain_over_learned_body_without_context": 0.03125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 14,
+                  "negative": 18,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 4,
+                  "negative": 28,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 46,
+              "beneficial_changed_choices": 3,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 42
+            },
+            "learned": {
+              "fair_tie_regret": 0.03125,
+              "gain_over_learned_body_without_context": 0.03125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 21,
+                  "negative": 11,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 21,
+                  "negative": 11,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 22,
+              "beneficial_changed_choices": 2,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 20
+            },
+            "random": {
+              "fair_tie_regret": 0.046875,
+              "gain_over_learned_body_without_context": 0.015625,
+              "gain_over_retrospectively_best_constant_per_pair": -0.03125,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 22,
+                  "negative": 10,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 25,
+                  "negative": 7,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 17,
+              "beneficial_changed_choices": 1,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 16
+            },
+            "transferred": {
+              "fair_tie_regret": 0.03125,
+              "gain_over_learned_body_without_context": 0.03125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 32,
+                  "negative": 0,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 23,
+                  "negative": 9,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 9,
+              "beneficial_changed_choices": 2,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 7
+            },
+            "shuffled_outcomes": {
+              "fair_tie_regret": 0.015625,
+              "gain_over_learned_body_without_context": 0.046875,
+              "gain_over_retrospectively_best_constant_per_pair": 0.0,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 21,
+                  "negative": 11,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 14,
+                  "negative": 18,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 29,
+              "beneficial_changed_choices": 3,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 26
+            },
+            "no_context": {
+              "fair_tie_regret": 0.0625,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.046875,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 32,
+                  "negative": 0,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 32,
+                  "negative": 0,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 0,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 0
+            },
+            "legacy": {
+              "fair_tie_regret": 0.03125,
+              "gain_over_learned_body_without_context": 0.03125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 13,
+                  "negative": 19,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 14,
+                  "negative": 18,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 37,
+              "beneficial_changed_choices": 3,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 33
+            },
+            "zero": {
+              "fair_tie_regret": 0.0390625,
+              "gain_over_learned_body_without_context": 0.0234375,
+              "gain_over_retrospectively_best_constant_per_pair": -0.0234375,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 64,
+              "beneficial_changed_choices": 4,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 59
+            }
+          }
+        },
+        "8": {
+          "count": 64,
+          "reference_arm": "learned_body_without_context",
+          "same_body_comparison_valid_only_for": "learned",
+          "retrospective_constant_per_pair_floor": 0.046875,
+          "constant_oracle_pairs": [
+            {
+              "program_pair": [
+                4,
+                5
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": -1,
+              "fair_regret_of_best_constant": 0.09375,
+              "actual_positive": 2,
+              "actual_negative": 2
+            },
+            {
+              "program_pair": [
+                6,
+                7
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": -1,
+              "fair_regret_of_best_constant": 0.0,
+              "actual_positive": 0,
+              "actual_negative": 3
+            }
+          ],
+          "arms": {
+            "coarse": {
+              "fair_tie_regret": 0.109375,
+              "gain_over_learned_body_without_context": 0.046875,
+              "gain_over_retrospectively_best_constant_per_pair": -0.0625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 21,
+                  "negative": 11,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 14,
+                  "negative": 18,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 29,
+              "beneficial_changed_choices": 2,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 27
+            },
+            "moments": {
+              "fair_tie_regret": 0.078125,
+              "gain_over_learned_body_without_context": 0.078125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.03125,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 13,
+                  "negative": 19,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 6,
+                  "negative": 26,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 45,
+              "beneficial_changed_choices": 4,
+              "harmful_changed_choices": 2,
+              "neutral_changed_choices": 39
+            },
+            "learned": {
+              "fair_tie_regret": 0.109375,
+              "gain_over_learned_body_without_context": 0.046875,
+              "gain_over_retrospectively_best_constant_per_pair": -0.0625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 25,
+                  "negative": 7,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 24,
+                  "negative": 8,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 15,
+              "beneficial_changed_choices": 1,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 14
+            },
+            "random": {
+              "fair_tie_regret": 0.15625,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.109375,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 26,
+                  "negative": 6,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 32,
+                  "negative": 0,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 6,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 6
+            },
+            "transferred": {
+              "fair_tie_regret": 0.15625,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.109375,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 32,
+                  "negative": 0,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 30,
+                  "negative": 2,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 2,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 2
+            },
+            "shuffled_outcomes": {
+              "fair_tie_regret": 0.125,
+              "gain_over_learned_body_without_context": 0.03125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.078125,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 26,
+                  "negative": 6,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 30,
+                  "negative": 2,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 8,
+              "beneficial_changed_choices": 1,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 7
+            },
+            "no_context": {
+              "fair_tie_regret": 0.15625,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.109375,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 32,
+                  "negative": 0,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 32,
+                  "negative": 0,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 0,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 0
+            },
+            "legacy": {
+              "fair_tie_regret": 0.15625,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.109375,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 16,
+                  "negative": 16,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 25,
+                  "negative": 7,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 23,
+              "beneficial_changed_choices": 1,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 21
+            },
+            "zero": {
+              "fair_tie_regret": 0.1015625,
+              "gain_over_learned_body_without_context": 0.0546875,
+              "gain_over_retrospectively_best_constant_per_pair": -0.0546875,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 64,
+              "beneficial_changed_choices": 5,
+              "harmful_changed_choices": 2,
+              "neutral_changed_choices": 57
+            }
+          }
+        },
+        "16": {
+          "count": 64,
+          "reference_arm": "learned_body_without_context",
+          "same_body_comparison_valid_only_for": "learned",
+          "retrospective_constant_per_pair_floor": 0.21875,
+          "constant_oracle_pairs": [
+            {
+              "program_pair": [
+                4,
+                5
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": 1,
+              "fair_regret_of_best_constant": 0.1875,
+              "actual_positive": 5,
+              "actual_negative": 3
+            },
+            {
+              "program_pair": [
+                6,
+                7
+              ],
+              "count": 32,
+              "optimal_constant_sign_retrospective": 1,
+              "fair_regret_of_best_constant": 0.25,
+              "actual_positive": 6,
+              "actual_negative": 3
+            }
+          ],
+          "arms": {
+            "coarse": {
+              "fair_tie_regret": 0.296875,
+              "gain_over_learned_body_without_context": -0.015625,
+              "gain_over_retrospectively_best_constant_per_pair": -0.078125,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 24,
+                  "negative": 8,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 1,
+                  "negative": 31,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 25,
+              "beneficial_changed_choices": 4,
+              "harmful_changed_choices": 3,
+              "neutral_changed_choices": 18
+            },
+            "moments": {
+              "fair_tie_regret": 0.28125,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.0625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 1,
+                  "negative": 31,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 1,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 1
+            },
+            "learned": {
+              "fair_tie_regret": 0.296875,
+              "gain_over_learned_body_without_context": -0.015625,
+              "gain_over_retrospectively_best_constant_per_pair": -0.078125,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 12,
+                  "negative": 20,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 1,
+                  "negative": 31,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 13,
+              "beneficial_changed_choices": 3,
+              "harmful_changed_choices": 2,
+              "neutral_changed_choices": 8
+            },
+            "random": {
+              "fair_tie_regret": 0.28125,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.0625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 18,
+                  "negative": 14,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 4,
+                  "negative": 28,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 22,
+              "beneficial_changed_choices": 4,
+              "harmful_changed_choices": 2,
+              "neutral_changed_choices": 16
+            },
+            "transferred": {
+              "fair_tie_regret": 0.3125,
+              "gain_over_learned_body_without_context": -0.03125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.09375,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 30,
+                  "negative": 2,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 21,
+                  "negative": 11,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                }
+              ],
+              "changed_choices_vs_no_context": 51,
+              "beneficial_changed_choices": 7,
+              "harmful_changed_choices": 5,
+              "neutral_changed_choices": 39
+            },
+            "shuffled_outcomes": {
+              "fair_tie_regret": 0.203125,
+              "gain_over_learned_body_without_context": 0.078125,
+              "gain_over_retrospectively_best_constant_per_pair": 0.015625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 16,
+                  "negative": 16,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 16,
+              "beneficial_changed_choices": 3,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 12
+            },
+            "no_context": {
+              "fair_tie_regret": 0.28125,
+              "gain_over_learned_body_without_context": 0.0,
+              "gain_over_retrospectively_best_constant_per_pair": -0.0625,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 0,
+              "beneficial_changed_choices": 0,
+              "harmful_changed_choices": 0,
+              "neutral_changed_choices": 0
+            },
+            "legacy": {
+              "fair_tie_regret": 0.296875,
+              "gain_over_learned_body_without_context": -0.015625,
+              "gain_over_retrospectively_best_constant_per_pair": -0.078125,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 16,
+                  "negative": 16,
+                  "ties": 0,
+                  "choice_varies_with_context": true
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 0,
+                  "negative": 32,
+                  "ties": 0,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 16,
+              "beneficial_changed_choices": 2,
+              "harmful_changed_choices": 1,
+              "neutral_changed_choices": 13
+            },
+            "zero": {
+              "fair_tie_regret": 0.25,
+              "gain_over_learned_body_without_context": 0.03125,
+              "gain_over_retrospectively_best_constant_per_pair": -0.03125,
+              "choice_patterns": [
+                {
+                  "program_pair": [
+                    4,
+                    5
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                },
+                {
+                  "program_pair": [
+                    6,
+                    7
+                  ],
+                  "positive": 0,
+                  "negative": 0,
+                  "ties": 32,
+                  "choice_varies_with_context": false
+                }
+              ],
+              "changed_choices_vs_no_context": 64,
+              "beneficial_changed_choices": 11,
+              "harmful_changed_choices": 6,
+              "neutral_changed_choices": 47
+            }
+          }
+        }
+      }
+    }
+  },
+  "previous_gate_preserved": "spatial_capability_gate_failed",
+  "wall_seconds": 0.0574123000005784,
+  "fit_calls": 0,
+  "ale_calls": 0,
+  "comparisons_reconciled": 6912,
+  "manifest_sha256": "d130eabb18cc98f331573abbfcdc7debfd05db66b1b7fd7f4e69c484578255ca",
+  "descriptive_not_independent_confirmation": true,
+  "constant_oracle_not_a_learned_policy": true,
+  "human_level_goal_achieved": false
+}

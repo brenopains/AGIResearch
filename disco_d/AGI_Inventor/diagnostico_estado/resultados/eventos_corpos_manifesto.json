@@ -1,0 +1,214 @@
+{
+  "status": "event_bodies_frozen_before_diagnostic_scoring_and_fresh_collection",
+  "bodies": {
+    "breakout": {
+      "no_generated_functions": {
+        "feature": "resultados/prospectiva_breakout_no_generated_functions_corpo.npz",
+        "readers": {
+          "before": "resultados/eventos_breakout_no_generated_functions_before.npz",
+          "after": "resultados/eventos_breakout_no_generated_functions_after.npz",
+          "delta": "resultados/eventos_breakout_no_generated_functions_delta.npz",
+          "transition": "resultados/eventos_breakout_no_generated_functions_transition.npz",
+          "potential": "resultados/eventos_breakout_no_generated_functions_potential.npz",
+          "shuffled_successor": "resultados/eventos_breakout_no_generated_functions_shuffled_successor.npz",
+          "shuffled_rewards": "resultados/eventos_breakout_no_generated_functions_shuffled_rewards.npz",
+          "action_prior": "resultados/eventos_breakout_no_generated_functions_action_prior.npz",
+          "zero": "resultados/eventos_breakout_no_generated_functions_zero.npz"
+        },
+        "planner": "resultados/eventos_breakout_no_generated_functions_planner.npz"
+      },
+      "future_pairs": {
+        "feature": "resultados/prospectiva_breakout_future_pairs_corpo.npz",
+        "readers": {
+          "before": "resultados/eventos_breakout_future_pairs_before.npz",
+          "after": "resultados/eventos_breakout_future_pairs_after.npz",
+          "delta": "resultados/eventos_breakout_future_pairs_delta.npz",
+          "transition": "resultados/eventos_breakout_future_pairs_transition.npz",
+          "potential": "resultados/eventos_breakout_future_pairs_potential.npz",
+          "shuffled_successor": "resultados/eventos_breakout_future_pairs_shuffled_successor.npz",
+          "shuffled_rewards": "resultados/eventos_breakout_future_pairs_shuffled_rewards.npz",
+          "action_prior": "resultados/eventos_breakout_future_pairs_action_prior.npz",
+          "zero": "resultados/eventos_breakout_future_pairs_zero.npz"
+        },
+        "planner": "resultados/eventos_breakout_future_pairs_planner.npz"
+      }
+    },
+    "pong": {
+      "no_generated_functions": {
+        "feature": "resultados/prospectiva_pong_no_generated_functions_corpo.npz",
+        "readers": {
+          "before": "resultados/eventos_pong_no_generated_functions_before.npz",
+          "after": "resultados/eventos_pong_no_generated_functions_after.npz",
+          "delta": "resultados/eventos_pong_no_generated_functions_delta.npz",
+          "transition": "resultados/eventos_pong_no_generated_functions_transition.npz",
+          "potential": "resultados/eventos_pong_no_generated_functions_potential.npz",
+          "shuffled_successor": "resultados/eventos_pong_no_generated_functions_shuffled_successor.npz",
+          "shuffled_rewards": "resultados/eventos_pong_no_generated_functions_shuffled_rewards.npz",
+          "action_prior": "resultados/eventos_pong_no_generated_functions_action_prior.npz",
+          "zero": "resultados/eventos_pong_no_generated_functions_zero.npz"
+        },
+        "planner": "resultados/eventos_pong_no_generated_functions_planner.npz"
+      },
+      "future_pairs": {
+        "feature": "resultados/prospectiva_pong_future_pairs_corpo.npz",
+        "readers": {
+          "before": "resultados/eventos_pong_future_pairs_before.npz",
+          "after": "resultados/eventos_pong_future_pairs_after.npz",
+          "delta": "resultados/eventos_pong_future_pairs_delta.npz",
+          "transition": "resultados/eventos_pong_future_pairs_transition.npz",
+          "potential": "resultados/eventos_pong_future_pairs_potential.npz",
+          "shuffled_successor": "resultados/eventos_pong_future_pairs_shuffled_successor.npz",
+          "shuffled_rewards": "resultados/eventos_pong_future_pairs_shuffled_rewards.npz",
+          "action_prior": "resultados/eventos_pong_future_pairs_action_prior.npz",
+          "zero": "resultados/eventos_pong_future_pairs_zero.npz"
+        },
+        "planner": "resultados/eventos_pong_future_pairs_planner.npz"
+      }
+    }
+  },
+  "construction": {
+    "breakout": {
+      "observed_integer_graph": {
+        "observed_nodes": 1132,
+        "connected_components": 12,
+        "conflict_count": 0,
+        "first_conflicts": [],
+        "compatible_on_observed_graph": true,
+        "verification_scope": "exact_integer_constraints_on_observed_history_graph",
+        "universal_conservativity_proven": false
+      },
+      "bases": {
+        "no_generated_functions": {
+          "feature_width": 37,
+          "least_squares_difference_rank": 32,
+          "minimum_training_mse_with_numeric_rank_cutoff": 0.05209005611486142,
+          "maximum_training_absolute_residual": 1.0528005308401478,
+          "scope": "fixed_feature_family_not_proof_of_global_impossibility"
+        },
+        "future_pairs": {
+          "feature_width": 37,
+          "least_squares_difference_rank": 32,
+          "minimum_training_mse_with_numeric_rank_cutoff": 0.05209005611486142,
+          "maximum_training_absolute_residual": 1.0528005308401478,
+          "scope": "fixed_feature_family_not_proof_of_global_impossibility"
+        }
+      }
+    },
+    "pong": {
+      "observed_integer_graph": {
+        "observed_nodes": 1607,
+        "connected_components": 23,
+        "conflict_count": 0,
+        "first_conflicts": [],
+        "compatible_on_observed_graph": true,
+        "verification_scope": "exact_integer_constraints_on_observed_history_graph",
+        "universal_conservativity_proven": false
+      },
+      "bases": {
+        "no_generated_functions": {
+          "feature_width": 37,
+          "least_squares_difference_rank": 32,
+          "minimum_training_mse_with_numeric_rank_cutoff": 0.10742313360700807,
+          "maximum_training_absolute_residual": 1.1660245939490317,
+          "scope": "fixed_feature_family_not_proof_of_global_impossibility"
+        },
+        "future_pairs": {
+          "feature_width": 37,
+          "least_squares_difference_rank": 34,
+          "minimum_training_mse_with_numeric_rank_cutoff": 0.10624242628765913,
+          "maximum_training_absolute_residual": 1.2250610678882798,
+          "scope": "fixed_feature_family_not_proof_of_global_impossibility"
+        }
+      }
+    }
+  },
+  "wall_seconds": 2.158678599999803,
+  "source_hashes": {
+    "resultados/eventos_proposta.json": "ea03c5f8536f80943bb527da50cfa5ff00ec3c3187e4c1aa907046f4944f995c",
+    "resultados/prospectiva_corpos_manifesto.json": "b2da69c9013e53cc60641cb951abdee1fcb9971c6f07da96325b78966a164546",
+    "resultados/prospectiva_breakout_149.npz": "b23d0a1a3b4124659fc8ba3fcb74489e6756ddc90874089bb78bfe77e8693cdc",
+    "resultados/prospectiva_breakout_149.json": "aad062cba30d4f221a6be00a5da94a40e1b757fa8d1230cf5038ac2569cf3abc",
+    "resultados/eventos_breakout_no_generated_functions_before.npz": "d666b07577b9f98799b43e38ec3fc5a7aaa3310abe6e77565fbc1360d851e169",
+    "resultados/eventos_breakout_no_generated_functions_before.json": "986ff7a0278126bd0633422a7bc0b9c1112ba950506b5fa4bc83075636ec8458",
+    "resultados/eventos_breakout_no_generated_functions_after.npz": "00df2c92b3f4a7caa205114b1a63a29bcf923dbc68940c25fc29fc91c11debc2",
+    "resultados/eventos_breakout_no_generated_functions_after.json": "060da832e6f07b578bcf294c0d19925712df2cc20dd54ef89bc75dbd424cdf59",
+    "resultados/eventos_breakout_no_generated_functions_delta.npz": "9b7b63ea57fa424a4ca7a9ec982c974366e31a51393aa36e8bdcaa1732c0db0c",
+    "resultados/eventos_breakout_no_generated_functions_delta.json": "cd54d198495c7ae712134247d90001de58363ade25b7364d2fa2c96bfe6ed2d0",
+    "resultados/eventos_breakout_no_generated_functions_transition.npz": "a843a82ba34850844376904eadec6197038fe4e50872860e3d1e44eb577aeeb5",
+    "resultados/eventos_breakout_no_generated_functions_transition.json": "b6d48ba438cc74801f44ddb0fb053bf3e986761ba9451b4cdb8763fc6e411920",
+    "resultados/eventos_breakout_no_generated_functions_potential.npz": "e6871c4ef4640b74c4b732759b25a9c1099aa6a45970a5d065f9678f0d5606a7",
+    "resultados/eventos_breakout_no_generated_functions_potential.json": "677b30a56477cc5a827170cc9eca27bee3646e692227ef2eb2a45ae119410986",
+    "resultados/eventos_breakout_no_generated_functions_shuffled_successor.npz": "6d96b697fa2c5941b0450383fa984bbb28acf7b748b5fb8c9f90d73dce3c3676",
+    "resultados/eventos_breakout_no_generated_functions_shuffled_successor.json": "c7515019ed89ec6d1252ac487608452e98a8cc86a2a0e24c217871a3159a17d5",
+    "resultados/eventos_breakout_no_generated_functions_shuffled_rewards.npz": "9d55b5deb196e74dfae826556fb7cd2424b2e3f3debd673df59af63ea368f27d",
+    "resultados/eventos_breakout_no_generated_functions_shuffled_rewards.json": "c605b14c03c1b7ed88fb3b57921a09845358b0e22d01fb7f75fda63c97250f72",
+    "resultados/eventos_breakout_no_generated_functions_action_prior.npz": "c4b84933b58e8f80a70c37cdcd3833a6643a32e4821ce2d2104a7a4640b01252",
+    "resultados/eventos_breakout_no_generated_functions_action_prior.json": "6c19563e5017851068095de1840292f0d990b7c49c292a1dd27552f6c727e205",
+    "resultados/eventos_breakout_no_generated_functions_zero.npz": "fe804d1f442fc5c9fd151c83dade3a07c17cb3e2e4a43a2933b671d0149f1a8d",
+    "resultados/eventos_breakout_no_generated_functions_zero.json": "2272b0b8592f6dfd01a7bd4261a1d0fec8ceb702e612f9264faef92feaf9082b",
+    "resultados/eventos_breakout_no_generated_functions_planner.npz": "b02b5486a3e4df5517b5367488e122cfe85e9593170e1b730ae86fd7d4d35a72",
+    "resultados/eventos_breakout_no_generated_functions_planner.json": "364c5ae01826bcb8d86678e3d36f3d633412db0f10d72af1186a09c304ebd71a",
+    "resultados/eventos_breakout_future_pairs_before.npz": "d666b07577b9f98799b43e38ec3fc5a7aaa3310abe6e77565fbc1360d851e169",
+    "resultados/eventos_breakout_future_pairs_before.json": "00509cb1caa43023f04c7cc09a6fad0a471e2c7b6015d21217ac3c1e88adca48",
+    "resultados/eventos_breakout_future_pairs_after.npz": "00df2c92b3f4a7caa205114b1a63a29bcf923dbc68940c25fc29fc91c11debc2",
+    "resultados/eventos_breakout_future_pairs_after.json": "e7261f779eb93c262e2bf256b7878ac3ce0d20fa5aa21ff6c5973fe9e43fc477",
+    "resultados/eventos_breakout_future_pairs_delta.npz": "9b7b63ea57fa424a4ca7a9ec982c974366e31a51393aa36e8bdcaa1732c0db0c",
+    "resultados/eventos_breakout_future_pairs_delta.json": "e3a70d7ce31fd0c3fea407d8ab8eb0144a51d7475e0e6c89c01f5ee2b4490e71",
+    "resultados/eventos_breakout_future_pairs_transition.npz": "a843a82ba34850844376904eadec6197038fe4e50872860e3d1e44eb577aeeb5",
+    "resultados/eventos_breakout_future_pairs_transition.json": "efb8ba8d175e58f691a657c89342533e7bbfe4c9639d5462f332b7902b32a05a",
+    "resultados/eventos_breakout_future_pairs_potential.npz": "e6871c4ef4640b74c4b732759b25a9c1099aa6a45970a5d065f9678f0d5606a7",
+    "resultados/eventos_breakout_future_pairs_potential.json": "39ac91525dff9176b5ba535fec98bc471ffe2c274380578b039429ff833015fb",
+    "resultados/eventos_breakout_future_pairs_shuffled_successor.npz": "6d96b697fa2c5941b0450383fa984bbb28acf7b748b5fb8c9f90d73dce3c3676",
+    "resultados/eventos_breakout_future_pairs_shuffled_successor.json": "b5a6e441a4f6057596180e51af19c998c470e958372092eb0a205f9f73ed705a",
+    "resultados/eventos_breakout_future_pairs_shuffled_rewards.npz": "9d55b5deb196e74dfae826556fb7cd2424b2e3f3debd673df59af63ea368f27d",
+    "resultados/eventos_breakout_future_pairs_shuffled_rewards.json": "6cf104bdd65a92d1c1ab42bd1e1838487edd20f676508578bfb23d6eda0164ad",
+    "resultados/eventos_breakout_future_pairs_action_prior.npz": "c4b84933b58e8f80a70c37cdcd3833a6643a32e4821ce2d2104a7a4640b01252",
+    "resultados/eventos_breakout_future_pairs_action_prior.json": "3659d2acad8a76a18bfcd917b91b3783ce5aecad6840ba5a90b5454d5c7ffc3e",
+    "resultados/eventos_breakout_future_pairs_zero.npz": "fe804d1f442fc5c9fd151c83dade3a07c17cb3e2e4a43a2933b671d0149f1a8d",
+    "resultados/eventos_breakout_future_pairs_zero.json": "1bf0614d65c49e07caf5ff29743241bf1faf9ebeceaac64acd2e8b0aea3b3fba",
+    "resultados/eventos_breakout_future_pairs_planner.npz": "b02b5486a3e4df5517b5367488e122cfe85e9593170e1b730ae86fd7d4d35a72",
+    "resultados/eventos_breakout_future_pairs_planner.json": "1757d5c3e6503db214cd4f2b963b0899e241bc52cfd407ce08ab9cdcef9cd625",
+    "resultados/prospectiva_pong_149.npz": "85b80b925c9d0dec1224de75976ba890002b5e39b69c910900e9a02c3c3d85bf",
+    "resultados/prospectiva_pong_149.json": "33d3b4ae14aab78610cf8cda79dab9b62fc6bbb87cde10aba133401eb4be29ba",
+    "resultados/eventos_pong_no_generated_functions_before.npz": "36adce5ea20509d47877fd76b3101d70b3e30c3b2b4e7ca1ae1cc17ad2249b3d",
+    "resultados/eventos_pong_no_generated_functions_before.json": "eea5052941c8cb7d96f6758616874368ea84caa30e0aa06802f1ba4514319b83",
+    "resultados/eventos_pong_no_generated_functions_after.npz": "edc5c00711786dbeb63e2901520f7c6beba790f88687d8ee39b05ef3c7221ae2",
+    "resultados/eventos_pong_no_generated_functions_after.json": "f6b255a748a908e8bfbcd3ad9d0f53b30c1ab580896bb74933bda3f73ab8ba23",
+    "resultados/eventos_pong_no_generated_functions_delta.npz": "99a0c4bac17904b0925654f3f40a97c8701cd7ed3acd1e469b53bf7c5dc2025a",
+    "resultados/eventos_pong_no_generated_functions_delta.json": "619d96633208a7460b6d8eaffff7a0c45d81031b66d5ac9e3309f62b8ffc00fa",
+    "resultados/eventos_pong_no_generated_functions_transition.npz": "d099ebbb822a498b03e169aae8ad49637e411e47448fbc4265b8d6b5e1ff90fa",
+    "resultados/eventos_pong_no_generated_functions_transition.json": "8786095fc82b766193125aabcfd3a226df0bb6a3e0c464d8ec80d9d03e1cf40f",
+    "resultados/eventos_pong_no_generated_functions_potential.npz": "cb5a963805c1e8e4210a0c311acbd6328091ca0295e41ce163c7366cc535debc",
+    "resultados/eventos_pong_no_generated_functions_potential.json": "b75224b32e49a2bba54392b00350a12cd8447b10059f6796e12515802c69f695",
+    "resultados/eventos_pong_no_generated_functions_shuffled_successor.npz": "f094feebb7f31fda43e82b843d0afddace1b5e1cd8e7e24871f3cd96f18e10a0",
+    "resultados/eventos_pong_no_generated_functions_shuffled_successor.json": "4b2cf54e26fab114aaba555e17c9f5a88d95954a0a317dd38ec3d70a227fbb9b",
+    "resultados/eventos_pong_no_generated_functions_shuffled_rewards.npz": "a27c3c9fc776700164959bd5893397bb1a89e203db2a94ece81046ce93bdd92f",
+    "resultados/eventos_pong_no_generated_functions_shuffled_rewards.json": "d37bcba63bbbd8f4e72fb736187808c4a4ddd1864ff73a340e31d30ec50b44d3",
+    "resultados/eventos_pong_no_generated_functions_action_prior.npz": "7a613ea9933484bafd54c67d58fde5dfb6851efa1a6c5018dcdbc8beaa986f0a",
+    "resultados/eventos_pong_no_generated_functions_action_prior.json": "7328fcc6fcf6db26c4b4fcbd9fa8c1cfd6103c05164f979bc116b159b0b7d075",
+    "resultados/eventos_pong_no_generated_functions_zero.npz": "fe804d1f442fc5c9fd151c83dade3a07c17cb3e2e4a43a2933b671d0149f1a8d",
+    "resultados/eventos_pong_no_generated_functions_zero.json": "53ef681a7f4807958b5dcf06ef8eb9f9fc6a197d1a891cdd35d4161b163dc5ff",
+    "resultados/eventos_pong_no_generated_functions_planner.npz": "ca09d5992b9a88c8ab686fcb6d726aa14f909f6879329f1cfbb44c3e67420236",
+    "resultados/eventos_pong_no_generated_functions_planner.json": "59620d1b7ee6854bbc5c71e6c6082da9f8adb9de6108c75b564b9a14bf358e33",
+    "resultados/eventos_pong_future_pairs_before.npz": "620ae2c4667aaa0f72002a35fde2fab7b1e5fdbc40cb4fd578ee446ae64e2a58",
+    "resultados/eventos_pong_future_pairs_before.json": "a857ce43cefe8a0c18236a82d534b3bb7963c1aa2c972af731eef918c9689b72",
+    "resultados/eventos_pong_future_pairs_after.npz": "9f1208d5e7b87733f0e37438713b1c31d20af603334ddcb59b8e25065e019872",
+    "resultados/eventos_pong_future_pairs_after.json": "6103958b52d9b6a405be3caeca1ce395e4f882e565c519a53b141344d3bb7969",
+    "resultados/eventos_pong_future_pairs_delta.npz": "1c7cb241dd0ffe71bd5de345e4667236301ac1035b05b6cc847f3de81a98687d",
+    "resultados/eventos_pong_future_pairs_delta.json": "06600f7868b23d537089e7bbdcee4e83527366f575349048b5f3142b01165cd6",
+    "resultados/eventos_pong_future_pairs_transition.npz": "b82404ecfd45420c419b22ac17feae2d3848bd5aed44b01a9b07cd481b1d7ab8",
+    "resultados/eventos_pong_future_pairs_transition.json": "66e73b3e6f29aa87f9c90dc529fd2a351f367bfcea090f5191d9543cb730e58a",
+    "resultados/eventos_pong_future_pairs_potential.npz": "bb881db6881833567b7d1404dba5f6db6b8100c8e492014717cf16b06bcd4216",
+    "resultados/eventos_pong_future_pairs_potential.json": "e3b46ac7ed6ad04ec7849c15a0557ae3806e6843f39801f3aa9b3e0a502eaac2",
+    "resultados/eventos_pong_future_pairs_shuffled_successor.npz": "65de96b8d1a69f9dfe6775e02d1e9845e4bfac814cbce58d614ef10ed05d17bf",
+    "resultados/eventos_pong_future_pairs_shuffled_successor.json": "02f4628cab4a3ceff1ede2b6d0e5b74804dbca003589fc367222faa83a2fdc14",
+    "resultados/eventos_pong_future_pairs_shuffled_rewards.npz": "6cc41810af3f037fc9da64e8547ca4fae6a536a67595eca977ad82e0d2d08745",
+    "resultados/eventos_pong_future_pairs_shuffled_rewards.json": "71a630f66abfa75c09ee15c0124f9cf2ae59ea9fd5d7404e385219c32bd3cd4b",
+    "resultados/eventos_pong_future_pairs_action_prior.npz": "7a613ea9933484bafd54c67d58fde5dfb6851efa1a6c5018dcdbc8beaa986f0a",
+    "resultados/eventos_pong_future_pairs_action_prior.json": "9adde2f6b3a3fbea37894f0731a4e1aa9fa4dc92ff97c91de73e236d4bbb7492",
+    "resultados/eventos_pong_future_pairs_zero.npz": "fe804d1f442fc5c9fd151c83dade3a07c17cb3e2e4a43a2933b671d0149f1a8d",
+    "resultados/eventos_pong_future_pairs_zero.json": "0e39e9697245e545a771f55e756660429996b7b6a8d712ecd163710aeb88d48a",
+    "resultados/eventos_pong_future_pairs_planner.npz": "e10aaa28f7b3fa394b856b853a73294443e3bafac7adbb6c3f11b33bf5cb3295",
+    "resultados/eventos_pong_future_pairs_planner.json": "5da248e0e28d6d716342c47eec02efb6ad99a6ff0fe39e360d52c04cbcef43da"
+  }
+}

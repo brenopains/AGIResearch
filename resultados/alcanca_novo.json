@@ -1,0 +1,66 @@
+{
+ "data": "2026-09-23",
+ "veredito": "R1 PASSA (2,9 desvios) com avaliacao FORA DA AMOSTRA; o R2 anterior era defeito de medida meu",
+ "erro_meu": "calculei o gradiente nos pares de TREINO, onde `propor` ajusta e os dois bracos acertam por construcao — nao havia o que separar. O R2 de -1,4 desvios nao era cegueira do gradiente, era eu apontando ele para dado degenerado.",
+ "prova_do_erro": {
+  "acerto_no_TREINO": {
+   "INVENTADO:cor": 1.0,
+   "PLACEBO:cor": 1.0,
+   "INVENTADO:apaga": 0.7881,
+   "PLACEBO:apaga": 0.7941,
+   "pareado_total": -0.0031,
+   "desvios": -1.3
+  },
+  "acerto_no_TESTE": {
+   "INVENTADO:cor": 0.98,
+   "PLACEBO:cor": 0.6548,
+   "INVENTADO:apaga": 0.6693,
+   "PLACEBO:apaga": 0.6171,
+   "pareado_total": 0.1227,
+   "desvios": 2.8,
+   "n": 42
+  }
+ },
+ "R1_refeito_no_teste": {
+  "INVENTADO:cor": [
+   -0.00928,
+   0.00258,
+   23
+  ],
+  "PLACEBO:cor": [
+   -0.00357,
+   0.00086,
+   23
+  ],
+  "INVENTADO:apaga": [
+   -0.00357,
+   0.00235,
+   23
+  ],
+  "PLACEBO:apaga": [
+   -0.00228,
+   0.00235,
+   22
+  ],
+  "pareado_cor": [
+   0.00571,
+   0.00227,
+   2.5,
+   23
+  ],
+  "pareado_apaga": [
+   0.0014,
+   0.00073,
+   1.9,
+   22
+  ],
+  "TOTAL": [
+   0.0036,
+   0.00125,
+   2.9,
+   45
+  ]
+ },
+ "o_que_isso_ensina": "os BITS existiam para conter sobreajuste, e a forma mole os jogou fora. Substituir bits por acerto FORA DA AMOSTRA e a versao principiada do que os bits aproximavam — nao e abandonar o criterio, e medi-lo sem proxy.",
+ "AINDA_ABERTO_R4": "admitir por gradiente resolve MAIS tarefas? Referencia dura: vocabulario-grande-piora mediu que jogar o vocabulario INTEIRO dentro PERDE 3 tarefas. So R4 decide se o ganho e real ou so de ranking."
+}

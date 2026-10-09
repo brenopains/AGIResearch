@@ -1,0 +1,47 @@
+{
+  "experiment": "co-occurrence_vs_typed_hyperbolic",
+  "old_system": {
+    "concepts": 802,
+    "edges": 29594,
+    "edge_types": [
+      "1",
+      "-1"
+    ],
+    "confidence": {
+      "mean": 1.0,
+      "std": 0.0,
+      "unique": 1
+    }
+  },
+  "new_system": {
+    "concepts": 1220,
+    "edges": 38935,
+    "relation_types": {
+      "CORRELATED": 22498,
+      "IS_A": 7189,
+      "PART_OF": 9248
+    },
+    "depths": {
+      "mean": 3.70628413797816,
+      "std": 1.8557504874461885
+    },
+    "confidence": {
+      "mean": 0.4184630210180802,
+      "std": 0.10344173505588296,
+      "unique": 15
+    },
+    "is_a_hierarchy_accuracy": 1.0,
+    "topology": {
+      "betti_numbers": {
+        "0": 57,
+        "2": 583
+      },
+      "n_concepts": 80,
+      "n_edges": 38935,
+      "persistence_entropy": 3.5543807728824643,
+      "knowledge_gaps": 0,
+      "circular_loops": 0
+    },
+    "build_time_s": 12.671875476837158
+  }
+}

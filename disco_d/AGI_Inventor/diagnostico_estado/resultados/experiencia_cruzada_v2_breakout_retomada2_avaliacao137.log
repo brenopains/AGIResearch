@@ -1,0 +1,99 @@
+native_system_queries Windows AMD64
+{
+  "game": "breakout",
+  "status": "joint_capability_not_demonstrated",
+  "cpu_seconds": 0.96875,
+  "wall_seconds": 0.8762978000013391,
+  "partitions": {
+    "known_programs_new_contexts": {
+      "status": "inconclusive_insufficient_contextual_contrast",
+      "identification": {
+        "opposite_preferences_per_repeated_pair": [
+          true,
+          false
+        ],
+        "episodes_with_real_contrast": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "non_tied_comparisons": 24,
+        "sufficient_contextual_contrast": false
+      },
+      "regrets128": {
+        "quadratic": 0.03125,
+        "affine": 0.046875,
+        "two_frames": 0.09375,
+        "shuffled_targets": 0.28125,
+        "shuffled_histories": 0.0625,
+        "word_only": 0.015625,
+        "raw_rbf": 0.03125
+      },
+      "failed_checks": [
+        "sufficient_contextual_contrast",
+        "positive_lower_vs_affine",
+        "two_episodes_vs_affine",
+        "positive_lower_vs_shuffled_histories",
+        "mean_gain_vs_word_only",
+        "positive_lower_vs_word_only",
+        "two_episodes_vs_word_only",
+        "mean_gain_vs_raw_rbf",
+        "positive_lower_vs_raw_rbf",
+        "two_episodes_vs_raw_rbf"
+      ]
+    },
+    "new_programs_new_contexts": {
+      "status": "inconclusive_insufficient_contextual_contrast",
+      "identification": {
+        "opposite_preferences_per_repeated_pair": [
+          false,
+          false
+        ],
+        "episodes_with_real_contrast": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "non_tied_comparisons": 31,
+        "sufficient_contextual_contrast": false
+      },
+      "regrets128": {
+        "quadratic": 0.375,
+        "affine": 0.375,
+        "two_frames": 0.421875,
+        "shuffled_targets": 0.234375,
+        "shuffled_histories": 0.375,
+        "word_only": 0.3125,
+        "raw_rbf": 0.359375
+      },
+      "failed_checks": [
+        "sufficient_contextual_contrast",
+        "mean_gain_vs_affine",
+        "positive_lower_vs_affine",
+        "two_episodes_vs_affine",
+        "mean_gain_vs_shuffled_targets",
+        "positive_lower_vs_shuffled_targets",
+        "two_episodes_vs_shuffled_targets",
+        "mean_gain_vs_shuffled_histories",
+        "positive_lower_vs_shuffled_histories",
+        "two_episodes_vs_shuffled_histories",
+        "mean_gain_vs_word_only",
+        "positive_lower_vs_word_only",
+        "two_episodes_vs_word_only",
+        "mean_gain_vs_raw_rbf",
+        "positive_lower_vs_raw_rbf",
+        "two_episodes_vs_raw_rbf"
+      ]
+    }
+  }
+}

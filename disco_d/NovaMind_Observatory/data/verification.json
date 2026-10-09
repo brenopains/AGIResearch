@@ -1,0 +1,28 @@
+{
+  "verified_at": "2026-09-19T14:55:54.217777+00:00",
+  "integration_tests": {
+    "passed": 14,
+    "failed": 0,
+    "test_file": "tests/test_observatory.py"
+  },
+  "adapter_equivalence": "MDL and HDC outputs compared with copied original functions",
+  "replay_review": "Visible views and graph consume only the event prefix",
+  "browser_visual_validation": "PASS on existing localhost:8765 tab after reload: rendered 3D graph,256 modules,580 relations,79 real events; timeline and input form inspected",
+  "recorded_execution": {
+    "capability": "lingua.segmenta",
+    "run_id": "26ac373c3d594ae4b9b413e6230651a7",
+    "event_count": 79,
+    "input": "Excerpt from user request; actual segmentation only"
+  },
+  "snapshot": {
+    "python_files": 256,
+    "functions": 1688,
+    "classes": 145,
+    "static_edges": 580,
+    "instrumented_modules": 4
+  },
+  "source_scope": "Frozen copy. Original project not modified by this work.",
+  "frontend_build": "PASS: Vite compiled 622 modules; HTML, JS and CSS served HTTP200",
+  "replay_browser_validation": "PASS: seek79->10 removed later hypotheses, final result and memory snapshot from inspector and timeline",
+  "blank_page_resolution": "Tab had pre-build503 response; reloaded after completed frontend build and confirmed render"
+}

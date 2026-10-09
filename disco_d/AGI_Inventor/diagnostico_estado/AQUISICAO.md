@@ -1,0 +1,11 @@
+# Aquisição ativa de contraexemplos de decisão
+
+Protocolo definido após o nulo do compilador de contraexemplos. Dois jogos de desenvolvimento, Breakout e Pong; nenhum jogo lacrado. Um preditor de valor por prefixo é congelado usando apenas episódios 0–5 dos bancos anteriores (semente 29). Teste novo: semente ALE 43, oito episódios independentes por jogo, oito candidatos por braço e episódio.
+
+Cada episódio parte de um único estado inicial clonado, após 32 ações aleatórias comuns. Um candidato é uma trajetória de quatro segmentos de 16 ações anônimas. Ao fim dela, a mesma situação é clonada e **todos os 16** programas prefixo+sufixo (32+96 passos) são realmente executados. O verificador calcula o melhor valor alcançável entre quatro sufixos para cada prefixo. Contraexemplo = o prefixo escolhido pelo preditor congelado perde valor para outro prefixo. Cada ação da trajetória e cada ramo conta no orçamento; não há pontuação de promessa.
+
+Braço ativo: dois candidatos aleatórios iniciais; depois, mutar uma ação da trajetória com maior arrependimento verificado no episódio, ou sortear se ainda não houver erro. Braço nulo: todos os oito candidatos aleatórios. Ambos partem do mesmo estado inicial, têm oito oportunidades e teto de 160.000 passos ALE por jogo/braço. Aleatoriedade independente e fixa. Em caso terminal, registrar falha de alcance e custo real. Proibir reuso de estados do teste para treinar o decisor.
+
+Os dois braços evitam repetir exatamente a mesma sequência de quatro ações dentro do episódio; se uma mutação repetir, sortear outra alteração. A mutação não usa informação do nulo nem dos episódios futuros.
+
+**Métrica primária:** em quantos dos oito episódios cada braço acha pelo menos um contraexemplo; repetições no mesmo episódio contam uma vez. Secundárias: primeiro custo para achar falha, maior arrependimento por episódio, tipos de decisão e passos totais. Portão para dizer que a busca ativa ajudou: pelo menos três episódios líquidos a mais que o nulo em **cada** jogo e nenhum braço gastar mais passos por episódio do que o outro para o mesmo número de candidatos. Com n=8, qualquer ganho será piloto e exigirá réplica com sementes novas. Falha é informação: a mutação local não alcança situações úteis ou o preditor já funciona nos estados alcançados.

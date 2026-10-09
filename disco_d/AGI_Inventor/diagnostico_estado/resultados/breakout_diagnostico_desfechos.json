@@ -1,0 +1,525 @@
+{
+  "status": "post_pilot_diagnostic_not_confirmation",
+  "game": "breakout",
+  "train_seed": 97,
+  "test_seed": 103,
+  "new_ale_steps": 0,
+  "cases": 623,
+  "by_action": [
+    {
+      "action": 0,
+      "cases": 92,
+      "surviving_cases": 87,
+      "unrepresented_reward_termination_events": 0,
+      "scores": {
+        "conditional_outcomes": {
+          "reward_mse": 0.011510120500690968,
+          "reward_bias": -0.015830262379485847,
+          "continuation_brier": 0.03749640385348312,
+          "surviving_state_mse": 0.0014152686352676427,
+          "per_episode_reward_mse": {
+            "0": 0.028457451263204588,
+            "1": 1.3993429545854671e-06,
+            "2": 0.04050722654206955,
+            "3": 2.19401759987723e-05,
+            "4": 0.00015711674118094223,
+            "5": 0.018920547334768997,
+            "6": 0.0007604333417107513,
+            "7": 0.00856633287972409
+          }
+        },
+        "shuffled_outcomes": {
+          "reward_mse": 0.045110937077338965,
+          "reward_bias": 0.008853888521296099,
+          "continuation_brier": 0.05749839178578352,
+          "surviving_state_mse": 0.0016703219919549648,
+          "per_episode_reward_mse": {
+            "0": 0.03215804313301986,
+            "1": 0.000763814099574637,
+            "2": 0.19898054613623542,
+            "3": 0.031806348144490605,
+            "4": 2.796045774408785e-05,
+            "5": 0.15428186107181774,
+            "6": 0.003922239374447195,
+            "7": 0.0789965322472516
+          }
+        },
+        "prior_outcomes": {
+          "reward_mse": 0.0417770816270094,
+          "reward_bias": -0.013754269362134223,
+          "continuation_brier": 0.05249083607276108,
+          "surviving_state_mse": 0.001594837488470554,
+          "per_episode_reward_mse": {
+            "0": 0.04567170695614041,
+            "1": 0.0008835156711338301,
+            "2": 0.1889939190681615,
+            "3": 0.00088351567113383,
+            "4": 0.0008835156711338301,
+            "5": 0.13524808952615358,
+            "6": 0.0008835156711338301,
+            "7": 0.07323367082383678
+          }
+        },
+        "source_neighbors": {
+          "reward_mse": 0.020176620300280397,
+          "reward_bias": -0.02831230107065429,
+          "continuation_brier": 0.037340115668259635,
+          "surviving_state_mse": 0.00048409776459614606,
+          "per_episode_reward_mse": {
+            "0": 0.03616209883257696,
+            "1": 0.0,
+            "2": 0.10383407885066842,
+            "3": 0.0,
+            "4": 0.0,
+            "5": 0.015213219115801235,
+            "6": 0.0,
+            "7": 0.03624477415982536
+          }
+        },
+        "ridge_local_credit": {
+          "reward_mse": 0.01173644405294486,
+          "reward_bias": -0.01654920680625699,
+          "continuation_brier": 0.03602793774014303,
+          "surviving_state_mse": null,
+          "per_episode_reward_mse": {
+            "0": 0.03127049792895292,
+            "1": 4.869258429851336e-07,
+            "2": 0.04191091199289938,
+            "3": 6.941778283046918e-07,
+            "4": 8.05873487569361e-05,
+            "5": 0.015843524944375194,
+            "6": 0.0008366290329646536,
+            "7": 0.006657076696154434
+          }
+        }
+      },
+      "future_dependent_support_mse": {
+        "all_successors": 0.0001657721441006288,
+        "category_successors": 0.0005260912785703294
+      }
+    },
+    {
+      "action": 1,
+      "cases": 369,
+      "surviving_cases": 345,
+      "unrepresented_reward_termination_events": 0,
+      "scores": {
+        "conditional_outcomes": {
+          "reward_mse": 0.021748837589473907,
+          "reward_bias": -0.014305889512980995,
+          "continuation_brier": 0.029634539642934134,
+          "surviving_state_mse": 0.0013343796101861795,
+          "per_episode_reward_mse": {
+            "0": 0.012155095084964786,
+            "1": 0.03964093118972842,
+            "2": 0.00852774526839224,
+            "3": 0.03319751862100155,
+            "4": 0.005151408174068752,
+            "5": 0.004501565921093943,
+            "6": 0.025213476858602098,
+            "7": 0.007993010740908796
+          }
+        },
+        "shuffled_outcomes": {
+          "reward_mse": 0.1173535643446948,
+          "reward_bias": 0.05191974761077317,
+          "continuation_brier": 0.09275432627024909,
+          "surviving_state_mse": 0.0017090674366628104,
+          "per_episode_reward_mse": {
+            "0": 0.10821362748224522,
+            "1": 0.1229095685519052,
+            "2": 0.10014455027547235,
+            "3": 0.14785116735304668,
+            "4": 0.06887317436473273,
+            "5": 0.09788492504985244,
+            "6": 0.10300202475942712,
+            "7": 0.15034913212970083
+          }
+        },
+        "prior_outcomes": {
+          "reward_mse": 0.08296985202916393,
+          "reward_bias": -0.039202583806659974,
+          "continuation_brier": 0.06084262569028394,
+          "surviving_state_mse": 0.0015346578413136616,
+          "per_episode_reward_mse": {
+            "0": 0.08685507495673567,
+            "1": 0.09650502725006355,
+            "2": 0.06249244177560936,
+            "3": 0.11357762132349813,
+            "4": 0.04535828217569632,
+            "5": 0.0416334648713674,
+            "6": 0.0667759816755876,
+            "7": 0.09721165991227518
+          }
+        },
+        "source_neighbors": {
+          "reward_mse": 0.05755475607335216,
+          "reward_bias": -0.051058395022133565,
+          "continuation_brier": 0.027929031792453544,
+          "surviving_state_mse": 0.0007283209124212217,
+          "per_episode_reward_mse": {
+            "0": 0.043718932079819854,
+            "1": 0.0897057219975177,
+            "2": 0.0389891335957652,
+            "3": 0.07285215056727957,
+            "4": 0.015991860732306636,
+            "5": 0.02048280590525017,
+            "6": 0.07923846282805107,
+            "7": 0.030989499523892988
+          }
+        },
+        "ridge_local_credit": {
+          "reward_mse": 0.02217990604502299,
+          "reward_bias": -0.018665234696423987,
+          "continuation_brier": 0.027329536721837997,
+          "surviving_state_mse": null,
+          "per_episode_reward_mse": {
+            "0": 0.014905661221455965,
+            "1": 0.0381058516595976,
+            "2": 0.006826790840112296,
+            "3": 0.03419186912838835,
+            "4": 0.005351542705470648,
+            "5": 0.005397550290112196,
+            "6": 0.02577058776317789,
+            "7": 0.010208042649755803
+          }
+        }
+      },
+      "future_dependent_support_mse": {
+        "all_successors": 0.00020259131269995123,
+        "category_successors": 0.0004168390400979238
+      }
+    },
+    {
+      "action": 2,
+      "cases": 92,
+      "surviving_cases": 84,
+      "unrepresented_reward_termination_events": 0,
+      "scores": {
+        "conditional_outcomes": {
+          "reward_mse": 0.06122453399577212,
+          "reward_bias": -0.053827216522300055,
+          "continuation_brier": 0.021348824517226455,
+          "surviving_state_mse": 0.0005077915881447624,
+          "per_episode_reward_mse": {
+            "0": 0.09943610481587359,
+            "1": 0.06028480626012133,
+            "2": 0.0956113988404714,
+            "3": 0.0024940973190592844,
+            "4": 0.14525923135283725,
+            "5": 0.09501923738122124,
+            "6": 0.06027984772676035,
+            "7": 9.745338348636107e-06
+          }
+        },
+        "shuffled_outcomes": {
+          "reward_mse": 0.14008898416337343,
+          "reward_bias": -0.10659517538941257,
+          "continuation_brier": 0.08680160915204856,
+          "surviving_state_mse": 0.0004719461325481523,
+          "per_episode_reward_mse": {
+            "0": 0.10930263950650773,
+            "1": 0.15274537997587723,
+            "2": 0.13388882864020255,
+            "3": 0.15858599930126913,
+            "4": 0.2578463290781175,
+            "5": 0.11955058611961812,
+            "6": 0.1543346218351009,
+            "7": 0.0032239853879180926
+          }
+        },
+        "prior_outcomes": {
+          "reward_mse": 0.13290423233610985,
+          "reward_bias": -0.1075490735644836,
+          "continuation_brier": 0.08401489449154607,
+          "surviving_state_mse": 0.0004454901155072724,
+          "per_episode_reward_mse": {
+            "0": 0.10474935759345308,
+            "1": 0.1445993341522904,
+            "2": 0.1177005999750752,
+            "3": 0.14837459508944342,
+            "4": 0.2554547234886924,
+            "5": 0.1177005999750752,
+            "6": 0.1445993341522904,
+            "7": 0.001139418540476063
+          }
+        },
+        "source_neighbors": {
+          "reward_mse": 0.036434032319337756,
+          "reward_bias": -0.04439853543920384,
+          "continuation_brier": 0.01716048130285879,
+          "surviving_state_mse": 0.0005053176269408916,
+          "per_episode_reward_mse": {
+            "0": 0.040700460372167006,
+            "1": 0.07729822384896336,
+            "2": 0.01834534341114198,
+            "3": 0.02392149541124512,
+            "4": 0.07364151996963673,
+            "5": 0.015759842383252537,
+            "6": 0.03410333085832534,
+            "7": 0.0
+          }
+        },
+        "ridge_local_credit": {
+          "reward_mse": 0.05993531107788834,
+          "reward_bias": -0.04818814624030287,
+          "continuation_brier": 0.01953941882515292,
+          "surviving_state_mse": null,
+          "per_episode_reward_mse": {
+            "0": 0.09944042895665423,
+            "1": 0.06547022969985347,
+            "2": 0.0969482696531109,
+            "3": 0.00016373247507048684,
+            "4": 0.12920717843463456,
+            "5": 0.0950211523440924,
+            "6": 0.06213430799106898,
+            "7": 7.319344445574075e-06
+          }
+        }
+      },
+      "future_dependent_support_mse": {
+        "all_successors": 5.317800969351083e-05,
+        "category_successors": 9.822680412547911e-05
+      }
+    },
+    {
+      "action": 3,
+      "cases": 70,
+      "surviving_cases": 63,
+      "unrepresented_reward_termination_events": 0,
+      "scores": {
+        "conditional_outcomes": {
+          "reward_mse": 0.008834620145328504,
+          "reward_bias": -0.0052286420910117705,
+          "continuation_brier": 0.0810862760531718,
+          "surviving_state_mse": 0.0009109870219003964,
+          "per_episode_reward_mse": {
+            "0": 0.0006377725637638868,
+            "1": 0.00035052116078202725,
+            "2": 0.00027922544102430434,
+            "3": 0.000283214298147738,
+            "4": 0.024095636812369835,
+            "5": 0.00023725352793710106,
+            "6": 1.3054087749876207e-05,
+            "7": 0.0004408982386124342
+          }
+        },
+        "shuffled_outcomes": {
+          "reward_mse": 0.11162296388907005,
+          "reward_bias": -0.010450875617151953,
+          "continuation_brier": 0.08497987826281833,
+          "surviving_state_mse": 0.0009828113418374955,
+          "per_episode_reward_mse": {
+            "0": 0.02187063454983527,
+            "1": 0.251030420362485,
+            "2": 0.1606293881752229,
+            "3": 0.011797223743257866,
+            "4": 0.16590250252557517,
+            "5": 0.02421437833169781,
+            "6": 4.7327374640899686e-05,
+            "7": 0.12575673060272552
+          }
+        },
+        "prior_outcomes": {
+          "reward_mse": 0.09081632653061222,
+          "reward_bias": -0.028571428571428584,
+          "continuation_brier": 0.09657598333451027,
+          "surviving_state_mse": 0.0009459805504628897,
+          "per_episode_reward_mse": {
+            "0": 0.00510204081632653,
+            "1": 0.2193877551020408,
+            "2": 0.12755102040816327,
+            "3": 0.00510204081632653,
+            "4": 0.14224489795918366,
+            "5": 0.00510204081632653,
+            "6": 0.00510204081632653,
+            "7": 0.10034013605442177
+          }
+        },
+        "source_neighbors": {
+          "reward_mse": 0.010625030650082584,
+          "reward_bias": -0.026715247829159666,
+          "continuation_brier": 0.08077931678208598,
+          "surviving_state_mse": 0.00122306354753659,
+          "per_episode_reward_mse": {
+            "0": 0.0,
+            "1": 0.020770890595661524,
+            "2": 0.008737460737516713,
+            "3": 0.0,
+            "4": 0.02398025431842071,
+            "5": 0.0,
+            "6": 0.0,
+            "7": 0.0
+          }
+        },
+        "ridge_local_credit": {
+          "reward_mse": 0.0024406405959272407,
+          "reward_bias": 0.00018974128927487648,
+          "continuation_brier": 0.07868608941395419,
+          "surviving_state_mse": null,
+          "per_episode_reward_mse": {
+            "0": 0.0005573175515463373,
+            "1": 8.201383101834945e-05,
+            "2": 6.220673749214759e-05,
+            "3": 7.137717814080696e-05,
+            "4": 0.006494546582538988,
+            "5": 1.2126970782248881e-05,
+            "6": 1.2246137274316606e-05,
+            "7": 0.0003747761165132935
+          }
+        }
+      },
+      "future_dependent_support_mse": {
+        "all_successors": 9.742820111569017e-05,
+        "category_successors": 0.000154896746135344
+      }
+    }
+  ],
+  "real_trajectory_comparisons": {
+    "distributed_search": {
+      "cases": 32,
+      "observed_mean": 0.8125,
+      "models": {
+        "conditional_outcomes": {
+          "real_trajectory_local_credit": {
+            "mse": 0.10624481998635563,
+            "bias": -0.18043991674378526
+          },
+          "real_initial_composed": {
+            "mse": 0.5521324728638732,
+            "bias": 0.1873558768080786
+          }
+        },
+        "shuffled_outcomes": {
+          "real_trajectory_local_credit": {
+            "mse": 0.30065103763682216,
+            "bias": 0.0387580392559151
+          },
+          "real_initial_composed": {
+            "mse": 0.8358054328197785,
+            "bias": 0.021401577829774837
+          }
+        },
+        "prior_outcomes": {
+          "real_trajectory_local_credit": {
+            "mse": 0.608748457583114,
+            "bias": -0.33516920313373466
+          },
+          "real_initial_composed": {
+            "mse": 0.7701783065828122,
+            "bias": -0.21936778709628743
+          }
+        }
+      }
+    },
+    "reward_search": {
+      "cases": 32,
+      "observed_mean": 0.96875,
+      "models": {
+        "conditional_outcomes": {
+          "real_trajectory_local_credit": {
+            "mse": 0.20396826681843697,
+            "bias": -0.1962277781195081
+          },
+          "real_initial_composed": {
+            "mse": 0.6493919781809807,
+            "bias": -0.17143499375159563
+          }
+        },
+        "shuffled_outcomes": {
+          "real_trajectory_local_credit": {
+            "mse": 0.4157217333800396,
+            "bias": 0.2560740602224225
+          },
+          "real_initial_composed": {
+            "mse": 0.8192888253089659,
+            "bias": -0.44155324541291063
+          }
+        },
+        "prior_outcomes": {
+          "real_trajectory_local_credit": {
+            "mse": 0.6381664388119914,
+            "bias": -0.5281327023008395
+          },
+          "real_initial_composed": {
+            "mse": 0.8592231347352111,
+            "bias": -0.43443361314222867
+          }
+        }
+      }
+    }
+  },
+  "model_cycles_not_environment_cycles": {
+    "conditional_outcomes": [
+      {
+        "action": 0,
+        "max_reward_positive_self_mass": 0.0033613528610148395,
+        "mean_reward": 0.029723991507430995
+      },
+      {
+        "action": 1,
+        "max_reward_positive_self_mass": 0.0037359923286072374,
+        "mean_reward": 0.0502283105022831
+      },
+      {
+        "action": 2,
+        "max_reward_positive_self_mass": 0.0012031118939205227,
+        "mean_reward": 0.03375527426160337
+      },
+      {
+        "action": 3,
+        "max_reward_positive_self_mass": 0.012749167508909209,
+        "mean_reward": 0.07142857142857142
+      }
+    ],
+    "shuffled_outcomes": [
+      {
+        "action": 0,
+        "max_reward_positive_self_mass": 0.01696095494263359,
+        "mean_reward": 0.029723991507430995
+      },
+      {
+        "action": 1,
+        "max_reward_positive_self_mass": 0.0254007483638164,
+        "mean_reward": 0.0502283105022831
+      },
+      {
+        "action": 2,
+        "max_reward_positive_self_mass": 0.01599176018221834,
+        "mean_reward": 0.03375527426160337
+      },
+      {
+        "action": 3,
+        "max_reward_positive_self_mass": 0.02234291660233195,
+        "mean_reward": 0.07142857142857142
+      }
+    ],
+    "prior_outcomes": [
+      {
+        "action": 0,
+        "max_reward_positive_self_mass": 0.0021231422505307855,
+        "mean_reward": 0.029723991507430995
+      },
+      {
+        "action": 1,
+        "max_reward_positive_self_mass": 0.0091324200913242,
+        "mean_reward": 0.0502283105022831
+      },
+      {
+        "action": 2,
+        "max_reward_positive_self_mass": 0.004219409282700422,
+        "mean_reward": 0.03375527426160337
+      },
+      {
+        "action": 3,
+        "max_reward_positive_self_mass": 0.014705882352941176,
+        "mean_reward": 0.07142857142857142
+      }
+    ]
+  },
+  "source_sha256": "c6ddf46a0e804cdf7a6053450c89fc87f320b8a34996f807d540f4ddc3b94f57",
+  "bank_sha256": "fc8ce3718537bbde88259553a2a3b269c740df562748716ff5125e5ec40dcff9",
+  "proposals_sha256": "4d61aa7ac93e2465be6af3c1e14a211e252973803486aefaea34ea7db311a001",
+  "human_level_goal_achieved": false,
+  "scope": "oracle_future_states_only_for_error_measurement_no_new_policy_or_promotion"
+}

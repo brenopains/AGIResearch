@@ -1,0 +1,111 @@
+# ============================================================================
+# PRÉ-REGISTRO DO TESTE DEFINITIVO — NovaMind AGI Validation Track v1
+# ============================================================================
+# Este protocolo é registrado ANTES de qualquer execução de teste.
+# Mudar qualquer critério ou métrica depois dos resultados invalida o teste.
+# Data de registro: 2026-07-12 00:41
+# Hash git: $(git rev-parse HEAD)
+# ============================================================================
+
+meta:
+  version: "1.0"
+  preregistered: "2026-07-12T00:41:00-03:00"
+  author: "usuario (sujeito cego)"
+  system_snapshot: "git SHA aacd9cf + working tree modificado"
+  hardware:
+    gpu: "NVIDIA GeForce RTX 3050 4GB VRAM (laptop)"
+    ram: "16 GB"
+    disk_d: "206 GB free"
+    python: "3.12.8"
+    torch: "2.6+cu124"
+
+tests:
+  - id: T1
+    name: "Caixa de Pandora Cega — Composição Generativa"
+    hypothesis: "bind(A,B,C) produz vetor HDV cuja decomposição permite a um humano cego recuperar componentes com acurácia > chance + baselines"
+    pool_size: 200 triplas
+    evaluator: "humano cego (usuario — sem acesso ao código)"
+    baselines:
+      - random: "bind de 3 HDVs aleatórios"
+      - retrieval: "nearest-neighbor no cache de palavras (sistema atual)"
+      - bge_mean: "média de 3 vetores BGE sem bind"
+      - llm_small: "Gemma-2B ou Phi-3 prompt 'combine A,B,C'"
+    metrics:
+      primary: "component_accuracy (3/3 recovery rate, chance=33% em pool fechado de 9)"
+      secondary:
+        - "coherence_rating (humano 1-5)"
+        - "novelty (cos(output, A) < 0.3 para todos)"
+        - "bleu_vs_reference"
+    pass_criteria:
+      - "NovaMind > random (p<0.001, Bonferroni 5 cond)"
+      - "NovaMind > retrieval (p<0.01)"
+      - "NovaMind > bge_mean (p<0.05)"
+      - "NovaMind não inferior a LLM-small (Δ<5pp, IC 95%)"
+      - "novelty > 0.7 (média das 3 similaridades < 0.3)"
+
+  - id: T2
+    name: "ARC-AGI-2 Board Pública"
+    hypothesis: "NovaMind resolve ARC-AGI-2 melhor que k-NN e copy baseline"
+    pool: "conjunto público oculto ARC-AGI-2"
+    baselines:
+      - "copy-identity (output = input)"
+      - "k-NN no HDV (program cache)"
+      - "Gemma-2B few-shot (3 exemplos)"
+      - "GPT-4o (referência superior)"
+    metrics:
+      primary: "exact_match"
+      secondary: "pixel_accuracy"
+    pass_criteria:
+      - "NovaMind > copy-identity (p<0.001)"
+      - "NovaMind > k-NN-HDV (p<0.01)"
+      - "NovaMind > Gemma-2B (p<0.05)"
+
+  - id: T3
+    name: "SyntLog — Silogismos Parametrizados Externos"
+    hypothesis: "NovaMind realiza inferência dedutiva simbólica sobre CGE"
+    pool: "1000 silogismos, 5 categorias (MP, MT, Barbara, DS, RC), vocabulário aleatório WordNet, gerador externo"
+    categories:
+      - "Modus Ponens (chance=50%)"
+      - "Modus Tollens (chance=50%)"
+      - "Barbara AAA-1 (chance=12.5%)"
+      - "Disjunctive Syllogism (chance=50%)"
+      - "Relational Chain (chance dependente)"
+    baselines:
+      - "random"
+      - "BERT-small (fine-tune SOP)"
+      - "Gemma-2B few-shot"
+    metrics:
+      primary: "accuracy_per_category"
+      secondary: "cohens_kappa_vs_gabarito"
+    pass_criteria:
+      - "NovaMind > random (p<0.001)"
+      - "NovaMind > BERT-small (p<0.01)"
+      - "MP accuracy > 70% (limiar dedução)"
+      - "MT accuracy > 60% (limiar dedução)"
+
+  - id: T4
+    name: "Causal Tübingen — Intervenção sobre SCM Externo"
+    hypothesis: "causal_intervention() identifica direção causal melhor que chance e competitiva com ANM"
+    pool: "108 pares Tübingen Cause-Effect + CausalBench subset"
+    baselines:
+      - "random (50%)"
+      - "ANM (Additive Noise Model)"
+      - "NOTEARS"
+    metrics:
+      primary: "direction_accuracy"
+      secondary:
+        - "ATE_error"
+        - "SHD (CausalBench)"
+    pass_criteria:
+      - "NovaMind > random (p<0.001)"
+      - "NovaMind não inferior a ANM (margem 10pp, IC 95%)"
+      - "ATE_error < 0.15 (subconjunto aplicável)"
+
+t0_snapshot:
+  purpose: "Estabelecer baseline do sistema atual ANTES de qualquer intervenção (F2-F4)"
+  expected_results:
+    T1: "FAIL — PSNR decoder ~14.8 dB, cache de palavras é retrieval, < 60% component recovery"
+    T2: "inconclusivo — 48-54% conhecido, baselines não rodados contra board pública"
+    T3: "FAIL — 0/4 confirmado (relatório original). chance ~random"
+    T4: "inconclusivo — Tübingen nunca foi rodado contra NovaMind"
+  stopping_rule: "Se T0 mostrar NovaMind < random em T3 (SyntLog), pausar F2-F4 e investigar antes de continuar"

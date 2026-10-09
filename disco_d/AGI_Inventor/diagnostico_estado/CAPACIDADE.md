@@ -1,0 +1,7 @@
+# Auditoria da hipótese "uma variável é estreita demais"
+
+Este ensaio é exploratório porque foi concebido depois de ver o fracasso da variável única em órbitas. Sua função é distinguir um limite de capacidade de um limite de dados/seleção; confirmação requer mundos/sementes novos.
+
+Mesmo contrato para órbitas, Breakout e Pong. Sem receber rótulos de corpos, objetos, regras ou respostas do teste, extrair por SVD dos episódios 0–3 uma base de movimento dos **quadros anteriores aos dois já presentes em `r0`**. Candidatos de dimensão 1, 2, 4, 8 e 16. Para cada dimensão, anexar as coordenadas à representação atual e prever os quatro valores com a mesma regressão kernel. Escolher dimensão pelo menor arrependimento nos episódios 4–5, desempatar por MSE e dimensão menor. Congelar e avaliar nos episódios 6–7.
+
+Controles: SVD de `r0` com igual número de coordenadas (mesma capacidade, nenhuma informação nova); 32 históricos embaralhados por partição, com SVD e seleção refeitas. Verificar número de erros de decisão no teste e custo dos componentes. Ganho interpretável de informação histórica exige arrependimento menor que `r0`, melhor que o controle presente e no máximo um de 32 nulos igual/melhor. Um ganho em órbitas mas não no mundo interativo será apenas modelagem visual local, não transferência geral. Se nenhum braço histórico superar o presente, a hipótese de que bastam mais dimensões fica sem suporte.

@@ -1,0 +1,18 @@
+{
+  "operator": "learned_observable_function_pullback",
+  "mode": "transport",
+  "features": "[1,exp(-squared_distance(history,observed_training_support)/scale)]",
+  "composition": "v_empty=0;v_aQ=r_a+M_a@v_Q;value=phi(history)@v_word",
+  "parameters": "transporte_funcoes_breakout_97_transport.npz",
+  "language": {
+    "anonymous_actions": 4,
+    "maximum_blocks": 16
+  },
+  "training_target": "[observed_reward,observed_continuation*phi(observed_successor)]",
+  "does_not_guarantee": [
+    "physical_execution_consistency",
+    "correct_decision",
+    "unrestricted_variable_invention",
+    "human_intelligence"
+  ]
+}

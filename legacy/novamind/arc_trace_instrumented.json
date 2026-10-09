@@ -1,0 +1,4807 @@
+{
+  "summary": {
+    "tasks": 20,
+    "exact_match": 0,
+    "avg_pixel_accuracy": 0.21433333333333335,
+    "total_time_s": 1.2979657649993896,
+    "bottleneck_counts": {
+      "TIGHT_MARGIN": 20
+    }
+  },
+  "traces": [
+    {
+      "task_id": "00576224",
+      "pattern_detected": "transformation",
+      "hypothesis": "color_5_grey",
+      "hypothesis_confidence": 0.3202,
+      "hypothesis_entropy": 0.9715,
+      "hypothesis_margin": 0.0086,
+      "hypothesis_stability": [
+        0.3202,
+        0.3202,
+        0.3202
+      ],
+      "pixel_accuracy": 0.0044,
+      "exact_match": false,
+      "error_pixels": 896,
+      "total_pixels": 900,
+      "bottleneck": "TIGHT_MARGIN",
+      "total_time_ms": 210.04,
+      "perception_time_ms": 0.0,
+      "input_hdv_similarity": 0.9991,
+      "evidence_counts": {
+        "perceptual": 10
+      },
+      "evidence_by_source": {
+        "perceptual": 2.2374
+      },
+      "counterfactuals": [
+        {
+          "hypothesis": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.31164109587669375,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_9_maroon",
+          "category": "recoloring",
+          "confidence": 0.304145781993866,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.3002647149562836,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        }
+      ],
+      "hypotheses_ranked": [
+        {
+          "name": "color_5_grey",
+          "category": "recoloring",
+          "confidence": 0.32,
+          "evidence_total": 0.29,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.2902272939682007,
+              "best": 0.2902272939682007
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.2902,
+              "weight": 1.0,
+              "detail": "Transformer logit class 5",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.29,
+              "raw_score": 0.29,
+              "trace": "Transformer logit class 5"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.312,
+          "evidence_total": 0.282,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.2816410958766937,
+              "best": 0.2816410958766937
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.2816,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.282,
+              "raw_score": 0.282,
+              "trace": "Transformer logit class 3"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_9_maroon",
+          "category": "recoloring",
+          "confidence": 0.304,
+          "evidence_total": 0.274,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.27414578199386597,
+              "best": 0.27414578199386597
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.2741,
+              "weight": 1.0,
+              "detail": "Transformer logit class 9",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.274,
+              "raw_score": 0.274,
+              "trace": "Transformer logit class 9"
+            }
+          ],
+          "evidence_against": []
+        }
+      ],
+      "contribution_breakdown": [
+        {
+          "source": "perceptual",
+          "score": 0.2902,
+          "weight": 1.0,
+          "detail": "Transformer logit class 5",
+          "n_items": 1
+        },
+        {
+          "runner_up": [
+            {
+              "source": "perceptual",
+              "score": 0.2816,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ]
+        }
+      ],
+      "convergence_steps": [
+        {
+          "iteration": 0,
+          "scores": {
+            "color_5_grey": 0.3202,
+            "color_3_green": 0.3116,
+            "color_9_maroon": 0.3041,
+            "color_8_azure": 0.3003,
+            "color_7_orange": 0.2968,
+            "color_2_red": 0.2855,
+            "color_6_fuchsia": 0.2748,
+            "color_4_yellow": 0.2604,
+            "color_0_black": 0.0941,
+            "color_1_blue": 0.0895
+          },
+          "winner": "color_5_grey",
+          "margin": 0.0086,
+          "entropy": 0.9715
+        },
+        {
+          "iteration": 1,
+          "scores": {
+            "color_5_grey": 0.3202,
+            "color_3_green": 0.3116,
+            "color_9_maroon": 0.3041,
+            "color_8_azure": 0.3003,
+            "color_7_orange": 0.2968,
+            "color_2_red": 0.2855,
+            "color_6_fuchsia": 0.2748,
+            "color_4_yellow": 0.2604,
+            "color_0_black": 0.0941,
+            "color_1_blue": 0.0895
+          },
+          "winner": "color_5_grey",
+          "margin": 0.0086,
+          "entropy": 0.9715
+        },
+        {
+          "iteration": 2,
+          "scores": {
+            "color_5_grey": 0.3202,
+            "color_3_green": 0.3116,
+            "color_9_maroon": 0.3041,
+            "color_8_azure": 0.3003,
+            "color_7_orange": 0.2968,
+            "color_2_red": 0.2855,
+            "color_6_fuchsia": 0.2748,
+            "color_4_yellow": 0.2604,
+            "color_0_black": 0.0941,
+            "color_1_blue": 0.0895
+          },
+          "winner": "color_5_grey",
+          "margin": 0.0086,
+          "entropy": 0.9715
+        }
+      ],
+      "diversity_score": 0.0,
+      "num_clusters": 1,
+      "winner_reversals": 0,
+      "convergence_velocity": 0.0,
+      "meta_impasse": {
+        "is_impasse": true,
+        "reasons": [
+          "entropy=0.972>0.9",
+          "margin=0.0086<0.02",
+          "diversity=0.000<0.1"
+        ],
+        "entropy": 0.9715,
+        "margin": 0.008586198091506958,
+        "diversity": 0.0
+      },
+      "meta_reasoning_style": {
+        "perceptual": 1.0,
+        "dominant": "perceptual"
+      },
+      "meta_knowledge_gaps": [
+        "baixa confianca em 'color_7_orange': poucas evidencias (0.27)",
+        "baixa confianca em 'color_2_red': poucas evidencias (0.26)",
+        "baixa confianca em 'color_6_fuchsia': poucas evidencias (0.24)",
+        "baixa confianca em 'color_4_yellow': poucas evidencias (0.23)",
+        "baixa confianca em 'color_0_black': poucas evidencias (0.06)"
+      ]
+    },
+    {
+      "task_id": "009d5c81",
+      "pattern_detected": "recoloring",
+      "hypothesis": "color_4_yellow",
+      "hypothesis_confidence": 0.9355,
+      "hypothesis_entropy": 1.0,
+      "hypothesis_margin": 0.0005,
+      "hypothesis_stability": [
+        0.9355,
+        0.9355,
+        0.9355
+      ],
+      "pixel_accuracy": 0.1844,
+      "exact_match": false,
+      "error_pixels": 734,
+      "total_pixels": 900,
+      "bottleneck": "TIGHT_MARGIN",
+      "total_time_ms": 73.55,
+      "perception_time_ms": 0.0,
+      "input_hdv_similarity": 0.9672,
+      "evidence_counts": {
+        "perceptual": 10
+      },
+      "evidence_by_source": {
+        "perceptual": 9.5106
+      },
+      "counterfactuals": [
+        {
+          "hypothesis": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.9349247980532258,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.9348976517589915,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_5_grey",
+          "category": "recoloring",
+          "confidence": 0.9348973121300547,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        }
+      ],
+      "hypotheses_ranked": [
+        {
+          "name": "color_4_yellow",
+          "category": "recoloring",
+          "confidence": 0.935,
+          "evidence_total": 0.958,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9577076435089111,
+              "best": 0.9577076435089111
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9577,
+              "weight": 1.0,
+              "detail": "Transformer logit class 4",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.958,
+              "raw_score": 0.958,
+              "trace": "Transformer logit class 4"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.935,
+          "evidence_total": 0.952,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9517989754676819,
+              "best": 0.9517989754676819
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9518,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.952,
+              "raw_score": 0.952,
+              "trace": "Transformer logit class 3"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.935,
+          "evidence_total": 0.951,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9514987468719482,
+              "best": 0.9514987468719482
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9515,
+              "weight": 1.0,
+              "detail": "Transformer logit class 8",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.951,
+              "raw_score": 0.951,
+              "trace": "Transformer logit class 8"
+            }
+          ],
+          "evidence_against": []
+        }
+      ],
+      "contribution_breakdown": [
+        {
+          "source": "perceptual",
+          "score": 0.9577,
+          "weight": 1.0,
+          "detail": "Transformer logit class 4",
+          "n_items": 1
+        },
+        {
+          "runner_up": [
+            {
+              "source": "perceptual",
+              "score": 0.9518,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ]
+        }
+      ],
+      "convergence_steps": [
+        {
+          "iteration": 0,
+          "scores": {
+            "color_4_yellow": 0.9355,
+            "color_3_green": 0.9349,
+            "color_8_azure": 0.9349,
+            "color_5_grey": 0.9349,
+            "color_9_maroon": 0.9349,
+            "color_7_orange": 0.9349,
+            "color_0_black": 0.9349,
+            "color_6_fuchsia": 0.9346,
+            "color_1_blue": 0.9346,
+            "color_2_red": 0.9346
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0005,
+          "entropy": 1.0
+        },
+        {
+          "iteration": 1,
+          "scores": {
+            "color_4_yellow": 0.9355,
+            "color_3_green": 0.9349,
+            "color_8_azure": 0.9349,
+            "color_5_grey": 0.9349,
+            "color_9_maroon": 0.9349,
+            "color_7_orange": 0.9349,
+            "color_0_black": 0.9349,
+            "color_6_fuchsia": 0.9346,
+            "color_1_blue": 0.9346,
+            "color_2_red": 0.9346
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0005,
+          "entropy": 1.0
+        },
+        {
+          "iteration": 2,
+          "scores": {
+            "color_4_yellow": 0.9355,
+            "color_3_green": 0.9349,
+            "color_8_azure": 0.9349,
+            "color_5_grey": 0.9349,
+            "color_9_maroon": 0.9349,
+            "color_7_orange": 0.9349,
+            "color_0_black": 0.9349,
+            "color_6_fuchsia": 0.9346,
+            "color_1_blue": 0.9346,
+            "color_2_red": 0.9346
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0005,
+          "entropy": 1.0
+        }
+      ],
+      "diversity_score": 0.0,
+      "num_clusters": 1,
+      "winner_reversals": 0,
+      "convergence_velocity": 0.0,
+      "meta_impasse": {
+        "is_impasse": true,
+        "reasons": [
+          "entropy=1.000>0.9",
+          "margin=0.0005<0.02",
+          "diversity=0.000<0.1"
+        ],
+        "entropy": 1.0,
+        "margin": 0.0005311182260087088,
+        "diversity": 0.0
+      },
+      "meta_reasoning_style": {
+        "perceptual": 1.0,
+        "dominant": "perceptual"
+      },
+      "meta_knowledge_gaps": []
+    },
+    {
+      "task_id": "00dbd492",
+      "pattern_detected": "recoloring",
+      "hypothesis": "color_4_yellow",
+      "hypothesis_confidence": 0.9324,
+      "hypothesis_entropy": 1.0,
+      "hypothesis_margin": 0.0004,
+      "hypothesis_stability": [
+        0.9324,
+        0.9324,
+        0.9324
+      ],
+      "pixel_accuracy": 0.3456,
+      "exact_match": false,
+      "error_pixels": 589,
+      "total_pixels": 900,
+      "bottleneck": "TIGHT_MARGIN",
+      "total_time_ms": 72.5,
+      "perception_time_ms": 0.0,
+      "input_hdv_similarity": 0.8558,
+      "evidence_counts": {
+        "perceptual": 10
+      },
+      "evidence_by_source": {
+        "perceptual": 9.0905
+      },
+      "counterfactuals": [
+        {
+          "hypothesis": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.9320028073903732,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.9318844963628254,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_5_grey",
+          "category": "recoloring",
+          "confidence": 0.931536471390988,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        }
+      ],
+      "hypotheses_ranked": [
+        {
+          "name": "color_4_yellow",
+          "category": "recoloring",
+          "confidence": 0.932,
+          "evidence_total": 0.925,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9248289465904236,
+              "best": 0.9248289465904236
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9248,
+              "weight": 1.0,
+              "detail": "Transformer logit class 4",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.925,
+              "raw_score": 0.925,
+              "trace": "Transformer logit class 4"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.932,
+          "evidence_total": 0.92,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9204373955726624,
+              "best": 0.9204373955726624
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9204,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.92,
+              "raw_score": 0.92,
+              "trace": "Transformer logit class 3"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.932,
+          "evidence_total": 0.919,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9192069172859192,
+              "best": 0.9192069172859192
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9192,
+              "weight": 1.0,
+              "detail": "Transformer logit class 8",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.919,
+              "raw_score": 0.919,
+              "trace": "Transformer logit class 8"
+            }
+          ],
+          "evidence_against": []
+        }
+      ],
+      "contribution_breakdown": [
+        {
+          "source": "perceptual",
+          "score": 0.9248,
+          "weight": 1.0,
+          "detail": "Transformer logit class 4",
+          "n_items": 1
+        },
+        {
+          "runner_up": [
+            {
+              "source": "perceptual",
+              "score": 0.9204,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ]
+        }
+      ],
+      "convergence_steps": [
+        {
+          "iteration": 0,
+          "scores": {
+            "color_4_yellow": 0.9324,
+            "color_3_green": 0.932,
+            "color_8_azure": 0.9319,
+            "color_5_grey": 0.9315,
+            "color_0_black": 0.931,
+            "color_9_maroon": 0.9305,
+            "color_2_red": 0.9304,
+            "color_7_orange": 0.9304,
+            "color_6_fuchsia": 0.9301,
+            "color_1_blue": 0.9167
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0004,
+          "entropy": 1.0
+        },
+        {
+          "iteration": 1,
+          "scores": {
+            "color_4_yellow": 0.9324,
+            "color_3_green": 0.932,
+            "color_8_azure": 0.9319,
+            "color_5_grey": 0.9315,
+            "color_0_black": 0.931,
+            "color_9_maroon": 0.9305,
+            "color_2_red": 0.9304,
+            "color_7_orange": 0.9304,
+            "color_6_fuchsia": 0.9301,
+            "color_1_blue": 0.9167
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0004,
+          "entropy": 1.0
+        },
+        {
+          "iteration": 2,
+          "scores": {
+            "color_4_yellow": 0.9324,
+            "color_3_green": 0.932,
+            "color_8_azure": 0.9319,
+            "color_5_grey": 0.9315,
+            "color_0_black": 0.931,
+            "color_9_maroon": 0.9305,
+            "color_2_red": 0.9304,
+            "color_7_orange": 0.9304,
+            "color_6_fuchsia": 0.9301,
+            "color_1_blue": 0.9167
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0004,
+          "entropy": 1.0
+        }
+      ],
+      "diversity_score": 0.0,
+      "num_clusters": 1,
+      "winner_reversals": 0,
+      "convergence_velocity": 0.0,
+      "meta_impasse": {
+        "is_impasse": true,
+        "reasons": [
+          "entropy=1.000>0.9",
+          "margin=0.0004<0.02",
+          "diversity=0.000<0.1"
+        ],
+        "entropy": 1.0,
+        "margin": 0.0004199331726278954,
+        "diversity": 0.0
+      },
+      "meta_reasoning_style": {
+        "perceptual": 1.0,
+        "dominant": "perceptual"
+      },
+      "meta_knowledge_gaps": []
+    },
+    {
+      "task_id": "03560426",
+      "pattern_detected": "transformation",
+      "hypothesis": "color_4_yellow",
+      "hypothesis_confidence": 0.9338,
+      "hypothesis_entropy": 1.0,
+      "hypothesis_margin": 0.0002,
+      "hypothesis_stability": [
+        0.9338,
+        0.9338,
+        0.9338
+      ],
+      "pixel_accuracy": 0.0867,
+      "exact_match": false,
+      "error_pixels": 822,
+      "total_pixels": 900,
+      "bottleneck": "TIGHT_MARGIN",
+      "total_time_ms": 60.03,
+      "perception_time_ms": 0.0,
+      "input_hdv_similarity": 0.9863,
+      "evidence_counts": {
+        "perceptual": 10
+      },
+      "evidence_by_source": {
+        "perceptual": 9.289
+      },
+      "counterfactuals": [
+        {
+          "hypothesis": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.9336492421346931,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.9333486972572215,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_7_orange",
+          "category": "recoloring",
+          "confidence": 0.9330939171835116,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        }
+      ],
+      "hypotheses_ranked": [
+        {
+          "name": "color_4_yellow",
+          "category": "recoloring",
+          "confidence": 0.934,
+          "evidence_total": 0.94,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9400398135185242,
+              "best": 0.9400398135185242
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.94,
+              "weight": 1.0,
+              "detail": "Transformer logit class 4",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.94,
+              "raw_score": 0.94,
+              "trace": "Transformer logit class 4"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.934,
+          "evidence_total": 0.938,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9378745555877686,
+              "best": 0.9378745555877686
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9379,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.938,
+              "raw_score": 0.938,
+              "trace": "Transformer logit class 3"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.933,
+          "evidence_total": 0.935,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9346472024917603,
+              "best": 0.9346472024917603
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9346,
+              "weight": 1.0,
+              "detail": "Transformer logit class 8",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.935,
+              "raw_score": 0.935,
+              "trace": "Transformer logit class 8"
+            }
+          ],
+          "evidence_against": []
+        }
+      ],
+      "contribution_breakdown": [
+        {
+          "source": "perceptual",
+          "score": 0.94,
+          "weight": 1.0,
+          "detail": "Transformer logit class 4",
+          "n_items": 1
+        },
+        {
+          "runner_up": [
+            {
+              "source": "perceptual",
+              "score": 0.9379,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ]
+        }
+      ],
+      "convergence_steps": [
+        {
+          "iteration": 0,
+          "scores": {
+            "color_4_yellow": 0.9338,
+            "color_3_green": 0.9336,
+            "color_8_azure": 0.9333,
+            "color_7_orange": 0.9331,
+            "color_0_black": 0.9329,
+            "color_5_grey": 0.9329,
+            "color_9_maroon": 0.9328,
+            "color_2_red": 0.9328,
+            "color_6_fuchsia": 0.932,
+            "color_1_blue": 0.9306
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0002,
+          "entropy": 1.0
+        },
+        {
+          "iteration": 1,
+          "scores": {
+            "color_4_yellow": 0.9338,
+            "color_3_green": 0.9336,
+            "color_8_azure": 0.9333,
+            "color_7_orange": 0.9331,
+            "color_0_black": 0.9329,
+            "color_5_grey": 0.9329,
+            "color_9_maroon": 0.9328,
+            "color_2_red": 0.9328,
+            "color_6_fuchsia": 0.932,
+            "color_1_blue": 0.9306
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0002,
+          "entropy": 1.0
+        },
+        {
+          "iteration": 2,
+          "scores": {
+            "color_4_yellow": 0.9338,
+            "color_3_green": 0.9336,
+            "color_8_azure": 0.9333,
+            "color_7_orange": 0.9331,
+            "color_0_black": 0.9329,
+            "color_5_grey": 0.9329,
+            "color_9_maroon": 0.9328,
+            "color_2_red": 0.9328,
+            "color_6_fuchsia": 0.932,
+            "color_1_blue": 0.9306
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0002,
+          "entropy": 1.0
+        }
+      ],
+      "diversity_score": 0.0,
+      "num_clusters": 1,
+      "winner_reversals": 0,
+      "convergence_velocity": 0.0,
+      "meta_impasse": {
+        "is_impasse": true,
+        "reasons": [
+          "entropy=1.000>0.9",
+          "margin=0.0002<0.02",
+          "diversity=0.000<0.1"
+        ],
+        "entropy": 1.0,
+        "margin": 0.00020059255414117683,
+        "diversity": 0.0
+      },
+      "meta_reasoning_style": {
+        "perceptual": 1.0,
+        "dominant": "perceptual"
+      },
+      "meta_knowledge_gaps": []
+    },
+    {
+      "task_id": "05a7bcf2",
+      "pattern_detected": "recoloring",
+      "hypothesis": "color_5_grey",
+      "hypothesis_confidence": 0.9316,
+      "hypothesis_entropy": 1.0,
+      "hypothesis_margin": 0.0025,
+      "hypothesis_stability": [
+        0.9316,
+        0.9316,
+        0.9316
+      ],
+      "pixel_accuracy": 0.5811,
+      "exact_match": false,
+      "error_pixels": 377,
+      "total_pixels": 900,
+      "bottleneck": "TIGHT_MARGIN",
+      "total_time_ms": 58.55,
+      "perception_time_ms": 0.0,
+      "input_hdv_similarity": 0.9086,
+      "evidence_counts": {
+        "perceptual": 10
+      },
+      "evidence_by_source": {
+        "perceptual": 8.8677
+      },
+      "counterfactuals": [
+        {
+          "hypothesis": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.929076521396637,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.926765410900116,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_4_yellow",
+          "category": "recoloring",
+          "confidence": 0.9258605527877808,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        }
+      ],
+      "hypotheses_ranked": [
+        {
+          "name": "color_5_grey",
+          "category": "recoloring",
+          "confidence": 0.932,
+          "evidence_total": 0.916,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9159870147705078,
+              "best": 0.9159870147705078
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.916,
+              "weight": 1.0,
+              "detail": "Transformer logit class 5",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.916,
+              "raw_score": 0.916,
+              "trace": "Transformer logit class 5"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.929,
+          "evidence_total": 0.899,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.899076521396637,
+              "best": 0.899076521396637
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.8991,
+              "weight": 1.0,
+              "detail": "Transformer logit class 8",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.899,
+              "raw_score": 0.899,
+              "trace": "Transformer logit class 8"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.927,
+          "evidence_total": 0.897,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.896765410900116,
+              "best": 0.896765410900116
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.8968,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.897,
+              "raw_score": 0.897,
+              "trace": "Transformer logit class 3"
+            }
+          ],
+          "evidence_against": []
+        }
+      ],
+      "contribution_breakdown": [
+        {
+          "source": "perceptual",
+          "score": 0.916,
+          "weight": 1.0,
+          "detail": "Transformer logit class 5",
+          "n_items": 1
+        },
+        {
+          "runner_up": [
+            {
+              "source": "perceptual",
+              "score": 0.8991,
+              "weight": 1.0,
+              "detail": "Transformer logit class 8",
+              "n_items": 1
+            }
+          ]
+        }
+      ],
+      "convergence_steps": [
+        {
+          "iteration": 0,
+          "scores": {
+            "color_5_grey": 0.9316,
+            "color_8_azure": 0.9291,
+            "color_3_green": 0.9268,
+            "color_4_yellow": 0.9259,
+            "color_0_black": 0.915,
+            "color_2_red": 0.9126,
+            "color_7_orange": 0.9108,
+            "color_6_fuchsia": 0.9071,
+            "color_9_maroon": 0.9053,
+            "color_1_blue": 0.8893
+          },
+          "winner": "color_5_grey",
+          "margin": 0.0025,
+          "entropy": 1.0
+        },
+        {
+          "iteration": 1,
+          "scores": {
+            "color_5_grey": 0.9316,
+            "color_8_azure": 0.9291,
+            "color_3_green": 0.9268,
+            "color_4_yellow": 0.9259,
+            "color_0_black": 0.915,
+            "color_2_red": 0.9126,
+            "color_7_orange": 0.9108,
+            "color_6_fuchsia": 0.9071,
+            "color_9_maroon": 0.9053,
+            "color_1_blue": 0.8893
+          },
+          "winner": "color_5_grey",
+          "margin": 0.0025,
+          "entropy": 1.0
+        },
+        {
+          "iteration": 2,
+          "scores": {
+            "color_5_grey": 0.9316,
+            "color_8_azure": 0.9291,
+            "color_3_green": 0.9268,
+            "color_4_yellow": 0.9259,
+            "color_0_black": 0.915,
+            "color_2_red": 0.9126,
+            "color_7_orange": 0.9108,
+            "color_6_fuchsia": 0.9071,
+            "color_9_maroon": 0.9053,
+            "color_1_blue": 0.8893
+          },
+          "winner": "color_5_grey",
+          "margin": 0.0025,
+          "entropy": 1.0
+        }
+      ],
+      "diversity_score": 0.0,
+      "num_clusters": 1,
+      "winner_reversals": 0,
+      "convergence_velocity": 0.0,
+      "meta_impasse": {
+        "is_impasse": true,
+        "reasons": [
+          "entropy=1.000>0.9",
+          "margin=0.0025<0.02",
+          "diversity=0.000<0.1"
+        ],
+        "entropy": 1.0,
+        "margin": 0.0024970237902686154,
+        "diversity": 0.0
+      },
+      "meta_reasoning_style": {
+        "perceptual": 1.0,
+        "dominant": "perceptual"
+      },
+      "meta_knowledge_gaps": []
+    },
+    {
+      "task_id": "0607ce86",
+      "pattern_detected": "transformation",
+      "hypothesis": "color_5_grey",
+      "hypothesis_confidence": 0.932,
+      "hypothesis_entropy": 0.9524,
+      "hypothesis_margin": 0.0005,
+      "hypothesis_stability": [
+        0.932,
+        0.932,
+        0.932
+      ],
+      "pixel_accuracy": 0.5289,
+      "exact_match": false,
+      "error_pixels": 424,
+      "total_pixels": 900,
+      "bottleneck": "TIGHT_MARGIN",
+      "total_time_ms": 59.0,
+      "perception_time_ms": 0.0,
+      "input_hdv_similarity": 0.844,
+      "evidence_counts": {
+        "perceptual": 10
+      },
+      "evidence_by_source": {
+        "perceptual": 7.4984
+      },
+      "counterfactuals": [
+        {
+          "hypothesis": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.9315215485006204,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_4_yellow",
+          "category": "recoloring",
+          "confidence": 0.9313533856655596,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_0_black",
+          "category": "recoloring",
+          "confidence": 0.930831261773513,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        }
+      ],
+      "hypotheses_ranked": [
+        {
+          "name": "color_5_grey",
+          "category": "recoloring",
+          "confidence": 0.932,
+          "evidence_total": 0.92,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9203165173530579,
+              "best": 0.9203165173530579
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9203,
+              "weight": 1.0,
+              "detail": "Transformer logit class 5",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.92,
+              "raw_score": 0.92,
+              "trace": "Transformer logit class 5"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.932,
+          "evidence_total": 0.915,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9154505729675293,
+              "best": 0.9154505729675293
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9155,
+              "weight": 1.0,
+              "detail": "Transformer logit class 8",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.915,
+              "raw_score": 0.915,
+              "trace": "Transformer logit class 8"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_4_yellow",
+          "category": "recoloring",
+          "confidence": 0.931,
+          "evidence_total": 0.914,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9137195348739624,
+              "best": 0.9137195348739624
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9137,
+              "weight": 1.0,
+              "detail": "Transformer logit class 4",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.914,
+              "raw_score": 0.914,
+              "trace": "Transformer logit class 4"
+            }
+          ],
+          "evidence_against": []
+        }
+      ],
+      "contribution_breakdown": [
+        {
+          "source": "perceptual",
+          "score": 0.9203,
+          "weight": 1.0,
+          "detail": "Transformer logit class 5",
+          "n_items": 1
+        },
+        {
+          "runner_up": [
+            {
+              "source": "perceptual",
+              "score": 0.9155,
+              "weight": 1.0,
+              "detail": "Transformer logit class 8",
+              "n_items": 1
+            }
+          ]
+        }
+      ],
+      "convergence_steps": [
+        {
+          "iteration": 0,
+          "scores": {
+            "color_5_grey": 0.932,
+            "color_8_azure": 0.9315,
+            "color_4_yellow": 0.9314,
+            "color_0_black": 0.9308,
+            "color_9_maroon": 0.9305,
+            "color_6_fuchsia": 0.9272,
+            "color_7_orange": 0.9271,
+            "color_1_blue": 0.9144,
+            "color_2_red": 0.1798,
+            "color_3_green": 0.1365
+          },
+          "winner": "color_5_grey",
+          "margin": 0.0005,
+          "entropy": 0.9524
+        },
+        {
+          "iteration": 1,
+          "scores": {
+            "color_5_grey": 0.932,
+            "color_8_azure": 0.9315,
+            "color_4_yellow": 0.9314,
+            "color_0_black": 0.9308,
+            "color_9_maroon": 0.9305,
+            "color_6_fuchsia": 0.9272,
+            "color_7_orange": 0.9271,
+            "color_1_blue": 0.9144,
+            "color_2_red": 0.1798,
+            "color_3_green": 0.1365
+          },
+          "winner": "color_5_grey",
+          "margin": 0.0005,
+          "entropy": 0.9524
+        },
+        {
+          "iteration": 2,
+          "scores": {
+            "color_5_grey": 0.932,
+            "color_8_azure": 0.9315,
+            "color_4_yellow": 0.9314,
+            "color_0_black": 0.9308,
+            "color_9_maroon": 0.9305,
+            "color_6_fuchsia": 0.9272,
+            "color_7_orange": 0.9271,
+            "color_1_blue": 0.9144,
+            "color_2_red": 0.1798,
+            "color_3_green": 0.1365
+          },
+          "winner": "color_5_grey",
+          "margin": 0.0005,
+          "entropy": 0.9524
+        }
+      ],
+      "diversity_score": 0.0,
+      "num_clusters": 1,
+      "winner_reversals": 0,
+      "convergence_velocity": 0.0,
+      "meta_impasse": {
+        "is_impasse": true,
+        "reasons": [
+          "entropy=0.952>0.9",
+          "margin=0.0005<0.02",
+          "diversity=0.000<0.1"
+        ],
+        "entropy": 0.9524,
+        "margin": 0.00046964903539159497,
+        "diversity": 0.0
+      },
+      "meta_reasoning_style": {
+        "perceptual": 1.0,
+        "dominant": "perceptual"
+      },
+      "meta_knowledge_gaps": [
+        "baixa confianca em 'color_2_red': poucas evidencias (0.15)",
+        "baixa confianca em 'color_3_green': poucas evidencias (0.11)"
+      ]
+    },
+    {
+      "task_id": "0692e18c",
+      "pattern_detected": "transformation",
+      "hypothesis": "color_0_black",
+      "hypothesis_confidence": 0.9329,
+      "hypothesis_entropy": 0.9986,
+      "hypothesis_margin": 0.0013,
+      "hypothesis_stability": [
+        0.9329,
+        0.9329,
+        0.9329
+      ],
+      "pixel_accuracy": 0.0678,
+      "exact_match": false,
+      "error_pixels": 839,
+      "total_pixels": 900,
+      "bottleneck": "TIGHT_MARGIN",
+      "total_time_ms": 58.5,
+      "perception_time_ms": 0.0,
+      "input_hdv_similarity": 0.9955,
+      "evidence_counts": {
+        "perceptual": 10
+      },
+      "evidence_by_source": {
+        "perceptual": 8.4274
+      },
+      "counterfactuals": [
+        {
+          "hypothesis": "color_1_blue",
+          "category": "recoloring",
+          "confidence": 0.9315854447022379,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.8969334650039673,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_7_orange",
+          "category": "recoloring",
+          "confidence": 0.8950017380714417,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        }
+      ],
+      "hypotheses_ranked": [
+        {
+          "name": "color_0_black",
+          "category": "recoloring",
+          "confidence": 0.933,
+          "evidence_total": 0.93,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9295833110809326,
+              "best": 0.9295833110809326
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9296,
+              "weight": 1.0,
+              "detail": "Transformer logit class 0",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.93,
+              "raw_score": 0.93,
+              "trace": "Transformer logit class 0"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_1_blue",
+          "category": "recoloring",
+          "confidence": 0.932,
+          "evidence_total": 0.916,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9161098599433899,
+              "best": 0.9161098599433899
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9161,
+              "weight": 1.0,
+              "detail": "Transformer logit class 1",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.916,
+              "raw_score": 0.916,
+              "trace": "Transformer logit class 1"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.897,
+          "evidence_total": 0.867,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.8669334650039673,
+              "best": 0.8669334650039673
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.8669,
+              "weight": 1.0,
+              "detail": "Transformer logit class 8",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.867,
+              "raw_score": 0.867,
+              "trace": "Transformer logit class 8"
+            }
+          ],
+          "evidence_against": []
+        }
+      ],
+      "contribution_breakdown": [
+        {
+          "source": "perceptual",
+          "score": 0.9296,
+          "weight": 1.0,
+          "detail": "Transformer logit class 0",
+          "n_items": 1
+        },
+        {
+          "runner_up": [
+            {
+              "source": "perceptual",
+              "score": 0.9161,
+              "weight": 1.0,
+              "detail": "Transformer logit class 1",
+              "n_items": 1
+            }
+          ]
+        }
+      ],
+      "convergence_steps": [
+        {
+          "iteration": 0,
+          "scores": {
+            "color_0_black": 0.9329,
+            "color_1_blue": 0.9316,
+            "color_8_azure": 0.8969,
+            "color_7_orange": 0.895,
+            "color_9_maroon": 0.8938,
+            "color_3_green": 0.8843,
+            "color_4_yellow": 0.8731,
+            "color_5_grey": 0.8547,
+            "color_6_fuchsia": 0.8453,
+            "color_2_red": 0.6786
+          },
+          "winner": "color_0_black",
+          "margin": 0.0013,
+          "entropy": 0.9986
+        },
+        {
+          "iteration": 1,
+          "scores": {
+            "color_0_black": 0.9329,
+            "color_1_blue": 0.9316,
+            "color_8_azure": 0.8969,
+            "color_7_orange": 0.895,
+            "color_9_maroon": 0.8938,
+            "color_3_green": 0.8843,
+            "color_4_yellow": 0.8731,
+            "color_5_grey": 0.8547,
+            "color_6_fuchsia": 0.8453,
+            "color_2_red": 0.6786
+          },
+          "winner": "color_0_black",
+          "margin": 0.0013,
+          "entropy": 0.9986
+        },
+        {
+          "iteration": 2,
+          "scores": {
+            "color_0_black": 0.9329,
+            "color_1_blue": 0.9316,
+            "color_8_azure": 0.8969,
+            "color_7_orange": 0.895,
+            "color_9_maroon": 0.8938,
+            "color_3_green": 0.8843,
+            "color_4_yellow": 0.8731,
+            "color_5_grey": 0.8547,
+            "color_6_fuchsia": 0.8453,
+            "color_2_red": 0.6786
+          },
+          "winner": "color_0_black",
+          "margin": 0.0013,
+          "entropy": 0.9986
+        }
+      ],
+      "diversity_score": 0.0,
+      "num_clusters": 1,
+      "winner_reversals": 0,
+      "convergence_velocity": 0.0,
+      "meta_impasse": {
+        "is_impasse": true,
+        "reasons": [
+          "entropy=0.999>0.9",
+          "margin=0.0013<0.02",
+          "diversity=0.000<0.1"
+        ],
+        "entropy": 0.9986,
+        "margin": 0.0012878838339320797,
+        "diversity": 0.0
+      },
+      "meta_reasoning_style": {
+        "perceptual": 1.0,
+        "dominant": "perceptual"
+      },
+      "meta_knowledge_gaps": []
+    },
+    {
+      "task_id": "070dd51e",
+      "pattern_detected": "transformation",
+      "hypothesis": "color_4_yellow",
+      "hypothesis_confidence": 0.9358,
+      "hypothesis_entropy": 1.0,
+      "hypothesis_margin": 0.0004,
+      "hypothesis_stability": [
+        0.9358,
+        0.9358,
+        0.9358
+      ],
+      "pixel_accuracy": 0.3911,
+      "exact_match": false,
+      "error_pixels": 548,
+      "total_pixels": 900,
+      "bottleneck": "TIGHT_MARGIN",
+      "total_time_ms": 32.0,
+      "perception_time_ms": 0.0,
+      "input_hdv_similarity": 0.5012,
+      "evidence_counts": {
+        "perceptual": 10
+      },
+      "evidence_by_source": {
+        "perceptual": 9.5531
+      },
+      "counterfactuals": [
+        {
+          "hypothesis": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.9353992103616939,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_5_grey",
+          "category": "recoloring",
+          "confidence": 0.9353714323410842,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.935218270129887,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        }
+      ],
+      "hypotheses_ranked": [
+        {
+          "name": "color_4_yellow",
+          "category": "recoloring",
+          "confidence": 0.936,
+          "evidence_total": 0.962,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9616926312446594,
+              "best": 0.9616926312446594
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9617,
+              "weight": 1.0,
+              "detail": "Transformer logit class 4",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.962,
+              "raw_score": 0.962,
+              "trace": "Transformer logit class 4"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.935,
+          "evidence_total": 0.957,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9570736289024353,
+              "best": 0.9570736289024353
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9571,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.957,
+              "raw_score": 0.957,
+              "trace": "Transformer logit class 3"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_5_grey",
+          "category": "recoloring",
+          "confidence": 0.935,
+          "evidence_total": 0.957,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9567633271217346,
+              "best": 0.9567633271217346
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9568,
+              "weight": 1.0,
+              "detail": "Transformer logit class 5",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.957,
+              "raw_score": 0.957,
+              "trace": "Transformer logit class 5"
+            }
+          ],
+          "evidence_against": []
+        }
+      ],
+      "contribution_breakdown": [
+        {
+          "source": "perceptual",
+          "score": 0.9617,
+          "weight": 1.0,
+          "detail": "Transformer logit class 4",
+          "n_items": 1
+        },
+        {
+          "runner_up": [
+            {
+              "source": "perceptual",
+              "score": 0.9571,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ]
+        }
+      ],
+      "convergence_steps": [
+        {
+          "iteration": 0,
+          "scores": {
+            "color_4_yellow": 0.9358,
+            "color_3_green": 0.9354,
+            "color_5_grey": 0.9354,
+            "color_8_azure": 0.9352,
+            "color_7_orange": 0.9352,
+            "color_6_fuchsia": 0.9352,
+            "color_9_maroon": 0.9352,
+            "color_0_black": 0.9351,
+            "color_1_blue": 0.9351,
+            "color_2_red": 0.9349
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0004,
+          "entropy": 1.0
+        },
+        {
+          "iteration": 1,
+          "scores": {
+            "color_4_yellow": 0.9358,
+            "color_3_green": 0.9354,
+            "color_5_grey": 0.9354,
+            "color_8_azure": 0.9352,
+            "color_7_orange": 0.9352,
+            "color_6_fuchsia": 0.9352,
+            "color_9_maroon": 0.9352,
+            "color_0_black": 0.9351,
+            "color_1_blue": 0.9351,
+            "color_2_red": 0.9349
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0004,
+          "entropy": 1.0
+        },
+        {
+          "iteration": 2,
+          "scores": {
+            "color_4_yellow": 0.9358,
+            "color_3_green": 0.9354,
+            "color_5_grey": 0.9354,
+            "color_8_azure": 0.9352,
+            "color_7_orange": 0.9352,
+            "color_6_fuchsia": 0.9352,
+            "color_9_maroon": 0.9352,
+            "color_0_black": 0.9351,
+            "color_1_blue": 0.9351,
+            "color_2_red": 0.9349
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0004,
+          "entropy": 1.0
+        }
+      ],
+      "diversity_score": 0.0,
+      "num_clusters": 1,
+      "winner_reversals": 0,
+      "convergence_velocity": 0.0,
+      "meta_impasse": {
+        "is_impasse": true,
+        "reasons": [
+          "entropy=1.000>0.9",
+          "margin=0.0004<0.02",
+          "diversity=0.000<0.1"
+        ],
+        "entropy": 1.0,
+        "margin": 0.00041157040753248,
+        "diversity": 0.0
+      },
+      "meta_reasoning_style": {
+        "perceptual": 1.0,
+        "dominant": "perceptual"
+      },
+      "meta_knowledge_gaps": []
+    },
+    {
+      "task_id": "08573cc6",
+      "pattern_detected": "transformation",
+      "hypothesis": "color_4_yellow",
+      "hypothesis_confidence": 0.9349,
+      "hypothesis_entropy": 0.9665,
+      "hypothesis_margin": 0.0006,
+      "hypothesis_stability": [
+        0.9349,
+        0.9349,
+        0.9349
+      ],
+      "pixel_accuracy": 0.0867,
+      "exact_match": false,
+      "error_pixels": 822,
+      "total_pixels": 900,
+      "bottleneck": "TIGHT_MARGIN",
+      "total_time_ms": 58.54,
+      "perception_time_ms": 0.0,
+      "input_hdv_similarity": 0.9803,
+      "evidence_counts": {
+        "perceptual": 10
+      },
+      "evidence_by_source": {
+        "perceptual": 8.0591
+      },
+      "counterfactuals": [
+        {
+          "hypothesis": "color_5_grey",
+          "category": "recoloring",
+          "confidence": 0.9342938769132306,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.9342328654098472,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_9_maroon",
+          "category": "recoloring",
+          "confidence": 0.9342289074662107,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        }
+      ],
+      "hypotheses_ranked": [
+        {
+          "name": "color_4_yellow",
+          "category": "recoloring",
+          "confidence": 0.935,
+          "evidence_total": 0.951,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9511243104934692,
+              "best": 0.9511243104934692
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9511,
+              "weight": 1.0,
+              "detail": "Transformer logit class 4",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.951,
+              "raw_score": 0.951,
+              "trace": "Transformer logit class 4"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_5_grey",
+          "category": "recoloring",
+          "confidence": 0.934,
+          "evidence_total": 0.945,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9448652267456055,
+              "best": 0.9448652267456055
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9449,
+              "weight": 1.0,
+              "detail": "Transformer logit class 5",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.945,
+              "raw_score": 0.945,
+              "trace": "Transformer logit class 5"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.934,
+          "evidence_total": 0.944,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9441995620727539,
+              "best": 0.9441995620727539
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9442,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.944,
+              "raw_score": 0.944,
+              "trace": "Transformer logit class 3"
+            }
+          ],
+          "evidence_against": []
+        }
+      ],
+      "contribution_breakdown": [
+        {
+          "source": "perceptual",
+          "score": 0.9511,
+          "weight": 1.0,
+          "detail": "Transformer logit class 4",
+          "n_items": 1
+        },
+        {
+          "runner_up": [
+            {
+              "source": "perceptual",
+              "score": 0.9449,
+              "weight": 1.0,
+              "detail": "Transformer logit class 5",
+              "n_items": 1
+            }
+          ]
+        }
+      ],
+      "convergence_steps": [
+        {
+          "iteration": 0,
+          "scores": {
+            "color_4_yellow": 0.9349,
+            "color_5_grey": 0.9343,
+            "color_3_green": 0.9342,
+            "color_9_maroon": 0.9342,
+            "color_8_azure": 0.9342,
+            "color_7_orange": 0.934,
+            "color_6_fuchsia": 0.9338,
+            "color_2_red": 0.9337,
+            "color_0_black": 0.4449,
+            "color_1_blue": 0.126
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0006,
+          "entropy": 0.9665
+        },
+        {
+          "iteration": 1,
+          "scores": {
+            "color_4_yellow": 0.9349,
+            "color_5_grey": 0.9343,
+            "color_3_green": 0.9342,
+            "color_9_maroon": 0.9342,
+            "color_8_azure": 0.9342,
+            "color_7_orange": 0.934,
+            "color_6_fuchsia": 0.9338,
+            "color_2_red": 0.9337,
+            "color_0_black": 0.4449,
+            "color_1_blue": 0.126
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0006,
+          "entropy": 0.9665
+        },
+        {
+          "iteration": 2,
+          "scores": {
+            "color_4_yellow": 0.9349,
+            "color_5_grey": 0.9343,
+            "color_3_green": 0.9342,
+            "color_9_maroon": 0.9342,
+            "color_8_azure": 0.9342,
+            "color_7_orange": 0.934,
+            "color_6_fuchsia": 0.9338,
+            "color_2_red": 0.9337,
+            "color_0_black": 0.4449,
+            "color_1_blue": 0.126
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0006,
+          "entropy": 0.9665
+        }
+      ],
+      "diversity_score": 0.0,
+      "num_clusters": 1,
+      "winner_reversals": 0,
+      "convergence_velocity": 0.0,
+      "meta_impasse": {
+        "is_impasse": true,
+        "reasons": [
+          "entropy=0.967>0.9",
+          "margin=0.0006<0.02",
+          "diversity=0.000<0.1"
+        ],
+        "entropy": 0.9665,
+        "margin": 0.0005698970460518149,
+        "diversity": 0.0
+      },
+      "meta_reasoning_style": {
+        "perceptual": 1.0,
+        "dominant": "perceptual"
+      },
+      "meta_knowledge_gaps": [
+        "baixa confianca em 'color_1_blue': poucas evidencias (0.10)"
+      ]
+    },
+    {
+      "task_id": "0934a4d8",
+      "pattern_detected": "recoloring",
+      "hypothesis": "unknown",
+      "hypothesis_confidence": 0.8446,
+      "hypothesis_entropy": 0.0,
+      "hypothesis_margin": 0.0,
+      "hypothesis_stability": [],
+      "pixel_accuracy": 0.0022,
+      "exact_match": false,
+      "error_pixels": 898,
+      "total_pixels": 900,
+      "bottleneck": "TIGHT_MARGIN",
+      "total_time_ms": 57.06,
+      "perception_time_ms": 0.0,
+      "input_hdv_similarity": 0.6803,
+      "evidence_counts": {},
+      "evidence_by_source": {},
+      "counterfactuals": [],
+      "hypotheses_ranked": [],
+      "contribution_breakdown": [],
+      "convergence_steps": [],
+      "diversity_score": 0.0,
+      "num_clusters": 1,
+      "winner_reversals": 0,
+      "convergence_velocity": 0.0,
+      "meta_impasse": {
+        "is_impasse": false,
+        "reasons": [
+          "margin=0.0000<0.02"
+        ],
+        "entropy": 0.0,
+        "margin": 0.0,
+        "diversity": 0.0
+      },
+      "meta_reasoning_style": {
+        "unknown": 1.0
+      },
+      "meta_knowledge_gaps": []
+    },
+    {
+      "task_id": "09c534e7",
+      "pattern_detected": "transformation",
+      "hypothesis": "color_4_yellow",
+      "hypothesis_confidence": 0.9338,
+      "hypothesis_entropy": 1.0,
+      "hypothesis_margin": 0.0009,
+      "hypothesis_stability": [
+        0.9338,
+        0.9338,
+        0.9338
+      ],
+      "pixel_accuracy": 0.8544,
+      "exact_match": false,
+      "error_pixels": 131,
+      "total_pixels": 900,
+      "bottleneck": "TIGHT_MARGIN",
+      "total_time_ms": 59.63,
+      "perception_time_ms": 0.0,
+      "input_hdv_similarity": 0.5239,
+      "evidence_counts": {
+        "perceptual": 10
+      },
+      "evidence_by_source": {
+        "perceptual": 9.216
+      },
+      "counterfactuals": [
+        {
+          "hypothesis": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.9329252447332025,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_5_grey",
+          "category": "recoloring",
+          "confidence": 0.9327895601097943,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_0_black",
+          "category": "recoloring",
+          "confidence": 0.9325490079475003,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        }
+      ],
+      "hypotheses_ranked": [
+        {
+          "name": "color_4_yellow",
+          "category": "recoloring",
+          "confidence": 0.934,
+          "evidence_total": 0.939,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9394469261169434,
+              "best": 0.9394469261169434
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9394,
+              "weight": 1.0,
+              "detail": "Transformer logit class 4",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.939,
+              "raw_score": 0.939,
+              "trace": "Transformer logit class 4"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.933,
+          "evidence_total": 0.93,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9301339387893677,
+              "best": 0.9301339387893677
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9301,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.93,
+              "raw_score": 0.93,
+              "trace": "Transformer logit class 3"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_5_grey",
+          "category": "recoloring",
+          "confidence": 0.933,
+          "evidence_total": 0.929,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9286960959434509,
+              "best": 0.9286960959434509
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9287,
+              "weight": 1.0,
+              "detail": "Transformer logit class 5",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.929,
+              "raw_score": 0.929,
+              "trace": "Transformer logit class 5"
+            }
+          ],
+          "evidence_against": []
+        }
+      ],
+      "contribution_breakdown": [
+        {
+          "source": "perceptual",
+          "score": 0.9394,
+          "weight": 1.0,
+          "detail": "Transformer logit class 4",
+          "n_items": 1
+        },
+        {
+          "runner_up": [
+            {
+              "source": "perceptual",
+              "score": 0.9301,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ]
+        }
+      ],
+      "convergence_steps": [
+        {
+          "iteration": 0,
+          "scores": {
+            "color_4_yellow": 0.9338,
+            "color_3_green": 0.9329,
+            "color_5_grey": 0.9328,
+            "color_0_black": 0.9325,
+            "color_8_azure": 0.9321,
+            "color_2_red": 0.9317,
+            "color_1_blue": 0.9316,
+            "color_9_maroon": 0.9315,
+            "color_6_fuchsia": 0.9313,
+            "color_7_orange": 0.9308
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0009,
+          "entropy": 1.0
+        },
+        {
+          "iteration": 1,
+          "scores": {
+            "color_4_yellow": 0.9338,
+            "color_3_green": 0.9329,
+            "color_5_grey": 0.9328,
+            "color_0_black": 0.9325,
+            "color_8_azure": 0.9321,
+            "color_2_red": 0.9317,
+            "color_1_blue": 0.9316,
+            "color_9_maroon": 0.9315,
+            "color_6_fuchsia": 0.9313,
+            "color_7_orange": 0.9308
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0009,
+          "entropy": 1.0
+        },
+        {
+          "iteration": 2,
+          "scores": {
+            "color_4_yellow": 0.9338,
+            "color_3_green": 0.9329,
+            "color_5_grey": 0.9328,
+            "color_0_black": 0.9325,
+            "color_8_azure": 0.9321,
+            "color_2_red": 0.9317,
+            "color_1_blue": 0.9316,
+            "color_9_maroon": 0.9315,
+            "color_6_fuchsia": 0.9313,
+            "color_7_orange": 0.9308
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0009,
+          "entropy": 1.0
+        }
+      ],
+      "diversity_score": 0.0,
+      "num_clusters": 1,
+      "winner_reversals": 0,
+      "convergence_velocity": 0.0,
+      "meta_impasse": {
+        "is_impasse": true,
+        "reasons": [
+          "entropy=1.000>0.9",
+          "margin=0.0009<0.02",
+          "diversity=0.000<0.1"
+        ],
+        "entropy": 1.0,
+        "margin": 0.0008697471154246461,
+        "diversity": 0.0
+      },
+      "meta_reasoning_style": {
+        "perceptual": 1.0,
+        "dominant": "perceptual"
+      },
+      "meta_knowledge_gaps": []
+    },
+    {
+      "task_id": "0a1d4ef5",
+      "pattern_detected": "recoloring",
+      "hypothesis": "color_3_green",
+      "hypothesis_confidence": 0.5912,
+      "hypothesis_entropy": 0.9952,
+      "hypothesis_margin": 0.0338,
+      "hypothesis_stability": [
+        0.5912,
+        0.5912,
+        0.5912
+      ],
+      "pixel_accuracy": 0.0,
+      "exact_match": false,
+      "error_pixels": 900,
+      "total_pixels": 900,
+      "bottleneck": "TIGHT_MARGIN",
+      "total_time_ms": 57.33,
+      "perception_time_ms": 0.0,
+      "input_hdv_similarity": 0.6571,
+      "evidence_counts": {
+        "perceptual": 5
+      },
+      "evidence_by_source": {
+        "perceptual": 2.3728
+      },
+      "counterfactuals": [
+        {
+          "hypothesis": "color_4_yellow",
+          "category": "recoloring",
+          "confidence": 0.5574460315704346,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.48269361138343814,
+          "reasons_discarded": [
+            "confidence gap: 0.109"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_2_red",
+          "category": "recoloring",
+          "confidence": 0.47681844115257266,
+          "reasons_discarded": [
+            "confidence gap: 0.114"
+          ],
+          "what_would_help": "more diverse evidence"
+        }
+      ],
+      "hypotheses_ranked": [
+        {
+          "name": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.591,
+          "evidence_total": 0.561,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.5612298250198364,
+              "best": 0.5612298250198364
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.5612,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.561,
+              "raw_score": 0.561,
+              "trace": "Transformer logit class 3"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_4_yellow",
+          "category": "recoloring",
+          "confidence": 0.557,
+          "evidence_total": 0.527,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.5274460315704346,
+              "best": 0.5274460315704346
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.5274,
+              "weight": 1.0,
+              "detail": "Transformer logit class 4",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.527,
+              "raw_score": 0.527,
+              "trace": "Transformer logit class 4"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.483,
+          "evidence_total": 0.453,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.4526936113834381,
+              "best": 0.4526936113834381
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.4527,
+              "weight": 1.0,
+              "detail": "Transformer logit class 8",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.453,
+              "raw_score": 0.453,
+              "trace": "Transformer logit class 8"
+            }
+          ],
+          "evidence_against": []
+        }
+      ],
+      "contribution_breakdown": [
+        {
+          "source": "perceptual",
+          "score": 0.5612,
+          "weight": 1.0,
+          "detail": "Transformer logit class 3",
+          "n_items": 1
+        },
+        {
+          "runner_up": [
+            {
+              "source": "perceptual",
+              "score": 0.5274,
+              "weight": 1.0,
+              "detail": "Transformer logit class 4",
+              "n_items": 1
+            }
+          ]
+        }
+      ],
+      "convergence_steps": [
+        {
+          "iteration": 0,
+          "scores": {
+            "color_3_green": 0.5912,
+            "color_4_yellow": 0.5574,
+            "color_8_azure": 0.4827,
+            "color_2_red": 0.4768,
+            "color_7_orange": 0.4146
+          },
+          "winner": "color_3_green",
+          "margin": 0.0338,
+          "entropy": 0.9952
+        },
+        {
+          "iteration": 1,
+          "scores": {
+            "color_3_green": 0.5912,
+            "color_4_yellow": 0.5574,
+            "color_8_azure": 0.4827,
+            "color_2_red": 0.4768,
+            "color_7_orange": 0.4146
+          },
+          "winner": "color_3_green",
+          "margin": 0.0338,
+          "entropy": 0.9952
+        },
+        {
+          "iteration": 2,
+          "scores": {
+            "color_3_green": 0.5912,
+            "color_4_yellow": 0.5574,
+            "color_8_azure": 0.4827,
+            "color_2_red": 0.4768,
+            "color_7_orange": 0.4146
+          },
+          "winner": "color_3_green",
+          "margin": 0.0338,
+          "entropy": 0.9952
+        }
+      ],
+      "diversity_score": 0.0,
+      "num_clusters": 1,
+      "winner_reversals": 0,
+      "convergence_velocity": 0.0,
+      "meta_impasse": {
+        "is_impasse": true,
+        "reasons": [
+          "entropy=0.995>0.9",
+          "diversity=0.000<0.1"
+        ],
+        "entropy": 0.9952,
+        "margin": 0.033783793449401855,
+        "diversity": 0.0
+      },
+      "meta_reasoning_style": {
+        "perceptual": 1.0,
+        "dominant": "perceptual"
+      },
+      "meta_knowledge_gaps": []
+    },
+    {
+      "task_id": "0a2355a6",
+      "pattern_detected": "recoloring",
+      "hypothesis": "color_4_yellow",
+      "hypothesis_confidence": 0.9338,
+      "hypothesis_entropy": 1.0,
+      "hypothesis_margin": 0.0007,
+      "hypothesis_stability": [
+        0.9338,
+        0.9338,
+        0.9338
+      ],
+      "pixel_accuracy": 0.1878,
+      "exact_match": false,
+      "error_pixels": 731,
+      "total_pixels": 900,
+      "bottleneck": "TIGHT_MARGIN",
+      "total_time_ms": 58.99,
+      "perception_time_ms": 0.0,
+      "input_hdv_similarity": 0.8925,
+      "evidence_counts": {
+        "perceptual": 10
+      },
+      "evidence_by_source": {
+        "perceptual": 9.2544
+      },
+      "counterfactuals": [
+        {
+          "hypothesis": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.9331020550416673,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.9327543213024717,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_0_black",
+          "category": "recoloring",
+          "confidence": 0.9326690091707389,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        }
+      ],
+      "hypotheses_ranked": [
+        {
+          "name": "color_4_yellow",
+          "category": "recoloring",
+          "confidence": 0.934,
+          "evidence_total": 0.94,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.939536452293396,
+              "best": 0.939536452293396
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9395,
+              "weight": 1.0,
+              "detail": "Transformer logit class 4",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.94,
+              "raw_score": 0.94,
+              "trace": "Transformer logit class 4"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.933,
+          "evidence_total": 0.932,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9320136308670044,
+              "best": 0.9320136308670044
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.932,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.932,
+              "raw_score": 0.932,
+              "trace": "Transformer logit class 3"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.933,
+          "evidence_total": 0.928,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9283233284950256,
+              "best": 0.9283233284950256
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9283,
+              "weight": 1.0,
+              "detail": "Transformer logit class 8",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.928,
+              "raw_score": 0.928,
+              "trace": "Transformer logit class 8"
+            }
+          ],
+          "evidence_against": []
+        }
+      ],
+      "contribution_breakdown": [
+        {
+          "source": "perceptual",
+          "score": 0.9395,
+          "weight": 1.0,
+          "detail": "Transformer logit class 4",
+          "n_items": 1
+        },
+        {
+          "runner_up": [
+            {
+              "source": "perceptual",
+              "score": 0.932,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ]
+        }
+      ],
+      "convergence_steps": [
+        {
+          "iteration": 0,
+          "scores": {
+            "color_4_yellow": 0.9338,
+            "color_3_green": 0.9331,
+            "color_8_azure": 0.9328,
+            "color_0_black": 0.9327,
+            "color_5_grey": 0.9326,
+            "color_9_maroon": 0.9321,
+            "color_2_red": 0.932,
+            "color_6_fuchsia": 0.9319,
+            "color_7_orange": 0.9319,
+            "color_1_blue": 0.9319
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0007,
+          "entropy": 1.0
+        },
+        {
+          "iteration": 1,
+          "scores": {
+            "color_4_yellow": 0.9338,
+            "color_3_green": 0.9331,
+            "color_8_azure": 0.9328,
+            "color_0_black": 0.9327,
+            "color_5_grey": 0.9326,
+            "color_9_maroon": 0.9321,
+            "color_2_red": 0.932,
+            "color_6_fuchsia": 0.9319,
+            "color_7_orange": 0.9319,
+            "color_1_blue": 0.9319
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0007,
+          "entropy": 1.0
+        },
+        {
+          "iteration": 2,
+          "scores": {
+            "color_4_yellow": 0.9338,
+            "color_3_green": 0.9331,
+            "color_8_azure": 0.9328,
+            "color_0_black": 0.9327,
+            "color_5_grey": 0.9326,
+            "color_9_maroon": 0.9321,
+            "color_2_red": 0.932,
+            "color_6_fuchsia": 0.9319,
+            "color_7_orange": 0.9319,
+            "color_1_blue": 0.9319
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0007,
+          "entropy": 1.0
+        }
+      ],
+      "diversity_score": 0.0,
+      "num_clusters": 1,
+      "winner_reversals": 0,
+      "convergence_velocity": 0.0,
+      "meta_impasse": {
+        "is_impasse": true,
+        "reasons": [
+          "entropy=1.000>0.9",
+          "margin=0.0007<0.02",
+          "diversity=0.000<0.1"
+        ],
+        "entropy": 1.0,
+        "margin": 0.0007012221023107168,
+        "diversity": 0.0
+      },
+      "meta_reasoning_style": {
+        "perceptual": 1.0,
+        "dominant": "perceptual"
+      },
+      "meta_knowledge_gaps": []
+    },
+    {
+      "task_id": "0b17323b",
+      "pattern_detected": "recoloring",
+      "hypothesis": "color_4_yellow",
+      "hypothesis_confidence": 0.9356,
+      "hypothesis_entropy": 0.9965,
+      "hypothesis_margin": 0.0005,
+      "hypothesis_stability": [
+        0.9356,
+        0.9356,
+        0.9356
+      ],
+      "pixel_accuracy": 0.2456,
+      "exact_match": false,
+      "error_pixels": 679,
+      "total_pixels": 900,
+      "bottleneck": "TIGHT_MARGIN",
+      "total_time_ms": 32.03,
+      "perception_time_ms": 0.0,
+      "input_hdv_similarity": 0.9993,
+      "evidence_counts": {
+        "perceptual": 10
+      },
+      "evidence_by_source": {
+        "perceptual": 9.1202
+      },
+      "counterfactuals": [
+        {
+          "hypothesis": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.9350989152748256,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_9_maroon",
+          "category": "recoloring",
+          "confidence": 0.9350070799021213,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_7_orange",
+          "category": "recoloring",
+          "confidence": 0.9349965852553133,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        }
+      ],
+      "hypotheses_ranked": [
+        {
+          "name": "color_4_yellow",
+          "category": "recoloring",
+          "confidence": 0.936,
+          "evidence_total": 0.96,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9595361948013306,
+              "best": 0.9595361948013306
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9595,
+              "weight": 1.0,
+              "detail": "Transformer logit class 4",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.96,
+              "raw_score": 0.96,
+              "trace": "Transformer logit class 4"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.935,
+          "evidence_total": 0.954,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9537287354469299,
+              "best": 0.9537287354469299
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9537,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.954,
+              "raw_score": 0.954,
+              "trace": "Transformer logit class 3"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_9_maroon",
+          "category": "recoloring",
+          "confidence": 0.935,
+          "evidence_total": 0.953,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9527100324630737,
+              "best": 0.9527100324630737
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9527,
+              "weight": 1.0,
+              "detail": "Transformer logit class 9",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.953,
+              "raw_score": 0.953,
+              "trace": "Transformer logit class 9"
+            }
+          ],
+          "evidence_against": []
+        }
+      ],
+      "contribution_breakdown": [
+        {
+          "source": "perceptual",
+          "score": 0.9595,
+          "weight": 1.0,
+          "detail": "Transformer logit class 4",
+          "n_items": 1
+        },
+        {
+          "runner_up": [
+            {
+              "source": "perceptual",
+              "score": 0.9537,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ]
+        }
+      ],
+      "convergence_steps": [
+        {
+          "iteration": 0,
+          "scores": {
+            "color_4_yellow": 0.9356,
+            "color_3_green": 0.9351,
+            "color_9_maroon": 0.935,
+            "color_7_orange": 0.935,
+            "color_8_azure": 0.935,
+            "color_5_grey": 0.9349,
+            "color_6_fuchsia": 0.9348,
+            "color_1_blue": 0.9348,
+            "color_2_red": 0.9347,
+            "color_0_black": 0.5779
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0005,
+          "entropy": 0.9965
+        },
+        {
+          "iteration": 1,
+          "scores": {
+            "color_4_yellow": 0.9356,
+            "color_3_green": 0.9351,
+            "color_9_maroon": 0.935,
+            "color_7_orange": 0.935,
+            "color_8_azure": 0.935,
+            "color_5_grey": 0.9349,
+            "color_6_fuchsia": 0.9348,
+            "color_1_blue": 0.9348,
+            "color_2_red": 0.9347,
+            "color_0_black": 0.5779
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0005,
+          "entropy": 0.9965
+        },
+        {
+          "iteration": 2,
+          "scores": {
+            "color_4_yellow": 0.9356,
+            "color_3_green": 0.9351,
+            "color_9_maroon": 0.935,
+            "color_7_orange": 0.935,
+            "color_8_azure": 0.935,
+            "color_5_grey": 0.9349,
+            "color_6_fuchsia": 0.9348,
+            "color_1_blue": 0.9348,
+            "color_2_red": 0.9347,
+            "color_0_black": 0.5779
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0005,
+          "entropy": 0.9965
+        }
+      ],
+      "diversity_score": 0.0,
+      "num_clusters": 1,
+      "winner_reversals": 0,
+      "convergence_velocity": 0.0,
+      "meta_impasse": {
+        "is_impasse": true,
+        "reasons": [
+          "entropy=0.997>0.9",
+          "margin=0.0005<0.02",
+          "diversity=0.000<0.1"
+        ],
+        "entropy": 0.9965,
+        "margin": 0.0005201655166987562,
+        "diversity": 0.0
+      },
+      "meta_reasoning_style": {
+        "perceptual": 1.0,
+        "dominant": "perceptual"
+      },
+      "meta_knowledge_gaps": []
+    },
+    {
+      "task_id": "0bb8deee",
+      "pattern_detected": "recoloring",
+      "hypothesis": "color_4_yellow",
+      "hypothesis_confidence": 0.9317,
+      "hypothesis_entropy": 0.9719,
+      "hypothesis_margin": 0.0005,
+      "hypothesis_stability": [
+        0.9317,
+        0.9317,
+        0.9317
+      ],
+      "pixel_accuracy": 0.0144,
+      "exact_match": false,
+      "error_pixels": 887,
+      "total_pixels": 900,
+      "bottleneck": "TIGHT_MARGIN",
+      "total_time_ms": 57.59,
+      "perception_time_ms": 0.0,
+      "input_hdv_similarity": 0.9301,
+      "evidence_counts": {
+        "perceptual": 10
+      },
+      "evidence_by_source": {
+        "perceptual": 8.1926
+      },
+      "counterfactuals": [
+        {
+          "hypothesis": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.931286800627134,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.930983603716755,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_5_grey",
+          "category": "recoloring",
+          "confidence": 0.9305988202617675,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        }
+      ],
+      "hypotheses_ranked": [
+        {
+          "name": "color_4_yellow",
+          "category": "recoloring",
+          "confidence": 0.932,
+          "evidence_total": 0.918,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.917809009552002,
+              "best": 0.917809009552002
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9178,
+              "weight": 1.0,
+              "detail": "Transformer logit class 4",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.918,
+              "raw_score": 0.918,
+              "trace": "Transformer logit class 4"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.931,
+          "evidence_total": 0.913,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9130357503890991,
+              "best": 0.9130357503890991
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.913,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.913,
+              "raw_score": 0.913,
+              "trace": "Transformer logit class 3"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.931,
+          "evidence_total": 0.91,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9099337458610535,
+              "best": 0.9099337458610535
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9099,
+              "weight": 1.0,
+              "detail": "Transformer logit class 8",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.91,
+              "raw_score": 0.91,
+              "trace": "Transformer logit class 8"
+            }
+          ],
+          "evidence_against": []
+        }
+      ],
+      "contribution_breakdown": [
+        {
+          "source": "perceptual",
+          "score": 0.9178,
+          "weight": 1.0,
+          "detail": "Transformer logit class 4",
+          "n_items": 1
+        },
+        {
+          "runner_up": [
+            {
+              "source": "perceptual",
+              "score": 0.913,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ]
+        }
+      ],
+      "convergence_steps": [
+        {
+          "iteration": 0,
+          "scores": {
+            "color_4_yellow": 0.9317,
+            "color_3_green": 0.9313,
+            "color_8_azure": 0.931,
+            "color_5_grey": 0.9306,
+            "color_0_black": 0.9304,
+            "color_9_maroon": 0.9302,
+            "color_2_red": 0.9267,
+            "color_7_orange": 0.923,
+            "color_1_blue": 0.9001,
+            "color_6_fuchsia": 0.1098
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0005,
+          "entropy": 0.9719
+        },
+        {
+          "iteration": 1,
+          "scores": {
+            "color_4_yellow": 0.9317,
+            "color_3_green": 0.9313,
+            "color_8_azure": 0.931,
+            "color_5_grey": 0.9306,
+            "color_0_black": 0.9304,
+            "color_9_maroon": 0.9302,
+            "color_2_red": 0.9267,
+            "color_7_orange": 0.923,
+            "color_1_blue": 0.9001,
+            "color_6_fuchsia": 0.1098
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0005,
+          "entropy": 0.9719
+        },
+        {
+          "iteration": 2,
+          "scores": {
+            "color_4_yellow": 0.9317,
+            "color_3_green": 0.9313,
+            "color_8_azure": 0.931,
+            "color_5_grey": 0.9306,
+            "color_0_black": 0.9304,
+            "color_9_maroon": 0.9302,
+            "color_2_red": 0.9267,
+            "color_7_orange": 0.923,
+            "color_1_blue": 0.9001,
+            "color_6_fuchsia": 0.1098
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0005,
+          "entropy": 0.9719
+        }
+      ],
+      "diversity_score": 0.0,
+      "num_clusters": 1,
+      "winner_reversals": 0,
+      "convergence_velocity": 0.0,
+      "meta_impasse": {
+        "is_impasse": true,
+        "reasons": [
+          "entropy=0.972>0.9",
+          "margin=0.0005<0.02",
+          "diversity=0.000<0.1"
+        ],
+        "entropy": 0.9719,
+        "margin": 0.0004629391948627326,
+        "diversity": 0.0
+      },
+      "meta_reasoning_style": {
+        "perceptual": 1.0,
+        "dominant": "perceptual"
+      },
+      "meta_knowledge_gaps": [
+        "baixa confianca em 'color_6_fuchsia': poucas evidencias (0.08)"
+      ]
+    },
+    {
+      "task_id": "0becf7df",
+      "pattern_detected": "transformation",
+      "hypothesis": "color_4_yellow",
+      "hypothesis_confidence": 0.9337,
+      "hypothesis_entropy": 0.9699,
+      "hypothesis_margin": 0.0001,
+      "hypothesis_stability": [
+        0.9337,
+        0.9337,
+        0.9337
+      ],
+      "pixel_accuracy": 0.0856,
+      "exact_match": false,
+      "error_pixels": 823,
+      "total_pixels": 900,
+      "bottleneck": "TIGHT_MARGIN",
+      "total_time_ms": 58.54,
+      "perception_time_ms": 0.0,
+      "input_hdv_similarity": 0.9858,
+      "evidence_counts": {
+        "perceptual": 10
+      },
+      "evidence_by_source": {
+        "perceptual": 7.9455
+      },
+      "counterfactuals": [
+        {
+          "hypothesis": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.9335758912048896,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.9333780926718228,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_5_grey",
+          "category": "recoloring",
+          "confidence": 0.9331653873257296,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        }
+      ],
+      "hypotheses_ranked": [
+        {
+          "name": "color_4_yellow",
+          "category": "recoloring",
+          "confidence": 0.934,
+          "evidence_total": 0.938,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9382293224334717,
+              "best": 0.9382293224334717
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9382,
+              "weight": 1.0,
+              "detail": "Transformer logit class 4",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.938,
+              "raw_score": 0.938,
+              "trace": "Transformer logit class 4"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.934,
+          "evidence_total": 0.937,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9370850324630737,
+              "best": 0.9370850324630737
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9371,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.937,
+              "raw_score": 0.937,
+              "trace": "Transformer logit class 3"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.933,
+          "evidence_total": 0.935,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9349619746208191,
+              "best": 0.9349619746208191
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.935,
+              "weight": 1.0,
+              "detail": "Transformer logit class 8",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.935,
+              "raw_score": 0.935,
+              "trace": "Transformer logit class 8"
+            }
+          ],
+          "evidence_against": []
+        }
+      ],
+      "contribution_breakdown": [
+        {
+          "source": "perceptual",
+          "score": 0.9382,
+          "weight": 1.0,
+          "detail": "Transformer logit class 4",
+          "n_items": 1
+        },
+        {
+          "runner_up": [
+            {
+              "source": "perceptual",
+              "score": 0.9371,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ]
+        }
+      ],
+      "convergence_steps": [
+        {
+          "iteration": 0,
+          "scores": {
+            "color_4_yellow": 0.9337,
+            "color_3_green": 0.9336,
+            "color_8_azure": 0.9334,
+            "color_5_grey": 0.9332,
+            "color_9_maroon": 0.9332,
+            "color_7_orange": 0.9331,
+            "color_2_red": 0.9329,
+            "color_6_fuchsia": 0.9322,
+            "color_1_blue": 0.3047,
+            "color_0_black": 0.241
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0001,
+          "entropy": 0.9699
+        },
+        {
+          "iteration": 1,
+          "scores": {
+            "color_4_yellow": 0.9337,
+            "color_3_green": 0.9336,
+            "color_8_azure": 0.9334,
+            "color_5_grey": 0.9332,
+            "color_9_maroon": 0.9332,
+            "color_7_orange": 0.9331,
+            "color_2_red": 0.9329,
+            "color_6_fuchsia": 0.9322,
+            "color_1_blue": 0.3047,
+            "color_0_black": 0.241
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0001,
+          "entropy": 0.9699
+        },
+        {
+          "iteration": 2,
+          "scores": {
+            "color_4_yellow": 0.9337,
+            "color_3_green": 0.9336,
+            "color_8_azure": 0.9334,
+            "color_5_grey": 0.9332,
+            "color_9_maroon": 0.9332,
+            "color_7_orange": 0.9331,
+            "color_2_red": 0.9329,
+            "color_6_fuchsia": 0.9322,
+            "color_1_blue": 0.3047,
+            "color_0_black": 0.241
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0001,
+          "entropy": 0.9699
+        }
+      ],
+      "diversity_score": 0.0,
+      "num_clusters": 1,
+      "winner_reversals": 0,
+      "convergence_velocity": 0.0,
+      "meta_impasse": {
+        "is_impasse": true,
+        "reasons": [
+          "entropy=0.970>0.9",
+          "margin=0.0001<0.02",
+          "diversity=0.000<0.1"
+        ],
+        "entropy": 0.9699,
+        "margin": 0.00010627434441956574,
+        "diversity": 0.0
+      },
+      "meta_reasoning_style": {
+        "perceptual": 1.0,
+        "dominant": "perceptual"
+      },
+      "meta_knowledge_gaps": [
+        "baixa confianca em 'color_0_black': poucas evidencias (0.21)"
+      ]
+    },
+    {
+      "task_id": "0c786b71",
+      "pattern_detected": "transformation",
+      "hypothesis": "color_5_grey",
+      "hypothesis_confidence": 0.329,
+      "hypothesis_entropy": 0.9671,
+      "hypothesis_margin": 0.0183,
+      "hypothesis_stability": [
+        0.329,
+        0.329,
+        0.329
+      ],
+      "pixel_accuracy": 0.0,
+      "exact_match": false,
+      "error_pixels": 900,
+      "total_pixels": 900,
+      "bottleneck": "TIGHT_MARGIN",
+      "total_time_ms": 59.01,
+      "perception_time_ms": 0.0,
+      "input_hdv_similarity": 0.996,
+      "evidence_counts": {
+        "perceptual": 8
+      },
+      "evidence_by_source": {
+        "perceptual": 1.7442
+      },
+      "counterfactuals": [
+        {
+          "hypothesis": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.3106526124477387,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_9_maroon",
+          "category": "recoloring",
+          "confidence": 0.30043068408966067,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_7_orange",
+          "category": "recoloring",
+          "confidence": 0.29850107312202456,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        }
+      ],
+      "hypotheses_ranked": [
+        {
+          "name": "color_5_grey",
+          "category": "recoloring",
+          "confidence": 0.329,
+          "evidence_total": 0.299,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.29896557331085205,
+              "best": 0.29896557331085205
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.299,
+              "weight": 1.0,
+              "detail": "Transformer logit class 5",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.299,
+              "raw_score": 0.299,
+              "trace": "Transformer logit class 5"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.311,
+          "evidence_total": 0.281,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.28065261244773865,
+              "best": 0.28065261244773865
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.2807,
+              "weight": 1.0,
+              "detail": "Transformer logit class 8",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.281,
+              "raw_score": 0.281,
+              "trace": "Transformer logit class 8"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_9_maroon",
+          "category": "recoloring",
+          "confidence": 0.3,
+          "evidence_total": 0.27,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.27043068408966064,
+              "best": 0.27043068408966064
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.2704,
+              "weight": 1.0,
+              "detail": "Transformer logit class 9",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.27,
+              "raw_score": 0.27,
+              "trace": "Transformer logit class 9"
+            }
+          ],
+          "evidence_against": []
+        }
+      ],
+      "contribution_breakdown": [
+        {
+          "source": "perceptual",
+          "score": 0.299,
+          "weight": 1.0,
+          "detail": "Transformer logit class 5",
+          "n_items": 1
+        },
+        {
+          "runner_up": [
+            {
+              "source": "perceptual",
+              "score": 0.2807,
+              "weight": 1.0,
+              "detail": "Transformer logit class 8",
+              "n_items": 1
+            }
+          ]
+        }
+      ],
+      "convergence_steps": [
+        {
+          "iteration": 0,
+          "scores": {
+            "color_5_grey": 0.329,
+            "color_8_azure": 0.3107,
+            "color_9_maroon": 0.3004,
+            "color_7_orange": 0.2985,
+            "color_6_fuchsia": 0.2669,
+            "color_4_yellow": 0.2664,
+            "color_2_red": 0.1191,
+            "color_0_black": 0.0934
+          },
+          "winner": "color_5_grey",
+          "margin": 0.0183,
+          "entropy": 0.9671
+        },
+        {
+          "iteration": 1,
+          "scores": {
+            "color_5_grey": 0.329,
+            "color_8_azure": 0.3107,
+            "color_9_maroon": 0.3004,
+            "color_7_orange": 0.2985,
+            "color_6_fuchsia": 0.2669,
+            "color_4_yellow": 0.2664,
+            "color_2_red": 0.1191,
+            "color_0_black": 0.0934
+          },
+          "winner": "color_5_grey",
+          "margin": 0.0183,
+          "entropy": 0.9671
+        },
+        {
+          "iteration": 2,
+          "scores": {
+            "color_5_grey": 0.329,
+            "color_8_azure": 0.3107,
+            "color_9_maroon": 0.3004,
+            "color_7_orange": 0.2985,
+            "color_6_fuchsia": 0.2669,
+            "color_4_yellow": 0.2664,
+            "color_2_red": 0.1191,
+            "color_0_black": 0.0934
+          },
+          "winner": "color_5_grey",
+          "margin": 0.0183,
+          "entropy": 0.9671
+        }
+      ],
+      "diversity_score": 0.0,
+      "num_clusters": 1,
+      "winner_reversals": 0,
+      "convergence_velocity": 0.0,
+      "meta_impasse": {
+        "is_impasse": true,
+        "reasons": [
+          "entropy=0.967>0.9",
+          "margin=0.0183<0.02",
+          "diversity=0.000<0.1"
+        ],
+        "entropy": 0.9671,
+        "margin": 0.018312960863113403,
+        "diversity": 0.0
+      },
+      "meta_reasoning_style": {
+        "perceptual": 1.0,
+        "dominant": "perceptual"
+      },
+      "meta_knowledge_gaps": [
+        "baixa confianca em 'color_7_orange': poucas evidencias (0.27)",
+        "baixa confianca em 'color_6_fuchsia': poucas evidencias (0.24)",
+        "baixa confianca em 'color_4_yellow': poucas evidencias (0.24)",
+        "baixa confianca em 'color_2_red': poucas evidencias (0.09)",
+        "baixa confianca em 'color_0_black': poucas evidencias (0.06)"
+      ]
+    },
+    {
+      "task_id": "0c9aba6e",
+      "pattern_detected": "recoloring",
+      "hypothesis": "color_0_black",
+      "hypothesis_confidence": 0.9001,
+      "hypothesis_entropy": 0.9861,
+      "hypothesis_margin": 0.0032,
+      "hypothesis_stability": [
+        0.9001,
+        0.9001,
+        0.9001
+      ],
+      "pixel_accuracy": 0.0067,
+      "exact_match": false,
+      "error_pixels": 894,
+      "total_pixels": 900,
+      "bottleneck": "TIGHT_MARGIN",
+      "total_time_ms": 58.54,
+      "perception_time_ms": 0.0,
+      "input_hdv_similarity": 0.9881,
+      "evidence_counts": {
+        "perceptual": 10
+      },
+      "evidence_by_source": {
+        "perceptual": 7.3527
+      },
+      "counterfactuals": [
+        {
+          "hypothesis": "color_2_red",
+          "category": "recoloring",
+          "confidence": 0.89689293384552,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.8462891268730164,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_1_blue",
+          "category": "recoloring",
+          "confidence": 0.8382846999168396,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        }
+      ],
+      "hypotheses_ranked": [
+        {
+          "name": "color_0_black",
+          "category": "recoloring",
+          "confidence": 0.9,
+          "evidence_total": 0.87,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.8700549602508545,
+              "best": 0.8700549602508545
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.8701,
+              "weight": 1.0,
+              "detail": "Transformer logit class 0",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.87,
+              "raw_score": 0.87,
+              "trace": "Transformer logit class 0"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_2_red",
+          "category": "recoloring",
+          "confidence": 0.897,
+          "evidence_total": 0.867,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.86689293384552,
+              "best": 0.86689293384552
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.8669,
+              "weight": 1.0,
+              "detail": "Transformer logit class 2",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.867,
+              "raw_score": 0.867,
+              "trace": "Transformer logit class 2"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.846,
+          "evidence_total": 0.816,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.8162891268730164,
+              "best": 0.8162891268730164
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.8163,
+              "weight": 1.0,
+              "detail": "Transformer logit class 8",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.816,
+              "raw_score": 0.816,
+              "trace": "Transformer logit class 8"
+            }
+          ],
+          "evidence_against": []
+        }
+      ],
+      "contribution_breakdown": [
+        {
+          "source": "perceptual",
+          "score": 0.8701,
+          "weight": 1.0,
+          "detail": "Transformer logit class 0",
+          "n_items": 1
+        },
+        {
+          "runner_up": [
+            {
+              "source": "perceptual",
+              "score": 0.8669,
+              "weight": 1.0,
+              "detail": "Transformer logit class 2",
+              "n_items": 1
+            }
+          ]
+        }
+      ],
+      "convergence_steps": [
+        {
+          "iteration": 0,
+          "scores": {
+            "color_0_black": 0.9001,
+            "color_2_red": 0.8969,
+            "color_8_azure": 0.8463,
+            "color_1_blue": 0.8383,
+            "color_7_orange": 0.8156,
+            "color_9_maroon": 0.804,
+            "color_4_yellow": 0.785,
+            "color_5_grey": 0.7617,
+            "color_6_fuchsia": 0.733,
+            "color_3_green": 0.2717
+          },
+          "winner": "color_0_black",
+          "margin": 0.0032,
+          "entropy": 0.9861
+        },
+        {
+          "iteration": 1,
+          "scores": {
+            "color_0_black": 0.9001,
+            "color_2_red": 0.8969,
+            "color_8_azure": 0.8463,
+            "color_1_blue": 0.8383,
+            "color_7_orange": 0.8156,
+            "color_9_maroon": 0.804,
+            "color_4_yellow": 0.785,
+            "color_5_grey": 0.7617,
+            "color_6_fuchsia": 0.733,
+            "color_3_green": 0.2717
+          },
+          "winner": "color_0_black",
+          "margin": 0.0032,
+          "entropy": 0.9861
+        },
+        {
+          "iteration": 2,
+          "scores": {
+            "color_0_black": 0.9001,
+            "color_2_red": 0.8969,
+            "color_8_azure": 0.8463,
+            "color_1_blue": 0.8383,
+            "color_7_orange": 0.8156,
+            "color_9_maroon": 0.804,
+            "color_4_yellow": 0.785,
+            "color_5_grey": 0.7617,
+            "color_6_fuchsia": 0.733,
+            "color_3_green": 0.2717
+          },
+          "winner": "color_0_black",
+          "margin": 0.0032,
+          "entropy": 0.9861
+        }
+      ],
+      "diversity_score": 0.0,
+      "num_clusters": 1,
+      "winner_reversals": 0,
+      "convergence_velocity": 0.0,
+      "meta_impasse": {
+        "is_impasse": true,
+        "reasons": [
+          "entropy=0.986>0.9",
+          "margin=0.0032<0.02",
+          "diversity=0.000<0.1"
+        ],
+        "entropy": 0.9861,
+        "margin": 0.0031620264053344727,
+        "diversity": 0.0
+      },
+      "meta_reasoning_style": {
+        "perceptual": 1.0,
+        "dominant": "perceptual"
+      },
+      "meta_knowledge_gaps": [
+        "baixa confianca em 'color_3_green': poucas evidencias (0.24)"
+      ]
+    },
+    {
+      "task_id": "0d87d2a6",
+      "pattern_detected": "transformation",
+      "hypothesis": "color_4_yellow",
+      "hypothesis_confidence": 0.9348,
+      "hypothesis_entropy": 0.9427,
+      "hypothesis_margin": 0.0008,
+      "hypothesis_stability": [
+        0.9348,
+        0.9348,
+        0.9348
+      ],
+      "pixel_accuracy": 0.4511,
+      "exact_match": false,
+      "error_pixels": 494,
+      "total_pixels": 900,
+      "bottleneck": "TIGHT_MARGIN",
+      "total_time_ms": 59.01,
+      "perception_time_ms": 0.0,
+      "input_hdv_similarity": 0.7771,
+      "evidence_counts": {
+        "perceptual": 10
+      },
+      "evidence_by_source": {
+        "perceptual": 7.6514
+      },
+      "counterfactuals": [
+        {
+          "hypothesis": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.9339108452577539,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_0_black",
+          "category": "recoloring",
+          "confidence": 0.9336411737933373,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_8_azure",
+          "category": "recoloring",
+          "confidence": 0.9335677218897867,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        }
+      ],
+      "hypotheses_ranked": [
+        {
+          "name": "color_4_yellow",
+          "category": "recoloring",
+          "confidence": 0.935,
+          "evidence_total": 0.95,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9499242305755615,
+              "best": 0.9499242305755615
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9499,
+              "weight": 1.0,
+              "detail": "Transformer logit class 4",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.95,
+              "raw_score": 0.95,
+              "trace": "Transformer logit class 4"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.934,
+          "evidence_total": 0.941,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9407001733779907,
+              "best": 0.9407001733779907
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9407,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.941,
+              "raw_score": 0.941,
+              "trace": "Transformer logit class 3"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_0_black",
+          "category": "recoloring",
+          "confidence": 0.934,
+          "evidence_total": 0.938,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.937787652015686,
+              "best": 0.937787652015686
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9378,
+              "weight": 1.0,
+              "detail": "Transformer logit class 0",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.938,
+              "raw_score": 0.938,
+              "trace": "Transformer logit class 0"
+            }
+          ],
+          "evidence_against": []
+        }
+      ],
+      "contribution_breakdown": [
+        {
+          "source": "perceptual",
+          "score": 0.9499,
+          "weight": 1.0,
+          "detail": "Transformer logit class 4",
+          "n_items": 1
+        },
+        {
+          "runner_up": [
+            {
+              "source": "perceptual",
+              "score": 0.9407,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ]
+        }
+      ],
+      "convergence_steps": [
+        {
+          "iteration": 0,
+          "scores": {
+            "color_4_yellow": 0.9348,
+            "color_3_green": 0.9339,
+            "color_0_black": 0.9336,
+            "color_8_azure": 0.9336,
+            "color_1_blue": 0.9331,
+            "color_7_orange": 0.9331,
+            "color_2_red": 0.9329,
+            "color_6_fuchsia": 0.9329,
+            "color_9_maroon": 0.1152,
+            "color_5_grey": 0.1081
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0008,
+          "entropy": 0.9427
+        },
+        {
+          "iteration": 1,
+          "scores": {
+            "color_4_yellow": 0.9348,
+            "color_3_green": 0.9339,
+            "color_0_black": 0.9336,
+            "color_8_azure": 0.9336,
+            "color_1_blue": 0.9331,
+            "color_7_orange": 0.9331,
+            "color_2_red": 0.9329,
+            "color_6_fuchsia": 0.9329,
+            "color_9_maroon": 0.1152,
+            "color_5_grey": 0.1081
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0008,
+          "entropy": 0.9427
+        },
+        {
+          "iteration": 2,
+          "scores": {
+            "color_4_yellow": 0.9348,
+            "color_3_green": 0.9339,
+            "color_0_black": 0.9336,
+            "color_8_azure": 0.9336,
+            "color_1_blue": 0.9331,
+            "color_7_orange": 0.9331,
+            "color_2_red": 0.9329,
+            "color_6_fuchsia": 0.9329,
+            "color_9_maroon": 0.1152,
+            "color_5_grey": 0.1081
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0008,
+          "entropy": 0.9427
+        }
+      ],
+      "diversity_score": 0.0,
+      "num_clusters": 1,
+      "winner_reversals": 0,
+      "convergence_velocity": 0.0,
+      "meta_impasse": {
+        "is_impasse": true,
+        "reasons": [
+          "entropy=0.943>0.9",
+          "margin=0.0008<0.02",
+          "diversity=0.000<0.1"
+        ],
+        "entropy": 0.9427,
+        "margin": 0.0008441864980321956,
+        "diversity": 0.0
+      },
+      "meta_reasoning_style": {
+        "perceptual": 1.0,
+        "dominant": "perceptual"
+      },
+      "meta_knowledge_gaps": [
+        "baixa confianca em 'color_9_maroon': poucas evidencias (0.09)",
+        "baixa confianca em 'color_5_grey': poucas evidencias (0.08)"
+      ]
+    },
+    {
+      "task_id": "0e671a1a",
+      "pattern_detected": "recoloring",
+      "hypothesis": "color_4_yellow",
+      "hypothesis_confidence": 0.9353,
+      "hypothesis_entropy": 1.0,
+      "hypothesis_margin": 0.0006,
+      "hypothesis_stability": [
+        0.9353,
+        0.9353,
+        0.9353
+      ],
+      "pixel_accuracy": 0.1622,
+      "exact_match": false,
+      "error_pixels": 754,
+      "total_pixels": 900,
+      "bottleneck": "TIGHT_MARGIN",
+      "total_time_ms": 57.54,
+      "perception_time_ms": 0.0,
+      "input_hdv_similarity": 0.9978,
+      "evidence_counts": {
+        "perceptual": 10
+      },
+      "evidence_by_source": {
+        "perceptual": 9.4845
+      },
+      "counterfactuals": [
+        {
+          "hypothesis": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.9347384939811424,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_7_orange",
+          "category": "recoloring",
+          "confidence": 0.9347097474238196,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        },
+        {
+          "hypothesis": "color_5_grey",
+          "category": "recoloring",
+          "confidence": 0.9346726320667341,
+          "reasons_discarded": [
+            "insufficient evidence total"
+          ],
+          "what_would_help": "more diverse evidence"
+        }
+      ],
+      "hypotheses_ranked": [
+        {
+          "name": "color_4_yellow",
+          "category": "recoloring",
+          "confidence": 0.935,
+          "evidence_total": 0.956,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9559704065322876,
+              "best": 0.9559704065322876
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.956,
+              "weight": 1.0,
+              "detail": "Transformer logit class 4",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.956,
+              "raw_score": 0.956,
+              "trace": "Transformer logit class 4"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_3_green",
+          "category": "recoloring",
+          "confidence": 0.935,
+          "evidence_total": 0.95,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9497419595718384,
+              "best": 0.9497419595718384
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9497,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.95,
+              "raw_score": 0.95,
+              "trace": "Transformer logit class 3"
+            }
+          ],
+          "evidence_against": []
+        },
+        {
+          "name": "color_7_orange",
+          "category": "recoloring",
+          "confidence": 0.935,
+          "evidence_total": 0.949,
+          "evidence_by_type": {
+            "perceptual": {
+              "count": 1,
+              "total_confidence": 0.9494252800941467,
+              "best": 0.9494252800941467
+            }
+          },
+          "contribution_breakdown": [
+            {
+              "source": "perceptual",
+              "score": 0.9494,
+              "weight": 1.0,
+              "detail": "Transformer logit class 7",
+              "n_items": 1
+            }
+          ],
+          "evidence_for": [
+            {
+              "source": "perceptual",
+              "relation": "has_property",
+              "confidence": 0.949,
+              "raw_score": 0.949,
+              "trace": "Transformer logit class 7"
+            }
+          ],
+          "evidence_against": []
+        }
+      ],
+      "contribution_breakdown": [
+        {
+          "source": "perceptual",
+          "score": 0.956,
+          "weight": 1.0,
+          "detail": "Transformer logit class 4",
+          "n_items": 1
+        },
+        {
+          "runner_up": [
+            {
+              "source": "perceptual",
+              "score": 0.9497,
+              "weight": 1.0,
+              "detail": "Transformer logit class 3",
+              "n_items": 1
+            }
+          ]
+        }
+      ],
+      "convergence_steps": [
+        {
+          "iteration": 0,
+          "scores": {
+            "color_4_yellow": 0.9353,
+            "color_3_green": 0.9347,
+            "color_7_orange": 0.9347,
+            "color_5_grey": 0.9347,
+            "color_9_maroon": 0.9347,
+            "color_8_azure": 0.9346,
+            "color_0_black": 0.9346,
+            "color_6_fuchsia": 0.9343,
+            "color_1_blue": 0.9343,
+            "color_2_red": 0.9343
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0006,
+          "entropy": 1.0
+        },
+        {
+          "iteration": 1,
+          "scores": {
+            "color_4_yellow": 0.9353,
+            "color_3_green": 0.9347,
+            "color_7_orange": 0.9347,
+            "color_5_grey": 0.9347,
+            "color_9_maroon": 0.9347,
+            "color_8_azure": 0.9346,
+            "color_0_black": 0.9346,
+            "color_6_fuchsia": 0.9343,
+            "color_1_blue": 0.9343,
+            "color_2_red": 0.9343
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0006,
+          "entropy": 1.0
+        },
+        {
+          "iteration": 2,
+          "scores": {
+            "color_4_yellow": 0.9353,
+            "color_3_green": 0.9347,
+            "color_7_orange": 0.9347,
+            "color_5_grey": 0.9347,
+            "color_9_maroon": 0.9347,
+            "color_8_azure": 0.9346,
+            "color_0_black": 0.9346,
+            "color_6_fuchsia": 0.9343,
+            "color_1_blue": 0.9343,
+            "color_2_red": 0.9343
+          },
+          "winner": "color_4_yellow",
+          "margin": 0.0006,
+          "entropy": 1.0
+        }
+      ],
+      "diversity_score": 0.0,
+      "num_clusters": 1,
+      "winner_reversals": 0,
+      "convergence_velocity": 0.0,
+      "meta_impasse": {
+        "is_impasse": true,
+        "reasons": [
+          "entropy=1.000>0.9",
+          "margin=0.0006<0.02",
+          "diversity=0.000<0.1"
+        ],
+        "entropy": 1.0,
+        "margin": 0.0005618824485427165,
+        "diversity": 0.0
+      },
+      "meta_reasoning_style": {
+        "perceptual": 1.0,
+        "dominant": "perceptual"
+      },
+      "meta_knowledge_gaps": []
+    }
+  ]
+}

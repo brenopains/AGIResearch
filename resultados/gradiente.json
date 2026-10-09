@@ -1,0 +1,76 @@
+{
+ "data": "2026-09-23",
+ "veredito": "G1",
+ "G0_reproducao": 0.918,
+ "separacao_pareada": {
+  "com_copia": {
+   "media": 0.07286,
+   "erro": 0.02226,
+   "desvios": 3.3,
+   "n": 40
+  },
+  "SEM_copia": {
+   "media": 0.12637,
+   "erro": 0.02659,
+   "desvios": 4.8,
+   "n": 30
+  }
+ },
+ "derivadas": {
+  "na_pilha_vencedora": [
+   -0.06693,
+   0.01436,
+   65
+  ],
+  "fora_da_pilha": [
+   -0.00757,
+   0.00089,
+   556
+  ],
+  "PLACEBO": [
+   -0.008,
+   0.00473,
+   40
+  ]
+ },
+ "risco_pre_registrado_REFUTADO": {
+  "hipotese": "`copia` domina o gradiente por COBERTURA e nao por acerto",
+  "refutacao": "tirar copia MELHORA a separacao (3,3 -> 4,8 desvios); e o maior gradiente e cor_por_prop com cobertura 0,23, contra mapa_cor com cobertura 1,00 e gradiente 3x menor",
+  "por_codec": {
+   "cor_por_prop": [
+    -0.06177,
+    0.23
+   ],
+   "vizinhanca": [
+    -0.03549,
+    1.0
+   ],
+   "d4": [
+    -0.03322,
+    1.0
+   ],
+   "programa": [
+    -0.02751,
+    0.37
+   ],
+   "viz_cor": [
+    -0.02698,
+    1.0
+   ],
+   "gravidade": [
+    -0.02039,
+    1.0
+   ],
+   "apaga_prop": [
+    -0.01894,
+    0.24
+   ],
+   "mapa_cor": [
+    -0.0174,
+    1.0
+   ]
+  }
+ },
+ "LIMITE_QUE_DECIDE_O_PROXIMO_PASSO": "o rotulo de 'util' veio das pilhas vencedoras em cache, que foram produzidas pelo criterio de BITS. Entao o que esta medido e que o gradiente RECUPERA o que os bits ja escolheram — nao que ele acha o que os bits rejeitam. O teste decisivo e outro: pegar operador que o criterio REJEITA, ver se o gradiente admite, e medir se admitir resolve mais tarefas.",
+ "outro_limite": "G0 reproduz 91,8%: ~8% das celulas diferem da forma dura. A forma mole nao e identica ao nucleo."
+}

@@ -1,0 +1,7979 @@
+{
+  "status": "candidate_readouts_not_promoted",
+  "source_seed": 97,
+  "parent_definition_sha256": "a85f19f55daa0edb7c33a3842a940314ad9acdffe23c418df285fc41f1b9f3b2",
+  "probes": [
+    {
+      "id": "variable_probe_0",
+      "parent_id": "decision_probe_0",
+      "actions": [
+        0
+      ],
+      "quantum": 8,
+      "program_index": 0,
+      "source_pair": [
+        5,
+        9
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            16,
+            3,
+            17,
+            4
+          ],
+          "source_component_pixels": 1
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.24253570408024147
+            ],
+            [
+              0.9701424803843514
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            16,
+            3,
+            17,
+            4
+          ],
+          "source_component_pixels": 1
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.27323209541737453
+            ],
+            [
+              0.9619481389523193
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_1",
+      "parent_id": "decision_probe_1",
+      "actions": [
+        0
+      ],
+      "quantum": 8,
+      "program_index": 0,
+      "source_pair": [
+        13,
+        18
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.3015113508257349
+            ],
+            [
+              0.3015113508257349
+            ],
+            [
+              0.9045340295679766
+            ]
+          ],
+          "source_bounds": [
+            17,
+            12,
+            20,
+            13
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.5547002059514251
+            ],
+            [
+              0.832050287853713
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.03175005640907992
+            ],
+            [
+              0.2649048481594361
+            ],
+            [
+              0.9637517083459028
+            ]
+          ],
+          "source_bounds": [
+            17,
+            12,
+            20,
+            13
+          ],
+          "source_component_pixels": 3
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.6657603302583047
+            ],
+            [
+              0.7461656536281692
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_2",
+      "parent_id": "decision_probe_2",
+      "actions": [
+        0
+      ],
+      "quantum": 8,
+      "program_index": 0,
+      "source_pair": [
+        10,
+        28
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.39391927041739977,
+              0.9191450420873865
+            ]
+          ],
+          "source_bounds": [
+            19,
+            1,
+            20,
+            3
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.29294088623960396,
+              0.0
+            ],
+            [
+              0.8788226587188118,
+              0.37663825043608384
+            ]
+          ],
+          "source_bounds": [
+            18,
+            3,
+            20,
+            5
+          ],
+          "source_component_pixels": 3
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.14298391395923596,
+              0.9897250124902864
+            ]
+          ],
+          "source_bounds": [
+            19,
+            1,
+            20,
+            3
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.25799543608774483,
+              0.6552568326060536
+            ],
+            [
+              0.11387465507811673,
+              0.7007919814123278
+            ]
+          ],
+          "source_bounds": [
+            18,
+            3,
+            20,
+            5
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_3",
+      "parent_id": "decision_probe_3",
+      "actions": [
+        0
+      ],
+      "quantum": 8,
+      "program_index": 0,
+      "source_pair": [
+        8,
+        17
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.7071067811865476,
+              0.7071067811865476
+            ]
+          ],
+          "source_bounds": [
+            11,
+            11,
+            12,
+            13
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.34340141085717213,
+              0.6181226648933936
+            ],
+            [
+              0.34340120193969914,
+              0.6181225256150783
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.721148580008587,
+              0.6927804309819949
+            ]
+          ],
+          "source_bounds": [
+            11,
+            11,
+            12,
+            13
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.5647306866597785,
+              0.7483059307908451
+            ],
+            [
+              0.19849100772157485,
+              0.2858650124476513
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_4",
+      "parent_id": "decision_probe_4",
+      "actions": [
+        1
+      ],
+      "quantum": 8,
+      "program_index": 1,
+      "source_pair": [
+        5,
+        9
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            12,
+            2,
+            13,
+            3
+          ],
+          "source_component_pixels": 1
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.242535708356392
+            ],
+            [
+              0.9701424793153133
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            12,
+            2,
+            13,
+            3
+          ],
+          "source_component_pixels": 1
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.13803694600224028
+            ],
+            [
+              0.9904270803741054
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_5",
+      "parent_id": "decision_probe_5",
+      "actions": [
+        1
+      ],
+      "quantum": 8,
+      "program_index": 1,
+      "source_pair": [
+        13,
+        18
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.3015113508257349
+            ],
+            [
+              0.3015113508257349
+            ],
+            [
+              0.9045340295679766
+            ]
+          ],
+          "source_bounds": [
+            17,
+            12,
+            20,
+            13
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.5547002059514251
+            ],
+            [
+              0.832050287853713
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.40118809309517184
+            ],
+            [
+              0.1307699862826831
+            ],
+            [
+              0.9066131063724409
+            ]
+          ],
+          "source_bounds": [
+            17,
+            12,
+            20,
+            13
+          ],
+          "source_component_pixels": 3
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.12394373280034487
+            ],
+            [
+              0.9922892476992364
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_6",
+      "parent_id": "decision_probe_6",
+      "actions": [
+        1
+      ],
+      "quantum": 8,
+      "program_index": 1,
+      "source_pair": [
+        10,
+        28
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.39391927041739977,
+              0.9191450420873865
+            ]
+          ],
+          "source_bounds": [
+            19,
+            1,
+            20,
+            3
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.29294088623960396,
+              0.0
+            ],
+            [
+              0.8788226587188118,
+              0.37663825043608384
+            ]
+          ],
+          "source_bounds": [
+            18,
+            3,
+            20,
+            5
+          ],
+          "source_component_pixels": 3
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.10012878971568039,
+              0.9949744848336932
+            ]
+          ],
+          "source_bounds": [
+            19,
+            1,
+            20,
+            3
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.29935491814056653,
+              0.0819449491089638
+            ],
+            [
+              0.9436829189726204,
+              0.11460456683701072
+            ]
+          ],
+          "source_bounds": [
+            18,
+            3,
+            20,
+            5
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_7",
+      "parent_id": "decision_probe_7",
+      "actions": [
+        1
+      ],
+      "quantum": 8,
+      "program_index": 1,
+      "source_pair": [
+        8,
+        17
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.7071067811865476,
+              0.7071067811865476
+            ]
+          ],
+          "source_bounds": [
+            11,
+            11,
+            12,
+            13
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3434014006897032,
+              0.6181226274189131
+            ],
+            [
+              0.343401223727291,
+              0.6181225566339482
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.5165942469378929,
+              0.8562303335146866
+            ]
+          ],
+          "source_bounds": [
+            11,
+            11,
+            12,
+            13
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.8262437561575033,
+              0.08698939017440636
+            ],
+            [
+              0.3375875648093611,
+              0.44248021141505356
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_8",
+      "parent_id": "decision_probe_8",
+      "actions": [
+        2
+      ],
+      "quantum": 8,
+      "program_index": 2,
+      "source_pair": [
+        5,
+        9
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.31622777322505824
+            ],
+            [
+              0.9486832956477735
+            ]
+          ],
+          "source_bounds": [
+            18,
+            9,
+            20,
+            10
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.328854542739279
+            ],
+            [
+              0.9443805852090246
+            ]
+          ],
+          "source_bounds": [
+            18,
+            9,
+            20,
+            10
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_9",
+      "parent_id": "decision_probe_9",
+      "actions": [
+        2
+      ],
+      "quantum": 8,
+      "program_index": 2,
+      "source_pair": [
+        13,
+        18
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.4961389332045566,
+              0.0
+            ],
+            [
+              0.2480694666022783,
+              0.0
+            ],
+            [
+              0.7442083439905588,
+              0.3721043394441076
+            ]
+          ],
+          "source_bounds": [
+            17,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 4
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.6139406107825156
+            ],
+            [
+              0.78935221950153
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.02950264363914462,
+              0.3542390466222494
+            ],
+            [
+              0.49435655156153463,
+              0.1553629337451405
+            ],
+            [
+              0.6472775622669522,
+              0.4314510493653991
+            ]
+          ],
+          "source_bounds": [
+            17,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 6
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.9998374575318517
+            ],
+            [
+              0.01802937925283639
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_10",
+      "parent_id": "decision_probe_10",
+      "actions": [
+        2
+      ],
+      "quantum": 8,
+      "program_index": 2,
+      "source_pair": [
+        10,
+        28
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.8944272318338053,
+              0.4472135138321695
+            ]
+          ],
+          "source_bounds": [
+            19,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.0,
+              0.4498234582250778
+            ],
+            [
+              0.24535806473420865,
+              0.8587539091615919
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 3
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.11066522536591156,
+              0.993857740270061
+            ]
+          ],
+          "source_bounds": [
+            19,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.3517820694485395,
+              0.7992639252898729
+            ],
+            [
+              0.052095639525339014,
+              0.484471462200998
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_11",
+      "parent_id": "decision_probe_11",
+      "actions": [
+        2
+      ],
+      "quantum": 8,
+      "program_index": 2,
+      "source_pair": [
+        8,
+        17
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.7071067811865476,
+              0.7071067811865476
+            ]
+          ],
+          "source_bounds": [
+            11,
+            11,
+            12,
+            13
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3434014036545634,
+              0.6181226619440671
+            ],
+            [
+              0.3434012255415989,
+              0.6181225194536956
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.3238936109429911,
+              0.9460935095382011
+            ]
+          ],
+          "source_bounds": [
+            11,
+            11,
+            12,
+            13
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.6362642655404696,
+              0.4067077323458916
+            ],
+            [
+              0.6554693978562616,
+              0.010792280586571935
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_12",
+      "parent_id": "decision_probe_12",
+      "actions": [
+        3
+      ],
+      "quantum": 8,
+      "program_index": 3,
+      "source_pair": [
+        5,
+        9
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.24253570293160281
+            ],
+            [
+              0.9701424806715111
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.5261501919098526
+            ],
+            [
+              0.8503916600915282
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_13",
+      "parent_id": "decision_probe_13",
+      "actions": [
+        3
+      ],
+      "quantum": 8,
+      "program_index": 3,
+      "source_pair": [
+        13,
+        18
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.4961389332045566,
+              0.0
+            ],
+            [
+              0.2480694666022783,
+              0.0
+            ],
+            [
+              0.7442083439905588,
+              0.3721043394441076
+            ]
+          ],
+          "source_bounds": [
+            17,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 4
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.6139406107825156
+            ],
+            [
+              0.78935221950153
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.20768264289437918,
+              0.6584734885720608
+            ],
+            [
+              0.11435379972347018,
+              0.624820105736273
+            ],
+            [
+              0.3300541685661701,
+              0.10424909811004324
+            ]
+          ],
+          "source_bounds": [
+            17,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 6
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.2020451161179617
+            ],
+            [
+              0.9793762152783165
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_14",
+      "parent_id": "decision_probe_14",
+      "actions": [
+        3
+      ],
+      "quantum": 8,
+      "program_index": 3,
+      "source_pair": [
+        10,
+        28
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.8944272318338053,
+              0.4472135138321695
+            ]
+          ],
+          "source_bounds": [
+            19,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.0,
+              0.4498234582250778
+            ],
+            [
+              0.24535806473420865,
+              0.8587539091615919
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 3
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.36216509560049837,
+              0.9321139648823431
+            ]
+          ],
+          "source_bounds": [
+            19,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.6638445478511191,
+              0.6488357336155077
+            ],
+            [
+              0.36875109566249514,
+              0.04842764210322948
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_15",
+      "parent_id": "decision_probe_15",
+      "actions": [
+        3
+      ],
+      "quantum": 8,
+      "program_index": 3,
+      "source_pair": [
+        8,
+        17
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.7071067811865476,
+              0.7071067811865476
+            ]
+          ],
+          "source_bounds": [
+            11,
+            11,
+            12,
+            13
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3434014036545634,
+              0.6181226619440671
+            ],
+            [
+              0.3434012255415989,
+              0.6181225194536956
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.9086776197353456,
+              0.4174984831015637
+            ]
+          ],
+          "source_bounds": [
+            11,
+            11,
+            12,
+            13
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.22202301593129725,
+              0.22971202623625803
+            ],
+            [
+              0.5418791515512412,
+              0.7773706648139679
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_16",
+      "parent_id": "decision_probe_16",
+      "actions": [
+        0,
+        0
+      ],
+      "quantum": 8,
+      "program_index": 4,
+      "source_pair": [
+        5,
+        9
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            16,
+            3,
+            17,
+            4
+          ],
+          "source_component_pixels": 1
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3162278423856472
+            ],
+            [
+              0.9486832725942407
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            16,
+            3,
+            17,
+            4
+          ],
+          "source_component_pixels": 1
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.9786555376613681
+            ],
+            [
+              0.2055075147159795
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_17",
+      "parent_id": "decision_probe_17",
+      "actions": [
+        0,
+        0
+      ],
+      "quantum": 8,
+      "program_index": 4,
+      "source_pair": [
+        13,
+        18
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.3162277795760759
+            ],
+            [
+              0.9486832935307677
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            13
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3162277795760759
+            ],
+            [
+              0.9486832935307677
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.9261214800534087
+            ],
+            [
+              0.3772254023573753
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            13
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.9902574943979552
+            ],
+            [
+              0.13924832059556025
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_18",
+      "parent_id": "decision_probe_18",
+      "actions": [
+        0,
+        0
+      ],
+      "quantum": 8,
+      "program_index": 4,
+      "source_pair": [
+        10,
+        28
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.0,
+              0.2929408937156648
+            ],
+            [
+              0.37663824422435455,
+              0.8788226588889609
+            ]
+          ],
+          "source_bounds": [
+            18,
+            1,
+            20,
+            3
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.2929408937156648,
+              0.0
+            ],
+            [
+              0.8788226588889609,
+              0.37663824422435455
+            ]
+          ],
+          "source_bounds": [
+            18,
+            3,
+            20,
+            5
+          ],
+          "source_component_pixels": 3
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.7231613735670672,
+              0.45484962638606447
+            ],
+            [
+              0.5015211898062791,
+              0.13647688937085417
+            ]
+          ],
+          "source_bounds": [
+            18,
+            1,
+            20,
+            3
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.6319555120265639,
+              0.6699515956905658
+            ],
+            [
+              0.3844936411300368,
+              0.06294227658318864
+            ]
+          ],
+          "source_bounds": [
+            18,
+            3,
+            20,
+            5
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_19",
+      "parent_id": "decision_probe_19",
+      "actions": [
+        0,
+        0
+      ],
+      "quantum": 8,
+      "program_index": 4,
+      "source_pair": [
+        8,
+        17
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.948683303235239
+            ],
+            [
+              0.316227750462662
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3434013860071033,
+              0.6181226343796127
+            ],
+            [
+              0.3434012115485698,
+              0.6181225645961993
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.004562392837791213
+            ],
+            [
+              0.999989592231636
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.5763818377354495,
+              0.33095772884015084
+            ],
+            [
+              0.1591487620465962,
+              0.7300155001016834
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_20",
+      "parent_id": "decision_probe_20",
+      "actions": [
+        0,
+        1
+      ],
+      "quantum": 8,
+      "program_index": 5,
+      "source_pair": [
+        5,
+        9
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            15,
+            4,
+            16,
+            5
+          ],
+          "source_component_pixels": 1
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.31622784630498363
+            ],
+            [
+              0.9486832712877947
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            15,
+            4,
+            16,
+            5
+          ],
+          "source_component_pixels": 1
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.09209883635060326
+            ],
+            [
+              0.9957498703704986
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_21",
+      "parent_id": "decision_probe_21",
+      "actions": [
+        0,
+        1
+      ],
+      "quantum": 8,
+      "program_index": 5,
+      "source_pair": [
+        13,
+        18
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.3162277795760759
+            ],
+            [
+              0.9486832935307677
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            13
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3162277795760759
+            ],
+            [
+              0.9486832935307677
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.2426417275158051
+            ],
+            [
+              0.9701159683605594
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            13
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.5056134884837273
+            ],
+            [
+              0.8627601058598593
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_22",
+      "parent_id": "decision_probe_22",
+      "actions": [
+        0,
+        1
+      ],
+      "quantum": 8,
+      "program_index": 5,
+      "source_pair": [
+        10,
+        28
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.0,
+              0.2929408937156648
+            ],
+            [
+              0.37663824422435455,
+              0.8788226588889609
+            ]
+          ],
+          "source_bounds": [
+            18,
+            1,
+            20,
+            3
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.2929408937156648,
+              0.0
+            ],
+            [
+              0.8788226588889609,
+              0.37663824422435455
+            ]
+          ],
+          "source_bounds": [
+            18,
+            3,
+            20,
+            5
+          ],
+          "source_component_pixels": 3
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.3189875937955447,
+              0.2518355798075423
+            ],
+            [
+              0.9036955638433126,
+              0.13475935454522203
+            ]
+          ],
+          "source_bounds": [
+            18,
+            1,
+            20,
+            3
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.5883005126201917,
+              0.03803770173755604
+            ],
+            [
+              0.7992421593049516,
+              0.11690855780011418
+            ]
+          ],
+          "source_bounds": [
+            18,
+            3,
+            20,
+            5
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_23",
+      "parent_id": "decision_probe_23",
+      "actions": [
+        0,
+        1
+      ],
+      "quantum": 8,
+      "program_index": 5,
+      "source_pair": [
+        8,
+        17
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.9486832901459894
+            ],
+            [
+              0.3162277897304105
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3434013856160569,
+              0.6181226359626748
+            ],
+            [
+              0.34340120829884124,
+              0.6181225650357886
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.14919032104353316
+            ],
+            [
+              0.9888084992084806
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.22565992162255583,
+              0.06302862237081834
+            ],
+            [
+              0.8189087228966594,
+              0.5239212689890542
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_24",
+      "parent_id": "decision_probe_24",
+      "actions": [
+        0,
+        2
+      ],
+      "quantum": 8,
+      "program_index": 6,
+      "source_pair": [
+        5,
+        9
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3162278403335165
+            ],
+            [
+              0.9486832732782844
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.22852423484835652
+            ],
+            [
+              0.9735382242557162
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_25",
+      "parent_id": "decision_probe_25",
+      "actions": [
+        0,
+        2
+      ],
+      "quantum": 8,
+      "program_index": 6,
+      "source_pair": [
+        13,
+        18
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.2857142638186986,
+              0.0
+            ],
+            [
+              0.8571427914560957,
+              0.42857157454197914
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3162277528227871
+            ],
+            [
+              0.9486833024485306
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.3135933645520845,
+              0.7392982797144142
+            ],
+            [
+              0.5630017278880107,
+              0.19525959570614082
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.5447767909415905
+            ],
+            [
+              0.8385810921141632
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_26",
+      "parent_id": "decision_probe_26",
+      "actions": [
+        0,
+        2
+      ],
+      "quantum": 8,
+      "program_index": 6,
+      "source_pair": [
+        10,
+        28
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.285714268550153,
+              0.0
+            ],
+            [
+              0.8571428990996202,
+              0.428571356100649
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.0,
+              0.30521452768480906
+            ],
+            [
+              0.2616122322740791,
+              0.9156435616628952
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 3
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.45179749574159533,
+              0.3969972749499835
+            ],
+            [
+              0.3626527178752557,
+              0.7118673982853833
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.6117135642888551,
+              0.21812191911140383
+            ],
+            [
+              0.18891161982027535,
+              0.7365743299661364
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_27",
+      "parent_id": "decision_probe_27",
+      "actions": [
+        0,
+        2
+      ],
+      "quantum": 8,
+      "program_index": 6,
+      "source_pair": [
+        8,
+        17
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.9486832980505139
+            ],
+            [
+              0.31622776601683794
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.34340139455062096,
+              0.6181226315476476
+            ],
+            [
+              0.3434012160851359,
+              0.6181225601614535
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.523055621267024
+            ],
+            [
+              0.8522985492542902
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.5001881120829773,
+              0.7026344133527073
+            ],
+            [
+              0.25522351520781056,
+              0.4370099438094431
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_28",
+      "parent_id": "decision_probe_28",
+      "actions": [
+        0,
+        3
+      ],
+      "quantum": 8,
+      "program_index": 7,
+      "source_pair": [
+        5,
+        9
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3162278403335165
+            ],
+            [
+              0.9486832732782844
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.9975655933181873
+            ],
+            [
+              0.06973440347298436
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_29",
+      "parent_id": "decision_probe_29",
+      "actions": [
+        0,
+        3
+      ],
+      "quantum": 8,
+      "program_index": 7,
+      "source_pair": [
+        13,
+        18
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.28571427887718903,
+              0.0
+            ],
+            [
+              0.8571427807953133,
+              0.42857158582454535
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.31622774129707415
+            ],
+            [
+              0.9486833062904346
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.6964047956824845,
+              0.2777364246643551
+            ],
+            [
+              0.3516812606549366,
+              0.5605382501393215
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.9926898686933111
+            ],
+            [
+              0.1206931008535976
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_30",
+      "parent_id": "decision_probe_30",
+      "actions": [
+        0,
+        3
+      ],
+      "quantum": 8,
+      "program_index": 7,
+      "source_pair": [
+        10,
+        28
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.28571428423592515,
+              0.0
+            ],
+            [
+              0.8571428768543267,
+              0.428571390134061
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.0,
+              0.3052145096862803
+            ],
+            [
+              0.26161221261910356,
+              0.9156435732781072
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 3
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.6760590751314162,
+              0.13311803966830857
+            ],
+            [
+              0.6848893693538289,
+              0.23696047390532338
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.15905169971781966,
+              0.2972698711918067
+            ],
+            [
+              0.5499277985960132,
+              0.7641417387041635
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_31",
+      "parent_id": "decision_probe_31",
+      "actions": [
+        0,
+        3
+      ],
+      "quantum": 8,
+      "program_index": 7,
+      "source_pair": [
+        8,
+        17
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.9486832980505139
+            ],
+            [
+              0.31622776601683794
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.34340139455062096,
+              0.6181226315476476
+            ],
+            [
+              0.3434012160851359,
+              0.6181225601614535
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.234154834118634
+            ],
+            [
+              0.9721993178658762
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.680664977920291,
+              0.46230472607992396
+            ],
+            [
+              0.47503038252966034,
+              0.31195458603883486
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_32",
+      "parent_id": "decision_probe_32",
+      "actions": [
+        1,
+        0
+      ],
+      "quantum": 8,
+      "program_index": 8,
+      "source_pair": [
+        5,
+        9
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            16,
+            3,
+            17,
+            4
+          ],
+          "source_component_pixels": 1
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3162278627259171
+            ],
+            [
+              0.9486832658141486
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            16,
+            3,
+            17,
+            4
+          ],
+          "source_component_pixels": 1
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.7124947386027183
+            ],
+            [
+              0.701677452583054
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_33",
+      "parent_id": "decision_probe_33",
+      "actions": [
+        1,
+        0
+      ],
+      "quantum": 8,
+      "program_index": 8,
+      "source_pair": [
+        13,
+        18
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.3162277795760759
+            ],
+            [
+              0.9486832935307677
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            13
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3162277795760759
+            ],
+            [
+              0.9486832935307677
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.44294602397749006
+            ],
+            [
+              0.8965482808206888
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            13
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.8717152828321406
+            ],
+            [
+              0.49001271991335194
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_34",
+      "parent_id": "decision_probe_34",
+      "actions": [
+        1,
+        0
+      ],
+      "quantum": 8,
+      "program_index": 8,
+      "source_pair": [
+        10,
+        28
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.0,
+              0.2929408937156648
+            ],
+            [
+              0.37663824422435455,
+              0.8788226588889609
+            ]
+          ],
+          "source_bounds": [
+            18,
+            1,
+            20,
+            3
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.2929408937156648,
+              0.0
+            ],
+            [
+              0.8788226588889609,
+              0.37663824422435455
+            ]
+          ],
+          "source_bounds": [
+            18,
+            3,
+            20,
+            5
+          ],
+          "source_component_pixels": 3
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.47136352485871275,
+              0.6644425027947986
+            ],
+            [
+              0.2141015290968187,
+              0.538974139593875
+            ]
+          ],
+          "source_bounds": [
+            18,
+            1,
+            20,
+            3
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.846451923298732,
+              0.5092754959645195
+            ],
+            [
+              0.07016203305141129,
+              0.13868994149563607
+            ]
+          ],
+          "source_bounds": [
+            18,
+            3,
+            20,
+            5
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_35",
+      "parent_id": "decision_probe_35",
+      "actions": [
+        1,
+        0
+      ],
+      "quantum": 8,
+      "program_index": 8,
+      "source_pair": [
+        8,
+        17
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.9486832901459894
+            ],
+            [
+              0.3162277897304105
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3434013856160569,
+              0.6181226359626748
+            ],
+            [
+              0.34340120829884124,
+              0.6181225650357886
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.9710113846453348
+            ],
+            [
+              0.2390332422261592
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.478369503776221,
+              0.010437994398052956
+            ],
+            [
+              0.026219323428588882,
+              0.8777050832761454
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_36",
+      "parent_id": "decision_probe_36",
+      "actions": [
+        1,
+        1
+      ],
+      "quantum": 8,
+      "program_index": 9,
+      "source_pair": [
+        5,
+        9
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            16,
+            3,
+            17,
+            4
+          ],
+          "source_component_pixels": 1
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3162278552591122
+            ],
+            [
+              0.9486832683030844
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            16,
+            3,
+            17,
+            4
+          ],
+          "source_component_pixels": 1
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.9980446887380949
+            ],
+            [
+              0.06250439409896963
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_37",
+      "parent_id": "decision_probe_37",
+      "actions": [
+        1,
+        1
+      ],
+      "quantum": 8,
+      "program_index": 9,
+      "source_pair": [
+        13,
+        18
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.3162277795760759
+            ],
+            [
+              0.9486832935307677
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            13
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3162277795760759
+            ],
+            [
+              0.9486832935307677
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.6661527744910207
+            ],
+            [
+              0.7458153129548328
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            13
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.9949495751359382
+            ],
+            [
+              0.10037600777484634
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_38",
+      "parent_id": "decision_probe_38",
+      "actions": [
+        1,
+        1
+      ],
+      "quantum": 8,
+      "program_index": 9,
+      "source_pair": [
+        10,
+        28
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.0,
+              0.2929408937156648
+            ],
+            [
+              0.37663824422435455,
+              0.8788226588889609
+            ]
+          ],
+          "source_bounds": [
+            18,
+            1,
+            20,
+            3
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.2929408937156648,
+              0.0
+            ],
+            [
+              0.8788226588889609,
+              0.37663824422435455
+            ]
+          ],
+          "source_bounds": [
+            18,
+            3,
+            20,
+            5
+          ],
+          "source_component_pixels": 3
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.49377305213499567,
+              0.78204878988854
+            ],
+            [
+              0.35310806232727104,
+              0.14107643154914712
+            ]
+          ],
+          "source_bounds": [
+            18,
+            1,
+            20,
+            3
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.7353190021630388,
+              0.23151934982341965
+            ],
+            [
+              0.04018636944173883,
+              0.6356805891533781
+            ]
+          ],
+          "source_bounds": [
+            18,
+            3,
+            20,
+            5
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_39",
+      "parent_id": "decision_probe_39",
+      "actions": [
+        1,
+        1
+      ],
+      "quantum": 8,
+      "program_index": 9,
+      "source_pair": [
+        8,
+        17
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.9486832901459894
+            ],
+            [
+              0.3162277897304105
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3434013856160569,
+              0.6181226359626748
+            ],
+            [
+              0.34340120829884124,
+              0.6181225650357886
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.8795059306631489
+            ],
+            [
+              0.47588792580643224
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.7213251414442712,
+              0.3430339916161855
+            ],
+            [
+              0.006622192659282672,
+              0.6016426410093055
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_40",
+      "parent_id": "decision_probe_40",
+      "actions": [
+        1,
+        2
+      ],
+      "quantum": 8,
+      "program_index": 10,
+      "source_pair": [
+        5,
+        9
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3162278411200341
+            ],
+            [
+              0.9486832730161118
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.842693987427249
+            ],
+            [
+              0.5383928338620076
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_41",
+      "parent_id": "decision_probe_41",
+      "actions": [
+        1,
+        2
+      ],
+      "quantum": 8,
+      "program_index": 10,
+      "source_pair": [
+        13,
+        18
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.2857142638186986,
+              0.0
+            ],
+            [
+              0.8571427914560957,
+              0.42857157454197914
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3162277528227871
+            ],
+            [
+              0.9486833024485306
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.7702722850007345,
+              0.21472845377362576
+            ],
+            [
+              0.5972149686088859,
+              0.06250263489823993
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.6484862011655487
+            ],
+            [
+              0.7612264097480299
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_42",
+      "parent_id": "decision_probe_42",
+      "actions": [
+        1,
+        2
+      ],
+      "quantum": 8,
+      "program_index": 10,
+      "source_pair": [
+        10,
+        28
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.285714268550153,
+              0.0
+            ],
+            [
+              0.8571428990996202,
+              0.428571356100649
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.0,
+              0.30521452768480906
+            ],
+            [
+              0.2616122322740791,
+              0.9156435616628952
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 3
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.5564235339978926,
+              0.029823154288128623
+            ],
+            [
+              0.5109810047830994,
+              0.6545241347975314
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.6440433135140612,
+              0.33822061258131175
+            ],
+            [
+              0.44948716284486845,
+              0.5184364165262906
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_43",
+      "parent_id": "decision_probe_43",
+      "actions": [
+        1,
+        2
+      ],
+      "quantum": 8,
+      "program_index": 10,
+      "source_pair": [
+        8,
+        17
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.9486832899701818
+            ],
+            [
+              0.3162277902578326
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3434013943106283,
+              0.6181226330166113
+            ],
+            [
+              0.34340121304962784,
+              0.6181225605122111
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.6114582867355993
+            ],
+            [
+              0.7912766669012588
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.4911796960940915,
+              0.4730818180325121
+            ],
+            [
+              0.6924954376827824,
+              0.23534266162449344
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_44",
+      "parent_id": "decision_probe_44",
+      "actions": [
+        1,
+        3
+      ],
+      "quantum": 8,
+      "program_index": 11,
+      "source_pair": [
+        5,
+        9
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3162278411200341
+            ],
+            [
+              0.9486832730161118
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.06846646913588865
+            ],
+            [
+              0.9976534180786755
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_45",
+      "parent_id": "decision_probe_45",
+      "actions": [
+        1,
+        3
+      ],
+      "quantum": 8,
+      "program_index": 11,
+      "source_pair": [
+        13,
+        18
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.28571427887718903,
+              0.0
+            ],
+            [
+              0.8571427807953133,
+              0.42857158582454535
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.31622774129707415
+            ],
+            [
+              0.9486833062904346
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.18447010131359443,
+              0.8264429955994527
+            ],
+            [
+              0.15911776130496674,
+              0.5075867362168274
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.3888094848334259
+            ],
+            [
+              0.9213181776691296
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_46",
+      "parent_id": "decision_probe_46",
+      "actions": [
+        1,
+        3
+      ],
+      "quantum": 8,
+      "program_index": 11,
+      "source_pair": [
+        10,
+        28
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.28571428423592515,
+              0.0
+            ],
+            [
+              0.8571428768543267,
+              0.428571390134061
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.0,
+              0.3052145096862803
+            ],
+            [
+              0.26161221261910356,
+              0.9156435732781072
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 3
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.5435721097332932,
+              0.07676783631578284
+            ],
+            [
+              0.320307144661321,
+              0.7720358760487763
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.5439053829795746,
+              0.19496621285221857
+            ],
+            [
+              0.21938672453527522,
+              0.7861453906941064
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_47",
+      "parent_id": "decision_probe_47",
+      "actions": [
+        1,
+        3
+      ],
+      "quantum": 8,
+      "program_index": 11,
+      "source_pair": [
+        8,
+        17
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.9486832899701818
+            ],
+            [
+              0.3162277902578326
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3434013943106283,
+              0.6181226330166113
+            ],
+            [
+              0.34340121304962784,
+              0.6181225605122111
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.8239911615789451
+            ],
+            [
+              0.5666026523409334
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.5403081821969637,
+              0.2818171999297376
+            ],
+            [
+              0.5833106739141755,
+              0.5370240141488697
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_48",
+      "parent_id": "decision_probe_48",
+      "actions": [
+        2,
+        0
+      ],
+      "quantum": 8,
+      "program_index": 12,
+      "source_pair": [
+        5,
+        9
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3162277660168379
+            ],
+            [
+              0.9486832980505138
+            ]
+          ],
+          "source_bounds": [
+            18,
+            9,
+            20,
+            10
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.30890045162223473
+            ],
+            [
+              0.951094375436833
+            ]
+          ],
+          "source_bounds": [
+            18,
+            9,
+            20,
+            10
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_49",
+      "parent_id": "decision_probe_49",
+      "actions": [
+        2,
+        0
+      ],
+      "quantum": 8,
+      "program_index": 12,
+      "source_pair": [
+        13,
+        18
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.2857142633763187,
+              0.0
+            ],
+            [
+              0.8571427901289561,
+              0.4285715774911769
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.31622776601683794
+            ],
+            [
+              0.9486832980505139
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.8743212348737048,
+              0.07654142829508369
+            ],
+            [
+              0.45035810660535597,
+              0.16395537142255273
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.8000217102121947
+            ],
+            [
+              0.599971051959305
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_50",
+      "parent_id": "decision_probe_50",
+      "actions": [
+        2,
+        0
+      ],
+      "quantum": 8,
+      "program_index": 12,
+      "source_pair": [
+        10,
+        28
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.285714268550153,
+              0.0
+            ],
+            [
+              0.8571428990996202,
+              0.428571356100649
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.0,
+              0.30521452768480906
+            ],
+            [
+              0.2616122322740791,
+              0.9156435616628952
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 3
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.8917834599481752,
+              0.04199592648082873
+            ],
+            [
+              0.44332411343194356,
+              0.08013946076471598
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.35333437602882983,
+              0.5942107853625178
+            ],
+            [
+              0.4209818782558833,
+              0.5872330197249862
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_51",
+      "parent_id": "decision_probe_51",
+      "actions": [
+        2,
+        0
+      ],
+      "quantum": 8,
+      "program_index": 12,
+      "source_pair": [
+        8,
+        17
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.9486832980505139
+            ],
+            [
+              0.31622776601683794
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.34340139455062096,
+              0.6181226315476476
+            ],
+            [
+              0.3434012160851359,
+              0.6181225601614535
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.8834079575053704
+            ],
+            [
+              0.468604716809583
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.551162706074815,
+              0.7878731540378914
+            ],
+            [
+              0.27377828440154883,
+              0.022825765459604613
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_52",
+      "parent_id": "decision_probe_52",
+      "actions": [
+        2,
+        1
+      ],
+      "quantum": 8,
+      "program_index": 13,
+      "source_pair": [
+        5,
+        9
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.31622778400935153
+            ],
+            [
+              0.948683292053009
+            ]
+          ],
+          "source_bounds": [
+            18,
+            9,
+            20,
+            10
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.992749951781662
+            ],
+            [
+              0.12019789198445957
+            ]
+          ],
+          "source_bounds": [
+            18,
+            9,
+            20,
+            10
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_53",
+      "parent_id": "decision_probe_53",
+      "actions": [
+        2,
+        1
+      ],
+      "quantum": 8,
+      "program_index": 13,
+      "source_pair": [
+        13,
+        18
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.2857142633763187,
+              0.0
+            ],
+            [
+              0.8571427901289561,
+              0.4285715774911769
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.31622776601683794
+            ],
+            [
+              0.9486832980505139
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.08491659455718858,
+              0.6470059015826398
+            ],
+            [
+              0.7333036703676714,
+              0.1908880884480405
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.7588115900291442
+            ],
+            [
+              0.6513101955577251
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_54",
+      "parent_id": "decision_probe_54",
+      "actions": [
+        2,
+        1
+      ],
+      "quantum": 8,
+      "program_index": 13,
+      "source_pair": [
+        10,
+        28
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.285714268550153,
+              0.0
+            ],
+            [
+              0.8571428990996202,
+              0.428571356100649
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.0,
+              0.30521452768480906
+            ],
+            [
+              0.2616122322740791,
+              0.9156435616628952
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 3
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.6255704622487727,
+              0.569977880203575
+            ],
+            [
+              0.15398251759064358,
+              0.5099766633062176
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.1566973593480585,
+              0.954369927742149
+            ],
+            [
+              0.21926710229543922,
+              0.1286309311392553
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_55",
+      "parent_id": "decision_probe_55",
+      "actions": [
+        2,
+        1
+      ],
+      "quantum": 8,
+      "program_index": 13,
+      "source_pair": [
+        8,
+        17
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.9486832899701818
+            ],
+            [
+              0.3162277902578326
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3434013943106283,
+              0.6181226330166113
+            ],
+            [
+              0.34340121304962784,
+              0.6181225605122111
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.7281368629652437
+            ],
+            [
+              0.6854317681513848
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.4804604022521335,
+              0.7769864926578455
+            ],
+            [
+              0.3985278586714217,
+              0.08139617901197325
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_56",
+      "parent_id": "decision_probe_56",
+      "actions": [
+        2,
+        2
+      ],
+      "quantum": 8,
+      "program_index": 14,
+      "source_pair": [
+        5,
+        9
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3162277660168379
+            ],
+            [
+              0.9486832980505138
+            ]
+          ],
+          "source_bounds": [
+            18,
+            9,
+            20,
+            10
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.9283145916067913
+            ],
+            [
+              0.3717956683581943
+            ]
+          ],
+          "source_bounds": [
+            18,
+            9,
+            20,
+            10
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_57",
+      "parent_id": "decision_probe_57",
+      "actions": [
+        2,
+        2
+      ],
+      "quantum": 8,
+      "program_index": 14,
+      "source_pair": [
+        13,
+        18
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.2857142633763187,
+              0.0
+            ],
+            [
+              0.8571427901289561,
+              0.4285715774911769
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.31622776601683794
+            ],
+            [
+              0.9486832980505139
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.05813574835640504,
+              0.24740496696817602
+            ],
+            [
+              0.8997421231837088,
+              0.3547888510810169
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.6644003251102979
+            ],
+            [
+              0.7473768848401257
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_58",
+      "parent_id": "decision_probe_58",
+      "actions": [
+        2,
+        2
+      ],
+      "quantum": 8,
+      "program_index": 14,
+      "source_pair": [
+        10,
+        28
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.285714268550153,
+              0.0
+            ],
+            [
+              0.8571428990996202,
+              0.428571356100649
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.0,
+              0.30521452768480906
+            ],
+            [
+              0.2616122322740791,
+              0.9156435616628952
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 3
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.4966343818493386,
+              0.3828446452782755
+            ],
+            [
+              0.46934505882316135,
+              0.6216908267822198
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.7608680932058096,
+              0.613320560759229
+            ],
+            [
+              0.06729454387756442,
+              0.2009703432241955
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_59",
+      "parent_id": "decision_probe_59",
+      "actions": [
+        2,
+        2
+      ],
+      "quantum": 8,
+      "program_index": 14,
+      "source_pair": [
+        8,
+        17
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.9486832980505139
+            ],
+            [
+              0.31622776601683794
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.34340139455062096,
+              0.6181226315476476
+            ],
+            [
+              0.3434012160851359,
+              0.6181225601614535
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.9884118161128795
+            ],
+            [
+              0.15179618496009442
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.720625561992293,
+              0.385181058156543
+            ],
+            [
+              0.05346456782991686,
+              0.5739999057730392
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_60",
+      "parent_id": "decision_probe_60",
+      "actions": [
+        2,
+        3
+      ],
+      "quantum": 8,
+      "program_index": 15,
+      "source_pair": [
+        5,
+        9
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3162277660168379
+            ],
+            [
+              0.9486832980505138
+            ]
+          ],
+          "source_bounds": [
+            18,
+            9,
+            20,
+            10
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.5851303105709386
+            ],
+            [
+              0.8109392823455756
+            ]
+          ],
+          "source_bounds": [
+            18,
+            9,
+            20,
+            10
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_61",
+      "parent_id": "decision_probe_61",
+      "actions": [
+        2,
+        3
+      ],
+      "quantum": 8,
+      "program_index": 15,
+      "source_pair": [
+        13,
+        18
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.2857142633763187,
+              0.0
+            ],
+            [
+              0.8571427901289561,
+              0.4285715774911769
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.31622776601683794
+            ],
+            [
+              0.9486832980505139
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.1816851070754109,
+              0.800456442384301
+            ],
+            [
+              0.23124222670132846,
+              0.52229018591457
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.49440583673402816
+            ],
+            [
+              0.869231193988875
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_62",
+      "parent_id": "decision_probe_62",
+      "actions": [
+        2,
+        3
+      ],
+      "quantum": 8,
+      "program_index": 15,
+      "source_pair": [
+        10,
+        28
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.3162277660168379
+            ],
+            [
+              0.9486832980505138
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            3
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.31622776601683794
+            ],
+            [
+              0.9486832980505138
+            ]
+          ],
+          "source_bounds": [
+            18,
+            3,
+            20,
+            4
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.618963510559369
+            ],
+            [
+              0.7854197429375085
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            3
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.41248354861447317
+            ],
+            [
+              0.9109650498907252
+            ]
+          ],
+          "source_bounds": [
+            18,
+            3,
+            20,
+            4
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_63",
+      "parent_id": "decision_probe_63",
+      "actions": [
+        2,
+        3
+      ],
+      "quantum": 8,
+      "program_index": 15,
+      "source_pair": [
+        8,
+        17
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.9486832980505139
+            ],
+            [
+              0.31622776601683794
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.34340139455062096,
+              0.6181226315476476
+            ],
+            [
+              0.3434012160851359,
+              0.6181225601614535
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.9975092666944749
+            ],
+            [
+              0.07053554322928877
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.022379833560855586,
+              0.4383250800039014
+            ],
+            [
+              0.8609268356219142,
+              0.2572455072404556
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_64",
+      "parent_id": "decision_probe_64",
+      "actions": [
+        3,
+        0
+      ],
+      "quantum": 8,
+      "program_index": 16,
+      "source_pair": [
+        5,
+        9
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.24253570390594786
+            ],
+            [
+              0.9701424804279248
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.37780303470454896
+            ],
+            [
+              0.925885990264478
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_65",
+      "parent_id": "decision_probe_65",
+      "actions": [
+        3,
+        0
+      ],
+      "quantum": 8,
+      "program_index": 16,
+      "source_pair": [
+        13,
+        18
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.28571427887718903,
+              0.0
+            ],
+            [
+              0.8571427807953133,
+              0.42857158582454535
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.31622774129707415
+            ],
+            [
+              0.9486833062904346
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.48152128925352156,
+              0.5577692981653677
+            ],
+            [
+              0.3899781052194679,
+              0.5522207307491935
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.7082668656459761
+            ],
+            [
+              0.7059447903540509
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_66",
+      "parent_id": "decision_probe_66",
+      "actions": [
+        3,
+        0
+      ],
+      "quantum": 8,
+      "program_index": 16,
+      "source_pair": [
+        10,
+        28
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.28571428423592515,
+              0.0
+            ],
+            [
+              0.8571428768543267,
+              0.428571390134061
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.0,
+              0.3052145096862803
+            ],
+            [
+              0.26161221261910356,
+              0.9156435732781072
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 3
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.038278501508011036,
+              0.9282469052511697
+            ],
+            [
+              0.2834584717754083,
+              0.23778926382971355
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.44601345447281265,
+              0.5063121063904019
+            ],
+            [
+              0.655128494157164,
+              0.3398921968729337
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_67",
+      "parent_id": "decision_probe_67",
+      "actions": [
+        3,
+        0
+      ],
+      "quantum": 8,
+      "program_index": 16,
+      "source_pair": [
+        8,
+        17
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.9486832980505139
+            ],
+            [
+              0.31622776601683794
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.34340139455062096,
+              0.6181226315476476
+            ],
+            [
+              0.3434012160851359,
+              0.6181225601614535
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.3480604620703628
+            ],
+            [
+              0.9374720874476026
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.3749925594810777,
+              0.44230394348701774
+            ],
+            [
+              0.6250078303703008,
+              0.5226021564110434
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_68",
+      "parent_id": "decision_probe_68",
+      "actions": [
+        3,
+        1
+      ],
+      "quantum": 8,
+      "program_index": 17,
+      "source_pair": [
+        5,
+        9
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.24253570667433605
+            ],
+            [
+              0.9701424797358275
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.900099194379913
+            ],
+            [
+              0.4356850241592332
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_69",
+      "parent_id": "decision_probe_69",
+      "actions": [
+        3,
+        1
+      ],
+      "quantum": 8,
+      "program_index": 17,
+      "source_pair": [
+        13,
+        18
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.28571427887718903,
+              0.0
+            ],
+            [
+              0.8571427807953133,
+              0.42857158582454535
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.31622774129707415
+            ],
+            [
+              0.9486833062904346
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.5634891450293876,
+              0.43773819942647774
+            ],
+            [
+              0.7004769317011087,
+              0.014047076262184101
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.4552768262113369
+            ],
+            [
+              0.8903499376733465
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_70",
+      "parent_id": "decision_probe_70",
+      "actions": [
+        3,
+        1
+      ],
+      "quantum": 8,
+      "program_index": 17,
+      "source_pair": [
+        10,
+        28
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.28571428423592515,
+              0.0
+            ],
+            [
+              0.8571428768543267,
+              0.428571390134061
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.0,
+              0.3052145096862803
+            ],
+            [
+              0.26161221261910356,
+              0.9156435732781072
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 3
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.5005040296902001,
+              0.7682202684507196
+            ],
+            [
+              0.006582840284104681,
+              0.3991115152675622
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.570363677594011,
+              0.07617843407300763
+            ],
+            [
+              0.8172453760519752,
+              0.031497885409741196
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_71",
+      "parent_id": "decision_probe_71",
+      "actions": [
+        3,
+        1
+      ],
+      "quantum": 8,
+      "program_index": 17,
+      "source_pair": [
+        8,
+        17
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.9486832899701818
+            ],
+            [
+              0.3162277902578326
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.3434013943106283,
+              0.6181226330166113
+            ],
+            [
+              0.34340121304962784,
+              0.6181225605122111
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.7019046458861726
+            ],
+            [
+              0.712270923233152
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.4776899697241967,
+              0.2599741432040355
+            ],
+            [
+              0.6979248028911258,
+              0.465968568896666
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_72",
+      "parent_id": "decision_probe_72",
+      "actions": [
+        3,
+        2
+      ],
+      "quantum": 8,
+      "program_index": 18,
+      "source_pair": [
+        5,
+        9
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.24253570390594786
+            ],
+            [
+              0.9701424804279248
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.9955329450220713
+            ],
+            [
+              0.09441480485433122
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_73",
+      "parent_id": "decision_probe_73",
+      "actions": [
+        3,
+        2
+      ],
+      "quantum": 8,
+      "program_index": 18,
+      "source_pair": [
+        13,
+        18
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.28571427887718903,
+              0.0
+            ],
+            [
+              0.8571427807953133,
+              0.42857158582454535
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.31622774129707415
+            ],
+            [
+              0.9486833062904346
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.6494577893284844,
+              0.72369943109601
+            ],
+            [
+              0.21129915081194905,
+              0.09907765730990388
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.8045671444452839
+            ],
+            [
+              0.5938616927190723
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_74",
+      "parent_id": "decision_probe_74",
+      "actions": [
+        3,
+        2
+      ],
+      "quantum": 8,
+      "program_index": 18,
+      "source_pair": [
+        10,
+        28
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.285714268550153,
+              0.0
+            ],
+            [
+              0.8571428990996202,
+              0.428571356100649
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.0,
+              0.30521452768480906
+            ],
+            [
+              0.2616122322740791,
+              0.9156435616628952
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 3
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.38908424458242336,
+              0.3271594490621226
+            ],
+            [
+              0.7066642872516997,
+              0.49214401411592995
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.06780450608342507,
+              0.3686773965132523
+            ],
+            [
+              0.658239923116215,
+              0.6528397428702943
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_75",
+      "parent_id": "decision_probe_75",
+      "actions": [
+        3,
+        2
+      ],
+      "quantum": 8,
+      "program_index": 18,
+      "source_pair": [
+        8,
+        17
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.9486832980505139
+            ],
+            [
+              0.31622776601683794
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.34340139455062096,
+              0.6181226315476476
+            ],
+            [
+              0.3434012160851359,
+              0.6181225601614535
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.9082163975112874
+            ],
+            [
+              0.41850086653628227
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.22727343068470438,
+              0.02360920612352427
+            ],
+            [
+              0.33202314697905455,
+              0.9151775909413139
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_76",
+      "parent_id": "decision_probe_76",
+      "actions": [
+        3,
+        3
+      ],
+      "quantum": 8,
+      "program_index": 19,
+      "source_pair": [
+        5,
+        9
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.24253570390594786
+            ],
+            [
+              0.9701424804279248
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              1.0
+            ]
+          ],
+          "source_bounds": [
+            19,
+            11,
+            20,
+            12
+          ],
+          "source_component_pixels": 1
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.99213162413175
+            ],
+            [
+              0.12519920286365988
+            ]
+          ],
+          "source_bounds": [
+            0,
+            10,
+            2,
+            11
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_77",
+      "parent_id": "decision_probe_77",
+      "actions": [
+        3,
+        3
+      ],
+      "quantum": 8,
+      "program_index": 19,
+      "source_pair": [
+        13,
+        18
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.28571427887718903,
+              0.0
+            ],
+            [
+              0.8571427807953133,
+              0.42857158582454535
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.31622774129707415
+            ],
+            [
+              0.9486833062904346
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.41722113349892986,
+              0.7362239693338153
+            ],
+            [
+              0.2565132528920237,
+              0.4670136441593352
+            ]
+          ],
+          "source_bounds": [
+            18,
+            12,
+            20,
+            14
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.6568881613627893
+            ],
+            [
+              0.7539880260729702
+            ]
+          ],
+          "source_bounds": [
+            18,
+            14,
+            20,
+            15
+          ],
+          "source_component_pixels": 2
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_78",
+      "parent_id": "decision_probe_78",
+      "actions": [
+        3,
+        3
+      ],
+      "quantum": 8,
+      "program_index": 19,
+      "source_pair": [
+        10,
+        28
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.28571428423592515,
+              0.0
+            ],
+            [
+              0.8571428768543267,
+              0.428571390134061
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 3
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.0,
+              0.3052145096862803
+            ],
+            [
+              0.26161221261910356,
+              0.9156435732781072
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 3
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.005325006173608416,
+              0.6944030781029635
+            ],
+            [
+              0.10654360863904364,
+              0.7116350672139133
+            ]
+          ],
+          "source_bounds": [
+            18,
+            2,
+            20,
+            4
+          ],
+          "source_component_pixels": 4
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.4414841418331141,
+              0.4218772277363907
+            ],
+            [
+              0.7073032860813925,
+              0.35613679776990204
+            ]
+          ],
+          "source_bounds": [
+            18,
+            0,
+            20,
+            2
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    },
+    {
+      "id": "variable_probe_79",
+      "parent_id": "decision_probe_79",
+      "actions": [
+        3,
+        3
+      ],
+      "quantum": 8,
+      "program_index": 19,
+      "source_pair": [
+        8,
+        17
+      ],
+      "readout_program": {
+        "op": "signed_patch_matches_and_offset",
+        "shape": [
+          21,
+          16
+        ],
+        "channels": [
+          "positive_strength",
+          "negative_strength",
+          "relative_x",
+          "relative_y"
+        ],
+        "positive": {
+          "kernel": [
+            [
+              0.9486832980505139
+            ],
+            [
+              0.31622776601683794
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "negative": {
+          "kernel": [
+            [
+              0.34340139455062096,
+              0.6181226315476476
+            ],
+            [
+              0.3434012160851359,
+              0.6181225601614535
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "random_positive": {
+          "kernel": [
+            [
+              0.5706487128351602
+            ],
+            [
+              0.8211942806300924
+            ]
+          ],
+          "source_bounds": [
+            14,
+            7,
+            16,
+            8
+          ],
+          "source_component_pixels": 2
+        },
+        "random_negative": {
+          "kernel": [
+            [
+              0.14661392319433145,
+              0.17105906249297906
+            ],
+            [
+              0.9131381318170657,
+              0.339737997413049
+            ]
+          ],
+          "source_bounds": [
+            0,
+            6,
+            2,
+            8
+          ],
+          "source_component_pixels": 4
+        },
+        "component_fraction": 0.25,
+        "match_tolerance": 1e-07,
+        "scope": "fragment_correspondences_not_object_identity"
+      }
+    }
+  ]
+}

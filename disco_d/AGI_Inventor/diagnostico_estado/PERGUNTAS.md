@@ -1,0 +1,7 @@
+# Segundo ensaio: síntese de intervenções
+
+Protocolo definido após ler o primeiro diagnóstico, antes de executar este segundo ensaio. Por isso é **exploratório e separado**: seus números não confirmam retroativamente a hipótese do primeiro.
+
+Hipótese: combinar dois trechos de ações disponíveis revela consequências que os quatro programas constantes deixam invisíveis. Cada programa composto executa uma ação por 32 passos e outra por 96; há 16 combinações, geradas sem nomes do jogo. Para cada estado pareado executamos todos os 16 a partir do mesmo snapshot. O custo de coleta inclui todos; tanto a seleção quanto o nulo aleatório veem o mesmo banco e dispõem do mesmo orçamento. Treino: episódios 0–3; seleção: 4–5; avaliação: 6–7. Não procurar outros tempos de troca após ler os resultados.
+
+Escolher quatro programas por busca exaustiva no treino: maximizar primeiro o número de estados com retornos distintos, depois a amplitude média. Entre empatados, escolher conjunto lexicograficamente primeiro. A seleção passa a validação apenas se produzir mais estados informativos que quatro ações constantes. O placebo compara 128 conjuntos aleatórios de quatro programas com a mesma biblioteca e as mesmas experiências. Métricas reservadas: estados informativos, amplitude de retorno, posição frente aos nulos. O desfecho de interesse é vantagem na avaliação independente; ganho só em treino/validação = superajuste. Não é um teste de planejamento geral nem de mente humana.

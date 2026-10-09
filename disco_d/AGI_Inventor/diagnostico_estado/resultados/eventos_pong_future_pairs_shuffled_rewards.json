@@ -1,0 +1,17 @@
+{
+  "mode": "transition",
+  "feature_reference": {
+    "path": "resultados/prospectiva_pong_future_pairs_corpo.npz",
+    "sha256": "3376fd5606da79b4304f12eaa8d212b71c42a4483cb9fb7e196370e9876f6dc2"
+  },
+  "timing": "after_action_observation_required",
+  "body": "design(phi_before,phi_after,mode)@coefficient[action]",
+  "parameters": "eventos_pong_future_pairs_shuffled_rewards.npz",
+  "metadata": {
+    "training_seed": 149,
+    "arm": "shuffled_rewards",
+    "training_transitions": 1963,
+    "diagnostic_not_agi": true
+  },
+  "not_human_level_or_exact_proof": true
+}

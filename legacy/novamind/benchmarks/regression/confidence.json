@@ -1,0 +1,8 @@
+{
+  "description": "Testa estabilidade da confianca rodando 10x a mesma query",
+  "runs": 10,
+  "query": "whale is mammal",
+  "expected_relation": "is_a",
+  "max_confidence_std": 0.15,
+  "categories": ["is_a", "has_property", "causes"]
+}

@@ -1,0 +1,10 @@
+[
+  {"premises": ["A>B", "B>C"], "query": "A>C", "expected": true, "min_confidence": 0.3},
+  {"premises": ["all mammals are animals", "whale is mammal"], "query": "whale is animal", "expected": true, "min_confidence": 0.4},
+  {"premises": ["all birds have feathers", "sparrow is bird"], "query": "sparrow has feathers", "expected": true, "min_confidence": 0.3},
+  {"premises": ["if it rains, ground gets wet", "it rained"], "query": "ground is wet", "expected": true, "min_confidence": 0.2},
+  {"premises": ["A causes B", "B causes C"], "query": "A causes C", "expected": true, "min_confidence": 0.2},
+  {"premises": ["all fish can swim", "whale is mammal"], "query": "whale can swim", "expected": false, "min_confidence": 0.0},
+  {"premises": ["metals conduct electricity", "copper is metal"], "query": "copper conducts electricity", "expected": true, "min_confidence": 0.3},
+  {"premises": ["plants need sunlight", "rose is plant"], "query": "rose needs sunlight", "expected": true, "min_confidence": 0.3}
+]

@@ -1,0 +1,2359 @@
+{
+ "braco": "PIPELINE",
+ "semente": 3004,
+ "lacrados": [
+  "q:rmin@15",
+  "q:varre@40",
+  "q:vmax@5"
+ ],
+ "linhas": [
+  {
+   "idx": 0,
+   "fase": 1,
+   "fam": "vortice",
+   "fonte": "relato:F",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 88.32419999999999,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 3,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-0.902 r^-2 r^ +0.104 r^-2*c0^1 r^ +0.094 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 1,
+   "fase": 1,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "sentido",
+   "ok": true,
+   "gasto": 2.2016,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "('1', 'c0')"
+  },
+  {
+   "idx": 2,
+   "fase": 1,
+   "fam": "mola",
+   "fonte": "relato:A",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.024000000000001,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.32 r^1 r^"
+  },
+  {
+   "idx": 3,
+   "fase": 1,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 16.7072,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-1.37 r^-2 r^ +0.0463 r^-4*c0^1 r^"
+  },
+  {
+   "idx": 4,
+   "fase": 1,
+   "fam": "vortice",
+   "fonte": "relato:F",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 23.390400000000003,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-1.15 r^-2 r^ +0.0788 r^-2*c0^1 r^ +0.0714 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 5,
+   "fase": 1,
+   "fam": "mola",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.024000000000001,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.14 r^1 r^"
+  },
+  {
+   "idx": 6,
+   "fase": 1,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 16.7072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-1.36 r^-2 r^ +0.0344 r^-4*c0^1 r^"
+  },
+  {
+   "idx": 7,
+   "fase": 1,
+   "fam": "einstein",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 16.7072,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.43 r^-2 r^ -0.0175 r^-2*v^3 r^"
+  },
+  {
+   "idx": 8,
+   "fase": 1,
+   "fam": "vortice",
+   "fonte": "relato:F",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 23.390400000000003,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-0.763 r^-2 r^ +0.0599 r^-2*c0^1 r^ +0.0488 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 9,
+   "fase": 1,
+   "fam": "arrasto",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 16.7072,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.756 r^-2 r^ -0.067 v^1 v^"
+  },
+  {
+   "idx": 10,
+   "fase": 1,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 16.7072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-0.71 r^-2 r^ +0.0511 r^-4*c0^1 r^"
+  },
+  {
+   "idx": 11,
+   "fase": 1,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.024000000000001,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.29 r^-2 r^"
+  },
+  {
+   "idx": 12,
+   "fase": 1,
+   "fam": "vortice",
+   "fonte": "relato:F",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 23.390400000000003,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-1.52 r^-2 r^ +0.0615 r^-2*c0^1 r^ +0.0537 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 13,
+   "fase": 1,
+   "fam": "arrasto",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 16.7072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.18 r^-2 r^ -0.0577 v^1 v^"
+  },
+  {
+   "idx": 14,
+   "fase": 1,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "raio_cresce",
+   "ok": true,
+   "gasto": 85.60119999999999,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 5,
+   "usados": [],
+   "desc": "('1', 'vr')"
+  },
+  {
+   "idx": 15,
+   "fase": 1,
+   "fam": "vortice",
+   "fonte": "relato:F",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 23.390400000000003,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-1.04 r^-2 r^ +0.0634 r^-2*c0^1 r^ +0.0545 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 16,
+   "fase": 1,
+   "fam": "mola",
+   "fonte": "relato:A",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.024000000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.22 r^1 r^"
+  },
+  {
+   "idx": 17,
+   "fase": 1,
+   "fam": "einstein",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 16.7072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.15 r^-2 r^ -0.0576 r^-2*v^1 r^"
+  },
+  {
+   "idx": 18,
+   "fase": 1,
+   "fam": "mola",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.024000000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.844 r^1 r^"
+  },
+  {
+   "idx": 19,
+   "fase": 1,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.024000000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.761 r^-2 r^"
+  },
+  {
+   "idx": 20,
+   "fase": 1,
+   "fam": "mola",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.024000000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.775 r^1 r^"
+  },
+  {
+   "idx": 21,
+   "fase": 1,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 16.7072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-1.56 r^-2 r^ +0.0579 r^-4*c0^1 r^"
+  },
+  {
+   "idx": 22,
+   "fase": 1,
+   "fam": "einstein",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 16.7072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.26 r^-2 r^ -0.0635 r^-2*v^1 r^"
+  },
+  {
+   "idx": 23,
+   "fase": 1,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 16.7072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-1.25 r^-2 r^ +0.0416 r^-4*c0^1 r^"
+  },
+  {
+   "idx": 24,
+   "fase": 1,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.024000000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.734 r^-2 r^"
+  },
+  {
+   "idx": 25,
+   "fase": 1,
+   "fam": "mola",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.024000000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.18 r^1 r^"
+  },
+  {
+   "idx": 26,
+   "fase": 1,
+   "fam": "oblato",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 16.7072,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.708 r^-2 r^ -0.0536 r^-3 r^"
+  },
+  {
+   "idx": 27,
+   "fase": 1,
+   "fam": "kepler",
+   "fonte": "relato:A",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.024000000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.3 r^-2 r^"
+  },
+  {
+   "idx": 28,
+   "fase": 1,
+   "fam": "oblato",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 110.89840000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 11,
+   "usados": [
+    "episodio:30",
+    "episodio:36",
+    "episodio:41"
+   ],
+   "desc": "-0.771 r^-2 r^ -0.0332 r^-4 r^ +0.0112 r^-2*v^1 r^"
+  },
+  {
+   "idx": 29,
+   "fase": 1,
+   "fam": "arrasto",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 16.7072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.47 r^-2 r^ -0.0558 v^1 v^"
+  },
+  {
+   "idx": 30,
+   "fase": 1,
+   "fam": "oblato",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 16.7072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.41 r^-2 r^ -0.0352 r^-3*v^-1 r^"
+  },
+  {
+   "idx": 31,
+   "fase": 1,
+   "fam": "einstein",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 16.7072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.45 r^-2 r^ -0.0201 r^-2*v^3 r^"
+  },
+  {
+   "idx": 32,
+   "fase": 1,
+   "fam": "mola",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "sentido",
+   "ok": true,
+   "gasto": 2.2016,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "('1', 'c0')"
+  },
+  {
+   "idx": 33,
+   "fase": 1,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.024000000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.45 r^-2 r^"
+  },
+  {
+   "idx": 34,
+   "fase": 1,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "raio_cresce",
+   "ok": true,
+   "gasto": 85.0444,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 5,
+   "usados": [],
+   "desc": "('1', 'vr')"
+  },
+  {
+   "idx": 35,
+   "fase": 1,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "sentido",
+   "ok": true,
+   "gasto": 2.2016,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "('1', 'c0')"
+  },
+  {
+   "idx": 36,
+   "fase": 1,
+   "fam": "arrasto",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 16.7072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.06 r^-2 r^ -0.0443 v^1 v^"
+  },
+  {
+   "idx": 37,
+   "fase": 1,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 16.7072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-1.17 r^-2 r^ +0.067 r^-4*c0^1 r^"
+  },
+  {
+   "idx": 38,
+   "fase": 1,
+   "fam": "kepler",
+   "fonte": "relato:A",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.024000000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.46 r^-2 r^"
+  },
+  {
+   "idx": 39,
+   "fase": 1,
+   "fam": "oblato",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 16.7072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.07 r^-2 r^ +0.0323 r^-1 r^"
+  },
+  {
+   "idx": 40,
+   "fase": 2,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 16.7312,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 4,
+   "usados": [
+    "conceito:1",
+    "lei:9"
+   ],
+   "desc": "-0.792 r^-2 r^ +0.0627 r^-4*c0^1 r^"
+  },
+  {
+   "idx": 41,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.024000000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.723 r^-2 r^"
+  },
+  {
+   "idx": 42,
+   "fase": 2,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 16.7072,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-0.6 r^-2 r^ -0.00085 v^-3*c0^1 r^"
+  },
+  {
+   "idx": 43,
+   "fase": 2,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "sentido",
+   "ok": true,
+   "gasto": 2.2016,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "('1', 'c0')"
+  },
+  {
+   "idx": 44,
+   "fase": 2,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "escapa",
+   "ok": false,
+   "gasto": 2.2016,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "('2', 'r', 'v')"
+  },
+  {
+   "idx": 45,
+   "fase": 2,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 147.67360000000005,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 12,
+   "usados": [
+    "conceito:1",
+    "episodio:62",
+    "episodio:66",
+    "episodio:69"
+   ],
+   "desc": "-0.858 r^-2 r^ -0.027 r^-4*c0^1 r^ -0.00209 v^-3*c0^1 r^"
+  },
+  {
+   "idx": 46,
+   "fase": 2,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 311.35280000000006,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 11,
+   "usados": [
+    "conceito:1",
+    "episodio:62",
+    "episodio:66",
+    "episodio:79"
+   ],
+   "desc": "-1.34 r^-2 r^ +0.0453 r^-4*c0^1 r^ +0.0334 v^3*c0^1 r^ -0.0182 v^-2*vr^1 t^ -0.177 r^-2*c0^1 r^"
+  },
+  {
+   "idx": 47,
+   "fase": 2,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "escapa",
+   "ok": false,
+   "gasto": 2.2016,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "('1', 'v')"
+  },
+  {
+   "idx": 48,
+   "fase": 2,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 30.073600000000006,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-0.8 r^-2 r^ -0.0737 r^-2*c0^1 r^ +0.044 v^4*c0^1 r^ -0.025 vr^1 t^"
+  },
+  {
+   "idx": 49,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.024000000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.37 r^-2 r^"
+  },
+  {
+   "idx": 50,
+   "fase": 2,
+   "fam": "mola",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.024000000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.921 r^1 r^"
+  },
+  {
+   "idx": 51,
+   "fase": 2,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 16.7312,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 4,
+   "usados": [
+    "conceito:1",
+    "lei:9"
+   ],
+   "desc": "-1.45 r^-2 r^ +0.0561 r^-4*c0^1 r^"
+  },
+  {
+   "idx": 52,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "escapa",
+   "ok": true,
+   "gasto": 2.2016,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "('2', 'r', 'v')"
+  },
+  {
+   "idx": 53,
+   "fase": 2,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 304.6776000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 11,
+   "usados": [
+    "conceito:1",
+    "episodio:79",
+    "episodio:80",
+    "episodio:83"
+   ],
+   "desc": "-0.737 r^-2 r^ -0.0677 r^-2*c0^1 r^ +0.0703 r^-3*c0^3 r^ -0.0496 r^-3*vr^1 t^ +0.00115 r^-3*v^-4 r^ -0.00179 v^-3*vr^1 t^ -0.00186 v^-2*c0^1 r^ -0.0212 v^4 r^"
+  },
+  {
+   "idx": 54,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "escapa",
+   "ok": true,
+   "gasto": 88.4342,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 5,
+   "usados": [
+    "conceito:101"
+   ],
+   "desc": "('1', 'c100')"
+  },
+  {
+   "idx": 55,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "periapse_direita",
+   "ok": false,
+   "gasto": 5.7584,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 4,
+   "usados": [],
+   "desc": "('1', 'y')"
+  },
+  {
+   "idx": 56,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "periapse_direita",
+   "ok": false,
+   "gasto": 5.7584,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 4,
+   "usados": [],
+   "desc": "('2', 'vr', 'vx')"
+  },
+  {
+   "idx": 57,
+   "fase": 2,
+   "fam": "einstein",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 31.1072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.34 r^-2 r^ -0.0421 r^-2*v^2 r^"
+  },
+  {
+   "idx": 58,
+   "fase": 2,
+   "fam": "oblato",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 31.1072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:101"
+   ],
+   "desc": "-0.887 r^-2 r^ -0.365 r^-4*c100^-1 r^"
+  },
+  {
+   "idx": 59,
+   "fase": 2,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 43.550399999999996,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1",
+    "conceito:101"
+   ],
+   "desc": "-1.38 r^-2 r^ -0.00139 c0^1*c100^2 r^ -0.00749 vr^1*c100^1 t^"
+  },
+  {
+   "idx": 60,
+   "fase": 2,
+   "fam": "arrasto",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 31.1072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.942 r^-2 r^ -0.0405 v^1 v^"
+  },
+  {
+   "idx": 61,
+   "fase": 2,
+   "fam": "vortice",
+   "fonte": "relato:F",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 43.550399999999996,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-1.07 r^-2 r^ +0.0937 r^-2*c0^1 r^ +0.0807 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 62,
+   "fase": 2,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 31.1072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-1.2 r^-2 r^ +0.0463 r^-4*c0^1 r^"
+  },
+  {
+   "idx": 63,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "raio_cresce",
+   "ok": true,
+   "gasto": 2.8192,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "('1', 'vr')"
+  },
+  {
+   "idx": 64,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 18.663999999999998,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.17 r^-2 r^"
+  },
+  {
+   "idx": 65,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "relato:A",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 18.663999999999998,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.751 r^-2 r^"
+  },
+  {
+   "idx": 66,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "periapse_direita",
+   "ok": false,
+   "gasto": 5.7584,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 4,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "('1', 'c0')"
+  },
+  {
+   "idx": 67,
+   "fase": 2,
+   "fam": "mola",
+   "fonte": "relato:A",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 14.344000000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.43 r^1 r^"
+  },
+  {
+   "idx": 68,
+   "fase": 2,
+   "fam": "vortice",
+   "fonte": "relato:F",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 43.550399999999996,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-1.27 r^-2 r^ +0.0752 r^-2*c0^1 r^ +0.0722 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 69,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "periapse_direita",
+   "ok": false,
+   "gasto": 5.7584,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 4,
+   "usados": [],
+   "desc": "('1', 'x')"
+  },
+  {
+   "idx": 70,
+   "fase": 2,
+   "fam": "oblato",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 31.1072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.05 r^-2 r^ -0.0178 r^-4 r^"
+  },
+  {
+   "idx": 71,
+   "fase": 2,
+   "fam": "mola",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 14.344000000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.04 r^1 r^"
+  },
+  {
+   "idx": 72,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 18.663999999999998,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.47 r^-2 r^"
+  },
+  {
+   "idx": 73,
+   "fase": 2,
+   "fam": "einstein",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 31.1072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-0.925 r^-2 r^ -0.0335 r^-4*c0^2 r^"
+  },
+  {
+   "idx": 74,
+   "fase": 2,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "sentido",
+   "ok": true,
+   "gasto": 2.8192,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "('1', 'c0')"
+  },
+  {
+   "idx": 75,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "escapa",
+   "ok": true,
+   "gasto": 2.8192,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:101"
+   ],
+   "desc": "('1', 'c100')"
+  },
+  {
+   "idx": 76,
+   "fase": 2,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 31.1072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-1.01 r^-2 r^ +0.0397 r^-4*c0^1 r^"
+  },
+  {
+   "idx": 77,
+   "fase": 2,
+   "fam": "arrasto",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 31.1072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.772 r^-2 r^ -0.0539 v^1 v^"
+  },
+  {
+   "idx": 78,
+   "fase": 2,
+   "fam": "vortice",
+   "fonte": "relato:F",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 55.99359999999999,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-0.918 r^-2 r^ +0.0611 r^-2*c0^1 r^ +0.0623 r^-1*vr^1 t^ -0.00654 v^1 r^"
+  },
+  {
+   "idx": 79,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "sentido",
+   "ok": true,
+   "gasto": 2.8192,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "('1', 'c0')"
+  },
+  {
+   "idx": 80,
+   "fase": 3,
+   "fam": "ciclotron",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 43.0336,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "+0.973 r^-1*c0^1 r^ +0.869 vr^1 t^ -0.179 v^1 r^ +0.0931 v^2 r^"
+  },
+  {
+   "idx": 81,
+   "fase": 3,
+   "fam": "ciclotron",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 43.0336,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "+0.968 r^-1*c0^1 r^ +0.863 vr^1 t^ -0.0446 v^1 r^ -0.0343 v^-1 r^"
+  },
+  {
+   "idx": 82,
+   "fase": 3,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "sentido",
+   "ok": true,
+   "gasto": 2.8192,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "('1', 'c0')"
+  },
+  {
+   "idx": 83,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:vmax@5",
+   "ok": false,
+   "gasto": 5.7584,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": false,
+   "acoes": 4,
+   "usados": [],
+   "desc": "('1', 'r')"
+  },
+  {
+   "idx": 84,
+   "fase": 3,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 31.1072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-1.18 r^-2 r^ +0.0405 r^-4*c0^1 r^"
+  },
+  {
+   "idx": 85,
+   "fase": 3,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:varre@40",
+   "ok": true,
+   "gasto": 5.7584,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": true,
+   "acoes": 4,
+   "usados": [
+    "conceito:101"
+   ],
+   "desc": "('1', 'c100')"
+  },
+  {
+   "idx": 86,
+   "fase": 3,
+   "fam": "vortice",
+   "fonte": "relato:F",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 43.550399999999996,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-1.13 r^-2 r^ +0.085 r^-2*c0^1 r^ +0.0808 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 87,
+   "fase": 3,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 43.550399999999996,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1",
+    "conceito:101"
+   ],
+   "desc": "-1.18 r^-2 r^ -0.00127 c0^1*c100^2 r^ -0.00857 vr^1*c100^1 t^"
+  },
+  {
+   "idx": 88,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:rmin@15",
+   "ok": false,
+   "gasto": 2.8192,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": false,
+   "acoes": 1,
+   "usados": [],
+   "desc": "('1', 'r')"
+  },
+  {
+   "idx": 89,
+   "fase": 3,
+   "fam": "ciclotron",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 43.0336,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "+1.27 r^-1*c0^1 r^ +1.13 vr^1 t^ -0.187 v^-1 r^ +0.0784 v^-2 r^"
+  },
+  {
+   "idx": 90,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 18.663999999999998,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.48 r^-2 r^"
+  },
+  {
+   "idx": 91,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 18.663999999999998,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.22 r^-2 r^"
+  },
+  {
+   "idx": 92,
+   "fase": 3,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 43.550399999999996,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1",
+    "conceito:101"
+   ],
+   "desc": "-0.74 r^-2 r^ -0.000614 c0^1*c100^2 r^ -0.00456 vr^1*c100^1 t^"
+  },
+  {
+   "idx": 93,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:vmax@5",
+   "ok": false,
+   "gasto": 5.7584,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": false,
+   "acoes": 4,
+   "usados": [],
+   "desc": "('1', 'r')"
+  },
+  {
+   "idx": 94,
+   "fase": 3,
+   "fam": "ciclotron",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 43.0336,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "+0.705 r^-1*c0^1 r^ +0.631 vr^1 t^ -0.125 v^1 r^ +0.0632 v^2 r^"
+  },
+  {
+   "idx": 95,
+   "fase": 3,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "escapa",
+   "ok": false,
+   "gasto": 2.8192,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:101"
+   ],
+   "desc": "('1', 'c100')"
+  },
+  {
+   "idx": 96,
+   "fase": 3,
+   "fam": "oblato",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 31.1072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.51 r^-2 r^ -0.0231 r^-4 r^"
+  },
+  {
+   "idx": 97,
+   "fase": 3,
+   "fam": "vortice",
+   "fonte": "relato:F",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 43.5624,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 2,
+   "usados": [
+    "conceito:1",
+    "lei:4"
+   ],
+   "desc": "-1.46 r^-2 r^ +0.0875 r^-2*c0^1 r^ +0.0812 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 98,
+   "fase": 3,
+   "fam": "mola",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 14.344000000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.25 r^1 r^"
+  },
+  {
+   "idx": 99,
+   "fase": 3,
+   "fam": "einstein",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 31.1072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:101"
+   ],
+   "desc": "-1.11 r^-2 r^ -0.00362 v^4*c100^1 r^"
+  },
+  {
+   "idx": 100,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:varre@40",
+   "ok": true,
+   "gasto": 5.7584,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": true,
+   "acoes": 4,
+   "usados": [
+    "conceito:101"
+   ],
+   "desc": "('1', 'c100')"
+  },
+  {
+   "idx": 101,
+   "fase": 3,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 31.1072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-0.917 r^-2 r^ +0.0468 r^-4*c0^1 r^"
+  },
+  {
+   "idx": 102,
+   "fase": 3,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 305.47599999999994,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 11,
+   "usados": [
+    "conceito:1",
+    "conceito:101",
+    "episodio:150",
+    "episodio:153",
+    "episodio:163"
+   ],
+   "desc": "-1.38 r^-2 r^ -0.00139 c0^1*c100^2 r^ -0.00217 v^4*c100^1 r^ -0.00631 vr^1*c100^1 t^"
+  },
+  {
+   "idx": 103,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "periapse_direita",
+   "ok": false,
+   "gasto": 5.7584,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 4,
+   "usados": [],
+   "desc": "('1', 'x')"
+  },
+  {
+   "idx": 104,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 18.663999999999998,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.48 r^-2 r^"
+  },
+  {
+   "idx": 105,
+   "fase": 3,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 55.99359999999999,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1",
+    "conceito:101"
+   ],
+   "desc": "-0.791 r^-2 r^ -0.000966 c0^1*c100^2 r^ -0.00365 vr^1*c100^1 t^ +0.0322 r^-3*c0^1 r^"
+  },
+  {
+   "idx": 106,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 18.663999999999998,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.863 r^-2 r^"
+  },
+  {
+   "idx": 107,
+   "fase": 3,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:varre@40",
+   "ok": true,
+   "gasto": 5.7584,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": false,
+   "acoes": 4,
+   "usados": [
+    "conceito:101"
+   ],
+   "desc": "('1', 'c100')"
+  },
+  {
+   "idx": 108,
+   "fase": 3,
+   "fam": "arrasto",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 31.1072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.42 r^-2 r^ -0.029 v^1 v^"
+  },
+  {
+   "idx": 109,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:varre@40",
+   "ok": false,
+   "gasto": 2.8192,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": false,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "('1', 'c0')"
+  },
+  {
+   "idx": 110,
+   "fase": 3,
+   "fam": "einstein",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 31.1072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-1.44 r^-2 r^ -0.0236 r^-4*c0^2 r^"
+  },
+  {
+   "idx": 111,
+   "fase": 3,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:vmax@5",
+   "ok": false,
+   "gasto": 5.7584,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": false,
+   "acoes": 4,
+   "usados": [],
+   "desc": "('1', 'r')"
+  },
+  {
+   "idx": 112,
+   "fase": 3,
+   "fam": "mola",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 14.344000000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.1 r^1 r^"
+  },
+  {
+   "idx": 113,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:rmin@15",
+   "ok": false,
+   "gasto": 2.8192,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": false,
+   "acoes": 1,
+   "usados": [],
+   "desc": "('1', 'r')"
+  },
+  {
+   "idx": 114,
+   "fase": 3,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:rmin@15",
+   "ok": false,
+   "gasto": 5.7584,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": false,
+   "acoes": 4,
+   "usados": [],
+   "desc": "('1', 'r')"
+  },
+  {
+   "idx": 115,
+   "fase": 3,
+   "fam": "ciclotron",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 43.0336,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "+1.05 r^-1*c0^1 r^ +0.928 vr^1 t^ -0.0499 v^1 r^ -0.0359 v^-1 r^"
+  },
+  {
+   "idx": 116,
+   "fase": 3,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:vmax@5",
+   "ok": false,
+   "gasto": 5.7584,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": false,
+   "acoes": 4,
+   "usados": [],
+   "desc": "('1', 'y')"
+  },
+  {
+   "idx": 117,
+   "fase": 3,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:rmin@15",
+   "ok": false,
+   "gasto": 2.8192,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": false,
+   "acoes": 1,
+   "usados": [],
+   "desc": "('1', 'r')"
+  },
+  {
+   "idx": 118,
+   "fase": 3,
+   "fam": "ciclotron",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 43.0336,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "+0.841 r^-1*c0^1 r^ +0.747 vr^1 t^ -0.034 v^-1 r^ -0.0368 v^1 r^"
+  },
+  {
+   "idx": 119,
+   "fase": 3,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 31.1072,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [
+    "conceito:1"
+   ],
+   "desc": "-0.998 r^-2 r^ +0.0424 r^-4*c0^1 r^"
+  }
+ ],
+ "segundos": 7.834398031234741,
+ "n_estruturas": 36,
+ "tipos": {
+  "conceito": 2,
+  "op": 16,
+  "episodio": 12,
+  "lei": 6
+ },
+ "prof_max": 1,
+ "T_final": 0.25,
+ "tau": {},
+ "fontes": {
+  "percebido": 0.9,
+  "relato:F": 0.4946292307570914,
+  "relato:A": 0.4988712485501452
+ },
+ "escopos": [
+  {
+   "id": "op:forma",
+   "tipo": "op",
+   "n": 37,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "spin_orbita",
+    "vortice"
+   ],
+   "desc": "op:forma"
+  },
+  {
+   "id": "op:ajustar_base",
+   "tipo": "op",
+   "n": 87,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "arrasto",
+    "ciclotron",
+    "einstein",
+    "kepler",
+    "magnetico",
+    "mola",
+    "oblato",
+    "spin_orbita",
+    "vortice"
+   ],
+   "desc": "op:ajustar_base"
+  },
+  {
+   "id": "op:ajustar_ctx",
+   "tipo": "op",
+   "n": 5,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "oblato"
+   ],
+   "desc": "op:ajustar_ctx"
+  },
+  {
+   "id": "op:ajustar_novos",
+   "tipo": "op",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "vortice"
+   ],
+   "desc": "op:ajustar_novos"
+  },
+  {
+   "id": "op:juntar",
+   "tipo": "op",
+   "n": 15,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [],
+   "desc": "op:juntar"
+  },
+  {
+   "id": "op:inventar",
+   "tipo": "op",
+   "n": 4,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [],
+   "desc": "op:inventar"
+  },
+  {
+   "id": "op:reajustar",
+   "tipo": "op",
+   "n": 29,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [],
+   "desc": "op:reajustar"
+  },
+  {
+   "id": "op:derivar",
+   "tipo": "op",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [],
+   "desc": "op:derivar"
+  },
+  {
+   "id": "op:prever_ctx",
+   "tipo": "op",
+   "n": 49,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "kepler",
+    "magnetico",
+    "mola",
+    "spin_orbita"
+   ],
+   "desc": "op:prever_ctx"
+  },
+  {
+   "id": "op:prever_novos",
+   "tipo": "op",
+   "n": 3,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": "op:prever_novos"
+  },
+  {
+   "id": "op:confiar",
+   "tipo": "op",
+   "n": 88,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "arrasto",
+    "ciclotron",
+    "einstein",
+    "kepler",
+    "magnetico",
+    "mola",
+    "oblato",
+    "spin_orbita"
+   ],
+   "desc": "op:confiar"
+  },
+  {
+   "id": "conceito:1",
+   "tipo": "conceito",
+   "n": 120,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "ciclotron",
+    "einstein",
+    "kepler",
+    "magnetico",
+    "mola",
+    "spin_orbita",
+    "vortice"
+   ],
+   "desc": {
+    "suporte": [
+     [
+      "r"
+     ],
+     [
+      "x",
+      "vy"
+     ],
+     [
+      "y",
+      "vx"
+     ]
+    ],
+    "prof": 1
+   }
+  },
+  {
+   "id": "lei:4",
+   "tipo": "lei",
+   "n": 16,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "vortice"
+   ],
+   "desc": {
+    "lei": "-0.902 r^-2 r^ +0.104 r^-2*c0^1 r^ +0.094 r^-1*vr^1 t^"
+   }
+  },
+  {
+   "id": "lei:7",
+   "tipo": "lei",
+   "n": 18,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "mola"
+   ],
+   "desc": {
+    "lei": "-1.32 r^1 r^"
+   }
+  },
+  {
+   "id": "lei:9",
+   "tipo": "lei",
+   "n": 18,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "spin_orbita"
+   ],
+   "desc": {
+    "lei": "-1.37 r^-2 r^ +0.0463 r^-4*c0^1 r^"
+   }
+  },
+  {
+   "id": "lei:14",
+   "tipo": "lei",
+   "n": 7,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "einstein"
+   ],
+   "desc": {
+    "lei": "-1.43 r^-2 r^ -0.0175 r^-2*v^3 r^"
+   }
+  },
+  {
+   "id": "lei:17",
+   "tipo": "lei",
+   "n": 12,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "arrasto"
+   ],
+   "desc": {
+    "lei": "-0.756 r^-2 r^ -0.067 v^1 v^"
+   }
+  },
+  {
+   "id": "lei:20",
+   "tipo": "lei",
+   "n": 20,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {
+    "lei": "-1.29 r^-2 r^"
+   }
+  },
+  {
+   "id": "conceito:101",
+   "tipo": "conceito",
+   "n": 66,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "einstein",
+    "kepler",
+    "magnetico"
+   ],
+   "desc": {
+    "suporte": [
+     [
+      "1/r"
+     ],
+     [
+      "vx",
+      "vx"
+     ],
+     [
+      "vy",
+      "vy"
+     ]
+    ],
+    "prof": 1
+   }
+  }
+ ]
+}

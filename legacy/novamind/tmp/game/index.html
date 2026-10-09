@@ -1,0 +1,104 @@
+<!doctype html><html><head><meta charset="utf-8"><title>NovaMind — Mundo das AGIs</title>
+<style>
+ *{box-sizing:border-box}body{margin:0;background:#070910;color:#cdd6e4;font:13px system-ui;overflow:hidden}
+ #wrap{display:flex;height:100vh}#cvwrap{position:relative;flex:1}#cv{display:block;width:100%;height:100%;background:#040608;cursor:grab}
+ #cv:active{cursor:grabbing}#hud{position:absolute;left:10px;bottom:10px;background:rgba(8,12,20,.88);border:1px solid #2c3a50;border-radius:8px;padding:8px 12px;display:none;font-size:13px}
+ #wx{position:absolute;right:10px;top:10px;background:rgba(8,12,20,.7);border-radius:8px;padding:4px 10px}
+ #panel{width:300px;padding:12px;overflow-y:auto;background:#0a0d14;border-left:1px solid #1c2636}
+ h3{margin:6px 0;color:#7fd1ff}h4{margin:10px 0 4px;color:#9ab}
+ button{background:#1b2330;color:#cdd6e4;border:1px solid #2c3a50;border-radius:6px;padding:5px 8px;margin:2px;cursor:pointer;font-size:12px}
+ button.on{background:#2b6cb0;border-color:#3b82f6}button:hover{border-color:#4b6}
+ input[type=range]{width:150px;vertical-align:middle}small{color:#7a89a0}
+ .bar{height:9px;background:#16202e;border-radius:4px;overflow:hidden;display:inline-block;width:100px;vertical-align:middle}.bar>i{display:block;height:100%}.k{display:inline-block;width:54px;color:#8aa}
+ canvas.mini{background:#0d1320;border-radius:5px;margin-top:3px}
+</style></head><body><div id="wrap">
+<div id="cvwrap"><canvas id="cv"></canvas><div id="wx">☀️</div><div id="hud"></div></div>
+<div id="panel">
+ <h3>🌍 NovaMind — Mundo das AGIs</h3><div id="stats" style="font-variant-numeric:tabular-nums"></div>
+ <h4>🧠 Córtex — o Maestro governa a elite</h4>
+ <div id="cxbox" style="background:#0c1626;border:1px solid #24405e;border-radius:7px;padding:7px 9px;font-size:12px">
+   <button id="cxbtn" class="on" onclick="toggleCx()">maestro: ON</button>
+   <div id="cxinfo" style="margin-top:5px;line-height:1.5"></div>
+ </div>
+ <small>O maestro lê os elite, <b>propõe um objetivo</b> (viés top-down), aprende qual ajuda (afeto+memória) e dá <b>surto-DMT</b> quando trava. Sem trapaça: a rede do NPC ainda decide.</small>
+ <h4>⏱ Tempo</h4><button onclick="spd(0)">⏸</button><button onclick="spd(1)">▶</button><button onclick="spd(8)">»»</button><button onclick="spd(40)">⏩turbo</button>
+ <h4>🔍 Zoom</h4><button onclick="zm(1.3)">＋</button><button onclick="zm(0.77)">－</button><button onclick="zoom=1;cam.x=0;cam.y=0">↺ ajustar</button> <small>roda=zoom · arraste=mover</small>
+ <h4>🧠 Frequência cerebral</h4><input type="range" min="0.1" max="4" step="0.1" value="1" oninput="freq(this.value)"><span id="fv">1.0</span>
+ <h4>🖱 Colocar (clique)</h4>
+ <button class="pl on" onclick="pk(this,'food')">🍃</button><button class="pl" onclick="pk(this,'rich')">🌾</button>
+ <button class="pl" onclick="pk(this,'mat0')">🔴</button><button class="pl" onclick="pk(this,'mat1')">🟢</button><button class="pl" onclick="pk(this,'mat2')">🔵</button>
+ <button class="pl" onclick="pk(this,'gold')">💰</button><button class="pl" onclick="pk(this,'spawn')">＋ag</button>
+ <button class="pl" onclick="pk(this,'brick')">🧱tijolo</button><button class="pl" onclick="pk(this,'erase')">🧹</button><button class="pl" onclick="pk(this,'cataclysm')">☄</button>
+ <h4>🎮 Jogar como um deles</h4><button onclick="ctl({action:'spawn_player'})">entrar</button><button onclick="cam.follow=!cam.follow">📷 seguir</button>
+ <br><small>WASD mover·E come·P pega·C cria·T troca·F fala·B constrói·K ataca·G doa</small>
+ <h4>💹 Mercado</h4><div id="market"></div>
+ <h4>📈 História</h4>
+ <div><span class="k">pop</span><canvas class="mini" id="gpop" width="150" height="30"></canvas></div>
+ <div><span class="k">riqueza</span><canvas class="mini" id="gw" width="150" height="30"></canvas></div>
+ <div><span class="k">empatia</span><canvas class="mini" id="ge" width="150" height="30"></canvas></div>
+ <div class="row"><button onclick="ctl({action:'reset'});tdirty=true">↺ novo mundo</button></div>
+ <small>tribos:<span style="color:#ff6b6b">■</span><span style="color:#4dd2a0">■</span><span style="color:#6aa6ff">■</span><span style="color:#e6c84d">■</span> · ⚔guerra 🧱constrói ❤doa · chuva→sem abrigo perde HP</small>
+</div></div>
+<script>
+const TRIBE=['#ff6b6b','#4dd2a0','#6aa6ff','#e6c84d'],BIOME=[[31,58,36],[15,30,60],[74,68,55],[20,64,40]],MATC=['#ff5555','#55dd66','#5599ff'];
+let cv=document.getElementById('cv'),ctx=cv.getContext('2d'),placeKind='food';
+let cur=null,prev={},curt=0,hist={pop:[],w:[],e:[]},zoom=1,cam={x:0,y:0,follow:false};
+let terCanvas=null,blkCanvas=null,tdirty=true,lastBlocks=-1,G=110;
+function fit(){cv.width=cv.parentElement.clientWidth;cv.height=cv.parentElement.clientHeight}window.onresize=fit;fit();
+async function ctl(o){await fetch('/control',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(o)})}
+function spd(v){ctl({action:'speed',v})}function freq(v){document.getElementById('fv').textContent=(+v).toFixed(1);ctl({action:'freq',v})}
+let cxOn=true,eliteSet=new Set();
+function toggleCx(){cxOn=!cxOn;let b=document.getElementById('cxbtn');b.textContent='maestro: '+(cxOn?'ON':'OFF');b.classList.toggle('on',cxOn);ctl({action:'cortex',v:cxOn})}
+function pk(b,k){placeKind=k;document.querySelectorAll('.pl').forEach(e=>e.classList.remove('on'));b.classList.add('on')}
+function zm(f){let cx=cv.width/2,cy=cv.height/2;zoomAt(cx,cy,f)}
+function base(){return Math.min(cv.width,cv.height)/G}
+function cell(){return base()*zoom}
+function zoomAt(sx,sy,f){let wx=(sx+cam.x)/cell(),wy=(sy+cam.y)/cell();zoom=Math.max(1,Math.min(14,zoom*f));cam.x=wx*cell()-sx;cam.y=wy*cell()-sy;clampCam()}
+function clampCam(){let w=G*cell();cam.x=Math.max(-20,Math.min(w-cv.width+20,cam.x));cam.y=Math.max(-20,Math.min(w-cv.height+20,cam.y))}
+cv.addEventListener('wheel',e=>{e.preventDefault();zoomAt(e.offsetX,e.offsetY,e.deltaY<0?1.15:0.87)},{passive:false});
+let drag=null;cv.addEventListener('mousedown',e=>drag={x:e.clientX,y:e.clientY,cx:cam.x,cy:cam.y,moved:0});
+addEventListener('mousemove',e=>{if(drag){cam.x=drag.cx-(e.clientX-drag.x);cam.y=drag.cy-(e.clientY-drag.y);drag.moved+=Math.abs(e.movementX)+Math.abs(e.movementY);clampCam()}});
+addEventListener('mouseup',e=>{if(drag&&drag.moved<4){let c=cell();let gx=Math.floor((e.offsetX+cam.x)/c),gy=Math.floor((e.offsetY+cam.y)/c);if(gx>=0&&gy>=0&&gx<G&&gy<G)ctl({action:'place',x:gx,y:gy,kind:placeKind})}drag=null});
+const KMAP={ArrowUp:0,w:0,W:0,ArrowDown:1,s:1,S:1,ArrowRight:2,d:2,D:2,ArrowLeft:3,a:3,A:3,e:4,E:4,p:5,P:5,c:6,C:6,f:7,F:7,t:8,T:8,k:9,K:9,b:10,B:10,g:11,G:11};
+addEventListener('keydown',e=>{if(e.key in KMAP){ctl({action:'player_move',v:KMAP[e.key]});e.preventDefault()}});
+function buildTerrain(s){G=s.G;terCanvas=document.createElement('canvas');terCanvas.width=G;terCanvas.height=G;let tx=terCanvas.getContext('2d'),T=s.terr,n=T.length,im=tx.createImageData(G,G);
+ for(let i=0;i<G;i++)for(let j=0;j<G;j++){let b=BIOME[T[(i*n/G)|0][(j*n/G)|0]];let o=(i*G+j)*4;im.data[o]=b[0];im.data[o+1]=b[1];im.data[o+2]=b[2];im.data[o+3]=255}tx.putImageData(im,0,0)}
+function buildBlocks(s){blkCanvas=document.createElement('canvas');blkCanvas.width=G;blkCanvas.height=G;let bx=blkCanvas.getContext('2d');bx.fillStyle='#c8884b';for(let k=0;k<s.blk.length;k++)bx.fillRect(s.blk[k][1],s.blk[k][0],1,1);lastBlocks=s.blocks}
+async function poll(){try{let s=await(await fetch('/state')).json();prev={};if(cur)cur.id.forEach((id,i)=>prev[id]=[cur.ax[i],cur.ay[i]]);curt=performance.now();
+ if(tdirty||!terCanvas){buildTerrain(s);tdirty=false}if(s.blocks!==lastBlocks)buildBlocks(s);cur=s;
+ if(s.tick%2==0){push(hist.pop,s.pop);push(hist.w,s.wealth);push(hist.e,s.empathy)}upd(s)}catch(e){}setTimeout(poll,130)}
+function push(a,v){a.push(v);if(a.length>120)a.shift()}
+function mini(id,a,c){let x=document.getElementById(id).getContext('2d');x.clearRect(0,0,150,30);if(a.length<2)return;let mx=Math.max(...a),mn=Math.min(...a);x.strokeStyle=c;x.beginPath();a.forEach((v,i)=>{let px=i/(a.length-1)*150,py=29-(v-mn)/(mx-mn+1e-6)*28;i?x.lineTo(px,py):x.moveTo(px,py)});x.stroke()}
+function upd(s){document.getElementById('wx').textContent=s.rain?'🌧️ chuva':'☀️';
+ document.getElementById('stats').innerHTML=`tick <b>${s.tick}</b> · pop <b>${s.pop}</b> · tier <b>${s.maxtier}/${s.NTOOL-1}</b><br>auto <b>${(s.auto*100)|0}%</b> · 💰<b>${s.wealth}</b> · ❤<b>${s.empathy}</b><br>🧱 blocos <b>${s.blocks}</b> · ${s.rain?'🌧️ chuva (sem abrigo = dano)':'☀️ tempo bom'}`;
+ let m='';['m0','m1','m2'].forEach((n,i)=>{m+=`<div><span class=k style="color:${MATC[i]}">${n} $${s.price[i]}</span><span class=bar><i style="width:${Math.min(100,s.price[i]/5*100)}%;background:${MATC[i]}"></i></span></div>`});document.getElementById('market').innerHTML=m;
+ mini('gpop',hist.pop,'#6aa6ff');mini('gw',hist.w,'#e6c84d');mini('ge',hist.e,'#ff6b6b');
+ if(s.cortex){let cx=s.cortex;eliteSet=new Set(s.elite||[]);let fr=cx.frust||0,fc=fr>.6?'#ff6b6b':fr>.3?'#e6c84d':'#4dd2a0';
+  document.getElementById('cxinfo').innerHTML=cx.on?
+   `🎯 objetivo: <b style="color:#7fd1ff">${cx.goal_name}</b> · governa <b>${cx.elite}</b> elite<br>`+
+   `frustração <span class=bar><i style="width:${(fr*100)|0}%;background:${fc}"></i></span> <b>${fr.toFixed(2)}</b><br>`+
+   `💥 surtos-DMT <b>${cx.bursts}</b> · 🧩 memória <b>${cx.mem}</b> fingerprints`
+   :'<span style="color:#7a89a0">desligado — evolução pura</span>'}
+ let h=document.getElementById('hud');if(s.player){h.style.display='block';h.innerHTML=`🎮 VOCÊ · ⚡<b>${s.penergy}</b> · 💰<b>${s.pwealth}</b> · 🔧<b>${s.ptier}</b> · 📦${s.pinv.join('/')}`}else h.style.display='none'}
+const GLY={6:'⚙',7:'💬',8:'💱',9:'⚔',10:'🧱',11:'❤'};
+function draw(){requestAnimationFrame(draw);if(!cur||!terCanvas)return;let s=cur,c=cell();
+ if(cam.follow&&s.player){cam.x=s.px*c-cv.width/2;cam.y=s.py*c-cv.height/2;clampCam()}
+ ctx.fillStyle='#040608';ctx.fillRect(0,0,cv.width,cv.height);
+ ctx.imageSmoothingEnabled=false;ctx.drawImage(terCanvas,-cam.x,-cam.y,G*c,G*c);if(blkCanvas)ctx.drawImage(blkCanvas,-cam.x,-cam.y,G*c,G*c);
+ // materiais
+ for(let m=0;m<3;m++){ctx.fillStyle=MATC[m];for(let k=0;k<s.mat[m].length;k++){let p=s.mat[m][k],X=p[1]*c-cam.x,Y=p[0]*c-cam.y;if(X<-c||Y<-c||X>cv.width||Y>cv.height)continue;ctx.fillRect(X+c*.15,Y+c*.15,c*.7,c*.7)}}
+ // agentes (interpola por id + cull por viewport)
+ let f=Math.min(1,(performance.now()-curt)/130+.25);ctx.textAlign='center';ctx.textBaseline='middle';let big=c>=9;
+ for(let i=0;i<s.ax.length;i++){let id=s.id[i],px=s.ax[i],py=s.ay[i],pp=prev[id];let rx=pp?pp[0]+(px-pp[0])*f:px,ry=pp?pp[1]+(py-pp[1])*f:py;
+  let X=rx*c-cam.x+c/2,Y=ry*c-cam.y+c/2;if(X<-c||Y<-c||X>cv.width+c||Y>cv.height+c)continue;let t=s.tier[i],r=c*(.42+t*.05);
+  ctx.fillStyle=TRIBE[s.tribe[i]];ctx.beginPath();ctx.arc(X,Y,r,0,7);ctx.fill();
+  if(t>2){ctx.strokeStyle='#fff7d0';ctx.lineWidth=Math.max(1,c*.08);ctx.stroke()}
+  if(eliteSet.has(id)){ctx.strokeStyle='#7fd1ff';ctx.lineWidth=Math.max(1.5,c*.14);ctx.beginPath();ctx.arc(X,Y,r+c*.28,0,7);ctx.stroke()}
+  if(big){let gl=GLY[s.act[i]];if(gl){ctx.font=(c*.8|0)+'px serif';ctx.fillText(gl,X,Y-c*.8)}}}
+ // jogador
+ if(s.player){let X=s.px*c-cam.x+c/2,Y=s.py*c-cam.y+c/2;ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(X,Y,c*.7,0,7);ctx.fill();ctx.strokeStyle='#ffd000';ctx.lineWidth=3;ctx.stroke();ctx.fillStyle='#ffd000';ctx.font=(c*1.1|0)+'px serif';ctx.fillText('★',X,Y-c*1.2)}
+ // chuva (overlay animado)
+ if(s.rain){ctx.strokeStyle='rgba(140,170,255,.25)';ctx.lineWidth=1;let o=(performance.now()/40)%14;for(let i=-14;i<cv.width;i+=14){ctx.beginPath();ctx.moveTo(i+o,0);ctx.lineTo(i+o-14,cv.height);ctx.stroke()}ctx.fillStyle='rgba(20,40,90,.12)';ctx.fillRect(0,0,cv.width,cv.height)}
+}
+poll();draw();
+</script></body></html>

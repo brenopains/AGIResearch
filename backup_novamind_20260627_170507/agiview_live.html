@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>AGI</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:#050810;color:#c8d6e5;font-family:'Segoe UI',sans-serif}
+.app{display:grid;grid-template-columns:340px 1fr 340px;grid-template-rows:auto 1fr 100px;height:100vh;gap:1px;background:#111}
+.app>*{background:#080c18;overflow:hidden}
+.t{grid-column:1/-1;display:flex;align-items:center;padding:3px 10px;gap:10px;font-size:10px;border-bottom:1px solid #141e30;height:28px}
+.t .cnt{display:flex;align-items:center;gap:4px;min-width:90px}
+.t .cnt .num{color:#00d2ff;font-size:18px;font-weight:700}
+.t .cnt .lb{color:#576574;font-size:7px}
+.t h1{font-size:11px;font-weight:600;color:#00d2ff}
+.t .cx{flex:1;text-align:center;color:#576574;font-size:9px}
+.t .cx strong{color:#feca57}
+.t .st{display:flex;gap:6px;color:#576574;font-size:9px}
+.t .st em{color:#c8d6e5}
+.l{padding:3px;display:flex;flex-direction:column;gap:2px;min-height:0}
+.sl{font-size:7px;text-transform:uppercase;letter-spacing:1px;color:#576574}
+.mb{flex:1;background:#0d1321;border-radius:4px;padding:4px;border:1px solid #141e30;overflow-y:auto;font-size:10px}
+.mb .sr{font-size:8px;color:#576574}
+.mb .sr .rl{color:#00d2ff}
+.mb .tt{font-size:11px;font-weight:600;color:#feca57}
+.mb .tp{font-size:8px;color:#576574}
+.mb .bd{font-size:9px;color:#8395a7;margin-top:2px;word-wrap:break-word;line-height:1.4}
+.mb .img{max-width:100%;max-height:100px;border-radius:4px;display:block;margin:2px auto}
+.c{display:flex;flex-direction:column;min-height:0}
+.ci{display:flex;justify-content:space-between;padding:2px 6px;font-size:9px;color:#576574;border-bottom:1px solid #0d1321;height:20px}
+.ci em{color:#c8d6e5}
+.cg{flex:1;min-height:0}
+.cg canvas{width:100%!important;height:100%!important;display:block}
+.gc{height:40px;border-top:1px solid #0d1321;background:#080c18}
+.gc canvas{width:100%;height:100%}
+.r{padding:3px;display:flex;flex-direction:column;gap:2px;overflow:hidden}
+.bx{background:#0d1321;border-radius:4px;padding:3px;border:1px solid #141e30;font-size:10px;flex-shrink:0}
+.bx .lb{font-size:7px;text-transform:uppercase;letter-spacing:1px;color:#576574}
+.mi{width:100%;text-align:center;flex-shrink:0;background:#0a0e17;border-radius:4px;padding:2px;min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.mi canvas{width:140px;height:140px;image-rendering:pixelated;border-radius:2px}
+.mi .ml{font-size:7px;color:#576574;margin-top:2px}
+.hv{overflow:hidden;white-space:nowrap;height:8px}
+.hv .h{display:inline-flex;gap:0}
+.hv .h .d{width:1px;height:8px}
+.al{flex:1;overflow-y:auto;font-size:9px}
+.al .ae{display:flex;justify-content:space-between;padding:1px 0;border-bottom:1px solid #0d1321;font-size:8px}
+.al .ae .an{color:#c8d6e5}
+.al .ae .av{color:#00d2ff}
+.b{grid-column:1/-1;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:1px;height:100px}
+.b>*{padding:2px 6px;overflow-y:auto;font-size:9px;background:#080c18}
+.bt{font-size:7px;text-transform:uppercase;letter-spacing:1px;color:#576574;margin-bottom:1px}
+.tl{line-height:1.5}
+.tl .e{padding:1px 0;border-bottom:1px solid #0d1321;color:#576574;font-size:9px}
+.tl .e .tx{color:#c8d6e5}
+.sb{font-size:9px}
+.sb .se{display:flex;align-items:center;gap:3px;padding:1px 0}
+.sb .se .ba{flex:1;height:2px;background:#141e30}
+.sb .se .ba .f{height:100%}
+.sb .se .i{min-width:40px;color:#576574;font-size:7px}
+.er{padding:1px 0;display:flex;justify-content:space-between;font-size:8px}
+.er .d{color:#576574}
+.er .v.h{color:#ff6b6b}.er .v.m{color:#feca57}.er .v.l{color:#00d2ff}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="t">
+    <div class="cnt"><span class="lb">CONCEITOS</span> <span class="num" id="cn">0</span></div>
+    <h1>AGI</h1>
+    <div class="cx">Pensando em: <strong id="fc">—</strong> · <span id="cl" style="color:#576574">—</span></div>
+    <div class="st"><span id="cy">C0</span> Modo: <em id="md">—</em> <span id="up">0s</span> <span id="metaCtx" style="color:#576574;font-size:8px"></span> <span id="metaQ" style="color:#576574;font-size:8px"></span> <span id="metaPerf" style="color:#576574;font-size:8px"></span></div>
+  </div>
+  <!-- ESQUERDA: CONTEUDO ORIGINAL (INPUT) -->
+  <div class="l">
+    <div class="sl">📥 ENTRADA (INPUT)</div>
+    <div class="mb">
+      <div class="sr" id="ms">— · <span class="rl">—</span></div>
+      <div class="tt" id="mt">—</div>
+      <div class="tp" id="mtp">—</div>
+      <img id="inputImg" class="img" style="display:none">
+      <div class="bd" id="mbd"></div>
+    </div>
+  </div>
+  <div class="c">
+    <div class="ci"><span>CGE: <em id="cgn">0</em> nos · <em id="cge">0</em> arestas</span> Curiosidade: <em id="nq">0</em></div>
+    <div class="cg"><canvas id="g"></canvas></div>
+    <div class="gc"><canvas id="gc"></canvas></div>
+  </div>
+  <!-- DIREITA: RECONSTRUCAO MENTAL (OUTPUT) -->
+  <div class="r">
+    <div class="bx">
+      <div class="lb">🧠 RECONSTRUCAO MENTAL (Renderer Composicional)</div>
+      <div class="mi">
+        <img id="mentalImg" width="140" height="140" style="border-radius:4px;image-rendering:auto;display:block;margin:0 auto;">
+        <div class="ml" id="mentalLabel">—</div>
+      </div>
+    </div>
+    <div class="bx" style="font-size:8px;padding:2px 4px">
+      <div class="lb">🌀 CONSCIENTE (Workspace)</div>
+      <div id="wsConscious" style="color:#576574">—</div>
+    </div>
+    <div class="bx">
+      <div class="lb">🧬 HDV PREVIEW</div>
+      <div class="hv"><div class="h" id="hdvStrip"></div></div>
+    </div>
+    <div class="bx" style="flex:1;display:flex;flex-direction:column">
+      <div class="lb">🏛️ ARCHETYPES</div>
+      <div class="al" id="al"></div>
+    </div>
+  </div>
+  <div class="b">
+    <div class="tl" id="tl"><div class="bt">💭 THOUGHTS</div></div>
+    <div class="sb" id="sl"><div class="bt">🔮 SIMULATION</div></div>
+    <div id="el"><div class="bt">⚠️ ERROR</div></div>
+  </div>
+</div>
+
+<script>
+let _last=null;
+function poll(){
+  fetch('/data').then(r=>r.json()).then(d=>{_last=d;upd(d)}).catch(()=>{if(_last)upd(_last)});
+  setTimeout(poll,400);
+}
+
+function upd(d){
+  const C=d.cge||{},L=d.lifestream||{},h=d.hdv_vectors||[],n=C.n_nodes||0;
+  document.getElementById('cn').textContent=n;
+  document.getElementById('cgn').textContent=n;
+  document.getElementById('cge').textContent=C.n_edges||0;
+  document.getElementById('cy').textContent='C'+(d.cycle||0);
+  document.getElementById('md').textContent=d.mode||'—';
+  document.getElementById('up').textContent=(d.uptime||0)+'s';
+  document.getElementById('fc').textContent=L.current_concept||'—';
+  document.getElementById('cl').textContent=(L.curiosity_targets||[]).slice(0,3).join(', ')||'—';
+  document.getElementById('nq').textContent=(L.curiosity_targets||[]).length;
+
+  // ─── META CONTROLLER ───
+  const meta=d.meta||{};
+  const ctxEl=document.getElementById('metaCtx');if(ctxEl)ctxEl.textContent=meta.context||'—';
+  const qEl=document.getElementById('metaQ');if(qEl)qEl.textContent=(meta.q_table_size||0)+' contextos';
+  const modePerf=meta.mode_performance||{};
+  const perfEl=document.getElementById('metaPerf');if(perfEl)perfEl.textContent=Object.entries(modePerf).map(([k,v])=>k+':'+v.toFixed(2)).join(' ')||'—';
+
+  // ─── WORKSPACE ───
+  const ws=d.workspace||{};
+  const wsEl=document.getElementById('wsConscious');if(wsEl)wsEl.innerHTML=(ws.conscious||[]).map(e=>`<span style="color:#00d2ff;font-size:8px">${e.content}</span>`).join(' · ')||'—';
+
+  // ─── ESQUERDA: INPUT ORIGINAL ───
+  document.getElementById('ms').innerHTML=(L.source||'—')+' · <span class="rl">'+((L.reliability||0)*100).toFixed(0)+'%</span>';
+  document.getElementById('mt').textContent=L.content_title||'—';
+  document.getElementById('mtp').textContent=L.current_media_type||'—';
+
+  const inputImg=document.getElementById('inputImg');
+  const imgUrl=L.image_url||'';
+  if(imgUrl.startsWith('http')){
+    inputImg.src=imgUrl; inputImg.style.display='block';
+  } else { inputImg.style.display='none'; }
+  document.getElementById('mbd').innerHTML=(L.content_body||'').slice(0,500).replace(/\n/g,'<br>');
+
+  // ─── CENTRO ───
+  graph(C);
+  const hist=d.concept_history||[];if(hist.length>1)grow(hist);
+
+  // ─── DIREITA: RECONSTRUCAO MENTAL ───
+  const mentalImg = document.getElementById('mentalImg');
+  const mentalLabel = document.getElementById('mentalLabel');
+  const currentConcept = L.current_concept || 'unknown';
+  // Render baseado no modo cognitivo real (nao em ciclo hardcoded)
+  const cogMode = d.mode || 'explore';
+  const renderMode = (cogMode === 'reflect' || cogMode === 'consolidate') ? 'thoughts' : 'concept';
+  mentalImg.src = '/render?concept=' + encodeURIComponent(currentConcept) + '&mode=' + renderMode + '&t=' + (d.cycle||0);
+  mentalLabel.textContent = (renderMode === 'thoughts' ? 'PENSAMENTOS (grade)' : currentConcept) + ' — Modo: ' + cogMode;
+
+  // HDV strip
+  const strip=document.getElementById('hdvStrip');
+  if(h.length>0){
+    const bits=h[0].vector||[];
+    strip.innerHTML=bits.map(b=>`<div class="d" style="background:hsl(${b>0?210:0},80%,${b>0?60:25}%)"></div>`).join('');
+  } else {strip.innerHTML='<span style="font-size:8px;color:#576574;">...</span>';}
+
+  // ARCHETYPES
+  const arch=d.archetypes||[];
+  document.getElementById('al').innerHTML=arch.length>0
+    ? arch.map(a=>`<div class="ae"><span class="an">${a.name}</span><span class="av">C:${(a.confidence||0).toFixed(2)}</span></div>`).join('')
+    : '<div style="color:#576574;">Processando...</div>';
+
+  // THOUGHTS
+  const tl=document.getElementById('tl');
+  tl.innerHTML='<div class="bt">💭 THOUGHTS</div>';
+  (d.thoughts||[]).slice(-12).reverse().forEach(t=>{tl.innerHTML+=`<div class="e"><span style="color:#576574">[${t.mode||'*'}]</span> <span class="tx">${t.text||''}</span></div>`});
+
+  // SIM
+  const br=(d.simulation||{}).branches||[];
+  const sl=document.getElementById('sl');
+  sl.innerHTML='<div class="bt">🔮 SIMULATION</div>';
+  br.forEach(b=>{const p=b.prob||0;sl.innerHTML+=`<div class="se"><span class="i">${b.id}</span><div class="ba"><div class="f" style="width:${p*100}%;background:hsl(${p*200},70%,50%)"></div></div></div>`});
+
+  // ERROR
+  const er=d.error||{};
+  const el=document.getElementById('el');
+  el.innerHTML='<div class="bt">⚠️ ERROR</div>';
+  [['Prediction Error','prediction_error'],['Novelty','novelty'],['Uncertainty','uncertainty'],['Violation','violation']].forEach(([lb,k])=>{
+    const v=er[k]||0;const c=v>0.5?'h':v>0.3?'m':'l';
+    el.innerHTML+=`<div class="er"><span class="d">${lb}</span><span class="v ${c}">${v.toFixed(2)}</span></div>`;
+  });
+}
+
+function graph(C){
+  const c=document.getElementById('g');if(!c)return;
+  c.width=c.clientWidth||400;c.height=c.clientHeight||160;
+  const ctx=c.getContext('2d'),W=c.width,H=c.height;
+  ctx.clearRect(0,0,W,H);
+  const no=C.nodes||[],ed=C.edges||[];
+  if(!no.length){ctx.fillStyle='#576574';ctx.font='10px sans-serif';ctx.textAlign='center';ctx.fillText('Iniciando...',W/2,H/2);return}
+  const po={};
+  no.forEach((n,i)=>{const a=(i/no.length)*2*Math.PI-Math.PI/2,r=Math.min(W,H)*0.35;po[n.id]={x:W/2+r*Math.cos(a),y:H/2+r*Math.sin(a),rv:1.5+(n.confidence||0.5)*2}});
+  const dr=new Set();
+  ed.forEach(e=>{const k=[e.from,e.to].sort().join('_');if(dr.has(k)||!po[e.from]||!po[e.to])return;dr.add(k);ctx.strokeStyle='rgba(30,42,58,0.25)';ctx.lineWidth=0.3;ctx.beginPath();ctx.moveTo(po[e.from].x,po[e.from].y);ctx.lineTo(po[e.to].x,po[e.to].y);ctx.stroke()});
+  no.slice(0,80).forEach((n,i)=>{const p=po[n.id];if(!p)return;ctx.beginPath();ctx.arc(p.x,p.y,p.rv,0,Math.PI*2);ctx.fillStyle=`hsl(${(i*30)%360},70%,55%)`;ctx.fill()});
+  const st=_last;if(!st)return;const f=st.lifestream?.current_concept;
+  if(f&&po[f]){const p=po[f];ctx.beginPath();ctx.arc(p.x,p.y,p.rv+3,0,Math.PI*2);ctx.strokeStyle='#00d2ff';ctx.lineWidth=1.5;ctx.setLineDash([3,3]);ctx.stroke();ctx.setLineDash([])}
+}
+
+function grow(h){
+  const c=document.getElementById('gc');if(!c)return;
+  c.width=c.clientWidth||400;c.height=c.clientHeight||40;
+  const ctx=c.getContext('2d'),W=c.width,H=c.height;
+  ctx.clearRect(0,0,W,H);
+  const mx=Math.max(...h.map(x=>x.n||1),1);
+  ctx.beginPath();ctx.strokeStyle='#00d2ff';ctx.lineWidth=1.5;
+  h.forEach((p,i)=>{const x=(i/(h.length-1))*W,y=H-((p.n||0)/mx)*(H-6)-2;i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)});
+  ctx.stroke();
+  ctx.fillStyle='#576574';ctx.font='6px sans-serif';ctx.fillText('Conceitos: '+mx,2,8);
+  ctx.fillStyle='#00d2ff';ctx.textAlign='right';
+  ctx.fillText(''+(h[h.length-1].n||0),W-2,8);
+}
+
+poll();
+</script>
+</body>
+</html>
