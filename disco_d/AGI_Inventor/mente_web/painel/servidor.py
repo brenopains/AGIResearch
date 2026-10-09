@@ -38,6 +38,7 @@ NOME_ACAO = {
     "porta:wiki_en": "abrindo uma página aleatória da Wikipédia em inglês",
     "porta:pequena_web": "pulando para um site pequeno qualquer da web",
     "porta:arena": "indo à arena: um mundo físico onde as leis mudam sem aviso",
+    "experimentar": "montando um experimento na arena: põe as coisas onde as teorias rivais dela mais discordam",
 }
 NOME_BARRA = {"enciclopedia_pt": "Wikipédia (pt)", "enciclopedia_en": "Wikipédia (en)",
               "pequena_web": "pequena web", "midia": "Wikimedia Commons", "arquivo": "Internet Archive"}
@@ -119,7 +120,10 @@ class Leitor:
              # transplante 10: o laboratorio
              "laboratorio": ("trilhas", "crise", "conceito", "fonte"), "laboratorio_crise": ("nova_teoria", "erro_px"),
              "laboratorio_conceito_inventado": ("formula",), "laboratorio_conceito_escolhido": ("para", "formula"),
-             "laboratorio_conceito_revisado": ("agora",), "laboratorio_reinterpretou": ("episodio",)}
+             "laboratorio_conceito_revisado": ("agora",), "laboratorio_reinterpretou": ("episodio",),
+             # transplante 11: as maos
+             "experimento_proposto": ("teoria", "divergencia_px"),
+             "laboratorio_experimento": ("vencedora", "tipo", "decisivo", "discriminacao_bits")}
 
     def _um(self, e):
         ev = e.get("ev")
@@ -246,6 +250,23 @@ class Leitor:
                        {"erro da 1ª tentativa (px)": g("erro_px"), "erro ÷ palpite burro (1 = igual)": g("erro_relativo")})
             self._feed(e, f"crise no laboratório: a teoria {falhou} falhou; nasceu a teoria {g('nova_teoria')}",
                        "alerta" if falhou is not None else "normal")
+        elif ev == "laboratorio_experimento":
+            venc, tipo = g("vencedora"), g("tipo")
+            quem = {"atual": "a teoria que ela já tinha",
+                    "conceito": f"a mesma teoria pensando com outro conceito ({venc})",
+                    "reamostra": "uma variação da teoria dela, reajustada em parte dos dados"}.get(tipo, venc)
+            if g("decisivo") and g("pedido") and tipo in ("atual", "conceito"):
+                self._desc(e, "experimento",
+                           "EXPERIMENTO CONFIRMOU A TEORIA" if tipo == "atual" else
+                           ("EXPERIMENTO MUDOU O CONCEITO" if g("revisou") else "EXPERIMENTO FAVORECEU OUTRO CONCEITO"),
+                           f"Ela montou a cena na arena (onde pôr cada coisa e com que velocidade) no lugar onde as "
+                           f"explicações rivais dela mais discordavam. Quem previu melhor o que aconteceu: {quem}"
+                           + (" — e ela refez a escolha do conceito na hora." if g("revisou") else "."),
+                           {"bits do vencedor contra a teoria atual": g("bits_vencedora"),
+                            "separação entre rivais (bits)": g("discriminacao_bits"),
+                            "erro de cada rival (px)": g("erros_px")})
+            self._feed(e, f"experimento na arena: quem previu melhor foi {quem}"
+                       + (" (decisivo)" if g("decisivo") else " (não decidiu)"), "ouro" if g("revisou") else "normal")
         elif ev == "laboratorio_reinterpretou":
             antes = f"estava na teoria {g('de_teoria')}" if g("de_teoria") is not None else "estava sem teoria (nenhuma o explicava)"
             self._desc(e, "teoria", "REINTERPRETOU UM VÍDEO ANTIGO",
@@ -307,7 +328,9 @@ class Leitor:
             else:
                 txt += (f" — o laboratório seguiu {lab.get('trilhas')} coisa(s) e previu com a teoria {lab.get('teoria')}"
                         f" (erro {_px(lab.get('primeira'))} px; o palpite burro erraria {_px(lab.get('inercia'))} px)"
-                        + ("; CRISE: abriu uma teoria nova" if lab.get("crise") else ""))
+                        + ("; CRISE: abriu uma teoria nova" if lab.get("crise") else "")
+                        + (f"; no experimento dela, quem previu melhor foi {lab['experimento'].get('vencedora')}"
+                           if isinstance(lab.get("experimento"), dict) else ""))
         return txt
 
     def processo(self):

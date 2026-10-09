@@ -120,4 +120,33 @@ surpresa no laboratório — se não pagar, ela deixa de escolher.
 
 ## RESULTADO
 
-(preenchido depois da rodada registrada, sem mudar nada acima)
+Rodada registrada em 09/10/2026, sementes 20261110–20261119, 10 vidas, 325 s
+(`resultados/ativo_registrada.json`). Nada acima foi mudado depois.
+
+| critério | resultado | veredito | previsto |
+|---|---|---|---|
+| **E1** ATIVO < ALEATORIO | 2/10 vidas; razão das medianas 1,54 (ATIVO **pior**) | **FALHA** | falha (~25%) |
+| **E2** ATIVO < PASSIVO | 1/10 vidas; razão 1,70 | **FALHA** | falha (~5%) |
+| **E3** conceito certo no fim | ATIVO 9, ALEATORIO 15, PASSIVO 14 (em 30) | **FALHA** | falha (~10%) |
+| **E4** as mãos separam rivais | 8/10 vidas (discriminação mediana ATIVO 4,8 bits × ALEATORIO 4,2) | **PASSA** | passa (~65%) |
+
+Erro de teste (px em 128, mediana entre vidas da média geométrica dos 3 mundos): PASSIVO
+3,27 · ALEATORIO 3,60 · ATIVO 5,56 (o palpite "nada acelera" erra 12–15 px). Por mundo,
+ATIVO: giro 4,9, mola_h 7,7, contragiro 10,3. Secundária (teoria com mais episódios do
+mundo): PASSIVO 3,10 · ALEATORIO 3,31 · ATIVO 6,48 — mesma conclusão.
+
+**O que isto quer dizer.** As mãos funcionam como mãos: ela monta cenas que de fato separam as
+explicações rivais dela (E4) — sabe ONDE as teorias dela discordam. Mas aprender com essas
+cenas a deixou PIOR em prever o mundo como ele costuma ser: a maior discordância está onde
+ela tem menos dados e onde o caso é atípico; a lei passa a servir ao canto e não ao todo. É o
+viés de amostragem conhecido da "amostragem por incerteza" em aprendizado ativo, aqui medido
+contra controle. Mexer no mundo ao ACASO, com as mesmas regras, ficou quase igual a só
+assistir (ALEATORIO × PASSIVO 1,10; 3/10 vidas melhor) — então o problema não é agir, é o
+critério "onde discordam mais".
+
+**Consequência na mente viva (transplante 11).** "experimentar" entra como UMA ação a mais
+na economia dela, paga pelo progresso de aprendizagem que o laboratório mede; não há regra
+fixa mandando experimentar. Pelo resultado acima, a previsão é que ela aprenda a usar pouco.
+Ideia para uma próxima versão (não testada): escolher o experimento pelo quanto ele deve
+reduzir o erro nas situações TÍPICAS (redução esperada de erro ponderada pela densidade do
+que ela vê), não pela discordância pura.
