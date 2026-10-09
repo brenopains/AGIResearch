@@ -1,0 +1,1890 @@
+"""
+mente_web.mente (v1) — o organismo vivendo na internet de verdade
+==================================================================
+Condicao inicial (igual a v0): nenhuma URL de conteudo, nenhuma lingua, nenhum
+dicionario, nenhuma tarefa. Sabe que tem portas aleatorias, barras de busca,
+links, midia, "voltar". O resto e decisao dela.
+
+O QUE MUDOU DA v0 (a vida de 5 min que ficou presa pesquisando "port", "ver",
+"que" esta guardada intacta em vidas/v0_teste_5min e versoes/v0):
+
+1. PERGUNTA = ESTADO COGNITIVO INCOMPLETO, nao palavra. Quatro tipos de lacuna,
+   todos percebidos pela propria mente:
+     depois      "nao sei o que vem depois de X"        (previsao que falhou)
+     inesperado  "X aparece sem que eu o antecipe"      (reaparece sem explicacao)
+     divergente  "X e usado de jeitos diferentes em lugares diferentes" (a unica
+                 contradicao que esta mente consegue perceber: ainda nao tem
+                 proposicoes)
+     ligacao     "X vai junto com aquela imagem?"       (relacao incompleta)
+   Cada lacuna guarda as JANELAS onde surgiu (memoria de trabalho do quebra-
+   cabeca: ate 3 trechos de ~56 bytes) e sua incompletude u e REMEDIDA nelas.
+2. MEMORIA DE INTENCAO: problema aberto -> acao informacional -> evidencia ->
+   atualizacao -> proxima acao. Toda acao feita POR uma lacuna remede u dela e
+   de ate 8 lacunas do mesmo tipo NAO perseguidas, no mesmo intervalo (controle
+   pareado); pagou = caiu mais que a mediana dos controles. Sem cooldown: a acao
+   que nao mudou nada perde valor NAQUELE contexto (pagina + tracos da lacuna +
+   a propria historia daquela lacuna) e a repeticao some como consequencia.
+   Reformular = escolher outra formulacao (alvo, alvo + vizinho, a estrutura de
+   cima) ou outra fonte — tudo Thompson.
+3. PRESSOES, NAO UMA FORMULA: progresso de compressao (curiosidade diversiva,
+   Berlyne 1960), fechar lacuna (curiosidade especifica, Loewenstein 1994) e
+   confirmar entre modalidades disputam o mesmo Thompson valor/custo. Sob acaso
+   todas pagam ~1/2; o que paga mais que o acaso ganha espaco. Continuam sendo
+   formulas nossas — plurais e medidas, nao uma so.
+4. SUBIR NA HIERARQUIA: pedacos (picos de surpresa, Harris 1955) -> estruturas
+   (voltam em >= 2 dominios) -> estruturas de estruturas (pares vizinhos coesos
+   pela razao de verossimilhanca de Dunning 1993, em >= 2 dominios), recursivo.
+   Ninguem diz que "palavra" e a unidade certa.
+5. MULTIMODAL QUE COMECA FRACO: imagem, som e texto no mesmo episodio sao so
+   candidatos; a ligacao so e CONFIRMADA quando PREVE episodios independentes
+   (ganho em bits medido antes de aprender daquele episodio), com um nulo
+   (som deslocado no tempo; imagem trocada) contado ao lado.
+6. BARRAS DESCOBERTAS: alem das 5 dadas, todo formulario GET de um campo que
+   ela encontra vira uma barra possivel; ela aprende quais servem.
+
+ESQUECER: o dado bruto passa. Ficam modelo de bytes, estruturas, fusoes,
+prototipos, associacoes, lacunas (com suas janelas) e resumos.
+"""
+from __future__ import annotations
+
+import collections
+import json
+import math
+import os
+import pickle
+import time
+import zlib
+
+import numpy as np
+
+import cortex as CX
+import digestao as G
+from corpo import BARRAS, PORTAS, Corpo, dominio
+
+LARGURA = 3.0            # nucleo de contexto (organismo, vida 2)
+N0 = 2.0                 # prior Beta
+KAPPA0 = N0              # peso inicial da populacao como prior; depois APRENDIDO
+                         # (Bayes empirico sobre a variacao real entre lacunas)
+TAU_ATIV = 200.0         # esquecimento da ativacao (passos)
+SONO_CADA = 25
+MAX_LEXICO = 250_000
+MAX_ESTRUTURAS = 40_000
+MAX_PARES = 250_000
+MAX_LACUNAS = 300
+MAX_BARRAS_NOVAS = 25
+FUSOES_POR_SONO = 100
+G2_CRIT = 10.83          # Dunning 1993, p < 0,001 (convencao estatistica, declarada)
+JA, JD = 24, 16          # janela: bytes antes e depois da estrutura
+TIPOS = ("depois", "inesperado", "divergente", "ligacao")
+FORMULACOES = ("alvo", "vizinho", "acima")
+EXPLORA = (["seguir_novo", "seguir_familiar", "seguir_acaso", "assistir", "ver", "voltar"]
+           + [f"porta:{p}" for p in PORTAS])
+DIM_X = 2 * G.D_CTX
+DOM_DADOS = {"wiby.me", "pt.wikipedia.org", "en.wikipedia.org", "commons.wikimedia.org",
+             "archive.org"}
+
+
+def _escolhe_corpo():
+    """Corpo 2 (navegador de verdade) se `corpo.txt` disser 'navegador' (ou MENTE_CORPO);
+    senao o corpo 1 (leitor HTTP). O navegador cai no corpo 1 sozinho se falhar."""
+    tipo = os.environ.get("MENTE_CORPO", "")
+    arq = os.path.join(os.path.dirname(os.path.abspath(__file__)), "corpo.txt")
+    if not tipo and os.path.exists(arq):
+        tipo = open(arq, encoding="utf-8").read().strip()
+    if tipo == "navegador":
+        try:
+            from navegador import CorpoNavegador
+            return CorpoNavegador()
+        except Exception:
+            pass
+    return Corpo()
+
+
+def txt(b: bytes):
+    return b.decode("utf-8", "replace")
+
+
+def limpa(b: bytes):
+    return txt(b).strip(" \t\n.,;:()[]{}\"'|-")
+
+
+def entropia_beta(pos, neg):
+    p = (pos + 1.0) / (pos + neg + 2.0)
+    return float(-(p * math.log2(p) + (1 - p) * math.log2(1 - p)))
+
+
+def g2(k11, k12, k21, k22):
+    def xlx(x):
+        return x * math.log(x) if x > 0 else 0.0
+    n = k11 + k12 + k21 + k22
+    return 2.0 * (xlx(k11) + xlx(k12) + xlx(k21) + xlx(k22) - xlx(k11 + k12) - xlx(k21 + k22)
+                  - xlx(k11 + k21) - xlx(k12 + k22) + xlx(n))
+
+
+def _cauda_binomial(r, n):
+    """P(X >= r) com X ~ Binomial(n, 1/2)."""
+    return sum(math.comb(n, k) for k in range(r, n + 1)) / 2.0 ** n if n else 1.0
+
+
+def _unit(v):
+    return v / (np.linalg.norm(v) + 1e-9)
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+class Reg:
+    """Registros (contexto, pagou?) de um braco; posterior por nucleo de contexto."""
+
+    def __init__(self, cap=500):
+        self.X = np.zeros((cap, DIM_X), np.float16)
+        self.ok = np.zeros(cap, np.float32)
+        self.n, self.cap = 0, cap
+
+    def add(self, x, ok):
+        i = self.n % self.cap
+        self.X[i], self.ok[i] = x, float(ok)
+        self.n += 1
+
+    def pop(self, x):
+        """(media, massa efetiva) da populacao de contextos parecidos."""
+        m = min(self.n, self.cap)
+        if m == 0:
+            return 0.5, 0.0
+        s = self.X[:m].astype(np.float32) @ x
+        w = np.exp(LARGURA * (s - 1.0))
+        a = float(w @ self.ok[:m])
+        tot = float(w.sum())
+        return (a + 1.0) / (tot + 2.0), tot
+
+
+class Assoc:
+    """Ligacao entre itens e prototipos que comeca FRACA e so se confirma quando
+    preve episodios independentes (ganho medido com as contagens de ANTES)."""
+
+    def __init__(self):
+        self.c = {}                       # (s, p) -> [n, pos, neg, eps(set), soma_ganho]
+        self.cs = collections.Counter()
+        self.cp = collections.Counter()
+        self.tot = 0
+        self.conf = set()
+
+    def observa(self, pares, ep, nP):
+        ganhos, novas, vistos = [], [], set()
+        for s, p in pares:
+            cs = self.cs[s]
+            if cs == 0:
+                continue
+            pm = (self.cp[p] + 1.0) / (self.tot + max(nP, 1))   # 1 desfecho possivel: ganho 0
+            e = self.c.get((s, p))
+            pc = ((e[0] if e else 0) + 2.0 * pm) / (cs + 2.0)
+            gn = math.log2(pc / pm)
+            ganhos.append(gn)
+            if e is not None and (s, p) not in vistos and ep not in e[3]:
+                vistos.add((s, p))
+                e[4] += gn
+                e[1 if gn > 0 else 2] += 1
+                if e[1] >= 2 and e[4] > 0 and (s, p) not in self.conf:
+                    self.conf.add((s, p))
+                    novas.append((s, p))
+        for s, p in pares:
+            e = self.c.get((s, p))
+            if e is None:
+                e = self.c[(s, p)] = [0, 0, 0, set(), 0.0]
+            e[0] += 1
+            if len(e[3]) < 20:
+                e[3].add(ep)
+            self.cs[s] += 1
+            self.cp[p] += 1
+            self.tot += 1
+        return (float(np.mean(ganhos)) if ganhos else 0.0), novas
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+class Mente:
+    VERSAO = "v1"
+    FUSAO_DUNNING = True              # v2: fusoes nascem por autointervencao no sono
+    FORMULACOES = FORMULACOES
+
+    def __init__(self, semente, pasta, registrar=True):
+        self.rng = np.random.default_rng(semente)
+        self.pasta = pasta
+        os.makedirs(pasta, exist_ok=True)
+        self.corpo = _escolhe_corpo()
+        if hasattr(self.corpo, "pasta_painel"):
+            self.corpo.pasta_painel = pasta
+        self.texto = G.Texto()
+        self.lex = {}                     # pedaco -> [n, dominios, t_ult]
+        self.E = {}                       # estrutura (qualquer nivel) -> dict
+        self.fusoes = {}                  # (q, p) -> q+p
+        self.pais = {}                    # estrutura -> estruturas de cima que a contem
+        self.pares = {}                   # (q, p) vizinhos -> [n, dominios]
+        self.n_adj = 0
+        self.glob = G.Prototipos(88, 1024, "g")
+        self.aud = G.Prototipos(24, 512, "a")
+        self.av, self.av_nulo = Assoc(), Assoc()        # imagem -> som
+        self.gr, self.gr_nulo = Assoc(), Assoc()        # texto -> imagem/som
+        self.ult_protos = collections.deque(maxlen=200)
+        self.convergencias = set()
+        self.lac = {}                     # (tipo, chave) -> lacuna
+        self.u0_tipo = {t: [] for t in TIPOS}
+        self.hq = {"depois": collections.deque(maxlen=3000),
+                   "inesperado": collections.deque(maxlen=3000)}
+        self.q90 = {"depois": 1e9, "inesperado": 1e9}
+        self.ref = collections.deque(maxlen=300)   # janelas comuns (nao-lacuna)
+        self.ref_med = {"depois": None, "inesperado": None}
+        self.fechadas = []
+        self.pendentes = []
+        self._congeladas = set()
+        self.regs = {}                    # braco -> Reg
+        self.regs_lac = Reg()             # perseguir lacunas deste tipo pagou?
+        self.regs_form = {}               # formulacao -> Reg
+        self.custo = {}
+        self.funciona = {}               # braco -> [executou, falhou]: a ferramenta FUNCIONA?
+        self.rende = {}                  # braco -> [pagou, nao pagou] em TODAS as perguntas
+        self.vis = G.Prototipos(64, 1024, "v")   # retalhos 8x8: a visao aprende por si
+        # transplante 5 (08/10): olhos foveais em cores + cortex que aprende a ver
+        self.olho = G.Prototipos(CX.CANAIS, 4096, "r")  # palavras visuais POR REGIAO (celulas do mapa)
+        self.cortex_versao = CX.VERSAO
+        self.conf_p = {"real": collections.Counter(), "nulo": collections.Counter()}   # ligacoes por palavra visual
+        self.fa, self.fa_nulo = Assoc(), Assoc()        # o que se ve (cortex) x o que se ouve
+        self.lp = {k: collections.deque(maxlen=60) for k in ("ler", "imagem", "olhar", "video")}
+        self.norma_z = 1.0
+        self.cortex = None                              # (fica em cortex.npz, fora do estado.pkl)
+        self.kappa = KAPPA0
+        self.hist_prog = {"texto": [], "midia": [], "lacuna": []}
+        self.hist_surp_bloco = []
+        self.dom = {}
+        self.barras_novas = {}            # dominio -> formulario
+        self.buscas = []
+        self.lidas = set()                # hash das URLs ja lidas
+        self.t = 0
+        self.vida_s = 0.0
+        self.pagina = None
+        self.n_pag = 0
+        self.tau = TAU_ATIV
+        self.n_nasc = 0
+        self.log = open(os.path.join(pasta, "ontogenia.jsonl") if registrar else os.devnull, "a",
+                        encoding="utf-8")
+
+    # ── registro ─────────────────────────────────────────────────────────────
+    def ev(self, _evento, **kw):
+        self.log.write(json.dumps({"t": self.t, "vida_s": round(self.vida_s, 1), "ev": _evento, **kw},
+                                  ensure_ascii=False, default=str) + "\n")
+        self.log.flush()
+
+    def _dom(self, d):
+        e = self.dom.get(d)
+        if e is None:
+            e = self.dom[d] = {"paginas": 0, "cred": 0.5}
+        return e
+
+    # ── ler: digestao do texto ───────────────────────────────────────────────
+    def ler(self, pg):
+        if getattr(pg, "telas", None):
+            return self._ler_olhando(pg)
+        self._descobre_barras(pg)
+        dados = pg.texto
+        if len(dados) < 200:
+            return None
+        pid = self.n_pag
+        self.n_pag += 1
+        reserva = dados[-512:] if len(dados) >= 1500 else None
+        corpo_txt = dados[:-512] if reserva is not None else dados
+        L0 = float(self.texto.surpresa(reserva, False).mean()) if reserva is not None else None
+        blocos, lidos, primeiro = [], 0, None
+        hist = self.hist_surp_bloco
+        q25 = np.quantile(hist, 0.25) if len(hist) > 30 else -1
+        q90 = np.quantile(hist, 0.90) if len(hist) > 30 else 1e9
+        motivo = "fim"
+        for a in range(0, min(len(corpo_txt), 65536), 2048):
+            bloco = corpo_txt[a:a + 2048]
+            if len(bloco) < 64:
+                break
+            sur = self.texto.surpresa(bloco, True)
+            m = float(sur.mean())
+            blocos.append(m)
+            if primeiro is None:
+                primeiro = m
+            lidos += len(bloco)
+            self._lexico(bloco, sur, pg, pid)
+            if len(blocos) >= 2:
+                if np.mean(blocos[-2:]) < q25:
+                    motivo = "previsivel"
+                    break
+                if len(blocos) >= 4 and np.mean(blocos[-2:]) > q90 and blocos[-1] >= blocos[-3]:
+                    motivo = "incompreensivel"
+                    break
+        hist.extend(blocos)
+        if len(hist) > 5000:
+            del hist[:1000]
+        prog = None
+        if reserva is not None:
+            L1 = float(self.texto.surpresa(reserva, False).mean())
+            prog = L0 - L1
+            self.hist_prog["texto"].append(prog)
+            if len(self.hist_prog["texto"]) > 3000:
+                del self.hist_prog["texto"][:1000]
+        self._dom(pg.dominio)["paginas"] += 1
+        self._apos_ler(pg, corpo_txt, blocos)
+        self._percebe_pagina(pg, dados)
+        self.ev("leu", url=pg.url, dominio=pg.dominio, lidos=lidos, total=len(dados),
+                bits_primeiro_bloco=primeiro, bits_final=blocos[-1] if blocos else None,
+                progresso=prog, motivo=motivo)
+        return prog
+
+    # ── o olhar: para onde os olhos vao e decisao DELA ───────────────────────
+    MAX_FIX_TELA = 16
+
+    def _cortex(self):
+        if getattr(self, "cortex", None) is None:
+            self.cortex = CX.Cortex(int(self.rng.integers(1 << 30)))
+            if not self.cortex.carrega(os.path.join(self.pasta, "cortex.npz")):
+                self.ev("cortex_nasceu", nota="cortex visual novo: nenhum peso pre-treinado, comeca vendo borrao")
+        return self.cortex
+
+    def _lp(self, tipo):
+        """Progresso de aprendizagem do TIPO de coisa (Oudeyer, Kaplan e Hafner 2007): quanto
+        o erro de previsao dela nesse tipo caiu, em fracao, entre a metade antiga e a
+        recente das ultimas 60 vezes. Tipo pouco tentado ganha bonus de novidade."""
+        h = self.lp[tipo]
+        if len(h) < 8:
+            return 0.5
+        a = np.array(h, np.float64)
+        m = len(a) // 2
+        velho, novo = a[:m].mean(), a[m:].mean()
+        return float((velho - novo) / (abs(velho) + 1e-9))
+
+    def _surpresa_rel(self, tipo, err):
+        h = self.lp[tipo]
+        med = float(np.median(h)) if len(h) >= 5 else err
+        return (err - med) / (abs(med) + 1e-9)
+
+    def _palavras(self, olhada, mapa, max_cel=24):
+        """As palavras visuais de uma olhada: cada celula do mapa que tem contraste vira
+        uma palavra (prototipo aprendido online). Fundo liso nao vira palavra."""
+        V, _ij = CX.Cortex.celulas(olhada, mapa)
+        if not len(V):
+            return []
+        if len(V) > max_cel:
+            V = V[self.rng.choice(len(V), max_cel, replace=False)]
+        return [int(j) for j in self.olho.codifica(V, self.t)]
+
+    def _distintas(self, ids, k=2):
+        """As k palavras mais RARAS (mais informativas) entre as presentes, ja vistas >= 3
+        vezes. A palavra 'fundo de pagina com texto' esta em tudo e nao diz nada."""
+        cand = sorted({j for j in ids if j < len(self.olho.n) and self.olho.n[j] >= 3}, key=lambda j: self.olho.n[j])
+        return cand[:k]
+
+    def ligacao_valida(self, p):
+        """A palavra visual p liga a texto mais vezes do que liga quando o par e de MENTIRA
+        (texto x imagem de outro episodio)? Teste binomial unilateral, 5%."""
+        r, n = self.conf_p["real"][p], self.conf_p["nulo"][p]
+        return r >= 3 and _cauda_binomial(r, r + n) < 0.05
+
+    def ligacoes_validas(self):
+        return sum(1 for (_s, p) in self.gr.conf if p[0] == "r" and self.ligacao_valida(p))
+
+    def _migra_cortex(self):
+        """Transplante 6: o cortex v1 (64 numeros por olhada) da lugar ao v2 (mapa 8x8x32).
+        As palavras visuais e ligacoes da v1 estavam presas a um codigo que deixa de
+        existir (e 69% delas eram uma palavra so): saem; o resto da mente fica."""
+        apagadas = 0
+        for A in (self.gr, self.gr_nulo):
+            for k in [k for k in A.c if k[1][0] == "f"]:
+                e = A.c.pop(k)
+                A.cs[k[0]] -= e[0]
+                apagadas += A is self.gr and k in A.conf
+            A.conf = {k for k in A.conf if k[1][0] != "f"}
+            for p in [p for p in A.cp if p[0] == "f"]:
+                A.tot -= A.cp.pop(p)
+        self.ult_protos = collections.deque([p for p in self.ult_protos if p[0] != "f"], maxlen=200)
+        for key in [k for k, g in self.lac.items() if g["tipo"] == "ligacao" and (g.get("proto") or ("",))[0] == "f"]:
+            del self.lac[key]
+        self.convergencias = {t for t in self.convergencias if not (isinstance(t[1], str) and t[1].startswith("f"))}
+        self.olho = G.Prototipos(CX.CANAIS, 4096, "r")
+        self.fa, self.fa_nulo = Assoc(), Assoc()
+        self.lp = {k: collections.deque(maxlen=60) for k in ("ler", "imagem", "olhar", "video")}
+        self.conf_p = {"real": collections.Counter(), "nulo": collections.Counter()}
+        self.cortex_versao = CX.VERSAO
+        for suf in ("", ".anterior"):
+            a = os.path.join(self.pasta, "cortex.npz" + suf)
+            if os.path.exists(a):
+                os.replace(a, os.path.join(self.pasta, "cortex_v1.npz" + suf))
+        self.ev("transplante_cortex", de=1, para=CX.VERSAO, ligacoes_apagadas=int(apagadas),
+                nota="cortex v2: mapa 8x8x32 com retina (contraste normalizado); palavras visuais por regiao")
+
+    def _mostra_olho(self, olhada, rec=None, pred=None, info=None):
+        """O OLHO dela para o painel: o que chega na fovea | o que o cortex reconstroi
+        (o que ela de fato 've') | no video, o quadro que ela imaginou antes de ver."""
+        try:
+            if time.time() - getattr(self, "_olho_t", 0.0) < 0.25 and not (info or {}).get("forca"):
+                return
+            self._olho_t = time.time()
+            pecas = [olhada] + [p for p in (rec, pred) if p is not None]
+            tira = np.concatenate([np.kron(p, np.ones((2, 2, 1), np.uint8)) for p in pecas], 1)
+            arq = os.path.join(self.pasta, "olho.jpg")
+            with open(arq + ".tmp", "wb") as f:
+                f.write(CX.jpg_de(tira, 85))
+            os.replace(arq + ".tmp", arq)
+            cx = self.cortex
+            d = {"quando": time.time(), "pecas": ["fovea", "reconstrucao"] + (["previsao"] if pred is not None else []),
+                 "olhadas": cx.olhadas if cx else 0, "curva": cx.curva[-80:] if cx else [],
+                 "palavras_visuais": len(self.olho.P), **(info or {})}
+            with open(os.path.join(self.pasta, "olho.json.tmp"), "w", encoding="utf-8") as f:
+                json.dump(d, f, ensure_ascii=False)
+            os.replace(os.path.join(self.pasta, "olho.json.tmp"), os.path.join(self.pasta, "olho.json"))
+        except Exception:
+            pass
+
+    def _fixa(self, a, img, cx, pg, pid, estr_tela, conta):  # noqa: C901
+        """Uma parada do olhar. Devolve a surpresa relativa (positiva = mais
+        surpreendente que o normal desse tipo de coisa)."""
+        H, W = img.shape[:2]
+        tipo = a["tipo"]
+        if tipo == "ler":
+            # os olhos correm pelas linhas do bloco; o texto que ela le e o que esta ali
+            x, y, w, h = a["caixa"]
+            olh = [CX.fovea(img, xx, yy) for yy in range(int(y) + 10, int(y + h), 22)[:3]
+                   for xx in range(int(x) + 32, int(x + w), 56)[:5] if 0 <= yy < H][:8]
+            if olh:
+                z_v, e_v, rec = cx.ve(np.stack(olh), reconstroi=True)
+                cx.aprende(np.stack(olh))
+                self._palavras(olh[0], z_v[0], max_cel=12)          # as formas das letras viram palavras visuais
+                self._mostra_olho(olh[0], rec[0], info={"tipo": "ler", "erro": round(float(e_v[0]), 4)})
+            bl = a["texto"].encode("utf-8")
+            bits = []
+            for k in range(0, min(len(bl), 6144), 2048):
+                bloco = bl[k:k + 2048]
+                if len(bloco) < 16:
+                    break
+                sur = self.texto.surpresa(bloco, True)
+                bits.append(float(sur.mean()))
+                conta["lidos"] += len(bloco)
+                self._lexico(bloco, sur, pg, pid)
+            if not bits:
+                return 0.0
+            conta["bits"].extend(bits)
+            err = float(np.mean(bits))
+        elif tipo == "imagem":
+            x, y, w, h = a["caixa"]
+            x0, y0, x1, y1 = max(0, int(x)), max(0, int(y)), min(W, int(x + w)), min(H, int(y + h))
+            if x1 - x0 < 24 or y1 - y0 < 24:
+                return 0.0
+            recorte = img[y0:y1, x0:x1]
+            inteira = CX.reduz(recorte)                         # a imagem toda de uma vez
+            sal = cx.saliencia(recorte) if (x1 - x0 >= 128 and y1 - y0 >= 128) else []
+            sal.sort(key=lambda z: -z[0])
+            pts = [(px, py) for _e, px, py in sal[:2]] or [((x1 - x0) / 2, (y1 - y0) / 2)]
+            olh = [CX.fovea(recorte, px, py) for px, py in pts]   # e os pontos que mais chamam o olho
+            ganho, err = cx.progresso(np.stack([inteira] + olh[:1]), np.stack(olh[-1:]))
+            todas = np.stack([inteira] + olh)
+            z, _e, rec = cx.ve(todas, reconstroi=True)
+            self._mostra_olho(inteira, rec[0], info={"tipo": "imagem", "erro": round(err, 4), "alt": a.get("alt", "")[:80]})
+            ids = [j for k_, o_ in enumerate(todas) for j in self._palavras(o_, z[k_])]
+            conta["n_img"] += 1
+            conta["visuais"].append(ganho)
+            alt = a.get("alt", "").encode("utf-8")
+            leg = [p for p in self._pedacos(alt) if p in self.E and len(p) >= 3][:5]
+            itens = list(dict.fromkeys(leg + estr_tela))[:10]
+            dist = self._distintas(ids, 2)
+            if itens and dist:
+                self._aterra(itens, [("r", j) for j in dist], f"{pg.url}#img{conta['n_img']}",
+                             abre=[p for p in leg if len(p) >= 4][:2])
+        else:                                                    # "olhar": um ponto que chamou a atencao
+            g1 = CX.fovea(img, a["x"], a["y"])
+            g2 = CX.fovea(img, a["x"] + 32, a["y"])
+            ganho, err = cx.progresso(g1[None], g2[None])
+            z, _e, rec = cx.ve(g1[None], reconstroi=True)
+            self._palavras(g1, z[0])
+            self._mostra_olho(g1, rec[0], info={"tipo": "olhar", "erro": round(err, 4)})
+            conta["visuais"].append(ganho)
+        rel = self._surpresa_rel(tipo, err)
+        self.lp[tipo].append(err)
+        return rel
+
+    def _ler_olhando(self, pg):
+        """Ler como quem OLHA a pagina. Em cada tela:
+          1) a periferia: o cortex olha a tela a meia resolucao e acha onde ainda nao
+             sabe ver (saliencia aprendida, nao do HTML);
+          2) as paradas do olhar (ate 16 por tela; sem pausa artificial: o ritmo e o do calculo): ela
+             escolhe entre ler um bloco, olhar uma imagem ou olhar o ponto que chamou a
+             atencao, pelo PROGRESSO DE APRENDIZAGEM de cada tipo + a saliencia do lugar;
+             le em ordem (o proximo bloco perto de onde o olho esta);
+          3) para de olhar um TIPO de coisa na tela quando 3 paradas seguidas dele ensinam
+             menos que o normal (forrageio), e sai da tela quando nada mais vale
+             e sai da pagina quando o texto fica previsivel ou incompreensivel."""
+        self._descobre_barras(pg)
+        dados = pg.texto
+        pid = self.n_pag
+        self.n_pag += 1
+        reserva = dados[-512:] if len(dados) >= 1500 else None
+        L0 = float(self.texto.surpresa(reserva, False).mean()) if reserva is not None else None
+        hist = self.hist_surp_bloco
+        q25 = np.quantile(hist, 0.25) if len(hist) > 30 else -1
+        q90 = np.quantile(hist, 0.90) if len(hist) > 30 else 1e9
+        cx = self._cortex()
+        conta = {"bits": [], "lidos": 0, "n_img": 0, "visuais": [], "tipos": collections.Counter()}
+        motivo, telas_vistas, n_fix = "fim", 0, 0
+        n_telas = len(pg.telas)
+        caminho_total = []
+        for i, tela in enumerate(pg.telas):
+            try:
+                img, sy = self.corpo.olha_tela(tela)
+            except Exception:
+                break
+            telas_vistas += 1
+            H, W = img.shape[:2]
+            sal = cx.saliencia(img)
+            ev_ = np.array([e for e, _x, _y in sal]) if sal else np.zeros(1)
+            med, top = float(np.median(ev_)), float(ev_.max())
+
+            def sal_em(x, y):
+                if not sal:
+                    return 0.0
+                j = int(np.argmin([(x - sx) ** 2 + (y - sy_) ** 2 for _e, sx, sy_ in sal]))
+                return float(np.clip((sal[j][0] - med) / (top - med + 1e-9), 0, 1))
+            alvos = []
+            for (x, y, w, h, t) in tela["blocos"]:
+                yy = y - sy
+                if yy + h > 0 and yy < H and len(t) >= 40:      # menus e rotulos: vistos, nao lidos
+                    alvos.append({"tipo": "ler", "x": x + min(w, 300) / 2, "y": max(0, yy) + min(h, 60) / 2,
+                                  "caixa": [x, yy, w, h], "texto": t})
+            for (x, y, w, h, alt) in tela["imagens"][:6]:
+                yy = y - sy
+                if yy + h > 0 and yy < H:
+                    alvos.append({"tipo": "imagem", "x": x + w / 2, "y": yy + h / 2, "caixa": [x, yy, w, h], "alt": alt})
+            for e, x, y in sorted(sal, key=lambda z: -z[0])[:3]:
+                alvos.append({"tipo": "olhar", "x": x, "y": y})
+            sur0 = None
+            txt_tela = tela["texto"]
+            if len(txt_tela) >= 3:
+                sur0 = self.texto.surpresa(txt_tela[:2048], False)
+            estr_tela = [txt_tela[a:b] for a, b in G.segmenta(txt_tela[:2048], sur0) if txt_tela[a:b] in self.E][:8] \
+                if sur0 is not None else []
+            pos, caminho = (W / 2, H / 3), []
+            tedio = {"ler": 0, "imagem": 0, "olhar": 0}     # forrageio POR TIPO de coisa
+            self.corpo._mostra(tela_i=i + 1, n_telas=n_telas, nota=f"olhando a tela {i + 1} de {n_telas}",
+                               extra={"fixacoes": [], "saliencia": [[round(x), round(y), round(e, 4)] for e, x, y in sal]})
+            for k in range(self.MAX_FIX_TELA):
+                rest = [a for a in alvos if not a.get("feito") and tedio[a["tipo"]] < 3]
+                if not rest:
+                    break
+                lp = {t_: self._lp(t_) + float(self.rng.normal(0, 0.05)) for t_ in ("ler", "imagem", "olhar")}
+
+                def valor(a):
+                    v = lp[a["tipo"]] + 0.5 * sal_em(a["x"], a["y"])
+                    if a["tipo"] == "ler":         # le em ordem: o bloco seguinte, perto do olho;
+                        v -= 0.3 * math.hypot(a["x"] - pos[0], a["y"] - pos[1]) / W   # paragrafo atrai mais que rotulo
+                        v += 0.2 * min(1.0, len(a["texto"]) / 600)
+                    return v
+                a = max(rest, key=valor)
+                a["feito"] = True
+                rel = self._fixa(a, img, cx, pg, pid, estr_tela, conta)
+                n_fix += 1
+                pos = (a["x"], a["y"])
+                caminho.append([round(a["x"]), round(a["y"]), a["tipo"], round(rel, 3)])
+                rec_ = getattr(self, "_percepto", {}) or {}
+                self.corpo._mostra(foco=a.get("caixa"), tela_i=i + 1, n_telas=n_telas, reconhece=rec_.get("reconhece"),
+                                   imagens=[al["caixa"] for al in alvos if al["tipo"] == "imagem"],
+                                   nota={"ler": "lendo", "imagem": "olhando a imagem", "olhar": "olhando o que chamou a atencao"}[a["tipo"]]
+                                   + f" · tela {i + 1} de {n_telas}",
+                                   extra={"fixacoes": caminho, "fixacao": caminho[-1],
+                                          "saliencia": [[round(x), round(y), round(e, 4)] for e, x, y in sal]})
+                if a["tipo"] == "ler":
+                    self._percebe_pagina(pg, a["texto"].encode("utf-8"))
+                tedio[a["tipo"]] = tedio[a["tipo"]] + 1 if rel < 0 else 0
+                conta["tipos"][a["tipo"]] += 1
+            caminho_total.append(len(caminho))
+            b = conta["bits"]
+            if len(b) >= 2 and np.mean(b[-2:]) < q25:
+                motivo = "previsivel"
+                break
+            if len(b) >= 4 and np.mean(b[-2:]) > q90 and b[-1] >= b[-3]:
+                motivo = "incompreensivel"
+                break
+        hist.extend(conta["bits"])
+        if len(hist) > 5000:
+            del hist[:1000]
+        prog = None
+        if reserva is not None:
+            prog = L0 - float(self.texto.surpresa(reserva, False).mean())
+            self.hist_prog["texto"].append(prog)
+            if len(self.hist_prog["texto"]) > 3000:
+                del self.hist_prog["texto"][:1000]
+        self._prog_visual = float(np.mean(conta["visuais"])) if conta["visuais"] else None
+        if conta["visuais"]:
+            self.hist_prog["midia"].append(self._prog_visual)
+        self._dom(pg.dominio)["paginas"] += 1
+        self._apos_ler(pg, dados, conta["bits"])
+        b = conta["bits"]
+        self.ev("leu", url=pg.url, dominio=pg.dominio, lidos=conta["lidos"], total=len(dados),
+                bits_primeiro_bloco=b[0] if b else None, bits_final=b[-1] if b else None,
+                progresso=prog, motivo=motivo, telas=telas_vistas, de_telas=n_telas, imagens=conta["n_img"],
+                paradas_do_olhar=n_fix, paradas_por_tela=caminho_total, paradas_por_tipo=dict(conta["tipos"]),
+                clicou=getattr(self.corpo, "ultimo_clique", None) is not None)
+        if conta["n_img"]:
+            self.ev("viu", n=conta["n_img"], palavras_visuais=len(self.olho.P), olhadas=cx.olhadas,
+                    progresso_visual=round(self._prog_visual, 5), progresso=self._prog_visual, na_pagina=True)
+        return prog
+
+    def _descobre_barras(self, pg):
+        for f in pg.formularios:
+            d = dominio(f[0])
+            if d in DOM_DADOS or d in self.barras_novas or len(self.barras_novas) >= MAX_BARRAS_NOVAS:
+                continue
+            self.barras_novas[d] = f
+            self.ev("barra_descoberta", dominio=d, acao=f[0], campo=f[1], em=pg.url)
+
+    def _lexico(self, bloco, sur, pg, pid):
+        seq = []
+        for (a, b) in G.segmenta(bloco, sur):
+            p = bloco[a:b]
+            if len(p) >= 3:
+                e = self.lex.get(p)
+                if e is None:
+                    if len(self.lex) < MAX_LEXICO * 1.2:
+                        self.lex[p] = [1, {pg.dominio}, self.t]
+                else:
+                    e[0] += 1
+                    e[2] = self.t
+                    if len(e[1]) < 12:
+                        e[1].add(pg.dominio)
+                    # regularidade = volta em >= 2 dominios INDEPENDENTES
+                    if p not in self.E and len(e[1]) >= 2:
+                        self._nasce(p, pg, 1, None)
+            seq.append((a, b, p))
+        # SUBIR: aplicar as fusoes aprendidas, de baixo para cima
+        if self.fusoes:
+            for _ in range(5):
+                out, i, mudou = [], 0, False
+                while i < len(seq):
+                    if i + 1 < len(seq):
+                        k = self.fusoes.get((seq[i][2], seq[i + 1][2]))
+                        if k is not None:
+                            self._apos_fusao((seq[i][2], seq[i + 1][2]), sur, seq[i][0], seq[i + 1][1])
+                            out.append((seq[i][0], seq[i + 1][1], k))
+                            i += 2
+                            mudou = True
+                            continue
+                    out.append(seq[i])
+                    i += 1
+                seq = out
+                if not mudou:
+                    break
+        ant = None
+        for (a, b, p) in seq:
+            s = self.E.get(p)
+            if s is None:
+                ant = None
+                continue
+            self._ocorre(s, p, pg, bloco, sur, a, b)
+            if ant is not None:
+                self.n_adj += 1
+                par = (ant, p)
+                e = self.pares.get(par)
+                if e is None:
+                    if len(self.pares) < MAX_PARES * 1.2:
+                        self.pares[par] = [1, {pg.dominio}]
+                else:
+                    e[0] += 1
+                    if len(e[1]) < 12:
+                        e[1].add(pg.dominio)
+                self._apos_par(par, float(sur[a:b].sum()))
+                # contexto distribucional, separado em "casa" e "fora"
+                sa = self.E[ant]
+                self._ctx_add(s, pg.dominio, b"<" + ant)
+                self._ctx_add(sa, pg.dominio, b">" + p)
+            ant = p
+
+    def _ctx_add(self, s, dom, chave):
+        nome = "ctx_c" if dom == s["dom_nasc"] else "ctx_f"
+        v = s[nome]
+        if v is None:
+            v = s[nome] = np.zeros(G.D_CTX, np.float16)
+        v += G._idx(chave)
+
+    def _nasce(self, p, pg, nivel, partes):
+        self.E[p] = dict(nasc=self.t, dom_nasc=pg.dominio if pg else "fusao", doms=set(), n=0,
+                         nivel=nivel, partes=partes, u_dep=None, u_prop=None, ult=self.t,
+                         reusos=0, util_fora=0, ctx_c=None, ctx_f=None, div=False)
+        if pg is not None:
+            self.E[p]["doms"].add(pg.dominio)
+        self.n_nasc += 1
+        if nivel >= 2 or self.n_nasc % 25 == 1:
+            self.ev("nascimento", pedaco=txt(p), nivel=nivel,
+                    dominio=pg.dominio if pg else None,
+                    partes=[txt(x) for x in partes] if partes else None)
+
+    def _ocorre(self, s, p, pg, bloco, sur, a, b):
+        s["n"] += 1
+        s["ult"] = self.t
+        dep = float(sur[b:b + JD].mean()) if b + 2 < len(sur) else None
+        prop = float(sur[a:b].mean())
+        al = 0.1
+        if dep is not None:
+            s["u_dep"] = dep if s["u_dep"] is None else (1 - al) * s["u_dep"] + al * dep
+        s["u_prop"] = prop if s["u_prop"] is None else (1 - al) * s["u_prop"] + al * prop
+        if pg.dominio not in s["doms"]:
+            if len(s["doms"]) < 12:
+                s["doms"].add(pg.dominio)
+            s["reusos"] += 1
+            med = np.median(self.hist_surp_bloco[-500:]) if self.hist_surp_bloco else 8.0
+            util = prop < med
+            if util:
+                s["util_fora"] += 1
+            if s["reusos"] <= 2 and len(p) >= 5:
+                self.ev("reuso", pedaco=txt(p), nivel=s["nivel"], de=s["dom_nasc"],
+                        em=pg.dominio, util=bool(util))
+        if len(s["doms"]) < 2 or len(p) < 3:
+            return
+        # o que nao entendo AQUI acende uma lacuna (comparado com a minha historia)
+        for tipo, v in (("depois", dep), ("inesperado", prop)):
+            if v is None:
+                continue
+            h = self.hq[tipo]
+            h.append(v)
+            if len(h) % 250 == 0 and len(h) >= 250:
+                self.q90[tipo] = float(np.quantile(h, 0.9))
+                # regua de "entendido": um encontro TIPICO, medido do mesmo jeito
+                # (surpresa antes de aprender) que a lacuna e medida
+                self.ref_med[tipo] = float(np.quantile(h, 0.5))
+            if v > self.q90[tipo]:
+                self._acende(tipo, p, p, pg, bloco, a, b)
+            elif tipo == "depois" and self.rng.random() < 0.05:
+                i0 = max(0, a - JA)
+                self.ref.append((bloco[i0:b + JD], a - i0, b - i0))
+        if s["div"] and dep is not None:
+            self._acende("divergente", p, p, pg, bloco, a, b)
+
+    # ── lacunas: o mesoestado ────────────────────────────────────────────────
+    def _acende(self, tipo, chave, alvo, pg, bloco=None, a=0, b=0, proto=None):
+        key = (tipo, chave)
+        g = self.lac.get(key)
+        nova = g is None
+        if nova:
+            if len(self.lac) >= MAX_LACUNAS * 1.5:
+                return None
+            g = self.lac[key] = dict(tipo=tipo, alvo=alvo, aberta=self.t, ativ=[], jan=[],
+                                     doms_jan=set(), u=None, u0=None, tent=[], estado="aberta",
+                                     proto=proto, pos=0, neg=0, fechou=None)
+        if g["estado"] != "aberta":
+            return g
+        if key in self._congeladas:                # o que eu mesmo fui buscar nao conta
+            return g                               # como "isto voltou a me intrigar"
+        g["ativ"].append(self.t)
+        if len(g["ativ"]) > 30:
+            g["ativ"] = g["ativ"][-30:]
+        if bloco is not None and len(g["jan"]) < 3 and key not in self._congeladas \
+                and (pg.dominio not in g["doms_jan"] or len(g["jan"]) < 2):
+            i0 = max(0, a - JA)
+            g["jan"].append((pg.dominio, pg.url, bloco[i0:b + JD], a - i0, b - i0))
+            g["doms_jan"].add(pg.dominio)
+        g["u"] = self._u(key)
+        if nova:
+            g["u0"] = g["u"]
+            if g["u0"] is not None:
+                self.u0_tipo[tipo].append(g["u0"])
+            self.ev("lacuna", tipo=tipo, alvo=txt(alvo), u0=g["u0"],
+                    proto=list(proto) if proto else None)
+        return g
+
+    def _u(self, key):
+        g = self.lac.get(key)
+        if g is None:
+            return None
+        if g["tipo"] == "ligacao":
+            return entropia_beta(g["pos"], g["neg"])
+        # entender = PREVER os proximos encontros com X (surpresa antes de
+        # aprender, media movel), nao lembrar a frase antiga: lembrar sofre
+        # interferencia de tudo o que se aprende depois (fumaca d: net < 0)
+        s = self.E.get(g["alvo"])
+        if s is None:
+            return None
+        return s["u_prop"] if g["tipo"] == "inesperado" else s["u_dep"]
+
+    def _fechada(self, g):
+        if g["u"] is None:
+            return False
+        if g["tipo"] == "ligacao":
+            return g["pos"] >= 2 or (g["neg"] >= 3 and g["pos"] == 0)
+        ref = self.ref_med["inesperado" if g["tipo"] == "inesperado" else "depois"]
+        return ref is not None and g["u"] <= ref
+
+    def _fecha(self, key, como):
+        g = self.lac[key]
+        g["estado"], g["fechou"] = "fechada", self.t
+        resumo = dict(tipo=g["tipo"], alvo=txt(g["alvo"]), aberta=g["aberta"], fechou=self.t,
+                      tentativas=len(g["tent"]), u0=g["u0"], u=g["u"], como=como,
+                      bracos_que_pagaram=[x["braco"] for x in g["tent"] if x["net"] > 0])
+        self.fechadas.append(resumo)
+        self.ev("fechou", **resumo)
+
+    def ativacao(self, g):
+        if not g["ativ"]:
+            return 0.0
+        u = np.asarray(g["ativ"], float)
+        return float(np.exp(-(self.t - u) / self.tau).sum())
+
+    def candidatas(self, k=5):
+        med = {t: (np.median(v[-500:]) if v else 1.0) for t, v in self.u0_tipo.items()}
+        out = []
+        for key, g in self.lac.items():
+            if g["estado"] != "aberta" or g["u"] is None:
+                continue
+            if g["tipo"] != "ligacao" and not g["jan"]:
+                continue
+            a = self.ativacao(g)
+            if a < 0.05:
+                continue
+            out.append((a * g["u"] / max(med[g["tipo"]], 1e-6), key))
+        out.sort(key=lambda z: -z[0])
+        return [k for _s, k in out[:k]]
+
+    def ctx_lacuna(self, g):
+        s = self.E.get(g["alvo"])
+        n = s["n"] if s else 0
+        nd = len(s["doms"]) if s else 0
+        niv = min(s["nivel"], 3) if s else 1
+        u0s = self.u0_tipo[g["tipo"]][-500:]
+        ur = int(np.searchsorted(np.quantile(u0s, [0.25, 0.5, 0.75]), g["u"])) if len(u0s) > 8 else 0
+        feats = [b"tipo:" + g["tipo"].encode(), b"nivel:%d" % niv,
+                 b"freq:%d" % int(np.searchsorted([4, 16, 64, 256, 1024], n)),
+                 b"doms:%d" % int(np.searchsorted([2, 3, 5, 8], nd)),
+                 b"len:%d" % int(np.searchsorted([4, 6, 10, 16, 32], len(g["alvo"]))),
+                 b"u:%d" % ur, b"tent:%d" % int(np.searchsorted([1, 3, 6], len(g["tent"])))]
+        v = np.zeros(G.D_CTX, np.float32)
+        for f in feats:
+            v += G._idx(f)
+        v += 0.7 * G._idx(b"alvo:" + g["alvo"])
+        return _unit(v)
+
+    # ── perceber o contexto da pagina pelas PROPRIAS estruturas ──────────────
+    def ctx_pagina(self, pg):
+        v = np.zeros(G.D_CTX, np.float32)
+        if pg is None:
+            return _unit(v + G._idx(b"sem_pagina"))
+        if pg.texto:
+            amostra = pg.texto[:4096]
+            sur = self.texto.surpresa(amostra, False)
+            for (a, b) in G.segmenta(amostra, sur):
+                if amostra[a:b] in self.E:
+                    v += G._idx(amostra[a:b])
+        v = _unit(v) + 0.5 * G._idx(b"tipo:" + pg.tipo.encode()) / math.sqrt(G.D_CTX) \
+            + 0.5 * G._idx(b"midia:" + str(bool(pg.midias)).encode()) / math.sqrt(G.D_CTX)
+        return _unit(v)
+
+    # ── escolha ──────────────────────────────────────────────────────────────
+    def _custo(self, e):
+        """Custo de um braco nunca tentado = mediana dos custos que ela ja conhece."""
+        c = self.custo.get(e)
+        if c is None:
+            c = float(np.median(list(self.custo.values()))) if self.custo else 3.0
+        return max(c, 0.5)
+
+    def _p_funciona(self, e):
+        """Separado de 'pagou': uma ferramenta que nao funciona (robots, erro) nao
+        funciona em contexto nenhum — aprende-se de uma vez, sem nucleo de contexto."""
+        ok, fa = self.funciona.get(e, (0, 0))
+        return float(self.rng.beta(ok + 1, fa + 1))
+
+    def _reg(self, tabela, nome):
+        r = tabela.get(nome)
+        if r is None:
+            r = tabela[nome] = Reg()
+        return r
+
+    def _theta(self, reg, x, proprio=None):
+        """Sem lacuna: toda a evidencia de contextos parecidos (como na v0).
+        Com lacuna: a populacao vira PRIOR (peso <= kappa aprendido) e a historia PROPRIA
+        desta lacuna com este braco decide."""
+        m, massa = reg.pop(x)
+        if proprio is None:
+            return float(self.rng.beta(massa * m + N0 * 0.5, massa * (1 - m) + N0 * 0.5))
+        k = min(massa, getattr(self, "kappa", KAPPA0))
+        a = k * m + N0 * 0.5 + proprio[0]
+        b = k * (1 - m) + N0 * 0.5 + proprio[1]
+        return float(self.rng.beta(a, b))
+
+    def _theta_ferramenta(self, e, g):
+        """Ferramenta inutil se aprende DE UMA VEZ, nao pergunta por pergunta: o que
+        ela sabe da ferramenta em TODAS as perguntas (sem nucleo de contexto, que
+        diluia a evidencia: Google UK 185 tentativas, 0% de retorno) + a historia
+        desta pergunta com ela."""
+        ok, no = self.rende.get(e, (0, 0))
+        po, pn = self._historia(g, e)
+        return float(self.rng.beta(1 + ok + po, 1 + no + pn))
+
+    def _historia(self, g, braco=None):
+        ts = [x for x in g["tent"] if braco is None or x["braco"] == braco]
+        pos = sum(1 for x in ts if x.get("ok", x["net"] > 0))
+        return pos, len(ts) - pos
+
+    def bracos_lacuna(self, g, pg):
+        out = [f"pesquisar:{b}" for b in BARRAS] + [f"pesquisar:@{d}" for d in self.barras_novas]
+        if pg is not None and pg.links and self._link_lacuna(g, pg) is not None:
+            out.append("seguir_lacuna")
+        return out
+
+    def disponiveis(self, pg):
+        out = [f"porta:{p}" for p in PORTAS]
+        if self.corpo.pode_voltar():                 # botao "voltar" so acende com historico
+            out.append("voltar")
+        if pg is not None and pg.links:
+            out += ["seguir_novo", "seguir_familiar", "seguir_acaso"]
+        if pg is not None and any(m[0] in ("video", "audio") for m in pg.midias):
+            out.append("assistir")
+        if pg is not None and any(m[0] == "imagem" for m in pg.midias):
+            out.append("ver")
+        return out
+
+    def escolhe(self, pg):
+        xp = self.ctx_pagina(pg)
+        x0 = np.concatenate([xp, G._idx(b"sem_lacuna") / math.sqrt(G.D_CTX)]) / math.sqrt(2)
+        melhor = None
+        opcoes = []
+        for e in self.disponiveis(pg):
+            v = self._theta(self._reg(self.regs, e), x0) * self._p_funciona(e) / self._custo(e)
+            opcoes.append((e, v, None))
+            if melhor is None or v > melhor[0]:
+                melhor = (v, e, None, x0)
+        cands = self.candidatas(5)
+        if cands:
+            # 1) qual problema aberto perseguir (populacao + historia propria)
+            best = None
+            for key in cands:
+                g = self.lac[key]
+                xg = np.concatenate([xp, self.ctx_lacuna(g)]) / math.sqrt(2)
+                th = self._theta(self.regs_lac, xg, self._historia(g))
+                if best is None or th > best[0]:
+                    best = (th, key, xg)
+            _th, key, xg = best
+            g = self.lac[key]
+            # 2) que acao informacional, para ESTE problema
+            for e in self.bracos_lacuna(g, pg):
+                v = self._theta_ferramenta(e, g) * self._p_funciona(e) / self._custo(e)
+                opcoes.append((e, v, txt(g["alvo"])))
+                if v > melhor[0]:
+                    melhor = (v, e, key, xg)
+        opcoes.sort(key=lambda z: -z[1])
+        self._decisao = {"t": self.t, "escolhida": melhor[1],
+                         "lacuna": txt(self.lac[melhor[2]]["alvo"]) if melhor[2] in self.lac else None,
+                         "opcoes": [{"acao": e, "valor": round(float(v), 5), "custo": round(self._custo(e), 2),
+                                     "por": a} for e, v, a in opcoes[:12]]}
+        return melhor[1], melhor[2], melhor[3]
+
+    def _formulacao(self, g, xg):
+        ops = []
+        for f in self.FORMULACOES:
+            q = self._formula(g, f)
+            if q:
+                ops.append((self._theta(self._reg(self.regs_form, f), xg), f, q))
+        if not ops:
+            return None, None
+        ops.sort(key=lambda z: -z[0])
+        return ops[0][1], ops[0][2]
+
+    def _formula(self, g, f):
+        alvo = limpa(g["alvo"])
+        if len(alvo) < 2:
+            return None
+        if f == "alvo":
+            return alvo
+        if f == "vizinho":
+            v = self._vizinho(g)
+            return f"{alvo} {limpa(v)}" if v and len(limpa(v)) >= 2 else None
+        if f == "acima":
+            ps = [p for p in self.pais.get(g["alvo"], ()) if p in self.E]
+            if not ps:
+                return None
+            p = max(ps, key=lambda z: self.E[z]["n"])
+            q = limpa(p)
+            return q if len(q) >= 2 and q != alvo else None
+        return None
+
+    def _vizinho(self, g):
+        c = collections.Counter()
+        for (_d, _u, jan, ia, ib) in g["jan"]:
+            sur = self.texto.surpresa(jan, False)
+            segs = G.segmenta(jan, sur)
+            for i, (a, b) in enumerate(segs):
+                if a <= ia < b or (a >= ia and b <= ib):
+                    for j in (i - 1, i + 1):
+                        if 0 <= j < len(segs):
+                            p = jan[segs[j][0]:segs[j][1]]
+                            if len(p) >= 4 and p != g["alvo"] and p in self.E:
+                                c[p] += 1
+                    break
+        return c.most_common(1)[0][0] if c else None
+
+    def _link_lacuna(self, g, pg):
+        alvo = g["alvo"].strip()
+        if len(alvo) < 3:
+            return None
+        for anc, u in pg.links[:400]:
+            if alvo in anc and u != pg.url:
+                return u
+        return None
+
+    def _controles(self, key):
+        tipo = key[0]
+        ks = [k for k, g in self.lac.items() if k != key and g["tipo"] == tipo
+              and g["estado"] == "aberta" and g["u"] is not None]
+        if len(ks) > 8:
+            ks = [ks[i] for i in self.rng.choice(len(ks), 8, replace=False)]
+        return ks
+
+    # ── um passo de vida ─────────────────────────────────────────────────────
+    def passo(self):
+        t0 = time.time()
+        pg = self.pagina
+        estr, key, x = self.escolhe(pg)
+        nova, prog, alvo, modal, consulta, form = None, None, None, "texto", None, None
+        g = self.lac.get(key) if key is not None else None
+        ctrl, u_a = [], {}
+        if g is not None:
+            ctrl = self._controles(key)
+            self._congeladas = set([key] + ctrl)
+            u_a = {k: self._u(k) for k in [key] + ctrl}
+        if estr.startswith("porta:"):
+            nova = self.corpo.aleatorio(estr.split(":")[1])
+        elif estr == "voltar":
+            nova = self.corpo.voltar()
+        elif estr in ("seguir_novo", "seguir_familiar", "seguir_acaso"):
+            u = self._escolhe_link(pg, estr)
+            if u:
+                self._ancora = next((a.decode("utf-8", "ignore") for a, uu in pg.links if uu == u), "")
+                nova = self.corpo.abrir(u)
+        elif estr == "seguir_lacuna":
+            u = self._link_lacuna(g, pg)
+            consulta = txt(g["alvo"])
+            if u:
+                self._ancora = next((a.decode("utf-8", "ignore") for a, uu in pg.links if uu == u), "")
+                nova = self.corpo.abrir(u)
+        elif estr.startswith("pesquisar:"):
+            form, consulta = self._formulacao(g, x)
+            if consulta:
+                barra = estr.split(":", 1)[1]
+                self.buscas.append((self.t, barra, consulta))
+                if len(self.buscas) > 5000:
+                    del self.buscas[:1000]
+                self.ev("pesquisa", barra=barra, consulta=consulta, formulacao=form,
+                        lacuna=g["tipo"], alvo=txt(g["alvo"]), u=g["u"])
+                if barra.startswith("@"):
+                    nova = self.corpo.usar_formulario(self.barras_novas[barra[1:]], consulta)
+                else:
+                    nova = self.corpo.pesquisar(barra, consulta)
+        elif estr == "assistir":
+            prog, alvo = self._assistir(pg)
+            modal = "midia"
+        elif estr == "ver":
+            prog, alvo = self._ver(pg)
+            modal = "midia"
+        repetida = False
+        if nova is not None and nova.tipo != "erro":
+            self.pagina = nova
+            alvo = nova.url
+            hu = zlib.crc32(nova.url.encode("utf-8", "replace"))   # estavel entre processos
+            repetida = hu in self.lidas
+            if len(self.lidas) < 200_000:
+                self.lidas.add(hu)
+            prog = self.ler(nova)
+            if estr == "pesquisar:midia" and nova.midias:
+                self._ver(nova)                       # pesquisar imagem = olhar o que veio
+            if estr == "porta:imagem" and getattr(nova, "navegador", False):
+                prog, modal = getattr(self, "_prog_visual", None), "midia"   # ja olhou a imagem na pagina
+            elif estr == "porta:imagem" and nova.midias:
+                prog, _u = self._ver(nova)            # a porta das imagens: abrir = olhar
+                modal = "midia"
+            if estr == "porta:video" and nova.midias:
+                prog, _u = self._assistir(nova)       # a porta dos videos: abrir = assistir
+                modal = "midia"
+        if nova is not None and nova.tipo == "erro" and nova.origem == "sem_rede":
+            # o MUNDO sumiu (nao foi a ferramenta que falhou): nada de aprender que
+            # tudo "nao funciona"; ela espera e consolida, e volta quando a rede volta
+            self._congeladas = set()
+            self.offline = getattr(self, "offline", 0) + 1
+            if self.offline == 1 or self.offline % 20 == 0:
+                self.ev("sem_rede", estrategia=estr, vezes=self.offline)
+            if self.offline % 10 == 1:
+                self.dorme()
+            self.telemetria(forcar=True)
+            time.sleep(30)
+            return
+        if getattr(self, "offline", 0):
+            self.ev("rede_voltou", depois_de=self.offline)
+            self.offline = 0
+        dt = time.time() - t0
+        self.vida_s += dt
+        falhou = (nova is not None and nova.tipo == "erro") or \
+            (prog is None and estr != "voltar" and nova is None and alvo is None)
+        self.custo[estr] = (0.8 * self.custo[estr] + 0.2 * max(dt, 1.0)) if estr in self.custo             else max(dt, 1.0)
+        fu = self.funciona.setdefault(estr, [0, 0])
+        fu[1 if falhou else 0] += 1
+        if g is not None:
+            ok = self._mede_intencao(key, ctrl, u_a, estr, form, consulta, nova, falhou, x, repetida)
+            self._congeladas = set()
+        else:
+            hist = self.hist_prog[modal]
+            # regua da VIDA (ate 3000 experiencias), nao das ultimas 200: presa num site
+            # chato, a regua curta baixa junto e metade das paginas chatas "paga" (v2: 0 sites
+            # novos em 30 min, ganho ~0) — adaptacao hedonica
+            ok = prog is not None and len(hist) > 5 and prog > np.median(hist)
+            if prog is not None or falhou or nova is None:
+                self._reg(self.regs, estr).add(x, ok and not falhou)
+        self._ultima_acao = {"t": self.t, "estrategia": estr, "de": pg.url if pg is not None else None,
+                             "destino": alvo, "consulta": consulta, "formulacao": form,
+                             "ancora": getattr(self, "_ancora", "") if estr.startswith("seguir") else None,
+                             "lacuna": txt(g["alvo"]) if g is not None else None,
+                             "tipo_lacuna": key[0] if key else None, "pagou": bool(ok), "segundos": round(dt, 2),
+                             "erro": nova.origem if nova is not None and nova.tipo == "erro" else None}
+        self.ev("acao", estrategia=estr, lacuna=(key[0] if key else None),
+                alvo_lacuna=(txt(g["alvo"]) if g is not None else None), consulta=consulta,
+                destino=alvo, progresso=prog, pagou=bool(ok), segundos=round(dt, 2),
+                erro=(nova.origem if nova is not None and nova.tipo == "erro" else None))
+        self._confere_pendentes()
+        self.t += 1
+        if self.t % SONO_CADA == 0:
+            self.dorme()
+        self._apos_passo()
+        self.telemetria()
+
+    def _mede_intencao(self, key, ctrl, u_a, estr, form, consulta, nova, falhou, x, repetida=False):
+        """problema -> acao -> evidencia -> atualizacao: a lacuna mudou mais que
+        as lacunas parecidas que NAO foram perseguidas no mesmo intervalo?"""
+        u_d = {k: self._u(k) for k in [key] + ctrl}
+        g = self.lac[key]
+        da = (u_a[key] - u_d[key]) if (u_a.get(key) is not None and u_d[key] is not None) else 0.0
+        dc = [u_a[k] - u_d[k] for k in ctrl if u_a.get(k) is not None and u_d.get(k) is not None]
+        net = da - (float(np.median(dc)) if dc else 0.0)
+        if falhou or repetida:
+            net = min(net, 0.0)                    # reler o que ja li nao e evidencia nova
+        # pagou = mudou MAIS que o meu tipico E mais que a flutuacao das lacunas
+        # que nao persegui no mesmo intervalo (desvio robusto dos controles)
+        h = self.hist_prog["lacuna"]
+        ruido = 1.4826 * float(np.median(np.abs(np.asarray(dc) - np.median(dc)))) if len(dc) >= 3 else 0.0
+        ok = net > 0 and net > ruido and net > (float(np.median(h)) if len(h) > 5 else 0.0)
+        h.append(net)
+        if len(h) > 3000:
+            del h[:1000]
+        g["u"] = u_d[key]
+        for k in ctrl:
+            if k in self.lac and u_d.get(k) is not None:
+                self.lac[k]["u"] = u_d[k]
+        destino = nova.url if nova is not None else None
+        mesma = destino is not None and any(destino == j[1] for j in g["jan"])
+        g["tent"].append(dict(t=self.t, braco=estr, form=form, consulta=consulta,
+                              u_antes=u_a.get(key), u_depois=u_d[key], net=net, ok=bool(ok)))
+        self._reg(self.regs, estr).add(x, ok)
+        rd = self.rende.setdefault(estr, [0, 0])
+        rd[0 if ok else 1] += 1
+        self.regs_lac.add(x, ok)
+        if form:
+            self._reg(self.regs_form, form).add(x, ok)
+        self.ev("intencao", tipo=g["tipo"], alvo=txt(g["alvo"]), braco=estr, formulacao=form,
+                consulta=consulta, u_antes=u_a.get(key), u_depois=u_d[key], delta=da,
+                controles_mediana=(float(np.median(dc)) if dc else None), n_controles=len(dc),
+                net=net, pagou=bool(ok), ruido=ruido, destino=destino, mesma_pagina=mesma,
+                repetida=bool(repetida), falhou=bool(falhou),
+                tentativa=len(g["tent"]))
+        self.pendentes.append((self.t + 50, key, list(ctrl), dict(u_a)))
+        if self._fechada(g):
+            self._fecha(key, "perseguida")
+        return ok
+
+    def _confere_pendentes(self):
+        resta = []
+        for due, key, ctrl, u_a in self.pendentes:
+            if due != self.t:
+                if due > self.t:
+                    resta.append((due, key, ctrl, u_a))
+                continue
+            if key not in self.lac or u_a.get(key) is None:
+                continue
+            ua = self._u(key)
+            if ua is None:
+                continue
+            dc = [u_a[k] - self._u(k) for k in ctrl
+                  if k in self.lac and u_a.get(k) is not None and self._u(k) is not None]
+            da = u_a[key] - ua
+            self.ev("intencao_50", tipo=key[0], alvo=txt(self.lac[key]["alvo"]), delta=da,
+                    controles_mediana=(float(np.median(dc)) if dc else None),
+                    net=da - (float(np.median(dc)) if dc else 0.0))
+        self.pendentes = resta
+
+    def _escolhe_link(self, pg, modo):
+        L = [(a, u) for a, u in pg.links if u != pg.url]
+        if not L:
+            return None
+        if modo == "seguir_novo":
+            novos = [u for a, u in L if dominio(u) not in self.dom]
+            return novos[int(self.rng.integers(len(novos)))] if novos else None
+        if modo == "seguir_familiar":
+            sc = [(sum(1 for p in self._pedacos(a) if p in self.E), u) for a, u in L[:150]]
+            sc.sort(key=lambda z: -z[0])
+            return sc[0][1] if sc and sc[0][0] > 0 else None
+        return L[int(self.rng.integers(len(L)))][1]
+
+    # ── midia ────────────────────────────────────────────────────────────────
+    def _np(self):
+        return len(self.glob.P) + len(self.aud.P) + len(self.olho.P)
+
+    def _aterra(self, itens, protos, ep, abre=()):
+        """texto x prototipos do mesmo episodio; nulo: prototipo de OUTRO episodio."""
+        pares = [(s, pr) for s in itens for pr in protos]
+        ganho, novas = self.gr.observa(pares, ep, self._np())
+        cp = getattr(self, "conf_p", None)
+        if self.ult_protos:
+            falso = [self.ult_protos[int(self.rng.integers(len(self.ult_protos)))] for _ in protos]
+            _g, novas_nulo = self.gr_nulo.observa([(s, pr) for s in itens for pr in falso], ep, self._np())
+            if cp is not None:
+                for (_s, pr) in novas_nulo:
+                    cp["nulo"][pr] += 1
+        for (s, pr) in novas:
+            if cp is not None:
+                cp["real"][pr] += 1
+            self.ev("aterramento", pedaco=txt(s), modalidade=pr[0], prototipo=int(pr[1]),
+                    confirmacoes=self.gr.c[(s, pr)][1], ganho_bits=round(self.gr.c[(s, pr)][4], 3),
+                    nulo_confirmadas=len(self.gr_nulo.conf),
+                    acima_do_acaso=bool(pr[0] != "r" or self.ligacao_valida(pr)))
+        # evidencia para as lacunas de ligacao abertas sobre estes itens
+        presentes = set(protos)
+        for key, g in self.lac.items():
+            if g["tipo"] == "ligacao" and g["estado"] == "aberta" and g["alvo"] in itens:
+                if g["proto"] in presentes:
+                    g["pos"] += 1
+                else:
+                    g["neg"] += 1
+                g["u"] = self._u(key)
+        for s in abre:
+            for pr in protos:
+                e = self.gr.c.get((s, pr))
+                if e is not None and e[0] == 1:
+                    self._acende("ligacao", s + b"#" + f"{pr[0]}{pr[1]}".encode(), s, None,
+                                 proto=pr)
+        for pr in protos:
+            self.ult_protos.append(pr)
+        return ganho
+
+    MAX_ASSISTIR = 90.0
+
+    def _rgb64(self, quadro):
+        q = np.asarray(quadro)
+        if q.dtype != np.uint8:                                   # corpo 1: 32x32 cinza em [0,1]
+            q = (np.clip(q, 0, 1) * 255).astype(np.uint8)
+        if q.ndim == 2:
+            q = np.repeat(q[:, :, None], 3, 2)
+        return q if q.shape[:2] == (CX.LADO, CX.LADO) else CX.reduz(q)
+
+    def _assistir(self, pg):
+        """Assistir de verdade: o video toca, ela recebe 5 quadros/s e o som, em TEMPO
+        REAL. Antes de cada quadro ela PREVE o proximo (o cortex imagina o que vem); a
+        surpresa e o erro dessa previsao. Para de assistir quando o video fica mais
+        previsivel que o mundo costuma ser para ela (forrageio), entre 8 s e 90 s."""
+        ms = [m for m in pg.midias if m[0] in ("video", "audio")]
+        if not ms:
+            return None, None
+        tipo, u, leg = ms[int(self.rng.integers(len(ms)))]
+        nav = getattr(self.corpo, "_pg", None)
+        if str(u).startswith("el:") and (nav is None or nav.url != pg.url):
+            if self.corpo.abrir(pg.url, empilha=False).tipo == "erro":   # o video e DESTA pagina
+                return None, None
+        self._percepto = {"tipo": "video", "url": pg.url if str(u).startswith("el:") else u,
+                          "legenda": leg.decode("utf-8", "ignore")[:90], "midia": tipo, "dominio": pg.dominio,
+                          "quando": time.time(), "duracao": self.MAX_ASSISTIR}
+        self.telemetria(forcar=True)
+        cx = self._cortex()
+        seq, Z, surpresas, novidades, guardados = [], [], [], [], []
+        hv = self.lp["video"]
+        regua = float(np.median(hv)) if len(hv) >= 10 else None
+        motivo, t0, nq, ouviu = "acabou", time.time(), 0, 0
+        gen = self.corpo.assistir(u, self.MAX_ASSISTIR)
+        for tm, quadro, audio in gen:
+            fid, pred_img, surpresa = None, None, None
+            if quadro is not None:
+                q64 = self._rgb64(quadro)
+                if len(Z) >= 2:
+                    xq = q64.astype(np.float32) / 255.0
+                    zp, pred_img = cx.preve(Z[-2], Z[-1], imagina=(nq % 2 == 0), mu=float(xq.mean()),
+                                            sd=float(xq.std()) + CX.PISO_CONTRASTE)
+                z, e, rec = cx.ve(q64[None], reconstroi=(nq % 2 == 0))
+                if len(Z) >= 2:
+                    surpresa = float(((zp - z[0]) ** 2).mean())
+                    surpresas.append(surpresa)
+                Z.append(z[0])
+                novidades.append(float(e[0]))
+                if len(guardados) < 4 and nq % 7 == 3:
+                    guardados.append(q64)                      # quadros nunca treinados: a regua do video
+                else:
+                    cx.aprende(q64[None])
+                if len(Z) >= 6 and len(Z) % 5 == 0:
+                    cx.aprende_tempo(Z[-12:])
+                dq = self._distintas(self._palavras(q64, z[0]), 1)
+                fid = dq[0] if dq else None
+                nq += 1
+                if rec is not None:
+                    self._mostra_olho(q64, rec[0], pred_img, info={"tipo": "video", "erro": round(float(e[0]), 4),
+                                                                   "surpresa": None if surpresa is None else round(surpresa, 4),
+                                                                   "t_video": round(tm, 1)})
+            band = G.coclea(audio) if audio is not None else None
+            aid = int(self.aud.codifica(band[None], self.t)[0]) if band is not None else None
+            if band is not None:
+                ouviu += 1
+            seq.append((fid, aid))
+            if quadro is not None and nq % 2 == 1 and hasattr(self.corpo, "_mostra"):
+                self.corpo._mostra(nota=f"assistindo {tm:.0f}s" + (" · ouvindo" if band is not None else " · sem som"),
+                                   extra={"modo": "video", "caixa": getattr(self.corpo, "video_caixa", None),
+                                          "t_video": round(tm, 1), "som": None if band is None else [round(float(v), 2) for v in band],
+                                          "rms": None if audio is None else round(float(np.sqrt((audio ** 2).mean())), 4),
+                                          "surpresa": surpresas[-20:]})
+            dur = time.time() - t0
+            # forrageio (valor marginal, Charnov 1976): o video ainda ensina mais que o mundo?
+            if dur > 8 and len(novidades) >= 20 and regua is not None:
+                if float(np.mean(novidades[-10:])) < regua:
+                    motivo = "ficou_previsivel"
+                    break
+            # habituacao (como nos estudos com bebes: desvia o olhar quando a resposta cai a
+            # metade da inicial): a surpresa de prever o proximo quadro caiu a menos da metade da
+            # do inicio (medida depois dos 2 primeiros segundos: a entrada de qualquer cena surpreende)
+            if dur > 15 and len(surpresas) >= 40 and np.mean(surpresas[-10:]) < 0.5 * np.mean(surpresas[8:18]):
+                motivo = "habituou"
+                break
+        gen.close()
+        if novidades:
+            hv.append(float(np.mean(novidades)))
+        prog = None
+        if guardados:                                       # o quanto ela passou a VER melhor este video
+            _z, e1, _r = cx.ve(np.stack(guardados))
+            prog = float(np.mean(novidades[:max(3, len(guardados))]) - np.mean(e1))
+        pares = [(a, b) for a, b in seq if a is not None and b is not None]
+        L = len(seq)
+        desl = [(seq[i][0], seq[(i + L // 2) % L][1]) for i in range(L)] if L else []
+        desl = [(a, b) for a, b in desl if a is not None and b is not None]
+        if len(pares) >= 6:
+            ganho_av, novas = self.fa.observa(pares, u + pg.url, len(self.aud.P))
+            self.fa_nulo.observa(desl, u + pg.url, len(self.aud.P))
+            prog = (prog or 0.0) + ganho_av
+            for (gv, aa) in novas:
+                self.ev("ligacao_av", visual=int(gv), som=int(aa), confirmacoes=self.fa.c[(gv, aa)][1],
+                        nulo_confirmadas=len(self.fa_nulo.conf), cortex=True)
+        if prog is not None:
+            self.hist_prog["midia"].append(prog)
+        itens = list(dict.fromkeys(self._estruturas_texto(pg)[:8] +
+                                   [p for p in self._pedacos(leg) if p in self.E and len(p) >= 3][:4]))
+        cv = collections.Counter(a for a, _b in seq if a is not None).most_common(1)
+        ca = collections.Counter(b for _a, b in seq if b is not None).most_common(1)
+        protos = ([("r", int(cv[0][0]))] if cv else []) + ([("a", int(ca[0][0]))] if ca else [])
+        if itens and protos:
+            self._aterra(itens, protos, u + pg.url, abre=[p for p in self._pedacos(leg) if p in self.E
+                                                         and len(p) >= 4][:2])
+        info = getattr(self.corpo, "assistiu_info", {}) or {}
+        self.ev("assistiu", url=pg.url, midia=str(u)[:120], tipo=tipo, segundos=round(time.time() - t0, 1),
+                quadros=nq, trechos_com_som=ouviu, trechos=L, motivo=motivo,
+                surpresa_inicio=round(float(np.mean(surpresas[:10])), 4) if surpresas else None,
+                surpresa_fim=round(float(np.mean(surpresas[-10:])), 4) if surpresas else None,
+                apertou_play=info.get("clicou"), precisou_da_mao=info.get("mao"),
+                site_bloqueia_som=info.get("sem_som_do_site"), legenda=txt(leg)[:80],
+                palavras_visuais=len(self.olho.P), prototipos_a=len(self.aud.P), progresso=prog)
+        return prog, u
+
+    def _curiosidade_visual(self, q):
+        """Progresso de compressao da VISAO (Schmidhuber), pelo cortex: aprende com a
+        imagem e mede quanto melhorou a previsao de uma vista que ele ainda nao treinou
+        (a imagem espelhada). Uma crianca olha porque olhar ensina."""
+        im = self._rgb64(q)
+        ganho, err = self._cortex().progresso(im[None], np.ascontiguousarray(im[:, ::-1])[None])
+        self.lp["imagem"].append(err)
+        return ganho
+
+    def _ver(self, pg):
+        ims = [m for m in pg.midias if m[0] == "imagem"][:3]
+        estr_pag = self._estruturas_texto(pg)[:6]
+        ganhos, vistos, visuais = [], 0, []
+        self._percepto = {"tipo": "imagens", "urls": [m[1] for m in ims],
+                          "legendas": [m[2].decode("utf-8", "ignore")[:90] for m in ims],
+                          "dominio": pg.dominio, "quando": time.time()}
+        self.telemetria(forcar=True)
+        for _t, u, alt in ims:
+            q = self.corpo.ver(u)
+            if q is None:
+                continue
+            vistos += 1
+            self._percebe_visao(q, {"tipo": "imagem", "url": u})
+            visuais.append(self._curiosidade_visual(q))
+            q64 = self._rgb64(q)
+            z, _e, _r = self._cortex().ve(q64[None])
+            dist = self._distintas(self._palavras(q64, z[0]), 2)
+            leg = [p for p in self._pedacos(alt) if p in self.E and len(p) >= 3][:5]
+            itens = list(dict.fromkeys(leg + estr_pag))[:10]
+            if itens and dist:
+                ganhos.append(self._aterra(itens, [("r", j) for j in dist], u,
+                                           abre=[p for p in leg if len(p) >= 4][:2]))
+        if not vistos:
+            return None, None
+        pv = float(np.mean(visuais)) if visuais else 0.0
+        prog = pv + (float(np.mean(ganhos)) if ganhos else 0.0)
+        self.hist_prog["midia"].append(prog)
+        self.ev("viu", n=vistos, palavras_visuais=len(self.olho.P),
+                progresso_visual=round(pv, 4), progresso=prog)
+        return prog, ims[0][1]
+
+    def _pedacos(self, dados: bytes):
+        if len(dados) < 3:
+            return []
+        sur = self.texto.surpresa(dados, False)
+        return [dados[a:b] for a, b in G.segmenta(dados, sur)]
+
+    def _estruturas_texto(self, pg):
+        if not pg.texto:
+            return []
+        amostra = pg.texto[:4096]
+        sur = self.texto.surpresa(amostra, False)
+        c = collections.Counter(amostra[a:b] for a, b in G.segmenta(amostra, sur))
+        return [p for p, _n in c.most_common() if p in self.E and len(p) >= 3]
+
+    # ── sono: subir, consolidar, podar, medir ────────────────────────────────
+    def dorme(self):
+        antes_lex, antes_E, antes_P = len(self.lex), len(self.E), len(self.pares)
+        if len(self.lex) > MAX_LEXICO:
+            velhos = [p for p, e in self.lex.items() if e[0] == 1 and self.t - e[2] > 50 and p not in self.E]
+            for p in velhos[: len(self.lex) - MAX_LEXICO // 2]:
+                del self.lex[p]
+        if len(self.E) > MAX_ESTRUTURAS:
+            presas = {g["alvo"] for g in self.lac.values()}
+            fr = sorted((p for p in self.E if p not in presas),
+                        key=lambda p: self.E[p]["n"] + 5 * self.E[p]["util_fora"])
+            for p in fr[: len(self.E) - MAX_ESTRUTURAS]:
+                del self.E[p]
+        if len(self.pares) > MAX_PARES:
+            for k in [k for k, e in self.pares.items() if e[0] == 1][: len(self.pares) - MAX_PARES // 2]:
+                del self.pares[k]
+        # SUBIR: pares vizinhos coesos (Dunning) em >= 2 dominios viram unidade
+        N = max(self.n_adj, 1)
+        cand = []
+        por_dom = collections.defaultdict(lambda: [0, 0])
+        for par, (n, ds) in self.pares.items():
+            for d in ds:
+                por_dom[d][1] += 1
+                if len(ds) >= 2:
+                    por_dom[d][0] += 1
+            if n < 3 or len(ds) < 2 or par in self.fusoes:
+                continue
+            q, p = par
+            if q not in self.E or p not in self.E or len(q) + len(p) > 80:
+                continue
+            nq, npp = self.E[q]["n"], self.E[p]["n"]
+            if n * N <= nq * npp:
+                continue
+            k12, k21 = max(nq - n, 0), max(npp - n, 0)
+            k22 = max(N - n - k12 - k21, 0)
+            sc = g2(n, k12, k21, k22)
+            if sc > G2_CRIT:
+                cand.append((sc, par, n, ds))
+        cand.sort(key=lambda z: -z[0])
+        subiram = collections.Counter()
+        exemplos = []
+        for sc, (q, p), n, ds in (cand[:FUSOES_POR_SONO] if self.FUSAO_DUNNING else []):
+            k = q + p
+            self.fusoes[(q, p)] = k
+            niv = max(self.E[q]["nivel"], self.E[p]["nivel"]) + 1
+            if k not in self.E:
+                self._nasce(k, None, niv, (q, p))
+                self.E[k]["doms"] = set(ds)
+            else:
+                self.E[k]["partes"] = self.E[k]["partes"] or (q, p)
+            self.pais.setdefault(q, set()).add(k)
+            self.pais.setdefault(p, set()).add(k)
+            subiram[niv] += 1
+            if len(exemplos) < 8:
+                exemplos.append((txt(k), niv, round(sc, 1)))
+        for d, (c, n) in por_dom.items():
+            self._dom(d)["cred"] = (c + 1) / (n + 2)
+        # divergencia de uso: o mesmo X com vizinhanca diferente em casa e fora
+        cands = [(p, s) for p, s in self.E.items() if s["ctx_c"] is not None and s["ctx_f"] is not None
+                 and len(s["doms"]) >= 3 and s["n"] >= 10 and len(p) >= 3]
+        if len(cands) >= 30:
+            cands = sorted(cands, key=lambda z: -z[1]["n"])[:3000]
+            A = np.stack([s["ctx_c"] for _p, s in cands]).astype(np.float32)
+            B = np.stack([s["ctx_f"] for _p, s in cands]).astype(np.float32)
+            cos = (A * B).sum(1) / (np.linalg.norm(A, axis=1) * np.linalg.norm(B, axis=1) + 1e-9)
+            corte = np.quantile(cos, 0.1)
+            for (p, s), c in zip(cands, cos):
+                s["div"] = bool(c <= corte)
+        for s in self.E.values():                     # vetores float16 nao estouram
+            for nome in ("ctx_c", "ctx_f"):
+                v = s[nome]
+                if v is not None and np.abs(v).max() > 20000:
+                    v *= 0.5
+        # lacunas: fecham sozinhas? esquecer as frias; soltar as ja fechadas
+        abertas = 0
+        for key, g in list(self.lac.items()):
+            if g["estado"] == "aberta":
+                g["u"] = self._u(key) if g["tipo"] != "ligacao" or g["u"] is None else g["u"]
+                if self._fechada(g):
+                    self._fecha(key, "sozinha" if not g["tent"] else "perseguida")
+                else:
+                    abertas += 1
+            elif g["estado"] == "fechada" and self.t - g["fechou"] > 60:
+                del self.lac[key]
+        esquecidas = abandonadas = 0
+        if abertas > MAX_LACUNAS:
+            ab = sorted((k for k, g in self.lac.items() if g["estado"] == "aberta"),
+                        key=lambda k: self.ativacao(self.lac[k]) * (self.lac[k]["u"] or 0))
+            for k in ab[: abertas - MAX_LACUNAS]:
+                g = self.lac.pop(k)
+                if g["tent"]:
+                    abandonadas += 1
+                    self.ev("abandonou", tipo=g["tipo"], alvo=txt(g["alvo"]), tentativas=len(g["tent"]),
+                            u0=g["u0"], u=g["u"])
+                else:
+                    esquecidas += 1
+        # quanto a populacao de perguntas preve UMA pergunta: se todas as lacunas
+        # pagam parecido, a populacao manda; se variam muito, a historia propria
+        # manda (Bayes empirico, metodo dos momentos; tira o numero fixo)
+        taxas, nn = [], []
+        for g in self.lac.values():
+            n = len(g["tent"])
+            if n >= 2:
+                taxas.append(sum(1 for x in g["tent"] if x.get("ok")) / n)
+                nn.append(n)
+        if len(taxas) >= 5:
+            m = float(np.mean(taxas))
+            v = float(np.var(taxas)) - float(np.mean([m * (1 - m) / n for n in nn]))
+            self.kappa = 200.0 if v <= 1e-6 else float(np.clip(m * (1 - m) / v - 1, 1.0, 200.0))
+        # convergencia: texto-imagem, texto-som e imagem-som confirmados juntos
+        for (s, pr) in list(self.gr.conf):
+            if pr[0] not in ("v", "r") or (pr[0] == "r" and not self.ligacao_valida(pr)):
+                continue
+            va = self.av.conf if pr[0] == "v" else self.fa.conf
+            for (s2, pa) in self.gr.conf:
+                if s2 == s and pa[0] == "a" and (pr[1], pa[1]) in va:
+                    tri = (s, pr[1], pa[1]) if pr[0] == "v" else (s, "r%d" % pr[1], pa[1])
+                    if tri not in self.convergencias:
+                        self.convergencias.add(tri)
+                        self.ev("convergencia", pedaco=txt(s), visual=pr[1], som=pa[1])
+        niveis = collections.Counter(min(s["nivel"], 5) for s in self.E.values())
+        tipos_ab = collections.Counter(g["tipo"] for g in self.lac.values() if g["estado"] == "aberta")
+        top = [(self.lac[k]["tipo"], txt(self.lac[k]["alvo"])) for k in self.candidatas(8)]
+        altos = sorted((p for p, s in self.E.items() if s["nivel"] >= 2), key=lambda p: -self.E[p]["n"])[:12]
+        self.ev("sono", lexico=len(self.lex), lexico_podado=antes_lex - len(self.lex),
+                estruturas=len(self.E), estruturas_podadas=antes_E - len(self.E),
+                pares=len(self.pares), pares_podados=antes_P - len(self.pares),
+                fusoes=len(self.fusoes), subiram=dict(subiram), exemplos_subiram=exemplos,
+                niveis=dict(niveis), lacunas_abertas=dict(tipos_ab), esquecidas=esquecidas,
+                abandonadas=abandonadas, fechadas_total=len(self.fechadas), perguntas=top,
+                mais_frequentes_altos=[txt(p) for p in altos],
+                prototipos_g=len(self.glob.P), prototipos_a=len(self.aud.P),
+                palavras_visuais=len(self.olho.P), olhadas=self.cortex.olhadas if self.cortex else None,
+                ligacoes_fa=len(self.fa.conf), ligacoes_fa_nulo=len(self.fa_nulo.conf),
+                aterrados_acima_do_acaso=self.ligacoes_validas(),
+                regua_entendido=self.ref_med, kappa=round(self.kappa, 2),
+                ligacoes_av=len(self.av.conf), ligacoes_av_nulo=len(self.av_nulo.conf),
+                aterrados=len(self.gr.conf), aterrados_nulo=len(self.gr_nulo.conf),
+                convergencias=len(self.convergencias), barras_novas=len(self.barras_novas),
+                dominios=len(self.dom), bytes_lidos=self.texto.bytes_lidos,
+                pedidos=self.corpo.n_pedidos)
+        if (self.t // SONO_CADA) % 10 == 0:
+            self._vizinhancas()
+
+    def _vizinhancas(self):
+        """Observacao (nao entra na decisao): quem e vizinho de quem pelo uso —
+        candidatos a 'conceito' que ninguem nomeou."""
+        cands = [(p, s) for p, s in self.E.items() if len(limpa(p)) >= 4
+                 and (s["ctx_c"] is not None or s["ctx_f"] is not None)]
+        if len(cands) < 50:
+            return
+        cands = sorted(cands, key=lambda z: -z[1]["n"])[:1500]
+        V = np.stack([(s["ctx_c"].astype(np.float32) if s["ctx_c"] is not None else 0)
+                      + (s["ctx_f"].astype(np.float32) if s["ctx_f"] is not None else 0)
+                      for _p, s in cands])
+        V /= np.linalg.norm(V, axis=1, keepdims=True) + 1e-9
+        S = V @ V.T
+        np.fill_diagonal(S, -1)
+        out = []
+        for i in range(0, min(len(cands), 600), 20):
+            j = np.argsort(-S[i])[:5]
+            out.append([txt(cands[i][0])] + [txt(cands[k][0]) for k in j])
+        self.ev("vizinhancas", amostra=out)
+
+    # ── o que ela percebe agora (so para o painel; nada disso fica guardado) ──
+    def _percebe_pagina(self, pg, dados):
+        try:
+            tre = dados[:900]
+            sur = self.texto.surpresa(tre, False)
+            seq = [tre[a:b] for a, b in G.segmenta(tre, sur)]
+            if self.fusoes:
+                for _ in range(5):
+                    out, i, mudou = [], 0, False
+                    while i < len(seq):
+                        k = self.fusoes.get((seq[i], seq[i + 1])) if i + 1 < len(seq) else None
+                        if k is not None:
+                            out.append(k)
+                            i += 2
+                            mudou = True
+                        else:
+                            out.append(seq[i])
+                            i += 1
+                    seq = out
+                    if not mudou:
+                        break
+            pecas, conhec = [], 0
+            for p in seq:
+                s_ = self.E.get(p)
+                niv = s_["nivel"] if s_ is not None else 0
+                if niv:
+                    conhec += len(p)
+                pecas.append([p.decode("utf-8", "ignore"), niv])
+            self._percepto = {"tipo": "pagina", "url": pg.url, "dominio": pg.dominio, "pecas": pecas,
+                              "reconhece": round(conhec / max(len(tre), 1), 3), "quando": time.time()}
+            self.telemetria(forcar=True)
+        except Exception:
+            pass
+
+    def _percebe_visao(self, quadro, extra):
+        """Grava o quadro 32x32 em cinza, do jeito que ELA ve (para o painel)."""
+        try:
+            q = np.clip(np.asarray(quadro, np.float32) * 255, 0, 255).astype(int).ravel().tolist()
+            d = {"quando": time.time(), "quadro": q, **extra}
+            arq = os.path.join(self.pasta, "visao.json")
+            with open(arq + ".tmp", "w", encoding="utf-8") as f:
+                json.dump(d, f)
+            os.replace(arq + ".tmp", arq)
+        except Exception:
+            pass
+
+    # ── telemetria: o organismo por dentro, para o painel (so leitura) ────────
+    def telemetria(self, forcar=False):
+        agora = time.time()
+        if not forcar and agora - getattr(self, "_tel_t", 0.0) < 3:
+            return
+        self._tel_t = agora
+        try:
+            ab = [g for g in self.lac.values() if g["estado"] == "aberta"]
+            ab.sort(key=lambda g: -self.ativacao(g))
+            lac = [{"tipo": g["tipo"], "alvo": txt(g["alvo"])[:40], "ativ": round(self.ativacao(g), 3),
+                    "u": None if g["u"] is None else round(g["u"], 3), "tent": len(g["tent"]),
+                    "pagou": sum(1 for x in g["tent"] if x.get("ok")), "idade": self.t - g["aberta"]}
+                   for g in ab[:48]]
+            bracos = []
+            for e in set(self.custo) | set(self.funciona):
+                r = self.regs.get(e)
+                m = min(r.n, r.cap) if r is not None else 0
+                fu = self.funciona.get(e, [0, 0])
+                bracos.append({"braco": e, "custo": round(self.custo.get(e, 0.0), 2),
+                               "funciona": list(fu), "usos": max(int(fu[0] + fu[1]), r.n if r is not None else 0),
+                               "pagou": None if not m else round(float(r.ok[:m].mean()), 3)})
+            bracos.sort(key=lambda b: -b["usos"])
+            niveis = collections.Counter(min(s["nivel"], 6) for s in self.E.values())
+            tel = {"parede": agora, "t": self.t, "vida_s": round(self.vida_s, 1), "versao": self.VERSAO,
+                   "pagina": {"url": self.pagina.url if self.pagina else None,
+                              "dominio": self.pagina.dominio if self.pagina else None,
+                              "links": len(self.pagina.links) if self.pagina else 0,
+                              "midias": len(self.pagina.midias) if self.pagina else 0},
+                   "memoria": {"lexico": len(self.lex), "estruturas": len(self.E), "pares": len(self.pares),
+                               "fusoes": len(self.fusoes), "lacunas": len(self.lac), "lidas": len(self.lidas),
+                               "prototipos_visuais": len(self.olho.P), "prototipos_sonoros": len(self.aud.P),
+                               "olhadas": self.cortex.olhadas if self.cortex else 0,
+                               "bytes_lidos": self.texto.bytes_lidos, "niveis": dict(niveis)},
+                   "mesoestado": {"abertas": len(ab), "por_tipo": dict(collections.Counter(g["tipo"] for g in ab)),
+                                  "fechadas": len(self.fechadas), "kappa": round(self.kappa, 1),
+                                  "lacunas": lac},
+                   "bracos": bracos[:24], "barras_novas": list(self.barras_novas)[:25],
+                   "multimodal": {"texto_imagem": len(self.gr.conf), "texto_imagem_nulo": len(self.gr_nulo.conf),
+                                  "texto_imagem_acima_do_acaso": self.ligacoes_validas(),
+                                  "imagem_som": len(self.av.conf) + len(self.fa.conf),
+                                  "imagem_som_nulo": len(self.av_nulo.conf) + len(self.fa_nulo.conf),
+                                  "convergencias": len(self.convergencias)},
+                   "offline": getattr(self, "offline", 0), "pedidos": self.corpo.n_pedidos,
+                   "percepto": getattr(self, "_percepto", None)}
+            self._telemetria_extra(tel)
+            if agora - getattr(self, "_det_t", 0.0) > 10:
+                self._det_t = agora
+                self.detalhe()
+            arq = os.path.join(self.pasta, "telemetria.json")
+            with open(arq + ".tmp", "w", encoding="utf-8") as f:
+                json.dump(tel, f, ensure_ascii=False)
+            os.replace(arq + ".tmp", arq)
+        except Exception as e:                       # telemetria nunca pode matar a mente
+            self.ev("telemetria_falhou", msg=str(e)[:160])
+
+    def _telemetria_extra(self, tel):
+        pass
+
+    def _detalhe_extra(self, d):
+        pass
+
+    def _mapa_do_mundo(self):
+        """O MODELO DE MUNDO dela, visivel: as estruturas mais usadas posicionadas pelo
+        USO (vizinhanca no contexto) em 2D (componentes principais). Perto = usadas de
+        jeito parecido. Refeito a cada 5 min; nao entra em decisao nenhuma."""
+        cands = [(p, s) for p, s in self.E.items() if len(limpa(p)) >= 3
+                 and (s["ctx_c"] is not None or s["ctx_f"] is not None)]
+        if len(cands) < 30:
+            return None
+        cands = sorted(cands, key=lambda z: -z[1]["n"])[:220]
+        V = np.stack([(s["ctx_c"].astype(np.float32) if s["ctx_c"] is not None else 0)
+                      + (s["ctx_f"].astype(np.float32) if s["ctx_f"] is not None else 0) for _p, s in cands])
+        V /= np.linalg.norm(V, axis=1, keepdims=True) + 1e-9
+        V -= V.mean(0)
+        U, S_, _Vt = np.linalg.svd(V, full_matrices=False)
+        XY = U[:, :2] * S_[:2]
+        lo, hi = np.percentile(XY, 3, axis=0), np.percentile(XY, 97, axis=0)   # extremos nao espremem o mapa
+        XY = np.clip((XY - lo) / (hi - lo + 1e-9), 0, 1)
+        return [{"u": limpa(p)[:28], "x": round(float(x), 4), "y": round(float(y), 4),
+                 "nivel": int(s["nivel"]), "n": int(s["n"])} for (p, s), (x, y) in zip(cands, XY)]
+
+    def detalhe(self):
+        try:
+            agora = time.time()
+            if agora - getattr(self, "_mapa_t", 0.0) > 300:
+                self._mapa_t, self._mapa_mundo_cache = agora, self._mapa_do_mundo()
+            ab = sorted((g for g in self.lac.values() if g["estado"] == "aberta"), key=lambda g: -self.ativacao(g))
+            perg = []
+            for g in ab[:8]:
+                jans = [{"dominio": d_, "antes": jan[max(0, ia - 40):ia].decode("utf-8", "ignore"),
+                         "alvo": jan[ia:ib].decode("utf-8", "ignore"), "depois": jan[ib:ib + 40].decode("utf-8", "ignore")}
+                        for (d_, _u, jan, ia, ib) in g["jan"][:3]]
+                perg.append({"tipo": g["tipo"], "alvo": txt(g["alvo"]), "ativ": round(self.ativacao(g), 2),
+                             "tent": len(g["tent"]), "pagou": sum(1 for x in g["tent"] if x.get("ok")),
+                             "u": None if g["u"] is None else round(g["u"], 3), "janelas": jans})
+
+            def arvore(p, prof=0):
+                s_ = self.E.get(p)
+                no = {"u": txt(p), "nivel": int(s_["nivel"]) if s_ else 1, "n": int(s_["n"]) if s_ else 0}
+                if s_ and s_.get("partes") and prof < 4:
+                    no["partes"] = [arvore(q, prof + 1) for q in s_["partes"]]
+                return no
+            altos = sorted((p for p, s_ in self.E.items() if s_["nivel"] >= 3), key=lambda p: (-self.E[p]["nivel"], -self.E[p]["n"]))[:14]
+            protos = []
+            if len(self.vis.P):
+                ordem = np.argsort(-self.vis.n)[:36]
+                for j in ordem:
+                    v = self.vis.P[j]
+                    v = (v - v.min()) / (np.ptp(v) + 1e-9) * 255
+                    protos.append({"id": int(j), "n": int(self.vis.n[j]), "px": [int(x) for x in v]})
+            sons = []
+            if len(self.aud.P):
+                for j in np.argsort(-self.aud.n)[:12]:
+                    sons.append({"id": int(j), "n": int(self.aud.n[j]), "bandas": [round(float(x), 2) for x in self.aud.P[j]]})
+            cortex_info = None
+            if self.cortex is not None and len(self.olho.P):
+                # as PALAVRAS VISUAIS dela, decodificadas pelo proprio cortex: o que cada uma 'e'
+                ordem = np.argsort(-self.olho.n)[:24]
+                fundo = self.olho.P[int(np.argmax(self.olho.n))]
+                M = np.repeat(np.repeat(fundo[None, None, None], CX.GRADE, 1), CX.GRADE, 2).repeat(len(ordem), 0).copy()
+                c0 = CX.GRADE // 2 - 1
+                M[:, c0:c0 + 2, c0:c0 + 2] = self.olho.P[ordem][:, None, None]
+                ims = self.cortex.desenha(M.astype(np.float32))
+                lin = [np.concatenate(list(ims[r * 6:(r + 1) * 6]) + [np.zeros((64, 64, 3), np.uint8)] * (6 - len(ims[r * 6:(r + 1) * 6])), 1)
+                       for r in range((len(ims) + 5) // 6)]
+                arq = os.path.join(self.pasta, "palavras_visuais.jpg")
+                with open(arq + ".tmp", "wb") as f:
+                    f.write(CX.jpg_de(np.concatenate(lin, 0), 85))
+                os.replace(arq + ".tmp", arq)
+                cortex_info = {"olhadas": self.cortex.olhadas, "curva": self.cortex.curva[-200:],
+                               "palavras": [{"id": int(j), "n": int(self.olho.n[j])} for j in ordem],
+                               "total": int(len(self.olho.P)), "passos_tempo": self.cortex.passos_tempo,
+                               "lp": {k: round(self._lp(k), 4) for k in self.lp},
+                               "ligacoes": len([1 for (_s, p) in self.gr.conf if p[0] == "r"]),
+                               "ligacoes_acima_do_acaso": self.ligacoes_validas(),
+                               "ligacoes_nulo": len([1 for (_s, p) in self.gr_nulo.conf if p[0] == "r"])}
+            d = {"quando": agora, "t": self.t, "decisao": getattr(self, "_decisao", None),
+                 "ultima_acao": getattr(self, "_ultima_acao", None), "perguntas": perg,
+                 "hierarquia": [arvore(p) for p in altos],
+                 "visao": {"palavras_visuais": protos, "mapa_atual": getattr(self, "_mapa_visual", None),
+                           "total": int(len(self.vis.P)), "cortex": cortex_info},
+                 "som": sons, "mundo": getattr(self, "_mapa_mundo_cache", None)}
+            self._detalhe_extra(d)
+            arq = os.path.join(self.pasta, "detalhe.json")
+            with open(arq + ".tmp", "w", encoding="utf-8") as f:
+                json.dump(d, f, ensure_ascii=False)
+            os.replace(arq + ".tmp", arq)
+        except Exception as e:
+            self.ev("detalhe_falhou", msg=str(e)[:160])
+
+    # ── ganchos (vazios na v1; a v2 os usa) ──────────────────────────────────
+    def _apos_par(self, par, bits):
+        pass
+
+    def _apos_fusao(self, par, sur, a, b):
+        pass
+
+    def _apos_ler(self, pg, dados, blocos):
+        pass
+
+    def _apos_passo(self):
+        pass
+
+    # ── memoria persistente ──────────────────────────────────────────────────
+    def salva(self, sub=None):
+        """Salvamento ATOMICO (escreve ao lado e troca de uma vez; guarda a versao
+        anterior): desligar o PC no meio nunca corrompe a memoria dela.
+        Fotografias saem comprimidas (o modelo de bytes e quase todo zero)."""
+        pasta = os.path.join(self.pasta, sub) if sub else self.pasta
+        os.makedirs(pasta, exist_ok=True)
+        estado = {k: v for k, v in self.__dict__.items() if k not in ("corpo", "texto", "log", "cortex")}
+        if self.cortex is not None:
+            self.cortex.salva(os.path.join(pasta, "cortex.npz"))
+        estado["bytes_lidos"] = self.texto.bytes_lidos
+        if sub:
+            import gzip
+            np.savez_compressed(os.path.join(pasta, "texto.npz"), cont=self.texto.cont, tot=self.texto.tot)
+            with gzip.open(os.path.join(pasta, "estado.pkl.gz"), "wb", compresslevel=3) as f:
+                pickle.dump(estado, f)
+        else:
+            novos = []
+            for nome, arr in (("texto_cont.npy", self.texto.cont), ("texto_tot.npy", self.texto.tot)):
+                tmp = os.path.join(pasta, nome + ".tmp")
+                with open(tmp, "wb") as f:
+                    np.save(f, arr)
+                novos.append((tmp, os.path.join(pasta, nome)))
+            tmp = os.path.join(pasta, "estado.pkl.tmp")
+            with open(tmp, "wb") as f:
+                pickle.dump(estado, f)
+            novos.append((tmp, os.path.join(pasta, "estado.pkl")))
+            for tmp, final in novos:
+                if os.path.exists(final):
+                    os.replace(final, final + ".anterior")
+                os.replace(tmp, final)
+        self.ev("salvou", onde=sub or ".")
+
+    @classmethod
+    def carrega(cls, pasta, semente, log=True):
+        m = cls(semente, pasta, registrar=log)
+        arq = os.path.join(pasta, "estado.pkl")
+        if not os.path.exists(arq) and os.path.exists(arq + ".gz"):
+            import gzip
+            import shutil
+            with gzip.open(arq + ".gz", "rb") as fz, open(arq + ".tmp_lido", "wb") as fo:
+                shutil.copyfileobj(fz, fo)
+            arq = arq + ".tmp_lido"
+        if not os.path.exists(arq):
+            return m
+        suf = ""
+        try:
+            with open(arq, "rb") as f:
+                estado = pickle.load(f)
+        except Exception:                          # salvamento interrompido: usa a anterior
+            suf = ".anterior"
+            with open(arq + suf, "rb") as f:
+                estado = pickle.load(f)
+        if arq.endswith(".tmp_lido"):
+            os.remove(arq)
+        bl = estado.pop("bytes_lidos")
+        estado.pop("pasta", None)
+        novos = [k for k in m.__dict__ if k not in estado and not k.startswith("_")
+                 and k not in ("corpo", "texto", "log", "pasta", "cortex")]
+        m.__dict__.update(estado)
+        if estado.get("cortex_versao", 1) < CX.VERSAO and "olho" in estado:
+            m._migra_cortex()
+        if novos and log:
+            m.ev("transplante", orgaos=novos)
+        npz = os.path.join(pasta, "texto.npz")
+        if os.path.exists(npz):
+            z = np.load(npz)
+            m.texto.cont, m.texto.tot = z["cont"], z["tot"]
+        else:
+            m.texto.cont = np.load(os.path.join(pasta, "texto_cont.npy" + suf))
+            m.texto.tot = np.load(os.path.join(pasta, "texto_tot.npy" + suf))
+        m.texto.bytes_lidos = bl
+        if log:
+            m.ev("acordou", passos=m.t)
+        return m

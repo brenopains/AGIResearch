@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novamind AGI - Online Teaching Dashboard</title>
+    <style>
+        :root {
+            --bg-dark: #0a0a0f;
+            --glass-bg: rgba(20, 20, 30, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --accent: #00ffcc;
+            --accent-error: #ff4444;
+            --accent-success: #00ff66;
+            --text-main: #e0e0e0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            height: 100vh;
+            box-sizing: border-box;
+            gap: 2rem;
+            background-image: radial-gradient(circle at 50% 0%, #1a1a2e 0%, transparent 50%);
+        }
+
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .viewer-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .chat-section {
+            width: 450px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-top: 0;
+            color: #fff;
+            text-align: center;
+        }
+
+        .arc-grid {
+            display: grid;
+            gap: 2px;
+            background: #333;
+            padding: 2px;
+            border-radius: 4px;
+            margin: auto;
+        }
+
+        .cell {
+            width: 30px;
+            height: 30px;
+            border-radius: 2px;
+            transition: background 0.3s ease;
+        }
+
+        .color-0 { background: #000000; }
+        .color-1 { background: #0074D9; } 
+        .color-2 { background: #FF4136; } 
+        .color-3 { background: #2ECC40; } 
+        .color-4 { background: #FFDC00; } 
+        .color-5 { background: #AAAAAA; } 
+        .color-6 { background: #F012BE; } 
+        .color-7 { background: #FF851B; } 
+        .color-8 { background: #7FDBFF; } 
+        .color-9 { background: #870C25; } 
+
+        .chat-log {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding-right: 10px;
+        }
+
+        .message {
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .msg-user {
+            background: rgba(0, 255, 204, 0.1);
+            border-left: 3px solid var(--accent);
+            align-self: flex-end;
+            width: 85%;
+        }
+
+        .msg-agi {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid #888;
+            align-self: flex-start;
+            width: 85%;
+        }
+
+        .confidence-bar {
+            height: 4px;
+            background: #333;
+            border-radius: 2px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        button {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background: rgba(0, 255, 204, 0.1);
+        }
+
+        .btn-correct {
+            border-color: var(--accent-success);
+            color: var(--accent-success);
+        }
+        .btn-correct:hover { background: rgba(0, 255, 102, 0.1); }
+        
+        .btn-wrong {
+            border-color: var(--accent-error);
+            color: var(--accent-error);
+        }
+        .btn-wrong:hover { background: rgba(255, 68, 68, 0.1); }
+
+        .teaching-panel {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 8px;
+            display: none;
+        }
+
+        .teaching-panel select {
+            width: 100%;
+            padding: 8px;
+            background: #222;
+            color: white;
+            border: 1px solid #444;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="glass-panel viewer-section">
+        <h1>MUNDO FÍSICO (ARC)</h1>
+        <div id="grid-container" class="arc-grid"></div>
+        <div class="controls" style="margin-top:20px;">
+            <button onclick="resetGrid()">Resetar Matriz</button>
+        </div>
+    </div>
+
+    <div class="glass-panel chat-section">
+        <h1>CÓRTEX (ENSINO ONLINE)</h1>
+        <div class="chat-log" id="chat-log">
+            <div class="message msg-agi">
+                <strong>Novamind AGI:</strong> Córtex Iniciado com Vocabulário Dinâmico (Infinito). Eu consigo aprender palavras novas se você me corrigir.
+            </div>
+        </div>
+        
+        <div class="input-area">
+            <input type="text" id="cmd-input" placeholder="Dite uma ordem à matriz..." autocomplete="off" onkeypress="handleEnter(event)">
+            <button onclick="sendCommand()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        const Primitives = ["Gravity", "TranslateRight", "TranslateLeft", "TranslateUp", "TranslateDown", "ScaleUp", "RecolorRed", "MirrorX", "ExtractIntersection", "FillHole", "DrawLine"];
+        let lastCommand = "";
+        let pendingAction = "";
+
+        function drawGrid(gridData) {
+            const container = document.getElementById('grid-container');
+            container.innerHTML = '';
+            const rows = gridData.length;
+            const cols = gridData[0].length;
+            container.style.gridTemplateColumns = `repeat(${cols}, 30px)`;
+            
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    const val = gridData[r][c];
+                    const div = document.createElement('div');
+                    div.className = `cell color-${val}`;
+                    container.appendChild(div);
+                }
+            }
+        }
+
+        async function fetchState() {
+            const res = await fetch('/api/state');
+            const data = await res.json();
+            drawGrid(data.grid);
+        }
+
+        async function resetGrid() {
+            const res = await fetch('/api/reset', { method: 'POST' });
+            const data = await res.json();
+            drawGrid(data.grid);
+        }
+
+        function createMessageElement(isUser) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${isUser ? 'msg-user' : 'msg-agi'}`;
+            return msgDiv;
+        }
+
+        function buildAgiResponse(data, msgDiv) {
+            const pct = (data.confidence * 100).toFixed(1);
+            let html = `<strong>Hipótese:</strong> <span style="color: var(--accent)">[ ${data.action} ]</span><br>`;
+            html += `Confiança: ${pct}%`;
+            html += `<div class="confidence-bar"><div class="confidence-fill" style="width: ${pct}%"></div></div>`;
+            
+            // Interaction Feedback Loop
+            html += `<div style="margin-top:15px; display:flex; gap:10px;" id="feedback-btns-${data.id}">
+                        <button class="btn-correct" onclick="confirmAction('${data.action}', '${data.id}')">✔ Correto</button>
+                        <button class="btn-wrong" onclick="openTeachingPanel('${data.id}')">✖ Errado (Ensinar)</button>
+                     </div>`;
+                     
+            // Teaching Panel (hidden by default)
+            let selectOptions = Primitives.map(p => `<option value="${p}">${p}</option>`).join('');
+            html += `<div class="teaching-panel" id="teach-panel-${data.id}">
+                        <label>O que essa frase significa?</label>
+                        <select id="select-action-${data.id}">
+                            ${selectOptions}
+                        </select>
+                        <button onclick="submitTeaching('${data.id}')" style="width:100%; border-color:#fff; color:#fff;">Treinar Sinapse</button>
+                     </div>`;
+                     
+            msgDiv.innerHTML = html;
+        }
+
+        async function sendCommand() {
+            const input = document.getElementById('cmd-input');
+            const text = input.value.trim();
+            if (!text) return;
+            
+            lastCommand = text;
+            input.value = '';
+            
+            const log = document.getElementById('chat-log');
+            
+            // User msg
+            const userMsg = createMessageElement(true);
+            userMsg.innerHTML = `<strong>Humano:</strong> ${text}`;
+            log.appendChild(userMsg);
+            
+            // AGI Loading...
+            const res = await fetch('/api/interact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ command: text })
+            });
+            
+            const data = await res.json();
+            data.id = Math.random().toString(36).substr(2, 9);
+            pendingAction = data.action;
+            
+            const agiMsg = createMessageElement(false);
+            buildAgiResponse(data, agiMsg);
+            log.appendChild(agiMsg);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        async function confirmAction(action, msgId) {
+            document.getElementById(`feedback-btns-${msgId}`).style.display = 'none';
+            const log = document.getElementById('chat-log');
+            const msg = createMessageElement(false);
+            msg.innerHTML = `<em>Ação executada no Mundo Físico.</em>`;
+            log.appendChild(msg);
+            
+            const res = await fetch('/api/execute', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: action })
+            });
+            const data = await res.json();
+            drawGrid(data.grid);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function openTeachingPanel(msgId) {
+            document.getElementById(`feedback-btns-${msgId}`).style.display = 'none';
+            document.getElementById(`teach-panel-${msgId}`).style.display = 'block';
+        }
+
+        async function submitTeaching(msgId) {
+            document.getElementById(`teach-panel-${msgId}`).style.display = 'none';
+            const correctAction = document.getElementById(`select-action-${msgId}`).value;
+            
+            const log = document.getElementById('chat-log');
+            const msg = createMessageElement(false);
+            msg.innerHTML = `<span style="color:var(--accent-success)">⏳ Atualizando Rede Neural PyTorch (Loss.backward)...</span>`;
+            log.appendChild(msg);
+            log.scrollTop = log.scrollHeight;
+            
+            // Dispara o ensino para o PyTorch!
+            const res = await fetch('/api/teach', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ command: lastCommand, correct_action: correctAction })
+            });
+            
+            msg.innerHTML = `<span style="color:var(--accent-success)">✔ Sinapse Atualizada! A frase '${lastCommand}' agora está Grounded com [${correctAction}].</span>`;
+            
+            // Executa a acao correta pra finalizar o ciclo
+            await fetch('/api/execute', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: correctAction })
+            });
+            fetchState();
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function handleEnter(e) {
+            if (e.key === 'Enter') sendCommand();
+        }
+
+        fetchState();
+    </script>
+</body>
+</html>

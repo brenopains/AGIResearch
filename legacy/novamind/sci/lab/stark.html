@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NOVAMIND · Laboratório In-Silico 3D</title>
+<style>
+:root{--cyan:#39d6ff;--gold:#ffce4a;--green:#37ff9b;--red:#ff5470;--gray:#5a6b7a;--blue:#4aa8ff;--bg:#03070f}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(ellipse at 50% -10%,#0a1828 0%,var(--bg) 70%);color:#cfe9ff;font-family:'Segoe UI',Roboto,system-ui,sans-serif;overflow:hidden;height:100vh}
+.grid{position:fixed;inset:0;background-image:linear-gradient(rgba(57,214,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(57,214,255,.04) 1px,transparent 1px);background-size:46px 46px;pointer-events:none;animation:drift 30s linear infinite}
+@keyframes drift{to{background-position:46px 46px}}
+header{padding:13px 24px;border-bottom:1px solid rgba(57,214,255,.16);display:flex;align-items:center;gap:22px;backdrop-filter:blur(4px);position:relative;z-index:5}
+.logo{font-weight:800;letter-spacing:3px;font-size:18px;color:#fff;text-shadow:0 0 14px var(--cyan)}.logo b{color:var(--cyan)}
+.tabs{display:flex;gap:6px;margin:0 auto}
+.tab{font-size:11px;letter-spacing:1.5px;color:#7fa6c4;padding:8px 16px;border-radius:8px;cursor:pointer;transition:.2s}
+.tab.on{color:#fff;background:rgba(57,214,255,.1);border:1px solid rgba(57,214,255,.3);box-shadow:0 0 16px -6px var(--cyan)}
+.search{display:flex;gap:8px;align-items:center}
+.search input{background:rgba(8,22,40,.8);border:1px solid rgba(57,214,255,.3);color:#dff;padding:8px 13px;border-radius:20px;width:220px;font-size:12px;outline:none}
+.search input:focus{border-color:var(--cyan);box-shadow:0 0 14px -4px var(--cyan)}
+.search button{background:linear-gradient(135deg,var(--cyan),#1a8fd0);color:#04121f;border:none;padding:8px 18px;border-radius:20px;font-weight:800;letter-spacing:1px;cursor:pointer;font-size:11px}
+.search button:disabled{opacity:.5;cursor:wait}
+.wrap{display:grid;grid-template-columns:250px 1fr 360px;height:calc(100vh - 52px)}
+.col{padding:16px;overflow:auto}.col::-webkit-scrollbar{width:6px}.col::-webkit-scrollbar-thumb{background:rgba(57,214,255,.2);border-radius:3px}
+.card{border:1px solid rgba(57,214,255,.14);border-radius:12px;padding:14px;margin-bottom:14px;background:rgba(8,20,38,.5)}
+h3{font-size:10.5px;letter-spacing:2px;color:var(--cyan);text-transform:uppercase;margin-bottom:11px;opacity:.85}
+.sysrow{display:flex;align-items:center;gap:10px;padding:8px;border-radius:8px;margin:3px 0;transition:.3s;cursor:pointer}
+.sysrow:hover{background:rgba(57,214,255,.06)}.sysrow.on{background:rgba(57,214,255,.1);box-shadow:0 0 14px -6px var(--c,var(--cyan))}
+.sysrow .ic{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(57,214,255,.2);font-size:15px}
+.sysrow .nm{font-size:12.5px;color:#dfeefb;font-weight:600}.sysrow .st{font-size:9.5px;color:#7fa6c4}
+.sysrow .badge{margin-left:auto;font-size:9px;color:var(--green)}
+.gauge{display:flex;align-items:center;gap:16px}.gv{font-size:30px;font-weight:800;color:var(--green);text-shadow:0 0 16px var(--green)}
+.stat{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}.stat b{font-size:19px;color:#fff}.stat span{font-size:9px;color:#7fa6c4;display:block}
+.stage{position:relative}#three{width:100%;height:100%;display:block}
+.hud{position:absolute;left:16px;top:16px;font:11px Consolas,monospace;color:var(--cyan);line-height:1.7;text-shadow:0 0 6px var(--cyan);max-width:250px;z-index:3}
+.zlabel{position:absolute;top:16px;left:50%;transform:translateX(-50%);font-size:14px;letter-spacing:2px;color:#fff;text-shadow:0 0 12px var(--cyan);opacity:0;transition:.4s;z-index:3}.zlabel.show{opacity:1}
+.loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:var(--cyan);z-index:4}
+.activebox{position:absolute;right:16px;top:16px;width:230px;z-index:3}
+.prog{height:5px;border-radius:3px;background:rgba(255,255,255,.1);margin:8px 0}.prog .f{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--green),var(--cyan));transition:.6s}
+.ctrlbtns{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);display:flex;gap:10px;z-index:3}
+.ctrlbtns button{background:rgba(8,22,40,.85);border:1px solid rgba(57,214,255,.3);color:var(--cyan);padding:8px 16px;border-radius:20px;font-size:11px;letter-spacing:1px;cursor:pointer}
+.ctrlbtns button:hover{background:rgba(57,214,255,.12)}
+.hyp{border:1px solid rgba(57,214,255,.14);border-left-width:3px;border-radius:10px;padding:11px 13px;margin-bottom:11px;cursor:pointer;transition:.2s;background:rgba(8,20,38,.5)}
+.hyp:hover{transform:translateX(-3px);background:rgba(57,214,255,.06)}.hyp.sel{box-shadow:0 0 18px -7px var(--c);background:rgba(57,214,255,.1)}
+.hyp .t{font-weight:700;font-size:13.5px;color:#fff;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.hyp .lab{font-size:8.5px;padding:2px 7px;border-radius:9px;color:#04121f;font-weight:800;margin-left:auto}
+.hyp .d{font-size:10.5px;color:#8fb4d2;margin:5px 0}
+.kv{display:flex;gap:10px;margin-top:7px}.kv .k{flex:1;text-align:center}.kv .k span{font-size:8.5px;color:#7fa6c4}.kv .k b{font-size:14px;display:block}
+.detail{margin-top:9px;padding-top:8px;border-top:1px dashed rgba(57,214,255,.15);font-size:10px;color:#9fc4e0;line-height:1.55;display:none}
+.hyp.sel .detail{display:block}.risk{margin-top:5px;color:#ffb0bd}.risk b{color:var(--red)}
+.timeline{display:flex;align-items:center;padding:10px 24px;border-top:1px solid rgba(57,214,255,.14);overflow-x:auto;position:relative;z-index:5}
+.step{display:flex;flex-direction:column;align-items:center;min-width:120px;position:relative;cursor:pointer}
+.step .ring{width:26px;height:26px;border-radius:50%;border:2px solid var(--sc,#5a6b7a);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--sc);background:var(--bg);z-index:2}
+.step .nm{font-size:9.5px;color:#cfe9ff;margin-top:5px;max-width:105px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.step .sub2{font-size:8px;color:#7fa6c4}
+.step::after{content:'';position:absolute;top:13px;left:50%;width:100%;height:2px;background:var(--lc,rgba(90,107,122,.4));z-index:1}.step:last-child::after{display:none}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid var(--cyan);border-top-color:transparent;border-radius:50%;animation:sp .8s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+#crosspanel{position:fixed;top:54px;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 50% 0%,#081427,#03070f 70%);z-index:50;overflow-y:auto;padding:22px 34px}
+.crosshead{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:14px;border-bottom:1px solid rgba(74,168,255,.18);padding-bottom:14px}
+.crosshead .ct{font-size:17px;font-weight:800;letter-spacing:2px;color:#eaf6ff}
+.crosshead .csub{font-size:11.5px;color:#9fc4e0;max-width:680px;margin-top:6px;line-height:1.5}
+.crossctl{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.crossctl select{background:#0a1626;color:#cfe9ff;border:1px solid rgba(74,168,255,.3);border-radius:7px;padding:8px;font-size:11px;max-width:230px}
+.crossctl button{background:linear-gradient(135deg,#37ff9b,#1fb6ff);color:#04121f;border:none;border-radius:7px;padding:9px 14px;font-weight:800;font-size:11px;letter-spacing:1px;cursor:pointer}
+.crossctl button:disabled{opacity:.5;cursor:wait}
+.crosslog{font:11px Consolas;color:#7fd4ff;min-height:18px;margin-bottom:12px;white-space:pre-wrap}
+.crossgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
+.cnode{background:linear-gradient(160deg,rgba(12,26,44,.9),rgba(8,16,28,.9));border:1px solid var(--nc,#4aa8ff);border-radius:12px;padding:16px;position:relative;box-shadow:0 0 22px -8px var(--nc,#4aa8ff)}
+.cnode .tier{position:absolute;top:13px;right:13px;font-size:8px;font-weight:800;letter-spacing:.5px;padding:3px 9px;border-radius:9px;background:var(--nc);color:#04121f}
+.cnode h4{font-size:14px;color:#fff;margin:0 90px 4px 0;letter-spacing:.5px}
+.cnode .mech{font-size:11px;color:#9fc4e0;margin-bottom:10px}
+.cnode .cov{display:flex;align-items:baseline;gap:6px;margin:8px 0}
+.cnode .cov b{font-size:26px;color:var(--nc);line-height:1}.cnode .cov span{font-size:10px;color:#7fa6c4}
+.cnode .alvo{font-size:12px;color:#eaf6ff;margin:6px 0}.cnode .alvo b{color:var(--nc)}
+.cnode .dz{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}
+.cnode .dz i{font-style:normal;font-size:9px;background:rgba(74,168,255,.14);border:1px solid var(--nc);color:#cfe9ff;padding:2px 7px;border-radius:8px}
+.cnode .rac{font-size:10.5px;color:#8fb0c9;border-top:1px solid rgba(255,255,255,.07);padding-top:8px;margin-top:8px;line-height:1.45}
+.cnode .pm{font-size:10px;color:#7fa6c4;margin-top:6px}
+.crisprbox{margin:8px 0;padding:8px 10px;background:rgba(74,168,255,.07);border:1px solid rgba(74,168,255,.2);border-radius:8px;font-size:10.5px;color:#bfe0f5;line-height:1.6}
+.hyptext{margin-bottom:7px;padding-bottom:7px;border-bottom:1px solid rgba(255,255,255,.07);font-size:10.5px;color:#bcd4e8;line-height:1.5}
+#reportspanel{position:fixed;top:54px;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 50% 0%,#081427,#03070f 70%);z-index:50;overflow-y:auto;padding:22px 34px}
+.histlist{display:flex;flex-direction:column;gap:9px;max-width:920px}
+.histrow{display:flex;align-items:center;gap:14px;background:linear-gradient(160deg,rgba(12,26,44,.9),rgba(8,16,28,.85));border:1px solid rgba(74,168,255,.18);border-left:3px solid var(--mc,#4aa8ff);border-radius:10px;padding:12px 16px;cursor:pointer;transition:.15s}
+.histrow:hover{border-color:var(--mc,#4aa8ff);transform:translateX(3px)}
+.histrow .hmode{font-size:8px;font-weight:800;letter-spacing:.5px;padding:3px 9px;border-radius:9px;background:var(--mc);color:#04121f;white-space:nowrap}
+.histrow .hdz{flex:1;font-size:13px;color:#eaf6ff;font-weight:600}
+.histrow .hmeta{font-size:10px;color:#7fa6c4;white-space:nowrap}
+.histrow .hopen{font-size:10px;color:#37ff9b;border:1px solid rgba(55,255,155,.4);border-radius:7px;padding:5px 10px}
+.histrow .hexp{font-size:10px;color:#7fd4ff;border:1px solid rgba(74,168,255,.4);border-radius:7px;padding:5px 10px}
+.histempty{color:#7fa6c4;font-size:12px;padding:30px;text-align:center}
+/* modos de layout das abas */
+body[data-view="body"] .wrap .col{display:none}
+body[data-view="body"] .wrap{grid-template-columns:1fr}
+body[data-view="experiments"] .stage{display:none}
+body[data-view="experiments"] .col:first-child{display:none}
+body[data-view="experiments"] .wrap{grid-template-columns:1fr}
+</style></head><body>
+<div class="grid"></div>
+<header>
+  <div class="logo">NOVA<b>MIND</b></div>
+  <div class="tabs"><div class="tab on" onclick="switchTab(this,'main')">VISÃO GERAL</div><div class="tab" onclick="switchTab(this,'body')">CORPO HUMANO 3D</div><div class="tab" onclick="switchTab(this,'experiments')">EXPERIMENTOS</div><div class="tab" onclick="switchTab(this,'cross')">SOLUÇÃO GERAL</div><div class="tab" onclick="switchTab(this,'reports')">RELATÓRIOS</div></div>
+  <div class="search"><input id="dzin" placeholder="doença (ex: Parkinson...)"/><button id="go" onclick="analyze()">ANALISAR</button></div>
+</header>
+<div class="wrap">
+  <div class="col">
+    <h3>Sistemas</h3><div id="syslist"></div>
+    <div class="card"><h3>Status Geral</h3>
+      <div class="gauge"><div class="gv" id="health">—</div><div style="font-size:9px;color:#7fa6c4;letter-spacing:1px">ÍNDICE DE SAÚDE<br>SISTÊMICA</div></div>
+      <div class="stat"><div><b id="nval" style="color:var(--green)">0</b><span>VALIDADAS</span></div><div><b id="nnov" style="color:var(--gold)">0</b><span>PROMISSORAS</span></div><div><b id="nfail" style="color:var(--red)">0</b><span>DESCARTADAS</span></div></div>
+    </div>
+  </div>
+  <div class="stage">
+    <canvas id="three"></canvas>
+    <div class="loading" id="loading"><div class="spin"></div><div style="font:11px Consolas;letter-spacing:2px">CARREGANDO MODELO ANATÔMICO 3D…</div></div>
+    <div class="hud" id="hud"></div>
+    <div class="zlabel" id="zlabel"></div>
+    <div class="activebox card" id="activebox" style="display:none"></div>
+    <div class="ctrlbtns"><button onclick="playSeq()">▶ PERCORRER EXPERIMENTOS</button><button onclick="zoomTo(null)">⤢ CORPO INTEIRO</button><button onclick="refine()" title="gera→verifica→re-gera focando nas promissoras (3 ciclos)">↻ AUTO-REFINAR</button><button onclick="crispr()" title="estratégias CRISPR otimizadas p/ curar a causa-raiz sem colateral (não volta)">🧬 MODO GENÉTICO</button><button onclick="openDossier()" title="abrir dossiê científico HTML (imprimível → PDF) pronto pra enviar a um laboratório">📄 DOSSIÊ</button><button onclick="downloadCSV()" title="baixar tabela de hipóteses em CSV (importável no pipeline do lab)">⬇ CSV</button></div>
+  </div>
+  <div class="col"><h3 id="rtitle">Hipóteses & Experimentos</h3><div id="hyps"></div></div>
+</div>
+<div class="timeline" id="timeline"></div>
+
+<div id="crosspanel" style="display:none">
+  <div class="crosshead">
+    <div><div class="ct">SOLUÇÃO GERAL · padrões pan-doença</div>
+    <div class="csub">Não é "uma cura pra tudo" — são <b>nós-mecanismo a montante</b> que convergem entre doenças. Cobertura <b>verificada na literatura real</b> (PubMed), não só sugerida.</div></div>
+    <div class="crossctl">
+      <select id="panelsel">
+        <option value="neurodegenerativas">Neurodegenerativas (ELA·Alzheimer·Parkinson·Huntington)</option>
+        <option value="autoimunes">Autoimunes (AR·Lúpus·EM·Crohn)</option>
+        <option value="metabolicas">Metabólicas (DM2·NAFLD·Aterosclerose·SM)</option>
+        <option value="cancer">Câncer (Pâncreas·Glioblastoma·Mama TN·Pulmão)</option>
+      </select>
+      <button id="crossgo" onclick="crossAnalyze()">⊹ MAPEAR PADRÕES</button>
+    </div>
+  </div>
+  <div class="crosslog" id="crosslog"></div>
+  <div class="crossgrid" id="crossgrid"></div>
+</div>
+
+<div id="reportspanel" style="display:none">
+  <div class="crosshead">
+    <div><div class="ct">RELATÓRIOS · arquivo de tudo que foi testado</div>
+    <div class="csub">Cada análise/refino/edição genética fica salva aqui. Clique pra abrir no corpo 3D, ver hipótese por hipótese e exportar o relatório completo.</div></div>
+    <div class="crossctl"><input id="histsearch" placeholder="buscar doença..." oninput="filterHistory()" style="background:#0a1626;color:#cfe9ff;border:1px solid rgba(74,168,255,.3);border-radius:7px;padding:8px;font-size:11px"/>
+      <button onclick="loadHistory()">⟳ ATUALIZAR</button></div>
+  </div>
+  <div class="histlist" id="histlist"></div>
+</div>
+
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+const COL={verde:'#37ff9b',dourado:'#ffce4a',vermelho:'#ff5470',cinza:'#5a6b7a',azul:'#4aa8ff'};
+const ICON={nervoso:'🧠',muscular:'💪',imune:'🛡',cardiovascular:'❤',respiratorio:'🫁',digestivo:'🍃',hepatico:'🩸',renal:'🫘',endocrino:'⚙',esqueletico:'🦴'};
+// orgaos: posicao normalizada [x,y,z] no corpo (y=altura 0..1 baixo->cima, x lateral, z frente/tras)
+const ORGAN={ nervoso:[0,.93,.04], endocrino:[0,.84,.05], respiratorio:[0,.72,.02], cardiovascular:[-.04,.70,.04],
+  imune:[0,.62,0], hepatico:[.07,.62,.03], digestivo:[0,.55,.04], renal:[0,.58,-.05],
+  muscular:[.14,.32,0], esqueletico:[0,.5,0] };
+function normSys(s){s=(s||'').toLowerCase();for(const k in ORGAN)if(s.includes(k))return k;if(s.includes('central')||s.includes('nerv'))return'nervoso';if(s.includes('musc'))return'muscular';if(s.includes('imun'))return'imune';return'nervoso';}
+
+let scene,cam,renderer,controls,model,bbox,modelH,markers={},targetCam=null,targetLook=null;
+const canvas=document.getElementById('three');
+function initThree(){
+  scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x03070f,0.06);
+  cam=new THREE.PerspectiveCamera(42,1,0.01,100);
+  renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  scene.add(new THREE.AmbientLight(0x88bbff,0.6));
+  const d=new THREE.DirectionalLight(0x66ccff,1.2);d.position.set(2,4,5);scene.add(d);
+  cam.position.set(0,0,3.4);
+  controls=new OrbitControls(cam,canvas);controls.enableDamping=true;controls.enablePan=false;controls.minDistance=0.5;controls.maxDistance=6;
+  resize();window.addEventListener('resize',resize);
+  // shader holografico (fresnel rim + transparencia)
+  const holo=new THREE.ShaderMaterial({transparent:true,side:THREE.DoubleSide,depthWrite:true,blending:THREE.NormalBlending,
+    uniforms:{uColor:{value:new THREE.Color(0x39d6ff)},uTime:{value:0}},
+    vertexShader:`varying vec3 vN;varying vec3 vV;void main(){vN=normalize(normalMatrix*normal);vec4 mv=modelViewMatrix*vec4(position,1.0);vV=normalize(-mv.xyz);gl_Position=projectionMatrix*mv;}`,
+    fragmentShader:`uniform vec3 uColor;uniform float uTime;varying vec3 vN;varying vec3 vV;void main(){float f=pow(1.0-abs(dot(vN,vV)),1.8);float scan=0.5+0.5*sin((gl_FragCoord.y*0.05)-uTime*1.5);vec3 col=uColor*(0.45+f*1.3)+vec3(0.0,0.05,0.1);float a=0.28+f*0.6+scan*0.05;gl_FragColor=vec4(col,a);}`});
+  window._holo=holo;
+  // tenta o modelo anatomico novo primeiro; cai pro antigo se nao existir
+  const CANDIDATES=['human_anatomy.glb','human.glb'];
+  function tryLoad(idx){
+    if(idx>=CANDIDATES.length){document.getElementById('loading').innerHTML='<div style="color:#ff5470">nenhum modelo 3D encontrado (human_anatomy.glb / human.glb).</div>';return;}
+    new GLTFLoader().load(CANDIDATES[idx],(g)=>{onModel(g,CANDIDATES[idx]);},(p)=>{},(e)=>{console.warn('falhou',CANDIDATES[idx],'-> proximo');tryLoad(idx+1);});
+  }
+  function onModel(g,name){
+    model=g.scene;let skinned=false;model.traverse(o=>{if(o.isMesh){o.material=holo;if(o.isSkinnedMesh)skinned=true;}});
+    model.updateMatrixWorld(true);
+    // NORMALIZA: escala p/ altura=2 e centraliza na origem. precise=true enquadra a malha posada (skinned).
+    let b=new THREE.Box3().setFromObject(model,true);let size=b.getSize(new THREE.Vector3());
+    const sc=2.0/Math.max(size.y,1e-4);model.scale.setScalar(sc);model.updateMatrixWorld(true);
+    b=new THREE.Box3().setFromObject(model,true);const ctr=b.getCenter(new THREE.Vector3());model.position.sub(ctr);model.updateMatrixWorld(true);
+    // ORIENTA DE FRENTE: ombros (maior extensao horizontal) devem ficar no eixo X; se profundidade>largura, esta de perfil -> gira 90
+    let sz=new THREE.Box3().setFromObject(model,true).getSize(new THREE.Vector3());
+    if(sz.z>sz.x){model.rotation.y=-Math.PI/2;model.updateMatrixWorld(true);
+      const c2=new THREE.Box3().setFromObject(model,true).getCenter(new THREE.Vector3());model.position.sub(c2);model.updateMatrixWorld(true);}
+    scene.add(model);
+    bbox=new THREE.Box3().setFromObject(model,true);modelH=bbox.getSize(new THREE.Vector3()).y;
+    window._modelName=name;window._skinned=skinned;
+    window._rotateModel=(deg)=>{model.rotation.y=deg*Math.PI/180;model.updateMatrixWorld(true);const cc=new THREE.Box3().setFromObject(model,true).getCenter(new THREE.Vector3());model.position.sub(cc);model.updateMatrixWorld(true);bbox=new THREE.Box3().setFromObject(model,true);placeMarkers();frameFull();if(targetCam){cam.position.copy(targetCam);controls.target.copy(targetLook);controls.update();}render();};
+    document.getElementById('loading').style.display='none';
+    placeMarkers();frameFull();
+    // SNAP imediato: camera ja nasce enquadrando o corpo inteiro (sem lerp lento que mostrava so as pernas)
+    if(targetCam){cam.position.copy(targetCam);controls.target.copy(targetLook);controls.update();}
+    render();
+  }
+  tryLoad(0);
+  animate();
+}
+function resize(){const r=canvas.parentElement.getBoundingClientRect();if(!r.width||!r.height)return;renderer.setSize(r.width,r.height,false);cam.aspect=r.width/r.height;cam.updateProjectionMatrix();}
+window._resize3=resize;
+function orgPos(k){if(!bbox)return new THREE.Vector3();const o=ORGAN[k]||ORGAN.nervoso;const s=bbox.getSize(new THREE.Vector3());const min=bbox.min;
+  return new THREE.Vector3(min.x+s.x*(0.5+o[0]), min.y+s.y*o[1], min.z+s.z*(0.5+o[2]));}
+function placeMarkers(){ if(!window._DATA)return; Object.values(markers).forEach(m=>scene.remove(m));markers={};
+  const cnt={};window._DATA.hypotheses.forEach(h=>{const k=normSys(h.alvo_sistema);cnt[k]=(cnt[k]||0)+1;});
+  const idx={};
+  window._DATA.hypotheses.forEach((h,i)=>{const k=normSys(h.alvo_sistema);const p=orgPos(k);const c=new THREE.Color(COL[h.status]||COL.azul);
+    // ESPALHA marcadores do MESMO orgao num pequeno anel (evita sobreposicao)
+    const n=cnt[k];const j=(idx[k]=(idx[k]||0)+1)-1;
+    if(n>1){const ang=(j/n)*Math.PI*2;const rad=0.09;p.x+=Math.cos(ang)*rad;p.y+=Math.sin(ang)*rad*0.7;p.z+=0.04;}
+    const g=new THREE.Group();const core=new THREE.Mesh(new THREE.SphereGeometry(0.026,16,16),new THREE.MeshBasicMaterial({color:c}));
+    const halo=new THREE.Mesh(new THREE.SphereGeometry(0.05,16,16),new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:.22,blending:THREE.AdditiveBlending}));
+    g.add(core);g.add(halo);
+    // SISTEMAS AFETADOS SECUNDARIOS: marcadores fracos + linha do alvo ate cada um (envolvimento multi-sistemico visivel)
+    (h.sistemas_afetados||[]).forEach(ss=>{const sk=normSys(ss);if(sk===k)return;const sp=orgPos(sk);
+      const dot=new THREE.Mesh(new THREE.SphereGeometry(0.015,10,10),new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:.5}));
+      dot.position.copy(sp).sub(p);g.add(dot);
+      const lg=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0),sp.clone().sub(p)]);
+      g.add(new THREE.Line(lg,new THREE.LineBasicMaterial({color:c,transparent:true,opacity:.22})));});
+    g.position.copy(p);g.userData={i,c,t:Math.random()*6};scene.add(g);markers[i]=g;});}
+function frameFull(){ if(!bbox){targetCam=new THREE.Vector3(0,0,3.4);targetLook=new THREE.Vector3(0,0,0);return;}
+  const s=bbox.getSize(new THREE.Vector3());const fov=cam.fov*Math.PI/180;
+  const fitH=(s.y/2)/Math.tan(fov/2); const fitW=(s.x/2)/Math.tan(fov/2)/Math.max(0.5,cam.aspect);
+  const dist=Math.max(fitH,fitW)*1.55; targetCam=new THREE.Vector3(0,0,dist); targetLook=new THREE.Vector3(0,0,0); }
+function zoomTo(sysKey){if(!bbox)return;if(!sysKey){frameFull();return;}const p=orgPos(normSys(sysKey));targetLook=p.clone();targetCam=p.clone().add(new THREE.Vector3(0,0,0.95));}
+let t=0;
+function animate(){requestAnimationFrame(animate);t+=0.016;if(window._holo)window._holo.uniforms.uTime.value=t;
+  Object.values(markers).forEach(m=>{const s=1+0.25*Math.sin(t*3+m.userData.t);m.children[1].scale.setScalar(s);});
+  if(targetCam){cam.position.lerp(targetCam,0.06);controls.target.lerp(targetLook,0.06);}
+  controls.update();render();}
+function render(){renderer.render(scene,cam);}
+window._dbg=()=>{const s=bbox?bbox.getSize(new THREE.Vector3()):{x:0,y:0,z:0};return{camZ:+cam.position.z.toFixed(2),modelH:+(modelH||0).toFixed(2),bboxW_x:+s.x.toFixed(2),bboxD_z:+s.z.toFixed(2),frenteOK:s.x>=s.z,rotY:model?+(model.rotation.y).toFixed(2):null,nMarkers:Object.keys(markers).length};};
+initThree();
+
+// ===== DASHBOARD =====
+let DATA=null,SEL=-1;
+function buildSys(){const d=document.getElementById('syslist');d.innerHTML='';(DATA?DATA.systems:[]).forEach(s=>{
+  const e=document.createElement('div');e.className='sysrow';e.id='sl_'+s;
+  e.innerHTML=`<div class="ic">${ICON[s]||'•'}</div><div><div class="nm">${s.toUpperCase()}</div><div class="st">monitorado</div></div><div class="badge">● ativo</div>`;
+  e.onclick=()=>zoomTo(s);d.appendChild(e);});}
+function buildHyps(){const d=document.getElementById('hyps');d.innerHTML='';DATA.hypotheses.forEach((h,i)=>{const c=COL[h.status]||COL.azul;
+  const e=document.createElement('div');e.className='hyp';e.id='h_'+i;e.style.borderLeftColor=c;e.style.setProperty('--c',c);
+  const ph=['—','Pré','F1','F2','F3','F4'][h.fase_max]||'—';const conf=Math.min(99,Math.round(h.score*19));
+  e.innerHTML=`<div class="t">${h.alvo} <span class="lab" style="background:${c}">${h.label}</span></div><div class="d">${h.droga}</div>
+   <div class="kv"><div class="k"><span>Evidências</span><b style="color:${c}">${h.pubmed}</b></div><div class="k"><span>Ensaios</span><b style="color:${c}">${h.trials}</b></div><div class="k"><span>Fase</span><b style="color:${c}">${ph}</b></div><div class="k"><span>Confiança</span><b style="color:${c}">${conf}%</b></div></div>
+   <div class="detail">${h.hyp?`<div class="hyptext"><b style="color:${c}">Hipótese gerada:</b> ${h.hyp}</div>`:''}<b style="color:${c}">Onde age:</b> ${h.orgao} · ${h.alvo_sistema}<br><b style="color:${c}">Afeta:</b> ${(h.sistemas_afetados||[]).join(' · ')}${h.crispr?crisprBlock(h.crispr,c):''}<div class="risk"><b>⚠ Riscos:</b> ${(h.riscos||[]).join('; ')||'—'}</div></div>`;
+  e.onclick=()=>select(i,true);d.appendChild(e);});}
+function crisprBlock(x,c){const root=x.corrige_causa_raiz?'<span style="color:#37ff9b">✔ corrige causa-raiz (não volta)</span>':'<span style="color:#ffce4a">paliativa (não corrige causa)</span>';
+  const ot={baixo:'#37ff9b',medio:'#ffce4a',alto:'#ff5470'}[String(x.off_target).toLowerCase()]||'#9fc4e0';
+  return `<div class="crisprbox"><b style="color:${c}">🧬 ${x.modalidade} · ${x.entrega}</b><br>${root}${x.germinativa?' · <span style="color:#ff5470">germinativa</span>':''}<br>
+   off-target: <b style="color:${ot}">${x.off_target}</b> · harmonia sistêmica: <b>${Math.round((x.harmonia_sistemica||0)*100)}%</b>
+   ${(x.sistemas_colaterais&&x.sistemas_colaterais.length)?'<br>colateral: <span style="color:#ff8fa3">'+x.sistemas_colaterais.join(' · ')+'</span>':'<br><span style="color:#37ff9b">sem colateral multissistêmico previsto</span>'}</div>`;}
+function buildTimeline(){const d=document.getElementById('timeline');d.innerHTML='';DATA.hypotheses.forEach((h,i)=>{const c=COL[h.status]||COL.azul;
+  const done=h.status!=='cinza';const sym=h.status==='cinza'||h.status==='vermelho'?'✕':(i+1).toString().padStart(2,'0');
+  const e=document.createElement('div');e.className='step';e.style.setProperty('--sc',c);e.style.setProperty('--lc',c+'55');
+  e.innerHTML=`<div class="ring">${sym}</div><div class="nm">${h.alvo}</div><div class="sub2">${h.label}</div>`;e.onclick=()=>select(i,true);d.appendChild(e);});}
+function lightSystems(h,c){document.querySelectorAll('.sysrow').forEach(s=>s.classList.remove('on'));
+  (h.sistemas_afetados||[]).concat([h.alvo_sistema]).forEach(s=>{const k=normSys(s);const sl=document.getElementById('sl_'+k);if(sl){sl.classList.add('on');sl.style.setProperty('--c',c);}});}
+function activeBox(h,c){const b=document.getElementById('activebox');b.style.display='block';const conf=Math.min(99,Math.round(h.score*19));
+  b.innerHTML=`<h3>Experimento Ativo</h3><div style="display:flex;align-items:center;gap:8px"><b style="font-size:16px;color:#fff">${h.alvo}</b><span class="lab" style="background:${c};font-size:8px;padding:2px 7px;border-radius:9px;color:#04121f;font-weight:800">${h.label}</span></div>
+   <div style="font-size:11px;color:#9fc4e0;margin:8px 0">Alvo: ${h.orgao}<br>Sistema: ${h.alvo_sistema}</div>
+   <div style="font-size:9px;color:#7fa6c4">CONFIANÇA</div><div class="prog"><div class="f" style="width:${conf}%"></div></div>
+   <div style="font-size:11px;color:#9fc4e0">📚 ${h.pubmed} publicações &nbsp; ✔ ${h.trials} ensaios</div>`;}
+window.select=function(i,zoom){SEL=i;const h=DATA.hypotheses[i];const c=COL[h.status]||COL.azul;
+  document.querySelectorAll('.hyp').forEach((e,j)=>e.classList.toggle('sel',j===i));
+  lightSystems(h,c);activeBox(h,c);const zl=document.getElementById('zlabel');zl.textContent=h.alvo+' → '+h.alvo_sistema;zl.classList.add('show');
+  Object.entries(markers).forEach(([j,m])=>m.children[0].material.color.set(j==i?'#ffffff':COL[DATA.hypotheses[j].status]||COL.azul));
+  if(zoom)zoomTo(h.alvo_sistema);};
+let seqT=null;window.playSeq=function(){clearInterval(seqT);if(!DATA)return;let i=0;const n=DATA.hypotheses.length;
+  (function tick(){if(i>=n){zoomTo(null);document.getElementById('zlabel').classList.remove('show');return;}select(i,true);i++;seqT=setTimeout(tick,2800);})();};
+window.zoomTo=zoomTo;
+function computeStats(){let v=0,nv=0,f=0;DATA.hypotheses.forEach(h=>{if(h.status==='verde')v++;else if(h.status==='dourado')nv++;else f++;});
+  nval.textContent=v;nnov.textContent=nv;nfail.textContent=f;const hh=Math.min(99,Math.round(100*(v+nv*0.6)/Math.max(1,DATA.hypotheses.length)*0.7+30));health.textContent=hh+'%';}
+function render2(d){DATA=d;window._DATA=d;
+  const rt=document.getElementById('rtitle');
+  if(d.crispr_modo){rt.innerHTML='Edições genéticas · '+d.disease+` <span style="font-size:9px;color:#7fd4ff;background:rgba(74,168,255,.14);padding:2px 7px;border-radius:8px">🧬 MODO GENÉTICO · harmonia (causa-raiz + sem colateral)</span>`;}
+  else if(d.refino){rt.innerHTML='Hipóteses convergidas · '+d.disease+` <span style="font-size:9px;color:#37ff9b;background:rgba(55,255,155,.12);padding:2px 7px;border-radius:8px">↻ AUTO-REFINO ${d.refino.ciclos} ciclos · ${d.refino.descartados.length} becos descartados</span>`;}
+  else rt.textContent='Hipóteses · '+d.disease;
+  buildSys();buildHyps();buildTimeline();computeStats();placeMarkers();if(d.hypotheses.length)setTimeout(()=>select(0,false),200);}
+window._render2=render2;
+function hud(lines){document.getElementById('hud').innerHTML=(lines||[]).map(l=>`<div class="ln">› ${l}</div>`).join('');}
+window.hud=hud;let polling=null;
+window.analyze=function(){const dz=document.getElementById('dzin').value.trim();if(!dz)return;document.getElementById('go').disabled=true;hud(['iniciando: '+dz]);
+  fetch('/analyze?disease='+encodeURIComponent(dz)).then(r=>r.json()).then(()=>{clearInterval(polling);polling=setInterval(poll,2500);poll();});};
+function poll(){fetch('/result').then(r=>r.json()).then(j=>{hud(j.log||[]);
+  if(j.status==='done'&&j.result){clearInterval(polling);document.getElementById('go').disabled=false;hud([]);render2(j.result);setTimeout(window.playSeq,800);}
+  else if(j.status==='idle'){clearInterval(polling);document.getElementById('go').disabled=false;}});}
+window.refine=function(){const dz=(document.getElementById('dzin').value.trim())||(DATA&&DATA.disease)||'';if(!dz){hud(['digite uma doença primeiro']);return;}
+  document.getElementById('go').disabled=true;hud(['AUTO-REFINO iniciado: '+dz+' (3 ciclos: gera→verifica→re-gera focando nas promissoras)']);
+  fetch('/refine?disease='+encodeURIComponent(dz)+'&cycles=3').then(r=>r.json()).then(()=>{clearInterval(polling);polling=setInterval(poll,2500);poll();});};
+window.crispr=function(){const dz=(document.getElementById('dzin').value.trim())||(DATA&&DATA.disease)||'';if(!dz){hud(['digite uma doença primeiro']);return;}
+  document.getElementById('go').disabled=true;hud(['MODO GENÉTICO/CRISPR: '+dz+' — buscando edição harmônica (cura a causa-raiz, sem colateral, não volta)']);
+  fetch('/crispr?disease='+encodeURIComponent(dz)+'&cycles=2').then(r=>r.json()).then(()=>{clearInterval(polling);polling=setInterval(poll,2500);poll();});};
+document.getElementById('dzin').addEventListener('keydown',e=>{if(e.key==='Enter')window.analyze();});
+// carrega a ULTIMA analise salva (nao um exemplo fixo); fallback p/ body_result.json
+document.body.dataset.view='main';
+fetch('/history').then(r=>r.json()).then(j=>{const it=(j.items||[]);
+  if(it.length)return fetch('/history/get?id='+encodeURIComponent(it[0].id)).then(r=>r.json()).then(x=>{if(x.result)render2(x.result);else throw 0;});
+  throw 0;
+}).catch(()=>{fetch('body_result.json').then(r=>r.json()).then(render2).catch(()=>{});});
+
+// ===== ABA SOLUCAO GERAL (cross-doenca) =====
+window.switchTab=function(el,mode){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));el.classList.add('on');
+  document.getElementById('crosspanel').style.display=(mode==='cross')?'block':'none';
+  document.getElementById('reportspanel').style.display=(mode==='reports')?'block':'none';
+  // modos de layout (main/body/experiments) via data-view no body
+  const view=(mode==='cross'||mode==='reports')?'main':mode;document.body.dataset.view=view;
+  if(mode==='reports')loadHistory();
+  // re-dimensiona o canvas qd o palco volta a aparecer
+  if(view==='main'||view==='body')setTimeout(()=>{if(window._resize3)window._resize3();},60);};
+// ===== ARQUIVO / HISTORICO =====
+let HIST=[];
+window.loadHistory=function(){fetch('/history').then(r=>r.json()).then(j=>{HIST=j.items||[];renderHistory();}).catch(()=>{});};
+const MODECOL={analise:'#4aa8ff',refino:'#37ff9b',genetico:'#7fd4ff'},MODELBL={analise:'ANÁLISE',refino:'AUTO-REFINO',genetico:'MODO GENÉTICO'};
+function renderHistory(){const d=document.getElementById('histlist');const q=(document.getElementById('histsearch').value||'').toLowerCase();
+  const items=HIST.filter(h=>!q||(h.disease||'').toLowerCase().includes(q));
+  if(!items.length){d.innerHTML='<div class="histempty">'+(HIST.length?'nenhum resultado p/ a busca':'nenhuma análise salva ainda — rode uma na VISÃO GERAL')+'</div>';return;}
+  d.innerHTML='';items.forEach(h=>{const mc=MODECOL[h.mode]||'#4aa8ff';const e=document.createElement('div');e.className='histrow';e.style.setProperty('--mc',mc);
+    e.innerHTML=`<div class="hmode">${MODELBL[h.mode]||'ANÁLISE'}</div><div class="hdz">${h.disease}</div><div class="hmeta">${h.n} hipóteses · ${h.when||''}</div><div class="hopen">▸ abrir</div><div class="hexp">📄 dossiê</div><div class="hexp" style="color:#37ff9b;border-color:rgba(55,255,155,.4)">⬇ csv</div>`;
+    e.querySelector('.hopen').onclick=ev=>{ev.stopPropagation();openHistory(h.id,false);};
+    e.querySelectorAll('.hexp')[0].onclick=ev=>{ev.stopPropagation();window.open('/report?id='+encodeURIComponent(h.id),'_blank');};
+    e.querySelectorAll('.hexp')[1].onclick=ev=>{ev.stopPropagation();const a=document.createElement('a');a.href='/report.csv?id='+encodeURIComponent(h.id);document.body.appendChild(a);a.click();a.remove();};
+    e.onclick=()=>openHistory(h.id,false);d.appendChild(e);});}
+window.filterHistory=renderHistory;
+function openHistory(id,exportAfter){fetch('/history/get?id='+encodeURIComponent(id)).then(r=>r.json()).then(j=>{
+  if(!j.result)return;render2(j.result);
+  if(exportAfter){exportReport();return;}
+  // volta pra VISÃO GERAL pra ver no corpo 3D
+  const t=document.querySelector('.tab');document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');
+  document.getElementById('reportspanel').style.display='none';document.body.dataset.view='main';
+  setTimeout(()=>{if(window._resize3)window._resize3();if(DATA&&DATA.hypotheses.length)select(0,true);},80);});}
+const TIER={pan:'#37ff9b',dual:'#1fb6ff',single:'#8a9bb0',unverified:'#5a6b7a'};
+let crossPoll=null;
+window.crossAnalyze=function(){const pn=document.getElementById('panelsel').value;const b=document.getElementById('crossgo');b.disabled=true;
+  document.getElementById('crosslog').textContent='iniciando análise cross-doença…';document.getElementById('crossgrid').innerHTML='';
+  fetch('/cross?panel='+encodeURIComponent(pn)).then(r=>r.json()).then(()=>{clearInterval(crossPoll);crossPoll=setInterval(pollCross,3000);pollCross();});};
+function pollCross(){fetch('/crossresult').then(r=>r.json()).then(j=>{
+  document.getElementById('crosslog').textContent=(j.log||[]).slice(-3).join('  ›  ');
+  if(j.status==='done'&&j.result){clearInterval(crossPoll);document.getElementById('crossgo').disabled=false;renderCross(j.result);}
+  else if(j.status==='error'||j.status==='idle'){clearInterval(crossPoll);document.getElementById('crossgo').disabled=false;}});}
+function renderCross(d){const g=document.getElementById('crossgrid');g.innerHTML='';const N=d.panel.length;
+  d.nodes.forEach(n=>{const c=TIER[n.tier]||TIER.unverified;const e=document.createElement('div');e.className='cnode';e.style.setProperty('--nc',c);
+    e.innerHTML=`<div class="tier">${n.label}</div><h4>${n.nome}</h4><div class="mech">${n.mecanismo}</div>
+     <div class="cov"><b>${n.n_verificada}/${N}</b><span>doenças com evidência real ligando o alvo</span></div>
+     <div class="alvo">Alvo acionável: <b>${n.alvo_top||'—'}</b>${n.alvos&&n.alvos.length>1?` <span style="color:#7fa6c4">(+${n.alvos.slice(1).join(', ')})</span>`:''}</div>
+     <div class="dz">${(n.cobertura_verificada||[]).map(x=>`<i>✔ ${x}</i>`).join('')||'<i style="opacity:.6">sem co-ocorrência verificada</i>'}</div>
+     <div class="pm">📚 ${n.pubmed_total} publicações somadas no painel</div>
+     <div class="rac">${n.racional||''}</div>`;g.appendChild(e);});
+  document.getElementById('crosslog').textContent=`${d.nodes.length} nós-mecanismo · painel: ${d.panel.join(' · ')}`;}
+window.exportReport=function(){if(!DATA){hud(['nada pra exportar — rode uma análise']);return;}
+  const ph=['—','Pré','F1','F2','F3','F4'];const L=[];
+  L.push('# NOVAMIND · Relatório do Laboratório In-Silico');
+  L.push('');L.push('**Doença:** '+DATA.disease);
+  L.push('**Modo:** '+(DATA.crispr_modo?'Genético/CRISPR (harmonia: causa-raiz + sem colateral)':(DATA.refino?'Auto-refino ('+DATA.refino.ciclos+' ciclos)':'Análise padrão')));
+  L.push('**Gerado:** '+(DATA.generated||'in-silico'));L.push('');
+  L.push('> ⚠️ AVISO HONESTO: triagem COMPUTACIONAL de hipóteses, ancorada em PubMed + ClinicalTrials.gov. NÃO é cura validada; wet-lab (ensaio off-target, modelo animal, imunogenicidade) é obrigatório.');L.push('');
+  L.push('---');L.push('## Hipóteses priorizadas ('+DATA.hypotheses.length+')');L.push('');
+  DATA.hypotheses.forEach((h,i)=>{const conf=Math.min(99,Math.round(h.score*19));
+    L.push('### '+(i+1)+'. '+h.alvo+' — '+h.label+'  (score '+h.score+' · conf '+conf+'%)');
+    L.push('- **Abordagem:** '+h.droga);
+    L.push('- **Evidência:** PubMed '+h.pubmed+' · Ensaios clínicos '+h.trials+' · Fase máx '+(ph[h.fase_max]||'—'));
+    L.push('- **Onde age:** '+h.orgao+' · sistema '+h.alvo_sistema);
+    L.push('- **Sistemas afetados:** '+(h.sistemas_afetados||[]).join(', '));
+    if(h.crispr){const x=h.crispr;L.push('- **CRISPR:** '+x.modalidade+' via '+x.entrega+' · '+(x.corrige_causa_raiz?'corrige causa-raiz (não volta)':'paliativa')+' · off-target '+x.off_target+' · harmonia sistêmica '+Math.round((x.harmonia_sistemica||0)*100)+'%'+(x.germinativa?' · GERMINATIVA':''));
+      if(x.sistemas_colaterais&&x.sistemas_colaterais.length)L.push('- **Colateral previsto:** '+x.sistemas_colaterais.join(', '));}
+    L.push('- **Riscos:** '+((h.riscos||[]).join('; ')||'—'));
+    if(h.hyp)L.push('- **Hipótese completa:** '+h.hyp);
+    L.push('');});
+  if(DATA.refino){L.push('---');L.push('## Convergência do auto-refino');L.push('- **Becos descartados:** '+(DATA.refino.descartados.join(', ')||'nenhum'));
+    (DATA.refino.convergencia||[]).forEach(c=>L.push('- Ciclo '+c.ciclo+': '+c.gerados+' gerados → '+c.sobreviventes+' sobreviventes · top: '+c.top.map(t=>t.alvo+'('+t.score+')').join(', ')));L.push('');}
+  const md=L.join('\n');const blob=new Blob([md],{type:'text/markdown;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='novamind_'+(DATA.disease||'relatorio').replace(/[^a-z0-9]+/gi,'_').toLowerCase()+'.md';
+  document.body.appendChild(a);a.click();a.remove();hud(['relatório exportado: '+a.download]);};
+window.openDossier=function(){if(!DATA){hud(['nada pra exportar — rode uma análise']);return;}
+  const id=(DATA._id||'');window.open('/report'+(id?'?id='+encodeURIComponent(id):''),'_blank');hud(['dossiê aberto em nova aba — Ctrl+P salva como PDF']);};
+window.downloadCSV=function(){if(!DATA){hud(['nada pra exportar']);return;}
+  const id=(DATA._id||'');const a=document.createElement('a');a.href='/report.csv'+(id?'?id='+encodeURIComponent(id):'');a.download='';document.body.appendChild(a);a.click();a.remove();hud(['CSV baixado']);};
+window._renderCross=renderCross;
+// auto-carrega resultado cross ja pronto no servidor (persiste no refresh)
+fetch('/crossresult').then(r=>r.json()).then(j=>{if(j.status==='done'&&j.result&&j.result.nodes.length)renderCross(j.result);}).catch(()=>{});
+</script></body></html>

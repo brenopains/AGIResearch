@@ -1,0 +1,10 @@
+{
+  "operator": "rbf_weighted_sum_then_observed_range_clip",
+  "actions": 4,
+  "input_type": "finite_real_vector",
+  "output_type": "reward_and_continuation_per_action",
+  "body": "exp(-squared_distance(state-mean,x)/scale) @ coeff + ym",
+  "parameters": "breakout_coordenadas_consequencias_103_credito.npz",
+  "regularization": 0.05,
+  "scope": "local_predictions_not_objects_or_general_intelligence"
+}

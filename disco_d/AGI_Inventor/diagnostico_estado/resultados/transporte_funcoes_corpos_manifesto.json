@@ -1,0 +1,95 @@
+{
+  "status": "bodies_frozen_before_this_run_loads103_targets",
+  "development_only": true,
+  "source_hashes": {
+    "resultados/transporte_funcoes_proposta.json": "3f9af96682b23623ed338f4e5a3899be1109cacbe8cd349592a45b51aa664009",
+    "resultados/transporte_funcoes_breakout_97_transport.npz": "282412c6fd384933ea7f7829170e660c1cc08ff20554838815a14aa794600f93",
+    "resultados/transporte_funcoes_breakout_97_transport.json": "e9fc7b87488f366e12cf8be4f13f4588163b8aeedb42a2f508d42037682122b7",
+    "resultados/transporte_funcoes_breakout_97_shuffled_targets.npz": "7a75563273673fc97009d88722cb234dbf312bbb9eb97b12776d4109580cd229",
+    "resultados/transporte_funcoes_breakout_97_shuffled_targets.json": "7818046810a24d7985450956ca080af73254948b6f9bbafda419f942c46e9905",
+    "resultados/transporte_funcoes_breakout_97_no_context.npz": "d8bb73dfea4ff3c4536ba3bd0e1f93bd262f669ed508e6fc90023703f32ae04c",
+    "resultados/transporte_funcoes_breakout_97_no_context.json": "8fbf59eb06cc9177a6a50e8f5384efa462bacf072ba4b3addcd465ef3e80beaa",
+    "resultados/transporte_funcoes_breakout_97_no_transport.npz": "aa61f832093a4b2c203f97d0a6047e6286a7dbedf099f3046874d50d6d040694",
+    "resultados/transporte_funcoes_breakout_97_no_transport.json": "294ea2f35b0798992c5da990fdcd1934f9f922a1a4cf49a1d908dd99e5558f00",
+    "resultados/transporte_funcoes_breakout_97_permuted_actions.npz": "5fb161ffff10566f3cb9a4095cc29b9441d548eaa738f68f1f120cb5200ed6b6",
+    "resultados/transporte_funcoes_breakout_97_permuted_actions.json": "eaa57c2f0ff27043b3e59f82f787e8bb6e01518252303d7c1fd3d394e35743f4",
+    "resultados/transporte_funcoes_pong_97_transport.npz": "d0bf20e2f5f55606a444c0f911a218de6e79807410b97864fdf94069d72365a2",
+    "resultados/transporte_funcoes_pong_97_transport.json": "96c74685d9d8112d9b57a1ab328e82f0ec2a58bfaee283868b4a944562df734f",
+    "resultados/transporte_funcoes_pong_97_shuffled_targets.npz": "ae8b49fc69794c7848c09a46b79dcf2b5a3051ca169a9644738906ab5cb56f38",
+    "resultados/transporte_funcoes_pong_97_shuffled_targets.json": "5a38583b8c5463c390b735c6824eecfba10c3c22be147195c2258dd65f46bd8b",
+    "resultados/transporte_funcoes_pong_97_no_context.npz": "164b4115df195e36a140a4fbab865b7dac5efb4a299ba177328dd3e6ee07e2c1",
+    "resultados/transporte_funcoes_pong_97_no_context.json": "e5b3020a327d78b82d0e36c252f19943de085ba5492a014247f9d6169bb0627d",
+    "resultados/transporte_funcoes_pong_97_no_transport.npz": "63b714f4dcb2f03e93e1de09cdfa795160a3cee944d34121dc78fef8f52a1ad3",
+    "resultados/transporte_funcoes_pong_97_no_transport.json": "ac58f8753c7ec73c6540320eae4cdee8e04604277361b8ff8cf3781492ec3096",
+    "resultados/transporte_funcoes_pong_97_permuted_actions.npz": "d93a4e38d87edf9aa29cfb16870c9dac282be8217cbc00b61139e7cb93cd488c",
+    "resultados/transporte_funcoes_pong_97_permuted_actions.json": "98e9b087dbb9171a2ca0eab42466f2fa6cd2b03597715f7ec87471b951a9d9d9"
+  },
+  "bodies": {
+    "breakout": {
+      "transport": "resultados/transporte_funcoes_breakout_97_transport.npz",
+      "shuffled_targets": "resultados/transporte_funcoes_breakout_97_shuffled_targets.npz",
+      "no_context": "resultados/transporte_funcoes_breakout_97_no_context.npz",
+      "no_transport": "resultados/transporte_funcoes_breakout_97_no_transport.npz",
+      "permuted_actions": "resultados/transporte_funcoes_breakout_97_permuted_actions.npz"
+    },
+    "pong": {
+      "transport": "resultados/transporte_funcoes_pong_97_transport.npz",
+      "shuffled_targets": "resultados/transporte_funcoes_pong_97_shuffled_targets.npz",
+      "no_context": "resultados/transporte_funcoes_pong_97_no_context.npz",
+      "no_transport": "resultados/transporte_funcoes_pong_97_no_transport.npz",
+      "permuted_actions": "resultados/transporte_funcoes_pong_97_permuted_actions.npz"
+    }
+  },
+  "train_reports": {
+    "breakout": {
+      "observed_transitions": 861,
+      "action_counts": [
+        191,
+        209,
+        234,
+        227
+      ],
+      "supports": 32,
+      "feature_dimension": 33,
+      "fit_calls": 2,
+      "wall_seconds": 2.889002600000822,
+      "training_local_joint_mse": [
+        0.01055133634101043,
+        0.004065039840806304,
+        0.007693462955490295,
+        0.008655112965245659
+      ],
+      "operator_spectral_norms": [
+        5.389087756676936,
+        4.243039149893878,
+        4.339399118979115,
+        5.430940890680481
+      ]
+    },
+    "pong": {
+      "observed_transitions": 1024,
+      "action_counts": [
+        228,
+        256,
+        278,
+        262
+      ],
+      "supports": 32,
+      "feature_dimension": 33,
+      "fit_calls": 2,
+      "wall_seconds": 3.288790799997514,
+      "training_local_joint_mse": [
+        0.002807776935395829,
+        0.0029697307504993817,
+        0.003397817736089283,
+        0.0034873121810809035
+      ],
+      "operator_spectral_norms": [
+        2.36713070271564,
+        2.1749425336765906,
+        2.38916166761707,
+        2.483387482923812
+      ]
+    }
+  }
+}

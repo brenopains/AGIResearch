@@ -1,0 +1,8 @@
+{
+  "feature": "resultados/prospectiva_breakout_future_pairs_corpo.npz",
+  "parameters": "eventos_breakout_future_pairs_planner.npz",
+  "operator_body": "alive_next=alive@M[action];dead_next=dead+alive@terminal_M[action]",
+  "value_body": "(alive_final+dead_final-alive_initial)@field",
+  "dead_is_absorbing_protocol_semantics": true,
+  "no_future_observations_at_decision": true
+}

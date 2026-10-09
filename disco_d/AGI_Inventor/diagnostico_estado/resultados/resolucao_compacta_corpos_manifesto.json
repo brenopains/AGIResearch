@@ -1,0 +1,385 @@
+{
+  "status": "spatial_bodies_frozen_before_new_evaluation",
+  "bodies": {
+    "breakout": {
+      "coarse": {
+        "body": "resultados/resolucao_compacta_breakout_coarse_body.npz",
+        "scale": "resultados/resolucao_compacta_breakout_coarse_body_scale.npy",
+        "sensor": "coarse",
+        "filters": null
+      },
+      "moments": {
+        "body": "resultados/resolucao_compacta_breakout_moments_body.npz",
+        "scale": "resultados/resolucao_compacta_breakout_moments_body_scale.npy",
+        "sensor": "moments",
+        "filters": null
+      },
+      "learned": {
+        "body": "resultados/resolucao_compacta_breakout_learned_body.npz",
+        "scale": "resultados/resolucao_compacta_breakout_learned_body_scale.npy",
+        "sensor": "learned",
+        "filters": "resultados/resolucao_compacta_breakout_learned_filters.npz"
+      },
+      "shuffled_outcomes": {
+        "body": "resultados/resolucao_compacta_breakout_shuffled_outcomes_body.npz",
+        "scale": "resultados/resolucao_compacta_breakout_learned_body_scale.npy",
+        "sensor": "learned",
+        "filters": "resultados/resolucao_compacta_breakout_learned_filters.npz"
+      },
+      "no_context": {
+        "body": "resultados/resolucao_compacta_breakout_no_context_body.npz",
+        "scale": "resultados/resolucao_compacta_breakout_learned_body_scale.npy",
+        "sensor": "learned",
+        "filters": "resultados/resolucao_compacta_breakout_learned_filters.npz"
+      },
+      "random": {
+        "body": "resultados/resolucao_compacta_breakout_random_body.npz",
+        "scale": "resultados/resolucao_compacta_breakout_random_body_scale.npy",
+        "sensor": "random",
+        "filters": "resultados/resolucao_compacta_breakout_random_filters.npz"
+      },
+      "transferred": {
+        "body": "resultados/resolucao_compacta_breakout_transferred_body.npz",
+        "scale": "resultados/resolucao_compacta_breakout_transferred_body_scale.npy",
+        "sensor": "transferred",
+        "filters": "resultados/resolucao_compacta_pong_learned_filters.npz"
+      }
+    },
+    "pong": {
+      "coarse": {
+        "body": "resultados/resolucao_compacta_pong_coarse_body.npz",
+        "scale": "resultados/resolucao_compacta_pong_coarse_body_scale.npy",
+        "sensor": "coarse",
+        "filters": null
+      },
+      "moments": {
+        "body": "resultados/resolucao_compacta_pong_moments_body.npz",
+        "scale": "resultados/resolucao_compacta_pong_moments_body_scale.npy",
+        "sensor": "moments",
+        "filters": null
+      },
+      "learned": {
+        "body": "resultados/resolucao_compacta_pong_learned_body.npz",
+        "scale": "resultados/resolucao_compacta_pong_learned_body_scale.npy",
+        "sensor": "learned",
+        "filters": "resultados/resolucao_compacta_pong_learned_filters.npz"
+      },
+      "shuffled_outcomes": {
+        "body": "resultados/resolucao_compacta_pong_shuffled_outcomes_body.npz",
+        "scale": "resultados/resolucao_compacta_pong_learned_body_scale.npy",
+        "sensor": "learned",
+        "filters": "resultados/resolucao_compacta_pong_learned_filters.npz"
+      },
+      "no_context": {
+        "body": "resultados/resolucao_compacta_pong_no_context_body.npz",
+        "scale": "resultados/resolucao_compacta_pong_learned_body_scale.npy",
+        "sensor": "learned",
+        "filters": "resultados/resolucao_compacta_pong_learned_filters.npz"
+      },
+      "random": {
+        "body": "resultados/resolucao_compacta_pong_random_body.npz",
+        "scale": "resultados/resolucao_compacta_pong_random_body_scale.npy",
+        "sensor": "random",
+        "filters": "resultados/resolucao_compacta_pong_random_filters.npz"
+      },
+      "transferred": {
+        "body": "resultados/resolucao_compacta_pong_transferred_body.npz",
+        "scale": "resultados/resolucao_compacta_pong_transferred_body_scale.npy",
+        "sensor": "transferred",
+        "filters": "resultados/resolucao_compacta_breakout_learned_filters.npz"
+      }
+    }
+  },
+  "construction": {
+    "breakout": {
+      "coarse": {
+        "training_transitions": 1667,
+        "support_count": 32,
+        "channel_scale": [
+          0.21168023347854614,
+          0.21168023347854614,
+          0.21168023347854614,
+          0.21168023347854614,
+          0.21168023347854614,
+          0.21168023347854614
+        ],
+        "training_reward_mse": 0.04827922398381984,
+        "filters_origin_game": null,
+        "input_wall_seconds": 2.1016214999999647,
+        "fit_timing": {
+          "unique_seconds": 1.756159800000205,
+          "dictionary_seconds": 0.33774199999970733,
+          "projection_seconds": 0.3805552000003445,
+          "solve_seconds": 0.0033034999996743863,
+          "total_seconds": 2.6492363000006662
+        },
+        "rss_bytes_at_export": 531517440
+      },
+      "moments": {
+        "training_transitions": 1667,
+        "support_count": 32,
+        "channel_scale": [
+          0.21168018877506256,
+          0.028618410229682922,
+          0.04396898299455643,
+          0.08239871263504028,
+          0.08630034327507019,
+          0.006725457031279802
+        ],
+        "training_reward_mse": 0.04900279344459312,
+        "filters_origin_game": null,
+        "input_wall_seconds": 10.897368400000232,
+        "fit_timing": {
+          "unique_seconds": 1.5732553999996526,
+          "dictionary_seconds": 0.3530710999993971,
+          "projection_seconds": 0.42209339999953954,
+          "solve_seconds": 0.001967299999705574,
+          "total_seconds": 2.5009165000001303
+        },
+        "rss_bytes_at_export": 533741568
+      },
+      "learned": {
+        "training_transitions": 1667,
+        "support_count": 32,
+        "channel_scale": [
+          0.21214288473129272,
+          0.06508605182170868,
+          0.03650350123643875,
+          0.042950790375471115,
+          0.031185297295451164,
+          0.036858461797237396
+        ],
+        "training_reward_mse": 0.0502137232465419,
+        "filters_origin_game": "breakout",
+        "input_wall_seconds": 4.421444300000076,
+        "fit_timing": {
+          "unique_seconds": 1.4742175000001225,
+          "dictionary_seconds": 0.35560089999944466,
+          "projection_seconds": 0.5549237000004723,
+          "solve_seconds": 0.0021689999994123355,
+          "total_seconds": 2.5196592000002056
+        },
+        "rss_bytes_at_export": 529993728
+      },
+      "random": {
+        "training_transitions": 1667,
+        "support_count": 32,
+        "channel_scale": [
+          0.21214288473129272,
+          0.016783585771918297,
+          0.01902412623167038,
+          0.011013413779437542,
+          0.016641100868582726,
+          0.0113292895257473
+        ],
+        "training_reward_mse": 0.045877109088611596,
+        "filters_origin_game": "breakout",
+        "input_wall_seconds": 4.477212699999654,
+        "fit_timing": {
+          "unique_seconds": 1.4652676999994583,
+          "dictionary_seconds": 0.30308960000002116,
+          "projection_seconds": 0.49906539999938104,
+          "solve_seconds": 0.0013093999996272032,
+          "total_seconds": 2.3974920999999085
+        },
+        "rss_bytes_at_export": 543449088
+      },
+      "transferred": {
+        "training_transitions": 1667,
+        "support_count": 32,
+        "channel_scale": [
+          0.21214288473129272,
+          0.03906701132655144,
+          0.06408718973398209,
+          0.03736608475446701,
+          0.05582596734166145,
+          0.026110181584954262
+        ],
+        "training_reward_mse": 0.04967251998148834,
+        "filters_origin_game": "pong",
+        "input_wall_seconds": 4.316534999999931,
+        "fit_timing": {
+          "unique_seconds": 1.3962106999997559,
+          "dictionary_seconds": 0.323631999999634,
+          "projection_seconds": 0.508313299999827,
+          "solve_seconds": 0.0019008999997822684,
+          "total_seconds": 2.3575148000008994
+        },
+        "rss_bytes_at_export": 542474240
+      }
+    },
+    "pong": {
+      "coarse": {
+        "training_transitions": 1963,
+        "support_count": 32,
+        "channel_scale": [
+          0.15813130140304565,
+          0.15813130140304565,
+          0.15813130140304565,
+          0.15813130140304565,
+          0.15813130140304565,
+          0.15813130140304565
+        ],
+        "training_reward_mse": 0.09059280688631806,
+        "filters_origin_game": null,
+        "input_wall_seconds": 2.3415379000007306,
+        "fit_timing": {
+          "unique_seconds": 1.640517899999395,
+          "dictionary_seconds": 0.4371174999996583,
+          "projection_seconds": 0.45299619999968854,
+          "solve_seconds": 0.0017619000000195228,
+          "total_seconds": 2.721247399999811
+        },
+        "rss_bytes_at_export": 622612480
+      },
+      "moments": {
+        "training_transitions": 1963,
+        "support_count": 32,
+        "channel_scale": [
+          0.15813134610652924,
+          0.007612807676196098,
+          0.057555027306079865,
+          0.06441343575716019,
+          0.06245256960391998,
+          0.002091703237965703
+        ],
+        "training_reward_mse": 0.10826390412268375,
+        "filters_origin_game": null,
+        "input_wall_seconds": 12.296301500000482,
+        "fit_timing": {
+          "unique_seconds": 1.572994699999981,
+          "dictionary_seconds": 0.5335345000003144,
+          "projection_seconds": 0.49630919999981415,
+          "solve_seconds": 0.0015143000000534812,
+          "total_seconds": 2.752790200000163
+        },
+        "rss_bytes_at_export": 620597248
+      },
+      "learned": {
+        "training_transitions": 1963,
+        "support_count": 32,
+        "channel_scale": [
+          0.15962199866771698,
+          0.013996301218867302,
+          0.0794706717133522,
+          0.029397035017609596,
+          0.0807141363620758,
+          0.015972144901752472
+        ],
+        "training_reward_mse": 0.09582472736289875,
+        "filters_origin_game": "pong",
+        "input_wall_seconds": 5.069115700000111,
+        "fit_timing": {
+          "unique_seconds": 1.6419984999993176,
+          "dictionary_seconds": 0.4375655000003462,
+          "projection_seconds": 0.6291368000001967,
+          "solve_seconds": 0.0016008000002329936,
+          "total_seconds": 2.8566775999997844
+        },
+        "rss_bytes_at_export": 622301184
+      },
+      "random": {
+        "training_transitions": 1963,
+        "support_count": 32,
+        "channel_scale": [
+          0.15962199866771698,
+          0.030562318861484528,
+          0.007957499474287033,
+          0.006727187428623438,
+          0.0063121444545686245,
+          0.004244738724082708
+        ],
+        "training_reward_mse": 0.10019959786833309,
+        "filters_origin_game": "pong",
+        "input_wall_seconds": 4.905598600000303,
+        "fit_timing": {
+          "unique_seconds": 1.5594747000004645,
+          "dictionary_seconds": 0.5439549000002444,
+          "projection_seconds": 0.7345953999993071,
+          "solve_seconds": 0.0017207999999300228,
+          "total_seconds": 2.9915486999998393
+        },
+        "rss_bytes_at_export": 619323392
+      },
+      "transferred": {
+        "training_transitions": 1963,
+        "support_count": 32,
+        "channel_scale": [
+          0.15962199866771698,
+          0.0937025249004364,
+          0.004269619472324848,
+          0.011554726399481297,
+          0.02309029921889305,
+          0.018385455012321472
+        ],
+        "training_reward_mse": 0.1016391848310252,
+        "filters_origin_game": "breakout",
+        "input_wall_seconds": 5.004105500000151,
+        "fit_timing": {
+          "unique_seconds": 1.5837962000005064,
+          "dictionary_seconds": 0.5529060999997455,
+          "projection_seconds": 0.6693052000000534,
+          "solve_seconds": 0.0019528000002537738,
+          "total_seconds": 2.9670846999997593
+        },
+        "rss_bytes_at_export": 619356160
+      }
+    }
+  },
+  "wall_seconds": 90.8576736999994,
+  "sensor_fit_calls": 10,
+  "source_hashes": {
+    "resultados/resolucao_compacta_proposta.json": "8a471dcad67106696c786e26d1f4a7ee33ed36c0a8c9b66ae90959d21771578b",
+    "resultados/resolucao_compacta_breakout_learned_filters.npz": "3102fb4fc0a9b11647cbe4a41e0b6c100d4289328a1af134f609ab5e3666eb48",
+    "resultados/resolucao_compacta_breakout_learned_filters.json": "cdcde9bdb1c890226b831c35b061f64e030807ce637f3bcea833c4b6c8c685ca",
+    "resultados/resolucao_compacta_breakout_random_filters.npz": "774e5be61ba098ab7cef52e77a59ddc8d2caa1cff06b3e3b59aceb780da01d01",
+    "resultados/resolucao_compacta_breakout_random_filters.json": "58773ba5fd999ec7c3bb47ec55e5e50165ee40af0d94fba2a1ad6b37e340bcc9",
+    "resultados/resolucao_breakout_149.json": "462bd9e6fb18debefedf459a145cf3c2cd9b51e62925e6ebaafb85b11c5e9e08",
+    "resultados/resolucao_breakout_149.npz": "ccdcf3d7fde224c51fd63acf9c233050735d7638f6b8fd939f622e587f2181a3",
+    "resultados/resolucao_compacta_pong_learned_filters.npz": "9ead9445e000d0afe4a9bb82bbdf925b5ec0365185df209acf4d82ea534f2865",
+    "resultados/resolucao_compacta_pong_learned_filters.json": "cc7eef172696370c1a259d530ca4f1503cbd2fdfac295652881a9ae10d850746",
+    "resultados/resolucao_compacta_pong_random_filters.npz": "774e5be61ba098ab7cef52e77a59ddc8d2caa1cff06b3e3b59aceb780da01d01",
+    "resultados/resolucao_compacta_pong_random_filters.json": "d30d24eef275cfa355167e51af1149c07339e72366c8dd005edee94db80f978b",
+    "resultados/resolucao_pong_149.json": "49a33d2abe41b39ba1ce7c961fa5fc23b0bcb10378a6e4f60cd7dd701256b317",
+    "resultados/resolucao_pong_149.npz": "d9dbf99eb5226e82cf2f244f243a8156d318ae07aa5793cd0cbf76869d3e0862",
+    "resultados/resolucao_compacta_breakout_coarse_body.npz": "d2e31c7ff9da15b43b55a9f75430753d658fb3116f71043d1b48c9c7c3bdbdf6",
+    "resultados/resolucao_compacta_breakout_coarse_body.json": "808d0dcf096e9cca3449407e0b5bd66c2f0d3d5a52c1d8e2e3b31aa9b3f05ebf",
+    "resultados/resolucao_compacta_breakout_coarse_body_scale.npy": "b941394747b238707bcecc2e6e9b56516eb6d0fb4e043c9a680aae72373ea7cf",
+    "resultados/resolucao_compacta_breakout_moments_body.npz": "335ca02dd16050d6738e9da2f508438b9997ab44645597185d078ef066046c31",
+    "resultados/resolucao_compacta_breakout_moments_body.json": "1a06f6a0fbadcd7399db79228ad97fb15b866b04e0fdad0cc9035e4d37f0b4bb",
+    "resultados/resolucao_compacta_breakout_moments_body_scale.npy": "8198fffc081f2b1ca9f69a951c27f310c84faf387e2ad1c85d20cba48adbff40",
+    "resultados/resolucao_compacta_breakout_learned_body.npz": "8695b496c8230d16b51465619df359c214187388b2b9cbb1bfde9e30e33b14ca",
+    "resultados/resolucao_compacta_breakout_learned_body.json": "968e72dec854ce53967a41abe684f7a4df999c87e306ed2ee38c06b581774e48",
+    "resultados/resolucao_compacta_breakout_learned_body_scale.npy": "01f34c1f90c99b7568ba0fc1378581524f04cff8e2da099457d4af4c3a03e38a",
+    "resultados/resolucao_compacta_breakout_shuffled_outcomes_body.npz": "91b27a45245eca4def348e54c4f698073c83130199deae38dc200e99791c1325",
+    "resultados/resolucao_compacta_breakout_shuffled_outcomes_body.json": "f9e185dcf95c36f551e02fcb5e59f0aafd9a4c75f06dc25e95d02f21c84ae43e",
+    "resultados/resolucao_compacta_breakout_no_context_body.npz": "ec96ef250a0d7c721079e97fb18841f83244c4ea26f0b7eb5156f16079fb3514",
+    "resultados/resolucao_compacta_breakout_no_context_body.json": "019854fd643ed3db81a2250a788596123c516282935c44a461284d1321f02322",
+    "resultados/resolucao_compacta_breakout_random_body.npz": "b1dc82cfa372badedd2f0396202294c4a6b3143db0406a389c8c86c3da6a108c",
+    "resultados/resolucao_compacta_breakout_random_body.json": "190d12b04dfa4b7d2b5594eeaffe40a1ca3991334bda092e120d8c3545e1943f",
+    "resultados/resolucao_compacta_breakout_random_body_scale.npy": "cb26e7743306a4f988a3d8d7315ff6bc14eec84f06b94cb218e7a99b244fa59b",
+    "resultados/resolucao_compacta_breakout_transferred_body.npz": "5520bb277c93b0ed7cfeac360fd6ae2caf4e77480f08b84d40bc1bea477ac712",
+    "resultados/resolucao_compacta_breakout_transferred_body.json": "b00e15a2f0edc6431561b25381461777ef50c06ffa901618873f51f15ee45dea",
+    "resultados/resolucao_compacta_breakout_transferred_body_scale.npy": "979b06620a69aa0849790c96ff5ec64fb636471c2683fb0b5735e19aa101189e",
+    "resultados/resolucao_compacta_pong_coarse_body.npz": "8829a6962733be1341f638703baa5ae2359d621d17a0df0116da1b43e9591ec8",
+    "resultados/resolucao_compacta_pong_coarse_body.json": "42978225de681b1bdebc58d6bad69b9a00951b7fbe8504f54033394721ab9469",
+    "resultados/resolucao_compacta_pong_coarse_body_scale.npy": "ac5063417699b06a4098d33ab2af504c800137db3753b55d0f9522aad1a20a20",
+    "resultados/resolucao_compacta_pong_moments_body.npz": "9325e81f20e592b52d042963383944cfca0d00e3a88665d7ba6dea4f051539e7",
+    "resultados/resolucao_compacta_pong_moments_body.json": "9bc1a21bf564905d7777a2f0f5a00619b80c821b9bad882d749e2bcd727f33f5",
+    "resultados/resolucao_compacta_pong_moments_body_scale.npy": "a80751e1bbfccd9a01900bc373b719b565e6ee3e9b142c7a3fddf7d5a5f360d8",
+    "resultados/resolucao_compacta_pong_learned_body.npz": "5b514133104ed98c83d3de3e05b4ce8bb8628bedb1a8970c475b8db00cb31596",
+    "resultados/resolucao_compacta_pong_learned_body.json": "90221a0aad26366ec1661bb16a8ac9cbee13d6ad0cd0f166e98ae3ae4c585ee0",
+    "resultados/resolucao_compacta_pong_learned_body_scale.npy": "1739c3c55afe9a31a841e03d320d9a50f94b65011c50ac263d5ce11dcf56ea8e",
+    "resultados/resolucao_compacta_pong_shuffled_outcomes_body.npz": "ca4294f04f00452d4e93de6626be3371397f5e03e160029b544d7f5800229de6",
+    "resultados/resolucao_compacta_pong_shuffled_outcomes_body.json": "6c0e5fa7c0742080b52d615476e7420c4377162bfa1aa2955208cc19f47572bd",
+    "resultados/resolucao_compacta_pong_no_context_body.npz": "1cd8bbaba77a61d4b2c020932bd87de9b116c2381310b80ae8de935fb86be6a6",
+    "resultados/resolucao_compacta_pong_no_context_body.json": "476d708aeccf924ca2ea9ea6236da27657a412459cdcbcf0b8859605d9b5b7b6",
+    "resultados/resolucao_compacta_pong_random_body.npz": "61ec6041853368a407a66248a61bcc2d2b88e9c732a429a67a314584669d1138",
+    "resultados/resolucao_compacta_pong_random_body.json": "cdd0cdd897c25a0ca6b095f45cb3a870c699e476b705b0ffc8b3184defe3c6cf",
+    "resultados/resolucao_compacta_pong_random_body_scale.npy": "108ed60ca7875dd9546369f403cbf6a7d38e5de0928419792699e00b2e77a02d",
+    "resultados/resolucao_compacta_pong_transferred_body.npz": "a5cea3cb6e581f61e63f2763ee99e21042fa40ba4ff51e0f0b817d324f93b52d",
+    "resultados/resolucao_compacta_pong_transferred_body.json": "479d964d3a5f0c48ad3857332e30c1a8a3afc01ad8890eb977b6ee14d8e1a7d9",
+    "resultados/resolucao_compacta_pong_transferred_body_scale.npy": "ba677cb935dfab146714150ed61fc6e49f812f811ae6618c81b73e51f8d387b0",
+    "resultados/resolucao_compacta_ajuste.jsonl": "a3f58085c665fd5e40ba871cb61a93c42809ffe9bdda41d7c9695ac716d51c0b"
+  }
+}

@@ -1,0 +1,21 @@
+"""Cobrir importação ALE e NumPy.testing em processo fresco."""
+
+import json
+
+from experiencia_cruzada import save_json
+from piloto_experiencia_cruzada_v2 import PilotMonitor
+from piloto_planos_propostos import HERE, sha
+
+path = HERE / "resultados" / "calibracao_worker_cruzada2.json"
+if path.exists():
+    raise RuntimeError("calibração já existe; preservar")
+monitor = PilotMonitor(seconds=20)
+stage = monitor.run([str(HERE / "worker_cruzada_sem_console_v2.py"), str(HERE / "calibrar_importacoes_cruzada.py")], "calibracao_worker2")
+record = {"status": stage["status"], "maximum_processes": monitor.maximum_processes,
+          "peak_sampled_aggregate_rss_bytes": monitor.peak_rss, "stage": stage,
+          "source_sha256": sha(HERE / "calibrar_worker_cruzada2.py"), "worker_sha256": sha(HERE / "worker_cruzada_sem_console_v2.py"),
+          "models_saved": False, "test137_outcomes_used": 0, "fresh_ale_and_numpy_imports_covered": True}
+save_json(path, record)
+print(json.dumps(record, indent=2))
+if stage["status"] != "finished" or monitor.maximum_processes > 2:
+    raise RuntimeError("limite não validado")

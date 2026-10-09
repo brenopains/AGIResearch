@@ -1,0 +1,3076 @@
+{
+  "status": "posthoc_event_recognition_diagnostic_complete",
+  "games": {
+    "breakout": {
+      "training_graph": {
+        "constraint_count": 1667,
+        "nodes": 1132,
+        "components": 12,
+        "constraints_beyond_spanning_forest": 547,
+        "compatibility_not_generalization": true
+      },
+      "bases": {
+        "no_generated_functions": {
+          "readers": {
+            "before": {
+              "local": {
+                "count": 3210,
+                "mse": 0.051631385586255074,
+                "mae": 0.1066138962891823,
+                "observed_nonzero": 189,
+                "nonzero_mse": 0.7742300563857886,
+                "rounded_match_fraction_not_exact_proof": 0.9411214953271028
+              },
+              "per_episode": {
+                "0": {
+                  "count": 296,
+                  "mse": 0.04380437301342798,
+                  "mae": 0.10033724388730735,
+                  "observed_nonzero": 15,
+                  "nonzero_mse": 0.7461448022299952,
+                  "rounded_match_fraction_not_exact_proof": 0.9493243243243243
+                },
+                "1": {
+                  "count": 414,
+                  "mse": 0.06409600994083901,
+                  "mae": 0.11736720450587448,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.7810210644664055,
+                  "rounded_match_fraction_not_exact_proof": 0.9251207729468599
+                },
+                "2": {
+                  "count": 466,
+                  "mse": 0.05723217727555655,
+                  "mae": 0.11576048534046583,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.7589561959932091,
+                  "rounded_match_fraction_not_exact_proof": 0.9334763948497854
+                },
+                "3": {
+                  "count": 490,
+                  "mse": 0.046950848129892364,
+                  "mae": 0.10263669080097214,
+                  "observed_nonzero": 27,
+                  "nonzero_mse": 0.7459188800194971,
+                  "rounded_match_fraction_not_exact_proof": 0.9448979591836735
+                },
+                "4": {
+                  "count": 372,
+                  "mse": 0.04616810703315339,
+                  "mae": 0.1033934900041791,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.7399523972634819,
+                  "rounded_match_fraction_not_exact_proof": 0.946236559139785
+                },
+                "5": {
+                  "count": 392,
+                  "mse": 0.046446946096660315,
+                  "mae": 0.10536195000285259,
+                  "observed_nonzero": 21,
+                  "nonzero_mse": 0.7383061342200474,
+                  "rounded_match_fraction_not_exact_proof": 0.9464285714285714
+                },
+                "6": {
+                  "count": 386,
+                  "mse": 0.05870430940127858,
+                  "mae": 0.10788237791068438,
+                  "observed_nonzero": 24,
+                  "nonzero_mse": 0.8558762187464547,
+                  "rounded_match_fraction_not_exact_proof": 0.9378238341968912
+                },
+                "7": {
+                  "count": 394,
+                  "mse": 0.046997951510717485,
+                  "mae": 0.09720186551997395,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.8206848887442023,
+                  "rounded_match_fraction_not_exact_proof": 0.949238578680203
+                }
+              }
+            },
+            "after": {
+              "local": {
+                "count": 3210,
+                "mse": 0.053168352373235674,
+                "mae": 0.11409541392615846,
+                "observed_nonzero": 189,
+                "nonzero_mse": 0.7810242830015335,
+                "rounded_match_fraction_not_exact_proof": 0.9433021806853582
+              },
+              "per_episode": {
+                "0": {
+                  "count": 296,
+                  "mse": 0.040816946497259116,
+                  "mae": 0.1017367644585605,
+                  "observed_nonzero": 15,
+                  "nonzero_mse": 0.6807718837261125,
+                  "rounded_match_fraction_not_exact_proof": 0.956081081081081
+                },
+                "1": {
+                  "count": 414,
+                  "mse": 0.06955439246269253,
+                  "mae": 0.12305725618417983,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.8481961721799978,
+                  "rounded_match_fraction_not_exact_proof": 0.9251207729468599
+                },
+                "2": {
+                  "count": 466,
+                  "mse": 0.06192572209741883,
+                  "mae": 0.12308172723786143,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.8186472059860112,
+                  "rounded_match_fraction_not_exact_proof": 0.9377682403433476
+                },
+                "3": {
+                  "count": 490,
+                  "mse": 0.04705333973617262,
+                  "mae": 0.10758390213676149,
+                  "observed_nonzero": 27,
+                  "nonzero_mse": 0.7333059682337738,
+                  "rounded_match_fraction_not_exact_proof": 0.9469387755102041
+                },
+                "4": {
+                  "count": 372,
+                  "mse": 0.04772887271837638,
+                  "mae": 0.10532062784913247,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.7680474049762998,
+                  "rounded_match_fraction_not_exact_proof": 0.946236559139785
+                },
+                "5": {
+                  "count": 392,
+                  "mse": 0.04939347134263994,
+                  "mae": 0.11655236247751216,
+                  "observed_nonzero": 21,
+                  "nonzero_mse": 0.7678711993725038,
+                  "rounded_match_fraction_not_exact_proof": 0.9464285714285714
+                },
+                "6": {
+                  "count": 386,
+                  "mse": 0.05598927849660419,
+                  "mae": 0.11716062145563465,
+                  "observed_nonzero": 24,
+                  "nonzero_mse": 0.7867412063425698,
+                  "rounded_match_fraction_not_exact_proof": 0.9430051813471503
+                },
+                "7": {
+                  "count": 394,
+                  "mse": 0.04860484921315044,
+                  "mae": 0.11427029413753999,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.7781286563684854,
+                  "rounded_match_fraction_not_exact_proof": 0.949238578680203
+                }
+              }
+            },
+            "delta": {
+              "local": {
+                "count": 3210,
+                "mse": 0.05266292218875224,
+                "mae": 0.11308509522901827,
+                "observed_nonzero": 189,
+                "nonzero_mse": 0.7685147939776176,
+                "rounded_match_fraction_not_exact_proof": 0.9433021806853582
+              },
+              "per_episode": {
+                "0": {
+                  "count": 296,
+                  "mse": 0.040560780107968486,
+                  "mae": 0.10037497218462345,
+                  "observed_nonzero": 15,
+                  "nonzero_mse": 0.6592983007174679,
+                  "rounded_match_fraction_not_exact_proof": 0.956081081081081
+                },
+                "1": {
+                  "count": 414,
+                  "mse": 0.06698692199979836,
+                  "mae": 0.13225491117817134,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.7831378113219637,
+                  "rounded_match_fraction_not_exact_proof": 0.9251207729468599
+                },
+                "2": {
+                  "count": 466,
+                  "mse": 0.05849794532155291,
+                  "mae": 0.11614259626354109,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.7794128613709342,
+                  "rounded_match_fraction_not_exact_proof": 0.9377682403433476
+                },
+                "3": {
+                  "count": 490,
+                  "mse": 0.04823269811542548,
+                  "mae": 0.10763413962201832,
+                  "observed_nonzero": 27,
+                  "nonzero_mse": 0.7416761615082593,
+                  "rounded_match_fraction_not_exact_proof": 0.9469387755102041
+                },
+                "4": {
+                  "count": 372,
+                  "mse": 0.04894087286128036,
+                  "mae": 0.10670105673821517,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.782089378664025,
+                  "rounded_match_fraction_not_exact_proof": 0.946236559139785
+                },
+                "5": {
+                  "count": 392,
+                  "mse": 0.051354925833888745,
+                  "mae": 0.11322984303129072,
+                  "observed_nonzero": 21,
+                  "nonzero_mse": 0.813052231424123,
+                  "rounded_match_fraction_not_exact_proof": 0.9464285714285714
+                },
+                "6": {
+                  "count": 386,
+                  "mse": 0.05644767929460165,
+                  "mae": 0.11702067890750395,
+                  "observed_nonzero": 24,
+                  "nonzero_mse": 0.782026494431061,
+                  "rounded_match_fraction_not_exact_proof": 0.9430051813471503
+                },
+                "7": {
+                  "count": 394,
+                  "mse": 0.04641979484929042,
+                  "mae": 0.10768167204050635,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.7705487018636157,
+                  "rounded_match_fraction_not_exact_proof": 0.949238578680203
+                }
+              }
+            },
+            "transition": {
+              "local": {
+                "count": 3210,
+                "mse": 0.05037689083155872,
+                "mae": 0.10808656364711389,
+                "observed_nonzero": 189,
+                "nonzero_mse": 0.7305150141496871,
+                "rounded_match_fraction_not_exact_proof": 0.942367601246106
+              },
+              "per_episode": {
+                "0": {
+                  "count": 296,
+                  "mse": 0.03776553292797947,
+                  "mae": 0.09254810631091306,
+                  "observed_nonzero": 15,
+                  "nonzero_mse": 0.6158772630105956,
+                  "rounded_match_fraction_not_exact_proof": 0.956081081081081
+                },
+                "1": {
+                  "count": 414,
+                  "mse": 0.06658463564344559,
+                  "mae": 0.1268677684959532,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.7799859888815144,
+                  "rounded_match_fraction_not_exact_proof": 0.9227053140096618
+                },
+                "2": {
+                  "count": 466,
+                  "mse": 0.055266976224691136,
+                  "mae": 0.11223109754014096,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.7270448636320918,
+                  "rounded_match_fraction_not_exact_proof": 0.9356223175965666
+                },
+                "3": {
+                  "count": 490,
+                  "mse": 0.04523343591463007,
+                  "mae": 0.10356204075590053,
+                  "observed_nonzero": 27,
+                  "nonzero_mse": 0.689568321369845,
+                  "rounded_match_fraction_not_exact_proof": 0.9469387755102041
+                },
+                "4": {
+                  "count": 372,
+                  "mse": 0.04516997024978632,
+                  "mae": 0.10242208028241652,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.7071691472766212,
+                  "rounded_match_fraction_not_exact_proof": 0.946236559139785
+                },
+                "5": {
+                  "count": 392,
+                  "mse": 0.04743649688625084,
+                  "mae": 0.11204475968291831,
+                  "observed_nonzero": 21,
+                  "nonzero_mse": 0.7319617507989575,
+                  "rounded_match_fraction_not_exact_proof": 0.9464285714285714
+                },
+                "6": {
+                  "count": 386,
+                  "mse": 0.055203985868280354,
+                  "mae": 0.10773257788321362,
+                  "observed_nonzero": 24,
+                  "nonzero_mse": 0.7835259069914198,
+                  "rounded_match_fraction_not_exact_proof": 0.9430051813471503
+                },
+                "7": {
+                  "count": 394,
+                  "mse": 0.046546481953992955,
+                  "mae": 0.10250748105101612,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.7586838072059843,
+                  "rounded_match_fraction_not_exact_proof": 0.9467005076142132
+                }
+              }
+            },
+            "potential": {
+              "local": {
+                "count": 3210,
+                "mse": 0.057295230856786575,
+                "mae": 0.08671923553303713,
+                "observed_nonzero": 189,
+                "nonzero_mse": 0.9319621506068101,
+                "rounded_match_fraction_not_exact_proof": 0.9433021806853582
+              },
+              "per_episode": {
+                "0": {
+                  "count": 296,
+                  "mse": 0.042402560098919996,
+                  "mae": 0.0792606370666786,
+                  "observed_nonzero": 15,
+                  "nonzero_mse": 0.7831529278262169,
+                  "rounded_match_fraction_not_exact_proof": 0.956081081081081
+                },
+                "1": {
+                  "count": 414,
+                  "mse": 0.07441587268719378,
+                  "mae": 0.10286913784994657,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.9596662823082922,
+                  "rounded_match_fraction_not_exact_proof": 0.9251207729468599
+                },
+                "2": {
+                  "count": 466,
+                  "mse": 0.06766458527638473,
+                  "mae": 0.0991182417767308,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.9660713155107621,
+                  "rounded_match_fraction_not_exact_proof": 0.9377682403433476
+                },
+                "3": {
+                  "count": 490,
+                  "mse": 0.05224991186657853,
+                  "mae": 0.08370804293670549,
+                  "observed_nonzero": 27,
+                  "nonzero_mse": 0.8996312446011326,
+                  "rounded_match_fraction_not_exact_proof": 0.9469387755102041
+                },
+                "4": {
+                  "count": 372,
+                  "mse": 0.053929745470989734,
+                  "mae": 0.08691795999645516,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.9520583601018566,
+                  "rounded_match_fraction_not_exact_proof": 0.946236559139785
+                },
+                "5": {
+                  "count": 392,
+                  "mse": 0.05348456371931966,
+                  "mae": 0.07738801316921964,
+                  "observed_nonzero": 21,
+                  "nonzero_mse": 0.9668607593679068,
+                  "rounded_match_fraction_not_exact_proof": 0.9464285714285714
+                },
+                "6": {
+                  "count": 386,
+                  "mse": 0.059753984515467796,
+                  "mae": 0.08721522318445413,
+                  "observed_nonzero": 24,
+                  "nonzero_mse": 0.9280943525506631,
+                  "rounded_match_fraction_not_exact_proof": 0.9430051813471503
+                },
+                "7": {
+                  "count": 394,
+                  "mse": 0.049064355581054646,
+                  "mae": 0.07304333574182106,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.9393067900346763,
+                  "rounded_match_fraction_not_exact_proof": 0.949238578680203
+                }
+              }
+            },
+            "shuffled_successor": {
+              "local": {
+                "count": 3210,
+                "mse": 0.053579117222361784,
+                "mae": 0.12567348812539467,
+                "observed_nonzero": 189,
+                "nonzero_mse": 0.734567590122812,
+                "rounded_match_fraction_not_exact_proof": 0.9417445482866044
+              },
+              "per_episode": {
+                "0": {
+                  "count": 296,
+                  "mse": 0.045189488350014774,
+                  "mae": 0.11629597418196302,
+                  "observed_nonzero": 15,
+                  "nonzero_mse": 0.7065582590530639,
+                  "rounded_match_fraction_not_exact_proof": 0.9493243243243243
+                },
+                "1": {
+                  "count": 414,
+                  "mse": 0.06697595205546884,
+                  "mae": 0.14159488781381224,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.7432915858235053,
+                  "rounded_match_fraction_not_exact_proof": 0.9251207729468599
+                },
+                "2": {
+                  "count": 466,
+                  "mse": 0.05928396538315725,
+                  "mae": 0.12893331431561567,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.7521440631860471,
+                  "rounded_match_fraction_not_exact_proof": 0.9334763948497854
+                },
+                "3": {
+                  "count": 490,
+                  "mse": 0.04948214546547662,
+                  "mae": 0.1223728338472854,
+                  "observed_nonzero": 27,
+                  "nonzero_mse": 0.7122556767352269,
+                  "rounded_match_fraction_not_exact_proof": 0.9448979591836735
+                },
+                "4": {
+                  "count": 372,
+                  "mse": 0.04910956237711931,
+                  "mae": 0.12653630090224705,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.689801210669913,
+                  "rounded_match_fraction_not_exact_proof": 0.946236559139785
+                },
+                "5": {
+                  "count": 392,
+                  "mse": 0.047103102216535554,
+                  "mae": 0.12386555113392751,
+                  "observed_nonzero": 21,
+                  "nonzero_mse": 0.6588141394338584,
+                  "rounded_match_fraction_not_exact_proof": 0.951530612244898
+                },
+                "6": {
+                  "count": 386,
+                  "mse": 0.060488501780627826,
+                  "mae": 0.12677334816021416,
+                  "observed_nonzero": 24,
+                  "nonzero_mse": 0.8226066611141843,
+                  "rounded_match_fraction_not_exact_proof": 0.9378238341968912
+                },
+                "7": {
+                  "count": 394,
+                  "mse": 0.048047003741333416,
+                  "mae": 0.1161448719378494,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.763590562400927,
+                  "rounded_match_fraction_not_exact_proof": 0.949238578680203
+                }
+              }
+            },
+            "shuffled_rewards": {
+              "local": {
+                "count": 3210,
+                "mse": 0.06270541838961301,
+                "mae": 0.12222686058967641,
+                "observed_nonzero": 189,
+                "nonzero_mse": 0.9260098451374684,
+                "rounded_match_fraction_not_exact_proof": 0.940809968847352
+              },
+              "per_episode": {
+                "0": {
+                  "count": 296,
+                  "mse": 0.05180052146117334,
+                  "mae": 0.11605341537538123,
+                  "observed_nonzero": 15,
+                  "nonzero_mse": 0.8648171830293592,
+                  "rounded_match_fraction_not_exact_proof": 0.9493243243243243
+                },
+                "1": {
+                  "count": 414,
+                  "mse": 0.07893120287324752,
+                  "mae": 0.13672637963704556,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.9392118759565125,
+                  "rounded_match_fraction_not_exact_proof": 0.9251207729468599
+                },
+                "2": {
+                  "count": 466,
+                  "mse": 0.07262410880906928,
+                  "mae": 0.134884741875851,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.9502862081066753,
+                  "rounded_match_fraction_not_exact_proof": 0.9313304721030042
+                },
+                "3": {
+                  "count": 490,
+                  "mse": 0.056657218193286646,
+                  "mae": 0.11799503752935385,
+                  "observed_nonzero": 27,
+                  "nonzero_mse": 0.8784792743323265,
+                  "rounded_match_fraction_not_exact_proof": 0.9448979591836735
+                },
+                "4": {
+                  "count": 372,
+                  "mse": 0.055934301648098164,
+                  "mae": 0.11684080491405777,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.9067305078986839,
+                  "rounded_match_fraction_not_exact_proof": 0.946236559139785
+                },
+                "5": {
+                  "count": 392,
+                  "mse": 0.060568582390965776,
+                  "mae": 0.11678361342004186,
+                  "observed_nonzero": 21,
+                  "nonzero_mse": 0.9636457443455791,
+                  "rounded_match_fraction_not_exact_proof": 0.9464285714285714
+                },
+                "6": {
+                  "count": 386,
+                  "mse": 0.0672827282068889,
+                  "mae": 0.1260869122503955,
+                  "observed_nonzero": 24,
+                  "nonzero_mse": 0.9475383625996985,
+                  "rounded_match_fraction_not_exact_proof": 0.9378238341968912
+                },
+                "7": {
+                  "count": 394,
+                  "mse": 0.05367378545857615,
+                  "mae": 0.10864042703335806,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.9319065240492954,
+                  "rounded_match_fraction_not_exact_proof": 0.949238578680203
+                }
+              }
+            },
+            "action_prior": {
+              "local": {
+                "count": 3210,
+                "mse": 0.0557111194087448,
+                "mae": 0.11336993788675927,
+                "observed_nonzero": 189,
+                "nonzero_mse": 0.8708157260295658,
+                "rounded_match_fraction_not_exact_proof": 0.9411214953271028
+              },
+              "per_episode": {
+                "0": {
+                  "count": 296,
+                  "mse": 0.048168445730224996,
+                  "mae": 0.10573486624493154,
+                  "observed_nonzero": 15,
+                  "nonzero_mse": 0.8628344256891959,
+                  "rounded_match_fraction_not_exact_proof": 0.9493243243243243
+                },
+                "1": {
+                  "count": 414,
+                  "mse": 0.06954603044529631,
+                  "mae": 0.12714210298068507,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.8707698796835817,
+                  "rounded_match_fraction_not_exact_proof": 0.9251207729468599
+                },
+                "2": {
+                  "count": 466,
+                  "mse": 0.061864522804404506,
+                  "mae": 0.11946564371433739,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.8644892420518218,
+                  "rounded_match_fraction_not_exact_proof": 0.9334763948497854
+                },
+                "3": {
+                  "count": 490,
+                  "mse": 0.05197226376044711,
+                  "mae": 0.10960608625861863,
+                  "observed_nonzero": 27,
+                  "nonzero_mse": 0.8628033905655335,
+                  "rounded_match_fraction_not_exact_proof": 0.9448979591836735
+                },
+                "4": {
+                  "count": 372,
+                  "mse": 0.05119641588211337,
+                  "mae": 0.10862151079709548,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.8698787564055201,
+                  "rounded_match_fraction_not_exact_proof": 0.946236559139785
+                },
+                "5": {
+                  "count": 392,
+                  "mse": 0.051249907839303104,
+                  "mae": 0.10904009259739192,
+                  "observed_nonzero": 21,
+                  "nonzero_mse": 0.8726729097317024,
+                  "rounded_match_fraction_not_exact_proof": 0.9464285714285714
+                },
+                "6": {
+                  "count": 386,
+                  "mse": 0.05915389732229576,
+                  "mae": 0.1170975145010185,
+                  "observed_nonzero": 24,
+                  "nonzero_mse": 0.8791010707785274,
+                  "rounded_match_fraction_not_exact_proof": 0.9378238341968912
+                },
+                "7": {
+                  "count": 394,
+                  "mse": 0.049540773970915684,
+                  "mae": 0.10724522442715535,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.8865399792011152,
+                  "rounded_match_fraction_not_exact_proof": 0.949238578680203
+                }
+              }
+            },
+            "zero": {
+              "local": {
+                "count": 3210,
+                "mse": 0.058878504672897194,
+                "mae": 0.058878504672897194,
+                "observed_nonzero": 189,
+                "nonzero_mse": 1.0,
+                "rounded_match_fraction_not_exact_proof": 0.9411214953271028
+              },
+              "per_episode": {
+                "0": {
+                  "count": 296,
+                  "mse": 0.05067567567567568,
+                  "mae": 0.05067567567567568,
+                  "observed_nonzero": 15,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.9493243243243243
+                },
+                "1": {
+                  "count": 414,
+                  "mse": 0.0748792270531401,
+                  "mae": 0.0748792270531401,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.9251207729468599
+                },
+                "2": {
+                  "count": 466,
+                  "mse": 0.06652360515021459,
+                  "mae": 0.06652360515021459,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.9334763948497854
+                },
+                "3": {
+                  "count": 490,
+                  "mse": 0.05510204081632653,
+                  "mae": 0.05510204081632653,
+                  "observed_nonzero": 27,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.9448979591836735
+                },
+                "4": {
+                  "count": 372,
+                  "mse": 0.053763440860215055,
+                  "mae": 0.053763440860215055,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.946236559139785
+                },
+                "5": {
+                  "count": 392,
+                  "mse": 0.05357142857142857,
+                  "mae": 0.05357142857142857,
+                  "observed_nonzero": 21,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.9464285714285714
+                },
+                "6": {
+                  "count": 386,
+                  "mse": 0.06217616580310881,
+                  "mae": 0.06217616580310881,
+                  "observed_nonzero": 24,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.9378238341968912
+                },
+                "7": {
+                  "count": 394,
+                  "mse": 0.050761421319796954,
+                  "mae": 0.050761421319796954,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.949238578680203
+                }
+              }
+            }
+          },
+          "transition_comparisons_diagnostic_only": {
+            "before": {
+              "pooled_mse_improvement": 0.0012544947546963559,
+              "positive_episodes": 6,
+              "episode_mse_improvements": [
+                0.006038840085448513,
+                -0.0024886257026065783,
+                0.001965201050865416,
+                0.0017174122152622956,
+                0.0009981367833670693,
+                -0.0009895507895905237,
+                0.0035003235329982285,
+                0.00045146955672453054
+              ]
+            },
+            "shuffled_successor": {
+              "pooled_mse_improvement": 0.003202226390803066,
+              "positive_episodes": 7,
+              "episode_mse_improvements": [
+                0.0074239554220353055,
+                0.0003913164120232515,
+                0.004016989158466114,
+                0.004248709550846552,
+                0.00393959212733299,
+                -0.000333394669715284,
+                0.005284515912347472,
+                0.0015005217873404614
+              ]
+            },
+            "shuffled_rewards": {
+              "pooled_mse_improvement": 0.012328527558054289,
+              "positive_episodes": 8,
+              "episode_mse_improvements": [
+                0.01403498853319387,
+                0.01234656722980193,
+                0.01735713258437814,
+                0.011423782278656577,
+                0.010764331398311844,
+                0.013132085504714938,
+                0.01207874233860854,
+                0.007127303504583196
+              ]
+            },
+            "action_prior": {
+              "pooled_mse_improvement": 0.00533422857718608,
+              "positive_episodes": 8,
+              "episode_mse_improvements": [
+                0.010402912802245527,
+                0.002961394801850717,
+                0.00659754657971337,
+                0.006738827845817044,
+                0.00602644563232705,
+                0.0038134109530522653,
+                0.003949911454015409,
+                0.0029942920169227297
+              ]
+            },
+            "zero": {
+              "pooled_mse_improvement": 0.008501613841338476,
+              "positive_episodes": 8,
+              "episode_mse_improvements": [
+                0.01291014274769621,
+                0.008294591409694504,
+                0.011256628925523454,
+                0.009868604901696464,
+                0.008593470610428734,
+                0.00613493168517773,
+                0.006972179934828453,
+                0.004214939365803999
+              ]
+            }
+          }
+        },
+        "future_pairs": {
+          "readers": {
+            "before": {
+              "local": {
+                "count": 3210,
+                "mse": 0.051631385586255074,
+                "mae": 0.1066138962891823,
+                "observed_nonzero": 189,
+                "nonzero_mse": 0.7742300563857886,
+                "rounded_match_fraction_not_exact_proof": 0.9411214953271028
+              },
+              "per_episode": {
+                "0": {
+                  "count": 296,
+                  "mse": 0.04380437301342798,
+                  "mae": 0.10033724388730735,
+                  "observed_nonzero": 15,
+                  "nonzero_mse": 0.7461448022299952,
+                  "rounded_match_fraction_not_exact_proof": 0.9493243243243243
+                },
+                "1": {
+                  "count": 414,
+                  "mse": 0.06409600994083901,
+                  "mae": 0.11736720450587448,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.7810210644664055,
+                  "rounded_match_fraction_not_exact_proof": 0.9251207729468599
+                },
+                "2": {
+                  "count": 466,
+                  "mse": 0.05723217727555655,
+                  "mae": 0.11576048534046583,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.7589561959932091,
+                  "rounded_match_fraction_not_exact_proof": 0.9334763948497854
+                },
+                "3": {
+                  "count": 490,
+                  "mse": 0.046950848129892364,
+                  "mae": 0.10263669080097214,
+                  "observed_nonzero": 27,
+                  "nonzero_mse": 0.7459188800194971,
+                  "rounded_match_fraction_not_exact_proof": 0.9448979591836735
+                },
+                "4": {
+                  "count": 372,
+                  "mse": 0.04616810703315339,
+                  "mae": 0.1033934900041791,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.7399523972634819,
+                  "rounded_match_fraction_not_exact_proof": 0.946236559139785
+                },
+                "5": {
+                  "count": 392,
+                  "mse": 0.046446946096660315,
+                  "mae": 0.10536195000285259,
+                  "observed_nonzero": 21,
+                  "nonzero_mse": 0.7383061342200474,
+                  "rounded_match_fraction_not_exact_proof": 0.9464285714285714
+                },
+                "6": {
+                  "count": 386,
+                  "mse": 0.05870430940127858,
+                  "mae": 0.10788237791068438,
+                  "observed_nonzero": 24,
+                  "nonzero_mse": 0.8558762187464547,
+                  "rounded_match_fraction_not_exact_proof": 0.9378238341968912
+                },
+                "7": {
+                  "count": 394,
+                  "mse": 0.046997951510717485,
+                  "mae": 0.09720186551997395,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.8206848887442023,
+                  "rounded_match_fraction_not_exact_proof": 0.949238578680203
+                }
+              }
+            },
+            "after": {
+              "local": {
+                "count": 3210,
+                "mse": 0.053168352373235674,
+                "mae": 0.11409541392615846,
+                "observed_nonzero": 189,
+                "nonzero_mse": 0.7810242830015335,
+                "rounded_match_fraction_not_exact_proof": 0.9433021806853582
+              },
+              "per_episode": {
+                "0": {
+                  "count": 296,
+                  "mse": 0.040816946497259116,
+                  "mae": 0.1017367644585605,
+                  "observed_nonzero": 15,
+                  "nonzero_mse": 0.6807718837261125,
+                  "rounded_match_fraction_not_exact_proof": 0.956081081081081
+                },
+                "1": {
+                  "count": 414,
+                  "mse": 0.06955439246269253,
+                  "mae": 0.12305725618417983,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.8481961721799978,
+                  "rounded_match_fraction_not_exact_proof": 0.9251207729468599
+                },
+                "2": {
+                  "count": 466,
+                  "mse": 0.06192572209741883,
+                  "mae": 0.12308172723786143,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.8186472059860112,
+                  "rounded_match_fraction_not_exact_proof": 0.9377682403433476
+                },
+                "3": {
+                  "count": 490,
+                  "mse": 0.04705333973617262,
+                  "mae": 0.10758390213676149,
+                  "observed_nonzero": 27,
+                  "nonzero_mse": 0.7333059682337738,
+                  "rounded_match_fraction_not_exact_proof": 0.9469387755102041
+                },
+                "4": {
+                  "count": 372,
+                  "mse": 0.04772887271837638,
+                  "mae": 0.10532062784913247,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.7680474049762998,
+                  "rounded_match_fraction_not_exact_proof": 0.946236559139785
+                },
+                "5": {
+                  "count": 392,
+                  "mse": 0.04939347134263994,
+                  "mae": 0.11655236247751216,
+                  "observed_nonzero": 21,
+                  "nonzero_mse": 0.7678711993725038,
+                  "rounded_match_fraction_not_exact_proof": 0.9464285714285714
+                },
+                "6": {
+                  "count": 386,
+                  "mse": 0.05598927849660419,
+                  "mae": 0.11716062145563465,
+                  "observed_nonzero": 24,
+                  "nonzero_mse": 0.7867412063425698,
+                  "rounded_match_fraction_not_exact_proof": 0.9430051813471503
+                },
+                "7": {
+                  "count": 394,
+                  "mse": 0.04860484921315044,
+                  "mae": 0.11427029413753999,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.7781286563684854,
+                  "rounded_match_fraction_not_exact_proof": 0.949238578680203
+                }
+              }
+            },
+            "delta": {
+              "local": {
+                "count": 3210,
+                "mse": 0.05266292218875224,
+                "mae": 0.11308509522901827,
+                "observed_nonzero": 189,
+                "nonzero_mse": 0.7685147939776176,
+                "rounded_match_fraction_not_exact_proof": 0.9433021806853582
+              },
+              "per_episode": {
+                "0": {
+                  "count": 296,
+                  "mse": 0.040560780107968486,
+                  "mae": 0.10037497218462345,
+                  "observed_nonzero": 15,
+                  "nonzero_mse": 0.6592983007174679,
+                  "rounded_match_fraction_not_exact_proof": 0.956081081081081
+                },
+                "1": {
+                  "count": 414,
+                  "mse": 0.06698692199979836,
+                  "mae": 0.13225491117817134,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.7831378113219637,
+                  "rounded_match_fraction_not_exact_proof": 0.9251207729468599
+                },
+                "2": {
+                  "count": 466,
+                  "mse": 0.05849794532155291,
+                  "mae": 0.11614259626354109,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.7794128613709342,
+                  "rounded_match_fraction_not_exact_proof": 0.9377682403433476
+                },
+                "3": {
+                  "count": 490,
+                  "mse": 0.04823269811542548,
+                  "mae": 0.10763413962201832,
+                  "observed_nonzero": 27,
+                  "nonzero_mse": 0.7416761615082593,
+                  "rounded_match_fraction_not_exact_proof": 0.9469387755102041
+                },
+                "4": {
+                  "count": 372,
+                  "mse": 0.04894087286128036,
+                  "mae": 0.10670105673821517,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.782089378664025,
+                  "rounded_match_fraction_not_exact_proof": 0.946236559139785
+                },
+                "5": {
+                  "count": 392,
+                  "mse": 0.051354925833888745,
+                  "mae": 0.11322984303129072,
+                  "observed_nonzero": 21,
+                  "nonzero_mse": 0.813052231424123,
+                  "rounded_match_fraction_not_exact_proof": 0.9464285714285714
+                },
+                "6": {
+                  "count": 386,
+                  "mse": 0.05644767929460165,
+                  "mae": 0.11702067890750395,
+                  "observed_nonzero": 24,
+                  "nonzero_mse": 0.782026494431061,
+                  "rounded_match_fraction_not_exact_proof": 0.9430051813471503
+                },
+                "7": {
+                  "count": 394,
+                  "mse": 0.04641979484929042,
+                  "mae": 0.10768167204050635,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.7705487018636157,
+                  "rounded_match_fraction_not_exact_proof": 0.949238578680203
+                }
+              }
+            },
+            "transition": {
+              "local": {
+                "count": 3210,
+                "mse": 0.05037689083155872,
+                "mae": 0.10808656364711389,
+                "observed_nonzero": 189,
+                "nonzero_mse": 0.7305150141496871,
+                "rounded_match_fraction_not_exact_proof": 0.942367601246106
+              },
+              "per_episode": {
+                "0": {
+                  "count": 296,
+                  "mse": 0.03776553292797947,
+                  "mae": 0.09254810631091306,
+                  "observed_nonzero": 15,
+                  "nonzero_mse": 0.6158772630105956,
+                  "rounded_match_fraction_not_exact_proof": 0.956081081081081
+                },
+                "1": {
+                  "count": 414,
+                  "mse": 0.06658463564344559,
+                  "mae": 0.1268677684959532,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.7799859888815144,
+                  "rounded_match_fraction_not_exact_proof": 0.9227053140096618
+                },
+                "2": {
+                  "count": 466,
+                  "mse": 0.055266976224691136,
+                  "mae": 0.11223109754014096,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.7270448636320918,
+                  "rounded_match_fraction_not_exact_proof": 0.9356223175965666
+                },
+                "3": {
+                  "count": 490,
+                  "mse": 0.04523343591463007,
+                  "mae": 0.10356204075590053,
+                  "observed_nonzero": 27,
+                  "nonzero_mse": 0.689568321369845,
+                  "rounded_match_fraction_not_exact_proof": 0.9469387755102041
+                },
+                "4": {
+                  "count": 372,
+                  "mse": 0.04516997024978632,
+                  "mae": 0.10242208028241652,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.7071691472766212,
+                  "rounded_match_fraction_not_exact_proof": 0.946236559139785
+                },
+                "5": {
+                  "count": 392,
+                  "mse": 0.04743649688625084,
+                  "mae": 0.11204475968291831,
+                  "observed_nonzero": 21,
+                  "nonzero_mse": 0.7319617507989575,
+                  "rounded_match_fraction_not_exact_proof": 0.9464285714285714
+                },
+                "6": {
+                  "count": 386,
+                  "mse": 0.055203985868280354,
+                  "mae": 0.10773257788321362,
+                  "observed_nonzero": 24,
+                  "nonzero_mse": 0.7835259069914198,
+                  "rounded_match_fraction_not_exact_proof": 0.9430051813471503
+                },
+                "7": {
+                  "count": 394,
+                  "mse": 0.046546481953992955,
+                  "mae": 0.10250748105101612,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.7586838072059843,
+                  "rounded_match_fraction_not_exact_proof": 0.9467005076142132
+                }
+              }
+            },
+            "potential": {
+              "local": {
+                "count": 3210,
+                "mse": 0.057295230856786575,
+                "mae": 0.08671923553303713,
+                "observed_nonzero": 189,
+                "nonzero_mse": 0.9319621506068101,
+                "rounded_match_fraction_not_exact_proof": 0.9433021806853582
+              },
+              "per_episode": {
+                "0": {
+                  "count": 296,
+                  "mse": 0.042402560098919996,
+                  "mae": 0.0792606370666786,
+                  "observed_nonzero": 15,
+                  "nonzero_mse": 0.7831529278262169,
+                  "rounded_match_fraction_not_exact_proof": 0.956081081081081
+                },
+                "1": {
+                  "count": 414,
+                  "mse": 0.07441587268719378,
+                  "mae": 0.10286913784994657,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.9596662823082922,
+                  "rounded_match_fraction_not_exact_proof": 0.9251207729468599
+                },
+                "2": {
+                  "count": 466,
+                  "mse": 0.06766458527638473,
+                  "mae": 0.0991182417767308,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.9660713155107621,
+                  "rounded_match_fraction_not_exact_proof": 0.9377682403433476
+                },
+                "3": {
+                  "count": 490,
+                  "mse": 0.05224991186657853,
+                  "mae": 0.08370804293670549,
+                  "observed_nonzero": 27,
+                  "nonzero_mse": 0.8996312446011326,
+                  "rounded_match_fraction_not_exact_proof": 0.9469387755102041
+                },
+                "4": {
+                  "count": 372,
+                  "mse": 0.053929745470989734,
+                  "mae": 0.08691795999645516,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.9520583601018566,
+                  "rounded_match_fraction_not_exact_proof": 0.946236559139785
+                },
+                "5": {
+                  "count": 392,
+                  "mse": 0.05348456371931966,
+                  "mae": 0.07738801316921964,
+                  "observed_nonzero": 21,
+                  "nonzero_mse": 0.9668607593679068,
+                  "rounded_match_fraction_not_exact_proof": 0.9464285714285714
+                },
+                "6": {
+                  "count": 386,
+                  "mse": 0.059753984515467796,
+                  "mae": 0.08721522318445413,
+                  "observed_nonzero": 24,
+                  "nonzero_mse": 0.9280943525506631,
+                  "rounded_match_fraction_not_exact_proof": 0.9430051813471503
+                },
+                "7": {
+                  "count": 394,
+                  "mse": 0.049064355581054646,
+                  "mae": 0.07304333574182106,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.9393067900346763,
+                  "rounded_match_fraction_not_exact_proof": 0.949238578680203
+                }
+              }
+            },
+            "shuffled_successor": {
+              "local": {
+                "count": 3210,
+                "mse": 0.053579117222361784,
+                "mae": 0.12567348812539467,
+                "observed_nonzero": 189,
+                "nonzero_mse": 0.734567590122812,
+                "rounded_match_fraction_not_exact_proof": 0.9417445482866044
+              },
+              "per_episode": {
+                "0": {
+                  "count": 296,
+                  "mse": 0.045189488350014774,
+                  "mae": 0.11629597418196302,
+                  "observed_nonzero": 15,
+                  "nonzero_mse": 0.7065582590530639,
+                  "rounded_match_fraction_not_exact_proof": 0.9493243243243243
+                },
+                "1": {
+                  "count": 414,
+                  "mse": 0.06697595205546884,
+                  "mae": 0.14159488781381224,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.7432915858235053,
+                  "rounded_match_fraction_not_exact_proof": 0.9251207729468599
+                },
+                "2": {
+                  "count": 466,
+                  "mse": 0.05928396538315725,
+                  "mae": 0.12893331431561567,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.7521440631860471,
+                  "rounded_match_fraction_not_exact_proof": 0.9334763948497854
+                },
+                "3": {
+                  "count": 490,
+                  "mse": 0.04948214546547662,
+                  "mae": 0.1223728338472854,
+                  "observed_nonzero": 27,
+                  "nonzero_mse": 0.7122556767352269,
+                  "rounded_match_fraction_not_exact_proof": 0.9448979591836735
+                },
+                "4": {
+                  "count": 372,
+                  "mse": 0.04910956237711931,
+                  "mae": 0.12653630090224705,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.689801210669913,
+                  "rounded_match_fraction_not_exact_proof": 0.946236559139785
+                },
+                "5": {
+                  "count": 392,
+                  "mse": 0.047103102216535554,
+                  "mae": 0.12386555113392751,
+                  "observed_nonzero": 21,
+                  "nonzero_mse": 0.6588141394338584,
+                  "rounded_match_fraction_not_exact_proof": 0.951530612244898
+                },
+                "6": {
+                  "count": 386,
+                  "mse": 0.060488501780627826,
+                  "mae": 0.12677334816021416,
+                  "observed_nonzero": 24,
+                  "nonzero_mse": 0.8226066611141843,
+                  "rounded_match_fraction_not_exact_proof": 0.9378238341968912
+                },
+                "7": {
+                  "count": 394,
+                  "mse": 0.048047003741333416,
+                  "mae": 0.1161448719378494,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.763590562400927,
+                  "rounded_match_fraction_not_exact_proof": 0.949238578680203
+                }
+              }
+            },
+            "shuffled_rewards": {
+              "local": {
+                "count": 3210,
+                "mse": 0.06270541838961301,
+                "mae": 0.12222686058967641,
+                "observed_nonzero": 189,
+                "nonzero_mse": 0.9260098451374684,
+                "rounded_match_fraction_not_exact_proof": 0.940809968847352
+              },
+              "per_episode": {
+                "0": {
+                  "count": 296,
+                  "mse": 0.05180052146117334,
+                  "mae": 0.11605341537538123,
+                  "observed_nonzero": 15,
+                  "nonzero_mse": 0.8648171830293592,
+                  "rounded_match_fraction_not_exact_proof": 0.9493243243243243
+                },
+                "1": {
+                  "count": 414,
+                  "mse": 0.07893120287324752,
+                  "mae": 0.13672637963704556,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.9392118759565125,
+                  "rounded_match_fraction_not_exact_proof": 0.9251207729468599
+                },
+                "2": {
+                  "count": 466,
+                  "mse": 0.07262410880906928,
+                  "mae": 0.134884741875851,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.9502862081066753,
+                  "rounded_match_fraction_not_exact_proof": 0.9313304721030042
+                },
+                "3": {
+                  "count": 490,
+                  "mse": 0.056657218193286646,
+                  "mae": 0.11799503752935385,
+                  "observed_nonzero": 27,
+                  "nonzero_mse": 0.8784792743323265,
+                  "rounded_match_fraction_not_exact_proof": 0.9448979591836735
+                },
+                "4": {
+                  "count": 372,
+                  "mse": 0.055934301648098164,
+                  "mae": 0.11684080491405777,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.9067305078986839,
+                  "rounded_match_fraction_not_exact_proof": 0.946236559139785
+                },
+                "5": {
+                  "count": 392,
+                  "mse": 0.060568582390965776,
+                  "mae": 0.11678361342004186,
+                  "observed_nonzero": 21,
+                  "nonzero_mse": 0.9636457443455791,
+                  "rounded_match_fraction_not_exact_proof": 0.9464285714285714
+                },
+                "6": {
+                  "count": 386,
+                  "mse": 0.0672827282068889,
+                  "mae": 0.1260869122503955,
+                  "observed_nonzero": 24,
+                  "nonzero_mse": 0.9475383625996985,
+                  "rounded_match_fraction_not_exact_proof": 0.9378238341968912
+                },
+                "7": {
+                  "count": 394,
+                  "mse": 0.05367378545857615,
+                  "mae": 0.10864042703335806,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.9319065240492954,
+                  "rounded_match_fraction_not_exact_proof": 0.949238578680203
+                }
+              }
+            },
+            "action_prior": {
+              "local": {
+                "count": 3210,
+                "mse": 0.0557111194087448,
+                "mae": 0.11336993788675927,
+                "observed_nonzero": 189,
+                "nonzero_mse": 0.8708157260295658,
+                "rounded_match_fraction_not_exact_proof": 0.9411214953271028
+              },
+              "per_episode": {
+                "0": {
+                  "count": 296,
+                  "mse": 0.048168445730224996,
+                  "mae": 0.10573486624493154,
+                  "observed_nonzero": 15,
+                  "nonzero_mse": 0.8628344256891959,
+                  "rounded_match_fraction_not_exact_proof": 0.9493243243243243
+                },
+                "1": {
+                  "count": 414,
+                  "mse": 0.06954603044529631,
+                  "mae": 0.12714210298068507,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.8707698796835817,
+                  "rounded_match_fraction_not_exact_proof": 0.9251207729468599
+                },
+                "2": {
+                  "count": 466,
+                  "mse": 0.061864522804404506,
+                  "mae": 0.11946564371433739,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 0.8644892420518218,
+                  "rounded_match_fraction_not_exact_proof": 0.9334763948497854
+                },
+                "3": {
+                  "count": 490,
+                  "mse": 0.05197226376044711,
+                  "mae": 0.10960608625861863,
+                  "observed_nonzero": 27,
+                  "nonzero_mse": 0.8628033905655335,
+                  "rounded_match_fraction_not_exact_proof": 0.9448979591836735
+                },
+                "4": {
+                  "count": 372,
+                  "mse": 0.05119641588211337,
+                  "mae": 0.10862151079709548,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.8698787564055201,
+                  "rounded_match_fraction_not_exact_proof": 0.946236559139785
+                },
+                "5": {
+                  "count": 392,
+                  "mse": 0.051249907839303104,
+                  "mae": 0.10904009259739192,
+                  "observed_nonzero": 21,
+                  "nonzero_mse": 0.8726729097317024,
+                  "rounded_match_fraction_not_exact_proof": 0.9464285714285714
+                },
+                "6": {
+                  "count": 386,
+                  "mse": 0.05915389732229576,
+                  "mae": 0.1170975145010185,
+                  "observed_nonzero": 24,
+                  "nonzero_mse": 0.8791010707785274,
+                  "rounded_match_fraction_not_exact_proof": 0.9378238341968912
+                },
+                "7": {
+                  "count": 394,
+                  "mse": 0.049540773970915684,
+                  "mae": 0.10724522442715535,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 0.8865399792011152,
+                  "rounded_match_fraction_not_exact_proof": 0.949238578680203
+                }
+              }
+            },
+            "zero": {
+              "local": {
+                "count": 3210,
+                "mse": 0.058878504672897194,
+                "mae": 0.058878504672897194,
+                "observed_nonzero": 189,
+                "nonzero_mse": 1.0,
+                "rounded_match_fraction_not_exact_proof": 0.9411214953271028
+              },
+              "per_episode": {
+                "0": {
+                  "count": 296,
+                  "mse": 0.05067567567567568,
+                  "mae": 0.05067567567567568,
+                  "observed_nonzero": 15,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.9493243243243243
+                },
+                "1": {
+                  "count": 414,
+                  "mse": 0.0748792270531401,
+                  "mae": 0.0748792270531401,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.9251207729468599
+                },
+                "2": {
+                  "count": 466,
+                  "mse": 0.06652360515021459,
+                  "mae": 0.06652360515021459,
+                  "observed_nonzero": 31,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.9334763948497854
+                },
+                "3": {
+                  "count": 490,
+                  "mse": 0.05510204081632653,
+                  "mae": 0.05510204081632653,
+                  "observed_nonzero": 27,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.9448979591836735
+                },
+                "4": {
+                  "count": 372,
+                  "mse": 0.053763440860215055,
+                  "mae": 0.053763440860215055,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.946236559139785
+                },
+                "5": {
+                  "count": 392,
+                  "mse": 0.05357142857142857,
+                  "mae": 0.05357142857142857,
+                  "observed_nonzero": 21,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.9464285714285714
+                },
+                "6": {
+                  "count": 386,
+                  "mse": 0.06217616580310881,
+                  "mae": 0.06217616580310881,
+                  "observed_nonzero": 24,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.9378238341968912
+                },
+                "7": {
+                  "count": 394,
+                  "mse": 0.050761421319796954,
+                  "mae": 0.050761421319796954,
+                  "observed_nonzero": 20,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.949238578680203
+                }
+              }
+            }
+          },
+          "transition_comparisons_diagnostic_only": {
+            "before": {
+              "pooled_mse_improvement": 0.0012544947546963559,
+              "positive_episodes": 6,
+              "episode_mse_improvements": [
+                0.006038840085448513,
+                -0.0024886257026065783,
+                0.001965201050865416,
+                0.0017174122152622956,
+                0.0009981367833670693,
+                -0.0009895507895905237,
+                0.0035003235329982285,
+                0.00045146955672453054
+              ]
+            },
+            "shuffled_successor": {
+              "pooled_mse_improvement": 0.003202226390803066,
+              "positive_episodes": 7,
+              "episode_mse_improvements": [
+                0.0074239554220353055,
+                0.0003913164120232515,
+                0.004016989158466114,
+                0.004248709550846552,
+                0.00393959212733299,
+                -0.000333394669715284,
+                0.005284515912347472,
+                0.0015005217873404614
+              ]
+            },
+            "shuffled_rewards": {
+              "pooled_mse_improvement": 0.012328527558054289,
+              "positive_episodes": 8,
+              "episode_mse_improvements": [
+                0.01403498853319387,
+                0.01234656722980193,
+                0.01735713258437814,
+                0.011423782278656577,
+                0.010764331398311844,
+                0.013132085504714938,
+                0.01207874233860854,
+                0.007127303504583196
+              ]
+            },
+            "action_prior": {
+              "pooled_mse_improvement": 0.00533422857718608,
+              "positive_episodes": 8,
+              "episode_mse_improvements": [
+                0.010402912802245527,
+                0.002961394801850717,
+                0.00659754657971337,
+                0.006738827845817044,
+                0.00602644563232705,
+                0.0038134109530522653,
+                0.003949911454015409,
+                0.0029942920169227297
+              ]
+            },
+            "zero": {
+              "pooled_mse_improvement": 0.008501613841338476,
+              "positive_episodes": 8,
+              "episode_mse_improvements": [
+                0.01291014274769621,
+                0.008294591409694504,
+                0.011256628925523454,
+                0.009868604901696464,
+                0.008593470610428734,
+                0.00613493168517773,
+                0.006972179934828453,
+                0.004214939365803999
+              ]
+            }
+          }
+        }
+      }
+    },
+    "pong": {
+      "training_graph": {
+        "constraint_count": 1963,
+        "nodes": 1607,
+        "components": 23,
+        "constraints_beyond_spanning_forest": 379,
+        "compatibility_not_generalization": true
+      },
+      "bases": {
+        "no_generated_functions": {
+          "readers": {
+            "before": {
+              "local": {
+                "count": 3966,
+                "mse": 0.09636447571685332,
+                "mae": 0.21463808656129207,
+                "observed_nonzero": 809,
+                "nonzero_mse": 0.322139236728823,
+                "rounded_match_fraction_not_exact_proof": 0.8799798285426123
+              },
+              "per_episode": {
+                "0": {
+                  "count": 512,
+                  "mse": 0.09078139650588471,
+                  "mae": 0.2044362260222281,
+                  "observed_nonzero": 102,
+                  "nonzero_mse": 0.2980495798921685,
+                  "rounded_match_fraction_not_exact_proof": 0.869140625
+                },
+                "1": {
+                  "count": 495,
+                  "mse": 0.10598097182764822,
+                  "mae": 0.22616778310600258,
+                  "observed_nonzero": 87,
+                  "nonzero_mse": 0.35176245341836604,
+                  "rounded_match_fraction_not_exact_proof": 0.8767676767676768
+                },
+                "2": {
+                  "count": 506,
+                  "mse": 0.10613097878971588,
+                  "mae": 0.23234104881400564,
+                  "observed_nonzero": 105,
+                  "nonzero_mse": 0.35660181133164265,
+                  "rounded_match_fraction_not_exact_proof": 0.8596837944664032
+                },
+                "3": {
+                  "count": 512,
+                  "mse": 0.07833565077686822,
+                  "mae": 0.19974675520935822,
+                  "observed_nonzero": 116,
+                  "nonzero_mse": 0.2549075839488891,
+                  "rounded_match_fraction_not_exact_proof": 0.89453125
+                },
+                "4": {
+                  "count": 496,
+                  "mse": 0.10624162728697799,
+                  "mae": 0.22640542339907022,
+                  "observed_nonzero": 110,
+                  "nonzero_mse": 0.3227065699985865,
+                  "rounded_match_fraction_not_exact_proof": 0.8870967741935484
+                },
+                "5": {
+                  "count": 456,
+                  "mse": 0.11164933660841359,
+                  "mae": 0.21477021647189135,
+                  "observed_nonzero": 92,
+                  "nonzero_mse": 0.422115434151192,
+                  "rounded_match_fraction_not_exact_proof": 0.8837719298245614
+                },
+                "6": {
+                  "count": 477,
+                  "mse": 0.076467710506986,
+                  "mae": 0.19210028155632697,
+                  "observed_nonzero": 104,
+                  "nonzero_mse": 0.2587411777903087,
+                  "rounded_match_fraction_not_exact_proof": 0.8972746331236897
+                },
+                "7": {
+                  "count": 512,
+                  "mse": 0.09638219457495832,
+                  "mae": 0.22056874717707958,
+                  "observed_nonzero": 93,
+                  "nonzero_mse": 0.3371221167460093,
+                  "rounded_match_fraction_not_exact_proof": 0.873046875
+                }
+              }
+            },
+            "after": {
+              "local": {
+                "count": 3966,
+                "mse": 0.0889150929651032,
+                "mae": 0.20442170829524314,
+                "observed_nonzero": 809,
+                "nonzero_mse": 0.31249970878260713,
+                "rounded_match_fraction_not_exact_proof": 0.8933434190620272
+              },
+              "per_episode": {
+                "0": {
+                  "count": 512,
+                  "mse": 0.08268559960651282,
+                  "mae": 0.20165098386619185,
+                  "observed_nonzero": 102,
+                  "nonzero_mse": 0.28696550880384475,
+                  "rounded_match_fraction_not_exact_proof": 0.880859375
+                },
+                "1": {
+                  "count": 495,
+                  "mse": 0.11829874573269068,
+                  "mae": 0.22930637001546286,
+                  "observed_nonzero": 87,
+                  "nonzero_mse": 0.4661225893274562,
+                  "rounded_match_fraction_not_exact_proof": 0.8565656565656565
+                },
+                "2": {
+                  "count": 506,
+                  "mse": 0.0803944671849994,
+                  "mae": 0.1916314577096179,
+                  "observed_nonzero": 105,
+                  "nonzero_mse": 0.30426598131511295,
+                  "rounded_match_fraction_not_exact_proof": 0.883399209486166
+                },
+                "3": {
+                  "count": 512,
+                  "mse": 0.07831299637495819,
+                  "mae": 0.19423512230712453,
+                  "observed_nonzero": 116,
+                  "nonzero_mse": 0.25748046810402087,
+                  "rounded_match_fraction_not_exact_proof": 0.908203125
+                },
+                "4": {
+                  "count": 496,
+                  "mse": 0.08476416707345315,
+                  "mae": 0.20633175955132044,
+                  "observed_nonzero": 110,
+                  "nonzero_mse": 0.25201848022974965,
+                  "rounded_match_fraction_not_exact_proof": 0.9012096774193549
+                },
+                "5": {
+                  "count": 456,
+                  "mse": 0.11180762960616421,
+                  "mae": 0.2254132930372157,
+                  "observed_nonzero": 92,
+                  "nonzero_mse": 0.41692615327248495,
+                  "rounded_match_fraction_not_exact_proof": 0.9013157894736842
+                },
+                "6": {
+                  "count": 477,
+                  "mse": 0.07773144088813756,
+                  "mae": 0.1956236428127945,
+                  "observed_nonzero": 104,
+                  "nonzero_mse": 0.2636394107671005,
+                  "rounded_match_fraction_not_exact_proof": 0.9014675052410901
+                },
+                "7": {
+                  "count": 512,
+                  "mse": 0.079811122561151,
+                  "mae": 0.19361161327216253,
+                  "observed_nonzero": 93,
+                  "nonzero_mse": 0.2975883575416721,
+                  "rounded_match_fraction_not_exact_proof": 0.9140625
+                }
+              }
+            },
+            "delta": {
+              "local": {
+                "count": 3966,
+                "mse": 0.07745742322491597,
+                "mae": 0.19782090780951458,
+                "observed_nonzero": 809,
+                "nonzero_mse": 0.23851921859935005,
+                "rounded_match_fraction_not_exact_proof": 0.9125063035804337
+              },
+              "per_episode": {
+                "0": {
+                  "count": 512,
+                  "mse": 0.06655233671700383,
+                  "mae": 0.18099515110507194,
+                  "observed_nonzero": 102,
+                  "nonzero_mse": 0.20919949062138807,
+                  "rounded_match_fraction_not_exact_proof": 0.900390625
+                },
+                "1": {
+                  "count": 495,
+                  "mse": 0.09441682748338914,
+                  "mae": 0.22234062924306644,
+                  "observed_nonzero": 87,
+                  "nonzero_mse": 0.27894250124299064,
+                  "rounded_match_fraction_not_exact_proof": 0.8868686868686869
+                },
+                "2": {
+                  "count": 506,
+                  "mse": 0.08360278953748805,
+                  "mae": 0.21654502430950584,
+                  "observed_nonzero": 105,
+                  "nonzero_mse": 0.26201070751189753,
+                  "rounded_match_fraction_not_exact_proof": 0.9011857707509882
+                },
+                "3": {
+                  "count": 512,
+                  "mse": 0.06888285675786757,
+                  "mae": 0.18367053212378553,
+                  "observed_nonzero": 116,
+                  "nonzero_mse": 0.20825946484776992,
+                  "rounded_match_fraction_not_exact_proof": 0.92578125
+                },
+                "4": {
+                  "count": 496,
+                  "mse": 0.08029636150251433,
+                  "mae": 0.20020219724089586,
+                  "observed_nonzero": 110,
+                  "nonzero_mse": 0.22926041558644245,
+                  "rounded_match_fraction_not_exact_proof": 0.9112903225806451
+                },
+                "5": {
+                  "count": 456,
+                  "mse": 0.09057562742278195,
+                  "mae": 0.2017093256746309,
+                  "observed_nonzero": 92,
+                  "nonzero_mse": 0.31381462722022135,
+                  "rounded_match_fraction_not_exact_proof": 0.9144736842105263
+                },
+                "6": {
+                  "count": 477,
+                  "mse": 0.058993284560284534,
+                  "mae": 0.1779640044307232,
+                  "observed_nonzero": 104,
+                  "nonzero_mse": 0.16816491016526755,
+                  "rounded_match_fraction_not_exact_proof": 0.9412997903563941
+                },
+                "7": {
+                  "count": 512,
+                  "mse": 0.07723574647528235,
+                  "mae": 0.19931625845871284,
+                  "observed_nonzero": 93,
+                  "nonzero_mse": 0.2592229882613441,
+                  "rounded_match_fraction_not_exact_proof": 0.919921875
+                }
+              }
+            },
+            "transition": {
+              "local": {
+                "count": 3966,
+                "mse": 0.07312099513271553,
+                "mae": 0.1853728142407847,
+                "observed_nonzero": 809,
+                "nonzero_mse": 0.23078250566531328,
+                "rounded_match_fraction_not_exact_proof": 0.9210791729702471
+              },
+              "per_episode": {
+                "0": {
+                  "count": 512,
+                  "mse": 0.06408112641578359,
+                  "mae": 0.16724793956036438,
+                  "observed_nonzero": 102,
+                  "nonzero_mse": 0.21797771003770877,
+                  "rounded_match_fraction_not_exact_proof": 0.90625
+                },
+                "1": {
+                  "count": 495,
+                  "mse": 0.08965002510624126,
+                  "mae": 0.2105627771015407,
+                  "observed_nonzero": 87,
+                  "nonzero_mse": 0.2944184102633178,
+                  "rounded_match_fraction_not_exact_proof": 0.9030303030303031
+                },
+                "2": {
+                  "count": 506,
+                  "mse": 0.07555418115862013,
+                  "mae": 0.19773565891474223,
+                  "observed_nonzero": 105,
+                  "nonzero_mse": 0.24998764901267653,
+                  "rounded_match_fraction_not_exact_proof": 0.9169960474308301
+                },
+                "3": {
+                  "count": 512,
+                  "mse": 0.060047386228991737,
+                  "mae": 0.1698013853471496,
+                  "observed_nonzero": 116,
+                  "nonzero_mse": 0.17004043752810924,
+                  "rounded_match_fraction_not_exact_proof": 0.9375
+                },
+                "4": {
+                  "count": 496,
+                  "mse": 0.08100709643821949,
+                  "mae": 0.19623312466810008,
+                  "observed_nonzero": 110,
+                  "nonzero_mse": 0.2290416703974283,
+                  "rounded_match_fraction_not_exact_proof": 0.9173387096774194
+                },
+                "5": {
+                  "count": 456,
+                  "mse": 0.09473214268062416,
+                  "mae": 0.1962189162800385,
+                  "observed_nonzero": 92,
+                  "nonzero_mse": 0.33727967300950373,
+                  "rounded_match_fraction_not_exact_proof": 0.9100877192982456
+                },
+                "6": {
+                  "count": 477,
+                  "mse": 0.05425923011048957,
+                  "mae": 0.16651083113832302,
+                  "observed_nonzero": 104,
+                  "nonzero_mse": 0.15400474545791584,
+                  "rounded_match_fraction_not_exact_proof": 0.9517819706498952
+                },
+                "7": {
+                  "count": 512,
+                  "mse": 0.06753488373036828,
+                  "mae": 0.17988942722290535,
+                  "observed_nonzero": 93,
+                  "nonzero_mse": 0.22194320299652778,
+                  "rounded_match_fraction_not_exact_proof": 0.92578125
+                }
+              }
+            },
+            "potential": {
+              "local": {
+                "count": 3966,
+                "mse": 0.11282090550365967,
+                "mae": 0.23986510345796183,
+                "observed_nonzero": 809,
+                "nonzero_mse": 0.40900614820435954,
+                "rounded_match_fraction_not_exact_proof": 0.8663640948058497
+              },
+              "per_episode": {
+                "0": {
+                  "count": 512,
+                  "mse": 0.10231878110532006,
+                  "mae": 0.22040598644172252,
+                  "observed_nonzero": 102,
+                  "nonzero_mse": 0.3932112960575411,
+                  "rounded_match_fraction_not_exact_proof": 0.861328125
+                },
+                "1": {
+                  "count": 495,
+                  "mse": 0.11635799717216375,
+                  "mae": 0.2567701891607112,
+                  "observed_nonzero": 87,
+                  "nonzero_mse": 0.4289619850609189,
+                  "rounded_match_fraction_not_exact_proof": 0.8565656565656565
+                },
+                "2": {
+                  "count": 506,
+                  "mse": 0.12316254887813115,
+                  "mae": 0.24156298737799708,
+                  "observed_nonzero": 105,
+                  "nonzero_mse": 0.45561799974070005,
+                  "rounded_match_fraction_not_exact_proof": 0.857707509881423
+                },
+                "3": {
+                  "count": 512,
+                  "mse": 0.10674703474846042,
+                  "mae": 0.2379781786926521,
+                  "observed_nonzero": 116,
+                  "nonzero_mse": 0.3524457148002671,
+                  "rounded_match_fraction_not_exact_proof": 0.869140625
+                },
+                "4": {
+                  "count": 496,
+                  "mse": 0.1172784597107185,
+                  "mae": 0.2485090332830508,
+                  "observed_nonzero": 110,
+                  "nonzero_mse": 0.39600819437825174,
+                  "rounded_match_fraction_not_exact_proof": 0.8689516129032258
+                },
+                "5": {
+                  "count": 456,
+                  "mse": 0.12291599004195032,
+                  "mae": 0.245097192695636,
+                  "observed_nonzero": 92,
+                  "nonzero_mse": 0.4769409426149076,
+                  "rounded_match_fraction_not_exact_proof": 0.8706140350877193
+                },
+                "6": {
+                  "count": 477,
+                  "mse": 0.10355177412915871,
+                  "mae": 0.2410319733538905,
+                  "observed_nonzero": 104,
+                  "nonzero_mse": 0.33436143558732306,
+                  "rounded_match_fraction_not_exact_proof": 0.8679245283018868
+                },
+                "7": {
+                  "count": 512,
+                  "mse": 0.11108310828626705,
+                  "mae": 0.22906863447314327,
+                  "observed_nonzero": 93,
+                  "nonzero_mse": 0.45722665275583285,
+                  "rounded_match_fraction_not_exact_proof": 0.87890625
+                }
+              }
+            },
+            "shuffled_successor": {
+              "local": {
+                "count": 3966,
+                "mse": 0.10259688486431473,
+                "mae": 0.22472104456624736,
+                "observed_nonzero": 809,
+                "nonzero_mse": 0.3383148443874702,
+                "rounded_match_fraction_not_exact_proof": 0.8774583963691377
+              },
+              "per_episode": {
+                "0": {
+                  "count": 512,
+                  "mse": 0.0910437959005874,
+                  "mae": 0.20539484789377974,
+                  "observed_nonzero": 102,
+                  "nonzero_mse": 0.3028580662110452,
+                  "rounded_match_fraction_not_exact_proof": 0.8828125
+                },
+                "1": {
+                  "count": 495,
+                  "mse": 0.11682491091793906,
+                  "mae": 0.2429704614520987,
+                  "observed_nonzero": 87,
+                  "nonzero_mse": 0.37911529003470884,
+                  "rounded_match_fraction_not_exact_proof": 0.8666666666666667
+                },
+                "2": {
+                  "count": 506,
+                  "mse": 0.12314112204296657,
+                  "mae": 0.254262064588439,
+                  "observed_nonzero": 105,
+                  "nonzero_mse": 0.4065921760026132,
+                  "rounded_match_fraction_not_exact_proof": 0.8438735177865613
+                },
+                "3": {
+                  "count": 512,
+                  "mse": 0.08498695802082883,
+                  "mae": 0.2107859179889479,
+                  "observed_nonzero": 116,
+                  "nonzero_mse": 0.2632692360959621,
+                  "rounded_match_fraction_not_exact_proof": 0.896484375
+                },
+                "4": {
+                  "count": 496,
+                  "mse": 0.10911904688133586,
+                  "mae": 0.23137932664376115,
+                  "observed_nonzero": 110,
+                  "nonzero_mse": 0.33092590995063936,
+                  "rounded_match_fraction_not_exact_proof": 0.8850806451612904
+                },
+                "5": {
+                  "count": 456,
+                  "mse": 0.11228816615972412,
+                  "mae": 0.22089005524637723,
+                  "observed_nonzero": 92,
+                  "nonzero_mse": 0.41055839217735246,
+                  "rounded_match_fraction_not_exact_proof": 0.8881578947368421
+                },
+                "6": {
+                  "count": 477,
+                  "mse": 0.08196051511982393,
+                  "mae": 0.2017065628187136,
+                  "observed_nonzero": 104,
+                  "nonzero_mse": 0.27097272317784804,
+                  "rounded_match_fraction_not_exact_proof": 0.8951781970649895
+                },
+                "7": {
+                  "count": 512,
+                  "mse": 0.10197684369502605,
+                  "mae": 0.22954704266613582,
+                  "observed_nonzero": 93,
+                  "nonzero_mse": 0.36813291258202385,
+                  "rounded_match_fraction_not_exact_proof": 0.86328125
+                }
+              }
+            },
+            "shuffled_rewards": {
+              "local": {
+                "count": 3966,
+                "mse": 0.1862494352243505,
+                "mae": 0.32426604217955957,
+                "observed_nonzero": 809,
+                "nonzero_mse": 0.7249131457594178,
+                "rounded_match_fraction_not_exact_proof": 0.7955118507312153
+              },
+              "per_episode": {
+                "0": {
+                  "count": 512,
+                  "mse": 0.18792665060485192,
+                  "mae": 0.33791894622374785,
+                  "observed_nonzero": 102,
+                  "nonzero_mse": 0.6950265760632929,
+                  "rounded_match_fraction_not_exact_proof": 0.791015625
+                },
+                "1": {
+                  "count": 495,
+                  "mse": 0.17084786874722838,
+                  "mae": 0.2971758875250383,
+                  "observed_nonzero": 87,
+                  "nonzero_mse": 0.772230787551755,
+                  "rounded_match_fraction_not_exact_proof": 0.8242424242424242
+                },
+                "2": {
+                  "count": 506,
+                  "mse": 0.1778431019487972,
+                  "mae": 0.3198920565942868,
+                  "observed_nonzero": 105,
+                  "nonzero_mse": 0.675307243173914,
+                  "rounded_match_fraction_not_exact_proof": 0.8023715415019763
+                },
+                "3": {
+                  "count": 512,
+                  "mse": 0.19946549357491428,
+                  "mae": 0.3328141455843616,
+                  "observed_nonzero": 116,
+                  "nonzero_mse": 0.7285883734672344,
+                  "rounded_match_fraction_not_exact_proof": 0.7734375
+                },
+                "4": {
+                  "count": 496,
+                  "mse": 0.19626586624473183,
+                  "mae": 0.34058132098198546,
+                  "observed_nonzero": 110,
+                  "nonzero_mse": 0.7057450844642154,
+                  "rounded_match_fraction_not_exact_proof": 0.780241935483871
+                },
+                "5": {
+                  "count": 456,
+                  "mse": 0.19634022078296334,
+                  "mae": 0.3261692760849988,
+                  "observed_nonzero": 92,
+                  "nonzero_mse": 0.7938370826073814,
+                  "rounded_match_fraction_not_exact_proof": 0.7916666666666666
+                },
+                "6": {
+                  "count": 477,
+                  "mse": 0.199309116306142,
+                  "mae": 0.33771926823865334,
+                  "observed_nonzero": 104,
+                  "nonzero_mse": 0.7403025566611194,
+                  "rounded_match_fraction_not_exact_proof": 0.7777777777777778
+                },
+                "7": {
+                  "count": 512,
+                  "mse": 0.16369671650647716,
+                  "mae": 0.30254437356467984,
+                  "observed_nonzero": 93,
+                  "nonzero_mse": 0.702129000051086,
+                  "rounded_match_fraction_not_exact_proof": 0.822265625
+                }
+              }
+            },
+            "action_prior": {
+              "local": {
+                "count": 3966,
+                "mse": 0.16572129262939966,
+                "mae": 0.31459986441643395,
+                "observed_nonzero": 809,
+                "nonzero_mse": 0.676796104349054,
+                "rounded_match_fraction_not_exact_proof": 0.7960161371659102
+              },
+              "per_episode": {
+                "0": {
+                  "count": 512,
+                  "mse": 0.1612711429134834,
+                  "mae": 0.3113963602083274,
+                  "observed_nonzero": 102,
+                  "nonzero_mse": 0.6688782018015401,
+                  "rounded_match_fraction_not_exact_proof": 0.80078125
+                },
+                "1": {
+                  "count": 495,
+                  "mse": 0.15112682697772759,
+                  "mae": 0.29815964817236124,
+                  "observed_nonzero": 87,
+                  "nonzero_mse": 0.6974229134950491,
+                  "rounded_match_fraction_not_exact_proof": 0.8242424242424242
+                },
+                "2": {
+                  "count": 506,
+                  "mse": 0.1645999424109754,
+                  "mae": 0.31475493891612616,
+                  "observed_nonzero": 105,
+                  "nonzero_mse": 0.6611223117808895,
+                  "rounded_match_fraction_not_exact_proof": 0.7924901185770751
+                },
+                "3": {
+                  "count": 512,
+                  "mse": 0.17709449377180841,
+                  "mae": 0.3272197110666524,
+                  "observed_nonzero": 116,
+                  "nonzero_mse": 0.663284427463708,
+                  "rounded_match_fraction_not_exact_proof": 0.7734375
+                },
+                "4": {
+                  "count": 496,
+                  "mse": 0.17552824163551006,
+                  "mae": 0.3256566564328576,
+                  "observed_nonzero": 110,
+                  "nonzero_mse": 0.6686049802683895,
+                  "rounded_match_fraction_not_exact_proof": 0.7782258064516129
+                },
+                "5": {
+                  "count": 456,
+                  "mse": 0.17468376551499,
+                  "mae": 0.3182504040332797,
+                  "observed_nonzero": 92,
+                  "nonzero_mse": 0.7285685233250733,
+                  "rounded_match_fraction_not_exact_proof": 0.7982456140350878
+                },
+                "6": {
+                  "count": 477,
+                  "mse": 0.1740468638344453,
+                  "mae": 0.3232509022321872,
+                  "observed_nonzero": 104,
+                  "nonzero_mse": 0.6735618107880852,
+                  "rounded_match_fraction_not_exact_proof": 0.7819706498951782
+                },
+                "7": {
+                  "count": 512,
+                  "mse": 0.14877720975844166,
+                  "mae": 0.2989024270532856,
+                  "observed_nonzero": 93,
+                  "nonzero_mse": 0.6628232445202611,
+                  "rounded_match_fraction_not_exact_proof": 0.818359375
+                }
+              }
+            },
+            "zero": {
+              "local": {
+                "count": 3966,
+                "mse": 0.20398386283408976,
+                "mae": 0.20398386283408976,
+                "observed_nonzero": 809,
+                "nonzero_mse": 1.0,
+                "rounded_match_fraction_not_exact_proof": 0.7960161371659102
+              },
+              "per_episode": {
+                "0": {
+                  "count": 512,
+                  "mse": 0.19921875,
+                  "mae": 0.19921875,
+                  "observed_nonzero": 102,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.80078125
+                },
+                "1": {
+                  "count": 495,
+                  "mse": 0.17575757575757575,
+                  "mae": 0.17575757575757575,
+                  "observed_nonzero": 87,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.8242424242424242
+                },
+                "2": {
+                  "count": 506,
+                  "mse": 0.2075098814229249,
+                  "mae": 0.2075098814229249,
+                  "observed_nonzero": 105,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.7924901185770751
+                },
+                "3": {
+                  "count": 512,
+                  "mse": 0.2265625,
+                  "mae": 0.2265625,
+                  "observed_nonzero": 116,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.7734375
+                },
+                "4": {
+                  "count": 496,
+                  "mse": 0.2217741935483871,
+                  "mae": 0.2217741935483871,
+                  "observed_nonzero": 110,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.7782258064516129
+                },
+                "5": {
+                  "count": 456,
+                  "mse": 0.20175438596491227,
+                  "mae": 0.20175438596491227,
+                  "observed_nonzero": 92,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.7982456140350878
+                },
+                "6": {
+                  "count": 477,
+                  "mse": 0.2180293501048218,
+                  "mae": 0.2180293501048218,
+                  "observed_nonzero": 104,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.7819706498951782
+                },
+                "7": {
+                  "count": 512,
+                  "mse": 0.181640625,
+                  "mae": 0.181640625,
+                  "observed_nonzero": 93,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.818359375
+                }
+              }
+            }
+          },
+          "transition_comparisons_diagnostic_only": {
+            "before": {
+              "pooled_mse_improvement": 0.02324348058413779,
+              "positive_episodes": 8,
+              "episode_mse_improvements": [
+                0.02670027009010112,
+                0.01633094672140696,
+                0.030576797631095748,
+                0.01828826454787648,
+                0.0252345308487585,
+                0.016917193927789426,
+                0.022208480396496436,
+                0.028847310844590038
+              ]
+            },
+            "shuffled_successor": {
+              "pooled_mse_improvement": 0.029475889731599203,
+              "positive_episodes": 8,
+              "episode_mse_improvements": [
+                0.026962669484803803,
+                0.027174885811697802,
+                0.04758694088434644,
+                0.02493957179183709,
+                0.028111950443116374,
+                0.017556023479099958,
+                0.02770128500933436,
+                0.034441959964657765
+              ]
+            },
+            "shuffled_rewards": {
+              "pooled_mse_improvement": 0.11312844009163497,
+              "positive_episodes": 8,
+              "episode_mse_improvements": [
+                0.12384552418906833,
+                0.08119784364098712,
+                0.10228892079017708,
+                0.13941810734592253,
+                0.11525876980651234,
+                0.10160807810233918,
+                0.14504988619565246,
+                0.09616183277610887
+              ]
+            },
+            "action_prior": {
+              "pooled_mse_improvement": 0.09260029749668414,
+              "positive_episodes": 8,
+              "episode_mse_improvements": [
+                0.09719001649769982,
+                0.061476801871486325,
+                0.08904576125235526,
+                0.11704710754281668,
+                0.09452114519729057,
+                0.07995162283436585,
+                0.11978763372395572,
+                0.08124232602807338
+              ]
+            },
+            "zero": {
+              "pooled_mse_improvement": 0.13086286770137423,
+              "positive_episodes": 8,
+              "episode_mse_improvements": [
+                0.1351376235842164,
+                0.08610755065133449,
+                0.13195570026430475,
+                0.16651511377100825,
+                0.1407670971101676,
+                0.10702224328428811,
+                0.16377011999433222,
+                0.11410574126963172
+              ]
+            }
+          }
+        },
+        "future_pairs": {
+          "readers": {
+            "before": {
+              "local": {
+                "count": 3966,
+                "mse": 0.09315407239068622,
+                "mae": 0.21087384191273548,
+                "observed_nonzero": 809,
+                "nonzero_mse": 0.30691468242870457,
+                "rounded_match_fraction_not_exact_proof": 0.8951084215834594
+              },
+              "per_episode": {
+                "0": {
+                  "count": 512,
+                  "mse": 0.09063506677575134,
+                  "mae": 0.2053091623606249,
+                  "observed_nonzero": 102,
+                  "nonzero_mse": 0.2915654339361879,
+                  "rounded_match_fraction_not_exact_proof": 0.884765625
+                },
+                "1": {
+                  "count": 495,
+                  "mse": 0.10337377373712144,
+                  "mae": 0.22382448979588784,
+                  "observed_nonzero": 87,
+                  "nonzero_mse": 0.33482051926181683,
+                  "rounded_match_fraction_not_exact_proof": 0.8848484848484849
+                },
+                "2": {
+                  "count": 506,
+                  "mse": 0.0965367181717876,
+                  "mae": 0.2166873347537195,
+                  "observed_nonzero": 105,
+                  "nonzero_mse": 0.334660246584796,
+                  "rounded_match_fraction_not_exact_proof": 0.8913043478260869
+                },
+                "3": {
+                  "count": 512,
+                  "mse": 0.07523271182038271,
+                  "mae": 0.19083082258302392,
+                  "observed_nonzero": 116,
+                  "nonzero_mse": 0.2456267100891714,
+                  "rounded_match_fraction_not_exact_proof": 0.91015625
+                },
+                "4": {
+                  "count": 496,
+                  "mse": 0.10559800418278574,
+                  "mae": 0.22750778493270166,
+                  "observed_nonzero": 110,
+                  "nonzero_mse": 0.3114621348317214,
+                  "rounded_match_fraction_not_exact_proof": 0.8991935483870968
+                },
+                "5": {
+                  "count": 456,
+                  "mse": 0.11421283572997484,
+                  "mae": 0.22798020496626997,
+                  "observed_nonzero": 92,
+                  "nonzero_mse": 0.4062290036459856,
+                  "rounded_match_fraction_not_exact_proof": 0.8947368421052632
+                },
+                "6": {
+                  "count": 477,
+                  "mse": 0.06991463279411458,
+                  "mae": 0.18319857476720192,
+                  "observed_nonzero": 104,
+                  "nonzero_mse": 0.23198421776906122,
+                  "rounded_match_fraction_not_exact_proof": 0.9182389937106918
+                },
+                "7": {
+                  "count": 512,
+                  "mse": 0.09121134385765306,
+                  "mae": 0.21264944520550705,
+                  "observed_nonzero": 93,
+                  "nonzero_mse": 0.3229315330204613,
+                  "rounded_match_fraction_not_exact_proof": 0.87890625
+                }
+              }
+            },
+            "after": {
+              "local": {
+                "count": 3966,
+                "mse": 0.0884793266656169,
+                "mae": 0.2023061681206342,
+                "observed_nonzero": 809,
+                "nonzero_mse": 0.3120721523947013,
+                "rounded_match_fraction_not_exact_proof": 0.8923348461926374
+              },
+              "per_episode": {
+                "0": {
+                  "count": 512,
+                  "mse": 0.08151495940549867,
+                  "mae": 0.20079594237201565,
+                  "observed_nonzero": 102,
+                  "nonzero_mse": 0.2829871184673792,
+                  "rounded_match_fraction_not_exact_proof": 0.876953125
+                },
+                "1": {
+                  "count": 495,
+                  "mse": 0.11698843298716644,
+                  "mae": 0.22685408343636052,
+                  "observed_nonzero": 87,
+                  "nonzero_mse": 0.4614184648303237,
+                  "rounded_match_fraction_not_exact_proof": 0.8585858585858586
+                },
+                "2": {
+                  "count": 506,
+                  "mse": 0.07944980501917803,
+                  "mae": 0.18491305269988498,
+                  "observed_nonzero": 105,
+                  "nonzero_mse": 0.304926653929118,
+                  "rounded_match_fraction_not_exact_proof": 0.883399209486166
+                },
+                "3": {
+                  "count": 512,
+                  "mse": 0.07724720667465163,
+                  "mae": 0.19053963084648906,
+                  "observed_nonzero": 116,
+                  "nonzero_mse": 0.2585583628064554,
+                  "rounded_match_fraction_not_exact_proof": 0.90625
+                },
+                "4": {
+                  "count": 496,
+                  "mse": 0.08556904866360926,
+                  "mae": 0.2077231991928102,
+                  "observed_nonzero": 110,
+                  "nonzero_mse": 0.2529198072936675,
+                  "rounded_match_fraction_not_exact_proof": 0.9012096774193549
+                },
+                "5": {
+                  "count": 456,
+                  "mse": 0.11352652851416742,
+                  "mae": 0.2303184294973113,
+                  "observed_nonzero": 92,
+                  "nonzero_mse": 0.41282576285022293,
+                  "rounded_match_fraction_not_exact_proof": 0.8881578947368421
+                },
+                "6": {
+                  "count": 477,
+                  "mse": 0.07661828883906638,
+                  "mae": 0.19136333233895766,
+                  "observed_nonzero": 104,
+                  "nonzero_mse": 0.2658999351689846,
+                  "rounded_match_fraction_not_exact_proof": 0.9077568134171907
+                },
+                "7": {
+                  "count": 512,
+                  "mse": 0.07959889831758388,
+                  "mae": 0.1890379944049416,
+                  "observed_nonzero": 93,
+                  "nonzero_mse": 0.3010050298193332,
+                  "rounded_match_fraction_not_exact_proof": 0.916015625
+                }
+              }
+            },
+            "delta": {
+              "local": {
+                "count": 3966,
+                "mse": 0.0761148939375303,
+                "mae": 0.1963689381308564,
+                "observed_nonzero": 809,
+                "nonzero_mse": 0.22978104517935527,
+                "rounded_match_fraction_not_exact_proof": 0.9147755925365607
+              },
+              "per_episode": {
+                "0": {
+                  "count": 512,
+                  "mse": 0.06604656557241836,
+                  "mae": 0.1795579246326499,
+                  "observed_nonzero": 102,
+                  "nonzero_mse": 0.2040772775865178,
+                  "rounded_match_fraction_not_exact_proof": 0.90625
+                },
+                "1": {
+                  "count": 495,
+                  "mse": 0.0948801699035337,
+                  "mae": 0.22501918482629937,
+                  "observed_nonzero": 87,
+                  "nonzero_mse": 0.27869271454254907,
+                  "rounded_match_fraction_not_exact_proof": 0.8828282828282829
+                },
+                "2": {
+                  "count": 506,
+                  "mse": 0.08073401477097374,
+                  "mae": 0.2161554356001725,
+                  "observed_nonzero": 105,
+                  "nonzero_mse": 0.24747524288605094,
+                  "rounded_match_fraction_not_exact_proof": 0.8972332015810277
+                },
+                "3": {
+                  "count": 512,
+                  "mse": 0.06902302373927482,
+                  "mae": 0.1817633539594744,
+                  "observed_nonzero": 116,
+                  "nonzero_mse": 0.20822463558091936,
+                  "rounded_match_fraction_not_exact_proof": 0.921875
+                },
+                "4": {
+                  "count": 496,
+                  "mse": 0.0796624682800608,
+                  "mae": 0.19876555985559613,
+                  "observed_nonzero": 110,
+                  "nonzero_mse": 0.2161733198568502,
+                  "rounded_match_fraction_not_exact_proof": 0.9193548387096774
+                },
+                "5": {
+                  "count": 456,
+                  "mse": 0.08539900389243583,
+                  "mae": 0.19508724490393298,
+                  "observed_nonzero": 92,
+                  "nonzero_mse": 0.2934022675883603,
+                  "rounded_match_fraction_not_exact_proof": 0.9210526315789473
+                },
+                "6": {
+                  "count": 477,
+                  "mse": 0.05604774263889936,
+                  "mae": 0.17245377731410566,
+                  "observed_nonzero": 104,
+                  "nonzero_mse": 0.15507415120394688,
+                  "rounded_match_fraction_not_exact_proof": 0.9475890985324947
+                },
+                "7": {
+                  "count": 512,
+                  "mse": 0.07755789213218842,
+                  "mae": 0.20163205847989402,
+                  "observed_nonzero": 93,
+                  "nonzero_mse": 0.25582767003286755,
+                  "rounded_match_fraction_not_exact_proof": 0.923828125
+                }
+              }
+            },
+            "transition": {
+              "local": {
+                "count": 3966,
+                "mse": 0.07155115512642579,
+                "mae": 0.18180153391266396,
+                "observed_nonzero": 809,
+                "nonzero_mse": 0.22332820094615285,
+                "rounded_match_fraction_not_exact_proof": 0.9233484619263742
+              },
+              "per_episode": {
+                "0": {
+                  "count": 512,
+                  "mse": 0.0630110607735141,
+                  "mae": 0.1679202394248932,
+                  "observed_nonzero": 102,
+                  "nonzero_mse": 0.21401699671426808,
+                  "rounded_match_fraction_not_exact_proof": 0.908203125
+                },
+                "1": {
+                  "count": 495,
+                  "mse": 0.09119431893620589,
+                  "mae": 0.20918659193667882,
+                  "observed_nonzero": 87,
+                  "nonzero_mse": 0.2964178726286795,
+                  "rounded_match_fraction_not_exact_proof": 0.898989898989899
+                },
+                "2": {
+                  "count": 506,
+                  "mse": 0.07250945940197817,
+                  "mae": 0.18896090407268948,
+                  "observed_nonzero": 105,
+                  "nonzero_mse": 0.2409266635769477,
+                  "rounded_match_fraction_not_exact_proof": 0.924901185770751
+                },
+                "3": {
+                  "count": 512,
+                  "mse": 0.05808698239299987,
+                  "mae": 0.16441440269401053,
+                  "observed_nonzero": 116,
+                  "nonzero_mse": 0.1628632265360615,
+                  "rounded_match_fraction_not_exact_proof": 0.9375
+                },
+                "4": {
+                  "count": 496,
+                  "mse": 0.08069457633702377,
+                  "mae": 0.19617036735628957,
+                  "observed_nonzero": 110,
+                  "nonzero_mse": 0.221761896138294,
+                  "rounded_match_fraction_not_exact_proof": 0.9213709677419355
+                },
+                "5": {
+                  "count": 456,
+                  "mse": 0.09456390458432322,
+                  "mae": 0.20124794796591006,
+                  "observed_nonzero": 92,
+                  "nonzero_mse": 0.31544151869042913,
+                  "rounded_match_fraction_not_exact_proof": 0.9100877192982456
+                },
+                "6": {
+                  "count": 477,
+                  "mse": 0.049342498779431684,
+                  "mae": 0.15326161574081937,
+                  "observed_nonzero": 104,
+                  "nonzero_mse": 0.14284509101614476,
+                  "rounded_match_fraction_not_exact_proof": 0.9622641509433962
+                },
+                "7": {
+                  "count": 512,
+                  "mse": 0.0649544658748488,
+                  "mae": 0.17486837709719574,
+                  "observed_nonzero": 93,
+                  "nonzero_mse": 0.22144811040552342,
+                  "rounded_match_fraction_not_exact_proof": 0.923828125
+                }
+              }
+            },
+            "potential": {
+              "local": {
+                "count": 3966,
+                "mse": 0.11135510549813883,
+                "mae": 0.24053436861772662,
+                "observed_nonzero": 809,
+                "nonzero_mse": 0.3949491311469142,
+                "rounded_match_fraction_not_exact_proof": 0.867624810892587
+              },
+              "per_episode": {
+                "0": {
+                  "count": 512,
+                  "mse": 0.10377623156069932,
+                  "mae": 0.22580513900708699,
+                  "observed_nonzero": 102,
+                  "nonzero_mse": 0.38984647085903357,
+                  "rounded_match_fraction_not_exact_proof": 0.86328125
+                },
+                "1": {
+                  "count": 495,
+                  "mse": 0.11769960720912064,
+                  "mae": 0.2571044521867261,
+                  "observed_nonzero": 87,
+                  "nonzero_mse": 0.43275635211875935,
+                  "rounded_match_fraction_not_exact_proof": 0.8525252525252526
+                },
+                "2": {
+                  "count": 506,
+                  "mse": 0.11965363473432508,
+                  "mae": 0.24141560378719787,
+                  "observed_nonzero": 105,
+                  "nonzero_mse": 0.4258822736825551,
+                  "rounded_match_fraction_not_exact_proof": 0.8557312252964426
+                },
+                "3": {
+                  "count": 512,
+                  "mse": 0.10823820901145945,
+                  "mae": 0.2405092769615531,
+                  "observed_nonzero": 116,
+                  "nonzero_mse": 0.35603133325589564,
+                  "rounded_match_fraction_not_exact_proof": 0.873046875
+                },
+                "4": {
+                  "count": 496,
+                  "mse": 0.11638084459899767,
+                  "mae": 0.2497784664704196,
+                  "observed_nonzero": 110,
+                  "nonzero_mse": 0.37882159947402305,
+                  "rounded_match_fraction_not_exact_proof": 0.8770161290322581
+                },
+                "5": {
+                  "count": 456,
+                  "mse": 0.11486704932043629,
+                  "mae": 0.23959077385422303,
+                  "observed_nonzero": 92,
+                  "nonzero_mse": 0.4428222847321061,
+                  "rounded_match_fraction_not_exact_proof": 0.868421052631579
+                },
+                "6": {
+                  "count": 477,
+                  "mse": 0.10022639449858049,
+                  "mae": 0.23943960596163474,
+                  "observed_nonzero": 104,
+                  "nonzero_mse": 0.3118882860900528,
+                  "rounded_match_fraction_not_exact_proof": 0.8658280922431866
+                },
+                "7": {
+                  "count": 512,
+                  "mse": 0.11008720019833088,
+                  "mae": 0.23130297133331035,
+                  "observed_nonzero": 93,
+                  "nonzero_mse": 0.4433980983944744,
+                  "rounded_match_fraction_not_exact_proof": 0.884765625
+                }
+              }
+            },
+            "shuffled_successor": {
+              "local": {
+                "count": 3966,
+                "mse": 0.09824393590417119,
+                "mae": 0.2190775404827695,
+                "observed_nonzero": 809,
+                "nonzero_mse": 0.318801404879224,
+                "rounded_match_fraction_not_exact_proof": 0.8910741301059002
+              },
+              "per_episode": {
+                "0": {
+                  "count": 512,
+                  "mse": 0.09028866137076091,
+                  "mae": 0.20592756119440844,
+                  "observed_nonzero": 102,
+                  "nonzero_mse": 0.2938879260974484,
+                  "rounded_match_fraction_not_exact_proof": 0.884765625
+                },
+                "1": {
+                  "count": 495,
+                  "mse": 0.11452551392893684,
+                  "mae": 0.24138019979591946,
+                  "observed_nonzero": 87,
+                  "nonzero_mse": 0.36171095494478595,
+                  "rounded_match_fraction_not_exact_proof": 0.8828282828282829
+                },
+                "2": {
+                  "count": 506,
+                  "mse": 0.11021378031573122,
+                  "mae": 0.2351496679842551,
+                  "observed_nonzero": 105,
+                  "nonzero_mse": 0.37592603369706784,
+                  "rounded_match_fraction_not_exact_proof": 0.8794466403162056
+                },
+                "3": {
+                  "count": 512,
+                  "mse": 0.08149482134435276,
+                  "mae": 0.20180865968609651,
+                  "observed_nonzero": 116,
+                  "nonzero_mse": 0.25029645410094453,
+                  "rounded_match_fraction_not_exact_proof": 0.900390625
+                },
+                "4": {
+                  "count": 496,
+                  "mse": 0.10730900647342007,
+                  "mae": 0.23157719664673765,
+                  "observed_nonzero": 110,
+                  "nonzero_mse": 0.3147711274836117,
+                  "rounded_match_fraction_not_exact_proof": 0.8991935483870968
+                },
+                "5": {
+                  "count": 456,
+                  "mse": 0.11401319070717798,
+                  "mae": 0.22952421820747734,
+                  "observed_nonzero": 92,
+                  "nonzero_mse": 0.3920564704503402,
+                  "rounded_match_fraction_not_exact_proof": 0.8925438596491229
+                },
+                "6": {
+                  "count": 477,
+                  "mse": 0.07384560758733096,
+                  "mae": 0.18890612139606341,
+                  "observed_nonzero": 104,
+                  "nonzero_mse": 0.23883329815626733,
+                  "rounded_match_fraction_not_exact_proof": 0.9161425576519916
+                },
+                "7": {
+                  "count": 512,
+                  "mse": 0.0952819676147941,
+                  "mae": 0.21874628245999686,
+                  "observed_nonzero": 93,
+                  "nonzero_mse": 0.3486624782620859,
+                  "rounded_match_fraction_not_exact_proof": 0.875
+                }
+              }
+            },
+            "shuffled_rewards": {
+              "local": {
+                "count": 3966,
+                "mse": 0.18722597819923162,
+                "mae": 0.3247731785473323,
+                "observed_nonzero": 809,
+                "nonzero_mse": 0.72432721057299,
+                "rounded_match_fraction_not_exact_proof": 0.794251134644478
+              },
+              "per_episode": {
+                "0": {
+                  "count": 512,
+                  "mse": 0.191538577876669,
+                  "mae": 0.3417711131511432,
+                  "observed_nonzero": 102,
+                  "nonzero_mse": 0.6998650637463375,
+                  "rounded_match_fraction_not_exact_proof": 0.78125
+                },
+                "1": {
+                  "count": 495,
+                  "mse": 0.17373113963628067,
+                  "mae": 0.30098341222066166,
+                  "observed_nonzero": 87,
+                  "nonzero_mse": 0.7766435016400789,
+                  "rounded_match_fraction_not_exact_proof": 0.8242424242424242
+                },
+                "2": {
+                  "count": 506,
+                  "mse": 0.17949510869489235,
+                  "mae": 0.322517893089735,
+                  "observed_nonzero": 105,
+                  "nonzero_mse": 0.669163024944574,
+                  "rounded_match_fraction_not_exact_proof": 0.8003952569169961
+                },
+                "3": {
+                  "count": 512,
+                  "mse": 0.1999875741154437,
+                  "mae": 0.3325521456744081,
+                  "observed_nonzero": 116,
+                  "nonzero_mse": 0.7290072397751481,
+                  "rounded_match_fraction_not_exact_proof": 0.7734375
+                },
+                "4": {
+                  "count": 496,
+                  "mse": 0.1941879684547128,
+                  "mae": 0.33809132052735574,
+                  "observed_nonzero": 110,
+                  "nonzero_mse": 0.6983476859918807,
+                  "rounded_match_fraction_not_exact_proof": 0.780241935483871
+                },
+                "5": {
+                  "count": 456,
+                  "mse": 0.193836835424245,
+                  "mae": 0.31872558510313137,
+                  "observed_nonzero": 92,
+                  "nonzero_mse": 0.7914703525153469,
+                  "rounded_match_fraction_not_exact_proof": 0.793859649122807
+                },
+                "6": {
+                  "count": 477,
+                  "mse": 0.20061791827527056,
+                  "mae": 0.3384036407344941,
+                  "observed_nonzero": 104,
+                  "nonzero_mse": 0.7422876711633208,
+                  "rounded_match_fraction_not_exact_proof": 0.7777777777777778
+                },
+                "7": {
+                  "count": 512,
+                  "mse": 0.16573012553577945,
+                  "mae": 0.30501050044619943,
+                  "observed_nonzero": 93,
+                  "nonzero_mse": 0.7028827858509025,
+                  "rounded_match_fraction_not_exact_proof": 0.822265625
+                }
+              }
+            },
+            "action_prior": {
+              "local": {
+                "count": 3966,
+                "mse": 0.16572129262939966,
+                "mae": 0.31459986441643395,
+                "observed_nonzero": 809,
+                "nonzero_mse": 0.676796104349054,
+                "rounded_match_fraction_not_exact_proof": 0.7960161371659102
+              },
+              "per_episode": {
+                "0": {
+                  "count": 512,
+                  "mse": 0.1612711429134834,
+                  "mae": 0.3113963602083274,
+                  "observed_nonzero": 102,
+                  "nonzero_mse": 0.6688782018015401,
+                  "rounded_match_fraction_not_exact_proof": 0.80078125
+                },
+                "1": {
+                  "count": 495,
+                  "mse": 0.15112682697772759,
+                  "mae": 0.29815964817236124,
+                  "observed_nonzero": 87,
+                  "nonzero_mse": 0.6974229134950491,
+                  "rounded_match_fraction_not_exact_proof": 0.8242424242424242
+                },
+                "2": {
+                  "count": 506,
+                  "mse": 0.1645999424109754,
+                  "mae": 0.31475493891612616,
+                  "observed_nonzero": 105,
+                  "nonzero_mse": 0.6611223117808895,
+                  "rounded_match_fraction_not_exact_proof": 0.7924901185770751
+                },
+                "3": {
+                  "count": 512,
+                  "mse": 0.17709449377180841,
+                  "mae": 0.3272197110666524,
+                  "observed_nonzero": 116,
+                  "nonzero_mse": 0.663284427463708,
+                  "rounded_match_fraction_not_exact_proof": 0.7734375
+                },
+                "4": {
+                  "count": 496,
+                  "mse": 0.17552824163551006,
+                  "mae": 0.3256566564328576,
+                  "observed_nonzero": 110,
+                  "nonzero_mse": 0.6686049802683895,
+                  "rounded_match_fraction_not_exact_proof": 0.7782258064516129
+                },
+                "5": {
+                  "count": 456,
+                  "mse": 0.17468376551499,
+                  "mae": 0.3182504040332797,
+                  "observed_nonzero": 92,
+                  "nonzero_mse": 0.7285685233250733,
+                  "rounded_match_fraction_not_exact_proof": 0.7982456140350878
+                },
+                "6": {
+                  "count": 477,
+                  "mse": 0.1740468638344453,
+                  "mae": 0.3232509022321872,
+                  "observed_nonzero": 104,
+                  "nonzero_mse": 0.6735618107880852,
+                  "rounded_match_fraction_not_exact_proof": 0.7819706498951782
+                },
+                "7": {
+                  "count": 512,
+                  "mse": 0.14877720975844166,
+                  "mae": 0.2989024270532856,
+                  "observed_nonzero": 93,
+                  "nonzero_mse": 0.6628232445202611,
+                  "rounded_match_fraction_not_exact_proof": 0.818359375
+                }
+              }
+            },
+            "zero": {
+              "local": {
+                "count": 3966,
+                "mse": 0.20398386283408976,
+                "mae": 0.20398386283408976,
+                "observed_nonzero": 809,
+                "nonzero_mse": 1.0,
+                "rounded_match_fraction_not_exact_proof": 0.7960161371659102
+              },
+              "per_episode": {
+                "0": {
+                  "count": 512,
+                  "mse": 0.19921875,
+                  "mae": 0.19921875,
+                  "observed_nonzero": 102,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.80078125
+                },
+                "1": {
+                  "count": 495,
+                  "mse": 0.17575757575757575,
+                  "mae": 0.17575757575757575,
+                  "observed_nonzero": 87,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.8242424242424242
+                },
+                "2": {
+                  "count": 506,
+                  "mse": 0.2075098814229249,
+                  "mae": 0.2075098814229249,
+                  "observed_nonzero": 105,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.7924901185770751
+                },
+                "3": {
+                  "count": 512,
+                  "mse": 0.2265625,
+                  "mae": 0.2265625,
+                  "observed_nonzero": 116,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.7734375
+                },
+                "4": {
+                  "count": 496,
+                  "mse": 0.2217741935483871,
+                  "mae": 0.2217741935483871,
+                  "observed_nonzero": 110,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.7782258064516129
+                },
+                "5": {
+                  "count": 456,
+                  "mse": 0.20175438596491227,
+                  "mae": 0.20175438596491227,
+                  "observed_nonzero": 92,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.7982456140350878
+                },
+                "6": {
+                  "count": 477,
+                  "mse": 0.2180293501048218,
+                  "mae": 0.2180293501048218,
+                  "observed_nonzero": 104,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.7819706498951782
+                },
+                "7": {
+                  "count": 512,
+                  "mse": 0.181640625,
+                  "mae": 0.181640625,
+                  "observed_nonzero": 93,
+                  "nonzero_mse": 1.0,
+                  "rounded_match_fraction_not_exact_proof": 0.818359375
+                }
+              }
+            }
+          },
+          "transition_comparisons_diagnostic_only": {
+            "before": {
+              "pooled_mse_improvement": 0.021602917264260432,
+              "positive_episodes": 8,
+              "episode_mse_improvements": [
+                0.027624006002237245,
+                0.012179454800915548,
+                0.024027258769809434,
+                0.017145729427382843,
+                0.024903427845761966,
+                0.019648931145651624,
+                0.0205721340146829,
+                0.026256877982804266
+              ]
+            },
+            "shuffled_successor": {
+              "pooled_mse_improvement": 0.026692780777745395,
+              "positive_episodes": 8,
+              "episode_mse_improvements": [
+                0.02727760059724682,
+                0.023331194992730953,
+                0.037704320913753045,
+                0.023407838951352893,
+                0.02661443013639629,
+                0.019449286122854764,
+                0.02450310880789927,
+                0.030327501739945306
+              ]
+            },
+            "shuffled_rewards": {
+              "pooled_mse_improvement": 0.11567482307280583,
+              "positive_episodes": 8,
+              "episode_mse_improvements": [
+                0.1285275171031549,
+                0.08253682070007479,
+                0.10698564929291418,
+                0.14190059172244385,
+                0.11349339211768904,
+                0.0992729308399218,
+                0.1512754194958389,
+                0.10077565966093066
+              ]
+            },
+            "action_prior": {
+              "pooled_mse_improvement": 0.09417013750297387,
+              "positive_episodes": 8,
+              "episode_mse_improvements": [
+                0.09826008213996931,
+                0.0599325080415217,
+                0.09209048300899722,
+                0.11900751137880855,
+                0.09483366529848629,
+                0.0801198609306668,
+                0.1247043650550136,
+                0.08382274388359287
+              ]
+            },
+            "zero": {
+              "pooled_mse_improvement": 0.13243270770766397,
+              "positive_episodes": 8,
+              "episode_mse_improvements": [
+                0.1362076892264859,
+                0.08456325682136986,
+                0.13500042202094673,
+                0.16847551760700014,
+                0.1410796172113633,
+                0.10719048138058905,
+                0.16868685132539013,
+                0.1166861591251512
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "predictions_checked": 129168,
+  "maximum_independent_prediction_error": 3.247402347028583e-15,
+  "ale_calls": 0,
+  "fit_calls": 0,
+  "manifest_sha256": "2c5eba4758bb9acd8a29f7c65a295856058fee985d329ad505d594749b85aaae",
+  "human_level_goal_achieved": false,
+  "does_not_change_planning_verdict": true,
+  "posthoc_after_planning_results": true,
+  "recognition_uses_observed_successor_not_available_before_action": true
+}

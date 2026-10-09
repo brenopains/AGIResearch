@@ -1,0 +1,18 @@
+{
+  "operator": "program_return_difference",
+  "input": "state_vector_and_two_action_words",
+  "mode": "conditional",
+  "parameters": "pong_leituras_por_programa_97_raw_rbf.npz",
+  "body": "state_RBF * (word_RBF(P,L)-word_RBF(P,R)-word_RBF(Q,L)+word_RBF(Q,R)) @ mirrored_coefficients",
+  "word_language": {
+    "maximum_blocks": 16,
+    "anonymous_actions": 4,
+    "end_symbol": 4
+  },
+  "guarantees": [
+    "self_zero",
+    "swap_negates",
+    "additive_differences"
+  ],
+  "does_not_guarantee": "correct_difference_or_human_intelligence"
+}

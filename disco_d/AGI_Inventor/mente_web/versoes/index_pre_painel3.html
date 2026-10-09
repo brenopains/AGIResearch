@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mente Viva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  :root {
+    --fundo: #020509;
+    --holo: #4fd8ff;
+    --holo-fraco: #0f5d78;
+    --linha: rgba(79, 216, 255, .22);
+    --texto: #dff7ff;
+    --apagado: #6e9aab;
+    --ambar: #ffae42;
+    --verde: #59ffb0;
+    --vermelho: #ff5a5a;
+    --display: "Rajdhani", "Segoe UI", system-ui, sans-serif;
+    --mono: "JetBrains Mono", Consolas, "Cascadia Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; }
+  body { background: radial-gradient(ellipse at 50% 45%, #061724 0%, var(--fundo) 70%), var(--fundo);
+         color: var(--texto); font-family: var(--mono); font-size: clamp(11px, 0.78vw, 14px); }
+  #fundo { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+  body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 5;
+    background: repeating-linear-gradient(0deg, rgba(79,216,255,.035) 0 1px, transparent 1px 3px),
+                radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.55) 100%); }
+  .app { position: relative; z-index: 1; height: 100vh; display: grid; grid-template-rows: 54px 1fr 34px; }
+
+  header { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 22px;
+           border-bottom: 1px solid var(--linha); }
+  .marca { font-family: var(--display); font-weight: 700; font-size: 24px; letter-spacing: .55em; color: var(--holo);
+           text-shadow: 0 0 14px rgba(79,216,255,.6); line-height: 1; }
+  .marca small { display: block; font-size: 10px; letter-spacing: .32em; color: var(--apagado); font-weight: 500;
+                 text-shadow: none; margin-top: 4px; }
+  .abas { display: flex; gap: 2px; }
+  .abas button { font-family: var(--display); font-weight: 600; font-size: 13px; letter-spacing: .28em; color: var(--apagado);
+    background: rgba(79,216,255,.04); border: 1px solid var(--linha); padding: 7px 18px; cursor: pointer;
+    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%); }
+  .abas button.ativa { color: #001018; background: var(--holo); border-color: var(--holo); box-shadow: 0 0 18px rgba(79,216,255,.45); }
+  .abas button:focus-visible, .voz:focus-visible { outline: 2px solid var(--holo); outline-offset: 3px; }
+  .direita { display: flex; justify-content: flex-end; align-items: center; gap: 16px; font-family: var(--display);
+             letter-spacing: .14em; font-size: 14px; }
+  .pilula { padding: 3px 12px; border: 1px solid currentColor; font-weight: 700; letter-spacing: .24em; }
+  .pilula.VIVA { color: var(--verde); box-shadow: 0 0 12px rgba(89,255,176,.3) inset; }
+  .pilula.DORMINDO { color: var(--apagado); }
+  .pilula.SEM-INTERNET { color: var(--vermelho); animation: pisca 1.2s steps(2) infinite; }
+  @keyframes pisca { 50% { opacity: .35; } }
+  #relogio { color: var(--holo); font-variant-numeric: tabular-nums; }
+  .voz { font-family: var(--display); font-weight: 600; letter-spacing: .2em; color: var(--holo); background: transparent;
+         border: 1px solid var(--holo-fraco); padding: 6px 12px; cursor: pointer; }
+  .voz:hover { background: rgba(79,216,255,.1); }
+
+  main { min-height: 0; padding: 14px 18px; display: grid; gap: 14px; }
+  main[hidden] { display: none; }
+  #geral { grid-template-columns: minmax(0, 1fr) minmax(0, 2.1fr) minmax(0, 1fr); }
+  #organismo { grid-template-columns: minmax(0, 2.6fr) minmax(0, 1fr); }
+  .col { min-height: 0; display: grid; gap: 14px; }
+  #geral .col.esq { grid-template-rows: auto 1fr; }
+  #geral .col.dir { grid-template-rows: 1.15fr 1fr auto; }
+  #organismo .col.dir { grid-template-rows: 1.2fr 1fr; }
+
+  .quadro { position: relative; min-height: 0; overflow: hidden; padding: 12px 14px; background: rgba(6, 22, 32, .55);
+    border: 1px solid var(--linha);
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px)); }
+  .quadro::before { content: ""; position: absolute; top: 0; left: 0; width: 46px; height: 2px; background: var(--holo);
+                    box-shadow: 0 0 10px var(--holo); }
+  .quadro h2 { margin: 0 0 9px; font-family: var(--display); font-weight: 600; font-size: 12px; letter-spacing: .34em;
+               color: var(--holo); display: flex; justify-content: space-between; }
+  .quadro h2 span { color: var(--apagado); letter-spacing: .1em; font-weight: 500; }
+  .sem-borda { padding: 0; background: transparent; border: 0; clip-path: none; }
+  .sem-borda::before { display: none; }
+  canvas { display: block; width: 100%; height: 100%; }
+
+  .agora p { margin: 0; font-size: clamp(13px, 1.02vw, 18px); line-height: 1.45; text-wrap: balance; }
+  .agora p b { color: var(--holo); font-weight: 600; }
+  ol.fluxo { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px;
+             mask-image: linear-gradient(180deg, #000 70%, transparent); }
+  ol.fluxo li { display: grid; grid-template-columns: 58px 1fr; gap: 8px; line-height: 1.35; animation: entra .5s ease-out; }
+  ol.fluxo time { color: var(--apagado); font-variant-numeric: tabular-nums; }
+  ol.fluxo li.ouro span { color: var(--ambar); }
+  ol.fluxo li.alerta span { color: var(--vermelho); }
+  @keyframes entra { from { opacity: 0; transform: translateX(-8px); } }
+  ul.lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  ul.lista li { display: flex; justify-content: space-between; gap: 8px; }
+  ul.lista q { quotes: "“" "”"; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  ul.lista li span { color: var(--apagado); flex-shrink: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 5px; max-height: 64px; overflow: hidden; }
+  .chip { border: 1px solid var(--holo-fraco); padding: 1px 7px; font-size: 11px; color: var(--texto); }
+  .vazio { color: var(--apagado); font-style: italic; }
+  .barra-conf { display: grid; grid-template-columns: minmax(0, 1fr) 90px 38px; gap: 8px; align-items: center; margin-bottom: 7px; }
+  .barra-conf .nome { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .barra-conf i { display: block; height: 6px; background: rgba(79,216,255,.12); position: relative; }
+  .barra-conf i b { position: absolute; inset: 0 auto 0 0; background: linear-gradient(90deg, var(--holo-fraco), var(--holo)); }
+  .barra-conf i.ruim b { background: linear-gradient(90deg, #5a2a10, var(--ambar)); }
+  .barra-conf em { font-style: normal; text-align: right; color: var(--apagado); font-variant-numeric: tabular-nums; }
+  .nota { color: var(--apagado); font-size: 11px; line-height: 1.4; margin: 6px 0 0; }
+
+  footer { border-top: 1px solid var(--linha); display: flex; align-items: center; overflow: hidden; white-space: nowrap; }
+  footer b { font-family: var(--display); letter-spacing: .3em; color: #001018; background: var(--holo);
+             padding: 0 14px; height: 100%; display: flex; align-items: center; flex-shrink: 0; position: relative; z-index: 2;
+             box-shadow: 12px 0 18px var(--fundo); }
+  footer .trilho { flex: 1; overflow: hidden; min-width: 0; }
+  .letreiro { display: inline-block; padding-left: 100%; animation: corre 60s linear infinite; color: var(--texto); }
+  .letreiro span { margin-right: 46px; } .letreiro em { color: var(--holo); font-style: normal; }
+  @keyframes corre { to { transform: translateX(-100%); } }
+  @media (prefers-reduced-motion: reduce) { .letreiro { animation: none; padding-left: 12px; } ol.fluxo li { animation: none; } }
+  @media (max-width: 1000px) { html, body { overflow: auto; } .app { height: auto; min-height: 100vh; }
+    #geral, #organismo { grid-template-columns: 1fr; } #reator, #anatomia { height: 70vh; } }
+</style>
+</head>
+<body>
+<canvas id="fundo"></canvas>
+<div class="app">
+  <header>
+    <div class="marca">MENTE<small>organismo vivo na internet real</small></div>
+    <nav class="abas" aria-label="vistas">
+      <button type="button" data-aba="geral" class="ativa">VISÃO GERAL</button>
+      <button type="button" data-aba="organismo">ORGANISMO</button>
+    </nav>
+    <div class="direita">
+      <span id="pilula" class="pilula DORMINDO">…</span>
+      <span id="relogio">--:--</span>
+      <button class="voz" id="ouvir" type="button" title="ouvir o relatório">◉ VOZ</button>
+    </div>
+  </header>
+
+  <main id="geral">
+    <div class="col esq">
+      <section class="quadro agora"><h2>AGORA <span id="versao">—</span></h2><p id="pensamento">acordando…</p></section>
+      <section class="quadro"><h2>FLUXO DE CONSCIÊNCIA <span>ao vivo</span></h2><ol class="fluxo" id="fluxo"></ol></section>
+    </div>
+    <section class="quadro sem-borda"><canvas id="reator" aria-label="o núcleo da mente: anéis giram no ritmo das decisões dela"></canvas></section>
+    <div class="col dir">
+      <section class="quadro"><h2>O QUE ELA JÁ FORMOU <span>sem ninguém ensinar</span></h2><ul class="lista" id="altas"></ul></section>
+      <section class="quadro"><h2>APRENDIZADO <span>bits por letra</span></h2><canvas id="curva"></canvas></section>
+      <section class="quadro"><h2>DESCOBRIU SOZINHA</h2><div class="chips" id="barras"></div></section>
+    </div>
+  </main>
+
+  <main id="organismo" hidden>
+    <section class="quadro sem-borda"><canvas id="anatomia" aria-label="anatomia da mente: os órgãos e o caminho da informação entre eles"></canvas></section>
+    <div class="col dir">
+      <section class="quadro"><h2>PERGUNTAS VIVAS <span id="n-perguntas">—</span></h2><canvas id="constelacao"></canvas></section>
+      <section class="quadro"><h2>EM QUEM ELA CONFIA <span>o que rende</span></h2><div id="confianca"></div>
+        <p class="nota">Barra azul: quanto aquela ação trouxe de entendimento. Âmbar: quase nada — ela vai largando.</p></section>
+    </div>
+  </main>
+
+  <footer><b>AO VIVO</b><div class="trilho"><div class="letreiro" id="letreiro"><span>aguardando a mente…</span></div></div></footer>
+</div>
+
+<script>
+"use strict";
+const $ = (id) => document.getElementById(id);
+const fmt = (n) => (n ?? 0).toLocaleString("pt-BR");
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const reduz = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const idade = (s) => { s = Math.round(s || 0); const d = s / 86400, h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60);
+  return d >= 2 ? d.toFixed(1).replace(".", ",") + " dias" : h > 0 ? `${h} h ${String(m).padStart(2, "0")} min` : `${m} min`; };
+const H = "79,216,255", AMB = "255,174,66", VERDE = "89,255,176";
+let est = null, tel = null, atividade = 0, ultPassos = null, ultParede = null;
+
+/* ---------- fundo: grade hexagonal discreta ---------- */
+function fundo() {
+  const c = $("fundo"), r = devicePixelRatio || 1, w = innerWidth, h = innerHeight;
+  c.width = w * r; c.height = h * r; const g = c.getContext("2d"); g.scale(r, r);
+  g.strokeStyle = "rgba(79,216,255,.045)"; const s = 26, dx = s * 1.732;
+  for (let y = 0, k = 0; y < h + s; y += s * 1.5, k++)
+    for (let x = (k % 2) * dx / 2; x < w + dx; x += dx) { g.beginPath();
+      for (let i = 0; i < 6; i++) { const a = Math.PI / 3 * i + Math.PI / 6; g[i ? "lineTo" : "moveTo"](x + s * .55 * Math.cos(a), y + s * .55 * Math.sin(a)); }
+      g.closePath(); g.stroke(); }
+}
+fundo(); addEventListener("resize", fundo);
+setInterval(() => { $("relogio").textContent = new Date().toLocaleTimeString("pt-BR", {hour: "2-digit", minute: "2-digit"}); }, 1000);
+
+/* ---------- abas ---------- */
+const abas = document.querySelectorAll(".abas button");
+function mostra(a) { abas.forEach((b) => b.classList.toggle("ativa", b.dataset.aba === a));
+  $("geral").hidden = a !== "geral"; $("organismo").hidden = a !== "organismo";
+  history.replaceState(null, "", a === "organismo" ? "#organismo" : "#"); }
+abas.forEach((b) => b.addEventListener("click", () => mostra(b.dataset.aba)));
+if (location.hash === "#organismo") mostra("organismo");
+addEventListener("hashchange", () => mostra(location.hash === "#organismo" ? "organismo" : "geral"));
+
+/* ---------- dados ---------- */
+async function puxaEstado() {
+  try { est = await (await fetch("/api/estado")).json(); } catch (e) { return; }
+  const p = $("pilula"); p.textContent = est.status; p.className = "pilula " + est.status.replace(" ", "-");
+  $("versao").textContent = "versão " + est.versao + " · " + idade(est.vida_s) + " de vida";
+  $("pensamento").innerHTML = esc(est.pensamento).replace(/“([^”]*)”/g, "<b>“$1”</b>");
+  $("altas").innerHTML = est.mente.altas.length ? est.mente.altas.slice(0, 7).map(([u, n]) =>
+    `<li><q>${esc(u)}</q><span>nível ${n}</span></li>`).join("") : '<li class="vazio">ainda formando…</li>';
+  $("barras").innerHTML = est.barras.length ? est.barras.slice(-10).map((b) => `<span class="chip">${esc(b)}</span>`).join("")
+    : '<span class="vazio">nenhuma ainda</span>';
+  $("fluxo").innerHTML = est.feed.slice(0, 12).map((f) =>
+    `<li class="${f.tipo}"><time>${idade(f.vida_s)}</time><span>${esc(f.texto)}</span></li>`).join("") || '<li class="vazio">aguardando…</li>';
+  if (ultPassos !== null) { const dt = (Date.now() - ultParede) / 60000; atividade = Math.min(1, 0.6 * atividade + 0.4 * Math.min(1, (est.passos - ultPassos) / dt / 40)); }
+  ultPassos = est.passos; ultParede = Date.now();
+  const q = est.pesquisas.slice(0, 10).map((x) => `<span>buscando <em>“${esc(x.consulta)}”</em> em ${esc(x.onde)}</span>`).join("");
+  $("letreiro").innerHTML = q || "<span>lendo e explorando…</span>";
+  curva(est.curva);
+}
+async function puxaOrg() { try { const t = await (await fetch("/api/organismo")).json(); tel = t.indisponivel ? null : t; } catch (e) {} }
+let ultSeq = null;
+async function puxaEventos() {
+  try { const r = await (await fetch("/api/eventos?desde=" + (ultSeq ?? 0))).json();
+    if (ultSeq === null) { ultSeq = r.ultimo; return; }
+    ultSeq = r.ultimo; r.eventos.forEach(dispara); } catch (e) {}
+}
+puxaEstado(); puxaOrg(); puxaEventos();
+setInterval(puxaEstado, 3000); setInterval(puxaOrg, 3000); setInterval(puxaEventos, 1500);
+
+/* ---------- curva de aprendizado ---------- */
+function curva(pts) {
+  const c = $("curva"), r = devicePixelRatio || 1, w = c.clientWidth, h = c.clientHeight;
+  c.width = w * r; c.height = h * r; const g = c.getContext("2d"); g.scale(r, r);
+  if (!pts || pts.length < 2) { g.fillStyle = "#6e9aab"; g.font = "11px JetBrains Mono, Consolas"; g.fillText("medindo…", 4, h / 2); return; }
+  const ys0 = pts.map((p) => p[1]), k = Math.max(1, Math.round(pts.length / 25));
+  const ys = ys0.map((_, i) => { const a = ys0.slice(Math.max(0, i - k), i + k + 1); return a.reduce((x, y) => x + y, 0) / a.length; });
+  pts = pts.map((p, i) => [p[0], ys[i]]);
+  const lo = Math.min(...ys0), hi = Math.max(...ys0), p = 10;
+  const X = (i) => p + (w - 2 * p) * i / (pts.length - 1), Y = (v) => p + (h - 2 * p) * (1 - (v - lo) / ((hi - lo) || 1));
+  const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, `rgba(${H},.3)`); gr.addColorStop(1, `rgba(${H},0)`);
+  g.beginPath(); ys0.forEach((v, i) => g[i ? "lineTo" : "moveTo"](X(i), Y(v))); g.strokeStyle = `rgba(${H},.18)`; g.lineWidth = 1; g.stroke();
+  g.beginPath(); pts.forEach((q, i) => g[i ? "lineTo" : "moveTo"](X(i), Y(q[1]))); g.lineTo(X(pts.length - 1), h); g.lineTo(X(0), h);
+  g.fillStyle = gr; g.fill();
+  g.beginPath(); pts.forEach((q, i) => g[i ? "lineTo" : "moveTo"](X(i), Y(q[1]))); g.strokeStyle = `rgb(${H})`; g.lineWidth = 1.6;
+  g.shadowColor = `rgb(${H})`; g.shadowBlur = 8; g.stroke(); g.shadowBlur = 0;
+  g.fillStyle = "#6e9aab"; g.font = "10px JetBrains Mono, Consolas"; g.fillText(hi.toFixed(2), 2, 10); g.fillText(lo.toFixed(2), 2, h - 3);
+  g.fillStyle = "#dff7ff"; g.textAlign = "right"; g.fillText("agora " + ys[ys.length - 1].toFixed(2) + " · descendo = entende mais rápido", w - 4, 10);
+}
+
+/* ---------- o reator (visão geral) ---------- */
+const pulsos = [];
+function arco(g, cx, cy, r, a0, a1, cor, lw, brilho) { g.beginPath(); g.arc(cx, cy, r, a0, a1); g.strokeStyle = cor; g.lineWidth = lw;
+  if (brilho) { g.shadowColor = cor; g.shadowBlur = brilho; } g.stroke(); g.shadowBlur = 0; }
+function reator(ts) {
+  requestAnimationFrame(reator);
+  if ($("geral").hidden) return;
+  const c = $("reator"), r = devicePixelRatio || 1, w = c.clientWidth, h = c.clientHeight;
+  if (c.width !== Math.round(w * r) || c.height !== Math.round(h * r)) { c.width = w * r; c.height = h * r; }
+  const g = c.getContext("2d"); g.setTransform(r, 0, 0, r, 0, 0); g.clearRect(0, 0, w, h);
+  const cx = w / 2, cy = h / 2, R = Math.min(w * 0.27, h * 0.36), s = ts / 1000;
+  const viva = est && est.status !== "DORMINDO", vel = reduz ? 0 : (viva ? 0.15 + 0.9 * atividade : 0.03);
+  const halo = g.createRadialGradient(cx, cy, 0, cx, cy, R * 1.3);
+  halo.addColorStop(0, `rgba(${H},${viva ? .22 : .08})`); halo.addColorStop(.5, `rgba(${H},.04)`); halo.addColorStop(1, "rgba(0,0,0,0)");
+  g.fillStyle = halo; g.beginPath(); g.arc(cx, cy, R * 1.3, 0, 7); g.fill();
+  // anel de marcas
+  g.save(); g.translate(cx, cy); g.rotate(s * vel * 0.12);
+  for (let i = 0; i < 144; i++) { const a = i / 144 * Math.PI * 2, l = i % 12 === 0 ? 14 : i % 4 === 0 ? 8 : 4;
+    g.strokeStyle = `rgba(${H},${i % 12 === 0 ? .8 : .35})`; g.lineWidth = 1; g.beginPath();
+    g.moveTo(Math.cos(a) * R, Math.sin(a) * R); g.lineTo(Math.cos(a) * (R - l), Math.sin(a) * (R - l)); g.stroke(); }
+  g.restore();
+  // segmentos girando em sentidos opostos
+  [[0.88, 1, 7, 3, 0.55], [0.78, -1.6, 22, 2, 0.75], [0.66, 2.2, 5, 5, 0.42], [0.55, -0.9, 36, 1.5, 0.6]].forEach(([k, v, n, lw, fr], i) => {
+    for (let j = 0; j < n; j++) { const a = s * v * vel + j / n * Math.PI * 2;
+      arco(g, cx, cy, R * k, a, a + Math.PI * 2 / n * fr, `rgba(${H},${0.35 + 0.12 * i})`, lw, i === 2 ? 10 : 0); } });
+  // indicadores: pressão até o sono (âmbar) e atividade (verde)
+  const pl = tel && tel.plasticidade, pres = pl && pl.limiar_sono ? Math.min(1, pl.pressao / pl.limiar_sono) : null;
+  arco(g, cx, cy, R * 0.45, -Math.PI / 2, Math.PI * 1.5, `rgba(${AMB},.12)`, 6);
+  if (pres !== null) arco(g, cx, cy, R * 0.45, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * pres, `rgba(${AMB},.95)`, 6, 14);
+  arco(g, cx, cy, R * 0.38, -Math.PI / 2, Math.PI * 1.5, `rgba(${VERDE},.1)`, 3);
+  arco(g, cx, cy, R * 0.38, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * Math.max(0.02, atividade), `rgba(${VERDE},.9)`, 3, 10);
+  // núcleo
+  const pul = 1 + (reduz ? 0 : (viva ? 0.06 + 0.06 * atividade : 0.01) * Math.sin(s * (2 + 5 * atividade)));
+  const nuc = g.createRadialGradient(cx, cy, 0, cx, cy, R * 0.3 * pul);
+  nuc.addColorStop(0, "rgba(220,250,255,.95)"); nuc.addColorStop(.35, `rgba(${H},.55)`); nuc.addColorStop(1, `rgba(${H},0)`);
+  g.fillStyle = nuc; g.beginPath(); g.arc(cx, cy, R * 0.3 * pul, 0, 7); g.fill();
+  pulsos.forEach((p) => { p.r += 1.6; p.a -= 0.012; arco(g, cx, cy, p.r, 0, 7, `rgba(${p.cor},${Math.max(0, p.a)})`, 2); });
+  while (pulsos.length && pulsos[0].a <= 0) pulsos.shift();
+  g.textAlign = "center"; g.fillStyle = "#dff7ff"; g.font = `700 ${Math.round(R * 0.13)}px Rajdhani, Segoe UI`;
+  g.shadowColor = `rgb(${H})`; g.shadowBlur = 12; g.fillText(est ? idade(est.vida_s).toUpperCase() : "—", cx, cy + R * 0.04); g.shadowBlur = 0;
+  g.font = `600 ${Math.round(R * 0.05)}px Rajdhani, Segoe UI`; g.fillStyle = "#6e9aab";
+  g.fillText("DE VIDA", cx, cy + R * 0.12);
+  g.fillText(viva ? `ATIVIDADE ${Math.round(atividade * 100)}%` : "EM REPOUSO", cx, cy - R * 0.12);
+  // chamadas ligadas ao reator
+  if (!est) return;
+  const m = est.mente, c2 = est.consumo, im = est.imaginacao;
+  const abertas = Object.values(m.lacunas || {}).reduce((a, b) => a + b, 0);
+  const forte = (m.perguntas[0] || [null, "—"])[1];
+  const ch = [
+    [-0.78, -0.62, "CONSUMO", [`${fmt(c2.paginas)} páginas lidas`, `${fmt(c2.mb_lidos)} MB de texto`, `${fmt(c2.sites)} sites · ${fmt(c2.imagens)} imagens · ${fmt(c2.videos)} vídeos`]],
+    [0.78, -0.62, "MEMÓRIA", [`${fmt(m.estruturas)} pedaços guardados`, `${fmt(m.fusoes)} junções de pedaços`, `chegou ao nível ${m.nivel_max}`]],
+    [-0.78, 0.62, "CURIOSIDADE", [`${fmt(abertas)} perguntas abertas`, `mais forte: “${String(forte).trim().slice(0, 18)}”`, `${fmt(m.fechadas)} já resolvidas`]],
+    [0.78, 0.62, "IMAGINAÇÃO", [`${fmt(im.confirmadas)} imaginadas e confirmadas`, `placebo: ${fmt(im.placebo)}`, `${fmt(im.sonhos)} sonos de consolidação`]],
+  ];
+  ch.forEach(([fx, fy, tit, linhas]) => {
+    // linha do anel ate a borda; o texto fica DENTRO da tela, alinhado a borda
+    const sx = Math.sign(fx), sy = Math.sign(fy);
+    const ax = cx + sx * R * 0.7, ay = cy + sy * R * 0.7;
+    const ex = sx < 0 ? 10 : w - 10, ey = cy + sy * Math.min(h / 2 - 70, R * 1.05);
+    const kx = cx + sx * R * 1.05;
+    g.strokeStyle = `rgba(${H},.5)`; g.lineWidth = 1; g.beginPath(); g.moveTo(ax, ay); g.lineTo(kx, ey); g.lineTo(ex, ey); g.stroke();
+    g.fillStyle = `rgb(${H})`; g.beginPath(); g.arc(ax, ay, 3, 0, 7); g.fill();
+    g.fillRect(sx < 0 ? ex : ex - 6, ey - 1, 6, 3);
+    g.textAlign = sx < 0 ? "left" : "right";
+    const ty = sy < 0 ? ey - 12 - (linhas.length) * 16 : ey + 20;
+    g.font = "700 15px Rajdhani, Segoe UI"; g.fillStyle = `rgb(${H})`; g.fillText(tit, ex, ty);
+    g.font = "12px JetBrains Mono, Consolas"; g.fillStyle = "#dff7ff";
+    linhas.forEach((l, i) => g.fillText(l, ex, ty + 17 + i * 16));
+  });
+}
+requestAnimationFrame(reator);
+
+/* ---------- anatomia (organismo) ---------- */
+const ORG = {
+  internet: {x: .07, y: .50, nome: "INTERNET", sub: "o mundo lá fora", cor: H},
+  olhos: {x: .24, y: .20, nome: "OLHOS", sub: "lê textos, vê imagens e vídeos", cor: H},
+  memoria: {x: .50, y: .12, nome: "MEMÓRIA", sub: "junta letras em pedaços e pedaços em palavras", cor: H},
+  curiosidade: {x: .76, y: .20, nome: "CURIOSIDADE", sub: "o que ela ainda não entende", cor: "169,139,255"},
+  vontade: {x: .90, y: .52, nome: "VONTADE", sub: "escolhe o que fazer agora", cor: H},
+  maos: {x: .52, y: .86, nome: "MÃOS", sub: "abre links, pesquisa, assiste", cor: H},
+  sono: {x: .34, y: .55, nome: "SONO", sub: "re-testa o que aprendeu; desfaz o que não serve", cor: AMB},
+  imaginacao: {x: .64, y: .55, nome: "IMAGINAÇÃO", sub: "inventa combinações e confere no mundo", cor: AMB},
+};
+const VIAS = [["internet", "olhos"], ["olhos", "memoria"], ["memoria", "curiosidade"], ["curiosidade", "vontade"],
+  ["vontade", "maos"], ["maos", "internet"], ["memoria", "sono"], ["sono", "imaginacao"], ["imaginacao", "memoria"], ["olhos", "curiosidade"]];
+const particulas = [], brilho = {};
+Object.keys(ORG).forEach((k) => { brilho[k] = 0; });
+function viaja(a, b, cor, n = 1, vel = 1) { for (let i = 0; i < n; i++) particulas.push({a, b, t: -i * 0.08, v: (0.006 + Math.random() * 0.004) * vel, cor}); }
+let legenda = "", legendaT = 0;
+function conta(t) { legenda = t; legendaT = performance.now(); }
+function dispara(e) {
+  switch (e.ev) {
+    case "leu": viaja("internet", "olhos", H, 2); viaja("olhos", "memoria", H, 1); brilho.olhos = 1; conta(`OLHOS leram uma página de ${e.dominio}`); break;
+    case "viu": viaja("internet", "olhos", AMB, 3); brilho.olhos = 1; conta(`OLHOS viram ${e.n} imagem(ns)`); break;
+    case "assistiu": viaja("internet", "olhos", AMB, 5); brilho.olhos = 1; conta("OLHOS e ouvidos assistiram a um vídeo"); break;
+    case "nascimento": brilho.memoria = 1; viaja("olhos", "memoria", VERDE, 1, 1.5); conta(`MEMÓRIA juntou pedaços: “${String(e.pedaco || "").trim()}”`); break;
+    case "lacuna": viaja("memoria", "curiosidade", "169,139,255", 1); brilho.curiosidade = Math.max(brilho.curiosidade, .6); break;
+    case "fechou": brilho.curiosidade = 1; viaja("curiosidade", "memoria", AMB, 2); conta(`CURIOSIDADE resolveu “${String(e.alvo || "").trim()}”`); break;
+    case "pesquisa": viaja("curiosidade", "vontade", "169,139,255", 1); viaja("vontade", "maos", H, 1); brilho.vontade = 1;
+      conta(`VONTADE decidiu pesquisar “${e.consulta}”`); break;
+    case "acao": viaja("maos", "internet", e.pagou ? VERDE : H, 1); brilho.maos = 1; break;
+    case "sonho": brilho.sono = 1; viaja("memoria", "sono", AMB, 3); if (e.ligou) viaja("sono", "memoria", VERDE, Math.min(6, e.ligou));
+      pulsos.push({r: 10, a: .8, cor: AMB}); conta(`SONO: ligou ${e.ligou} junções, desfez ${e.deprimiu}`); break;
+    case "imaginou_e_viu": brilho.imaginacao = 1; viaja("imaginacao", "memoria", AMB, 4, 1.3);
+      conta(`IMAGINAÇÃO acertou: imaginou “${(e.par || []).join("").trim()}” e o mundo confirmou`); break;
+    case "deprimiu": viaja("sono", "memoria", "255,90,90", 1); break;
+    case "barra_descoberta": brilho.maos = 1; conta(`MÃOS acharam uma ferramenta nova em ${e.dominio}`); break;
+    case "sem_rede": brilho.internet = 1; conta("A INTERNET SUMIU — ela parou e está consolidando"); break;
+    case "rede_voltou": brilho.internet = 1; conta("A internet voltou — ela seguiu de onde estava"); break;
+    case "transplante": conta(`ÓRGÃOS NOVOS: ${(e.orgaos || []).join(", ")}`); break;
+  }
+}
+function vivo(k) {
+  if (!est) return "";
+  const m = est.mente, c = est.consumo, im = est.imaginacao, p = tel && tel.plasticidade;
+  switch (k) {
+    case "internet": return `${fmt(c.sites)} sites conhecidos`;
+    case "olhos": return `${fmt(c.paginas)} páginas · ${fmt(c.imagens)} imagens · ${fmt(c.videos)} vídeos`;
+    case "memoria": return `${fmt(m.estruturas)} pedaços · nível ${m.nivel_max}`;
+    case "curiosidade": { const n = Object.values(m.lacunas || {}).reduce((a, b) => a + b, 0); return `${fmt(n)} perguntas abertas`; }
+    case "vontade": return est.status === "SEM INTERNET" ? "esperando o mundo voltar" : `${fmt(est.passos)} decisões tomadas`;
+    case "maos": return `${fmt(c.pedidos)} pedidos à internet`;
+    case "sono": return p ? `${Math.round(100 * Math.min(1, p.pressao / (p.limiar_sono || 1)))}% até dormir · desfez ${fmt(p.deprimidas)}` : `${fmt(im.sonhos)} sonos`;
+    case "imaginacao": return `${fmt(im.confirmadas)} confirmadas · placebo ${fmt(im.placebo)}`;
+  }
+}
+function glifo(g, k, x, y, r, cor) {
+  g.strokeStyle = `rgb(${cor})`; g.fillStyle = `rgb(${cor})`; g.lineWidth = 1.6; g.beginPath();
+  if (k === "internet") { g.arc(x, y, r, 0, 7); g.moveTo(x - r, y); g.lineTo(x + r, y); g.ellipse(x, y, r * .45, r, 0, 0, 7); }
+  else if (k === "olhos") { g.moveTo(x - r, y); g.quadraticCurveTo(x, y - r * 1.1, x + r, y); g.quadraticCurveTo(x, y + r * 1.1, x - r, y); g.stroke(); g.beginPath(); g.arc(x, y, r * .35, 0, 7); g.fill(); return; }
+  else if (k === "memoria") { for (let i = -1; i <= 1; i++) { const yy = y + i * r * .45; g.moveTo(x - r, yy); g.lineTo(x, yy - r * .3); g.lineTo(x + r, yy); g.lineTo(x, yy + r * .3); g.closePath(); } }
+  else if (k === "curiosidade") { g.font = `700 ${r * 2}px Rajdhani, Segoe UI`; g.textAlign = "center"; g.fillText("?", x, y + r * .7); return; }
+  else if (k === "vontade") { g.arc(x, y, r, 0, 7); g.moveTo(x - r * 1.3, y); g.lineTo(x + r * 1.3, y); g.moveTo(x, y - r * 1.3); g.lineTo(x, y + r * 1.3); g.moveTo(x + r * .3, y); g.arc(x, y, r * .3, 0, 7); }
+  else if (k === "maos") { g.moveTo(x - r * .4, y - r); g.lineTo(x - r * .4, y + r * .6); g.lineTo(x - r * .05, y + r * .25); g.lineTo(x + r * .3, y + r); g.lineTo(x + r * .55, y + r * .85); g.lineTo(x + r * .2, y + r * .1); g.lineTo(x + r * .7, y + r * .1); g.closePath(); }
+  else if (k === "sono") { g.arc(x, y, r, Math.PI * .3, Math.PI * 1.7); g.arc(x + r * .45, y, r * .8, Math.PI * 1.45, Math.PI * .55, true); g.closePath(); g.fill(); return; }
+  else if (k === "imaginacao") { for (let i = 0; i < 4; i++) { const a = i * Math.PI / 2; g.moveTo(x, y); g.lineTo(x + Math.cos(a) * r * 1.2, y + Math.sin(a) * r * 1.2); }
+    g.stroke(); g.beginPath(); g.arc(x, y, r * .25, 0, 7); g.fill(); return; }
+  g.stroke();
+}
+function anatomia(ts) {
+  requestAnimationFrame(anatomia);
+  if ($("organismo").hidden) return;
+  const c = $("anatomia"), r = devicePixelRatio || 1, w = c.clientWidth, h = c.clientHeight;
+  if (c.width !== Math.round(w * r) || c.height !== Math.round(h * r)) { c.width = w * r; c.height = h * r; }
+  const g = c.getContext("2d"); g.setTransform(r, 0, 0, r, 0, 0); g.clearRect(0, 0, w, h);
+  const P = (k) => [ORG[k].x * w, ORG[k].y * (h - 40) + 8], R = Math.min(w, h) * 0.055, s = ts / 1000;
+  VIAS.forEach(([a, b]) => { const [x1, y1] = P(a), [x2, y2] = P(b); g.strokeStyle = `rgba(${H},.16)`; g.lineWidth = 1.2;
+    g.setLineDash([4, 6]); g.lineDashOffset = reduz ? 0 : -s * 12; g.beginPath(); g.moveTo(x1, y1); g.lineTo(x2, y2); g.stroke(); });
+  g.setLineDash([]);
+  for (let i = particulas.length - 1; i >= 0; i--) { const p = particulas[i]; p.t += p.v;
+    if (p.t >= 1) { brilho[p.b] = Math.max(brilho[p.b], .5); particulas.splice(i, 1); continue; } if (p.t < 0) continue;
+    const [x1, y1] = P(p.a), [x2, y2] = P(p.b), x = x1 + (x2 - x1) * p.t, y = y1 + (y2 - y1) * p.t;
+    g.fillStyle = `rgba(${p.cor},.95)`; g.shadowColor = `rgb(${p.cor})`; g.shadowBlur = 10; g.beginPath(); g.arc(x, y, 2.6, 0, 7); g.fill(); g.shadowBlur = 0; }
+  Object.entries(ORG).forEach(([k, o]) => {
+    const [x, y] = P(k), b = brilho[k]; brilho[k] = Math.max(0, b - 0.012);
+    const pul = 1 + (reduz ? 0 : 0.04 * Math.sin(s * 2 + x));
+    const halo = g.createRadialGradient(x, y, 0, x, y, R * (1.9 + b));
+    halo.addColorStop(0, `rgba(${o.cor},${0.18 + 0.35 * b})`); halo.addColorStop(1, `rgba(${o.cor},0)`);
+    g.fillStyle = halo; g.beginPath(); g.arc(x, y, R * (1.9 + b), 0, 7); g.fill();
+    g.fillStyle = "rgba(2,10,16,.85)"; g.beginPath(); g.arc(x, y, R * pul, 0, 7); g.fill();
+    arco(g, x, y, R * pul, 0, 7, `rgba(${o.cor},${0.6 + 0.4 * b})`, 1.5, 8 + 14 * b);
+    const giro = reduz ? 0 : s * (0.4 + b);
+    for (let j = 0; j < 3; j++) arco(g, x, y, R * 1.18, giro + j * 2.1, giro + j * 2.1 + 1.1, `rgba(${o.cor},.45)`, 1);
+    glifo(g, k, x, y, R * 0.42, o.cor);
+    g.textAlign = "center"; g.font = "700 14px Rajdhani, Segoe UI"; g.fillStyle = `rgb(${o.cor})`; g.fillText(o.nome, x, y + R * 1.55 + 4);
+    g.font = "11px JetBrains Mono, Consolas"; g.fillStyle = "#6e9aab"; g.fillText(o.sub, x, y + R * 1.55 + 19);
+    g.fillStyle = "#dff7ff"; g.fillText(vivo(k), x, y + R * 1.55 + 34);
+  });
+  const idadeLeg = (performance.now() - legendaT) / 1000;
+  g.textAlign = "center"; g.font = "600 16px Rajdhani, Segoe UI";
+  g.fillStyle = `rgba(223,247,255,${legenda ? Math.max(.35, 1 - idadeLeg / 8) : .5})`;
+  g.fillText(legenda ? "▸ " + legenda : "▸ " + (est ? est.pensamento : "aguardando a mente"), w / 2, h - 10);
+}
+requestAnimationFrame(anatomia);
+
+/* ---------- perguntas vivas (constelação compacta) ---------- */
+const COR_Q = {depois: H, inesperado: "169,139,255", divergente: AMB, ligacao: VERDE};
+const nos = new Map(); let lampejos = [];
+const hashf = (t) => { let x = 2166136261; for (const ch of t) { x ^= ch.charCodeAt(0); x = Math.imul(x, 16777619); } return (x >>> 0) / 4294967295; };
+function constelacao(ts) {
+  requestAnimationFrame(constelacao);
+  if ($("organismo").hidden) return;
+  const c = $("constelacao"), r = devicePixelRatio || 1, w = c.clientWidth, h = c.clientHeight;
+  if (c.width !== Math.round(w * r) || c.height !== Math.round(h * r)) { c.width = w * r; c.height = h * r; }
+  const g = c.getContext("2d"); g.setTransform(r, 0, 0, r, 0, 0); g.clearRect(0, 0, w, h);
+  const lacs = tel ? tel.mesoestado.lacunas : [];
+  $("n-perguntas").textContent = tel ? fmt(tel.mesoestado.abertas) + " abertas" : "aguardando";
+  const vistos = new Set();
+  lacs.forEach((q) => { const k = q.tipo + "|" + q.alvo; vistos.add(k);
+    if (!nos.has(k)) nos.set(k, {a: hashf(k) * 7, rr: .2 + .75 * hashf(k + "r"), f: hashf(k + "f") * 7});
+    Object.assign(nos.get(k), q); });
+  for (const [k, n] of nos) if (!vistos.has(k)) { lampejos.push({a: n.a, rr: n.rr, t: performance.now()}); nos.delete(k); }
+  const cx = w / 2, cy = h / 2, R = Math.min(w, h) * .44, s = ts / 1000;
+  arco(g, cx, cy, R, 0, 7, `rgba(${H},.1)`, 1); arco(g, cx, cy, R * .5, 0, 7, `rgba(${H},.08)`, 1);
+  const lst = [...nos.values()].sort((a, b) => b.ativ - a.ativ), mx = Math.max(1e-6, ...lst.map((n) => n.ativ));
+  lst.forEach((n, i) => { const a = n.a + (reduz ? 0 : s * .03), x = cx + Math.cos(a) * n.rr * R, y = cy + Math.sin(a) * n.rr * R;
+    const cor = COR_Q[n.tipo] || H, rad = 2 + 7 * Math.sqrt(n.ativ / mx);
+    g.fillStyle = `rgba(${cor},.9)`; g.shadowColor = `rgb(${cor})`; g.shadowBlur = 8; g.beginPath(); g.arc(x, y, rad, 0, 7); g.fill(); g.shadowBlur = 0;
+    if (n.tent) arco(g, x, y, rad + 3, 0, 7, `rgba(${cor},.4)`, 1);
+    if (i < 5) { g.fillStyle = "#dff7ff"; g.font = "10px JetBrains Mono, Consolas"; g.textAlign = "left"; g.fillText("“" + String(n.alvo).trim().slice(0, 14) + "”", x + rad + 4, y + 3); } });
+  lampejos = lampejos.filter((l) => { const t = (performance.now() - l.t) / 1600; if (t > 1) return false;
+    arco(g, cx + Math.cos(l.a) * l.rr * R, cy + Math.sin(l.a) * l.rr * R, 5 + 22 * t, 0, 7, `rgba(${AMB},${1 - t})`, 2); return true; });
+  if (!lst.length) { g.fillStyle = "#6e9aab"; g.font = "11px JetBrains Mono, Consolas"; g.textAlign = "center";
+    g.fillText(tel ? "nenhuma pergunta aberta" : "aparece quando a vida contínua ligar", cx, cy); }
+}
+requestAnimationFrame(constelacao);
+
+/* ---------- em quem ela confia ---------- */
+const NOME_B = {enciclopedia_pt: "Wikipédia (pt)", enciclopedia_en: "Wikipédia (en)", pequena_web: "pequena web", midia: "Commons", arquivo: "Internet Archive"};
+const NOME_A = {seguir_novo: "link para lugar novo", seguir_familiar: "link familiar", seguir_acaso: "link ao acaso", seguir_lacuna: "link por uma pergunta",
+  assistir: "assistir vídeo", ver: "olhar imagens", voltar: "voltar", "porta:wiki_pt": "Wikipédia aleatória (pt)", "porta:wiki_en": "Wikipédia aleatória (en)",
+  "porta:pequena_web": "site pequeno qualquer", "porta:imagem": "imagem qualquer"};
+const nomeB = (b) => b.startsWith("pesquisar:@") ? "buscar em " + b.slice(11) : b.startsWith("pesquisar:") ? "buscar na " + (NOME_B[b.slice(10)] || b.slice(10)) : (NOME_A[b] || b);
+setInterval(() => {
+  if (!tel) { $("confianca").innerHTML = '<p class="vazio">aparece quando a vida contínua ligar (hoje à noite)</p>'; return; }
+  $("confianca").innerHTML = tel.bracos.filter((b) => b.usos > 0).slice(0, 8).map((b) => { const v = b.pagou ?? 0;
+    return `<div class="barra-conf"><span class="nome">${esc(nomeB(b.braco))}</span><i class="${v < 0.08 ? "ruim" : ""}"><b style="width:${Math.round(100 * Math.min(1, v))}%"></b></i><em>${Math.round(100 * v)}%</em></div>`; }).join("");
+}, 3000);
+
+/* ---------- voz ---------- */
+async function falar() {
+  const txt = await (await fetch("/api/fala")).text();
+  const u = new SpeechSynthesisUtterance(txt); u.lang = "pt-BR"; u.rate = 0.98; u.pitch = 0.82;
+  const vs = speechSynthesis.getVoices().filter((v) => /^pt/i.test(v.lang));
+  u.voice = vs.find((v) => /Antonio|Donato|Fabio|Humberto|Julio|Nicolau|Valerio|Daniel/i.test(v.name)) || vs.find((v) => /Natural/i.test(v.name)) || vs[0] || null;
+  speechSynthesis.cancel(); speechSynthesis.speak(u);
+}
+$("ouvir").addEventListener("click", falar);
+</script>
+</body>
+</html>

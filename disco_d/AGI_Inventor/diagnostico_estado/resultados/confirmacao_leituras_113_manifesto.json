@@ -1,0 +1,65 @@
+{
+  "status": "frozen_before_113",
+  "game": "pong",
+  "train_seed": 97,
+  "test_seed": 113,
+  "source_hashes": {
+    "confirmar_leituras_variaveis.py": "7b8238fb977fce90795fbf65aeb07d3024a8995efe6597af23c46ed49f724244",
+    "leituras_variaveis.py": "b6d99cd4b8f237e4fd818f959fcb13682b6b1437c42f6e4136a8bcbc69916b4b",
+    "extrator_leituras_variaveis.py": "4aa64d7a6be9dbbafe9d01ca05373290236c8e395fa12aa395dd302f342456a2",
+    "extrator_experiencias.py": "4eb41d4eaebd6f041c60382b5b41a9edb00bb66b6b29d7c02bf632f4211c3004",
+    "avaliar_leituras_variaveis.py": "600e78132e1b1bb104f3c3e5eed419c052adad021b8abe071f6cb21199be7d84",
+    "avaliar.py": "9ed420320548201757cbcb964b39f3ff34b26712ba74d9863a7b5f5ec3d54181",
+    "avaliar_sondas.py": "337c9eb2e1844ee10d5c6192d082bd26d597d4b64167867a0064d1e7ea6800ee",
+    "avaliar_estado_preditivo.py": "fdcde6494a1c97eba5453700b72ba9a079d43dc327b70da69f9c955b3b6a8d8f",
+    "avaliar_composicao.py": "6a0b16c40e96beb64855a41f489abe0a713f4fad31c5a824bd23068cec4e949d",
+    "selecionar_sondas_decisao.py": "8158c8275be559c861be5a852a7b02681221b3662384a93c76af84eb8975f8b5",
+    "coletar_efeitos_locais.py": "1afbc809e3e5b14ae1d823db236cb6e06eb1171ab95ca9f3c8446c371dda0392",
+    "coletar_horizontes.py": "8d89851cdbe7d070510b96a9a3f41c7a312f2bb34effb82960ad0c7fb9c6d631",
+    "coleta.py": "756463c8c9f2f03827cf8580734fd5db4709dae8c75ae057e36482291f9d57ea",
+    "resultados/pong_avaliacao_leituras_variaveis.json": "b87bc6baee8610e2da6ddf3fd890dabea072338d169096d197da798e73317882",
+    "resultados/pong_leituras_variaveis.npz": "1851d83154616107ef89eef5df3ff0db9627e6f61a4faff78ccf138e509eda45",
+    "resultados/pong_leituras_variaveis_definicoes.json": "5a9420a40064663d5b54d12bc7171b664c79d63211dd996e01923b13dcd39478",
+    "resultados/pong_predicoes_sondas_experiencias.npz": "77cec2d4ada5807c7823e35d46a4290a18eed28c40a6ad1dd039456ec39d114a",
+    "resultados/pong_base_estado_preditivo.npz": "c42a6e538f73b5aa7fc67a3e01d41250d471904f37752934642e5091c1e66170",
+    "resultados/pong_estado_preditivo_97.npz": "a01a80550b838177cf118de8b3aa618cf8a2b376a7dd081169ee7afc57ae2fa3",
+    "resultados/pong_horizontes_97.npz": "5959a3a3b2c7e213850b9328caa437e1ab7bb75356ebe1283a52a793893401ec",
+    "resultados/pong_sondas_decisao_definicoes.json": "50f76a5eaf5697ab96139cd69fe297efbcde338b42ea1953db920cef2583fa2e",
+    "resultados/pong_sondas_decisao_97.npz": "ea3655476f3b8abde62b111411eef003ba231d36a6dee76039e2b5c7e1dd6bf6",
+    "CONFIRMACAO_LEITURAS_113.md": "6c891cd753766aff40c957a600bfaa259e7a609b83b4bb57fdebb8801382226e"
+  },
+  "selected_parents": {
+    "variable_readout": [
+      3,
+      5,
+      8,
+      13,
+      14,
+      15,
+      16,
+      18
+    ],
+    "random_kernels": [
+      5,
+      9,
+      12,
+      17
+    ],
+    "shuffled_association": [
+      3
+    ]
+  },
+  "bootstrap_samples": 10000,
+  "bootstrap_seed": 9743,
+  "gate": {
+    "mean_and_bootstrap_positive_vs": [
+      "base",
+      "random",
+      "shuffle",
+      "constant"
+    ],
+    "positive_episodes_vs_base_at_least": 2,
+    "base_episode_regressions_allowed": 0
+  },
+  "scope": "offline_selection_among_four_constant_128_step_programs_not_human_intelligence"
+}

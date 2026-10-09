@@ -1,0 +1,38 @@
+  mundo 1 pronto (322 s)
+  mundo 2 pronto (262 s)
+  mundo 3 pronto (293 s)
+==============================================================================
+ETAPA 1 — das orbitas em pixels ate h: revisavel x congelado
+==============================================================================
+
+MUNDO 1  (percepcao 31 s, total 322 s) | escolha do revisavel: volta1 (compor/cortar/religar)
+  congelado  corr 0.993 | lam_aval 0.041 | lam_sel 0.061 | pureza 0.986 | rolagem sem q 5.73 px, com q 5.11 px | 54 entidades
+  revisavel  corr 0.986 | lam_aval 0.029 | lam_sel 0.005 | pureza 0.986 | rolagem sem q 2.81 px, com q 2.56 px | 40 entidades
+  eventos: {'compor': 22, 'cortar_fusao': 107, 'cortar_salto': 314, 'religar': 137, 'religar_com_q': 65}
+  controle (tempo embaralhado) lam_sel: None
+  diag identidade_verdadeira              corr 1.000 | lam_aval 0.021
+  diag posicao_verdadeira                 corr 1.000 | lam_aval 0.000
+  diag posicao_e_velocidade_verdadeiras   corr 1.000 | lam_aval 0.000
+  q (revisavel): {'u': 0.024, 'v': 0.022, 'du': -0.496, 'dv': 0.49, 'u2': -0.032, 'uv': 0.002, 'udu': -0.011, 'udv': -0.517, 'v2': -0.016, 'vdu': 0.495, 'vdv': -0.013, 'du2': -0.01, 'dudv': 0.003, 'dv2': -0.007}
+
+MUNDO 2  (percepcao 28 s, total 262 s) | escolha do revisavel: volta2 (religar usando q)
+  congelado  corr 0.962 | lam_aval 0.096 | lam_sel 0.024 | pureza 0.962 | rolagem sem q 6.46 px, com q 5.26 px | 52 entidades
+  revisavel  corr 1.000 | lam_aval 0.005 | lam_sel 0.004 | pureza 0.998 | rolagem sem q 3.36 px, com q 2.66 px | 43 entidades
+  eventos: {'cortar_fusao': 90, 'cortar_salto': 282, 'compor': 14, 'religar': 168, 'religar_com_q': 76}
+  controle (tempo embaralhado) lam_sel: None
+  diag identidade_verdadeira              corr 0.999 | lam_aval 0.018
+  diag posicao_verdadeira                 corr 1.000 | lam_aval 0.000
+  diag posicao_e_velocidade_verdadeiras   corr 1.000 | lam_aval 0.000
+  q (revisavel): {'u': 0.006, 'v': 0.013, 'du': 0.386, 'dv': -0.581, 'u2': -0.006, 'uv': -0.002, 'udu': 0.006, 'udv': 0.578, 'v2': -0.008, 'vdu': -0.422, 'vdv': 0.01, 'du2': 0.0, 'dudv': 0.001, 'dv2': 0.0}
+
+MUNDO 3  (percepcao 26 s, total 293 s) | escolha do revisavel: volta2 (religar usando q)
+  congelado  corr 0.923 | lam_aval 0.129 | lam_sel 0.138 | pureza 0.965 | rolagem sem q 7.74 px, com q 5.58 px | 48 entidades
+  revisavel  corr 0.994 | lam_aval 0.027 | lam_sel 0.033 | pureza 0.988 | rolagem sem q 2.11 px, com q 1.70 px | 42 entidades
+  eventos: {'cortar_fusao': 151, 'cortar_salto': 432, 'compor': 14, 'religar': 165, 'religar_com_q': 76}
+  controle (tempo embaralhado) lam_sel: None
+  diag identidade_verdadeira              corr 0.999 | lam_aval 0.020
+  diag posicao_verdadeira                 corr 1.000 | lam_aval 0.000
+  diag posicao_e_velocidade_verdadeiras   corr 1.000 | lam_aval 0.000
+  q (revisavel): {'u': -0.002, 'v': 0.003, 'du': 0.439, 'dv': -0.529, 'u2': 0.002, 'uv': -0.001, 'udu': 0.001, 'udv': 0.554, 'v2': -0.004, 'vdu': -0.47, 'vdv': 0.004, 'du2': 0.001, 'dudv': -0.001, 'dv2': -0.0}
+
+VEREDITO: {'E1-h': 'PASSA', 'E1-h_n': 3, 'E1-uso': 'falha', 'E1-uso_n': 1, 'E1-rev': 'PASSA', 'E1-rev_n': 2, 'armadilha_pegou_n': 2, 'E1-ctl': 'PASSA', 'E1-ctl_n': 3}

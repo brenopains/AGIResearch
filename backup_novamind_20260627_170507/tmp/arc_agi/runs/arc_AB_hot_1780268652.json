@@ -1,0 +1,288 @@
+{
+ "tag": "AB_hot",
+ "hot": true,
+ "n_tasks": 40,
+ "attempts": 4,
+ "duration_s": 651.9100108146667,
+ "drives": {
+  "geometra": 1.4285714285714288,
+  "pintor": 0.8928571428571429,
+  "objetista": 0.8928571428571429,
+  "escalador": 0.8928571428571429,
+  "relacional": 0.8928571428571429
+ },
+ "library_size": 1,
+ "solved_train": [
+  "22168020.json"
+ ],
+ "solved_test": [],
+ "results": [
+  {
+   "solved_train": true,
+   "fn_code": "def transform(g):\n    # Convert input to numpy array\n    arr = np.array(g)\n    rows, cols = arr.shape\n    \n    # Create output array\n    output = arr.copy()\n    \n    # Iterate through each row\n    for r in range(rows):\n        # Find non-zero elements in the row\n        non_zero_indices = np.where(arr[r] != 0)[0]\n        \n        if len(non_zero_indices) > 0:\n            # Determine the color based on the first non-zero element\n            color = arr[r, non_zero_indices[0]]\n            \n            # Fill the area between the first and last non-zero elements with the color\n            # This effectively expands the \"core\" of the pattern horizontally\n            start = non_zero_indices[0]\n            end = non_zero_indices[-1]\n            output[r, start:end+1] = color\n            \n    return output.tolist()\n",
+   "persona": "geometra",
+   "preds": [
+    [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      4,
+      4,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ],
+     [
+      0,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      7,
+      7,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      7,
+      7,
+      0,
+      0
+     ],
+     [
+      0,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      3,
+      3,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    ]
+   ],
+   "attempts": 2,
+   "used_personas": [
+    "pintor",
+    "geometra"
+   ],
+   "task": "22168020.json",
+   "index": 1,
+   "test_correct": false
+  },
+  {
+   "solved_train": false,
+   "used_personas": [
+    "escalador",
+    "geometra",
+    "objetista",
+    "pintor"
+   ],
+   "task": "6f8cd79b.json",
+   "index": 2
+  },
+  {
+   "solved_train": false,
+   "used_personas": [
+    "geometra",
+    "objetista",
+    "geometra",
+    "pintor"
+   ],
+   "task": "0ca9ddb6.json",
+   "index": 3
+  },
+  {
+   "solved_train": false,
+   "used_personas": [
+    "geometra",
+    "geometra",
+    "pintor",
+    "relacional"
+   ],
+   "task": "363442ee.json",
+   "index": 4
+  },
+  {
+   "solved_train": false,
+   "used_personas": [
+    "geometra",
+    "geometra",
+    "objetista",
+    "relacional"
+   ],
+   "task": "d406998b.json",
+   "index": 5
+  },
+  {
+   "solved_train": false,
+   "used_personas": [
+    "objetista",
+    "pintor",
+    "relacional",
+    "geometra"
+   ],
+   "task": "c8cbb738.json",
+   "index": 6
+  },
+  {
+   "solved_train": false,
+   "used_personas": [
+    "relacional",
+    "pintor",
+    "geometra",
+    "geometra"
+   ],
+   "task": "681b3aeb.json",
+   "index": 7
+  },
+  {
+   "solved_train": false,
+   "used_personas": [
+    "pintor",
+    "escalador",
+    "geometra",
+    "objetista"
+   ],
+   "task": "a48eeaf7.json",
+   "index": 8
+  },
+  {
+   "solved_train": false,
+   "used_personas": [
+    "objetista",
+    "pintor",
+    "objetista",
+    "geometra"
+   ],
+   "task": "4522001f.json",
+   "index": 9
+  }
+ ],
+ "task_ids": [
+  "22168020.json",
+  "6f8cd79b.json",
+  "0ca9ddb6.json",
+  "363442ee.json",
+  "d406998b.json",
+  "c8cbb738.json",
+  "681b3aeb.json",
+  "a48eeaf7.json",
+  "4522001f.json",
+  "4290ef0e.json",
+  "54d82841.json",
+  "f5b8619d.json",
+  "0a938d79.json",
+  "e98196ab.json",
+  "045e512c.json",
+  "6d58a25d.json",
+  "623ea044.json",
+  "234bbc79.json",
+  "e5062a87.json",
+  "e8dc4411.json",
+  "e6721834.json",
+  "dae9d2b5.json",
+  "77fdfe62.json",
+  "ed36ccf7.json",
+  "f76d97a5.json",
+  "4612dd53.json",
+  "7f4411dc.json",
+  "445eab21.json",
+  "6ecd11f4.json",
+  "6cf79266.json",
+  "8d510a79.json",
+  "b60334d2.json",
+  "3aa6fb7a.json",
+  "d8c310e9.json",
+  "72322fa7.json",
+  "a699fb00.json",
+  "4347f46a.json",
+  "8be77c9e.json",
+  "e3497940.json",
+  "995c5fa3.json"
+ ]
+}

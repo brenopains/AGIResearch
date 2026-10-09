@@ -1,0 +1,18 @@
+{
+  "operator": "program_return_difference",
+  "input": "state_vector_and_two_action_words",
+  "mode": "absolute_returns",
+  "parameters": "breakout_contrastes_programas_97_absolute_returns.npz",
+  "body": "(joint_kernel(state,P,support)-joint_kernel(state,Q,support)) @ absolute_return_coefficients",
+  "word_language": {
+    "maximum_blocks": 16,
+    "anonymous_actions": 4,
+    "end_symbol": 4
+  },
+  "guarantees": [
+    "self_zero",
+    "swap_negates",
+    "additive_differences"
+  ],
+  "does_not_guarantee": "correct_difference_or_human_intelligence"
+}

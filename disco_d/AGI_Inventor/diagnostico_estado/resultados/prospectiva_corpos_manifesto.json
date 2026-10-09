@@ -1,0 +1,517 @@
+{
+  "status": "bodies_frozen_before_new_evaluation_collection",
+  "bodies": {
+    "breakout": {
+      "no_generated_functions": "resultados/prospectiva_breakout_no_generated_functions_corpo.npz",
+      "future_pairs": "resultados/prospectiva_breakout_future_pairs_corpo.npz",
+      "shuffled_future": "resultados/prospectiva_breakout_shuffled_future_corpo.npz",
+      "reward_pairs": "resultados/prospectiva_breakout_reward_pairs_corpo.npz",
+      "random_directions": "resultados/prospectiva_breakout_random_directions_corpo.npz",
+      "remove_generated": "resultados/prospectiva_breakout_remove_generated_corpo.npz",
+      "remove_context": "resultados/prospectiva_breakout_remove_context_corpo.npz"
+    },
+    "pong": {
+      "no_generated_functions": "resultados/prospectiva_pong_no_generated_functions_corpo.npz",
+      "future_pairs": "resultados/prospectiva_pong_future_pairs_corpo.npz",
+      "shuffled_future": "resultados/prospectiva_pong_shuffled_future_corpo.npz",
+      "reward_pairs": "resultados/prospectiva_pong_reward_pairs_corpo.npz",
+      "random_directions": "resultados/prospectiva_pong_random_directions_corpo.npz",
+      "remove_generated": "resultados/prospectiva_pong_remove_generated_corpo.npz",
+      "remove_context": "resultados/prospectiva_pong_remove_context_corpo.npz"
+    }
+  },
+  "validation": {
+    "breakout": {
+      "coverage": {
+        "opposite_preferences_per_pair": [
+          true,
+          true
+        ],
+        "episodes_with_contrast": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "non_tied_comparisons": 34,
+        "sufficient": true
+      },
+      "selection": {
+        "future_pairs": {
+          "status": "no_candidate_passed_validation",
+          "selected": [],
+          "fit_calls": 33,
+          "baseline_validation": {
+            "count": 64,
+            "real_nonzero": 34,
+            "prediction_ties": 0,
+            "mse": 0.7040531795632088,
+            "deterministic_left_tie_regret": 0.109375,
+            "fair_tie_regret": 0.109375,
+            "directional_accuracy_on_real_nonzero": 0.8235294117647058
+          },
+          "final_validation": {
+            "count": 64,
+            "real_nonzero": 34,
+            "prediction_ties": 0,
+            "mse": 0.7040531795632088,
+            "deterministic_left_tie_regret": 0.109375,
+            "fair_tie_regret": 0.109375,
+            "directional_accuracy_on_real_nonzero": 0.8235294117647058
+          },
+          "accepted_evidence": []
+        },
+        "shuffled_future": {
+          "status": "no_candidate_passed_validation",
+          "selected": [],
+          "fit_calls": 33,
+          "baseline_validation": {
+            "count": 64,
+            "real_nonzero": 34,
+            "prediction_ties": 0,
+            "mse": 0.7040531795632088,
+            "deterministic_left_tie_regret": 0.109375,
+            "fair_tie_regret": 0.109375,
+            "directional_accuracy_on_real_nonzero": 0.8235294117647058
+          },
+          "final_validation": {
+            "count": 64,
+            "real_nonzero": 34,
+            "prediction_ties": 0,
+            "mse": 0.7040531795632088,
+            "deterministic_left_tie_regret": 0.109375,
+            "fair_tie_regret": 0.109375,
+            "directional_accuracy_on_real_nonzero": 0.8235294117647058
+          },
+          "accepted_evidence": []
+        },
+        "reward_pairs": {
+          "status": "functions_selected_in_development",
+          "selected": [
+            11
+          ],
+          "fit_calls": 64,
+          "baseline_validation": {
+            "count": 64,
+            "real_nonzero": 34,
+            "prediction_ties": 0,
+            "mse": 0.7040531795632088,
+            "deterministic_left_tie_regret": 0.109375,
+            "fair_tie_regret": 0.109375,
+            "directional_accuracy_on_real_nonzero": 0.8235294117647058
+          },
+          "final_validation": {
+            "count": 64,
+            "real_nonzero": 34,
+            "prediction_ties": 0,
+            "mse": 0.6829393836152258,
+            "deterministic_left_tie_regret": 0.0625,
+            "fair_tie_regret": 0.0625,
+            "directional_accuracy_on_real_nonzero": 0.8823529411764706
+          },
+          "accepted_evidence": [
+            {
+              "event": "candidate_evaluated",
+              "game": "breakout",
+              "arm": "reward_pairs",
+              "iteration": 0,
+              "candidate": 11,
+              "selected_before": [],
+              "novelty_ratio_training": 0.20619161123947174,
+              "training_variance": 0.5673249336179594,
+              "expression": {
+                "op": "unit",
+                "units": [
+                  11
+                ]
+              },
+              "eligible": true,
+              "reason": "validation_gain",
+              "validation": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.6829393836152258,
+                "deterministic_left_tie_regret": 0.0625,
+                "fair_tie_regret": 0.0625,
+                "directional_accuracy_on_real_nonzero": 0.8823529411764706
+              },
+              "positive_validation_roots": 2
+            }
+          ]
+        },
+        "random_directions": {
+          "status": "no_candidate_passed_validation",
+          "selected": [],
+          "fit_calls": 33,
+          "baseline_validation": {
+            "count": 64,
+            "real_nonzero": 34,
+            "prediction_ties": 0,
+            "mse": 0.7040531795632088,
+            "deterministic_left_tie_regret": 0.109375,
+            "fair_tie_regret": 0.109375,
+            "directional_accuracy_on_real_nonzero": 0.8235294117647058
+          },
+          "final_validation": {
+            "count": 64,
+            "real_nonzero": 34,
+            "prediction_ties": 0,
+            "mse": 0.7040531795632088,
+            "deterministic_left_tie_regret": 0.109375,
+            "fair_tie_regret": 0.109375,
+            "directional_accuracy_on_real_nonzero": 0.8235294117647058
+          },
+          "accepted_evidence": []
+        }
+      }
+    },
+    "pong": {
+      "coverage": {
+        "opposite_preferences_per_pair": [
+          true,
+          true
+        ],
+        "episodes_with_contrast": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "non_tied_comparisons": 27,
+        "sufficient": true
+      },
+      "selection": {
+        "future_pairs": {
+          "status": "functions_selected_in_development",
+          "selected": [
+            7,
+            13
+          ],
+          "fit_calls": 94,
+          "baseline_validation": {
+            "count": 64,
+            "real_nonzero": 27,
+            "prediction_ties": 0,
+            "mse": 1.7842724458387145,
+            "deterministic_left_tie_regret": 0.390625,
+            "fair_tie_regret": 0.390625,
+            "directional_accuracy_on_real_nonzero": 0.4444444444444444
+          },
+          "final_validation": {
+            "count": 64,
+            "real_nonzero": 27,
+            "prediction_ties": 0,
+            "mse": 1.6938743175991915,
+            "deterministic_left_tie_regret": 0.140625,
+            "fair_tie_regret": 0.140625,
+            "directional_accuracy_on_real_nonzero": 0.8148148148148148
+          },
+          "accepted_evidence": [
+            {
+              "event": "candidate_evaluated",
+              "game": "pong",
+              "arm": "future_pairs",
+              "iteration": 0,
+              "candidate": 7,
+              "selected_before": [],
+              "novelty_ratio_training": 0.10634620199307394,
+              "training_variance": 0.1543193533508868,
+              "expression": {
+                "op": "unit",
+                "units": [
+                  7
+                ]
+              },
+              "eligible": true,
+              "reason": "validation_gain",
+              "validation": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 0,
+                "mse": 1.6988818615454142,
+                "deterministic_left_tie_regret": 0.171875,
+                "fair_tie_regret": 0.171875,
+                "directional_accuracy_on_real_nonzero": 0.7407407407407407
+              },
+              "positive_validation_roots": 8
+            },
+            {
+              "event": "candidate_evaluated",
+              "game": "pong",
+              "arm": "future_pairs",
+              "iteration": 1,
+              "candidate": 13,
+              "selected_before": [
+                7
+              ],
+              "novelty_ratio_training": 0.11118349672322159,
+              "training_variance": 0.11832449454658447,
+              "expression": {
+                "op": "unit",
+                "units": [
+                  13
+                ]
+              },
+              "eligible": true,
+              "reason": "validation_gain",
+              "validation": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 0,
+                "mse": 1.6938743175991915,
+                "deterministic_left_tie_regret": 0.140625,
+                "fair_tie_regret": 0.140625,
+                "directional_accuracy_on_real_nonzero": 0.8148148148148148
+              },
+              "positive_validation_roots": 2
+            }
+          ]
+        },
+        "shuffled_future": {
+          "status": "functions_selected_in_development",
+          "selected": [
+            9,
+            21
+          ],
+          "fit_calls": 94,
+          "baseline_validation": {
+            "count": 64,
+            "real_nonzero": 27,
+            "prediction_ties": 0,
+            "mse": 1.7842724458387145,
+            "deterministic_left_tie_regret": 0.390625,
+            "fair_tie_regret": 0.390625,
+            "directional_accuracy_on_real_nonzero": 0.4444444444444444
+          },
+          "final_validation": {
+            "count": 64,
+            "real_nonzero": 27,
+            "prediction_ties": 0,
+            "mse": 1.6905407805429877,
+            "deterministic_left_tie_regret": 0.203125,
+            "fair_tie_regret": 0.203125,
+            "directional_accuracy_on_real_nonzero": 0.7037037037037037
+          },
+          "accepted_evidence": [
+            {
+              "event": "candidate_evaluated",
+              "game": "pong",
+              "arm": "shuffled_future",
+              "iteration": 0,
+              "candidate": 9,
+              "selected_before": [],
+              "novelty_ratio_training": 0.19509916929209778,
+              "training_variance": 0.14915724781153913,
+              "expression": {
+                "op": "unit",
+                "units": [
+                  9
+                ]
+              },
+              "eligible": true,
+              "reason": "validation_gain",
+              "validation": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 0,
+                "mse": 1.7180672972767956,
+                "deterministic_left_tie_regret": 0.265625,
+                "fair_tie_regret": 0.265625,
+                "directional_accuracy_on_real_nonzero": 0.6296296296296297
+              },
+              "positive_validation_roots": 5
+            },
+            {
+              "event": "candidate_evaluated",
+              "game": "pong",
+              "arm": "shuffled_future",
+              "iteration": 1,
+              "candidate": 21,
+              "selected_before": [
+                9
+              ],
+              "novelty_ratio_training": 0.29404261490308325,
+              "training_variance": 0.08558319269546553,
+              "expression": {
+                "op": "unit",
+                "units": [
+                  21
+                ]
+              },
+              "eligible": true,
+              "reason": "validation_gain",
+              "validation": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 0,
+                "mse": 1.6905407805429877,
+                "deterministic_left_tie_regret": 0.203125,
+                "fair_tie_regret": 0.203125,
+                "directional_accuracy_on_real_nonzero": 0.7037037037037037
+              },
+              "positive_validation_roots": 2
+            }
+          ]
+        },
+        "reward_pairs": {
+          "status": "no_candidate_passed_validation",
+          "selected": [],
+          "fit_calls": 33,
+          "baseline_validation": {
+            "count": 64,
+            "real_nonzero": 27,
+            "prediction_ties": 0,
+            "mse": 1.7842724458387145,
+            "deterministic_left_tie_regret": 0.390625,
+            "fair_tie_regret": 0.390625,
+            "directional_accuracy_on_real_nonzero": 0.4444444444444444
+          },
+          "final_validation": {
+            "count": 64,
+            "real_nonzero": 27,
+            "prediction_ties": 0,
+            "mse": 1.7842724458387145,
+            "deterministic_left_tie_regret": 0.390625,
+            "fair_tie_regret": 0.390625,
+            "directional_accuracy_on_real_nonzero": 0.4444444444444444
+          },
+          "accepted_evidence": []
+        },
+        "random_directions": {
+          "status": "functions_selected_in_development",
+          "selected": [
+            10,
+            2
+          ],
+          "fit_calls": 94,
+          "baseline_validation": {
+            "count": 64,
+            "real_nonzero": 27,
+            "prediction_ties": 0,
+            "mse": 1.7842724458387145,
+            "deterministic_left_tie_regret": 0.390625,
+            "fair_tie_regret": 0.390625,
+            "directional_accuracy_on_real_nonzero": 0.4444444444444444
+          },
+          "final_validation": {
+            "count": 64,
+            "real_nonzero": 27,
+            "prediction_ties": 0,
+            "mse": 1.671673864382452,
+            "deterministic_left_tie_regret": 0.15625,
+            "fair_tie_regret": 0.15625,
+            "directional_accuracy_on_real_nonzero": 0.7777777777777778
+          },
+          "accepted_evidence": [
+            {
+              "event": "candidate_evaluated",
+              "game": "pong",
+              "arm": "random_directions",
+              "iteration": 0,
+              "candidate": 10,
+              "selected_before": [],
+              "novelty_ratio_training": 0.4699105502650232,
+              "training_variance": 0.40288806135006117,
+              "expression": {
+                "op": "unit",
+                "units": [
+                  10
+                ]
+              },
+              "eligible": true,
+              "reason": "validation_gain",
+              "validation": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 0,
+                "mse": 1.7226389766707377,
+                "deterministic_left_tie_regret": 0.328125,
+                "fair_tie_regret": 0.328125,
+                "directional_accuracy_on_real_nonzero": 0.5555555555555556
+              },
+              "positive_validation_roots": 3
+            },
+            {
+              "event": "candidate_evaluated",
+              "game": "pong",
+              "arm": "random_directions",
+              "iteration": 1,
+              "candidate": 2,
+              "selected_before": [
+                10
+              ],
+              "novelty_ratio_training": 0.5011941138324071,
+              "training_variance": 0.41316163765665914,
+              "expression": {
+                "op": "unit",
+                "units": [
+                  2
+                ]
+              },
+              "eligible": true,
+              "reason": "validation_gain",
+              "validation": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 0,
+                "mse": 1.671673864382452,
+                "deterministic_left_tie_regret": 0.15625,
+                "fair_tie_regret": 0.15625,
+                "directional_accuracy_on_real_nonzero": 0.7777777777777778
+              },
+              "positive_validation_roots": 6
+            }
+          ]
+        }
+      }
+    }
+  },
+  "wall_seconds": 15.026489500000025,
+  "fit_events": 485,
+  "source_hashes": {
+    "resultados/prospectiva_dicionarios_manifesto.json": "7b91d5e485472f0b265b1fa68beef8511727bb1255af57d7dfb5e91da222e205",
+    "resultados/prospectiva_proposta.json": "cab34e4c9bcdacf3faa1b4b5f09bf9a30344c84dc35f66dc7cec005820467849",
+    "resultados/prospectiva_breakout_no_generated_functions_corpo.npz": "ce709d04570108ae4d4a6380a56241f977d4a623dfeb1a3abce33c745db46091",
+    "resultados/prospectiva_breakout_no_generated_functions_corpo.json": "47e4ef7940f0a79d84c4d297700d4115b2aca3807373ade7476192169a63f02e",
+    "resultados/prospectiva_breakout_future_pairs_corpo.npz": "c677e5f6463e4e2e23612bed5ec7acb5e3e4f18bff8c220d80477a75c5eff6db",
+    "resultados/prospectiva_breakout_future_pairs_corpo.json": "a3b60b942a89f44b1db858102e601c0bf2436eb2496d344964994b917a754a62",
+    "resultados/prospectiva_breakout_shuffled_future_corpo.npz": "5ab197726abfdd22a46713437e8f18ce13fa689c2d660373a2af802e16267b54",
+    "resultados/prospectiva_breakout_shuffled_future_corpo.json": "a54b5b9aec1771d3d85acd58a937733c861cf1d1dbe3adacfb9c142c8aa95cb1",
+    "resultados/prospectiva_breakout_reward_pairs_corpo.npz": "218b237dbf750880f5daf533c56f18dc35f902ae9eeead337913815109d97f8e",
+    "resultados/prospectiva_breakout_reward_pairs_corpo.json": "694937094ab4f60fcdf28ebeb822aacf9b271ee5f1e7bb2f64dc13faf8f84f92",
+    "resultados/prospectiva_breakout_random_directions_corpo.npz": "4f033b5f26bc254c173d3c65a52716d6779b3118b8fd07796d959b0bbac9680d",
+    "resultados/prospectiva_breakout_random_directions_corpo.json": "48a45318dd65bcf012455c5285a4bafe6fefe076966c35a878d8274f7527e33c",
+    "resultados/prospectiva_breakout_remove_generated_corpo.npz": "00dd68139d180cd2c515820bdb345ee6da824f092270f55684ed9e31bf7f50ec",
+    "resultados/prospectiva_breakout_remove_generated_corpo.json": "1f262b579b92147d7aecb757397a6127f36c8967c4e0c7804838e4d044dc00ba",
+    "resultados/prospectiva_breakout_remove_context_corpo.npz": "c677e5f6463e4e2e23612bed5ec7acb5e3e4f18bff8c220d80477a75c5eff6db",
+    "resultados/prospectiva_breakout_remove_context_corpo.json": "170dbe5d4992394f65a9c6525011262cb98b5ddc16103685afe28154acf6e045",
+    "resultados/prospectiva_breakout_151.npz": "22e579a08abb6a505236b0725deaf5f274b82a489a915ca76f0a185a3c8866db",
+    "resultados/prospectiva_breakout_151.json": "2da665ba6864f1bf82e1caf2ad78e1f8e240a1652c328449057cd779d4138a89",
+    "resultados/prospectiva_pong_no_generated_functions_corpo.npz": "786dda797f29e16b2d7b367af50a6596a197cd692e0f33ccbfb1208cfbe85a7c",
+    "resultados/prospectiva_pong_no_generated_functions_corpo.json": "ad3d49e2e833eb48e1c9d42cdd90f4d24d40155ddc9feb94b9c795b996fe1bd5",
+    "resultados/prospectiva_pong_future_pairs_corpo.npz": "3376fd5606da79b4304f12eaa8d212b71c42a4483cb9fb7e196370e9876f6dc2",
+    "resultados/prospectiva_pong_future_pairs_corpo.json": "7110272dfa6383bf25cf0661fe897bd69634c0ffdc89c419dd6653a50b69ea97",
+    "resultados/prospectiva_pong_shuffled_future_corpo.npz": "3df1164527e8a58b81e307ac1ca67995524be8375c88aa879923a7edef412963",
+    "resultados/prospectiva_pong_shuffled_future_corpo.json": "28423e11dbf1df0b7213cfaf8ccf9025aa40e06d435fa4d4772d8e3782787238",
+    "resultados/prospectiva_pong_reward_pairs_corpo.npz": "cf2763c2487cfbe17d1511ce49487e0078b707580798de9113f812be3a018f8f",
+    "resultados/prospectiva_pong_reward_pairs_corpo.json": "13d3b87e3571fe8dd552a156dddc8b0156c22651bd12d79cadebdef15267a405",
+    "resultados/prospectiva_pong_random_directions_corpo.npz": "184593487eaef2ebf61313bfee539158df37c728f7ece223dabff12a0372989c",
+    "resultados/prospectiva_pong_random_directions_corpo.json": "a81b5f7699c6301250ff069255ea6c9246d0c4e0c46507927435f70eae8be67d",
+    "resultados/prospectiva_pong_remove_generated_corpo.npz": "b818c782fa5327425d2354a46f54698cc5625ed11be0ee652875ec4dd2748182",
+    "resultados/prospectiva_pong_remove_generated_corpo.json": "8868edac19a26d62e13f49db7ce3c50bd93b14688d7b99d63f81d7baf6ce27e2",
+    "resultados/prospectiva_pong_remove_context_corpo.npz": "3376fd5606da79b4304f12eaa8d212b71c42a4483cb9fb7e196370e9876f6dc2",
+    "resultados/prospectiva_pong_remove_context_corpo.json": "76ed42c0a8ca1b8e6ec06e5bf7f4da00e505334b6e90784b0634324fb8400aec",
+    "resultados/prospectiva_pong_151.npz": "7b977f7b71287cb6854485c8ecb634d65d613f4e1a9d3494e8d4dac46e51ed55",
+    "resultados/prospectiva_pong_151.json": "d11c6ec2357522f31d8696a400ca8cac1cbbc91fd6dfb7d02af54405e3ad0874",
+    "resultados/prospectiva_ajuste.jsonl": "1b30a54ff8111282bf5605f220dde7591f9e54ca40c1fa63c447493592ffbf18"
+  }
+}

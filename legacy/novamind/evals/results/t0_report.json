@@ -1,0 +1,501 @@
+{
+  "timestamp": "2026-07-12T00:50:41.007047",
+  "git_sha": "aacd9cf+modified",
+  "t0_version": "2026-07-12T00:41",
+  "tests": {
+    "T1_pandora": {
+      "n": 50,
+      "novelty_rate": 100.0,
+      "details": [
+        {
+          "id": "PANDORA-000",
+          "A": "ability",
+          "B": "assinou",
+          "C": "burton",
+          "sim_A": 0.24859997630119324,
+          "sim_B": 0.2961999773979187,
+          "sim_C": 0.29679998755455017,
+          "novelty_ok": true,
+          "best_decode_match": "operations",
+          "best_decode_sim": 0.03539999946951866
+        },
+        {
+          "id": "PANDORA-001",
+          "A": "ability",
+          "B": "assinou",
+          "C": "cadeias",
+          "sim_A": 0.298799991607666,
+          "sim_B": 0.2963999807834625,
+          "sim_C": 0.29679998755455017,
+          "novelty_ok": true,
+          "best_decode_match": "extensive",
+          "best_decode_sim": 0.03319999575614929
+        },
+        {
+          "id": "PANDORA-002",
+          "A": "ability",
+          "B": "assinou",
+          "C": "carboidratos",
+          "sim_A": 0.25519996881484985,
+          "sim_B": 0.2799999713897705,
+          "sim_C": 0.29679998755455017,
+          "novelty_ok": true,
+          "best_decode_match": "field",
+          "best_decode_sim": 0.03259999677538872
+        },
+        {
+          "id": "PANDORA-003",
+          "A": "ability",
+          "B": "assinou",
+          "C": "criado",
+          "sim_A": 0.2825999855995178,
+          "sim_B": 0.2929999828338623,
+          "sim_C": 0.29679998755455017,
+          "novelty_ok": true,
+          "best_decode_match": "meaning",
+          "best_decode_sim": 0.029999997466802597
+        },
+        {
+          "id": "PANDORA-004",
+          "A": "ability",
+          "B": "assinou",
+          "C": "desoxirribonucleico",
+          "sim_A": 0.2815999984741211,
+          "sim_B": 0.2611999809741974,
+          "sim_C": 0.29679998755455017,
+          "novelty_ok": true,
+          "best_decode_match": "texts",
+          "best_decode_sim": 0.03060000017285347
+        },
+        {
+          "id": "PANDORA-005",
+          "A": "ability",
+          "B": "assinou",
+          "C": "events",
+          "sim_A": 0.29719996452331543,
+          "sim_B": 0.27879998087882996,
+          "sim_C": 0.29679998755455017,
+          "novelty_ok": true,
+          "best_decode_match": "abstract_arguments_articulates",
+          "best_decode_sim": 0.026651255786418915
+        },
+        {
+          "id": "PANDORA-006",
+          "A": "ability",
+          "B": "assinou",
+          "C": "gravadora",
+          "sim_A": 0.2671999931335449,
+          "sim_B": 0.27159997820854187,
+          "sim_C": 0.29679998755455017,
+          "novelty_ok": true,
+          "best_decode_match": "enable",
+          "best_decode_sim": 0.029999997466802597
+        },
+        {
+          "id": "PANDORA-007",
+          "A": "ability",
+          "B": "assinou",
+          "C": "historical",
+          "sim_A": 0.2947999835014343,
+          "sim_B": 0.282399982213974,
+          "sim_C": 0.29679998755455017,
+          "novelty_ok": true,
+          "best_decode_match": "astronomical",
+          "best_decode_sim": 0.03699999675154686
+        },
+        {
+          "id": "PANDORA-008",
+          "A": "ability",
+          "B": "assinou",
+          "C": "history",
+          "sim_A": 0.274399995803833,
+          "sim_B": 0.29719996452331543,
+          "sim_C": 0.29679998755455017,
+          "novelty_ok": true,
+          "best_decode_match": "relative",
+          "best_decode_sim": 0.03239999711513519
+        },
+        {
+          "id": "PANDORA-009",
+          "A": "ability",
+          "B": "assinou",
+          "C": "lip\u00eddios",
+          "sim_A": 0.28839999437332153,
+          "sim_B": 0.2807999849319458,
+          "sim_C": 0.29679998755455017,
+          "novelty_ok": true,
+          "best_decode_match": "abstract_amino_another",
+          "best_decode_sim": 0.03823889046907425
+        }
+      ]
+    },
+    "T3_syntlog": {
+      "n": 200,
+      "overall_accuracy": 35.5,
+      "details": [
+        {
+          "id": "SYNTLOG-0000-02ddd2735605",
+          "category": "modus_tollens",
+          "premises": [
+            "All blorp destroys flint.",
+            "A specific entity does NOT destroys flint."
+          ],
+          "correct": "The specific entity is NOT a blorp.",
+          "chosen": "All blorp do not destroys flint.",
+          "is_correct": false,
+          "margin": 0.10079991817474365
+        },
+        {
+          "id": "SYNTLOG-0001-6c6699966ae4",
+          "category": "modus_ponens",
+          "premises": [
+            "All tronk contains zilch.",
+            "A specific entity is a tronk."
+          ],
+          "correct": "The specific entity contains zilch.",
+          "chosen": "All entities contains zilch.",
+          "is_correct": false,
+          "margin": 0.017000019550323486
+        },
+        {
+          "id": "SYNTLOG-0002-10d557cac0de",
+          "category": "relational_chain",
+          "premises": [
+            "pleen is louder than fring.",
+            "fring is louder than flarn."
+          ],
+          "correct": "pleen is louder than flarn.",
+          "chosen": "fring is louder than pleen.",
+          "is_correct": false,
+          "margin": 0.011200010776519775
+        },
+        {
+          "id": "SYNTLOG-0003-12ad20137f20",
+          "category": "modus_tollens",
+          "premises": [
+            "All zang sees kronk.",
+            "A specific entity does NOT sees kronk."
+          ],
+          "correct": "The specific entity is NOT a zang.",
+          "chosen": "All zang do not sees kronk.",
+          "is_correct": false,
+          "margin": 0.15239989757537842
+        },
+        {
+          "id": "SYNTLOG-0004-6cc8cbd0bd4e",
+          "category": "modus_tollens",
+          "premises": [
+            "All glurp eats glarn.",
+            "A specific entity does NOT eats glarn."
+          ],
+          "correct": "The specific entity is NOT a glurp.",
+          "chosen": "All glurp do not eats glarn.",
+          "is_correct": false,
+          "margin": 0.1463998556137085
+        },
+        {
+          "id": "SYNTLOG-0005-e95ea6c86491",
+          "category": "modus_ponens",
+          "premises": [
+            "All quarg reflects gorp.",
+            "A specific entity is a quarg."
+          ],
+          "correct": "The specific entity reflects gorp.",
+          "chosen": "All entities reflects gorp.",
+          "is_correct": false,
+          "margin": 0.04680001735687256
+        },
+        {
+          "id": "SYNTLOG-0006-62079ad3cce6",
+          "category": "modus_tollens",
+          "premises": [
+            "All bork hates blig.",
+            "A specific entity does NOT hates blig."
+          ],
+          "correct": "The specific entity is NOT a bork.",
+          "chosen": "All bork do not hates blig.",
+          "is_correct": false,
+          "margin": 0.018800079822540283
+        },
+        {
+          "id": "SYNTLOG-0007-5f94072fa8b9",
+          "category": "relational_chain",
+          "premises": [
+            "gorb is brighter than zang.",
+            "zang is brighter than mlep."
+          ],
+          "correct": "gorb is brighter than mlep.",
+          "chosen": "gorb is brighter than mlep.",
+          "is_correct": true,
+          "margin": 0.0026000142097473145
+        },
+        {
+          "id": "SYNTLOG-0008-4fd6b61007c1",
+          "category": "modus_tollens",
+          "premises": [
+            "All gleep prevents dorb.",
+            "A specific entity does NOT prevents dorb."
+          ],
+          "correct": "The specific entity is NOT a gleep.",
+          "chosen": "The specific entity prevents dorb.",
+          "is_correct": false,
+          "margin": 0.0005999207496643066
+        },
+        {
+          "id": "SYNTLOG-0009-b3ecf8820b2c",
+          "category": "barbara",
+          "premises": [
+            "All snirk follows blurn.",
+            "All entities that follows blurn drinks frob."
+          ],
+          "correct": "All snirk drinks frob.",
+          "chosen": "All snirk drinks frob.",
+          "is_correct": true,
+          "margin": 0.08020001649856567
+        },
+        {
+          "id": "SYNTLOG-0010-f8ff4ff38db9",
+          "category": "modus_ponens",
+          "premises": [
+            "All grenk loves snorg.",
+            "A specific entity is a grenk."
+          ],
+          "correct": "The specific entity loves snorg.",
+          "chosen": "All entities loves snorg.",
+          "is_correct": false,
+          "margin": 0.02080005407333374
+        },
+        {
+          "id": "SYNTLOG-0011-e9ee6ccbc7ab",
+          "category": "modus_ponens",
+          "premises": [
+            "All trog destroys flint.",
+            "A specific entity is a trog."
+          ],
+          "correct": "The specific entity destroys flint.",
+          "chosen": "All entities destroys flint.",
+          "is_correct": false,
+          "margin": 0.02219998836517334
+        },
+        {
+          "id": "SYNTLOG-0012-e1c8d6f9457c",
+          "category": "modus_tollens",
+          "premises": [
+            "All snorp prevents dorb.",
+            "A specific entity does NOT prevents dorb."
+          ],
+          "correct": "The specific entity is NOT a snorp.",
+          "chosen": "All snorp do not prevents dorb.",
+          "is_correct": false,
+          "margin": 0.05859994888305664
+        },
+        {
+          "id": "SYNTLOG-0013-96f7779b0669",
+          "category": "relational_chain",
+          "premises": [
+            "trill is larger than grom.",
+            "grom is larger than quib."
+          ],
+          "correct": "trill is larger than quib.",
+          "chosen": "grom is larger than trill.",
+          "is_correct": false,
+          "margin": 0.037000060081481934
+        },
+        {
+          "id": "SYNTLOG-0014-093c7489fbe0",
+          "category": "modus_ponens",
+          "premises": [
+            "All florp transforms glurn.",
+            "A specific entity is a florp."
+          ],
+          "correct": "The specific entity transforms glurn.",
+          "chosen": "The specific entity transforms glurn.",
+          "is_correct": true,
+          "margin": 0.028000056743621826
+        },
+        {
+          "id": "SYNTLOG-0015-f02a8d25c32b",
+          "category": "barbara",
+          "premises": [
+            "All blix is flink.",
+            "All entities that is flink inhibits trerb."
+          ],
+          "correct": "All blix inhibits trerb.",
+          "chosen": "All blix inhibits trerb.",
+          "is_correct": true,
+          "margin": 0.05899995565414429
+        },
+        {
+          "id": "SYNTLOG-0016-ee806472e287",
+          "category": "modus_ponens",
+          "premises": [
+            "All mlep reduces zert.",
+            "A specific entity is a mlep."
+          ],
+          "correct": "The specific entity reduces zert.",
+          "chosen": "All entities reduces zert.",
+          "is_correct": false,
+          "margin": 0.0071999430656433105
+        },
+        {
+          "id": "SYNTLOG-0017-dd95c8f3ade6",
+          "category": "modus_ponens",
+          "premises": [
+            "All glurp loves snorg.",
+            "A specific entity is a glurp."
+          ],
+          "correct": "The specific entity loves snorg.",
+          "chosen": "All entities loves snorg.",
+          "is_correct": false,
+          "margin": 0.03560000658035278
+        },
+        {
+          "id": "SYNTLOG-0018-41025e67c9c3",
+          "category": "relational_chain",
+          "premises": [
+            "blarg is heavier than quarg.",
+            "quarg is heavier than snerp."
+          ],
+          "correct": "blarg is heavier than snerp.",
+          "chosen": "quarg is heavier than blarg.",
+          "is_correct": false,
+          "margin": 0.028599917888641357
+        },
+        {
+          "id": "SYNTLOG-0019-b9250f05451f",
+          "category": "modus_ponens",
+          "premises": [
+            "All snerp creates zerb.",
+            "A specific entity is a snerp."
+          ],
+          "correct": "The specific entity creates zerb.",
+          "chosen": "The specific entity creates zerb.",
+          "is_correct": true,
+          "margin": 0.006399989128112793
+        }
+      ]
+    },
+    "T4_causal": {
+      "n": 50,
+      "intervention_detects_effect": 100.0,
+      "causal_model_accuracy": 0.0,
+      "details": [
+        {
+          "id": "CAUSAL-000",
+          "pair": "flarg -> snerp",
+          "cause": "flarg",
+          "effect": "snerp",
+          "intervention_detected_effect": true,
+          "intervention_pred_change": -1.0,
+          "model_error": 0.5,
+          "model_accurate": false,
+          "random_guess_correct": false
+        },
+        {
+          "id": "CAUSAL-001",
+          "pair": "sprog -> zork",
+          "cause": "sprog",
+          "effect": "zork",
+          "intervention_detected_effect": true,
+          "intervention_pred_change": -1.0,
+          "model_error": 0.5,
+          "model_accurate": false,
+          "random_guess_correct": true
+        },
+        {
+          "id": "CAUSAL-002",
+          "pair": "dronk -> florp",
+          "cause": "dronk",
+          "effect": "florp",
+          "intervention_detected_effect": true,
+          "intervention_pred_change": -1.0,
+          "model_error": 0.5,
+          "model_accurate": false,
+          "random_guess_correct": true
+        },
+        {
+          "id": "CAUSAL-003",
+          "pair": "gorb -> trill",
+          "cause": "gorb",
+          "effect": "trill",
+          "intervention_detected_effect": true,
+          "intervention_pred_change": -1.0,
+          "model_error": 0.5,
+          "model_accurate": false,
+          "random_guess_correct": false
+        },
+        {
+          "id": "CAUSAL-004",
+          "pair": "gorb -> slin",
+          "cause": "gorb",
+          "effect": "slin",
+          "intervention_detected_effect": true,
+          "intervention_pred_change": -1.0,
+          "model_error": 0.5,
+          "model_accurate": false,
+          "random_guess_correct": true
+        },
+        {
+          "id": "CAUSAL-005",
+          "pair": "mlep -> bork",
+          "cause": "mlep",
+          "effect": "bork",
+          "intervention_detected_effect": true,
+          "intervention_pred_change": -1.0,
+          "model_error": 0.5,
+          "model_accurate": false,
+          "random_guess_correct": false
+        },
+        {
+          "id": "CAUSAL-006",
+          "pair": "murk -> trill",
+          "cause": "murk",
+          "effect": "trill",
+          "intervention_detected_effect": true,
+          "intervention_pred_change": -1.0,
+          "model_error": 0.5,
+          "model_accurate": false,
+          "random_guess_correct": false
+        },
+        {
+          "id": "CAUSAL-007",
+          "pair": "quib -> zork",
+          "cause": "quib",
+          "effect": "zork",
+          "intervention_detected_effect": true,
+          "intervention_pred_change": -1.0,
+          "model_error": 0.5,
+          "model_accurate": false,
+          "random_guess_correct": true
+        },
+        {
+          "id": "CAUSAL-008",
+          "pair": "zilp -> grenk",
+          "cause": "zilp",
+          "effect": "grenk",
+          "intervention_detected_effect": true,
+          "intervention_pred_change": -1.0,
+          "model_error": 0.5,
+          "model_accurate": false,
+          "random_guess_correct": true
+        },
+        {
+          "id": "CAUSAL-009",
+          "pair": "pleen -> freb",
+          "cause": "pleen",
+          "effect": "freb",
+          "intervention_detected_effect": true,
+          "intervention_pred_change": -1.0,
+          "model_error": 0.5,
+          "model_accurate": false,
+          "random_guess_correct": false
+        }
+      ]
+    }
+  },
+  "arc_existing": {
+    "pixel_accuracy": 0.782,
+    "exact_match": 0.0
+  },
+  "elapsed_seconds": 31.520959854125977
+}

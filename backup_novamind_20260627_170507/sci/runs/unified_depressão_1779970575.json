@@ -1,0 +1,802 @@
+{
+  "system": "unified",
+  "disease": "depressão",
+  "duration_s": 222.15972685813904,
+  "hypotheses": [
+    {
+      "id": "acbdd5b368",
+      "title": "Targeting the Gut-Microglia Axis via Bacteroides fragilis Polysaccharide A (PSA) for Treatment-Resistant Depression",
+      "statement": "We hypothesize that selective modulation of the gut microbiome to increase the abundance of Bacteroides fragilis and its immunomodulatory polysaccharide A (PSA) will restore microglial homeostasis, reduce neuroinflammation, and rapidly ameliorate depressive symptoms in patients with treatment-resistant depression (TRD) via the vagus nerve.",
+      "rationale": "Current evidence strongly implicates systemic inflammation and microglial overactivation as core mechanisms in TRD (PMID:35668399, PMID:33068286). While broad immunosuppressants are dangerous, the literature suggests a specific, repurposable intervention: the gut microbiota's role in training the immune system (PMID:37713568). Bacteroides fragilis is a unique commensal that produces PSA, a molecule that promotes regulatory T cells (Tregs) and suppresses pro-inflammatory cytokines. Crucially, B. fragilis colonization has been shown to reduce microglial activation and brain inflammation in models of multiple sclerosis and anxiety, suggesting a direct pathway from gut commensal to central immune regulation.",
+      "mechanism": "1. **Gut Intervention:** Administration of purified Bacteroides fragilis Polysaccharide A (PSA) or a PSA-mimetic compound to increase Treg populations and suppress peripheral NF-kappaB signaling. 2. **Neural Transmission:** The PSA-induced shift in the gut immune milieu triggers afferent vagus nerve signaling to the nucleus tractus solitarius (NTS). 3. **Central Immune Reset:** The NTS modulates the hypothalamus and directly affects the brainstem, leading to a downregulation of microglial activation (specifically the M1 pro-inflammatory phenotype) in key affective regions like the prefrontal cortex and hippocampus. 4. **Neurochemical Restoration:** Reduced microglial inflammation restores synaptic plasticity and normalizes monoamine and glutamate neurotransmission, alleviating depressive symptoms.",
+      "proposed_intervention": "A Phase IIa randomized, double-blind, placebo-controlled trial utilizing purified Bacteroides fragilis Polysaccharide A (PSA) or a PSA-mimetic peptide (e.g., a stabilized oligosaccharide) administered orally (enteric-coated) to patients diagnosed with Treatment-Resistant Major Depressive Disorder (TRD) who have failed at least two adequate antidepressant trials. The intervention would be administered for 12 weeks, with primary outcomes measuring changes in depressive symptom severity (HAM-D) and peripheral inflammatory markers (CRP, IL-6) alongside microglial activation markers in CSF or via PET imaging if available.",
+      "evidence_pmids": [
+        "14963601",
+        "33278937",
+        "35668399",
+        "33068286",
+        "37713568",
+        "19150053",
+        "33561973"
+      ],
+      "novelty": 0.7,
+      "plausibility": 0.85,
+      "tractability": 0.8,
+      "safety": 0.9,
+      "evidence_strength": 0.6,
+      "overall": 0.821,
+      "elo": 1200.0,
+      "parent_ids": [],
+      "critiques": [
+        "persona:explorador",
+        "A hipótese é robusta e baseada em uma transição lógica da microbiota para o sistema nervoso central."
+      ],
+      "born_at": 1779970591.9941094
+    },
+    {
+      "id": "757140b15e",
+      "title": "Repurposing the cGAS-STING Antiviral Pathway as a Novel Anti-Inflammatory Strategy for 'Low-Grade' Major Depressive Disorder",
+      "statement": "The activation of the intracellular cyclic GMP-AMP synthase (cGAS) and Stimulator of Interferon Genes (STING) pathway, triggered by cytosolic DNA released from innate immune cells, contributes to the pathophysiology of major depressive disorder (MDD) by inducing chronic neuroinflammation, particularly via microglial priming.",
+      "rationale": "Current literature identifies a strong link between inflammation and depression, specifically a subset characterized by neurovegetative symptoms (anhedonia, fatigue) and poor response to current antidepressants (PMID:40329642). While macrophage-depleting techniques have been used to study inflammation in depression, they are not clinically translatable. This hypothesis proposes a specific, previously underexplored immune mechanism—the cGAS-STING pathway—that bridges the gap between peripheral immune activation and central neuroinflammation.",
+      "mechanism": "Stress triggers the release of mitochondrial DNA and other damage-associated molecular patterns (DAMPs) from damaged neurons and activated microglia into the cytosol. These cytosolic DNA fragments act as ligands for the sensor protein cGAS, which synthesizes cGAMP. cGAMP binds to STING, leading to the activation of the transcription factor IRF3 and the nuclear translocation of NF-kB. This results in the robust transcription of Type I Interferons (IFNs) and pro-inflammatory cytokines (e.g., IL-6, TNF-α). In the brain context, this signaling sustains microglial activation, impairs neurogenesis, and promotes synaptic pruning, culminating in depressive-like behaviors.",
+      "proposed_intervention": "The repurposing of **H-151, a covalent and selective STING inhibitor**, for the treatment of inflammatory depression. This compound, currently in clinical trials for oncology (specifically solid tumors driven by STING activation), would be investigated as an adjunct therapy for patients with MDD exhibiting biomarkers of elevated IFN signaling or neuroinflammation.",
+      "evidence_pmids": [
+        "40329642",
+        "33561973",
+        "19150053"
+      ],
+      "novelty": 0.85,
+      "plausibility": 0.9,
+      "tractability": 0.7,
+      "safety": 0.4,
+      "evidence_strength": 0.6,
+      "overall": 0.7715000000000001,
+      "elo": 1200.0,
+      "parent_ids": [],
+      "critiques": [
+        "persona:explorador",
+        "A hipótese conecta uma via imune central bem definida (cGAS-STING) com a fisiopatologia da depressão, oferecendo um mecanismo biológico claro para um subtipo inflamatório da doença."
+      ],
+      "born_at": 1779970598.999128
+    },
+    {
+      "id": "8c73662a0f",
+      "title": "Selective Modulation of the Hippocampal Neurotrophic Factor Receptor TACR3 to Enhance Structural Plasticity and Mitigate Cognitive Deficits in Major Depressive Disorder",
+      "statement": "Hypothesizing that targeted pharmacological activation of the vasopressin V1b receptor (V1bR, encoded by TACR3) within the hippocampus will enhance antidepressant efficacy by rescuing structural deficits and improving cognitive function while minimizing off-target psychiatric effects.",
+      "rationale": "Major Depressive Disorder (MDD) is characterized by volumetric reductions in the hippocampus, a structural correlate strongly linked to cognitive dysfunction and disease progression (PMID:30470559). While conventional antidepressants primarily target monoamine reuptake, they often fail to reverse hippocampal atrophy and cognitive deficits (PMID:28418288). The V1bR is a G-protein-coupled receptor enriched in the hippocampus and known to regulate neurogenesis and neurotrophic factor expression (PMID:29946213). Its role in MDD pathophysiology is underexplored but potentially critical for addressing the structural component of the disorder. This hypothesis aims to leverage the receptor's natural role in synaptic plasticity to achieve a more robust and comprehensive therapeutic effect compared to current first-line treatments.",
+      "mechanism": "The proposed intervention involves the development or repurposing of selective V1bR agonists. The mechanism of action centers on enhancing the hippocampal dendritic arborization, neurogenesis, and synaptic plasticity. Activation of V1bR is hypothesized to upregulate hippocampal expression of Brain-Derived Neurotrophic Factor (BDNF) and related survival pathways, thereby reversing the volume loss observed in MDD. This intervention targets the structural remediating pathway required to normalize cognitive control networks (PMID:30470559) and reduce the risk of treatment resistance associated with persistent cognitive deficits (PMID:33038880). By focusing on a receptor whose primary signaling nodes are in stress-responsive regions, the approach offers a mechanism distinct from broad monoaminergic modulation.",
+      "proposed_intervention": "A selective, orally bioavailable V1b receptor agonist, potentially repurposed from existing cardiovascular or metabolic compounds, administered in conjunction with or as an augmentation strategy to standard antidepressants (e.g., SSRIs/SNRIs).",
+      "evidence_pmids": [
+        "30470559",
+        "28418288",
+        "33038880",
+        "29946213",
+        "30468135"
+      ],
+      "novelty": 0.6,
+      "plausibility": 0.85,
+      "tractability": 0.7,
+      "safety": 0.5,
+      "evidence_strength": 0.6,
+      "overall": 0.757,
+      "elo": 1200.0,
+      "parent_ids": [],
+      "critiques": [
+        "persona:seguranca",
+        "A estratégia de repurposing de agonistas V1bR para MDD é altamente viável e promissora, especialmente como adjuvante a antidepressivos atuais."
+      ],
+      "born_at": 1779970605.825887
+    },
+    {
+      "id": "088581375c",
+      "title": "Targeting the Neurohormonal Feedback Loops of the Hypothalamic Pituitary Adrenal Axis to Rescue Prefrontal Flux via Intranasal Oxytocin",
+      "statement": "An immediate, pharmacological intervention aimed at normalizing the glucocorticoid receptor (GR) signaling pathway in the medial prefrontal cortex (mPFC) can resolve the severity of depressive symptoms and cognitive impairment in Major Depressive Disorder by restoring negative feedback loops and preventing excitotoxic stress.",
+      "rationale": "The literature consistently points to HPA axis dysfunction, specifically impaired GR-mediated negative feedback leading to chronic hypercortisolism, as a key pathophysiological mechanism in MDD. This results in structural volume loss in the hippocampus and mPFC and sustained inflammatory states. While systemic glucocorticoid blockers exist, they lack brain specificity and cause severe systemic side effects.",
+      "mechanism": "The intervention utilizes intranasal oxytocin (IN-OX). IN-OX bypasses the blood-brain barrier to deliver high concentrations of oxytocin directly to the CNS, specifically targeting the mPFC. Oxytocin acts as a neuromodulator that enhances the sensitivity of GR signaling and dampens HPA axis hyperactivity. This mechanism reduces peripheral cortisol levels, decreases pro-inflammatory cytokines, and promotes neuroplasticity (BDF/TrkB signaling), thereby alleviating depressive symptomatology and cognitive dysfunction.",
+      "proposed_intervention": "Intranasal Oxytocin (IN-OX) administration, specifically targeting dose optimization and delivery protocols designed to maximize mPFC absorption while minimizing systemic vasodilation. This approach prioritizes rapid experimental implementation using existing formulations, avoiding the need for novel, lengthy drug development cycles.",
+      "evidence_pmids": [
+        "14963601",
+        "15645065",
+        "40329642",
+        "33549697"
+      ],
+      "novelty": 0.6,
+      "plausibility": 0.85,
+      "tractability": 0.9,
+      "safety": 0.8,
+      "evidence_strength": 0.5,
+      "overall": 0.7585000000000001,
+      "elo": 1200.0,
+      "parent_ids": [],
+      "critiques": [
+        "persona:engenheiro",
+        "A hipótese é plausível e altamente viável, pois utiliza um fármaco já existente e bem caracterizado, focando em uma mecanística biológica sólida do eixo HPA, embora a evidência clínica direta ainda seja mista."
+      ],
+      "born_at": 1779970612.1147068
+    },
+    {
+      "id": "0ddb61980b",
+      "title": "Modulating the Gut-Microbiota-Immune Axis to Reset cGAS-STING Signaling for Treatment-Resistant Depression",
+      "statement": "The administration of Bacteroides fragilis Polysaccharide A (PSA) induces peripheral immune tolerance and vagal signaling, which serves as a modulator to reset the central cGAS-STING antiviral pathway and suppress neuroinflammation in the treatment-resistant depression.",
+      "rationale": "Current TRD treatments often fail to address the underlying neuroinflammatory mechanisms, particularly the chronic activation of microglia. While the gut microbiome is a key modulator of central inflammation, there is a gap in understanding how specific microbial metabolites can directly target the cytosolic DNA sensing pathway (cGAS-STING) that drives persistent inflammation. This hypothesis posits that a gut-derived immune reset can downregulate the cGAS-STING axis, which is currently being investigated as a novel, yet unaddressed, target for depressive pathophysiology.",
+      "mechanism": "1. **Gut Intervention (A):** Administration of purified Bacteroides fragilis Polysaccharide A (PSA) increases Treg populations and suppresses peripheral NF-kappaB signaling. 2. **Neural Transmission (A):** The PSA-induced shift in the gut immune milieu triggers afferent vagus nerve signaling to the nucleus tractus solitarius (NTS). 3. **Central Immune Reset (A):** The NTS modulates the hypothalamus and directly affects the brainstem, leading to the downregulation of microglial activation (specifically the M1 pro-inflammatory phenotype) in the prefrontal cortex and hippocampus. 4. **Suppression of cGAS-STING Pathway (B modulated):** The reduction in central inflammation and microglial activation decreases the release of mitochondrial DNA (DAMPs) and cytosolic DNA fragments from damaged neurons. This reduction in ligands serves as the key modulator for the cGAS-STING pathway, leading to decreased cGAMP synthesis, reduced STING activation, and diminished nuclear translocation of NF-kappaB and IRF3. 5. **Resolution of Neuroinflammation (B modulated):** The resulting decrease in Type I Interferons and pro-inflammatory cytokines (e.g., IL-6, TNF-α) resolves the chronic neuroinflammatory state, restores synaptic plasticity, and alleviates depressive symptoms.",
+      "proposed_intervention": "A Phase IIa randomized, double-blind, placebo-controlled trial utilizing purified Bacteroides fragilis Polysaccharide A (PSA) or a PSA-mimetic peptide (e.g., a stabilized oligosaccharide) administered orally (enteric-coated) to patients diagnosed with Treatment-Resistant Major Depressive Disorder (TRD). This intervention would be administered for 12 weeks, with primary outcomes measuring changes in depressive symptom severity (HAM-D) and peripheral inflammatory markers (CRP, IL-6), alongside direct measurement of microglial activation markers in CSF or via PET imaging. Secondary outcomes would include biomarkers of cGAS-STING pathway activity (e.g., phosphorylated STING, IRF3 levels, Type I IFN signatures) to confirm the mechanistic link.",
+      "evidence_pmids": [],
+      "novelty": 0.8,
+      "plausibility": 0.7,
+      "tractability": 0.6,
+      "safety": 0.5,
+      "evidence_strength": 0.3,
+      "overall": 0.671,
+      "elo": 1200.0,
+      "parent_ids": [
+        "acbdd5b368",
+        "757140b15e"
+      ],
+      "critiques": [
+        "composta_ordenada",
+        "Combina a microbioterapia com uma via molecular específica (cGAS-STING) pouco explorada na depressão, mas requer validação rigorosa de que o PSA atinge o cérebro e modula essa via."
+      ],
+      "born_at": 1779970620.1490788
+    },
+    {
+      "id": "b699fd95bd",
+      "title": "A_modulando_B: A Inibição da via cGAS-STING como Pré-condicionamento para a Resetagem da Via PSA-Gut-Microglia na Depressão Resistente",
+      "statement": "O uso de um inibidor seletivo da via cGAS-STING (H-151) para suprimir a neuroinflamação aguda pode funcionar como um contexto primário que potencializa a eficácia de uma intervenção futura baseada no eixo PSA-Gut-Microglia, permitindo uma melhor recuperação da plasticidade sináptica e neurotransmissão monoaminérgica em pacientes com Depressão Maior Resistente ao Tratamento (TRD).",
+      "rationale": "A cGAS-STING é um mecanismo de inflamação aguda e rápida (tipo IFN) que ativa microglias e impede a neurogênese. A intervenção B (PSA) atua de forma mais lenta, focada na resetagem do sistema imune e na modulação vagal. A hipótese propõe que a supressão inicial da via cGAS-STING pela intervenção A cria um ambiente cerebral menos inflamatório e mais receptivo, permitindo que a intervenção B (que reestabelece a homeostase imune de longo prazo) tenha um impacto mais imediato e significativo na neuroplasticidade e na síntese de neurotransmissores.",
+      "mechanism": "A_modulando_B. Primeiro, a intervenção A (H-151) é aplicada para inibir a via cGAS-STING, reduzindo a ativação de NF-kB e a produção de citocinas pró-inflamatórias (IFNs, IL-6). Esse estado de 'silenciamento' da inflamação aguda no cérebro (redução da microglia M1 e da apoptose neuronal) cria um contexto terapêutico onde a intervenção B pode ser mais eficaz. Segundo, a intervenção B (PSA oral) atua no eixo intestino-cérebro, normalizando a sinalização vagal e induzindo uma resetagem imune periférica e central. O contexto de menor carga inflamatória aguda (A) facilita a ação da resetagem imune (B) na restauração da plasticidade sináptica e na normalização da neurotransmissão (dopamina, serotonina, glutamato).",
+      "proposed_intervention": "Um protocolo de tratamento sequencial ou combinado para TRD: 1) Um período curto (ex: 2-4 semanas) de tratamento com H-151 (inibidor de STING) para suprimir a inflamação aguda e 'preparar' o cérebro. 2) Início da intervenção B (administração oral de PSA ou mimético) para reestabelecer a homeostase imune e a plasticidade sináptica a longo prazo. A combinação visa aproveitar a supressão rápida da inflamação aguda para maximizar a eficácia da resetagem imune.",
+      "evidence_pmids": [],
+      "novelty": 0.0,
+      "plausibility": 0.0,
+      "tractability": 0.0,
+      "safety": 0.0,
+      "evidence_strength": 0.0,
+      "overall": 0.708,
+      "elo": 1200.0,
+      "parent_ids": [
+        "757140b15e",
+        "acbdd5b368"
+      ],
+      "critiques": [
+        "composta_ordenada",
+        "A combinação de um inibidor de inflamação aguda (cGAS-STING) com uma intervenção de resetagem imune (PSA) é biologicamente coerente, mas o uso de H-151 em humanos para TRD apresenta riscos significativos de imunossupressão sistêmica."
+      ],
+      "born_at": 1779970628.396656
+    },
+    {
+      "id": "90e6d44fd0",
+      "title": "Targeting the Central Endophenotype of Opioid Homeostasis via the Rescue and Repurposing of the M1 Opioid Receptor Agonist Etorphine in Treatment-Resistant Major Depression",
+      "statement": "Conventional antidepressants fail in a significant subset of Major Depressive Disorder (MDD) patients, likely due to an inability to target disease-specific central endophenotypes. We hypothesize that a functional deficit in enkephalin-M1 opioid receptor signaling within the mesocortical-limbic circuitry drives a hypofrontal 'anhedonic' state. Specifically, we propose that a chronic, low-grade downregulation of M1 receptors, triggered by stress-induced neuropeptide dysregulation, underlies the core motivational deficits. We posit that the acute, pharmacological repurposing of high-potency M1 agonists, such as Etorphine, in a controlled, sub-anesthetic micro-dosing protocol, can transiently rescue receptor function and restore downstream neuroplasticity (CREB/BDNF signaling), thereby breaking the depressive cycle without psychotropic side effects.",
+      "rationale": "The literature highlights the failure of monoaminergic antidepressants in a substantial patient population, suggesting a need for novel mechanisms beyond serotonergic and noradrenergic modulation (PMID: 28933261, PMID: 30470559). The endogenous opioid system, particularly enkephalins acting on μ-opioid receptors (MOR) and δ-opioid receptors (DOR), is deeply implicated in the neurobiology of reward, motivation, and analgesia, with M1 receptors (a unique, non-dissociable MOR sub-type) thought to be critical for both the pro-addictive and the 'anti-stress' properties of opioid compounds (PMID: 31046480, PMID: 33561973). Furthermore, the high 'acetylcholinesterase-like' activity of etorphine offers an interesting, albeit complex, pharmacological note, but here we focus on its primary M1 agonist profile as a potential tool to probe and functionally modulate a hypothesized deficit in this pathway.",
+      "mechanism": "The proposed mechanism centers on the functional rescue of a M1 receptor deficit within the ventral tegmental area (VTA) and nucleus accumbens (NAc). Chronic psychosocial stress, as a known precipitant of depression (PMID: 19150053), is hypothesized to lead to a compensatory downregulation and desensitization of M1 receptors in these regions, resulting in impaired G-protein signaling and a subsequent failure to activate the Phospholipase C (PLC) pathway. Activating these dormant M1 receptors with a high-potency agonist (Etorphine) would restore downstream intracellular calcium signaling. This, in turn, is expected to activate the PKC and MAPK/ERK cascades, leading to increased phosphorylation of the transcription factor CREB and the upregulation of BDNF (PMID: 16987439). The resulting enhancement of synaptic plasticity and neurogenesis would specifically target the motivational and cognitive deficits characteristic of the disease.",
+      "proposed_intervention": "A single, double-blind, randomized, placebo-controlled crossover study enrolling treatment-resistant MDD patients. The intervention would be a meticulously calculated, sub-anesthetic micro-dose of Etorphine (e.g., 0.0007 mg/kg, route of administration to be determined and critically focused on safety) administered intramuscularly or intranasally. The study would be designed to assess a single 'challenge' dose, with primary endpoints being: (1) a 24-hour change in the amotivation/anhedonia subscale of the Montgomery-Åsberg Depression Rating Scale (MADRS), and (2) a significant increase in circulating BDNF levels. Safety monitoring for potential for misuse, respiratory depression, or other M1-mediated side effects would be paramount.",
+      "evidence_pmids": [
+        "28933261",
+        "30470559",
+        "16987439",
+        "19150053",
+        "31046480",
+        "33561973"
+      ],
+      "novelty": 0.8,
+      "plausibility": 0.7,
+      "tractability": 0.6,
+      "safety": 0.2,
+      "evidence_strength": 0.4,
+      "overall": 0.627,
+      "elo": 1200.0,
+      "parent_ids": [],
+      "critiques": [
+        "persona:explorador",
+        "A abordagem ousada de microdosing de etorfina para resgatar sinalização M1 em circuitos de recompensa oferece um mecanismo biológico plausível para a anedonia resistente, mas o alto risco de toxicidade e potencial de abuso tornam a viabilidade clínica e ética extremamente duvidosas."
+      ],
+      "born_at": 1779970640.6337776
+    },
+    {
+      "id": "1a9b03504e",
+      "title": "Repurposing the Anti-Fungal Agent Itraconazole as a Durable Modulator of Glutamatergic Homeostasis via the Lysosomal Pathway for Major Depressive Disorder",
+      "statement": "We propose that Itraconazole, a clinically approved antifungal agent, acts as a potent, brain-penetrant inhibitor of the Lysosomal Calcium Pump (ATP6AP2) and disrupts the aggresome pathway, leading to the chronic upregulation of the Glutamate Transporter EAAT2. This mechanism addresses a core deficit in MDD—the failure to maintain extracellular glutamate levels—by fundamentally altering astrocytic clearance capacity rather than transiently inhibiting reuptake, a novel approach to preventing excitotoxicity and restoring synaptic plasticity.",
+      "rationale": "The serotonin and norepinephrine theories of depression have plateaued due to high non-responder rates (30-50%). A substantial body of literature points to glutamatergic dysregulation, excitotoxicity, and impaired excitatory control mechanisms as a more universal pathophysiology. While drugs like ketamine offer rapid relief, their efficacy is often transient and carries abuse potential or dissociative side effects. Itraconazole is a well-characterized, orally bioavailable drug with extensive clinical safety data and measurable brain penetration. Recent studies on lysosomal function and the aggresome pathway suggest that drugs inhibiting autophagic clearance can induce compensatory expression of neuroprotective transporters, providing a mechanistic foothold for a 'hardwired' correction of glutamate homeostasis.",
+      "mechanism": "Itraconazole is a known inhibitor of the Lysosomal Calcium ATPase (ATP6AP2), which disrupts lysosomal calcium homeostasis. This disruption leads to the inhibition of the aggresome pathway, a critical process for protein quality control. In response to this stress, astrocytes undergo a 'proteostatic shift' where they upregulate the expression of the cystine/glutamate antiporter system xc- and its effector, the excitatory amino acid transporter 2 (EAAT2). By increasing EAAT2 levels, Itraconazole enhances the clearance of extracellular glutamate, effectively lowering the synaptic glutamate concentration and preventing excitotoxic NMDA receptor overactivation. This chronic improvement in glutamate clearance aids in the preservation of dendritic spines and promotes the survival of neurons in the hippocampus and prefrontal cortex.",
+      "proposed_intervention": "A phase 2a, randomized, double-blind, placebo-controlled clinical trial of oral Itraconazole (200mg daily) in patients with treatment-resistant major depressive disorder (TRD). The trial will stratify patients based on baseline inflammatory markers (e.g., IL-6, CRP) to identify the subset most likely to respond to this novel mechanism. Endpoints will assess efficacy via the MADI (Montgomery-Åsberg Depression Rating Scale) and the Clinical Global Impression-Severity scale, with specific cognitive sub-studies to evaluate the impact on working memory and executive function, hypothesizing improvement beyond standard serotonergic responses.",
+      "evidence_pmids": [
+        "40329642",
+        "29946213",
+        "33278937",
+        "33549697",
+        "33561973",
+        "37923863",
+        "28933261",
+        "31046480",
+        "30734486",
+        "30468135"
+      ],
+      "novelty": 0.7,
+      "plausibility": 0.8,
+      "tractability": 0.9,
+      "safety": 0.6,
+      "evidence_strength": 0.4,
+      "overall": 0.757,
+      "elo": 1200.0,
+      "parent_ids": [],
+      "critiques": [
+        "persona:explorador",
+        "A hipótese é plausível e tem alta tractabilidade, mas a força da evidência atual é fraca, exigindo validação clínica rigorosa."
+      ],
+      "born_at": 1779970650.8770697
+    },
+    {
+      "id": "f8c6e8244b",
+      "title": "Targeting the Disturbed Neuropeptide S Signaling via Nasa(puor) as a Precise, Low-Risk Intervention for Heterogeneous Major Depressive Disorder",
+      "statement": "A hypothesize that a multi-faceted intervention combining SGLT2 inhibitor therapy (like dapagliflozin) and the augmentation with Nasa(puor) (a low-dose nitrate formulation) will restore peripheral and central metabolic/vascular homeostasis, thereby re-elevating neuronal NPY levels and neurotrophic support without the severe off-target effects associated with broad-spectrum anti-inflammatory or immunomodulatory agents.",
+      "rationale": "Current antidepressant therapies (SSRIs, SNRIs) often fail to address residual symptoms and are associated with significant metabolic side effects in a substantial portion of the MDD population. Literature indicates a strong link between systemic metabolic dysfunction (Metabolic Syndrome) and the pathophysiology of MDD, mediated by neuroinflammation and impaired neuroplasticity [PMID:29946213]. Furthermore, the presence of a high-inflammatory subtype of depression correlates with poor SSRI response [PMID:40329642]. While broad immunomodulation carries risks, targeting upstream metabolic drivers offers a more systemic and historically safer therapeutic avenue. There is a growing body of evidence suggesting that correcting metabolic disturbances can ameliorate depressive symptoms [PMID:40329642]. Additionally, Nitrate (Nasa(puor)) therapy is known to boost NO bioavailability, which has beneficial effects on cerebral blood flow and mitochondrial function, potentially counteracting the vascular and metabolic deficits observed in depression.",
+      "mechanism": "1. **Metabolic Correction via SGLT2 Inhibition**: SGLT2 inhibitors (e.g., dapagliflozin) reduce hyperglycemia and weight gain, reversing the physiological stress of metabolic syndrome. This reduces systemic inflammation (TNF-α, IL-6) and oxidative stress, which are known to suppress Neurotrophic Factors (BDNF) and Neuroendocrine function (HPA axis dysregulation) [PMID:19150053].\n2. **Vascular & NO Restoration via Nasa(puor)**: Nasa(puor) provides a controlled release of nitric oxide (NO). In the context of metabolic syndrome and depression, endothelial dysfunction and reduced NO bioavailability are common. Increased NO bioavailability improves cerebral perfusion, enhances dendritic spine density, and directly upregulates Neurotrophic Factor expression, including VEGF and BDNF, fostering neuroplasticity and neuronal survival [PMID:30470559].\n3. **Indirect NPY Boosting**: NO bioavailability is crucial for the expression and secretion of Neuropeptide Y (NPY), an endogenous anti-depressant and anxiolytic peptide. By restoring metabolic and vascular health, the brain's capacity to produce and utilize NPY is re-established.",
+      "proposed_intervention": "A combined therapeutic regimen: 1) Initiation of a SGLT2 inhibitor (e.g., Dapagliflozin) at standard dosing for glycemic control and metabolic health. 2) Adjunctive supplementation with Nasa(puor) (low-dose, extended-release), administered for a trial period of 12 weeks, with evaluation of depressive symptomatology using standardized scales (HAM-D, MADRS). This approach avoids direct receptor blockade or aggressive immunosuppression, focusing on improving the systemic environment necessary for endogenous neuroprotective mechanisms to function.",
+      "evidence_pmids": [
+        "29946213",
+        "40329642",
+        "30470559",
+        "19150053",
+        "40329642"
+      ],
+      "novelty": 0.7,
+      "plausibility": 0.85,
+      "tractability": 0.9,
+      "safety": 0.95,
+      "evidence_strength": 0.6,
+      "overall": 0.8375,
+      "elo": 1200.0,
+      "parent_ids": [],
+      "critiques": [
+        "persona:seguranca",
+        "Combinação lógica de fármacos já aprovados com mecanismos metabólicos e vasculares distintos que convergem na neuroplasticidade."
+      ],
+      "born_at": 1779970665.7078838
+    },
+    {
+      "id": "7012a9f352",
+      "title": "A_revirada_metabólica_da_via_do_colágeno: Identificação do Fator de Crescimento Transformador Beta como um Manipulador de Neuritogênese e Terapia de Reavaliação no Transtorno Depressivo Maior",
+      "statement": "Hipótese de repurposing: O Fator de Crescimento Transformador Beta (TGF-β), uma citocina potente que regula a homeostase tecidual e a inflamação sistêmica, possui uma função crítica, até agora alheia à psiquiatria, na preservação neuroplástica direta, especificamente na neuritogênese nas camadas profundas do córtex entorrinal.",
+      "rationale": "A literatura sobre a depressão (PMID: 30470559, PMID: 39120643, PMID: 37923863) estabelece fortemente que a redução de volume hipocampal, danos ao córtex medial pré-frontal e disfunção neuronal são marcadores estruturais e funcionais da doença. A neuroplasticidade, e não apenas a neurotransmissão monoaminérgica, é a chave para a recuperação. Quanto mais estudos sobre proteômica (PMID: 41253209) e metaboloma (PMID: 38849517) ocorrem, mais é evidente a complexidade das vias de sinalização envolvidas. A mirogliose (PMID: 35668399, PMID: 33068286) e a inflamação crônica (PMID: 19150053) são conhecidas por inibir a neurogênese. A hipótese explora formas pouco exploradas: ao contrário da maioria das abordagens focadas em anti-inflamatórios que visam a mirogliose, este foco propositalmente na TGF-β (citocina potente) sugere que uma reativação controlada de uma via de sinalização tecidual, freqüentemente suprimida em estados inflamatórios crônicos, pode ser a chave para o estímulo da plasticidade neuronal direta, independentemente da inflamação.",
+      "mechanism": "O TGF-β é conhecido por modular o sistema imune e a fibrose, mas tem um papel emergente no cérebro. A hipótese propõe que a deficiência funcional de TGF-β nas camadas profundas do córtex entorrinal contribui para a redução de dendritos e sinapses em MDD. O TGF-β atua via sua família de receptores serina-treonina quinases (TGF-βR). Isso desencadeia uma cascata de sinalização que ativa a via SMAD (SMAD2/3 fosforilados, complexos com SMAD4 que migram para o núcleo) e a via não-SMAD (PI3K/AKT/mTOR e MAPK/ERK). A ativação da via PI3K/AKT/mTOR é central para a sirtoogênese, crescimento de dendritos e ramificação. Na prática biológica, a reativação de TGF-β restauraria a via de sinalização PI3K/AKT/mTOR no córtex entorrinal (uma região chave das memórias autobiográficas e de processamento emocional), promovendo a sobrevivência neuronal, a ramificação dendrítica e a formação de novas sinapses, contornando a apoptose e a inflamação que inibem a plasticidade.",
+      "proposed_intervention": "Repurposing do Agonista de Receptor de Peptídeo Fator Fator de Criação de Tumor Natural (Imetitimod) para o Tratamento de Depressão Maior.",
+      "evidence_pmids": [
+        "38849517",
+        "37644009",
+        "41253209",
+        "40329642",
+        "39120643",
+        "35668399",
+        "33068286",
+        "19150053",
+        "30470559"
+      ],
+      "novelty": 0.85,
+      "plausibility": 0.75,
+      "tractability": 0.7,
+      "safety": 0.6,
+      "evidence_strength": 0.5,
+      "overall": 0.74,
+      "elo": 1200.0,
+      "parent_ids": [],
+      "critiques": [
+        "persona:explorador",
+        "A hipótese conecta uma citocina imune (TGF-β) com vias de plasticidade neuronal (PI3K/AKT/mTOR), propondo um mecanismo biológico plausível para a reestruturação cortical na depressão, com alto potencial de sinergia com tratamentos atuais."
+      ],
+      "born_at": 1779970680.75066
+    },
+    {
+      "id": "8202e7b94a",
+      "title": "A_Modulando_B: Metabolic and Vascular Correction via SGLT2 Inhibition and NO Restoration as a Primer for Gut-Microglia Axis Modulation via PSA in Heterogeneous and Treatment-Resistant Depression",
+      "statement": "The therapeutic efficacy of a gut-microbiota-based intervention (Bacteroides fragilis Polysaccharide A, PSA) for treating heterogeneous Major Depressive Disorder (MDD) and Treatment-Resistant Depression (TRD) can be significantly enhanced by first establishing a favorable systemic metabolic and vascular environment through SGLT2 inhibition and nitric oxide (NO) restoration (Nasa(puor)).",
+      "rationale": "A robust therapeutic response to PSA (B) is likely contingent on a host that is not under the chronic physiological stress of metabolic syndrome. The proposed sequence (A then B) addresses the foundational pathophysiology of inflammation and neurotrophic deficit that can impair gut barrier integrity and the efficacy of peripheral immune modulators like PSA. By normalizing blood glucose and vascular function first, we prime the body to better utilize the anti-inflammatory and neurotrophic signals generated by PSA.",
+      "mechanism": "1. **Systemic Priming (Mechanism A First)**: The regimen begins with SGLT2 inhibition (e.g., dapagliflozin) to correct hyperglycemia and reduce systemic inflammation (TNF-α, IL-6). This is followed by NO restoration via Nasa(puor) to improve cerebral perfusion and vascular health. This dual metabolic-vascular correction establishes a low-inflammatory, high-perfusion baseline. 2. **Gut-Microglia Axis Modulation (Mechanism B Next)**: Once the systemic environment is optimized, Bacteroides fragilis Polysaccharide A (PSA) is administered. The improved systemic context (lower inflammation, better vascular integrity) enhances the survival and efficacy of PSA to expand regulatory T-cells (Treg) and suppress peripheral NF-kappaB signaling. 3. **Neurological Integration**: The PSA-induced immune shift is then transmitted via the vagus nerve to the central nervous system. The primed system (A) supports this signaling, leading to a more effective downregulation of microglial activation (M1 phenotype) and restoration of neurotrophic factors (BDNF) and neurotransmission, resulting in a synergistic antidepressant effect.",
+      "proposed_intervention": "A sequential, staged therapeutic protocol for patients with heterogeneous MDD and TRD: 1) A 12-week lead-in phase with a SGLT2 inhibitor (dapagliflozin) and adjunctive Nasa(puor) to optimize metabolic and vascular parameters. 2) Initiation of a Phase IIb randomized, double-blind, placebo-controlled trial of Bacteroides fragilis Polysaccharide A (PSA) or a PSA-mimetic compound in patients who have completed the lead-in phase. The primary outcomes would measure the additive or synergistic effect of PSA on depressive symptom severity (HAM-D, MADRS) and central inflammatory markers, compared to PSA administered to untreated (non-primed) controls.",
+      "evidence_pmids": [
+        "19150053",
+        "30470559"
+      ],
+      "novelty": 0.8,
+      "plausibility": 0.7,
+      "tractability": 0.6,
+      "safety": 0.6,
+      "evidence_strength": 0.3,
+      "overall": 0.664,
+      "elo": 1200.0,
+      "parent_ids": [
+        "f8c6e8244b",
+        "acbdd5b368"
+      ],
+      "critiques": [
+        "composta_ordenada",
+        "A hipótese une mecanismos farmacológicos validados (SGLT2i) com uma abordagem imunológica emergente (PSA), criando uma sequencia logica de 'priming' que aumenta a plausibilidade da eficácia do PSA no cérebro."
+      ],
+      "born_at": 1779970701.1415036
+    },
+    {
+      "id": "0ed94bc4a6",
+      "title": "Targeting the Gut-Microglia Axis via Bacteroides fragilis Polysaccharide A (PSA) for Treatment-Resistant Depression",
+      "statement": "The administration of purified Bacteroides fragilis Polysaccharide A (PSA) serves as the foundational intervention to reset central inflammation, which subsequently modulates the neurobiological effects of metabolic correction via SGLT2 inhibition and nitric oxide restoration.",
+      "rationale": "Treatment-Resistant Depression (TRD) is characterized by persistent inflammation and metabolic dysfunction. The hypothesis posits that correcting the gut immune environment (A) is a prerequisite for effective metabolic and vascular interventions (B), as the gut-derived reset creates a neurochemical milieu that allows for the neuroplastic benefits of improved metabolism and blood flow to be fully realized and sustained.",
+      "mechanism": "1. **Gut Intervention (A):** PSA administration increases Treg populations and suppresses peripheral NF-κB signaling. 2. **Neural Transmission (A):** This gut immune shift triggers afferent vagus nerve signaling to the nucleus tractus solitarius (NTS). 3. **Central Immune Reset (A):** The NTS modulates the hypothalamus and brainstem, leading to the downregulation of microglial M1 activation in affective regions. 4. **Neurochemical Restoration (A):** Reduced central inflammation restores synaptic plasticity and normalizes monoamine and glutamate neurotransmission. 5. **Metabolic Correction via SGLT2 Inhibition (B modulated by A):** The inflammation-resolved state induced by A (specifically the normalization of monoamines) combined with SGLT2 inhibitor use (dapagliflozin) reduces systemic inflammation and HPA axis dysregulation. 6. **Vascular & NO Restoration via Nasa(puor) (B modulated by A):** With a stabilized neurochemical baseline from A, the increased NO bioavailability from Nasa(puor) enhances cerebral perfusion and dendritic spine density, which further supports the neuroplasticity initiated by the PSA-induced gut reset.",
+      "proposed_intervention": "A sequential multi-modal approach: First, patients with TRD undergo a 12-week Phase IIa trial with PSA (oral, enteric-coated) to assess central immune reset and symptom reduction. Following this, patients are transitioned to a maintenance regimen combining SGLT2 inhibition (dapagliflozin) and Nasa(puor) to sustain metabolic and vascular health, with the expectation that the PSA-induced neurochemical environment will potentiate the efficacy of these interventions.",
+      "evidence_pmids": [
+        "19150053",
+        "30470559"
+      ],
+      "novelty": 0.0,
+      "plausibility": 0.0,
+      "tractability": 0.0,
+      "safety": 0.0,
+      "evidence_strength": 0.0,
+      "overall": 0.7375,
+      "elo": 1200.0,
+      "parent_ids": [
+        "acbdd5b368",
+        "f8c6e8244b"
+      ],
+      "critiques": [
+        "composta_ordenada",
+        "Combina imunomodulação intestinal com correção metabólica e vascular para tratar TRD, criando um efeito sinérgico potente."
+      ],
+      "born_at": 1779970708.7225814
+    },
+    {
+      "id": "fabde91f53",
+      "title": "SGLT2 Inhibition and Neuroinflammation Dampening as a Primer for Gut-Microglia Axis Modulation in Heterogeneous Major Depressive Disorder",
+      "statement": "The efficacy of gut-microglia axis modulation, such as via Bacteroides fragilis Polysaccharide A (PSA), in Treatment-Resistant Depression (TRD) is limited by systemic metabolic dysfunction and chronic neuroinflammation, which create an hostile environment for microbial colonization and microglial regulation. This proposed hypothesis posits that the phase-specific administration of Sodium-Glucose Cotransporter 2 (SGLT2) inhibitors, such as Empagliflozin or Dapagliflozin, will serve as an initial metabolic and vascular reset, thereby resolving the SGLT2-mediated inflammatory and oxidative stress pathways, which is a prerequisite for the stable colonization and therapeutic activity of PSA.",
+      "rationale": "The previously proposed hypothesis of targeting the gut-microglia axis via PSA (PMID: 27629598) is scientifically sound but faces a critical biological barrier: the high prevalence of metabolic syndrome (PMID: 29946213) and chronic low-grade inflammation in patients with Major Depressive Disorder (MDD). Current evidence indicates that patients with MDD have a significantly increased risk of metabolic syndrome, characterized by abdominal obesity, dyslipidemia, hypertension, and hyperglycemia. This comorbidity is not merely a consequence of lifestyle or psychiatric medications (PMID: 29946213); it involves bidirectional interactions where metabolic dysfunction exacerbates neurodegeneration, and MDD increases the risk for vascular diseases (PMID: 37713568). Furthermore, patients with MDD frequently exhibit elevated levels of pro-inflammatory biomarkers (PMID: 40329642), a chronic inflammatory state that is detrimental to the efficacy of microbiome-based therapies. Moreover, SGLT2 inhibitors have been shown to have direct anti-inflammatory effects on the central nervous system in the context of type 2 diabetes, potentially reducing neuroinflammation before any metabolic correction is achieved (PMID: 40329642). Therefore, a two-stage intervention—addressing the metabolic and inflammatory root causes first—is logically required to prime the patient for the success of a PSA-based therapeutic.",
+      "mechanism": "1. **Metabolic Reset and Reperfusion Injury Mitigation:** SGLT2 inhibitors reduce chronic hyperglycemia and associated oxidative stress by lowering renal glucose reabsorption. This improves endothelial function and reduces the release of reactive oxygen species, which are detrimental to the gut barrier and microglial cells.\n2. **Anti-inflammatory Cascade:** SGLT2 inhibition has been linked to the activation of AMP-activated protein kinase (AMPK) and subsequent downregulation of the NLRP3 inflammasome in peripheral tissues and macrophages. As peripheral inflammation heavily influences the brain (via the gut-brain axis), this dampening of pro-inflammatory signaling (IL-1β, TNF-α, IL-6) reduces the oxidative burden on the brain (PMID: 40329642, PMID: 19150053), creating a more favorable milieu for therapeutic interventions.\n3. **Vascular and Neurotrophic Improvement:** Improved metabolic health may increase cerebral blood flow and enhance the expression of neurotrophic factors like BDNF, which are often suppressed in the severe metabolic environment of TRD (PMID: 30470559).\n4. **Priming for PSA:** Once the systemic inflammatory load and metabolic stress are reduced, the gut microbiome becomes more stable and resilient. The SGLT2-diabetic state, characterized by high glucose and inflammation, is hostile to the growth of beneficial Bacteroides species. By normalizing the metabolic environment, the subsequent administration of B. fragilis PSA (PMID: 27629598) can be more effectively colonized and processed, leading to enhanced TLR2 activation, subsequent IL-10 release, and effective microglial reprogramming.",
+      "proposed_intervention": "A sequential, pharmacological intervention strategy for patients with Major Depressive Disorder characterized by metabolic comorbidities and inflammatory markers (elevated CRP, IL-6).\n\n**Stage 1 (Weeks 0-12): The Metabolic-Priming Phase**\n*   **Intervention:** Administer an SGLT2 inhibitor (e.g., Empagliflozin 10mg daily).\n*   **Rationale:** To lower systemic glucose, reduce oxidative stress, and initiate the AMPK-mediated anti-inflammatory cascade. This stage aims to \"reset\" the metabolic milieu, making it hospitable for subsequent microbiome therapy.\n\n**Stage 2 (Weeks 12-24): The Gut-Microglia Modulation Phase**\n*   **Intervention:** Administer Bacteroides fragilis Polysaccharide A (PSA) in a purified form (e.g., 0.5mg intranasally or enterally encapsulated to bypass gastric acid and preserve integrity).\n*   **Rationale:** Once the inflammatory and metabolic barrier is lowered, the PSA can interact effectively with Toll-like Receptor 2 (TLR2) on immune cells, signaling for the production of IL-10 and the modulation of microglial gene expression, which directly impacts depressive pathology.",
+      "evidence_pmids": [
+        "29946213",
+        "37713568",
+        "40329642",
+        "30621741",
+        "35668399",
+        "27629598"
+      ],
+      "novelty": 0.85,
+      "plausibility": 0.7,
+      "tractability": 0.6,
+      "safety": 0.75,
+      "evidence_strength": 0.5,
+      "overall": 0.7344999999999999,
+      "elo": 1200.0,
+      "parent_ids": [],
+      "critiques": [
+        "persona:sintetizador",
+        "Combina inibidores de SGLT2 com terapia de microbioma para TRD, abordando um problema biomecânico crítico (metabolismo inflamatório) antes da intervenção direta no cérebro."
+      ],
+      "born_at": 1779970725.9384034
+    },
+    {
+      "id": "51df2d9665",
+      "title": "Targeting the Cytokine-Mediated Placental Cytokine Storm via the Hormetic Polysaccharide Fructan as a Precision Intervention for Perinatal Major Depressive Disorder",
+      "statement": "Major depressive disorder (MDD) occurring during the postpartum period is a debilitating condition with significant public health implications, currently treated with limited efficacy and side-effect profiles. This hypothesis proposes that the dysregulated activation of the maternal Hypothalamic-Pituitary-Adrenal (HPA) axis, culminating in a localized placental 'cytokine storm' of pro-inflammatory cytokines (IL-6, TNF-alpha), functions as a critical upstream etiological driver of postpartum MDD. The intervention involves the exogenous administration of the prebiotic polysaccharide fructan, a known immunomodulatory agent that promotes gut microbiota-mediated production of short-chain fatty acids (SCFAs), to dampen this specific inflammatory cascade.",
+      "rationale": "Postpartum depression (PPD) shares a pathophysiological overlap with severe infection and a prominent inflammatory signature, evidenced by increased peripheral and central cytokines (PMID: 16987439, PMID: 19150053). Unlike classic MDD, PPD is often triggered by profound physiological stressors (parturition) where the placenta, a maternal-fetal interface, becomes a significant source of inflammatory mediators. Standard antidepressants (SSRIs/SNRIs) are metabolized by the placenta and can affect fetal neurodevelopment, making safer alternatives crucial (PMID: 28966991). Fructans, as a dietary fiber/psychobiotic, have demonstrated efficacy in reducing systemic inflammation and improving depressive-like behaviors in animal models (PMID: 33561973, PMID: 38849517). This approach is unique in its focus on the perinatal inflammatory etiology via a repurposed, safe, and accessible dietary intervention.",
+      "mechanism": "The proposed mechanism involves the cross-talk between the maternal gut microbiota, the placenta, and the maternal brain. The exogenous fructan (a prebiotic) is fermented by specific gut bacteria, leading to the increased production of SCFAs, particularly butyrate. SCFAs circulate to the placenta, where they inhibit the NF-κB signaling pathway, a primary driver of pro-inflammatory cytokine expression (IL-6, TNF-α). This reduces the release of these cytokines into the maternal systemic circulation and subsequently into the central nervous system (CNS). The reduction in central inflammatory signaling prevents the cytokine-mediated downregulation of neurotransmitter systems (serotonin, dopamine), glucocorticoid receptor dysfunction, and neurotoxic processes (like BDNF suppression) that are characteristic of PPD (PMID: 14963601, PMID: 30470559). This creates an anti-inflammatory environment conducive to mood stabilization.",
+      "proposed_intervention": "A controlled, randomized, double-blind clinical trial investigating the efficacy of high-dose, standardized fructan supplementation (e.g., 15g/day of oligofructose/inulin) in pregnant women identified as high-risk for PPD based on inflammatory biomarkers (elevated IL-6, CRP). The intervention would commence in the third trimester and continue for 6 weeks postpartum. Primary outcomes would be the incidence and severity of major depressive episodes using the Edinburgh Postnatal Depression Scale (EPDS) and objective measures of inflammatory activation (plasma IL-6, TNF-α). Secondary outcomes would assess the gut microbiota composition via metagenomics and the levels of circulating SCFAs.",
+      "evidence_pmids": [
+        "16987439",
+        "19150053",
+        "33561973",
+        "38849517",
+        "14963601",
+        "30470559",
+        "28966991"
+      ],
+      "novelty": 0.8,
+      "plausibility": 0.95,
+      "tractability": 0.9,
+      "safety": 0.95,
+      "evidence_strength": 0.6,
+      "overall": 0.8695,
+      "elo": 1200.0,
+      "parent_ids": [],
+      "critiques": [
+        "persona:explorador",
+        "Combina evidencias sólidas de inflamação em PPD com um mecanismo biológico plausível de modulação via microbiota e ácidos graxos de cadeia curta."
+      ],
+      "born_at": 1779970737.1876311
+    },
+    {
+      "id": "7ce31763c3",
+      "title": "Rebalancing the Hypothalamic-Pituitary-Adrenal Axis via the Heterocyclic Ketone Ketamine for Low-Risk, Rapid Intervention in Treatment-Resistant Major Depressive Disorder",
+      "statement": "A hipótese propõe que a rápida e reverberante modulação da função do receptor de glicocorticóide (GR) através da via metabólica do glutamato, mediada pelo ketamina, pode corrigir o hipercortisolismo persistente e as alterações neuroplásticas na depressão maior resistente (TDR), oferecendo eficácia superior à monoterapia antidepressiva convencional.",
+      "rationale": "A depressão maior está fortemente associada a disfunções no eixo HPA e a um hipercortisolismo morfológico e funcional crônico. Embora antidepressivos tricíclicos e ISRSs possam regular a função do GR (PMID:15645065), sua ação é lenta e eles não corrigem a hipercortisolismo em pacientes com TDR. O ketamina atua de forma mais rápida como inibidor da recaptação de glutamato, desencadeando uma cascata de sinalização que envolve AMPc, MAP kinases e CREB, promove neurogênese hipocampal (PMID:16987439, PMID:38331979) e, consequentemente, normaliza a sinalização do GR. Esta abordagem ataca a raiz neurobiológica comum da disfunção do eixo HPA em TDR, oferecendo uma intervenção de alto impacto com perfil de segurança favorável, reduzindo o risco de efeitos colaterais severos comparado a estratégias não seletivas.",
+      "mechanism": "A intervenção proposta é a administração aguda e intermitente de ketamina (tarja azul), via infusão intravenosa ou nasal (espray). O mecanismo central envolve a inibição da recaptação de glutamato, levando a uma estimulação excitatória aguda que aumenta a atividade de NMDA em gânglios da base. Isso resulta na liberação de glutamato retrogrado, ativação de receptores AMPA e subsequente des-inibição de interneurônios GABA-glutamato. Isso inicia a via AMPc-MAPkinase-CREB, que eleva os níveis de fator neurotrófico derivado do cérebro (BDNF). O aumento de BDNF e a neuroplasticidade restaurada no hipocampo e córtex pré-frontal medial corrigem a ativação excessiva do eixo HPA, normalizando assim a função do receptor de glicocorticóide (GR) e o feedback negativo do cortisol. O objetivo é uma normalização funcionamento do HPA rapidamente seguida por manutenção através de terapia antidepressiva convencional para prevenir a recidiva da depressão.",
+      "proposed_intervention": "Tratamento de indução com Ketamina para Depressão Maior Resistente. Esquema proposto: Infusão intravenosa de ketamina 0.5 mg/kg em 40 minutos, repetida 3 vezes em uma semana (três sessões) seguida por avaliação clínica. Pacientes sem resposta satisfatória às sessões iniciais poderão receber uma segunda rodada de indução após 30 dias. Pacientes que respondem clinicamente deverão iniciar terapia antidepressiva convencional (ex., ISRS) para prevenir recidiva. O protocolo inclui monitoramento rigoroso de vitalidade, pressão arterial e monitoramento psiquiátrico para gestão de efeitos psicotomiméticos agudos e avaliação de risco de dependência.",
+      "evidence_pmids": [
+        "38331979",
+        "16987439",
+        "15645065",
+        "27629598"
+      ],
+      "novelty": 0.7,
+      "plausibility": 0.9,
+      "tractability": 0.8,
+      "safety": 0.4,
+      "evidence_strength": 0.85,
+      "overall": 0.7935,
+      "elo": 1200.0,
+      "parent_ids": [],
+      "critiques": [
+        "persona:seguranca",
+        "A hipótese é altamente plausível e sustentada por evidências robustas de neuroplasticidade rápida, embora o custo e o risco de dependência sejam desafios práticos."
+      ],
+      "born_at": 1779970754.3498123
+    },
+    {
+      "id": "df8da46f26",
+      "title": "Targeting the Dysregulated Kynurenine Pathway via Kynurenine Aminotransferase 2 (KAT2) Activation as a Metabolic-Immune Converter in Non-Resistant Major Depressive Disorder",
+      "statement": "Heterogeneity in Major Depressive Disorder (MDD) includes a distinct subtype driven by chronic low-grade inflammation and metabolic stress characterized by excessive production of neurotoxic kynurenine metabolites at the expense of neuroprotective tryptophan derivatives. Intervening with exogenous L-Tryptophan to shift the enzymatic equilibrium from microglial-mediated neurotoxicity (quinolinic acid) toward astrocytic/neuronal production of neuroprotective kynurenic acid (KYNA) offers a repurposing, mechanism-driven intervention.",
+      "rationale": "The literature consistently demonstrates that MDD involves immune dysregulation, particularly inflammatory cytokine activation (e.g., IFN-γ, IL-1β, TNF-α) that shifts tryptophan metabolism. This shunt activates the inflammatory kynurenine pathway (KGP), leading to elevated neurotoxic quinolinic acid (QUIN) and decreased neuroprotective kynurenic acid (KYNA). This shift is linked to excitotoxicity, NMDA receptor overactivation, and impaired neuroplasticity. While serotonin depletion is classically implicated, the inflammatory KGP represents a critical metabolic-immune crossroad. Standard antidepressants modulate serotonin but fail to correct the specific metabolic flux of the KGP in this subset. Repurposing L-Tryptophan targets the upstream substrate to rebalance this pathway, leveraging the high affinity of Kynurenine Aminotransferase 2 (KAT2) for ethanolamine in astrocytes to drive KYNA synthesis.",
+      "mechanism": "1. **Inflammatory Trigger**: Chronic stress or cytokine exposure upregulates Indoleamine 2,3-Dioxygenase (IDO) and Tryptophan 2,3-Dioxygenase (TDO) in microglia, shunting Tryptophan into the Kynurenine pathway. 2. **Metabolic Shift**: Elevated Kynurenine is further metabolized by 3-Hydroxyanthranilic Acid 3,4-Dioxygenase (3-HAO) into the neurotoxin Quinolinic Acid (QUIN), which acts as an NMDA receptor agonist, inducing excitotoxicity and oxidative stress. 3. **Intervention**: Oral administration of high-dose L-Tryptophan increases substrate availability. 4. **Enzymatic Conversion**: In the absence of inflammatory activation, L-Tryptophan is preferentially converted by Kynurenine Aminotransferase 2 (KAT2) and Kynurenine Aminotransferase 1 (KAT1) in astrocytes and neurons. These enzymes utilize ethanolamine as a co-substrate. 5. **Protective Outcome**: The increased flux results in elevated production of Kynurenic Acid (KYNA), a broad-spectrum NMDA receptor antagonist and α7 nicotinic acetylcholine receptor modulator. KYNA inhibits excitotoxic signaling, reduces oxidative stress, and promotes neuroplasticity.",
+      "proposed_intervention": "Therapeutic repurposing of L-Tryptophan (a naturally occurring amino acid and dietary supplement, typically sold as a racemic mixture or L-isomer) with added co-factors to enhance KAT2 efficiency. Standardized L-Tryptophan dosing (e.g., 6-12 grams/day) paired with a B-complex vitamin supplement (specifically B6, the immediate precursor to Kynurenine) and Magnesium (which activates KAT2). This regimen aims to saturate the KAT pathway and overwhelm the inflammatory TDO/IDO shunt.",
+      "evidence_pmids": [
+        "14963601",
+        "16987439",
+        "15645065",
+        "15057840",
+        "38331979",
+        "30468135",
+        "27629598",
+        "33068286",
+        "33549697",
+        "37923863",
+        "33561973",
+        "35039676",
+        "19150053",
+        "37644009"
+      ],
+      "novelty": 0.4,
+      "plausibility": 0.7,
+      "tractability": 0.9,
+      "safety": 0.6,
+      "evidence_strength": 0.5,
+      "overall": 0.666,
+      "elo": 1200.0,
+      "parent_ids": [],
+      "critiques": [
+        "persona:explorador",
+        "A estratégia de repurposing do triptofano com cofatores (B6 e magnésio) é viável e de baixo custo, mas a dosagem elevada (6-12g) e a heterogeneidade da resposta metabólica em pacientes inflamatórios exigem rigoroso controle clínico."
+      ],
+      "born_at": 1779970772.3192537
+    },
+    {
+      "id": "8f0b327a31",
+      "title": "A_modulando_B: Targeting the Cytokine-Mediated Placental Cytokine Storm via Hormetic Polysaccharides as a Context for Restoring Neurotrophic Signaling via SGLT2 Inhibition and NO Delivery",
+      "statement": "A_modulando_B significa que o mecanismo de A serve de CONTEXTO/POTENCIADOR pro mecanismo de B (a ordem importa — A primeiro, depois B).",
+      "rationale": "Esta hipótese integra duas intervenções focadas em diferentes níveis da fisiopatologia da depressão. A intervenção A (Fructan) atua no contexto pré-natal e pós-parto imediato, focando na redução da inflamação sistêmica e estresse placentário. Essa correção do ambiente inflamatório sistêmico cria as condições necessárias para que a intervenção B (SGLT2 + Nasa(puor)) seja eficaz na restauração da neuroplasticidade e função neuroendócrina no cérebro. O mecanismo A 'limpa' a rota inflamatória, permitindo que os mecanismos de B (NO e SGLT2) atuem sem o obstáculo da inflamação crônica, potencializando a neurogênese e a vascularização cerebral.",
+      "mechanism": "A ordem de funcionamento é a seguinte: 1) **Contexto A (Placental & Gut):** A suplementação de fructan modula a microbiota materna, aumentando a produção de ácidos graxos de cadeia curta (AGCC) como butirato. Esses AGCC circulam para a placenta, inibindo a via NF-κB e reduzindo a liberação de citocinas pró-inflamatórias (IL-6, TNF-α). Isso previne a 'tempestade de citocinas' placentária e a inflamação sistêmica crônica que suprime neurotransmissores e hormônios de estresse. 2) **Modulação B (Metabolic & Vascular):** Com o ambiente inflamatório sistêmico reduzido pelo A, o mecanismo B atua. O uso de SGLT2 inibidores normaliza a glicemia e reduz o estresse metabólico/sistêmico. Simultaneamente, o Nasa(puor) aumenta a disponibilidade de Óxido Nítrico (NO). O NO restaurado melhora a perfusão cerebral e, crucialmente, aumenta a expressão de fatores neurotróficos (BDNF, VEGF) e Neuropeptídeo Y (NPY). O A fornece o solo fértil (anti-inflamatório) para que o B possa florescer (neuroplasticidade e neuroproteção).",
+      "proposed_intervention": "Um protocolo sequencial e combinado: 1) **Fase de Contexto (Trimestre 3 e Primeiros 6 Semanas Pós-parto):** Iniciar a suplementação com fructan (ex: 15g/dia de oligofructose/inulin) para estabilizar o ambiente inflamatório placentário e materno. 2) **Fase de Ação (12 Semanas):** Após a estabilização inicial (ou continuando em paralelo ajustado), iniciar o regime B: uso de um inibidor SGLT2 (ex: Dapagliflozin) para correção metabólica e suplementação com Nasa(puor) para liberação controlada de NO. A avaliação integrada focaria na redução de marcadores de inflamação (Contexto) acompanhada da melhora de neuroplasticidade e sintomas depressivos (Ação).",
+      "evidence_pmids": [
+        "14963601",
+        "30470559",
+        "19150053"
+      ],
+      "novelty": 0.75,
+      "plausibility": 0.85,
+      "tractability": 0.7,
+      "safety": 0.6,
+      "evidence_strength": 0.4,
+      "overall": 0.753,
+      "elo": 1200.0,
+      "parent_ids": [
+        "51df2d9665",
+        "f8c6e8244b"
+      ],
+      "critiques": [
+        "composta_ordenada",
+        "Integração inovadora de microbiota e neuroplasticidade, mas a segurança do Nasa(puor) e o custo do SGLT2 exigem cuidados."
+      ],
+      "born_at": 1779970787.4048607
+    },
+    {
+      "id": "e0f0e4d059",
+      "title": "A_Modulando_B: SGLT2 Inhibition and NO Restoration as a Contextual Foundation for Fructan-Induced Anti-Inflammatory Cytokine Modulation in Perinatal Depression",
+      "statement": "The metabolic and vascular restoration provided by SGLT2 inhibition and Nasa(puor) creates a systemic environment that potentiates the anti-inflammatory and neuroprotective effects of a fructan-based intervention in women with perinatal major depressive disorder.",
+      "rationale": "Perinatal depression is frequently exacerbated by metabolic syndrome and systemic inflammation. A foundational intervention targeting these systemic pathologies (A) is hypothesized to 'prime' the physiological state, making the brain more responsive to the targeted anti-inflammatory mechanisms of a subsequent intervention (B). By correcting metabolic stress and improving NO bioavailability, the baseline inflammatory load is reduced, potentially enhancing the efficacy of the fructan-induced reduction in placental cytokine storm.",
+      "mechanism": "1) **Systemic Priming (Phase 1)**: SGLT2 inhibition reduces hyperglycemia and systemic inflammation, lowering baseline levels of TNF-α and IL-6. Concurrently, Nasa(puor) restores endothelial NO bioavailability, improving cerebral perfusion and upregulating BDNF. This establishes a healthier metabolic and vascular baseline. 2) **Targeted Modulation (Phase 2)**: In this improved state, the administration of a fructan (a prebiotic) is fermented to increase SCFAs (butyrate). These SCFAs inhibit NF-κB signaling specifically at the placenta, more effectively reducing cytokine release into the maternal circulation. The improved neurotrophic environment (from Phase 1) and reduced inflammatory burden (from Phase 2) synergistically protect against cytokine-mediated neurotransmitter suppression and neurotoxicity.",
+      "proposed_intervention": "A sequential, combined therapeutic regimen for high-risk perinatal women: 1) **Foundational Phase (Months 1-3)**: Initiate SGLT2 inhibitor (e.g., Dapagliflozin) and Nasa(puor) to correct metabolic stress and improve vascular health. 2) **Modulatory Phase (Third Trimester & Postpartum)**: Introduce the fructan-based intervention (e.g., 15g/day oligofructose/inulin) to target placental inflammation. This approach leverages the systemic improvements of the first phase to maximize the efficacy of the second phase.",
+      "evidence_pmids": [
+        "19150053",
+        "30470559",
+        "14963601"
+      ],
+      "novelty": 0.0,
+      "plausibility": 0.0,
+      "tractability": 0.0,
+      "safety": 0.0,
+      "evidence_strength": 0.0,
+      "overall": 0.658,
+      "elo": 1200.0,
+      "parent_ids": [
+        "f8c6e8244b",
+        "51df2d9665"
+      ],
+      "critiques": [
+        "composta_ordenada",
+        "Combina metabólicos (SGLT2i) e vasculares (NO) para potencializar efeito de prebiótico, mas o uso de SGLT2i em gestantes é experimental e traz riscos não totalmente conhecidos."
+      ],
+      "born_at": 1779970795.6938252
+    }
+  ],
+  "vectors": {
+    "acbdd5b368": {
+      "novelty": 0.7,
+      "plausibility": 0.85,
+      "tractability": 0.8,
+      "safety": 0.9,
+      "evidence_strength": 0.6,
+      "orthogonality": 0.6,
+      "cost": 0.4,
+      "clinical_impact": 0.9,
+      "synergy": 0.95
+    },
+    "757140b15e": {
+      "novelty": 0.85,
+      "plausibility": 0.9,
+      "tractability": 0.7,
+      "safety": 0.4,
+      "evidence_strength": 0.6,
+      "orthogonality": 0.8,
+      "cost": 0.3,
+      "clinical_impact": 0.85,
+      "synergy": 0.9
+    },
+    "8c73662a0f": {
+      "novelty": 0.6,
+      "plausibility": 0.85,
+      "tractability": 0.7,
+      "safety": 0.5,
+      "evidence_strength": 0.6,
+      "orthogonality": 0.8,
+      "cost": 0.3,
+      "clinical_impact": 0.9,
+      "synergy": 0.95
+    },
+    "088581375c": {
+      "novelty": 0.6,
+      "plausibility": 0.85,
+      "tractability": 0.9,
+      "safety": 0.8,
+      "evidence_strength": 0.5,
+      "orthogonality": 0.4,
+      "cost": 0.2,
+      "clinical_impact": 0.75,
+      "synergy": 0.8
+    },
+    "0ddb61980b": {
+      "novelty": 0.8,
+      "plausibility": 0.7,
+      "tractability": 0.6,
+      "safety": 0.5,
+      "evidence_strength": 0.3,
+      "orthogonality": 0.9,
+      "cost": 0.4,
+      "clinical_impact": 0.8,
+      "synergy": 0.9
+    },
+    "b699fd95bd": {
+      "novelty": 0.8,
+      "plausibility": 0.85,
+      "tractability": 0.7,
+      "safety": 0.4,
+      "evidence_strength": 0.5,
+      "orthogonality": 0.6,
+      "cost": 0.6,
+      "clinical_impact": 0.8,
+      "synergy": 0.9
+    },
+    "90e6d44fd0": {
+      "novelty": 0.8,
+      "plausibility": 0.7,
+      "tractability": 0.6,
+      "safety": 0.2,
+      "evidence_strength": 0.4,
+      "orthogonality": 0.9,
+      "cost": 0.4,
+      "clinical_impact": 0.8,
+      "synergy": 0.7
+    },
+    "1a9b03504e": {
+      "novelty": 0.7,
+      "plausibility": 0.8,
+      "tractability": 0.9,
+      "safety": 0.6,
+      "evidence_strength": 0.4,
+      "orthogonality": 0.8,
+      "cost": 0.2,
+      "clinical_impact": 0.8,
+      "synergy": 0.9
+    },
+    "f8c6e8244b": {
+      "novelty": 0.7,
+      "plausibility": 0.85,
+      "tractability": 0.9,
+      "safety": 0.95,
+      "evidence_strength": 0.6,
+      "orthogonality": 0.8,
+      "cost": 0.3,
+      "clinical_impact": 0.8,
+      "synergy": 0.9
+    },
+    "7012a9f352": {
+      "novelty": 0.85,
+      "plausibility": 0.75,
+      "tractability": 0.7,
+      "safety": 0.6,
+      "evidence_strength": 0.5,
+      "orthogonality": 0.8,
+      "cost": 0.4,
+      "clinical_impact": 0.8,
+      "synergy": 0.9
+    },
+    "8202e7b94a": {
+      "novelty": 0.8,
+      "plausibility": 0.7,
+      "tractability": 0.6,
+      "safety": 0.6,
+      "evidence_strength": 0.3,
+      "orthogonality": 0.5,
+      "cost": 0.4,
+      "clinical_impact": 0.8,
+      "synergy": 0.9
+    },
+    "0ed94bc4a6": {
+      "novelty": 0.85,
+      "plausibility": 0.75,
+      "tractability": 0.8,
+      "safety": 0.6,
+      "evidence_strength": 0.4,
+      "orthogonality": 0.7,
+      "cost": 0.5,
+      "clinical_impact": 0.85,
+      "synergy": 0.9
+    },
+    "fabde91f53": {
+      "novelty": 0.85,
+      "plausibility": 0.7,
+      "tractability": 0.6,
+      "safety": 0.75,
+      "evidence_strength": 0.5,
+      "orthogonality": 0.8,
+      "cost": 0.4,
+      "clinical_impact": 0.8,
+      "synergy": 0.9
+    },
+    "51df2d9665": {
+      "novelty": 0.8,
+      "plausibility": 0.95,
+      "tractability": 0.9,
+      "safety": 0.95,
+      "evidence_strength": 0.6,
+      "orthogonality": 0.7,
+      "cost": 0.3,
+      "clinical_impact": 0.9,
+      "synergy": 0.8
+    },
+    "7ce31763c3": {
+      "novelty": 0.7,
+      "plausibility": 0.9,
+      "tractability": 0.8,
+      "safety": 0.4,
+      "evidence_strength": 0.85,
+      "orthogonality": 0.6,
+      "cost": 0.6,
+      "clinical_impact": 0.9,
+      "synergy": 0.95
+    },
+    "df8da46f26": {
+      "novelty": 0.4,
+      "plausibility": 0.7,
+      "tractability": 0.9,
+      "safety": 0.6,
+      "evidence_strength": 0.5,
+      "orthogonality": 0.3,
+      "cost": 0.2,
+      "clinical_impact": 0.7,
+      "synergy": 0.8
+    },
+    "8f0b327a31": {
+      "novelty": 0.75,
+      "plausibility": 0.85,
+      "tractability": 0.7,
+      "safety": 0.6,
+      "evidence_strength": 0.4,
+      "orthogonality": 0.8,
+      "cost": 0.4,
+      "clinical_impact": 0.9,
+      "synergy": 0.95
+    },
+    "e0f0e4d059": {
+      "novelty": 0.8,
+      "plausibility": 0.75,
+      "tractability": 0.7,
+      "safety": 0.4,
+      "evidence_strength": 0.3,
+      "orthogonality": 0.6,
+      "cost": 0.6,
+      "clinical_impact": 0.8,
+      "synergy": 0.9
+    }
+  },
+  "personas": {
+    "acbdd5b368": "explorador",
+    "757140b15e": "explorador",
+    "8c73662a0f": "seguranca",
+    "088581375c": "engenheiro",
+    "0ddb61980b": "composto",
+    "b699fd95bd": "composto_rev",
+    "90e6d44fd0": "explorador",
+    "1a9b03504e": "explorador",
+    "f8c6e8244b": "seguranca",
+    "7012a9f352": "explorador",
+    "8202e7b94a": "composto",
+    "0ed94bc4a6": "composto_rev",
+    "fabde91f53": "sintetizador",
+    "51df2d9665": "explorador",
+    "7ce31763c3": "seguranca",
+    "df8da46f26": "explorador",
+    "8f0b327a31": "composto",
+    "e0f0e4d059": "composto_rev"
+  },
+  "drives_final": {
+    "explorador": 1.6295457359010315,
+    "conservador": 0.4448785367785029,
+    "engenheiro": 0.6725352427753694,
+    "seguranca": 1.3338775800100642,
+    "sintetizador": 0.9191629045350322
+  },
+  "neuromod_final": {
+    "da": 0.721438513867452,
+    "ne": 0.5726923536565299,
+    "se": 0.72316539593215
+  },
+  "asymmetries": [
+    0.03699999999999992,
+    0.07350000000000001,
+    0.09499999999999997
+  ],
+  "log": [
+    "=== UNIFIED — AGI(NovaMind) + Torneio(Co-Sci) + DeepDive(Robin) ===",
+    "doenca: depressão\nciclos de geracao: 12 | top torneio: 8 | deep-dive: 3",
+    "\n[lit] literatura ampla...",
+    "\n=== FASE 1: GERACAO POR PERSONAS (AGI) ===",
+    "[ciclo 1] persona=explorador",
+    "  GERADA: Targeting the Gut-Microglia Axis via Bacteroides fragilis Polysaccharide A (PSA)",
+    "[ciclo 2] persona=explorador",
+    "  GERADA: Repurposing the cGAS-STING Antiviral Pathway as a Novel Anti-Inflammatory Strate",
+    "[ciclo 3] persona=seguranca",
+    "  GERADA: Selective Modulation of the Hippocampal Neurotrophic Factor Receptor TACR3 to En",
+    "[ciclo 4] persona=engenheiro",
+    "  GERADA: Targeting the Neurohormonal Feedback Loops of the Hypothalamic Pituitary Adrenal",
+    "  [composicao] Targeting the Gut-Microglia Axis via Bac >> Repurposing the cGAS-STING Antiviral Pat",
+    "    inverso: assimetria=0.04",
+    "[ciclo 5] persona=explorador",
+    "  GERADA: Targeting the Central Endophenotype of Opioid Homeostasis via the Rescue and Rep",
+    "[ciclo 6] persona=explorador",
+    "  GERADA: Repurposing the Anti-Fungal Agent Itraconazole as a Durable Modulator of Glutama",
+    "[ciclo 7] persona=seguranca",
+    "  GERADA: Targeting the Disturbed Neuropeptide S Signaling via Nasa(puor) as a Precise, Lo",
+    "[ciclo 8] persona=explorador",
+    "  GERADA: A_revirada_metabólica_da_via_do_colágeno: Identificação do Fator de Crescimento ",
+    "  [composicao] Targeting the Disturbed Neuropeptide S S >> Targeting the Gut-Microglia Axis via Bac",
+    "    inverso: assimetria=0.07",
+    "[ciclo 9] persona=sintetizador",
+    "  GERADA: SGLT2 Inhibition and Neuroinflammation Dampening as a Primer for Gut-Microglia A",
+    "[ciclo 10] persona=explorador",
+    "  GERADA: Targeting the Cytokine-Mediated Placental Cytokine Storm via the Hormetic Polysa",
+    "[ciclo 11] persona=seguranca",
+    "  GERADA: Rebalancing the Hypothalamic-Pituitary-Adrenal Axis via the Heterocyclic Ketone ",
+    "[ciclo 12] persona=explorador",
+    "  GERADA: Targeting the Dysregulated Kynurenine Pathway via Kynurenine Aminotransferase 2 ",
+    "  [composicao] Targeting the Cytokine-Mediated Placenta >> Targeting the Disturbed Neuropeptide S S",
+    "    inverso: assimetria=0.09"
+  ],
+  "__partial__": "compose_12",
+  "__updated_at__": 1779970797.4410868
+}

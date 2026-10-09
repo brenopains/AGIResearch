@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGI Cognitive View — Live Internal Representation</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #070b14; color: #c8d6e5; height: 100vh; overflow: hidden; }
+
+/* ─── LAYOUT ─── */
+.app { display: grid; grid-template-columns: 320px 1fr 320px; grid-template-rows: 48px 1fr 180px; height: 100vh; gap: 1px; background: #111827; }
+.app > * { background: #0a0e17; overflow: hidden; }
+.top-bar { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; }
+.top-bar h1 { font-size: 14px; font-weight: 600; background: linear-gradient(135deg, #00d2ff, #3a7bd5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.top-bar .intention { flex: 1; text-align: center; font-size: 12px; color: #576574; }
+.top-bar .intention strong { color: #feca57; }
+.top-bar .status { display: flex; align-items: center; gap: 8px; font-size: 11px; }
+.dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+.dot.active { background: #00d2ff; box-shadow: 0 0 6px #00d2ff; }
+.dot.wait { background: #feca57; }
+
+/* ─── LEFT PANEL: Consumption ─── */
+.left-panel { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.panel-title { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: #576574; }
+.media-box { flex: 1; background: #111827; border-radius: 8px; border: 1px solid #1e2a3a; padding: 12px; overflow-y: auto; }
+.media-box .source { font-size: 10px; color: #576574; margin-bottom: 4px; }
+.media-box .source .rel { color: #00d2ff; }
+.media-box .title { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+.media-box .body { font-size: 12px; color: #8395a7; line-height: 1.5; }
+.media-box .body .highlight { color: #feca57; }
+.concept-tags { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 6px; }
+.concept-tags .tag { font-size: 10px; padding: 1px 6px; border-radius: 3px; background: #1e2a3a; color: #8395a7; }
+.concept-tags .tag.new { background: #00d2ff22; color: #00d2ff; border: 1px solid #00d2ff44; }
+.curiosity-section { background: #111827; border-radius: 8px; padding: 8px 12px; border: 1px solid #1e2a3a; }
+.curiosity-section .targets { display: flex; gap: 4px; margin-top: 4px; flex-wrap: wrap; }
+.curiosity-section .targets .t { font-size: 11px; padding: 2px 8px; border-radius: 4px; }
+.curiosity-section .targets .t.active { background: #3a7bd544; color: #00d2ff; border: 1px solid #3a7bd5; }
+.curiosity-section .targets .t.pending { background: #57657433; color: #8395a7; }
+
+/* ─── CENTER: CGE Graph ─── */
+.center { display: flex; flex-direction: column; }
+.center .top-info { display: flex; justify-content: space-between; padding: 8px 12px; font-size: 11px; color: #576574; border-bottom: 1px solid #111827; }
+.center .top-info span em { color: #c8d6e5; font-style: normal; }
+.graph-container { flex: 1; position: relative; overflow: hidden; }
+.graph-container canvas { width: 100%; height: 100%; }
+
+/* ─── RIGHT PANEL: Internal Representation ─── */
+.right-panel { padding: 12px; display: flex; flex-direction: column; gap: 8px; overflow-y: auto; }
+.repr-box { background: #111827; border-radius: 8px; padding: 10px; border: 1px solid #1e2a3a; }
+.repr-box .label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #576574; margin-bottom: 6px; }
+.vector-display { display: flex; gap: 2px; flex-wrap: wrap; }
+.vector-display .dim { width: 8px; height: 8px; border-radius: 1px; }
+.archetype-list { display: flex; flex-direction: column; gap: 3px; }
+.archetype-list .arch { display: flex; justify-content: space-between; padding: 4px 6px; background: #0a0e17; border-radius: 4px; font-size: 11px; }
+.archetype-list .arch .conf { font-size: 10px; color: #00d2ff; }
+.concept-bar { display: flex; align-items: center; gap: 6px; padding: 3px 0; }
+.concept-bar .name { font-size: 11px; min-width: 70px; }
+.concept-bar .bar-wrap { flex: 1; height: 4px; background: #1e2a3a; border-radius: 2px; }
+.concept-bar .bar-wrap .fill { height: 100%; border-radius: 2px; }
+.concept-bar .val { font-size: 10px; color: #576574; min-width: 30px; text-align: right; }
+
+/* ─── BOTTOM: Logs ─── */
+.bottom { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; }
+.bottom > * { padding: 8px 12px; overflow-y: auto; background: #0a0e17; }
+.bottom .section-title { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #576574; margin-bottom: 4px; }
+.thought-log { font-size: 11px; line-height: 1.6; }
+.thought-log .entry { padding: 2px 0; border-bottom: 1px solid #0d1321; }
+.thought-log .entry .t { color: #576574; }
+.thought-log .entry .msg { color: #c8d6e5; }
+.sim-log { font-size: 11px; }
+.sim-entry { display: flex; align-items: center; gap: 6px; padding: 3px 0; }
+.sim-entry .bar { flex: 1; height: 3px; background: #1e2a3a; border-radius: 2px; }
+.sim-entry .bar .fill { height: 100%; border-radius: 2px; }
+.sim-entry .id { min-width: 80px; color: #576574; }
+.sim-entry .prob { min-width: 35px; text-align: right; }
+.error-log { font-size: 11px; }
+.error-entry { display: flex; justify-content: space-between; padding: 2px 0; }
+.error-entry .dim { color: #576574; }
+.error-entry .val { }
+.error-entry .val.high { color: #ff6b6b; }
+.error-entry .val.mid { color: #feca57; }
+.error-entry .val.low { color: #00d2ff; }
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1e2a3a; border-radius: 2px; }
+
+/* ─── MEDIA PLACEHOLDERS ─── */
+.media-visual { width: 100%; height: 100px; background: #0a0e17; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #576574; margin-bottom: 6px; overflow: hidden; }
+.media-waveform { width: 100%; height: 60px; background: #0a0e17; border-radius: 6px; margin-bottom: 6px; position: relative; }
+.media-waveform canvas { width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <h1>🧠 NovaMind AGI</h1>
+    <div class="intention">
+      Pesquisando: <strong id="currentConcept">entropy</strong> ·
+      Curiosidade: <span id="curiosityTargets">—</span>
+    </div>
+    <div class="status">
+      <span id="uptime">0s</span>
+      <span class="dot active" id="statusDot"></span>
+      <span id="cycleLabel">C0</span>
+    </div>
+  </div>
+
+  <!-- LEFT: CONSUMPTION -->
+  <div class="left-panel">
+    <div class="panel-title">🔍 Consuming</div>
+    <div class="media-box" id="mediaBox">
+      <div class="source" id="mediaSource">Wikipedia · <span class="rel">95% reliability</span></div>
+      <div class="title" id="mediaTitle">How Gravity Works</div>
+      <div id="mediaVisual"></div>
+      <div class="body" id="mediaBody">Loading...</div>
+      <div class="concept-tags" id="mediaConcepts"></div>
+    </div>
+
+    <div class="curiosity-section">
+      <div class="panel-title">🎯 Curiosity / Intention</div>
+      <div class="targets" id="curiosityList"></div>
+    </div>
+
+    <div style="flex:1;"></div>
+    <div style="font-size:10px;color:#576574;text-align:center;padding:4px;">
+      Cycle <span id="cycleNum">0</span> · Mode: <strong id="modeLabel" style="color:#00d2ff;">explore</strong>
+    </div>
+  </div>
+
+  <!-- CENTER: CGE GRAPH -->
+  <div class="center">
+    <div class="top-info">
+      <span>CGE: <em id="cgeNodes">0</em> nodes · <em id="cgeEdges">0</em> edges</span>
+      <span>Operator: <em id="activeOp">—</em> · Program: <em id="activeProg">—</em></span>
+    </div>
+    <div class="graph-container">
+      <canvas id="cgeCanvas"></canvas>
+    </div>
+  </div>
+
+  <!-- RIGHT: INTERNAL REPRESENTATION -->
+  <div class="right-panel">
+    <div class="repr-box">
+      <div class="label">🧬 HDV Vector (10000D → 20D preview)</div>
+      <div class="vector-display" id="vectorDisplay"></div>
+    </div>
+
+    <div class="repr-box">
+      <div class="label">🏛️ Archetypes / Concepts</div>
+      <div class="archetype-list" id="archetypeList"></div>
+    </div>
+
+    <div class="repr-box">
+      <div class="label">📊 Concept Confidence</div>
+      <div id="conceptConfidence"></div>
+    </div>
+
+    <div class="repr-box">
+      <div class="label">🔄 Cognitive Operators</div>
+      <div style="display:flex;flex-wrap:wrap;gap:2px;" id="operatorChain"></div>
+      <div style="margin-top:4px;font-size:10px;color:#576574;">
+        Forged: <span id="forgedCount">12</span> ·
+        Promoted: <span id="promotedCount">8</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM: LOGS -->
+  <div class="bottom">
+    <div class="thought-log" id="thoughtLog">
+      <div class="section-title">💭 Thought Stream</div>
+    </div>
+    <div class="sim-log" id="simLog">
+      <div class="section-title">🔮 Simulation Branches</div>
+    </div>
+    <div class="error-log" id="errorLog">
+      <div class="section-title">⚠️ Error Multi-Dim</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ─── SSE CONNECTION ───
+const evtSource = new EventSource('/state');
+let state = null;
+
+evtSource.onmessage = (e) => {
+  try {
+    state = JSON.parse(e.data);
+    updateAll(state);
+  } catch(err) {
+    console.error('Parse error:', err);
+  }
+};
+
+evtSource.onerror = () => {
+  // Fallback: poll REST API
+  if (!state) pollRest();
+};
+
+function pollRest() {
+  fetch('/mock_data')
+    .then(r => r.json())
+    .then(data => { state = data; updateAll(data); })
+    .catch(() => setTimeout(pollRest, 2000));
+}
+
+// ─── UPDATE FUNCTIONS ───
+function updateAll(s) {
+  updateTopBar(s);
+  updateLeftPanel(s);
+  updateCGEGraph(s);
+  updateRightPanel(s);
+  updateBottom(s);
+}
+
+function updateTopBar(s) {
+  document.getElementById('currentConcept').textContent = s.lifestream?.current_concept || '—';
+  document.getElementById('uptime').textContent = s.uptime ? `${s.uptime}s` : '—';
+  document.getElementById('cycleLabel').textContent = `C${s.cycle || 0}`;
+  document.getElementById('cycleNum').textContent = s.cycle || 0;
+  document.getElementById('modeLabel').textContent = s.maestro?.mode || '—';
+
+  const dot = document.getElementById('statusDot');
+  dot.className = 'dot ' + ((s.maestro?.fatigue || 0) > 0.7 ? 'wait' : 'active');
+
+  // Curiosity targets
+  const targets = s.lifestream?.curiosity_targets || [];
+  const current = s.lifestream?.current_concept || '';
+  const ct = document.getElementById('curiosityTargets');
+  ct.textContent = targets.join(', ') || '—';
+
+  const cl = document.getElementById('curiosityList');
+  cl.innerHTML = targets.map(t =>
+    `<span class="t ${t === current ? 'active' : 'pending'}">${t}</span>`
+  ).join(' ');
+}
+
+function updateLeftPanel(s) {
+  const media = s.lifestream?.current_media || {};
+  document.getElementById('mediaSource').innerHTML =
+    `${media.source || 'Unknown'} · <span class="rel">${((media.reliability || 0) * 100).toFixed(0)}% reliability</span>`;
+  document.getElementById('mediaTitle').textContent = media.title || '—';
+
+  const visual = document.getElementById('mediaVisual');
+  if (media.type === 'video') {
+    visual.innerHTML = `<div class="media-visual">▶️ Video: ${media.title}<br><span style="font-size:10px;color:#576574;">${media.description?.slice(0,80) || ''}</span></div>`;
+  } else if (media.type === 'image') {
+    visual.innerHTML = `<div class="media-visual">🖼️ Image: ${media.title}<br><span style="font-size:10px;color:#576574;">${media.description?.slice(0,80) || ''}</span></div>`;
+  } else if (media.type === 'audio') {
+    visual.innerHTML = `<div class="media-waveform"><canvas id="waveform"></canvas></div>`;
+    setTimeout(drawWaveform, 50);
+  } else {
+    visual.innerHTML = '';
+  }
+
+  document.getElementById('mediaBody').innerHTML = media.body
+    ? media.body.replace(/(gravity|energy|entropy|VORIN|NEXIUM|THAL)/g, '<span class="highlight">$1</span>')
+    : '—';
+
+  // Concepts from media
+  const concepts = media.body ? media.body.split(' ').filter(w => w.length > 5).slice(0, 8) : [];
+  const ct = document.getElementById('mediaConcepts');
+  ct.innerHTML = concepts.map(c => `<span class="tag">${c.replace(/[^a-zA-Z]/g,'')}</span>`).join(' ');
+}
+
+function drawWaveform() {
+  const canvas = document.getElementById('waveform');
+  if (!canvas) return;
+  canvas.width = canvas.parentElement.clientWidth;
+  canvas.height = 60;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width, h = canvas.height;
+  ctx.clearRect(0, 0, w, h);
+  ctx.strokeStyle = '#00d2ff44';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  for (let x = 0; x < w; x++) {
+    const y = h/2 + Math.sin(x * 0.05 + Date.now() * 0.001) * h * 0.3
+            + Math.sin(x * 0.02) * h * 0.15;
+    x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+}
+
+// ─── CGE GRAPH ───
+function updateCGEGraph(s) {
+  const cge = s.cge || {};
+  document.getElementById('cgeNodes').textContent = cge.n_nodes || 0;
+  document.getElementById('cgeEdges').textContent = cge.n_edges || 0;
+  document.getElementById('activeOp').textContent = s.maestro?.active_operator || '—';
+  document.getElementById('activeProg').textContent = s.maestro?.active_program || '—';
+
+  const canvas = document.getElementById('cgeCanvas');
+  if (!canvas) return;
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width = canvas.clientWidth || rect.width || 400;
+  canvas.height = canvas.clientHeight || rect.height || 300;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width, h = canvas.height;
+  ctx.clearRect(0, 0, w, h);
+
+  const nodes = cge.nodes || [];
+  const edges = cge.edges || [];
+
+  if (nodes.length === 0) return;
+
+  // Compute positions
+  const positions = {};
+  nodes.forEach((n, i) => {
+    const angle = (i / nodes.length) * 2 * Math.PI - Math.PI / 2;
+    const r = Math.min(w, h) * 0.38;
+    positions[n.id] = {
+      x: w/2 + r * Math.cos(angle),
+      y: h/2 + r * Math.sin(angle),
+      r: 4 + (n.confidence || 0.5) * 6,
+    };
+  });
+
+  // Edges
+  const drawn = new Set();
+  edges.forEach(e => {
+    const key = [e.from, e.to].sort().join('_');
+    if (drawn.has(key)) return;
+    drawn.add(key);
+    const pa = positions[e.from], pb = positions[e.to];
+    if (!pa || !pb) return;
+    ctx.beginPath();
+    ctx.strokeStyle = `rgba(30, 42, 58, ${(e.weight || 0.5) * 0.8})`;
+    ctx.lineWidth = 0.5 + (e.weight || 0.5) * 1.5;
+    ctx.moveTo(pa.x, pa.y);
+    ctx.lineTo(pb.x, pb.y);
+    ctx.stroke();
+  });
+
+  // Nodes
+  nodes.forEach(n => {
+    const p = positions[n.id];
+    if (!p) return;
+    const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 2);
+    const hue = (n.group || 0) * 72;
+    grad.addColorStop(0, `hsl(${hue}, 80%, 60%)`);
+    grad.addColorStop(1, `hsla(${hue}, 80%, 40%, 0.2)`);
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // Labels for first 15 nodes
+    if (nodes.indexOf(n) < 15) {
+      ctx.fillStyle = '#8395a7';
+      ctx.font = '8px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(n.id, p.x, p.y + p.r + 10);
+    }
+  });
+
+  // Highlight current concept
+  const current = s.lifestream?.current_concept;
+  if (current && positions[current]) {
+    const p = positions[current];
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r + 4, 0, Math.PI * 2);
+    ctx.strokeStyle = '#00d2ff';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([3, 3]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+}
+
+// ─── RIGHT PANEL ───
+function updateRightPanel(s) {
+  // HDV Vector preview (20 dimensions)
+  const vd = document.getElementById('vectorDisplay');
+  vd.innerHTML = '';
+  for (let i = 0; i < 20; i++) {
+    const val = Math.sin(i * 0.5 + (s.cycle || 0) * 0.1) * 0.5 + 0.5;
+    const intensity = Math.floor(val * 200);
+    const div = document.createElement('div');
+    div.className = 'dim';
+    div.style.background = val > 0.5
+      ? `rgb(0, ${intensity}, ${255 - intensity})`
+      : `rgb(${intensity}, ${intensity * 0.5}, 255)`;
+    div.title = `dim ${i}: ${val.toFixed(3)}`;
+    vd.appendChild(div);
+  }
+
+  // Archetypes
+  const archList = document.getElementById('archetypeList');
+  const archetypes = [
+    { name: 'conductive_material', confidence: 0.92, strength: 0.85 },
+    { name: 'energy_flow', confidence: 0.78, strength: 0.72 },
+    { name: 'blocking_property', confidence: 0.65, strength: 0.58 },
+    { name: s.lifestream?.current_concept || 'unknown', confidence: 0.45, strength: 0.40 },
+  ];
+  archList.innerHTML = archetypes.map(a =>
+    `<div class="arch"><span>${a.name}</span><span class="conf">C:${a.confidence.toFixed(2)} S:${a.strength.toFixed(2)}</span></div>`
+  ).join('');
+
+  // Concept confidence
+  const cc = document.getElementById('conceptConfidence');
+  const concepts = ['gravity', 'energy', 'conductivity', 'entropy', s.lifestream?.current_concept || ''];
+  const unique = [...new Set(concepts.filter(Boolean))];
+  cc.innerHTML = unique.map(c => {
+    const conf = 0.3 + Math.sin((s.cycle || 0) * 0.05 + unique.indexOf(c)) * 0.3 + 0.3;
+    return `<div class="concept-bar">
+      <span class="name">${c}</span>
+      <div class="bar-wrap"><div class="fill" style="width:${conf * 100}%;background:hsl(${conf * 200}, 70%, 50%);"></div></div>
+      <span class="val">${conf.toFixed(2)}</span>
+    </div>`;
+  }).join('');
+
+  // Operators
+  const ops = s.operators?.active_chain || ['observe', 'predict', 'compare'];
+  const oc = document.getElementById('operatorChain');
+  oc.innerHTML = ops.map((op, i) =>
+    `<span style="font-size:10px;padding:2px 6px;border-radius:3px;background:#1e2a3a;color:#8395a7;">${op}</span>${i < ops.length-1 ? '<span style="color:#576574;font-size:8px;">→</span>' : ''}`
+  ).join('');
+
+  document.getElementById('forgedCount').textContent = s.operators?.forged || 0;
+  document.getElementById('promotedCount').textContent = s.operators?.promoted || 0;
+}
+
+// ─── BOTTOM PANELS ───
+function updateBottom(s) {
+  // Thought stream
+  const tl = document.getElementById('thoughtLog');
+  const thoughts = s.history?.slice(-8).reverse() || [];
+  tl.innerHTML = `<div class="section-title">💭 Thought Stream</div>` +
+    thoughts.map(h =>
+      `<div class="entry"><span class="t">C${h.cycle}</span> <span class="msg">[${h.mode}] error=${h.error} energy=${h.energy}</span></div>`
+    ).join('');
+
+  // Simulation branches
+  const sl = document.getElementById('simLog');
+  const branches = s.simulation?.branches || [];
+  sl.innerHTML = `<div class="section-title">🔮 Simulation Branches</div>` +
+    branches.map(b =>
+      `<div class="sim-entry">
+        <span class="id">${b.id}</span>
+        <div class="bar"><div class="fill" style="width:${(b.prob || b.probability || 0) * 100}%;background:hsl(${(b.prob || b.probability || 0) * 200}, 70%, 50%);"></div></div>
+        <span class="prob">${((b.prob || b.probability || 0) * 100).toFixed(0)}%</span>
+      </div>`
+    ).join('');
+
+  // Error multi-dim
+  const el = document.getElementById('errorLog');
+  const err = s.error || {};
+  const errDims = [
+    { label: 'Prediction Error', key: 'prediction_error', cls: err.prediction_error > 0.5 ? 'high' : err.prediction_error > 0.3 ? 'mid' : 'low' },
+    { label: 'Novelty', key: 'novelty', cls: err.novelty > 0.5 ? 'high' : err.novelty > 0.3 ? 'mid' : 'low' },
+    { label: 'Uncertainty', key: 'uncertainty', cls: err.uncertainty > 0.5 ? 'high' : err.uncertainty > 0.3 ? 'mid' : 'low' },
+    { label: 'Violation', key: 'violation', cls: err.violation > 0.5 ? 'high' : err.violation > 0.3 ? 'mid' : 'low' },
+  ];
+  el.innerHTML = `<div class="section-title">⚠️ Error Multi-Dim</div>` +
+    errDims.map(d =>
+      `<div class="error-entry">
+        <span class="dim">${d.label}</span>
+        <span class="val ${d.cls}">${(err[d.key] || 0).toFixed(2)}</span>
+      </div>`
+    ).join('') +
+    `<div style="margin-top:4px;font-size:10px;color:#576574;">Active: ${err.n_errors || 0} · Most pressing: ${err.most_pressing || '—'}</div>`;
+}
+
+// ─── ANIMATION LOOP ───
+let animFrame = 0;
+function animate() {
+  animFrame++;
+  // Redraw graph periodically even without new SSE
+  if (state && animFrame % 10 === 0) {
+    updateCGEGraph(state);
+    drawWaveform();
+  }
+  requestAnimationFrame(animate);
+}
+animate();
+
+// ─── RESIZE HANDLER ───
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => { if (state) updateCGEGraph(state); }, 200);
+});
+</script>
+</body>
+</html>

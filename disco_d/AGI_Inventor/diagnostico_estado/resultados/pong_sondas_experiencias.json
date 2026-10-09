@@ -1,0 +1,942 @@
+{
+  "status": "exploratory_accumulated_experience",
+  "game": "pong",
+  "certified_composition_max_absolute_error": 0.0,
+  "selection_training_counts": {
+    "single_and_state": 512,
+    "first_action_0": 249,
+    "first_action_1": 249,
+    "first_action_2": 249,
+    "first_action_3": 251
+  },
+  "full_training_counts": {
+    "single_and_state": 512,
+    "first_action_0": 256,
+    "first_action_1": 256,
+    "first_action_2": 256,
+    "first_action_3": 256
+  },
+  "probe_error_to_constant": [
+    0.337184735472493,
+    0.337184735472493,
+    0.28030297312539193,
+    0.16938719640475786,
+    0.6524179057052426,
+    0.6524179057052426,
+    0.5576271336046722,
+    0.5448875535264901,
+    0.6791683586425787,
+    0.6791683586425787,
+    0.5862326410798071,
+    0.5730979482488272,
+    0.5633482626932727,
+    0.5633482626932727,
+    0.5633482626932727,
+    0.5743890148908266,
+    0.4973452230020893,
+    0.49735467702451774,
+    0.4910901967106791,
+    0.4999258621558614
+  ],
+  "baseline": {
+    "selection": {
+      "mean_regret": 0.125,
+      "constant_regret": 0.0,
+      "roots_with_contrast": 4,
+      "per_episode": {
+        "4": 0.25,
+        "5": 0.0
+      },
+      "constant_per_episode": {
+        "4": 0.0,
+        "5": 0.0
+      },
+      "choices": [
+        0,
+        0,
+        3,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0
+      ]
+    },
+    "evaluation": {
+      "mean_regret": 0.125,
+      "constant_regret": 0.125,
+      "roots_with_contrast": 3,
+      "per_episode": {
+        "6": 0.0,
+        "7": 0.25
+      },
+      "constant_per_episode": {
+        "6": 0.0,
+        "7": 0.25
+      },
+      "choices": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0
+      ]
+    },
+    "seed103": {
+      "mean_regret": 0.25,
+      "constant_regret": 0.15625,
+      "roots_with_contrast": 15,
+      "per_episode": {
+        "0": 0.0,
+        "1": 0.125,
+        "2": 0.25,
+        "3": 0.125,
+        "4": 0.375,
+        "5": 0.25,
+        "6": 0.5,
+        "7": 0.375
+      },
+      "constant_per_episode": {
+        "0": 0.25,
+        "1": 0.0,
+        "2": 0.25,
+        "3": 0.0,
+        "4": 0.125,
+        "5": 0.0,
+        "6": 0.5,
+        "7": 0.125
+      },
+      "choices": [
+        3,
+        0,
+        3,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        3,
+        3,
+        2,
+        0,
+        0,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        3,
+        1,
+        0,
+        0,
+        0,
+        3,
+        1,
+        0,
+        3,
+        0,
+        0,
+        0,
+        3,
+        2,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        2,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        1
+      ]
+    }
+  },
+  "arms": {
+    "witness_readout": {
+      "selected": [],
+      "selection_trace": [
+        {
+          "round": 0,
+          "candidate": 0,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 1,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 2,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 3,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 4,
+          "mean_regret": 0.25,
+          "gain_each_selection_episode": [
+            -0.25,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 5,
+          "mean_regret": 0.25,
+          "gain_each_selection_episode": [
+            -0.25,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 6,
+          "mean_regret": 0.25,
+          "gain_each_selection_episode": [
+            -0.25,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 7,
+          "mean_regret": 0.25,
+          "gain_each_selection_episode": [
+            -0.25,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 8,
+          "mean_regret": 0.25,
+          "gain_each_selection_episode": [
+            -0.25,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 9,
+          "mean_regret": 0.25,
+          "gain_each_selection_episode": [
+            -0.25,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 10,
+          "mean_regret": 0.25,
+          "gain_each_selection_episode": [
+            -0.25,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 11,
+          "mean_regret": 0.25,
+          "gain_each_selection_episode": [
+            -0.25,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 12,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 13,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 14,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 15,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 16,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 17,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 18,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 19,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        }
+      ],
+      "status": "no_validation_decision_gain",
+      "selection": {
+        "mean_regret": 0.125,
+        "constant_regret": 0.0,
+        "roots_with_contrast": 4,
+        "per_episode": {
+          "4": 0.25,
+          "5": 0.0
+        },
+        "constant_per_episode": {
+          "4": 0.0,
+          "5": 0.0
+        },
+        "choices": [
+          0,
+          0,
+          3,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0
+        ]
+      },
+      "evaluation": {
+        "mean_regret": 0.125,
+        "constant_regret": 0.125,
+        "roots_with_contrast": 3,
+        "per_episode": {
+          "6": 0.0,
+          "7": 0.25
+        },
+        "constant_per_episode": {
+          "6": 0.0,
+          "7": 0.25
+        },
+        "choices": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0
+        ]
+      },
+      "seed103": {
+        "mean_regret": 0.25,
+        "constant_regret": 0.15625,
+        "roots_with_contrast": 15,
+        "per_episode": {
+          "0": 0.0,
+          "1": 0.125,
+          "2": 0.25,
+          "3": 0.125,
+          "4": 0.375,
+          "5": 0.25,
+          "6": 0.5,
+          "7": 0.375
+        },
+        "constant_per_episode": {
+          "0": 0.25,
+          "1": 0.0,
+          "2": 0.25,
+          "3": 0.0,
+          "4": 0.125,
+          "5": 0.0,
+          "6": 0.5,
+          "7": 0.125
+        },
+        "choices": [
+          3,
+          0,
+          3,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          3,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          3,
+          3,
+          2,
+          0,
+          0,
+          0,
+          1,
+          2,
+          3,
+          0,
+          1,
+          3,
+          1,
+          0,
+          0,
+          0,
+          3,
+          1,
+          0,
+          3,
+          0,
+          0,
+          0,
+          3,
+          2,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          2,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          1
+        ]
+      }
+    },
+    "random_readout": {
+      "selected": [],
+      "selection_trace": [
+        {
+          "round": 0,
+          "candidate": 0,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 1,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 2,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 3,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 4,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 5,
+          "mean_regret": 0.25,
+          "gain_each_selection_episode": [
+            -0.25,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 6,
+          "mean_regret": 0.0625,
+          "gain_each_selection_episode": [
+            0.125,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 7,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 8,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 9,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 10,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 11,
+          "mean_regret": 0.25,
+          "gain_each_selection_episode": [
+            -0.25,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 12,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 13,
+          "mean_regret": 0.25,
+          "gain_each_selection_episode": [
+            -0.25,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 14,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 15,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 16,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 17,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 18,
+          "mean_regret": 0.125,
+          "gain_each_selection_episode": [
+            0.0,
+            0.0
+          ],
+          "eligible": false
+        },
+        {
+          "round": 0,
+          "candidate": 19,
+          "mean_regret": 0.0,
+          "gain_each_selection_episode": [
+            0.25,
+            0.0
+          ],
+          "eligible": false
+        }
+      ],
+      "status": "no_validation_decision_gain",
+      "selection": {
+        "mean_regret": 0.125,
+        "constant_regret": 0.0,
+        "roots_with_contrast": 4,
+        "per_episode": {
+          "4": 0.25,
+          "5": 0.0
+        },
+        "constant_per_episode": {
+          "4": 0.0,
+          "5": 0.0
+        },
+        "choices": [
+          0,
+          0,
+          3,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0
+        ]
+      },
+      "evaluation": {
+        "mean_regret": 0.125,
+        "constant_regret": 0.125,
+        "roots_with_contrast": 3,
+        "per_episode": {
+          "6": 0.0,
+          "7": 0.25
+        },
+        "constant_per_episode": {
+          "6": 0.0,
+          "7": 0.25
+        },
+        "choices": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0
+        ]
+      },
+      "seed103": {
+        "mean_regret": 0.25,
+        "constant_regret": 0.15625,
+        "roots_with_contrast": 15,
+        "per_episode": {
+          "0": 0.0,
+          "1": 0.125,
+          "2": 0.25,
+          "3": 0.125,
+          "4": 0.375,
+          "5": 0.25,
+          "6": 0.5,
+          "7": 0.375
+        },
+        "constant_per_episode": {
+          "0": 0.25,
+          "1": 0.0,
+          "2": 0.25,
+          "3": 0.0,
+          "4": 0.125,
+          "5": 0.0,
+          "6": 0.5,
+          "7": 0.125
+        },
+        "choices": [
+          3,
+          0,
+          3,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          3,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          3,
+          3,
+          2,
+          0,
+          0,
+          0,
+          1,
+          2,
+          3,
+          0,
+          1,
+          3,
+          1,
+          0,
+          0,
+          0,
+          3,
+          1,
+          0,
+          3,
+          0,
+          0,
+          0,
+          3,
+          2,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          2,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          1
+        ]
+      }
+    }
+  },
+  "same_probes_root_only_error": [
+    0.5697377997717064,
+    0.5697377997717064,
+    0.4770123968965258,
+    0.3044425980469103,
+    0.725015450857293,
+    0.725015450857293,
+    0.636486223456566,
+    0.6406186811611109,
+    0.725015450857293,
+    0.725015450857293,
+    0.636486223456566,
+    0.6406186811611109,
+    0.5313448472167984,
+    0.5313448472167984,
+    0.5313448472167984,
+    0.5550562145776862,
+    0.5314927118424096,
+    0.5320562729697121,
+    0.544749285002254,
+    0.5276392285477051
+  ],
+  "prediction_bank_sha256": "77cec2d4ada5807c7823e35d46a4290a18eed28c40a6ad1dd039456ec39d114a",
+  "selected_executable_probes": [],
+  "source_sha256": "dfe0ae16be864abf4dcc8f841ac46c037392c2957d3eeb2bd895c7716b8cab7e",
+  "extractor_sha256": "4eb41d4eaebd6f041c60382b5b41a9edb00bb66b6b29d7c02bf632f4211c3004"
+}

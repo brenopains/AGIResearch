@@ -1,0 +1,84 @@
+{
+  "scope": "post_hoc_linear_reader_diagnostic_not_confirmation",
+  "ridge_fixed": 0.1,
+  "held_out_outcomes_used_for_fitting": false,
+  "world_families_held_out": false,
+  "human_level_demonstrated": false,
+  "sources": {
+    "D:\\AGI_Inventor\\conectomas_plasticos\\diagnosticar_leitor.py": "e41aceb8d1e8cdc30876f5881b5b69050915e9b585b7e6577af308fff89452db"
+  },
+  "rows": [
+    {
+      "domain": "pixels_orbita",
+      "representation": "neural",
+      "residual_reader": false,
+      "mse": 0.27482094340365343,
+      "persistence_mse": 0.046223958333333336,
+      "training_observations": 96,
+      "evaluation_observations": 48
+    },
+    {
+      "domain": "pixels_orbita",
+      "representation": "neural",
+      "residual_reader": true,
+      "mse": 0.36934153641212125,
+      "persistence_mse": 0.046223958333333336,
+      "training_observations": 96,
+      "evaluation_observations": 48
+    },
+    {
+      "domain": "pixels_orbita",
+      "representation": "raw",
+      "residual_reader": false,
+      "mse": 0.04354660458462461,
+      "persistence_mse": 0.046223958333333336,
+      "training_observations": 96,
+      "evaluation_observations": 48
+    },
+    {
+      "domain": "pixels_orbita",
+      "representation": "raw",
+      "residual_reader": true,
+      "mse": 0.04641786401018253,
+      "persistence_mse": 0.046223958333333336,
+      "training_observations": 96,
+      "evaluation_observations": 48
+    },
+    {
+      "domain": "audio_tons",
+      "representation": "neural",
+      "residual_reader": false,
+      "mse": 0.2402156145059069,
+      "persistence_mse": 0.0026738664690423315,
+      "training_observations": 96,
+      "evaluation_observations": 48
+    },
+    {
+      "domain": "audio_tons",
+      "representation": "neural",
+      "residual_reader": true,
+      "mse": 0.011730924822587167,
+      "persistence_mse": 0.0026738664690423315,
+      "training_observations": 96,
+      "evaluation_observations": 48
+    },
+    {
+      "domain": "audio_tons",
+      "representation": "raw",
+      "residual_reader": false,
+      "mse": 0.025055133176332806,
+      "persistence_mse": 0.0026738664690423315,
+      "training_observations": 96,
+      "evaluation_observations": 48
+    },
+    {
+      "domain": "audio_tons",
+      "representation": "raw",
+      "residual_reader": true,
+      "mse": 0.020380972233675798,
+      "persistence_mse": 0.0026738664690423315,
+      "training_observations": 96,
+      "evaluation_observations": 48
+    }
+  ]
+}

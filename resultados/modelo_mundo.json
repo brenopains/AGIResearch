@@ -1,0 +1,89 @@
+{
+ "data": "2026-09-23",
+ "W0a_dominio_reconhecivel": {
+  "acerto": 0.729,
+  "acaso": 0.2
+ },
+ "W0b_operador_atravessa": {
+  "precisao_cruzada": 0.652,
+  "acaso": 0.167,
+  "razao": 3.9
+ },
+ "atlas": {
+  "fragmentos": 1146,
+  "mundos": [
+   "arc",
+   "cifar",
+   "har",
+   "moda",
+   "texto"
+  ],
+  "fora": {
+   "factorio": "so 2 estados (minimo 10)"
+  }
+ },
+ "W1_veneno_total": {
+  "FUNDIDO": {
+   "de": 0.652,
+   "para": 0.411,
+   "desvios": 17.4
+  },
+  "COTA": {
+   "de": 0.646,
+   "para": 0.555,
+   "desvios": 11.3
+  },
+  "CREDITO": {
+   "de": 0.654,
+   "para": 0.654,
+   "desvios": 0.0
+  }
+ },
+ "dose": [
+  {
+   "mente": 0.0,
+   "credito": 0.466,
+   "fundido": 0.665,
+   "credito_prec": 0.673,
+   "sd_credito": 0.0
+  },
+  {
+   "mente": 0.2,
+   "credito": 0.426,
+   "fundido": 0.634,
+   "credito_prec": 0.65,
+   "sd_credito": 2.5
+  },
+  {
+   "mente": 0.4,
+   "credito": 0.248,
+   "fundido": 0.552,
+   "credito_prec": 0.648,
+   "sd_credito": 2.0
+  },
+  {
+   "mente": 0.6,
+   "credito": 0.134,
+   "fundido": 0.505,
+   "credito_prec": 0.655,
+   "sd_credito": 1.6
+  },
+  {
+   "mente": 0.8,
+   "credito": 0.0,
+   "fundido": 0.435,
+   "credito_prec": 0.654,
+   "sd_credito": 1.6
+  },
+  {
+   "mente": 1.0,
+   "credito": 0.0,
+   "fundido": 0.382,
+   "credito_prec": 0.654,
+   "sd_credito": 1.6
+  }
+ ],
+ "veredito": "W1 no veneno total; D2 na dose pela barra pre-registrada de 1 desvio",
+ "leitura_honesta": "o credito remove ~93% do dano (0,283 -> 0,019) e acompanha a dose monotonicamente, mas NAO zera o dano: o residuo de ~2 pontos e real. A barra foi mal especificada em desvios em vez de valor absoluto.",
+ "limite_nomeado": "o credito exige sinal de desfecho (sondas de calibracao rotuladas). Em ARC/Factorio esse sinal existe (o fragmento fechou a tarefa?); para um filme cru, nao existe ainda."
+}

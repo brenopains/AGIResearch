@@ -1,0 +1,248 @@
+"""
+AGI Cure Discovery Test — A AGI pensa autonomamente sobre curas para doenças em aberto.
+
+Para cada doença, o sistema:
+  1. Carrega todo o conhecimento do PubMed + KnowledgeGraph
+  2. Gera hipóteses causais profundas (cadeias de 3+ níveis)
+  3. Identifica alvos terapêuticos (proteínas, genes, vias)
+  4. Sugere mecanismos de intervenção
+  5. Mede confiança e novidade
+
+Gera relatório em D:\novamind_data\agi_cure_hypotheses.md
+"""
+import sys, os, json, time
+sys.path.insert(0, os.path.dirname(__file__))
+
+REPORT_PATH = r"D:\novamind_data\agi_cure_hypotheses.md"
+
+
+def load_knowledge():
+    """Carrega todo o conhecimento da AGI."""
+    from core.knowledge_graph import KnowledgeGraph
+    from core.hypothesis_engine_causal import HypothesisEngineCausal
+
+    kg = KnowledgeGraph()
+
+    # Carrega conceitos
+    concepts_path = r"D:\novamind_data\knowledge_graph\concepts.json"
+    if os.path.exists(concepts_path):
+        with open(concepts_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        for name, info in data.items():
+            kg.add_concept(
+                name=name,
+                domain=info.get("domain", "general"),
+                description=info.get("description", ""),
+                confidence=info.get("confidence", 0.5),
+            )
+
+    # Carrega relações
+    rels_path = r"D:\novamind_data\knowledge_graph\relations.json"
+    if os.path.exists(rels_path):
+        with open(rels_path, "r", encoding="utf-8") as f:
+            rels = json.load(f)
+        for r in rels:
+            kg.add_causal_relation(
+                source=r.get("source", ""),
+                target=r.get("target", ""),
+                relation_type=r.get("type", "associado"),
+                confidence=r.get("confidence", 0.5),
+                evidence=r.get("evidence", ""),
+                domain=r.get("domain", ""),
+            )
+
+    hc = HypothesisEngineCausal(knowledge_graph=kg)
+    return kg, hc
+
+
+def discover_cures(hc, diseases, max_hypotheses=10):
+    """Para cada doença, gera hipóteses de cura."""
+    results = {}
+
+    for disease in diseases:
+        print(f"\n  Analisando: {disease}...")
+
+        # 1. Hipóteses diretas (causas conhecidas)
+        direct = hc.generate_hypotheses(disease, max_hypotheses=max_hypotheses)
+
+        # 2. Hipóteses sobre mecanismos relacionados
+        mechanisms = [
+            "inflammation", "oxidative stress", "apoptosis", "autophagy",
+            "neurogenesis", "synaptic plasticity", "mitochondrial dysfunction",
+            "protein aggregation", "neuroinflammation", "insulin resistance",
+            "angiogenesis", "immune response", "cell proliferation", "DNA damage",
+        ]
+
+        # Para cada mecanismo, busca conexoes com a doenca
+        mechanism_hypotheses = []
+        for mech in mechanisms:
+            # Busca hipoteses sobre o mecanismo
+            mech_hyps = hc.generate_hypotheses(mech, max_hypotheses=3)
+            for h in mech_hyps:
+                # Se o mecanismo leva a algo relacionado à doença
+                if any(d.lower() in h.effect.lower() or d.lower() in h.cause.lower()
+                       for d in [disease, disease.split()[0]]):
+                    mechanism_hypotheses.append(h)
+                # Se a doença leva ao mecanismo (via reversa)
+                reverse_hyps = hc.generate_hypotheses(h.effect, max_hypotheses=3)
+                for rh in reverse_hyps:
+                    if disease.lower() in rh.effect.lower() or disease.lower() in rh.cause.lower():
+                        mechanism_hypotheses.append(rh)
+
+        # 3. Busca alvos terapêuticos (genes, proteínas, drogas)
+        targets = [
+            "BDNF", "NGF", "GDNF", "insulin", "leptin", "ghrelin",
+            "dopamine", "serotonin", "acetylcholine", "glutamate", "GABA",
+            "TNF-alpha", "IL-6", "IL-10", "TGF-beta", "BDNF",
+            "AMPK", "mTOR", "SIRT1", "CREB", "NF-kB", "Nrf2",
+            "EGFR", "VEGF", "PD-1", "CTLA-4", "HER2", "KRAS",
+        ]
+        target_hypotheses = []
+        for target in targets[:10]:
+            th = hc.generate_hypotheses(target, max_hypotheses=2)
+            for h in th:
+                if disease.lower() in h.effect.lower() or disease.lower() in h.cause.lower():
+                    target_hypotheses.append(h)
+
+        results[disease] = {
+            "direct": direct,
+            "mechanism": mechanism_hypotheses[:5],
+            "targets": target_hypotheses[:5],
+            "total_hyps": len(direct) + len(mechanism_hypotheses) + len(target_hypotheses),
+        }
+
+        print(f"    Diretas: {len(direct)}, Mecanismos: {len(mechanism_hypotheses)}, Alvos: {len(target_hypotheses)}")
+
+    return results
+
+
+def generate_report(results, kg, hc):
+    """Gera relatório markdown com as hipóteses de cura."""
+    lines = []
+    lines.append("# AGI Cure Discovery Report")
+    lines.append(f"\n*Generated by NovaMind AGI after studying {kg.total_ingested} PubMed concepts*")
+    lines.append(f"\n---\n")
+
+    lines.append("## Knowledge Base")
+    lines.append(f"\n- **Conceitos**: {kg.total_ingested}")
+    lines.append(f"- **Relações causais**: {kg.total_relations}")
+    lines.append(f"- **Hipóteses geradas**: {hc.get_stats()['total_hypotheses']}")
+    lines.append(f"- **Hipóteses únicas**: {hc.get_stats()['unique_hypotheses']}")
+    lines.append(f"- **Confiança média**: {hc.get_stats()['avg_confidence']}")
+
+    # Para cada doença, gera seção
+    for disease, data in results.items():
+        lines.append(f"\n---\n")
+        lines.append(f"## {disease}")
+
+        all_hyps = data["direct"] + data["mechanism"] + data["targets"]
+
+        if not all_hyps:
+            lines.append(f"\n*Nenhuma hipótese encontrada — dados insuficientes no PubMed para esta doença.*")
+            continue
+
+        # Agrupa por tipo de relação
+        lines.append(f"\n### Hipóteses Causais ({len(all_hyps)} total)")
+
+        # Tabela
+        lines.append(f"\n| Causa | Efeito | Tipo | Confiança |")
+        lines.append(f"|-------|--------|------|-----------|")
+        for h in all_hyps[:15]:
+            cause = h.cause[:50]
+            effect = h.effect[:50]
+            novelty = "🔬 NOVA" if h.is_novel else ""
+            lines.append(f"| {cause} | {effect} | {h.relation_type} | {h.confidence:.2f} {novelty} |")
+
+        # Alvos terapêuticos
+        if data["targets"]:
+            lines.append(f"\n### Alvos Terapêuticos Identificados")
+            for h in data["targets"][:5]:
+                lines.append(f"- **{h.cause[:45]}** → {h.effect[:45]} (conf={h.confidence:.2f})")
+
+        # Inferências de cadeia
+        chain_hyps = [h for h in all_hyps if h.is_novel]
+        if chain_hyps:
+            lines.append(f"\n### Cadeias Causais Inferidas (novas descobertas)")
+            for h in chain_hyps[:5]:
+                lines.append(f"- {h.cause[:50]} → ... → {h.effect[:50]} (conf={h.confidence:.2f})")
+
+        # Sugestão de experimento
+        lines.append(f"\n### Sugestões de Investigação")
+        for h in all_hyps[:3]:
+            if h.is_novel:
+                lines.append(f"- Investigar se **{h.cause[:40]}** modula **{h.effect[:40]}** no contexto de {disease}")
+            else:
+                lines.append(f"- Validar se a relação **{h.cause[:40]}** → **{h.effect[:40]}** é causal em {disease}")
+
+    # Conclusão
+    lines.append(f"\n---\n")
+    lines.append(f"## Limitações")
+    lines.append(f"\n- Dados limitados a {kg.total_relations} relações causais extraídas de abstracts do PubMed")
+    lines.append(f"- NLP simples para extração de relações (regex patterns)")
+    lines.append(f"- Sem validação experimental — hipóteses requerem verificação")
+    lines.append(f"- Cobertura parcial: nem todas as doenças têm dados suficientes")
+    lines.append(f"\n---\n")
+    lines.append(f"*Relatório gerado pela NovaMind AGI em modo de estudo autônomo.*")
+
+    report = "\n".join(lines)
+    with open(REPORT_PATH, "w", encoding="utf-8") as f:
+        f.write(report)
+
+    print(f"\nRelatório salvo: {REPORT_PATH}")
+    return report
+
+
+def main():
+    print("=" * 65)
+    print("AGI CURE DISCOVERY — Hipóteses Terapêuticas")
+    print("=" * 65)
+
+    # Doenças em aberto (sem cura)
+    diseases = [
+        "Alzheimer",
+        "Parkinson",
+        "ALS",
+        "Huntington",
+        "multiple sclerosis",
+        "schizophrenia",
+        "depression",
+        "autism",
+        "bipolar disorder",
+        "pancreatic cancer",
+        "glioblastoma",
+        "melanoma",
+        "HIV",
+        "malaria",
+        "tuberculosis",
+        "chronic pain",
+        "stroke",
+        "diabetes",
+        "obesity",
+        "cirrhosis",
+    ]
+
+    print(f"\nCarregando conhecimento do PubMed...")
+    kg, hc = load_knowledge()
+    print(f"  KnowledgeGraph: {kg.total_ingested} conceitos, {kg.total_relations} relacoes")
+    print(f"  Hipoteses previas: {hc.get_stats()['total_hypotheses']}")
+
+    print(f"\nDescobrindo curas para {len(diseases)} doenças...")
+    results = discover_cures(hc, diseases, max_hypotheses=8)
+
+    print(f"\nGerando relatório...")
+    report = generate_report(results, kg, hc)
+
+    # Summary
+    print(f"\n{'='*65}")
+    print(f"RESUMO")
+    print(f"{'='*65}")
+    total_hyps = sum(r["total_hyps"] for r in results.values())
+    diseases_with = sum(1 for r in results.values() if r["total_hyps"] > 0)
+    print(f"  Doenças analisadas:  {len(diseases)}")
+    print(f"  Com hipóteses:       {diseases_with}")
+    print(f"  Total hipóteses:     {total_hyps}")
+    print(f"  Relatório:           {REPORT_PATH}")
+
+
+if __name__ == "__main__":
+    main()

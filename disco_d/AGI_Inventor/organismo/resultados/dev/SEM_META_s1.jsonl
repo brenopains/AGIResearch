@@ -1,0 +1,598 @@
+{"t": 0, "ev": "nascimento", "id": "lei:0", "tipo": "lei", "fonte": "percebido", "pais": [], "desc": {"lei": "-1.31 r^-2 r^ -0.0348 v^1 v^"}}
+{"t": 0, "ev": "nascimento", "id": "aberto:1", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 0, "ev": "problema", "idx": 0, "fam": "arrasto", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.1573571363587666, "gasto": 10.6592, "sonho": 0.0, "T": 0.0, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 18}
+{"t": 1, "ev": "nascimento", "id": "direcao:2", "tipo": "direcao", "fonte": "percebido", "pais": [], "desc": {"expr": "rot(v^)"}}
+{"t": 1, "ev": "nascimento", "id": "direcao:3", "tipo": "direcao", "fonte": "percebido", "pais": [], "desc": {"expr": "(r^+t^)"}}
+{"t": 1, "ev": "nascimento", "id": "direcao:4", "tipo": "direcao", "fonte": "percebido", "pais": [], "desc": {"expr": "(r^-t^)"}}
+{"t": 1, "ev": "nascimento", "id": "direcao:5", "tipo": "direcao", "fonte": "percebido", "pais": [], "desc": {"expr": "(r^+v^)"}}
+{"t": 1, "ev": "nascimento", "id": "direcao:6", "tipo": "direcao", "fonte": "percebido", "pais": [], "desc": {"expr": "(r^-v^)"}}
+{"t": 1, "ev": "nascimento", "id": "direcao:7", "tipo": "direcao", "fonte": "percebido", "pais": [], "desc": {"expr": "(t^+v^)"}}
+{"t": 1, "ev": "nascimento", "id": "direcao:8", "tipo": "direcao", "fonte": "percebido", "pais": [], "desc": {"expr": "(t^-v^)"}}
+{"t": 1, "ev": "nascimento", "id": "lei:9", "tipo": "lei", "fonte": "percebido", "pais": ["direcao:2", "direcao:5"], "desc": {"lei": "-0.735 r^-2 r^ -0.0164 v^1 v^ +0.0423 r^-1*v^3 rot(v^) +0.0341 v^2 (r^+v^)"}}
+{"t": 1, "ev": "regime", "T": 0.1, "ok": false}
+{"t": 1, "ev": "problema", "idx": 1, "fam": "spin_orbita", "tipo": "L", "fonte": "percebido", "molde": null, "ok": false, "nota": 2.5497238885580007, "gasto": 225.44080000000002, "sonho": 0.0, "T": 0.1, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["juntar", "aberto:1"], ["ajustar_ctx", null], ["derivar", null], ["ajustar_novos", null]], "valido": true, "n_estr": 26}
+{"t": 2, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6546122943260717, "intervalo": 1}
+{"t": 2, "ev": "nascimento", "id": "lei:10", "tipo": "lei", "fonte": "percebido", "pais": [], "desc": {"lei": "-1.4 r^-2 r^ +0.000648 v^1 v^ -0.027 r^-4*v^1 r^"}}
+{"t": 2, "ev": "regime", "T": 0.19, "ok": false}
+{"t": 2, "ev": "problema", "idx": 2, "fam": "einstein", "tipo": "L", "fonte": "percebido", "molde": null, "ok": false, "nota": 1.673066576980499, "gasto": 55.64320000000001, "sonho": 0.0, "T": 0.19, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["juntar", "aberto:1"], ["ajustar_ctx", null]], "valido": true, "n_estr": 27}
+{"t": 3, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.661458933296782, "intervalo": 2}
+{"t": 3, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6617205932461543, "intervalo": 1}
+{"t": 3, "ev": "nascimento", "id": "lei:11", "tipo": "lei", "fonte": "relato:A", "pais": [], "desc": {"lei": "-0.726 r^1 r^"}}
+{"t": 3, "ev": "nascimento", "id": "aberto:12", "tipo": "aberto", "fonte": "relato:A", "pais": [], "desc": {}}
+{"t": 3, "ev": "problema", "idx": 3, "fam": "mola", "tipo": "L", "fonte": "relato:A", "molde": null, "ok": true, "nota": null, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.171, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 29}
+{"t": 4, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6560038202798355, "intervalo": 3}
+{"t": 4, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6608650478348047, "intervalo": 2}
+{"t": 4, "ev": "nascimento", "id": "lei:13", "tipo": "lei", "fonte": "percebido", "pais": [], "desc": {"lei": "-1.16 r^-2 r^"}}
+{"t": 4, "ev": "nascimento", "id": "aberto:14", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 4, "ev": "problema", "idx": 4, "fam": "kepler", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.03098685142096826, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.1539, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 31}
+{"t": 5, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6682629584253147, "intervalo": 4}
+{"t": 5, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6687509943356186, "intervalo": 3}
+{"t": 5, "ev": "nascimento", "id": "aberto:15", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 5, "ev": "problema", "idx": 5, "fam": "mola", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.11835190164412496, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.13851000000000002, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 32}
+{"t": 6, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6713687229550123, "intervalo": 5}
+{"t": 6, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6718371451121892, "intervalo": 4}
+{"t": 6, "ev": "nascimento", "id": "aberto:16", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 6, "ev": "problema", "idx": 6, "fam": "mola", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.10163101226400327, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.12465900000000002, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 33}
+{"t": 7, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6279347456032632, "intervalo": 6}
+{"t": 7, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6504126724455762, "intervalo": 5}
+{"t": 7, "ev": "nascimento", "id": "lei:17", "tipo": "lei", "fonte": "percebido", "pais": [], "desc": {"lei": "-0.906 r^-2 r^ +0.288 r^-3*vr^2 r^"}}
+{"t": 7, "ev": "nascimento", "id": "aberto:18", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 7, "ev": "regime", "T": 0.21219310000000002, "ok": false}
+{"t": 7, "ev": "problema", "idx": 7, "fam": "spin_orbita", "tipo": "L", "fonte": "percebido", "molde": null, "ok": false, "nota": 7.798629537971274, "gasto": 10.6592, "sonho": 0.0, "T": 0.21219310000000002, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 35}
+{"t": 8, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6436488747051813, "intervalo": 7}
+{"t": 8, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6505945323778711, "intervalo": 6}
+{"t": 8, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6519554546028395, "intervalo": 1}
+{"t": 8, "ev": "nascimento", "id": "lei:19", "tipo": "lei", "fonte": "percebido", "pais": [], "desc": {"lei": "-1.04 r^-2 r^ -0.0399 r^-3 r^"}}
+{"t": 8, "ev": "nascimento", "id": "aberto:20", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 8, "ev": "problema", "idx": 8, "fam": "oblato", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.3240412344656327, "gasto": 10.6592, "sonho": 0.0, "T": 0.19097379000000003, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 37}
+{"t": 9, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6481541283128505, "intervalo": 8}
+{"t": 9, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6552244206612394, "intervalo": 7}
+{"t": 9, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6556580256326074, "intervalo": 2}
+{"t": 9, "ev": "nascimento", "id": "lei:21", "tipo": "lei", "fonte": "percebido", "pais": [], "desc": {"lei": "-1.22 r^-2 r^ -0.0149 r^-2*v^3 r^"}}
+{"t": 9, "ev": "nascimento", "id": "aberto:22", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 9, "ev": "problema", "idx": 9, "fam": "einstein", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.4845084685583074, "gasto": 10.6592, "sonho": 0.0, "T": 0.17187641100000003, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 39}
+{"t": 10, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.661466806295657, "intervalo": 9}
+{"t": 10, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6635671072199764, "intervalo": 8}
+{"t": 10, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6639030064834178, "intervalo": 3}
+{"t": 10, "ev": "nascimento", "id": "aberto:23", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 10, "ev": "problema", "idx": 10, "fam": "kepler", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.09862488077318203, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.15468876990000002, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 40}
+{"t": 11, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6685940452860241, "intervalo": 10}
+{"t": 11, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6688201948394539, "intervalo": 9}
+{"t": 11, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.668834485201259, "intervalo": 4}
+{"t": 11, "ev": "nascimento", "id": "aberto:24", "tipo": "aberto", "fonte": "relato:A", "pais": [], "desc": {}}
+{"t": 11, "ev": "problema", "idx": 11, "fam": "mola", "tipo": "L", "fonte": "relato:A", "molde": null, "ok": true, "nota": null, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.13921989291000003, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 41}
+{"t": 12, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6259551792279788, "intervalo": 11}
+{"t": 12, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6468641238783667, "intervalo": 10}
+{"t": 12, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6491060144979935, "intervalo": 5}
+{"t": 12, "ev": "nascimento", "id": "lei:25", "tipo": "lei", "fonte": "percebido", "pais": [], "desc": {"lei": "-1.2 r^-2 r^ -0.0663 r^-3*v^1 r^"}}
+{"t": 12, "ev": "nascimento", "id": "aberto:26", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 12, "ev": "regime", "T": 0.22529790361900004, "ok": false}
+{"t": 12, "ev": "problema", "idx": 12, "fam": "spin_orbita", "tipo": "L", "fonte": "percebido", "molde": null, "ok": false, "nota": 5.977667400801208, "gasto": 10.6592, "sonho": 0.0, "T": 0.22529790361900004, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 43}
+{"t": 13, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6409366345976939, "intervalo": 12}
+{"t": 13, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6477749258431277, "intervalo": 11}
+{"t": 13, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6478241342889842, "intervalo": 6}
+{"t": 13, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6474878042508316, "intervalo": 1}
+{"t": 13, "ev": "nascimento", "id": "lei:27", "tipo": "lei", "fonte": "percebido", "pais": [], "desc": {"lei": "-0.621 r^-2 r^ -0.0311 r^-2*v^2 r^"}}
+{"t": 13, "ev": "nascimento", "id": "aberto:28", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 13, "ev": "problema", "idx": 13, "fam": "einstein", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.36973115431558184, "gasto": 10.6592, "sonho": 0.0, "T": 0.20276811325710004, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 45}
+{"t": 14, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6579213581620066, "intervalo": 13}
+{"t": 14, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6586776061963003, "intervalo": 12}
+{"t": 14, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6588293313238696, "intervalo": 7}
+{"t": 14, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6587571743734841, "intervalo": 2}
+{"t": 14, "ev": "nascimento", "id": "aberto:29", "tipo": "aberto", "fonte": "relato:A", "pais": [], "desc": {}}
+{"t": 14, "ev": "problema", "idx": 14, "fam": "kepler", "tipo": "L", "fonte": "relato:A", "molde": null, "ok": true, "nota": null, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.18249130193139004, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 46}
+{"t": 15, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6630804606053965, "intervalo": 14}
+{"t": 15, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6632913915363025, "intervalo": 13}
+{"t": 15, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.663294962615955, "intervalo": 8}
+{"t": 15, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6633229836512881, "intervalo": 3}
+{"t": 15, "ev": "nascimento", "id": "aberto:30", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 15, "ev": "regime", "T": 0.26424217173825104, "ok": false}
+{"t": 15, "ev": "problema", "idx": 15, "fam": "kepler", "tipo": "Q", "fonte": "percebido", "molde": "raio_cresce", "ok": false, "nota": 0.525, "gasto": 1.6608, "sonho": 0.0, "T": 0.26424217173825104, "acoes": [["prever_ctx", null]], "valido": true, "n_estr": 47}
+{"t": 16, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6362975263748317, "intervalo": 15}
+{"t": 16, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6416780887881258, "intervalo": 14}
+{"t": 16, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6416309679587637, "intervalo": 9}
+{"t": 16, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6417646145055265, "intervalo": 4}
+{"t": 16, "ev": "nascimento", "id": "aberto:31", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 16, "ev": "problema", "idx": 16, "fam": "kepler", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.03751781725465113, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.23781795456442595, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 48}
+{"t": 17, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6394624254431126, "intervalo": 16}
+{"t": 17, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.646195540394768, "intervalo": 15}
+{"t": 17, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6461225938408668, "intervalo": 10}
+{"t": 17, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6459289661868118, "intervalo": 5}
+{"t": 17, "ev": "nascimento", "id": "aberto:32", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 17, "ev": "problema", "idx": 17, "fam": "arrasto", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.38662534621924843, "gasto": 10.6592, "sonho": 0.0, "T": 0.21403615910798335, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 49}
+{"t": 18, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6567091971583151, "intervalo": 17}
+{"t": 18, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6569509865305673, "intervalo": 16}
+{"t": 18, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6569642925133432, "intervalo": 11}
+{"t": 18, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6569807941535774, "intervalo": 6}
+{"t": 18, "ev": "nascimento", "id": "aberto:33", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 18, "ev": "regime", "T": 0.292632543197185, "ok": false}
+{"t": 18, "ev": "problema", "idx": 18, "fam": "kepler", "tipo": "Q", "fonte": "percebido", "molde": "sentido", "ok": false, "nota": 0.575, "gasto": 1.6608, "sonho": 0.0, "T": 0.292632543197185, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 50}
+{"t": 19, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.638225322597917, "intervalo": 18}
+{"t": 19, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6398073758002032, "intervalo": 17}
+{"t": 19, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6398785181760833, "intervalo": 12}
+{"t": 19, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.639721248625852, "intervalo": 7}
+{"t": 19, "ev": "nascimento", "id": "aberto:34", "tipo": "aberto", "fonte": "relato:A", "pais": [], "desc": {}}
+{"t": 19, "ev": "problema", "idx": 19, "fam": "kepler", "tipo": "L", "fonte": "relato:A", "molde": null, "ok": true, "nota": null, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.2633692888774665, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 51}
+{"t": 20, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6425145096979362, "intervalo": 19}
+{"t": 20, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6449939065272217, "intervalo": 18}
+{"t": 20, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6450767995143926, "intervalo": 13}
+{"t": 20, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6451222268821605, "intervalo": 8}
+{"t": 20, "ev": "fonte", "fonte": "relato:A", "ok": false, "cred": 0.3333333333333333}
+{"t": 20, "ev": "regime", "T": 0.3370323599897199, "ok": false}
+{"t": 20, "ev": "problema", "idx": 20, "fam": "spin_orbita", "tipo": "L", "fonte": "percebido", "molde": null, "ok": false, "nota": 6.377674736954364, "gasto": 307.6568, "sonho": 0.0, "T": 0.3370323599897199, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["juntar", "aberto:1"], ["juntar", "aberto:12"], ["juntar", "aberto:14"], ["juntar", "aberto:15"], ["juntar", "aberto:16"], ["juntar", "aberto:20"], ["juntar", "aberto:22"], ["juntar", "aberto:23"], ["juntar", "aberto:24"], ["juntar", "aberto:28"], ["juntar", "aberto:29"], ["juntar", "aberto:31"], ["juntar", "aberto:32"], ["juntar", "aberto:34"], ["ajustar_ctx", null]], "valido": false, "n_estr": 51}
+{"t": 21, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6283087091070938, "intervalo": 20}
+{"t": 21, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6299332230208691, "intervalo": 19}
+{"t": 21, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6300384534687591, "intervalo": 14}
+{"t": 21, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.629879492907545, "intervalo": 9}
+{"t": 21, "ev": "regime", "T": 0.40332912399074794, "ok": false}
+{"t": 21, "ev": "problema", "idx": 21, "fam": "vortice", "tipo": "L", "fonte": "relato:F", "molde": null, "ok": false, "nota": null, "gasto": 316.1784, "sonho": 0.0, "T": 0.40332912399074794, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["juntar", "aberto:1"], ["juntar", "aberto:12"], ["juntar", "aberto:14"], ["juntar", "aberto:15"], ["juntar", "aberto:16"], ["juntar", "aberto:20"], ["juntar", "aberto:22"], ["juntar", "aberto:23"], ["juntar", "aberto:24"], ["juntar", "aberto:28"], ["juntar", "aberto:29"], ["juntar", "aberto:31"], ["juntar", "aberto:32"], ["juntar", "aberto:34"], ["ajustar_ctx", null]], "valido": false, "n_estr": 51}
+{"t": 22, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6004709122610556, "intervalo": 21}
+{"t": 22, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6073662587009472, "intervalo": 20}
+{"t": 22, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6073838457404084, "intervalo": 15}
+{"t": 22, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6075013081825205, "intervalo": 10}
+{"t": 22, "ev": "regime", "T": 0.46299621159167315, "ok": false}
+{"t": 22, "ev": "problema", "idx": 22, "fam": "spin_orbita", "tipo": "L", "fonte": "percebido", "molde": null, "ok": false, "nota": 5.069946002912531, "gasto": 27.72, "sonho": 0.0, "T": 0.46299621159167315, "acoes": [["ajustar_base", null], ["forma", "lei:0"]], "valido": true, "n_estr": 51}
+{"t": 23, "ev": "regime", "T": 0.5166965904325058, "ok": false}
+{"t": 23, "ev": "problema", "idx": 23, "fam": "vortice", "tipo": "L", "fonte": "relato:F", "molde": null, "ok": false, "nota": null, "gasto": 258.25759999999997, "sonho": 0.0, "T": 0.5167313882779947, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["juntar", "aberto:14"], ["juntar", "aberto:15"], ["juntar", "aberto:16"], ["juntar", "aberto:20"], ["juntar", "aberto:22"], ["juntar", "aberto:23"], ["juntar", "aberto:24"], ["juntar", "aberto:28"], ["juntar", "aberto:29"], ["juntar", "aberto:31"], ["juntar", "aberto:32"], ["juntar", "aberto:34"], ["ajustar_ctx", null], ["derivar", null]], "valido": false, "n_estr": 51}
+{"t": 24, "ev": "nascimento", "id": "aberto:35", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 24, "ev": "problema", "idx": 24, "fam": "kepler", "tipo": "Q", "fonte": "percebido", "molde": "sentido", "ok": false, "nota": 0.735, "gasto": 1.6608, "sonho": 0.0, "T": 0.5650269313892553, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 52}
+{"t": 25, "ev": "nascimento", "id": "aberto:36", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 25, "ev": "regime", "T": 0.5085242382503298, "ok": true}
+{"t": 25, "ev": "problema", "idx": 25, "fam": "mola", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.18308558421273918, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.5085242382503298, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 53}
+{"t": 26, "ev": "nascimento", "id": "lei:37", "tipo": "lei", "fonte": "percebido", "pais": [], "desc": {"lei": "-1.34 r^-2 r^ -0.0295 r^-4 r^"}}
+{"t": 26, "ev": "nascimento", "id": "aberto:38", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 26, "ev": "regime", "T": 0.4576718144252968, "ok": true}
+{"t": 26, "ev": "problema", "idx": 26, "fam": "oblato", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.33975874638684433, "gasto": 10.6592, "sonho": 0.0, "T": 0.4576718144252968, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 55}
+{"t": 27, "ev": "fonte", "fonte": "relato:A", "ok": false, "cred": 0.25}
+{"t": 27, "ev": "regime", "T": 0.5119046329827671, "ok": false}
+{"t": 27, "ev": "problema", "idx": 27, "fam": "spin_orbita", "tipo": "L", "fonte": "percebido", "molde": null, "ok": false, "nota": 13.152553509775643, "gasto": 18.23679999999998, "sonho": 0.0, "T": 0.5172958090099281, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["juntar", "aberto:1"], ["juntar", "aberto:12"], ["juntar", "aberto:14"], ["juntar", "aberto:15"], ["juntar", "aberto:16"], ["juntar", "aberto:20"], ["juntar", "aberto:22"], ["juntar", "aberto:23"], ["juntar", "aberto:24"], ["juntar", "aberto:28"], ["juntar", "aberto:29"], ["juntar", "aberto:31"], ["juntar", "aberto:32"], ["juntar", "aberto:34"], ["juntar", "aberto:36"], ["juntar", "aberto:38"], ["derivar", null]], "valido": false, "n_estr": 55}
+{"t": 28, "ev": "nascimento", "id": "aberto:39", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 28, "ev": "problema", "idx": 28, "fam": "mola", "tipo": "Q", "fonte": "percebido", "molde": "sentido", "ok": false, "nota": 0.755, "gasto": 1.6608, "sonho": 0.0, "T": 0.5607141696844904, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 56}
+{"t": 29, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 29, "ev": "nascimento", "id": "lei:40", "tipo": "lei", "fonte": "relato:F", "pais": ["direcao:2"], "desc": {"lei": "-1.51 r^-2 r^ -5.34e-05 r^1 r^ +0.0685 r^-1*v^1 rot(v^) +0.00218 r^-4 r^"}}
+{"t": 29, "ev": "regime", "T": 0.5046427527160414, "ok": true}
+{"t": 29, "ev": "problema", "idx": 29, "fam": "vortice", "tipo": "L", "fonte": "relato:F", "molde": null, "ok": true, "nota": null, "gasto": 243.48320000000004, "sonho": 0.0, "T": 0.5046427527160414, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["juntar", "aberto:36"], ["juntar", "aberto:38"], ["ajustar_ctx", null], ["derivar", null], ["ajustar_amplo", null]], "valido": true, "n_estr": 57}
+{"t": 30, "ev": "nascimento", "id": "aberto:41", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 30, "ev": "regime", "T": 0.4541784774444373, "ok": true}
+{"t": 30, "ev": "problema", "idx": 30, "fam": "kepler", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.015692136440547108, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.4541784774444373, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 58}
+{"t": 31, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 31, "ev": "credito_atrasado", "de": "lei:40", "para": "direcao:2"}
+{"t": 31, "ev": "credito_atrasado", "de": "lei:40", "para": "op:ajustar_amplo", "nasc": 29}
+{"t": 31, "ev": "problema", "idx": 31, "fam": "vortice", "tipo": "L", "fonte": "relato:F", "molde": null, "ok": true, "nota": null, "gasto": 6.5032, "sonho": 0.0, "T": 0.40876062969999355, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"]], "valido": true, "n_estr": 58}
+{"t": 32, "ev": "nascimento", "id": "aberto:42", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 32, "ev": "problema", "idx": 32, "fam": "oblato", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.1912084246571733, "gasto": 10.6592, "sonho": 0.0, "T": 0.3678845667299942, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 59}
+{"t": 33, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6062791346860809, "intervalo": 31}
+{"t": 33, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6062099768042715, "intervalo": 26}
+{"t": 33, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6060269754914038, "intervalo": 21}
+{"t": 33, "ev": "nascimento", "id": "aberto:43", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 33, "ev": "problema", "idx": 33, "fam": "arrasto", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.36806956161083854, "gasto": 10.6592, "sonho": 0.0, "T": 0.3310961100569948, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 60}
+{"t": 34, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6075305204110532, "intervalo": 33}
+{"t": 34, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6090673522390007, "intervalo": 32}
+{"t": 34, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6090677997122088, "intervalo": 27}
+{"t": 34, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6090129942134934, "intervalo": 22}
+{"t": 34, "ev": "nascimento", "id": "aberto:44", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 34, "ev": "problema", "idx": 34, "fam": "mola", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.19142565197743497, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.2979864990512953, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 61}
+{"t": 35, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6057226689996004, "intervalo": 33}
+{"t": 35, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.604190813912089, "intervalo": 28}
+{"t": 35, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6043086322973676, "intervalo": 23}
+{"t": 35, "ev": "nascimento", "id": "aberto:45", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 35, "ev": "problema", "idx": 35, "fam": "arrasto", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.09730989840553146, "gasto": 10.6592, "sonho": 0.0, "T": 0.2681878491461658, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 62}
+{"t": 36, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6270836967502159, "intervalo": 35}
+{"t": 36, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6295811058863345, "intervalo": 34}
+{"t": 36, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6300794460296277, "intervalo": 29}
+{"t": 36, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6298797477731073, "intervalo": 24}
+{"t": 36, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 36, "ev": "credito_atrasado", "de": "lei:40", "para": "direcao:2"}
+{"t": 36, "ev": "credito_atrasado", "de": "lei:40", "para": "op:ajustar_amplo", "nasc": 29}
+{"t": 36, "ev": "problema", "idx": 36, "fam": "vortice", "tipo": "L", "fonte": "relato:F", "molde": null, "ok": true, "nota": null, "gasto": 10.767199999999994, "sonho": 0.0, "T": 0.24136906423154922, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"]], "valido": true, "n_estr": 62}
+{"t": 37, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6157510344351079, "intervalo": 35}
+{"t": 37, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6154286381879435, "intervalo": 30}
+{"t": 37, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.614098721178039, "intervalo": 25}
+{"t": 37, "ev": "nascimento", "id": "lei:46", "tipo": "lei", "fonte": "percebido", "pais": [], "desc": {"lei": "-1.18 r^-2 r^ -0.01 r^-2*v^4 r^"}}
+{"t": 37, "ev": "nascimento", "id": "aberto:47", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 37, "ev": "problema", "idx": 37, "fam": "einstein", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.607164065114546, "gasto": 10.6592, "sonho": 0.0, "T": 0.2172321578083943, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 64}
+{"t": 38, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6005545240475504, "intervalo": 37}
+{"t": 38, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6201753433569073, "intervalo": 36}
+{"t": 38, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6203094400828374, "intervalo": 31}
+{"t": 38, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6210585352465295, "intervalo": 26}
+{"t": 38, "ev": "nascimento", "id": "aberto:48", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 38, "ev": "problema", "idx": 38, "fam": "oblato", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.35598772617877966, "gasto": 10.6592, "sonho": 0.0, "T": 0.19550894202755487, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 65}
+{"t": 39, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6586173083717043, "intervalo": 38}
+{"t": 39, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6588394013193287, "intervalo": 37}
+{"t": 39, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6588431101236276, "intervalo": 32}
+{"t": 39, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6588722439396538, "intervalo": 27}
+{"t": 39, "ev": "nascimento", "id": "aberto:49", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 39, "ev": "problema", "idx": 39, "fam": "kepler", "tipo": "Q", "fonte": "percebido", "molde": "raio_cresce", "ok": true, "nota": 0.925, "gasto": 1.6608, "sonho": 0.0, "T": 0.17595804782479937, "acoes": [["prever_ctx", null]], "valido": true, "n_estr": 66}
+{"t": 40, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.633324546282647, "intervalo": 39}
+{"t": 40, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6351558327328969, "intervalo": 38}
+{"t": 40, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6353458523907537, "intervalo": 33}
+{"t": 40, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6352110470340503, "intervalo": 28}
+{"t": 40, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 40, "ev": "nascimento", "id": "lei:50", "tipo": "lei", "fonte": "percebido", "pais": ["direcao:2"], "desc": {"lei": "-0.889 r^-2 r^ -0.0396 r^-2*v^-2 rot(v^) +0.00564 r^-3*v^-4 rot(v^)"}}
+{"t": 40, "ev": "nascimento", "id": "aberto:51", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 40, "ev": "problema", "idx": 40, "fam": "magnetico", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.5339316739257437, "gasto": 26.4072, "sonho": 0.0, "T": 0.15836224304231944, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"], ["forma", "lei:46"], ["ajustar_ctx", null]], "valido": true, "n_estr": 68}
+{"t": 41, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6135396254922885, "intervalo": 40}
+{"t": 41, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6329400837600258, "intervalo": 39}
+{"t": 41, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6326998768629809, "intervalo": 34}
+{"t": 41, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6325218039113689, "intervalo": 29}
+{"t": 41, "ev": "nascimento", "id": "aberto:52", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 41, "ev": "problema", "idx": 41, "fam": "einstein", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.6749878366053232, "gasto": 10.6592, "sonho": 0.0, "T": 0.1425260187380875, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 69}
+{"t": 42, "ev": "nascimento", "id": "aberto:53", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 42, "ev": "problema", "idx": 42, "fam": "kepler", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.05227678394165313, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.12827341686427876, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 70}
+{"t": 43, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6708430205930467, "intervalo": 42}
+{"t": 43, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6710131017592761, "intervalo": 41}
+{"t": 43, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6710155283861304, "intervalo": 36}
+{"t": 43, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6710290629608336, "intervalo": 31}
+{"t": 43, "ev": "nascimento", "id": "aberto:54", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 43, "ev": "regime", "T": 0.2154460751778509, "ok": false}
+{"t": 43, "ev": "problema", "idx": 43, "fam": "kepler", "tipo": "Q", "fonte": "percebido", "molde": "sentido", "ok": false, "nota": 0.655, "gasto": 1.6608, "sonho": 0.0, "T": 0.2154460751778509, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 71}
+{"t": 44, "ev": "nascimento", "id": "aberto:55", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 44, "ev": "problema", "idx": 44, "fam": "kepler", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.26703904083759544, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.1939014676600658, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 72}
+{"t": 45, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6585644688066935, "intervalo": 44}
+{"t": 45, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6587741718308784, "intervalo": 43}
+{"t": 45, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6588027665636708, "intervalo": 38}
+{"t": 45, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6588095533175437, "intervalo": 33}
+{"t": 45, "ev": "nascimento", "id": "aberto:56", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 45, "ev": "regime", "T": 0.2745113208940592, "ok": false}
+{"t": 45, "ev": "problema", "idx": 45, "fam": "magnetico", "tipo": "Q", "fonte": "percebido", "molde": "escapa", "ok": false, "nota": 0.765, "gasto": 1.6608, "sonho": 0.0, "T": 0.2745113208940592, "acoes": [["prever_ctx", null]], "valido": true, "n_estr": 73}
+{"t": 46, "ev": "nascimento", "id": "aberto:57", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 46, "ev": "problema", "idx": 46, "fam": "kepler", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.17852580027677417, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.2470601888046533, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 74}
+{"t": 47, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6045175361253123, "intervalo": 46}
+{"t": 47, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6094599764975495, "intervalo": 45}
+{"t": 47, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6092832488176949, "intervalo": 40}
+{"t": 47, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6093518858459215, "intervalo": 35}
+{"t": 47, "ev": "nascimento", "id": "lei:58", "tipo": "lei", "fonte": "percebido", "pais": [], "desc": {"lei": "-0.609 r^-2 r^ -0.07 r^-4*v^2 r^ +0.542 r^-4*vr^2 r^"}}
+{"t": 47, "ev": "nascimento", "id": "aberto:59", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 47, "ev": "regime", "T": 0.32235416992418797, "ok": false}
+{"t": 47, "ev": "problema", "idx": 47, "fam": "spin_orbita", "tipo": "L", "fonte": "percebido", "molde": null, "ok": false, "nota": 7.286979416988757, "gasto": 21.3168, "sonho": 0.0, "T": 0.32235416992418797, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 76}
+{"t": 48, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6252454276223022, "intervalo": 47}
+{"t": 48, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6256765506310032, "intervalo": 46}
+{"t": 48, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6257077694501942, "intervalo": 41}
+{"t": 48, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.625755365207259, "intervalo": 36}
+{"t": 48, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6350739404087522, "intervalo": 1}
+{"t": 48, "ev": "nascimento", "id": "aberto:60", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 48, "ev": "regime", "T": 0.39011875293176923, "ok": false}
+{"t": 48, "ev": "problema", "idx": 48, "fam": "kepler", "tipo": "Q", "fonte": "percebido", "molde": "periapse_direita", "ok": false, "nota": 0.44, "gasto": 1.6608, "sonho": 0.0, "T": 0.39011875293176923, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 77}
+{"t": 49, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6154860274707756, "intervalo": 2}
+{"t": 49, "ev": "regime", "T": 0.45110687763859236, "ok": false}
+{"t": 49, "ev": "problema", "idx": 49, "fam": "spin_orbita", "tipo": "L", "fonte": "percebido", "molde": null, "ok": false, "nota": 2.8995364355044657, "gasto": 6.419200000000001, "sonho": 0.0, "T": 0.45110687763859236, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"]], "valido": true, "n_estr": 77}
+{"t": 50, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6003771192196645, "intervalo": 48}
+{"t": 50, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.600431370910921, "intervalo": 43}
+{"t": 50, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6004484956974543, "intervalo": 38}
+{"t": 50, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6090396184149972, "intervalo": 3}
+{"t": 50, "ev": "nascimento", "id": "aberto:61", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 50, "ev": "problema", "idx": 50, "fam": "kepler", "tipo": "Q", "fonte": "percebido", "molde": "escapa", "ok": true, "nota": 0.9, "gasto": 1.6608, "sonho": 0.0, "T": 0.4059961898747331, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 78}
+{"t": 51, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6152687384267579, "intervalo": 4}
+{"t": 51, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 51, "ev": "credito_atrasado", "de": "lei:50", "para": "direcao:2"}
+{"t": 51, "ev": "credito_atrasado", "de": "lei:50", "para": "op:ajustar_ctx", "nasc": 40}
+{"t": 51, "ev": "problema", "idx": 51, "fam": "magnetico", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.592838262784235, "gasto": 6.523199999999999, "sonho": 0.0, "T": 0.3653965708872598, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"], ["forma", "lei:46"], ["forma", "lei:50"]], "valido": true, "n_estr": 78}
+{"t": 52, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6099734158391475, "intervalo": 51}
+{"t": 52, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6110524670543797, "intervalo": 50}
+{"t": 52, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6111376454407863, "intervalo": 45}
+{"t": 52, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6111703459119642, "intervalo": 40}
+{"t": 52, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6263493163983219, "intervalo": 5}
+{"t": 52, "ev": "nascimento", "id": "aberto:62", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 52, "ev": "regime", "T": 0.42885691379853386, "ok": false}
+{"t": 52, "ev": "problema", "idx": 52, "fam": "spin_orbita", "tipo": "Q", "fonte": "percebido", "molde": "sentido", "ok": false, "nota": 0.665, "gasto": 1.6608, "sonho": 0.0, "T": 0.42885691379853386, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 79}
+{"t": 53, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6054271264807516, "intervalo": 52}
+{"t": 53, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6067300650598375, "intervalo": 51}
+{"t": 53, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6067608059802438, "intervalo": 46}
+{"t": 53, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6067440822020638, "intervalo": 41}
+{"t": 53, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6135487213651161, "intervalo": 6}
+{"t": 53, "ev": "nascimento", "id": "aberto:63", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 53, "ev": "regime", "T": 0.4859712224186805, "ok": false}
+{"t": 53, "ev": "problema", "idx": 53, "fam": "kepler", "tipo": "Q", "fonte": "percebido", "molde": "escapa", "ok": false, "nota": 0.86, "gasto": 1.6608, "sonho": 0.0, "T": 0.4859712224186805, "acoes": [["prever_ctx", null]], "valido": true, "n_estr": 80}
+{"t": 54, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6000209676030989, "intervalo": 7}
+{"t": 54, "ev": "nascimento", "id": "aberto:64", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 54, "ev": "problema", "idx": 54, "fam": "mola", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.2939256634363723, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.4373741001768125, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 81}
+{"t": 55, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6089025089404384, "intervalo": 8}
+{"t": 55, "ev": "nascimento", "id": "aberto:65", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 55, "ev": "problema", "idx": 55, "fam": "kepler", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.1923513188581411, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.3936366901591313, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 82}
+{"t": 56, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6032203375050053, "intervalo": 55}
+{"t": 56, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6043953599956028, "intervalo": 54}
+{"t": 56, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6044826172613662, "intervalo": 49}
+{"t": 56, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6045178696985859, "intervalo": 44}
+{"t": 56, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6206022350232216, "intervalo": 9}
+{"t": 56, "ev": "nascimento", "id": "aberto:66", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 56, "ev": "regime", "T": 0.4542730211432182, "ok": false}
+{"t": 56, "ev": "problema", "idx": 56, "fam": "kepler", "tipo": "Q", "fonte": "percebido", "molde": "periapse_direita", "ok": false, "nota": 0.555, "gasto": 1.6608, "sonho": 0.0, "T": 0.4542730211432182, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 83}
+{"t": 57, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6082525371897907, "intervalo": 10}
+{"t": 57, "ev": "nascimento", "id": "aberto:67", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 57, "ev": "regime", "T": 0.5088457190288964, "ok": false}
+{"t": 57, "ev": "problema", "idx": 57, "fam": "kepler", "tipo": "Q", "fonte": "percebido", "molde": "periapse_direita", "ok": false, "nota": 0.52, "gasto": 1.6608, "sonho": 0.0, "T": 0.5088457190288964, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 84}
+{"t": 58, "ev": "nascimento", "id": "aberto:68", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 58, "ev": "problema", "idx": 58, "fam": "kepler", "tipo": "Q", "fonte": "percebido", "molde": "periapse_direita", "ok": false, "nota": 0.465, "gasto": 1.6608, "sonho": 0.0, "T": 0.5579611471260068, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 85}
+{"t": 59, "ev": "nascimento", "id": "aberto:69", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 59, "ev": "regime", "T": 0.502165032413406, "ok": true}
+{"t": 59, "ev": "problema", "idx": 59, "fam": "oblato", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.13096922683726842, "gasto": 10.6592, "sonho": 0.0, "T": 0.502165032413406, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 86}
+{"t": 60, "ev": "nascimento", "id": "aberto:70", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 60, "ev": "regime", "T": 0.45194852917206546, "ok": true}
+{"t": 60, "ev": "problema", "idx": 60, "fam": "magnetico", "tipo": "Q", "fonte": "percebido", "molde": "escapa", "ok": true, "nota": 0.935, "gasto": 1.6608, "sonho": 0.0, "T": 0.45194852917206546, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 87}
+{"t": 61, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6072271271946603, "intervalo": 14}
+{"t": 61, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 61, "ev": "credito_atrasado", "de": "lei:40", "para": "direcao:2"}
+{"t": 61, "ev": "credito_atrasado", "de": "lei:40", "para": "op:ajustar_amplo", "nasc": 29}
+{"t": 61, "ev": "metaplasticidade", "tipo": "lei", "tau": 20.5}
+{"t": 61, "ev": "problema", "idx": 61, "fam": "vortice", "tipo": "L", "fonte": "relato:F", "molde": null, "ok": true, "nota": null, "gasto": 6.5032, "sonho": 0.0, "T": 0.4067536762548589, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"]], "valido": true, "n_estr": 87}
+{"t": 62, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6149347118153723, "intervalo": 15}
+{"t": 62, "ev": "nascimento", "id": "aberto:71", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 62, "ev": "problema", "idx": 62, "fam": "arrasto", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.19798495856356763, "gasto": 10.6592, "sonho": 0.0, "T": 0.366078308629373, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 88}
+{"t": 63, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6236418821194057, "intervalo": 16}
+{"t": 63, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 63, "ev": "credito_atrasado", "de": "lei:50", "para": "direcao:2"}
+{"t": 63, "ev": "credito_atrasado", "de": "lei:50", "para": "op:ajustar_ctx", "nasc": 40}
+{"t": 63, "ev": "problema", "idx": 63, "fam": "magnetico", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.34059050480776354, "gasto": 6.523199999999999, "sonho": 0.0, "T": 0.32947047776643573, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"], ["forma", "lei:46"], ["forma", "lei:50"]], "valido": true, "n_estr": 88}
+{"t": 64, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6324024713835129, "intervalo": 17}
+{"t": 64, "ev": "nascimento", "id": "aberto:72", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 64, "ev": "problema", "idx": 64, "fam": "mola", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.001961552424684346, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.29652342998979214, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 89}
+{"t": 65, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6379338325744974, "intervalo": 18}
+{"t": 65, "ev": "fonte", "fonte": "relato:A", "ok": false, "cred": 0.2}
+{"t": 65, "ev": "regime", "T": 0.36687108699081294, "ok": false}
+{"t": 65, "ev": "problema", "idx": 65, "fam": "spin_orbita", "tipo": "L", "fonte": "percebido", "molde": null, "ok": false, "nota": 5.6694713128898435, "gasto": 10.719199999999997, "sonho": 0.0, "T": 0.36687108699081294, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"]], "valido": true, "n_estr": 89}
+{"t": 66, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6260912641834921, "intervalo": 19}
+{"t": 66, "ev": "nascimento", "id": "aberto:73", "tipo": "aberto", "fonte": "relato:A", "pais": [], "desc": {}}
+{"t": 66, "ev": "problema", "idx": 66, "fam": "mola", "tipo": "L", "fonte": "relato:A", "molde": null, "ok": true, "nota": null, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.3301839782917317, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 90}
+{"t": 67, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6308515156557684, "intervalo": 20}
+{"t": 67, "ev": "nascimento", "id": "aberto:74", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 67, "ev": "problema", "idx": 67, "fam": "arrasto", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.2945367131165527, "gasto": 10.6592, "sonho": 0.0, "T": 0.29716558046255853, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 91}
+{"t": 68, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6347981341320776, "intervalo": 67}
+{"t": 68, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6355053291315612, "intervalo": 66}
+{"t": 68, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6355247624885644, "intervalo": 61}
+{"t": 68, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6358070334106944, "intervalo": 56}
+{"t": 68, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6401701790525357, "intervalo": 21}
+{"t": 68, "ev": "nascimento", "id": "aberto:75", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 68, "ev": "problema", "idx": 68, "fam": "kepler", "tipo": "Q", "fonte": "percebido", "molde": "raio_cresce", "ok": true, "nota": 0.99, "gasto": 1.6608, "sonho": 0.0, "T": 0.2674490224163027, "acoes": [["prever_ctx", null]], "valido": true, "n_estr": 92}
+{"t": 69, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.645645325353918, "intervalo": 22}
+{"t": 69, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 69, "ev": "credito_atrasado", "de": "lei:40", "para": "direcao:2"}
+{"t": 69, "ev": "credito_atrasado", "de": "lei:40", "para": "op:ajustar_amplo", "nasc": 29}
+{"t": 69, "ev": "problema", "idx": 69, "fam": "vortice", "tipo": "L", "fonte": "relato:F", "molde": null, "ok": true, "nota": null, "gasto": 6.5032, "sonho": 0.0, "T": 0.24070412017467244, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"]], "valido": true, "n_estr": 92}
+{"t": 70, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6493114913513605, "intervalo": 23}
+{"t": 70, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 70, "ev": "credito_atrasado", "de": "lei:50", "para": "direcao:2"}
+{"t": 70, "ev": "credito_atrasado", "de": "lei:50", "para": "op:ajustar_ctx", "nasc": 40}
+{"t": 70, "ev": "problema", "idx": 70, "fam": "magnetico", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.46109268990880004, "gasto": 10.787199999999993, "sonho": 0.0, "T": 0.2166337081572052, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"], ["forma", "lei:46"], ["forma", "lei:50"]], "valido": true, "n_estr": 92}
+{"t": 71, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6544732883140306, "intervalo": 24}
+{"t": 71, "ev": "nascimento", "id": "aberto:76", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 71, "ev": "problema", "idx": 71, "fam": "oblato", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.5283472933643517, "gasto": 10.6592, "sonho": 0.0, "T": 0.1949703373414847, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 93}
+{"t": 72, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6559857169781684, "intervalo": 25}
+{"t": 72, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 72, "ev": "credito_atrasado", "de": "lei:50", "para": "direcao:2"}
+{"t": 72, "ev": "credito_atrasado", "de": "lei:50", "para": "op:ajustar_ctx", "nasc": 40}
+{"t": 72, "ev": "problema", "idx": 72, "fam": "magnetico", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.5298938354119787, "gasto": 6.523199999999999, "sonho": 0.0, "T": 0.17547330360733623, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"], ["forma", "lei:46"], ["forma", "lei:50"]], "valido": true, "n_estr": 93}
+{"t": 73, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6643083851970984, "intervalo": 26}
+{"t": 73, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 73, "ev": "credito_atrasado", "de": "lei:40", "para": "direcao:2"}
+{"t": 73, "ev": "credito_atrasado", "de": "lei:40", "para": "op:ajustar_amplo", "nasc": 29}
+{"t": 73, "ev": "problema", "idx": 73, "fam": "vortice", "tipo": "L", "fonte": "relato:F", "molde": null, "ok": true, "nota": null, "gasto": 6.5032, "sonho": 0.0, "T": 0.15792597324660262, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"]], "valido": true, "n_estr": 93}
+{"t": 74, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6587039656262943, "intervalo": 73}
+{"t": 74, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6591158621194575, "intervalo": 72}
+{"t": 74, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6591265910714904, "intervalo": 67}
+{"t": 74, "ev": "reativacao", "id": "lei:21", "tipo": "lei", "ativ": 0.04197287480504489, "cred": 0.6642715152828444, "intervalo": 65}
+{"t": 74, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6604345743085147, "intervalo": 62}
+{"t": 74, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6681959897519324, "intervalo": 27}
+{"t": 74, "ev": "nascimento", "id": "aberto:77", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 74, "ev": "regime", "T": 0.24213337592194237, "ok": false}
+{"t": 74, "ev": "problema", "idx": 74, "fam": "magnetico", "tipo": "Q", "fonte": "percebido", "molde": "sentido", "ok": false, "nota": 0.56, "gasto": 1.6608, "sonho": 0.0, "T": 0.24213337592194237, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 94}
+{"t": 75, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6491244450660497, "intervalo": 28}
+{"t": 75, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 75, "ev": "credito_atrasado", "de": "lei:50", "para": "direcao:2"}
+{"t": 75, "ev": "credito_atrasado", "de": "lei:50", "para": "op:ajustar_ctx", "nasc": 40}
+{"t": 75, "ev": "problema", "idx": 75, "fam": "magnetico", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.5997928654719051, "gasto": 6.523199999999999, "sonho": 0.0, "T": 0.21792003832974813, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"], ["forma", "lei:46"], ["forma", "lei:50"]], "valido": true, "n_estr": 94}
+{"t": 76, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6557695177987192, "intervalo": 29}
+{"t": 76, "ev": "nascimento", "id": "aberto:78", "tipo": "aberto", "fonte": "relato:A", "pais": [], "desc": {}}
+{"t": 76, "ev": "problema", "idx": 76, "fam": "kepler", "tipo": "L", "fonte": "relato:A", "molde": null, "ok": true, "nota": null, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.19612803449677332, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 95}
+{"t": 77, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6586285391988116, "intervalo": 30}
+{"t": 77, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 77, "ev": "nascimento", "id": "lei:79", "tipo": "lei", "fonte": "percebido", "pais": ["direcao:2"], "desc": {"lei": "-0.823 r^-2 r^ +0.0471 r^-3*v^1 rot(v^) -0.0551 r^-2*vr^1 t^"}}
+{"t": 77, "ev": "nascimento", "id": "aberto:80", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 77, "ev": "problema", "idx": 77, "fam": "spin_orbita", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.5280304863715686, "gasto": 26.4312, "sonho": 0.0, "T": 0.176515231047096, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"], ["forma", "lei:46"], ["forma", "lei:50"], ["forma", "lei:58"], ["ajustar_ctx", null]], "valido": true, "n_estr": 97}
+{"t": 78, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.638858067303683, "intervalo": 77}
+{"t": 78, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6392714503003306, "intervalo": 76}
+{"t": 78, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6393283778460181, "intervalo": 71}
+{"t": 78, "ev": "reativacao", "id": "lei:21", "tipo": "lei", "ativ": 0.03453252454755977, "cred": 0.64781948822289, "intervalo": 69}
+{"t": 78, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6439463369539502, "intervalo": 66}
+{"t": 78, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6627884094514772, "intervalo": 31}
+{"t": 78, "ev": "nascimento", "id": "aberto:81", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 78, "ev": "problema", "idx": 78, "fam": "kepler", "tipo": "Q", "fonte": "percebido", "molde": "escapa", "ok": true, "nota": 0.905, "gasto": 1.6608, "sonho": 0.0, "T": 0.15886370794238638, "acoes": [["prever_ctx", null]], "valido": true, "n_estr": 98}
+{"t": 79, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6556857973836515, "intervalo": 32}
+{"t": 79, "ev": "nascimento", "id": "lei:82", "tipo": "lei", "fonte": "percebido", "pais": [], "desc": {"lei": "-0.627 r^-2 r^ -0.0138 r^-4*v^2 r^"}}
+{"t": 79, "ev": "nascimento", "id": "aberto:83", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 79, "ev": "problema", "idx": 79, "fam": "einstein", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.530391298410833, "gasto": 10.6592, "sonho": 0.0, "T": 0.14297733714814775, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 100}
+{"t": 80, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6577978724479369, "intervalo": 79}
+{"t": 80, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6581398703594887, "intervalo": 78}
+{"t": 80, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6581675536845643, "intervalo": 73}
+{"t": 80, "ev": "reativacao", "id": "lei:21", "tipo": "lei", "ativ": 0.03132262390260271, "cred": 0.6644265687393777, "intervalo": 71}
+{"t": 80, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6595843225860667, "intervalo": 68}
+{"t": 80, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6707162701794959, "intervalo": 33}
+{"t": 80, "ev": "nascimento", "id": "aberto:84", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 80, "ev": "regime", "T": 0.228679603433333, "ok": false}
+{"t": 80, "ev": "problema", "idx": 80, "fam": "kepler", "tipo": "Q", "fonte": "percebido", "molde": "rmax_grande", "ok": false, "nota": 0.855, "gasto": 1.6608, "sonho": 0.0, "T": 0.228679603433333, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 101}
+{"t": 81, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6290540667850306, "intervalo": 34}
+{"t": 81, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 81, "ev": "nascimento", "id": "lei:85", "tipo": "lei", "fonte": "percebido", "pais": ["direcao:2"], "desc": {"lei": "+0.829 v^1 rot(v^)"}}
+{"t": 81, "ev": "nascimento", "id": "aberto:86", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 81, "ev": "problema", "idx": 81, "fam": "ciclotron", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.1288984759293181, "gasto": 15.081599999999998, "sonho": 0.0, "T": 0.2058116430899997, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"], ["forma", "lei:46"], ["forma", "lei:50"], ["forma", "lei:58"], ["forma", "lei:79"], ["forma", "lei:82"], ["ajustar_ctx", null]], "valido": true, "n_estr": 103}
+{"t": 82, "ev": "reativacao", "id": "lei:21", "tipo": "lei", "ativ": 0.02841109304918248, "cred": 0.6050573685245952, "intervalo": 73}
+{"t": 82, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6295150847562268, "intervalo": 35}
+{"t": 82, "ev": "fonte", "fonte": "relato:A", "ok": false, "cred": 0.16666666666666666}
+{"t": 82, "ev": "regime", "T": 0.2852304787809997, "ok": false}
+{"t": 82, "ev": "problema", "idx": 82, "fam": "spin_orbita", "tipo": "L", "fonte": "percebido", "molde": null, "ok": false, "nota": 14.833212793485295, "gasto": 14.991199999999996, "sonho": 0.0, "T": 0.2852304787809997, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"]], "valido": true, "n_estr": 103}
+{"t": 83, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6031077221919167, "intervalo": 82}
+{"t": 83, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6061638159876436, "intervalo": 81}
+{"t": 83, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6061687358780692, "intervalo": 76}
+{"t": 83, "ev": "reativacao", "id": "lei:21", "tipo": "lei", "ativ": 0.027058445682482186, "cred": 0.610891110548861, "intervalo": 74}
+{"t": 83, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6081845006932303, "intervalo": 71}
+{"t": 83, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6321505475804193, "intervalo": 36}
+{"t": 83, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 83, "ev": "credito_atrasado", "de": "lei:85", "para": "direcao:2"}
+{"t": 83, "ev": "credito_atrasado", "de": "lei:85", "para": "op:ajustar_ctx", "nasc": 81}
+{"t": 83, "ev": "problema", "idx": 83, "fam": "ciclotron", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.0029866091011827977, "gasto": 2.2968, "sonho": 0.0, "T": 0.25670743090289977, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"], ["forma", "lei:46"], ["forma", "lei:50"], ["forma", "lei:58"], ["forma", "lei:79"], ["forma", "lei:82"], ["forma", "lei:85"]], "valido": true, "n_estr": 103}
+{"t": 84, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6232457361074275, "intervalo": 37}
+{"t": 84, "ev": "nascimento", "id": "aberto:87", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 84, "ev": "problema", "idx": 84, "fam": "arrasto", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.03759117213815315, "gasto": 10.6592, "sonho": 0.0, "T": 0.2310366878126098, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 104}
+{"t": 85, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 85, "ev": "nascimento", "id": "lei:88", "tipo": "lei", "fonte": "percebido", "pais": ["direcao:2"], "desc": {"lei": "-0.682 r^-2 r^ -0.0141 r^-2*v^-2 rot(v^)"}}
+{"t": 85, "ev": "nascimento", "id": "aberto:89", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 85, "ev": "problema", "idx": 85, "fam": "magnetico", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.5976744599902176, "gasto": 20.7704, "sonho": 0.0, "T": 0.20793301903134884, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"], ["forma", "lei:46"], ["forma", "lei:50"], ["forma", "lei:58"], ["forma", "lei:79"], ["forma", "lei:82"], ["forma", "lei:85"], ["ajustar_ctx", null]], "valido": true, "n_estr": 106}
+{"t": 86, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6502799563511105, "intervalo": 85}
+{"t": 86, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6507554030925711, "intervalo": 84}
+{"t": 86, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6507775187043491, "intervalo": 79}
+{"t": 86, "ev": "reativacao", "id": "lei:21", "tipo": "lei", "ativ": 0.023374781277216098, "cred": 0.6544640770002627, "intervalo": 77}
+{"t": 86, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6516370910142655, "intervalo": 74}
+{"t": 86, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6572404158987907, "intervalo": 39}
+{"t": 86, "ev": "nascimento", "id": "aberto:90", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 86, "ev": "regime", "T": 0.28713971712821396, "ok": false}
+{"t": 86, "ev": "problema", "idx": 86, "fam": "spin_orbita", "tipo": "Q", "fonte": "percebido", "molde": "rmax_grande", "ok": false, "nota": 0.865, "gasto": 1.6608, "sonho": 0.0, "T": 0.28713971712821396, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 107}
+{"t": 87, "ev": "fonte", "fonte": "relato:F", "ok": false, "cred": 0.3333333333333333}
+{"t": 87, "ev": "fonte", "fonte": "relato:A", "ok": false, "cred": 0.14285714285714285}
+{"t": 87, "ev": "regime", "T": 0.3584257454153926, "ok": false}
+{"t": 87, "ev": "problema", "idx": 87, "fam": "magnetico", "tipo": "L", "fonte": "percebido", "molde": null, "ok": false, "nota": 1.2420676762607674, "gasto": 6.567199999999998, "sonho": 0.0, "T": 0.3584257454153926, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"], ["forma", "lei:46"], ["forma", "lei:50"], ["forma", "lei:58"], ["forma", "lei:79"], ["forma", "lei:82"], ["forma", "lei:85"], ["forma", "lei:88"]], "valido": true, "n_estr": 107}
+{"t": 88, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6029190289752486, "intervalo": 87}
+{"t": 88, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6038329476461046, "intervalo": 86}
+{"t": 88, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6038991091788404, "intervalo": 81}
+{"t": 88, "ev": "reativacao", "id": "lei:21", "tipo": "lei", "ativ": 0.02120202598403936, "cred": 0.6116111242043882, "intervalo": 79}
+{"t": 88, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6065236613744659, "intervalo": 76}
+{"t": 88, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6247757728232443, "intervalo": 41}
+{"t": 88, "ev": "nascimento", "id": "aberto:91", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 88, "ev": "regime", "T": 0.42258317087385333, "ok": false}
+{"t": 88, "ev": "problema", "idx": 88, "fam": "kepler", "tipo": "Q", "fonte": "percebido", "molde": "vmax_alta", "ok": false, "nota": 0.805, "gasto": 1.6608, "sonho": 0.0, "T": 0.42258317087385333, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 108}
+{"t": 89, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6031442726638455, "intervalo": 42}
+{"t": 89, "ev": "nascimento", "id": "aberto:92", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 89, "ev": "problema", "idx": 89, "fam": "magnetico", "tipo": "Q", "fonte": "percebido", "molde": "rmax_grande", "ok": true, "nota": 0.945, "gasto": 1.6608, "sonho": 0.0, "T": 0.380324853786468, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 109}
+{"t": 90, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6074644877437687, "intervalo": 43}
+{"t": 90, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 90, "ev": "credito_atrasado", "de": "lei:50", "para": "direcao:2"}
+{"t": 90, "ev": "credito_atrasado", "de": "lei:50", "para": "op:ajustar_ctx", "nasc": 40}
+{"t": 90, "ev": "problema", "idx": 90, "fam": "magnetico", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.6099726618412225, "gasto": 10.787199999999993, "sonho": 0.0, "T": 0.34229236840782123, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"], ["forma", "lei:46"], ["forma", "lei:50"]], "valido": true, "n_estr": 109}
+{"t": 91, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 91, "ev": "credito_atrasado", "de": "lei:85", "para": "direcao:2"}
+{"t": 91, "ev": "credito_atrasado", "de": "lei:85", "para": "op:ajustar_ctx", "nasc": 81}
+{"t": 91, "ev": "problema", "idx": 91, "fam": "ciclotron", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.07997411386994895, "gasto": 2.2968, "sonho": 0.0, "T": 0.30806313156703913, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"], ["forma", "lei:46"], ["forma", "lei:50"], ["forma", "lei:58"], ["forma", "lei:79"], ["forma", "lei:82"], ["forma", "lei:85"]], "valido": true, "n_estr": 109}
+{"t": 92, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6114616180148319, "intervalo": 91}
+{"t": 92, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6121962174418325, "intervalo": 90}
+{"t": 92, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.612212559877802, "intervalo": 85}
+{"t": 92, "ev": "reativacao", "id": "lei:21", "tipo": "lei", "ativ": 0.017443634398467214, "cred": 0.6165895353407274, "intervalo": 83}
+{"t": 92, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6146764373930188, "intervalo": 80}
+{"t": 92, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6284778793718928, "intervalo": 45}
+{"t": 92, "ev": "nascimento", "id": "aberto:93", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 92, "ev": "regime", "T": 0.3772568184103352, "ok": false}
+{"t": 92, "ev": "problema", "idx": 92, "fam": "kepler", "tipo": "Q", "fonte": "percebido", "molde": "periapse_direita", "ok": false, "nota": 0.505, "gasto": 1.6608, "sonho": 0.0, "T": 0.3772568184103352, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 110}
+{"t": 93, "ev": "nascimento", "id": "aberto:94", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 93, "ev": "problema", "idx": 93, "fam": "kepler", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.03111111901494999, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.3395311365693017, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 111}
+{"t": 94, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6040180345416417, "intervalo": 47}
+{"t": 94, "ev": "nascimento", "id": "lei:95", "tipo": "lei", "fonte": "percebido", "pais": [], "desc": {"lei": "-1.08 r^-2 r^ -0.0225 r^-3*v^2 r^"}}
+{"t": 94, "ev": "nascimento", "id": "aberto:96", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 94, "ev": "problema", "idx": 94, "fam": "einstein", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.8768251898072387, "gasto": 10.6592, "sonho": 0.0, "T": 0.3055780229123715, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 113}
+{"t": 95, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.614022237714025, "intervalo": 94}
+{"t": 95, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6147551023507668, "intervalo": 93}
+{"t": 95, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6148446237360717, "intervalo": 88}
+{"t": 95, "ev": "reativacao", "id": "lei:21", "tipo": "lei", "ativ": 0.015068904678729131, "cred": 0.6188323380100093, "intervalo": 86}
+{"t": 95, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6171720722081493, "intervalo": 83}
+{"t": 95, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6337491327962966, "intervalo": 48}
+{"t": 95, "ev": "nascimento", "id": "aberto:97", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 95, "ev": "regime", "T": 0.3750202206211344, "ok": false}
+{"t": 95, "ev": "problema", "idx": 95, "fam": "kepler", "tipo": "Q", "fonte": "percebido", "molde": "periodo_longo", "ok": false, "nota": 0.885, "gasto": 1.6608, "sonho": 0.0, "T": 0.3750202206211344, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 114}
+{"t": 96, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 96, "ev": "credito_atrasado", "de": "lei:50", "para": "direcao:2"}
+{"t": 96, "ev": "credito_atrasado", "de": "lei:50", "para": "op:ajustar_ctx", "nasc": 40}
+{"t": 96, "ev": "problema", "idx": 96, "fam": "magnetico", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.6736907104496584, "gasto": 6.523199999999999, "sonho": 0.0, "T": 0.33751819855902093, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"], ["forma", "lei:46"], ["forma", "lei:50"]], "valido": true, "n_estr": 114}
+{"t": 97, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6178276442448922, "intervalo": 50}
+{"t": 97, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 97, "ev": "credito_atrasado", "de": "lei:40", "para": "direcao:2"}
+{"t": 97, "ev": "credito_atrasado", "de": "lei:40", "para": "op:ajustar_amplo", "nasc": 29}
+{"t": 97, "ev": "metaplasticidade", "tipo": "lei", "tau": 20.85}
+{"t": 97, "ev": "problema", "idx": 97, "fam": "vortice", "tipo": "L", "fonte": "relato:F", "molde": null, "ok": true, "nota": null, "gasto": 10.767199999999994, "sonho": 0.0, "T": 0.30376637870311884, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"]], "valido": true, "n_estr": 114}
+{"t": 98, "ev": "nascimento", "id": "aberto:98", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 98, "ev": "problema", "idx": 98, "fam": "kepler", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.035095726615914154, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.273389740832807, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 115}
+{"t": 99, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6322524930096969, "intervalo": 52}
+{"t": 99, "ev": "nascimento", "id": "aberto:99", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 99, "ev": "problema", "idx": 99, "fam": "einstein", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.5944377226626572, "gasto": 10.6592, "sonho": 0.0, "T": 0.24605076674952628, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 116}
+{"t": 100, "ev": "credito_atrasado", "de": "lei:11", "para": "op:ajustar_base", "nasc": 3}
+{"t": 100, "ev": "fonte", "fonte": "relato:A", "ok": true, "cred": 0.25}
+{"t": 100, "ev": "metaplasticidade", "tipo": "lei", "tau": 22.165000000000003}
+{"t": 100, "ev": "problema", "idx": 100, "fam": "mola", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.0469504531544973, "gasto": 6.4352, "sonho": 0.0, "T": 0.22144569007457365, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"]], "valido": true, "n_estr": 116}
+{"t": 101, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.630244149966772, "intervalo": 54}
+{"t": 101, "ev": "nascimento", "id": "aberto:100", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 101, "ev": "regime", "T": 0.29930112106711626, "ok": false}
+{"t": 101, "ev": "problema", "idx": 101, "fam": "spin_orbita", "tipo": "L", "fonte": "percebido", "molde": null, "ok": false, "nota": 7.222486027968174, "gasto": 10.6592, "sonho": 0.0, "T": 0.29930112106711626, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 117}
+{"t": 102, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6020982543635565, "intervalo": 101}
+{"t": 102, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6027947023797666, "intervalo": 100}
+{"t": 102, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6032196927223739, "intervalo": 95}
+{"t": 102, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6082432942580591, "intervalo": 90}
+{"t": 102, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6348131962313124, "intervalo": 55}
+{"t": 102, "ev": "nascimento", "id": "aberto:101", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 102, "ev": "regime", "T": 0.36937100896040465, "ok": false}
+{"t": 102, "ev": "problema", "idx": 102, "fam": "kepler", "tipo": "Q", "fonte": "percebido", "molde": "vmax_alta", "ok": false, "nota": 0.765, "gasto": 1.6608, "sonho": 0.0, "T": 0.36937100896040465, "acoes": [["prever_ctx", null]], "valido": true, "n_estr": 118}
+{"t": 103, "ev": "nascimento", "id": "aberto:102", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 103, "ev": "problema", "idx": 103, "fam": "kepler", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.16687801061269936, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.3324339080643642, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 119}
+{"t": 104, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 104, "ev": "credito_atrasado", "de": "lei:85", "para": "direcao:2"}
+{"t": 104, "ev": "credito_atrasado", "de": "lei:85", "para": "op:ajustar_ctx", "nasc": 81}
+{"t": 104, "ev": "problema", "idx": 104, "fam": "ciclotron", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.08082398624086294, "gasto": 6.559199999999998, "sonho": 0.0, "T": 0.2991905172579278, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"], ["forma", "lei:46"], ["forma", "lei:50"], ["forma", "lei:58"], ["forma", "lei:79"], ["forma", "lei:82"], ["forma", "lei:85"]], "valido": true, "n_estr": 119}
+{"t": 105, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6006049224891821, "intervalo": 103}
+{"t": 105, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6009947455068394, "intervalo": 98}
+{"t": 105, "ev": "reativacao", "id": "lei:19", "tipo": "lei", "ativ": 0.049696584228937565, "cred": 0.6090113697325845, "intervalo": 73}
+{"t": 105, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6064808043168618, "intervalo": 93}
+{"t": 105, "ev": "reativacao", "id": "lei:46", "tipo": "lei", "ativ": 0.046518749058584385, "cred": 0.6195630595594833, "intervalo": 68}
+{"t": 105, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6341025466061428, "intervalo": 58}
+{"t": 105, "ev": "nascimento", "id": "aberto:103", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 105, "ev": "regime", "T": 0.36927146553213497, "ok": false}
+{"t": 105, "ev": "problema", "idx": 105, "fam": "spin_orbita", "tipo": "Q", "fonte": "percebido", "molde": "sentido", "ok": false, "nota": 0.47, "gasto": 1.6608, "sonho": 0.0, "T": 0.36927146553213497, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 120}
+{"t": 106, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 106, "ev": "credito_atrasado", "de": "lei:85", "para": "direcao:2"}
+{"t": 106, "ev": "credito_atrasado", "de": "lei:85", "para": "op:ajustar_ctx", "nasc": 81}
+{"t": 106, "ev": "problema", "idx": 106, "fam": "ciclotron", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.12073553075219695, "gasto": 2.2968, "sonho": 0.0, "T": 0.33234431897892147, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"], ["forma", "lei:46"], ["forma", "lei:50"], ["forma", "lei:58"], ["forma", "lei:79"], ["forma", "lei:82"], ["forma", "lei:85"]], "valido": true, "n_estr": 120}
+{"t": 107, "ev": "reativacao", "id": "lei:9", "tipo": "lei", "ativ": 0.0, "cred": 0.6062170594523756, "intervalo": 106}
+{"t": 107, "ev": "reativacao", "id": "lei:10", "tipo": "lei", "ativ": 0.0, "cred": 0.6070994482281751, "intervalo": 105}
+{"t": 107, "ev": "reativacao", "id": "lei:17", "tipo": "lei", "ativ": 0.0, "cred": 0.6076123190185666, "intervalo": 100}
+{"t": 107, "ev": "reativacao", "id": "lei:19", "tipo": "lei", "ativ": 0.04540870626691436, "cred": 0.6135542769226808, "intervalo": 75}
+{"t": 107, "ev": "reativacao", "id": "lei:25", "tipo": "lei", "ativ": 0.0, "cred": 0.6105339847884753, "intervalo": 95}
+{"t": 107, "ev": "reativacao", "id": "lei:46", "tipo": "lei", "ativ": 0.042505058339111466, "cred": 0.6221310138470514, "intervalo": 70}
+{"t": 107, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6287658668725876, "intervalo": 60}
+{"t": 107, "ev": "nascimento", "id": "aberto:104", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 107, "ev": "regime", "T": 0.39910988708102935, "ok": false}
+{"t": 107, "ev": "problema", "idx": 107, "fam": "spin_orbita", "tipo": "Q", "fonte": "percebido", "molde": "periodo_longo", "ok": false, "nota": 0.665, "gasto": 1.6608, "sonho": 0.0, "T": 0.39910988708102935, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 121}
+{"t": 108, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6108483116071497, "intervalo": 61}
+{"t": 108, "ev": "nascimento", "id": "aberto:105", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 108, "ev": "regime", "T": 0.4591988983729264, "ok": false}
+{"t": 108, "ev": "problema", "idx": 108, "fam": "magnetico", "tipo": "Q", "fonte": "percebido", "molde": "vmax_alta", "ok": false, "nota": 0.65, "gasto": 1.6608, "sonho": 0.0, "T": 0.4591988983729264, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 122}
+{"t": 109, "ev": "fonte", "fonte": "relato:F", "ok": false, "cred": 0.25}
+{"t": 109, "ev": "fonte", "fonte": "relato:A", "ok": false, "cred": 0.2222222222222222}
+{"t": 109, "ev": "regime", "T": 0.5132790085356338, "ok": false}
+{"t": 109, "ev": "problema", "idx": 109, "fam": "spin_orbita", "tipo": "L", "fonte": "percebido", "molde": null, "ok": false, "nota": 4.965865129272898, "gasto": 6.567199999999998, "sonho": 0.0, "T": 0.5132790085356338, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"], ["forma", "lei:46"], ["forma", "lei:50"], ["forma", "lei:58"], ["forma", "lei:79"], ["forma", "lei:82"], ["forma", "lei:85"], ["forma", "lei:88"]], "valido": true, "n_estr": 122}
+{"t": 110, "ev": "credito_atrasado", "de": "lei:11", "para": "op:ajustar_base", "nasc": 3}
+{"t": 110, "ev": "fonte", "fonte": "relato:A", "ok": true, "cred": 0.3}
+{"t": 110, "ev": "regime", "T": 0.4619511076820704, "ok": true}
+{"t": 110, "ev": "problema", "idx": 110, "fam": "mola", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.11983991189335973, "gasto": 6.4352, "sonho": 0.0, "T": 0.4619511076820704, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"]], "valido": true, "n_estr": 122}
+{"t": 111, "ev": "nascimento", "id": "aberto:106", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 111, "ev": "problema", "idx": 111, "fam": "kepler", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.12694625811530905, "gasto": 6.395200000000001, "sonho": 0.0, "T": 0.4157559969138634, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 123}
+{"t": 112, "ev": "reativacao", "id": "lei:46", "tipo": "lei", "ativ": 0.033921268866662614, "cred": 0.6030903306347524, "intervalo": 75}
+{"t": 112, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6106087832498859, "intervalo": 65}
+{"t": 112, "ev": "nascimento", "id": "aberto:107", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 112, "ev": "regime", "T": 0.47418039722247707, "ok": false}
+{"t": 112, "ev": "problema", "idx": 112, "fam": "spin_orbita", "tipo": "Q", "fonte": "percebido", "molde": "vmax_alta", "ok": false, "nota": 0.74, "gasto": 1.6608, "sonho": 0.0, "T": 0.47418039722247707, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 124}
+{"t": 113, "ev": "nascimento", "id": "aberto:108", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 113, "ev": "regime", "T": 0.5267623575002294, "ok": false}
+{"t": 113, "ev": "problema", "idx": 113, "fam": "magnetico", "tipo": "Q", "fonte": "percebido", "molde": "escapa", "ok": false, "nota": 0.725, "gasto": 1.6608, "sonho": 0.0, "T": 0.5267623575002294, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 125}
+{"t": 114, "ev": "nascimento", "id": "aberto:109", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 114, "ev": "problema", "idx": 114, "fam": "kepler", "tipo": "Q", "fonte": "percebido", "molde": "rmax_grande", "ok": false, "nota": 0.67, "gasto": 1.6608, "sonho": 0.0, "T": 0.5740861217502065, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 126}
+{"t": 115, "ev": "nascimento", "id": "aberto:110", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 115, "ev": "regime", "T": 0.5166775095751859, "ok": true}
+{"t": 115, "ev": "problema", "idx": 115, "fam": "oblato", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.12741539091849882, "gasto": 10.6592, "sonho": 0.0, "T": 0.5166775095751859, "acoes": [["ajustar_base", null]], "valido": true, "n_estr": 127}
+{"t": 116, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 116, "ev": "credito_atrasado", "de": "lei:40", "para": "direcao:2"}
+{"t": 116, "ev": "credito_atrasado", "de": "lei:40", "para": "op:ajustar_amplo", "nasc": 29}
+{"t": 116, "ev": "regime", "T": 0.4650097586176673, "ok": true}
+{"t": 116, "ev": "problema", "idx": 116, "fam": "vortice", "tipo": "L", "fonte": "relato:F", "molde": null, "ok": true, "nota": null, "gasto": 6.5032, "sonho": 0.0, "T": 0.4650097586176673, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"]], "valido": true, "n_estr": 127}
+{"t": 117, "ev": "nascimento", "id": "aberto:111", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 117, "ev": "problema", "idx": 117, "fam": "magnetico", "tipo": "Q", "fonte": "percebido", "molde": "periodo_longo", "ok": true, "nota": 0.91, "gasto": 1.6608, "sonho": 0.0, "T": 0.4185087827559006, "acoes": [["prever_ctx", null]], "valido": false, "n_estr": 128}
+{"t": 118, "ev": "reativacao", "id": "lei:58", "tipo": "lei", "ativ": 0.0, "cred": 0.6057435866401432, "intervalo": 71}
+{"t": 118, "ev": "nascimento", "id": "aberto:112", "tipo": "aberto", "fonte": "percebido", "pais": [], "desc": {}}
+{"t": 118, "ev": "regime", "T": 0.47665790448031053, "ok": false}
+{"t": 118, "ev": "problema", "idx": 118, "fam": "kepler", "tipo": "Q", "fonte": "percebido", "molde": "periodo_longo", "ok": false, "nota": 0.88, "gasto": 1.6608, "sonho": 0.0, "T": 0.47665790448031053, "acoes": [["prever_ctx", null]], "valido": true, "n_estr": 129}
+{"t": 119, "ev": "credito_atrasado", "de": "direcao:2", "para": "op:derivar", "nasc": 1}
+{"t": 119, "ev": "credito_atrasado", "de": "lei:85", "para": "direcao:2"}
+{"t": 119, "ev": "credito_atrasado", "de": "lei:85", "para": "op:ajustar_ctx", "nasc": 81}
+{"t": 119, "ev": "problema", "idx": 119, "fam": "ciclotron", "tipo": "L", "fonte": "percebido", "molde": null, "ok": true, "nota": 0.13541319728211276, "gasto": 2.2968, "sonho": 0.0, "T": 0.4289921140322795, "acoes": [["ajustar_base", null], ["forma", "lei:0"], ["forma", "lei:9"], ["forma", "lei:10"], ["forma", "lei:11"], ["forma", "lei:13"], ["forma", "lei:17"], ["forma", "lei:19"], ["forma", "lei:21"], ["forma", "lei:25"], ["forma", "lei:27"], ["forma", "lei:37"], ["forma", "lei:40"], ["forma", "lei:46"], ["forma", "lei:50"], ["forma", "lei:58"], ["forma", "lei:79"], ["forma", "lei:82"], ["forma", "lei:85"]], "valido": true, "n_estr": 129}

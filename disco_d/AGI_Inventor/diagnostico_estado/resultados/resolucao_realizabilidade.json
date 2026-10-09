@@ -1,0 +1,3884 @@
+{
+  "status": "spatial_realizability_and_attribution_complete_no_promotion",
+  "games": {
+    "breakout": {
+      "coarse": {
+        "known": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.375088661562074,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.68
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.35322072656251885,
+                "deterministic_left_tie_regret": 0.109375,
+                "fair_tie_regret": 0.109375,
+                "directional_accuracy_on_real_nonzero": 0.72
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.006514294749025654,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.35322072656251885,
+              "transport_squared": 0.006514294749025677,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.015353640250529578,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 239,
+              "maximum_violation": 0.1212467691387773,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.5779453130852632,
+                "deterministic_left_tie_regret": 0.25,
+                "fair_tie_regret": 0.25,
+                "directional_accuracy_on_real_nonzero": 0.5294117647058824
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.6235198527498671,
+                "deterministic_left_tie_regret": 0.265625,
+                "fair_tie_regret": 0.265625,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.024932928095074566,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.6235198527498671,
+              "transport_squared": 0.024932928095074643,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.07050746775967859,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 433,
+              "maximum_violation": 0.1227960795996117,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.6720163411053399,
+                "deterministic_left_tie_regret": 0.140625,
+                "fair_tie_regret": 0.140625,
+                "directional_accuracy_on_real_nonzero": 0.7857142857142857
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.727483809292941,
+                "deterministic_left_tie_regret": 0.109375,
+                "fair_tie_regret": 0.109375,
+                "directional_accuracy_on_real_nonzero": 0.8333333333333334
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.06550069050547168,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.727483809292941,
+              "transport_squared": 0.06550069050547191,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.12096815869307438,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 689,
+              "maximum_violation": 0.1227960795996117,
+              "real_observed_control_violations": 0
+            }
+          }
+        },
+        "new": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.07177246880314521,
+                "deterministic_left_tie_regret": 0.046875,
+                "fair_tie_regret": 0.046875,
+                "directional_accuracy_on_real_nonzero": 0.25
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 2,
+                "mse": 0.06719982701065422,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.004999329846569334,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.06719982701065422,
+              "transport_squared": 0.004999329846569304,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.00042668805407835176,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 193,
+              "maximum_violation": 0.13334586986647756,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 0,
+                "mse": 0.5736033486356402,
+                "deterministic_left_tie_regret": 0.3125,
+                "fair_tie_regret": 0.3125,
+                "directional_accuracy_on_real_nonzero": 0.2962962962962963
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 2,
+                "mse": 0.5486589191098586,
+                "deterministic_left_tie_regret": 0.28125,
+                "fair_tie_regret": 0.28125,
+                "directional_accuracy_on_real_nonzero": 0.3333333333333333
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 0,
+                "mse": 0.026927438126365118,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.5486589191098588,
+              "transport_squared": 0.02692743812636504,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.001983008600583626,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 349,
+              "maximum_violation": 0.13334586986647756,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.7655310944504958,
+                "deterministic_left_tie_regret": 0.21875,
+                "fair_tie_regret": 0.21875,
+                "directional_accuracy_on_real_nonzero": 0.6176470588235294
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 2,
+                "mse": 0.7603503402455374,
+                "deterministic_left_tie_regret": 0.1875,
+                "fair_tie_regret": 0.1875,
+                "directional_accuracy_on_real_nonzero": 0.6470588235294118
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.09068900720268275,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.7603503402455374,
+              "transport_squared": 0.09068900720268325,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.08550825299772452,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 675,
+              "maximum_violation": 0.13334586986647756,
+              "real_observed_control_violations": 0
+            }
+          }
+        }
+      },
+      "moments": {
+        "known": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.3709298999708611,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.68
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.35224275973909847,
+                "deterministic_left_tie_regret": 0.109375,
+                "fair_tie_regret": 0.109375,
+                "directional_accuracy_on_real_nonzero": 0.72
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.005762006808651044,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.35224275973909847,
+              "transport_squared": 0.0057620068086510455,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.012925133423111546,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 180,
+              "maximum_violation": 0.08050973862743893,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.5819187600320239,
+                "deterministic_left_tie_regret": 0.296875,
+                "fair_tie_regret": 0.296875,
+                "directional_accuracy_on_real_nonzero": 0.47058823529411764
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.6209338117532449,
+                "deterministic_left_tie_regret": 0.3125,
+                "fair_tie_regret": 0.3125,
+                "directional_accuracy_on_real_nonzero": 0.4117647058823529
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.0378236343602816,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.6209338117532449,
+              "transport_squared": 0.03782363436028164,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.0768386860815029,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 408,
+              "maximum_violation": 0.18175835630289816,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.731006041440851,
+                "deterministic_left_tie_regret": 0.15625,
+                "fair_tie_regret": 0.15625,
+                "directional_accuracy_on_real_nonzero": 0.7619047619047619
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.8833812384213776,
+                "deterministic_left_tie_regret": 0.140625,
+                "fair_tie_regret": 0.140625,
+                "directional_accuracy_on_real_nonzero": 0.7857142857142857
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.14821000673680662,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.8833812384213776,
+              "transport_squared": 0.1482100067368067,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.30058520371733377,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 784,
+              "maximum_violation": 0.20552120231491333,
+              "real_observed_control_violations": 0
+            }
+          }
+        },
+        "new": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.08168761678578387,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 2,
+                "mse": 0.06701885384298711,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.005678355313861934,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.06701885384298711,
+              "transport_squared": 0.005678355313861938,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.008990407628934858,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 105,
+              "maximum_violation": 0.09784793294842253,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 0,
+                "mse": 0.6993349931822014,
+                "deterministic_left_tie_regret": 0.3125,
+                "fair_tie_regret": 0.3125,
+                "directional_accuracy_on_real_nonzero": 0.2962962962962963
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 2,
+                "mse": 0.6660653238939835,
+                "deterministic_left_tie_regret": 0.328125,
+                "fair_tie_regret": 0.328125,
+                "directional_accuracy_on_real_nonzero": 0.25925925925925924
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 0,
+                "mse": 0.04291062619104101,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.6660653238939835,
+              "transport_squared": 0.042910626191041135,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.009640956902821855,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 312,
+              "maximum_violation": 0.09784793294842253,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.8847749897973123,
+                "deterministic_left_tie_regret": 0.3125,
+                "fair_tie_regret": 0.3125,
+                "directional_accuracy_on_real_nonzero": 0.4117647058823529
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 2,
+                "mse": 0.8168273594085542,
+                "deterministic_left_tie_regret": 0.203125,
+                "fair_tie_regret": 0.203125,
+                "directional_accuracy_on_real_nonzero": 0.6470588235294118
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.13306015064824694,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.8168273594085542,
+              "transport_squared": 0.1330601506482466,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.06511252025948806,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 584,
+              "maximum_violation": 0.13568430693632386,
+              "real_observed_control_violations": 0
+            }
+          }
+        }
+      },
+      "learned": {
+        "known": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.3673096726540113,
+                "deterministic_left_tie_regret": 0.140625,
+                "fair_tie_regret": 0.140625,
+                "directional_accuracy_on_real_nonzero": 0.64
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.34391538724695153,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.68
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.005620405359473823,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.34391538724695153,
+              "transport_squared": 0.005620405359473828,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.017773880047586118,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 231,
+              "maximum_violation": 0.12185496873187263,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.5810647888896359,
+                "deterministic_left_tie_regret": 0.265625,
+                "fair_tie_regret": 0.265625,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.6663446388912011,
+                "deterministic_left_tie_regret": 0.296875,
+                "fair_tie_regret": 0.296875,
+                "directional_accuracy_on_real_nonzero": 0.4411764705882353
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.043759114230454935,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.6663446388912011,
+              "transport_squared": 0.04375911423045484,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.12903896423201988,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 460,
+              "maximum_violation": 0.17132918628949012,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.6828878284543882,
+                "deterministic_left_tie_regret": 0.140625,
+                "fair_tie_regret": 0.140625,
+                "directional_accuracy_on_real_nonzero": 0.7857142857142857
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.8635306377102473,
+                "deterministic_left_tie_regret": 0.21875,
+                "fair_tie_regret": 0.21875,
+                "directional_accuracy_on_real_nonzero": 0.7380952380952381
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.13238395092513788,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.8635306377102474,
+              "transport_squared": 0.13238395092513766,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.313026760180997,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 864,
+              "maximum_violation": 0.2441230988208576,
+              "real_observed_control_violations": 0
+            }
+          }
+        },
+        "new": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.07008463072545087,
+                "deterministic_left_tie_regret": 0.046875,
+                "fair_tie_regret": 0.046875,
+                "directional_accuracy_on_real_nonzero": 0.25
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 2,
+                "mse": 0.07597976331302655,
+                "deterministic_left_tie_regret": 0.046875,
+                "fair_tie_regret": 0.046875,
+                "directional_accuracy_on_real_nonzero": 0.25
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.003953648657175367,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.07597976331302655,
+              "transport_squared": 0.00395364865717539,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.009848781244751071,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 153,
+              "maximum_violation": 0.08332153395057418,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 0,
+                "mse": 0.5091741799118323,
+                "deterministic_left_tie_regret": 0.1875,
+                "fair_tie_regret": 0.1875,
+                "directional_accuracy_on_real_nonzero": 0.5555555555555556
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 2,
+                "mse": 0.5924029562673881,
+                "deterministic_left_tie_regret": 0.3125,
+                "fair_tie_regret": 0.3125,
+                "directional_accuracy_on_real_nonzero": 0.2962962962962963
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 0,
+                "mse": 0.053860097209838795,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.5924029562673881,
+              "transport_squared": 0.053860097209838836,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.13708887356539443,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 422,
+              "maximum_violation": 0.21792429979909733,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.7452774963143382,
+                "deterministic_left_tie_regret": 0.25,
+                "fair_tie_regret": 0.25,
+                "directional_accuracy_on_real_nonzero": 0.5588235294117647
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 2,
+                "mse": 0.6813472899522754,
+                "deterministic_left_tie_regret": 0.21875,
+                "fair_tie_regret": 0.21875,
+                "directional_accuracy_on_real_nonzero": 0.6176470588235294
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.06495326166957927,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.6813472899522753,
+              "transport_squared": 0.06495326166957947,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.001023055307517312,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 893,
+              "maximum_violation": 0.3127071238910111,
+              "real_observed_control_violations": 0
+            }
+          }
+        }
+      },
+      "shuffled_outcomes": {
+        "known": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.3711985756331954,
+                "deterministic_left_tie_regret": 0.140625,
+                "fair_tie_regret": 0.140625,
+                "directional_accuracy_on_real_nonzero": 0.64
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.3640466623051063,
+                "deterministic_left_tie_regret": 0.109375,
+                "fair_tie_regret": 0.109375,
+                "directional_accuracy_on_real_nonzero": 0.72
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.015496185907648344,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.3640466623051063,
+              "transport_squared": 0.015496185907648362,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.008344272579559187,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 92,
+              "maximum_violation": 0.030921900649719447,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.5470793866889676,
+                "deterministic_left_tie_regret": 0.21875,
+                "fair_tie_regret": 0.21875,
+                "directional_accuracy_on_real_nonzero": 0.6176470588235294
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.5663813965356261,
+                "deterministic_left_tie_regret": 0.234375,
+                "fair_tie_regret": 0.234375,
+                "directional_accuracy_on_real_nonzero": 0.5882352941176471
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.09644975460234465,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.5663813965356261,
+              "transport_squared": 0.09644975460234456,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.11575176444900348,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 124,
+              "maximum_violation": 0.030921900649719447,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.8402746813954116,
+                "deterministic_left_tie_regret": 0.140625,
+                "fair_tie_regret": 0.140625,
+                "directional_accuracy_on_real_nonzero": 0.7857142857142857
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.6096106493433714,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.8095238095238095
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.1992812462921726,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.9761904761904762
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.6096106493433714,
+              "transport_squared": 0.19928124629217292,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.03138278575986754,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 220,
+              "maximum_violation": 0.030921900649719447,
+              "real_observed_control_violations": 0
+            }
+          }
+        },
+        "new": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.06936561801040345,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 2,
+                "mse": 0.08527378345806814,
+                "deterministic_left_tie_regret": 0.046875,
+                "fair_tie_regret": 0.046875,
+                "directional_accuracy_on_real_nonzero": 0.25
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.007575772228646584,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.08527378345806814,
+              "transport_squared": 0.007575772228646588,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.02348393767631131,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 51,
+              "maximum_violation": 0.029792421910584954,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 0,
+                "mse": 0.5385961544128341,
+                "deterministic_left_tie_regret": 0.234375,
+                "fair_tie_regret": 0.234375,
+                "directional_accuracy_on_real_nonzero": 0.48148148148148145
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 2,
+                "mse": 0.6340438946769624,
+                "deterministic_left_tie_regret": 0.234375,
+                "fair_tie_regret": 0.234375,
+                "directional_accuracy_on_real_nonzero": 0.48148148148148145
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 0,
+                "mse": 0.056893329943264515,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.6340438946769625,
+              "transport_squared": 0.05689332994326461,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.15234107020739301,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 147,
+              "maximum_violation": 0.029792421910584954,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.8448664925891821,
+                "deterministic_left_tie_regret": 0.375,
+                "fair_tie_regret": 0.375,
+                "directional_accuracy_on_real_nonzero": 0.4411764705882353
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 2,
+                "mse": 0.7647331819164978,
+                "deterministic_left_tie_regret": 0.25,
+                "fair_tie_regret": 0.25,
+                "directional_accuracy_on_real_nonzero": 0.6176470588235294
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.11906095108134111,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.7647331819164978,
+              "transport_squared": 0.1190609510813414,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.03892764040865644,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 371,
+              "maximum_violation": 0.029792421910584954,
+              "real_observed_control_violations": 0
+            }
+          }
+        }
+      },
+      "no_context": {
+        "known": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.3729720983312984,
+                "deterministic_left_tie_regret": 0.140625,
+                "fair_tie_regret": 0.140625,
+                "directional_accuracy_on_real_nonzero": 0.64
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.37709164919608446,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.68
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.011321911307269904,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.37709164919608446,
+              "transport_squared": 0.011321911307269852,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.015441462172055906,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 0,
+              "maximum_violation": 0.0,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.5971148364534712,
+                "deterministic_left_tie_regret": 0.25,
+                "fair_tie_regret": 0.25,
+                "directional_accuracy_on_real_nonzero": 0.5588235294117647
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.5369031043183567,
+                "deterministic_left_tie_regret": 0.203125,
+                "fair_tie_regret": 0.203125,
+                "directional_accuracy_on_real_nonzero": 0.6470588235294118
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.04354314434798616,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.5369031043183567,
+              "transport_squared": 0.04354314434798634,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.016668587787128368,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 0,
+              "maximum_violation": 0.0,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.7464884578996451,
+                "deterministic_left_tie_regret": 0.140625,
+                "fair_tie_regret": 0.140625,
+                "directional_accuracy_on_real_nonzero": 0.7857142857142857
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 1.0106474615546719,
+                "deterministic_left_tie_regret": 0.34375,
+                "fair_tie_regret": 0.34375,
+                "directional_accuracy_on_real_nonzero": 0.5238095238095238
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.22211444542147588,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 1.0106474615546719,
+              "transport_squared": 0.22211444542147707,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.4862734490765044,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 64,
+              "maximum_violation": 0.0027381389502826314,
+              "real_observed_control_violations": 0
+            }
+          }
+        },
+        "new": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.06708406666828769,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 2,
+                "mse": 0.07466776105936776,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.005745659886685827,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.07466776105936776,
+              "transport_squared": 0.0057456598866858725,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.013329354277765989,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 32,
+              "maximum_violation": 0.0006637739969629353,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 0,
+                "mse": 0.4846621845220523,
+                "deterministic_left_tie_regret": 0.3125,
+                "fair_tie_regret": 0.3125,
+                "directional_accuracy_on_real_nonzero": 0.2962962962962963
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 2,
+                "mse": 0.6517950577700347,
+                "deterministic_left_tie_regret": 0.25,
+                "fair_tie_regret": 0.25,
+                "directional_accuracy_on_real_nonzero": 0.4444444444444444
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 0,
+                "mse": 0.09971563676923587,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.6517950577700347,
+              "transport_squared": 0.0997156367692367,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.26684851001722,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 96,
+              "maximum_violation": 0.008787309296976908,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.7464689383672087,
+                "deterministic_left_tie_regret": 0.203125,
+                "fair_tie_regret": 0.203125,
+                "directional_accuracy_on_real_nonzero": 0.6764705882352942
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 2,
+                "mse": 0.7862236888511134,
+                "deterministic_left_tie_regret": 0.359375,
+                "fair_tie_regret": 0.359375,
+                "directional_accuracy_on_real_nonzero": 0.4411764705882353
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.08590988839828845,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.7862236888511133,
+              "transport_squared": 0.08590988839828978,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.12566463888219515,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 320,
+              "maximum_violation": 0.05021411012370153,
+              "real_observed_control_violations": 0
+            }
+          }
+        }
+      },
+      "random": {
+        "known": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.38185780622128773,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.68
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.3331317910221157,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.68
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.015367386089022094,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.3331317910221157,
+              "transport_squared": 0.015367386089022071,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.03335862911015008,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 221,
+              "maximum_violation": 0.12093675621523747,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.5737144092111628,
+                "deterministic_left_tie_regret": 0.25,
+                "fair_tie_regret": 0.25,
+                "directional_accuracy_on_real_nonzero": 0.5294117647058824
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.4983566008329375,
+                "deterministic_left_tie_regret": 0.234375,
+                "fair_tie_regret": 0.234375,
+                "directional_accuracy_on_real_nonzero": 0.5588235294117647
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.06537141697964863,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.9705882352941176
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.4983566008329374,
+              "transport_squared": 0.06537141697964852,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.009986391398577153,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 465,
+              "maximum_violation": 0.2032605116533195,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.7046320701886657,
+                "deterministic_left_tie_regret": 0.140625,
+                "fair_tie_regret": 0.140625,
+                "directional_accuracy_on_real_nonzero": 0.7857142857142857
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.8072303345885903,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.8095238095238095
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.36516957444095005,
+                "deterministic_left_tie_regret": 0.078125,
+                "fair_tie_regret": 0.078125,
+                "directional_accuracy_on_real_nonzero": 0.8809523809523809
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.8072303345885901,
+              "transport_squared": 0.3651695744409502,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.4677678388408753,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 827,
+              "maximum_violation": 0.22053677257922688,
+              "real_observed_control_violations": 0
+            }
+          }
+        },
+        "new": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.08866736296634287,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 2,
+                "mse": 0.09089016133846937,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.75
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.00773035035703233,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.09089016133846939,
+              "transport_squared": 0.007730350357032327,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.009953148729159216,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 138,
+              "maximum_violation": 0.097132527983252,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 0,
+                "mse": 0.6441877483149965,
+                "deterministic_left_tie_regret": 0.3125,
+                "fair_tie_regret": 0.3125,
+                "directional_accuracy_on_real_nonzero": 0.2962962962962963
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 2,
+                "mse": 0.6057158537247496,
+                "deterministic_left_tie_regret": 0.25,
+                "fair_tie_regret": 0.25,
+                "directional_accuracy_on_real_nonzero": 0.4074074074074074
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 0,
+                "mse": 0.049089715462818866,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.6057158537247496,
+              "transport_squared": 0.049089715462818886,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.010617820872573482,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 326,
+              "maximum_violation": 0.14558458945981068,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.7804088239814435,
+                "deterministic_left_tie_regret": 0.265625,
+                "fair_tie_regret": 0.265625,
+                "directional_accuracy_on_real_nonzero": 0.5294117647058824
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 2,
+                "mse": 0.6935352778072498,
+                "deterministic_left_tie_regret": 0.171875,
+                "fair_tie_regret": 0.171875,
+                "directional_accuracy_on_real_nonzero": 0.6764705882352942
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.09338948385627772,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.9705882352941176
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.6935352778072499,
+              "transport_squared": 0.09338948385627688,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.006515937682085726,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 576,
+              "maximum_violation": 0.1644882192000543,
+              "real_observed_control_violations": 0
+            }
+          }
+        }
+      },
+      "transferred": {
+        "known": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.3683681146319272,
+                "deterministic_left_tie_regret": 0.140625,
+                "fair_tie_regret": 0.140625,
+                "directional_accuracy_on_real_nonzero": 0.64
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.3423257205345912,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.68
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 25,
+                "prediction_ties": 0,
+                "mse": 0.007125750276670234,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.3423257205345912,
+              "transport_squared": 0.007125750276670241,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.01891664382066573,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 212,
+              "maximum_violation": 0.09005243786554029,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.5661053576165659,
+                "deterministic_left_tie_regret": 0.234375,
+                "fair_tie_regret": 0.234375,
+                "directional_accuracy_on_real_nonzero": 0.5588235294117647
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.5972390465570752,
+                "deterministic_left_tie_regret": 0.3125,
+                "fair_tie_regret": 0.3125,
+                "directional_accuracy_on_real_nonzero": 0.4117647058823529
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.03303459979996859,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.5972390465570752,
+              "transport_squared": 0.03303459979996869,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.06416828874047792,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 418,
+              "maximum_violation": 0.12273517893001507,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.7111154184527533,
+                "deterministic_left_tie_regret": 0.140625,
+                "fair_tie_regret": 0.140625,
+                "directional_accuracy_on_real_nonzero": 0.7857142857142857
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.810549630444668,
+                "deterministic_left_tie_regret": 0.234375,
+                "fair_tie_regret": 0.234375,
+                "directional_accuracy_on_real_nonzero": 0.7380952380952381
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 42,
+                "prediction_ties": 0,
+                "mse": 0.08946479728743462,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.8105496304446681,
+              "transport_squared": 0.08946479728743478,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.18889900927934877,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 698,
+              "maximum_violation": 0.14050414501669017,
+              "real_observed_control_violations": 0
+            }
+          }
+        },
+        "new": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.06847508175680622,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.75
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 2,
+                "mse": 0.0696004985012873,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.75
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.005795438789371188,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.0696004985012873,
+              "transport_squared": 0.00579543878937121,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.006920855533852256,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 148,
+              "maximum_violation": 0.07118504176160956,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 0,
+                "mse": 0.5645890255917798,
+                "deterministic_left_tie_regret": 0.234375,
+                "fair_tie_regret": 0.234375,
+                "directional_accuracy_on_real_nonzero": 0.48148148148148145
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 2,
+                "mse": 0.5509518153162132,
+                "deterministic_left_tie_regret": 0.234375,
+                "fair_tie_regret": 0.234375,
+                "directional_accuracy_on_real_nonzero": 0.4444444444444444
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 27,
+                "prediction_ties": 0,
+                "mse": 0.042217114622557485,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.5509518153162132,
+              "transport_squared": 0.04221711462255781,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.02857990434698998,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 295,
+              "maximum_violation": 0.07743364228440175,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.7437090891470806,
+                "deterministic_left_tie_regret": 0.15625,
+                "fair_tie_regret": 0.15625,
+                "directional_accuracy_on_real_nonzero": 0.7058823529411765
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 2,
+                "mse": 0.7471819348181158,
+                "deterministic_left_tie_regret": 0.25,
+                "fair_tie_regret": 0.25,
+                "directional_accuracy_on_real_nonzero": 0.5588235294117647
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 34,
+                "prediction_ties": 0,
+                "mse": 0.12832544855443717,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.7471819348181157,
+              "transport_squared": 0.12832544855443567,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.1317982942254715,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 551,
+              "maximum_violation": 0.07982011154697166,
+              "real_observed_control_violations": 0
+            }
+          }
+        }
+      }
+    },
+    "pong": {
+      "coarse": {
+        "known": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.1631682940453372,
+                "deterministic_left_tie_regret": 0.046875,
+                "fair_tie_regret": 0.046875,
+                "directional_accuracy_on_real_nonzero": 0.6666666666666666
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.19409580327778336,
+                "deterministic_left_tie_regret": 0.078125,
+                "fair_tie_regret": 0.078125,
+                "directional_accuracy_on_real_nonzero": 0.4444444444444444
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.03174186375374857,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.19409580327778336,
+              "transport_squared": 0.03174186375374863,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.06266937298619459,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 195,
+              "maximum_violation": 0.11317776529234107,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.47416286166923877,
+                "deterministic_left_tie_regret": 0.078125,
+                "fair_tie_regret": 0.078125,
+                "directional_accuracy_on_real_nonzero": 0.6666666666666666
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.4687109690391813,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.8333333333333334
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.12491934718676877,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.46871096903918136,
+              "transport_squared": 0.12491934718676806,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.11946745455671114,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 395,
+              "maximum_violation": 0.12270844796321341,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 1.0174654647169405,
+                "deterministic_left_tie_regret": 0.234375,
+                "fair_tie_regret": 0.234375,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 1.8897793815777035,
+                "deterministic_left_tie_regret": 0.359375,
+                "fair_tie_regret": 0.359375,
+                "directional_accuracy_on_real_nonzero": 0.3181818181818182
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 0.6270600795706845,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 1.8897793815777035,
+              "transport_squared": 0.6270600795706835,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -1.4993739964314474,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 874,
+              "maximum_violation": 0.2150895804505591,
+              "real_observed_control_violations": 0
+            }
+          }
+        },
+        "new": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.09258404710395755,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.6
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.15174882877367246,
+                "deterministic_left_tie_regret": 0.0625,
+                "fair_tie_regret": 0.0625,
+                "directional_accuracy_on_real_nonzero": 0.2
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.04599230446553093,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.15174882877367246,
+              "transport_squared": 0.045992304465531,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.10515708613524599,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 211,
+              "maximum_violation": 0.21208291502407856,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.48850436891633303,
+                "deterministic_left_tie_regret": 0.109375,
+                "fair_tie_regret": 0.109375,
+                "directional_accuracy_on_real_nonzero": 0.5714285714285714
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.5604382773361137,
+                "deterministic_left_tie_regret": 0.078125,
+                "fair_tie_regret": 0.078125,
+                "directional_accuracy_on_real_nonzero": 0.7142857142857143
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.09033007508563454,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.5604382773361136,
+              "transport_squared": 0.09033007508563447,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.16226398350541577,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 462,
+              "maximum_violation": 0.24799698465590905,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 1.2289405295512115,
+                "deterministic_left_tie_regret": 0.296875,
+                "fair_tie_regret": 0.296875,
+                "directional_accuracy_on_real_nonzero": 0.4117647058823529
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 1.4233221017435325,
+                "deterministic_left_tie_regret": 0.265625,
+                "fair_tie_regret": 0.265625,
+                "directional_accuracy_on_real_nonzero": 0.47058823529411764
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 0.2220301974546523,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 1.423322101743533,
+              "transport_squared": 0.22203019745465238,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.41641176964697424,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 1007,
+              "maximum_violation": 0.325833143276521,
+              "real_observed_control_violations": 0
+            }
+          }
+        }
+      },
+      "moments": {
+        "known": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.16137010664611245,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.7777777777777778
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.1828953450345561,
+                "deterministic_left_tie_regret": 0.0625,
+                "fair_tie_regret": 0.0625,
+                "directional_accuracy_on_real_nonzero": 0.5555555555555556
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.04423854757114992,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.18289534503455612,
+              "transport_squared": 0.044238547571150304,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.0657637859595939,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 189,
+              "maximum_violation": 0.039239377910610385,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.4402806189333579,
+                "deterministic_left_tie_regret": 0.0625,
+                "fair_tie_regret": 0.0625,
+                "directional_accuracy_on_real_nonzero": 0.75
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.5891708393141738,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.5833333333333334
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.12954364710195498,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.5891708393141738,
+              "transport_squared": 0.12954364710195565,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.2784338674827715,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 396,
+              "maximum_violation": 0.07140392164300846,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 0.8823667439487006,
+                "deterministic_left_tie_regret": 0.1875,
+                "fair_tie_regret": 0.1875,
+                "directional_accuracy_on_real_nonzero": 0.5909090909090909
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 2.1670128440361935,
+                "deterministic_left_tie_regret": 0.34375,
+                "fair_tie_regret": 0.34375,
+                "directional_accuracy_on_real_nonzero": 0.4090909090909091
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 0.6292715488686733,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 2.1670128440361935,
+              "transport_squared": 0.6292715488686745,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -1.9139176489561698,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 807,
+              "maximum_violation": 0.10933345458778931,
+              "real_observed_control_violations": 0
+            }
+          }
+        },
+        "new": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.08943589495234226,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.6
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.12561918314974876,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.6
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.044345237991563924,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.12561918314974876,
+              "transport_squared": 0.044345237991564174,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.08052852618897072,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 214,
+              "maximum_violation": 0.09306226256993044,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.443424445257876,
+                "deterministic_left_tie_regret": 0.078125,
+                "fair_tie_regret": 0.078125,
+                "directional_accuracy_on_real_nonzero": 0.5714285714285714
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.44121134956075747,
+                "deterministic_left_tie_regret": 0.078125,
+                "fair_tie_regret": 0.078125,
+                "directional_accuracy_on_real_nonzero": 0.7142857142857143
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.05023640001214319,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.4412113495607575,
+              "transport_squared": 0.05023640001214327,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.04802330431502436,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 425,
+              "maximum_violation": 0.12253890173430504,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 1.2783248872063755,
+                "deterministic_left_tie_regret": 0.28125,
+                "fair_tie_regret": 0.28125,
+                "directional_accuracy_on_real_nonzero": 0.35294117647058826
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 1.9860950818709702,
+                "deterministic_left_tie_regret": 0.40625,
+                "fair_tie_regret": 0.40625,
+                "directional_accuracy_on_real_nonzero": 0.29411764705882354
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 0.2592858653462097,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 1.9860950818709704,
+              "transport_squared": 0.25928586534620957,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.9670560600108025,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 797,
+              "maximum_violation": 0.13883905551961462,
+              "real_observed_control_violations": 0
+            }
+          }
+        }
+      },
+      "learned": {
+        "known": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.1858422492455285,
+                "deterministic_left_tie_regret": 0.078125,
+                "fair_tie_regret": 0.078125,
+                "directional_accuracy_on_real_nonzero": 0.4444444444444444
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.22386376346523204,
+                "deterministic_left_tie_regret": 0.0625,
+                "fair_tie_regret": 0.0625,
+                "directional_accuracy_on_real_nonzero": 0.5555555555555556
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.04762979728721742,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.22386376346523204,
+              "transport_squared": 0.04762979728721756,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.08565131150692011,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 217,
+              "maximum_violation": 0.08158053239735819,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.47101283363827245,
+                "deterministic_left_tie_regret": 0.09375,
+                "fair_tie_regret": 0.09375,
+                "directional_accuracy_on_real_nonzero": 0.6666666666666666
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.5599019551909814,
+                "deterministic_left_tie_regret": 0.109375,
+                "fair_tie_regret": 0.109375,
+                "directional_accuracy_on_real_nonzero": 0.5833333333333334
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.14684065404639585,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.5599019551909814,
+              "transport_squared": 0.14684065404639618,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.23572977559910502,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 405,
+              "maximum_violation": 0.09732769091373106,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 0.8426987891192123,
+                "deterministic_left_tie_regret": 0.140625,
+                "fair_tie_regret": 0.140625,
+                "directional_accuracy_on_real_nonzero": 0.7272727272727273
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 1.9880942039030947,
+                "deterministic_left_tie_regret": 0.421875,
+                "fair_tie_regret": 0.421875,
+                "directional_accuracy_on_real_nonzero": 0.2727272727272727
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 0.6176330667757419,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 1.988094203903095,
+              "transport_squared": 0.6176330667757415,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -1.7630284815596224,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 764,
+              "maximum_violation": 0.09732769091373106,
+              "real_observed_control_violations": 0
+            }
+          }
+        },
+        "new": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.10809945998290194,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.6
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.17793261152016496,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.6
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.07876514038366633,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.1779326115201649,
+              "transport_squared": 0.07876514038366582,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.1485982919209286,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 263,
+              "maximum_violation": 0.12741196166040547,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.49271729767675043,
+                "deterministic_left_tie_regret": 0.109375,
+                "fair_tie_regret": 0.109375,
+                "directional_accuracy_on_real_nonzero": 0.42857142857142855
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.6081424161561244,
+                "deterministic_left_tie_regret": 0.09375,
+                "fair_tie_regret": 0.09375,
+                "directional_accuracy_on_real_nonzero": 0.5714285714285714
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.1134899291440348,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.6081424161561243,
+              "transport_squared": 0.11348992914403433,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.22891504762340753,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 489,
+              "maximum_violation": 0.12867937348744007,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 1.2591351041071992,
+                "deterministic_left_tie_regret": 0.296875,
+                "fair_tie_regret": 0.296875,
+                "directional_accuracy_on_real_nonzero": 0.4117647058823529
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 1.7993995118744581,
+                "deterministic_left_tie_regret": 0.40625,
+                "fair_tie_regret": 0.40625,
+                "directional_accuracy_on_real_nonzero": 0.23529411764705882
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 0.2521630762804586,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 1.7993995118744581,
+              "transport_squared": 0.2521630762804588,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.7924274840477169,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 779,
+              "maximum_violation": 0.13023663926639717,
+              "real_observed_control_violations": 0
+            }
+          }
+        }
+      },
+      "shuffled_outcomes": {
+        "known": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.1660637452542642,
+                "deterministic_left_tie_regret": 0.0625,
+                "fair_tie_regret": 0.0625,
+                "directional_accuracy_on_real_nonzero": 0.5555555555555556
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.2069741499501276,
+                "deterministic_left_tie_regret": 0.109375,
+                "fair_tie_regret": 0.109375,
+                "directional_accuracy_on_real_nonzero": 0.2222222222222222
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.03588257692334568,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.2069741499501276,
+              "transport_squared": 0.03588257692334576,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.07679298161920917,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 70,
+              "maximum_violation": 0.022869725580607403,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.5083893800335756,
+                "deterministic_left_tie_regret": 0.1875,
+                "fair_tie_regret": 0.1875,
+                "directional_accuracy_on_real_nonzero": 0.3333333333333333
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.6592084470704153,
+                "deterministic_left_tie_regret": 0.203125,
+                "fair_tie_regret": 0.203125,
+                "directional_accuracy_on_real_nonzero": 0.3333333333333333
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.10834054897372937,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.6592084470704153,
+              "transport_squared": 0.10834054897372902,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.25915961601056836,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 70,
+              "maximum_violation": 0.022869725580607403,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 0.9559209481440037,
+                "deterministic_left_tie_regret": 0.28125,
+                "fair_tie_regret": 0.28125,
+                "directional_accuracy_on_real_nonzero": 0.5454545454545454
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 1.4337605963247428,
+                "deterministic_left_tie_regret": 0.25,
+                "fair_tie_regret": 0.25,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 0.4186477525366746,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 1.4337605963247426,
+              "transport_squared": 0.4186477525366762,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.8964874007174153,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 70,
+              "maximum_violation": 0.022869725580607403,
+              "real_observed_control_violations": 0
+            }
+          }
+        },
+        "new": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.09131299729310993,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.8
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.1112395143532023,
+                "deterministic_left_tie_regret": 0.046875,
+                "fair_tie_regret": 0.046875,
+                "directional_accuracy_on_real_nonzero": 0.4
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.022612122072682796,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.1112395143532023,
+              "transport_squared": 0.02261212207268276,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.04253863913277514,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 42,
+              "maximum_violation": 0.03199224801592404,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.452018290167147,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.42857142857142855
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.5185572955729284,
+                "deterministic_left_tie_regret": 0.109375,
+                "fair_tie_regret": 0.109375,
+                "directional_accuracy_on_real_nonzero": 0.42857142857142855
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.08790850603137368,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.5185572955729283,
+              "transport_squared": 0.08790850603137396,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.15444751143715532,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 42,
+              "maximum_violation": 0.03199224801592404,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 1.130087429724444,
+                "deterministic_left_tie_regret": 0.203125,
+                "fair_tie_regret": 0.203125,
+                "directional_accuracy_on_real_nonzero": 0.47058823529411764
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 1.5730321589645295,
+                "deterministic_left_tie_regret": 0.375,
+                "fair_tie_regret": 0.375,
+                "directional_accuracy_on_real_nonzero": 0.17647058823529413
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 0.1559429790456085,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 1.5730321589645293,
+              "transport_squared": 0.1559429790456089,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.5988877082856949,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 42,
+              "maximum_violation": 0.03199224801592404,
+              "real_observed_control_violations": 0
+            }
+          }
+        }
+      },
+      "no_context": {
+        "known": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.16612289684525477,
+                "deterministic_left_tie_regret": 0.078125,
+                "fair_tie_regret": 0.078125,
+                "directional_accuracy_on_real_nonzero": 0.4444444444444444
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.1630418906291809,
+                "deterministic_left_tie_regret": 0.09375,
+                "fair_tie_regret": 0.09375,
+                "directional_accuracy_on_real_nonzero": 0.3333333333333333
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.0022986558189714615,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.1630418906291809,
+              "transport_squared": 0.0022986558189715747,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.0007823503971029814,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 0,
+              "maximum_violation": 0.0,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.48741320212347594,
+                "deterministic_left_tie_regret": 0.171875,
+                "fair_tie_regret": 0.171875,
+                "directional_accuracy_on_real_nonzero": 0.4166666666666667
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.5263695060394613,
+                "deterministic_left_tie_regret": 0.1875,
+                "fair_tie_regret": 0.1875,
+                "directional_accuracy_on_real_nonzero": 0.3333333333333333
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.015428509331826611,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.5263695060394612,
+              "transport_squared": 0.015428509331826124,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.05438481324781132,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 32,
+              "maximum_violation": 0.004798418105278146,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 0.8920804264837179,
+                "deterministic_left_tie_regret": 0.21875,
+                "fair_tie_regret": 0.21875,
+                "directional_accuracy_on_real_nonzero": 0.5454545454545454
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 1.2172305054703303,
+                "deterministic_left_tie_regret": 0.265625,
+                "fair_tie_regret": 0.265625,
+                "directional_accuracy_on_real_nonzero": 0.45454545454545453
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 0.1171633372921157,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 1.2172305054703305,
+              "transport_squared": 0.11716333729211419,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.4423134162787238,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 192,
+              "maximum_violation": 0.006706250710387218,
+              "real_observed_control_violations": 0
+            }
+          }
+        },
+        "new": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.08198315612405321,
+                "deterministic_left_tie_regret": 0.0625,
+                "fair_tie_regret": 0.0625,
+                "directional_accuracy_on_real_nonzero": 0.2
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.0942024049341933,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.6
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.008865716767368945,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.0942024049341933,
+              "transport_squared": 0.008865716767368463,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.021084965577508476,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 32,
+              "maximum_violation": 0.0014333507086744524,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.4717627747567007,
+                "deterministic_left_tie_regret": 0.15625,
+                "fair_tie_regret": 0.15625,
+                "directional_accuracy_on_real_nonzero": 0.2857142857142857
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.5896836919833592,
+                "deterministic_left_tie_regret": 0.15625,
+                "fair_tie_regret": 0.15625,
+                "directional_accuracy_on_real_nonzero": 0.2857142857142857
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.03303077033368358,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.5896836919833592,
+              "transport_squared": 0.03303077033368283,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.15095168756034094,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 96,
+              "maximum_violation": 0.0023252596009606386,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 1.1977694771231775,
+                "deterministic_left_tie_regret": 0.28125,
+                "fair_tie_regret": 0.28125,
+                "directional_accuracy_on_real_nonzero": 0.35294117647058826
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 1.2229744249407668,
+                "deterministic_left_tie_regret": 0.234375,
+                "fair_tie_regret": 0.234375,
+                "directional_accuracy_on_real_nonzero": 0.5882352941176471
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 0.1154478659911553,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 1.2229744249407668,
+              "transport_squared": 0.11544786599115374,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.14065281380874395,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 128,
+              "maximum_violation": 0.0023252596009606386,
+              "real_observed_control_violations": 0
+            }
+          }
+        }
+      },
+      "random": {
+        "known": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.20494227872912596,
+                "deterministic_left_tie_regret": 0.09375,
+                "fair_tie_regret": 0.09375,
+                "directional_accuracy_on_real_nonzero": 0.3333333333333333
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.2505056681640178,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.1111111111111111
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.03931930414296847,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.2505056681640178,
+              "transport_squared": 0.039319304142968504,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.08488269357786045,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 199,
+              "maximum_violation": 0.08901305443681307,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.4694970523447482,
+                "deterministic_left_tie_regret": 0.09375,
+                "fair_tie_regret": 0.09375,
+                "directional_accuracy_on_real_nonzero": 0.6666666666666666
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.7307296779341744,
+                "deterministic_left_tie_regret": 0.15625,
+                "fair_tie_regret": 0.15625,
+                "directional_accuracy_on_real_nonzero": 0.4166666666666667
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.18065080258038246,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.7307296779341743,
+              "transport_squared": 0.18065080258038235,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.44188342816980813,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 387,
+              "maximum_violation": 0.12238869777174566,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 0.8231170421823816,
+                "deterministic_left_tie_regret": 0.109375,
+                "fair_tie_regret": 0.109375,
+                "directional_accuracy_on_real_nonzero": 0.7727272727272727
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 2.6389967999948762,
+                "deterministic_left_tie_regret": 0.484375,
+                "fair_tie_regret": 0.484375,
+                "directional_accuracy_on_real_nonzero": 0.13636363636363635
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 0.8347592713551064,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.9545454545454546
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 2.6389967999948767,
+              "transport_squared": 0.8347592713551072,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -2.650639029167603,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 762,
+              "maximum_violation": 0.13106903747627285,
+              "real_observed_control_violations": 0
+            }
+          }
+        },
+        "new": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.1124977950467708,
+                "deterministic_left_tie_regret": 0.046875,
+                "fair_tie_regret": 0.046875,
+                "directional_accuracy_on_real_nonzero": 0.4
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.15975313477883102,
+                "deterministic_left_tie_regret": 0.0625,
+                "fair_tie_regret": 0.0625,
+                "directional_accuracy_on_real_nonzero": 0.2
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.03128636074723655,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.15975313477883102,
+              "transport_squared": 0.03128636074723674,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.07854170047929715,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 266,
+              "maximum_violation": 0.11957035427540275,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.5233985105616814,
+                "deterministic_left_tie_regret": 0.15625,
+                "fair_tie_regret": 0.15625,
+                "directional_accuracy_on_real_nonzero": 0.2857142857142857
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.7841255003875005,
+                "deterministic_left_tie_regret": 0.15625,
+                "fair_tie_regret": 0.15625,
+                "directional_accuracy_on_real_nonzero": 0.2857142857142857
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.09061215946402465,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.7841255003875003,
+              "transport_squared": 0.0906121594640246,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.3513391492898439,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 485,
+              "maximum_violation": 0.1314556876248183,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 1.1825948385866214,
+                "deterministic_left_tie_regret": 0.28125,
+                "fair_tie_regret": 0.28125,
+                "directional_accuracy_on_real_nonzero": 0.47058823529411764
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 2.072938185032127,
+                "deterministic_left_tie_regret": 0.46875,
+                "fair_tie_regret": 0.46875,
+                "directional_accuracy_on_real_nonzero": 0.11764705882352941
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 0.22905031393181444,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 2.072938185032127,
+              "transport_squared": 0.22905031393181335,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -1.1193936603773174,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 862,
+              "maximum_violation": 0.14925071418493863,
+              "real_observed_control_violations": 0
+            }
+          }
+        }
+      },
+      "transferred": {
+        "known": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.162084193009946,
+                "deterministic_left_tie_regret": 0.046875,
+                "fair_tie_regret": 0.046875,
+                "directional_accuracy_on_real_nonzero": 0.6666666666666666
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.2561172718286694,
+                "deterministic_left_tie_regret": 0.109375,
+                "fair_tie_regret": 0.109375,
+                "directional_accuracy_on_real_nonzero": 0.2222222222222222
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 9,
+                "prediction_ties": 0,
+                "mse": 0.034295170598119366,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.2561172718286694,
+              "transport_squared": 0.03429517059811932,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.12832824941684318,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 245,
+              "maximum_violation": 0.05304153288409186,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.45424645090598725,
+                "deterministic_left_tie_regret": 0.109375,
+                "fair_tie_regret": 0.109375,
+                "directional_accuracy_on_real_nonzero": 0.5833333333333334
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.6806273544245237,
+                "deterministic_left_tie_regret": 0.140625,
+                "fair_tie_regret": 0.140625,
+                "directional_accuracy_on_real_nonzero": 0.4166666666666667
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 12,
+                "prediction_ties": 0,
+                "mse": 0.15362115535048926,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.6806273544245237,
+              "transport_squared": 0.15362115535048892,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.38000205886902527,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 416,
+              "maximum_violation": 0.07409554879315183,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 0.8971180214183567,
+                "deterministic_left_tie_regret": 0.1875,
+                "fair_tie_regret": 0.1875,
+                "directional_accuracy_on_real_nonzero": 0.5909090909090909
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 2.6120838178088346,
+                "deterministic_left_tie_regret": 0.359375,
+                "fair_tie_regret": 0.359375,
+                "directional_accuracy_on_real_nonzero": 0.3181818181818182
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 22,
+                "prediction_ties": 0,
+                "mse": 0.8670174403502958,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 2.612083817808835,
+              "transport_squared": 0.8670174403502959,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -2.581983236740775,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 714,
+              "maximum_violation": 0.09383917633058636,
+              "real_observed_control_violations": 0
+            }
+          }
+        },
+        "new": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.165862012361492,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.6
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.1678054434981824,
+                "deterministic_left_tie_regret": 0.0625,
+                "fair_tie_regret": 0.0625,
+                "directional_accuracy_on_real_nonzero": 0.2
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 5,
+                "prediction_ties": 0,
+                "mse": 0.0641227120078945,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.1678054434981824,
+              "transport_squared": 0.06412271200789449,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.06606614314458514,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 512,
+              "outside_bounds": 242,
+              "maximum_violation": 0.06410627309036476,
+              "real_observed_control_violations": 0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.5445154537931676,
+                "deterministic_left_tie_regret": 0.15625,
+                "fair_tie_regret": 0.15625,
+                "directional_accuracy_on_real_nonzero": 0.2857142857142857
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.7296432031759098,
+                "deterministic_left_tie_regret": 0.15625,
+                "fair_tie_regret": 0.15625,
+                "directional_accuracy_on_real_nonzero": 0.2857142857142857
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.1594132895572396,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.7296432031759099,
+              "transport_squared": 0.1594132895572405,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.3445410389399811,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 1024,
+              "outside_bounds": 491,
+              "maximum_violation": 0.09578949822043081,
+              "real_observed_control_violations": 0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 1.1599728633070021,
+                "deterministic_left_tie_regret": 0.3125,
+                "fair_tie_regret": 0.3125,
+                "directional_accuracy_on_real_nonzero": 0.47058823529411764
+              },
+              "real_past_histories_before_each_block_oracle": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 2.080419841989359,
+                "deterministic_left_tie_regret": 0.390625,
+                "fair_tie_regret": 0.390625,
+                "directional_accuracy_on_real_nonzero": 0.29411764705882354
+              },
+              "reward_error_removed_oracle": {
+                "count": 64,
+                "real_nonzero": 17,
+                "prediction_ties": 0,
+                "mse": 0.28846642150803814,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 2.080419841989359,
+              "transport_squared": 0.28846642150803803,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -1.2089134001903956,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            },
+            "necessary_bounds": {
+              "states_checked": 2048,
+              "outside_bounds": 899,
+              "maximum_violation": 0.1405015864946515,
+              "real_observed_control_violations": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  "wall_seconds": 133.0042134000014,
+  "maximum_sampled_rss_bytes": 202371072,
+  "comparisons_reconciled": 5376,
+  "maximum_telescopic_error": 1.4932499681208355e-14,
+  "previous_gate_preserved": "spatial_capability_gate_failed",
+  "fit_calls": 0,
+  "ale_calls": 0,
+  "manifest_sha256": "ec4a2ba1527f962dd07e393cf523943adb668994de05014343ff8887a423f449",
+  "events_sha256": "1355236a58f677836f1422e6df82899b957788e776d8ecf6bd2a12ccf0aaaff4",
+  "human_level_goal_achieved": false,
+  "bounds_necessary_not_sufficient": true
+}

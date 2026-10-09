@@ -1,0 +1,9 @@
+{
+  "input": "state_vector_and_past_raw_history",
+  "mode": "shuffled_residuals",
+  "memory_body": "(flatten(past_history)-projection_mean) @ projection_basis",
+  "state_body": "concat((z-zmean)/scale_z, memory/scale_memory)/sqrt(2)",
+  "transition_body": "state+RBF(state).delta; clipped_reward; clipped_continuation",
+  "parameters": "pong_memoria_residual_97_shuffled_residuals.npz",
+  "scope": "numeric_memory_from_experience_not_human_concepts"
+}

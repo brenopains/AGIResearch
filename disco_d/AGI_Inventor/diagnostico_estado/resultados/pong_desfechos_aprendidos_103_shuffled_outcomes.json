@@ -1,0 +1,14 @@
+{
+  "operator": "joint_outcome_posterior",
+  "input_type": "finite_real_state_vector",
+  "output_type": "distribution_over_observed_successor_reward_continuation",
+  "body": "normalize(nonnegative(exp(-distance/scale) @ coeff + ym)); fallback=training_prior",
+  "parameters": "pong_desfechos_aprendidos_103_shuffled_outcomes.npz",
+  "categories_by_action": [
+    37,
+    38,
+    37,
+    38
+  ],
+  "scope": "learned_numeric_outcomes_not_universal_concepts"
+}

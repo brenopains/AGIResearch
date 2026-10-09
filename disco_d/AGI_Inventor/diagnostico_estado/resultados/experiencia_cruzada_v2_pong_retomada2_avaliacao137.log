@@ -1,0 +1,93 @@
+native_system_queries Windows AMD64
+{
+  "game": "pong",
+  "status": "joint_capability_not_demonstrated",
+  "cpu_seconds": 0.953125,
+  "wall_seconds": 0.8252838999978849,
+  "partitions": {
+    "known_programs_new_contexts": {
+      "status": "failed_capability_gate",
+      "identification": {
+        "opposite_preferences_per_repeated_pair": [
+          true,
+          true
+        ],
+        "episodes_with_real_contrast": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "non_tied_comparisons": 17,
+        "sufficient_contextual_contrast": true
+      },
+      "regrets128": {
+        "quadratic": 0.125,
+        "affine": 0.140625,
+        "two_frames": 0.046875,
+        "shuffled_targets": 0.296875,
+        "shuffled_histories": 0.171875,
+        "word_only": 0.1875,
+        "raw_rbf": 0.125
+      },
+      "failed_checks": [
+        "positive_lower_vs_affine",
+        "mean_gain_vs_two_frames",
+        "positive_lower_vs_two_frames",
+        "two_episodes_vs_two_frames",
+        "mean_gain_vs_raw_rbf",
+        "positive_lower_vs_raw_rbf",
+        "two_episodes_vs_raw_rbf"
+      ]
+    },
+    "new_programs_new_contexts": {
+      "status": "inconclusive_insufficient_contextual_contrast",
+      "identification": {
+        "opposite_preferences_per_repeated_pair": [
+          true,
+          false
+        ],
+        "episodes_with_real_contrast": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "non_tied_comparisons": 14,
+        "sufficient_contextual_contrast": false
+      },
+      "regrets128": {
+        "quadratic": 0.125,
+        "affine": 0.09375,
+        "two_frames": 0.15625,
+        "shuffled_targets": 0.1875,
+        "shuffled_histories": 0.125,
+        "word_only": 0.078125,
+        "raw_rbf": 0.109375
+      },
+      "failed_checks": [
+        "sufficient_contextual_contrast",
+        "mean_gain_vs_affine",
+        "positive_lower_vs_affine",
+        "two_episodes_vs_affine",
+        "positive_lower_vs_two_frames",
+        "positive_lower_vs_shuffled_targets",
+        "mean_gain_vs_shuffled_histories",
+        "positive_lower_vs_shuffled_histories",
+        "mean_gain_vs_word_only",
+        "positive_lower_vs_word_only",
+        "mean_gain_vs_raw_rbf",
+        "positive_lower_vs_raw_rbf",
+        "two_episodes_vs_raw_rbf"
+      ]
+    }
+  }
+}

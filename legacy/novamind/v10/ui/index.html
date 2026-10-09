@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaMind v10 | Cortical Interface</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- External Dependencies for 3D Assimilation (Three.js for Gaussian Splatting / PointCloud View) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="brand">
+                <div class="logo"></div>
+                <h1>NovaMind <span>v10.0.0</span></h1>
+            </div>
+            <div class="status-indicator">
+                <div class="dot"></div>
+                <span id="sys-status">SYS.IDLE</span>
+            </div>
+        </header>
+
+        <!-- Main Dashboard -->
+        <main>
+            <!-- Left Panel: Chat Input -->
+            <section class="panel chat-panel glass">
+                <div class="panel-title">TERMINAL IO <span id="loss-indicator" style="float:right; color: var(--accent-magenta);">Loss: --</span></div>
+                <div class="chat-log" id="chat-log">
+                    <div class="msg sys">Welcome to NovaMind OS. Neural link established.</div>
+                </div>
+                <div class="input-area">
+                    <button id="file-btn" title="Upload Media" class="icon-btn">📎</button>
+                    <input type="file" id="file-input" style="display: none;" accept="image/*, audio/*, video/*, .pdf, .txt">
+                    <button id="mic-btn" title="Hold/Tap to Voice Chat" class="icon-btn">🎤</button>
+                    <input type="text" id="user-input" placeholder="Initiate cognitive cycle..." autocomplete="off">
+                    <button id="send-btn">SEND</button>
+                </div>
+            </section>
+
+            <!-- Right Panel: Core Metrics -->
+            <section class="cortical-metrics">
+                
+                <div class="panel glass">
+                    <div class="panel-title">Sparse MoE Active Expert</div>
+                    <div class="metric-value expert">
+                        <span id="moe-idx">--</span>
+                        <div class="sub-label">Top-1 Routing Cap 1.25</div>
+                    </div>
+                </div>
+
+                <div class="panel glass minds-eye-panel">
+                    <div class="panel-title">WORLD MODEL (3D GENERATIVE EXPLORABLE SPACE)</div>
+                    <div id="webgl-container" style="position: relative; width: 100%; height: 200px; overflow: hidden; border-radius: 4px; box-shadow: inset 0 0 20px rgba(0, 188, 212, 0.2);">
+                        <!-- Three.js Canvas injected here -->
+                    </div>
+                </div>
+
+                <div class="panel glass">
+                    <div class="panel-title">Symbolic Logic Tree (AST)</div>
+                    <div class="ast-container" id="symb-ast">
+                        <div class="ast-text" id="symb-prog">[AWAITING_PRIMITIVE]</div>
+                    </div>
+                </div>
+
+                <div class="panel glass">
+                    <div class="panel-title">Hypermassive Retrieval (FAISS)</div>
+                    <div class="metric-value mem">
+                        Idx: <span id="mem-idx">0x0000</span>
+                    </div>
+                </div>
+
+                <div class="panel module action-extrapolations">
+                    <div class="panel-title">NEUROMORPHIC CORTEX (SNN MEMBRANE POTENTIAL)</div>
+                    <div class="efe-bars">
+                        <div class="bar-container"><div class="bar" id="b0"></div><div class="spike-flash" id="s0"></div></div>
+                        <div class="bar-container"><div class="bar" id="b1"></div><div class="spike-flash" id="s1"></div></div>
+                        <div class="bar-container"><div class="bar" id="b2"></div><div class="spike-flash" id="s2"></div></div>
+                        <div class="bar-container"><div class="bar" id="b3"></div><div class="spike-flash" id="s3"></div></div>
+                        <div class="bar-container"><div class="bar" id="b4"></div><div class="spike-flash" id="s4"></div></div>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/brain_socket.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+{
+ "data": "2026-09-23",
+ "penhasco": {
+  "veredito": "P1 pela letra, fraco na substancia",
+  "P0_primeiro": "FALHOU com forca=4 (custo -0,034); forca calibrada SO no atlas limpo -> 64, custo 0,000",
+  "por_dose": {
+   "20%": {
+    "cred_dominio": 0.609,
+    "cred_fragmento": 0.603,
+    "ficcao_no_topo": 788,
+    "pureza": 0.9
+   },
+   "40%": {
+    "cred_dominio": 0.6,
+    "cred_fragmento": 0.601,
+    "ficcao_no_topo": 7,
+    "pureza": 1.0
+   },
+   "60%": {
+    "cred_dominio": 0.6,
+    "cred_fragmento": 0.6,
+    "ficcao_no_topo": 0
+   }
+  },
+  "leitura_honesta": "o penhasco andou de ~30% para ~50%, NAO sumiu. A 40% voltam 7 fragmentos de 252 — puros, mas irrelevantes em numero. Causa: com a media do dominio perto de zero o encolhimento prende o fragmento; falta evidencia por fragmento, nao outro estimador."
+ },
+ "corroboracao": {
+  "defeito_do_portao": "o veredito C3 saiu de `abs()` numa queda com sinal; melhoras contavam como falha. Corrigido.",
+  "limpo": {
+   "credito": 0.6,
+   "consenso": 0.683
+  },
+  "por_dose": {
+   "0%": 0.683,
+   "20%": 0.708,
+   "40%": 0.702,
+   "60%": 0.704,
+   "100%": 0.673
+  },
+  "credito_nas_mesmas_doses": {
+   "0%": 0.6,
+   "20%": 0.609,
+   "40%": 0.6,
+   "60%": 0.6,
+   "100%": 0.6
+  },
+  "unica_queda_real": "2,0 desvios a 100% de mentira (0,683 -> 0,673, dez milesimos)",
+  "risco_pre_registrado_REFUTADO": {
+   "faceis": {
+    "credito": 0.992,
+    "consenso": 1.0,
+    "ganho": 0.008
+   },
+   "dificeis": {
+    "credito": 0.375,
+    "consenso": 0.495,
+    "ganho": 0.12
+   },
+   "nota": "o ganho esta nos DIFICEIS (borra +0,319, transpoe +0,150), nao nos faceis. Nao e voto de popularidade."
+  },
+  "veredito": "as categorias pre-registradas nao cobrem este desfecho: C1 falha pela letra (2,0 sd a 100%) mas o consenso DOMINA o credito em todas as doses. Reporto os numeros, nao forco uma letra.",
+  "o_que_isso_vale": "o consenso nao usa sonda, rotulo nem desfecho — defesa sem calibracao nenhuma."
+ },
+ "primitivas_auditadas": {
+  "codecs_no_nucleo": 23,
+  "escritos_por_mim": 23,
+  "vindos_de_geracao": 0,
+  "modulos_de_geracao_no_caminho_de_montar": "nenhum",
+  "nota": "operador_inventado.py e propriedade_inventada.py existem e funcionam, mas so sao importados por selecao.py e um pelo outro — ramo lateral."
+ }
+}

@@ -13,6 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from agent_bridge import AgentBridge
+from self_improve_loop import MonitoredLoop
 
 
 # ─── Modelos REST ──────────────────────────────────────────────
@@ -33,6 +34,10 @@ class StatusResponse(BaseModel):
     memory_sources: List[str]
     working_hdv_size: int
     pca_points: int
+
+class LoopStartRequest(BaseModel):
+    intention: str = "Improve the visual appeal of the game"
+    max_iterations: int = 10
 
 
 # ─── Gerenciador de Conexoes ─────────────────────────────────
@@ -74,14 +79,18 @@ class ConnectionManager:
 
 manager = ConnectionManager()
 bridge: AgentBridge = None
+monloop: MonitoredLoop = None
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    global bridge
+    global bridge, monloop
     print("[HyperView] Inicializando AGI NovaMind...")
     bridge = AgentBridge(emit_callback=lambda e: manager.broadcast(e))
+    monloop = MonitoredLoop(emit_callback=lambda e: manager.broadcast(e))
     print("[HyperView] AGI pronta. Servidor ouvindo.")
     yield
+    if monloop:
+        monloop.stop()
     print("[HyperView] Servidor encerrado.")
 
 app = FastAPI(title="HyperView - NovaMind Visualizer", lifespan=lifespan)
@@ -244,6 +253,38 @@ async def api_fly_to(req: QueryRequest):
     subs = bridge.get_subconcepts(req.text)
     return {"concept": req.text, "subconcepts": subs}
 
+
+# ─── Loop Endpoints ──────────────────────────────────────────
+
+@app.post("/api/loop/start")
+async def api_loop_start(req: LoopStartRequest):
+    """Inicia o loop de auto-melhoria."""
+    if not monloop:
+        raise HTTPException(503, "Loop nao inicializado")
+    return monloop.start(req.intention, req.max_iterations)
+
+@app.post("/api/loop/stop")
+async def api_loop_stop():
+    """Para o loop de auto-melhoria."""
+    if not monloop:
+        raise HTTPException(503, "Loop nao inicializado")
+    return monloop.stop()
+
+@app.get("/api/loop/status")
+async def api_loop_status():
+    """Status do loop de auto-melhoria."""
+    if not monloop:
+        raise HTTPException(503, "Loop nao inicializado")
+    return monloop.get_status()
+
+@app.get("/api/loop/stream")
+async def api_loop_stream(n: int = 20):
+    """Retorna as últimas N entradas do EpisodicStream."""
+    if not monloop or not monloop.loop:
+        return {"entries": []}
+    recent = monloop.loop.stream.get_recent(n)
+    stats = monloop.loop.stream.get_stats()
+    return {"entries": recent, "stats": stats}
 
 # ─── Entrypoint ───────────────────────────────────────────────
 

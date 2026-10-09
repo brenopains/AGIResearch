@@ -1,0 +1,4816 @@
+{
+ "braco": "ESCOPO",
+ "semente": 3002,
+ "lacrados": [
+  "q:rmin@15",
+  "q:varre@40",
+  "q:vmax@5"
+ ],
+ "linhas": [
+  {
+   "idx": 0,
+   "fase": 1,
+   "fam": "mola",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 14.943200000000001,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 3,
+   "usados": [],
+   "desc": "-0.73 r^1 r^"
+  },
+  {
+   "idx": 1,
+   "fase": 1,
+   "fam": "mola",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.642 r^1 r^"
+  },
+  {
+   "idx": 2,
+   "fase": 1,
+   "fam": "einstein",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 10.6808,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 2,
+   "usados": [],
+   "desc": "-0.744 r^-2 r^ -0.0356 r^-1*v^4 r^"
+  },
+  {
+   "idx": 3,
+   "fase": 1,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "sentido",
+   "ok": true,
+   "gasto": 42.6278,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 8,
+   "usados": [
+    "conceito:15"
+   ],
+   "desc": "('1', 'c14')"
+  },
+  {
+   "idx": 4,
+   "fase": 1,
+   "fam": "mola",
+   "fonte": "relato:A",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.683 r^1 r^"
+  },
+  {
+   "idx": 5,
+   "fase": 1,
+   "fam": "oblato",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.6592,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.44 r^-2 r^ -0.0417 r^-4 r^"
+  },
+  {
+   "idx": 6,
+   "fase": 1,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 251.2926,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 13,
+   "usados": [],
+   "desc": "-0.000384 r^1 r^ -1.51 r^-2 r^ -0.0193 r^-2*v^4 r^"
+  },
+  {
+   "idx": 7,
+   "fase": 1,
+   "fam": "vortice",
+   "fonte": "relato:F",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 36.442400000000006,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 11,
+   "usados": [
+    "conceito:15"
+   ],
+   "desc": "-1.45 r^-2 r^ +0.0882 r^-2*c14^1 r^ +0.0803 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 8,
+   "fase": 1,
+   "fam": "arrasto",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.6592,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.991 r^-2 r^ -0.0345 v^1 v^"
+  },
+  {
+   "idx": 9,
+   "fase": 1,
+   "fam": "einstein",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 10.6592,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.56 r^-2 r^ -0.00754 r^-3*v^4 r^"
+  },
+  {
+   "idx": 10,
+   "fase": 1,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 10.6592,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.19 r^-2 r^ -0.0427 r^-3*v^1 r^"
+  },
+  {
+   "idx": 11,
+   "fase": 1,
+   "fam": "oblato",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.6672,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 2,
+   "usados": [],
+   "desc": "-0.765 r^-2 r^ -0.0377 r^-4 r^"
+  },
+  {
+   "idx": 12,
+   "fase": 1,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.23 r^-2 r^"
+  },
+  {
+   "idx": 13,
+   "fase": 1,
+   "fam": "mola",
+   "fonte": "relato:A",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.02 r^1 r^"
+  },
+  {
+   "idx": 14,
+   "fase": 1,
+   "fam": "vortice",
+   "fonte": "relato:F",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 23.5032,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 8,
+   "usados": [
+    "conceito:15",
+    "lei:23"
+   ],
+   "desc": "-1.44 r^-2 r^ -0.00875 r^-2*c14^1 r^ +0.0672 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 15,
+   "fase": 1,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "sentido",
+   "ok": true,
+   "gasto": 4.0824,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 6,
+   "usados": [
+    "conceito:15"
+   ],
+   "desc": "('1', 'c14')"
+  },
+  {
+   "idx": 16,
+   "fase": 1,
+   "fam": "oblato",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.6592,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.51 r^-2 r^ -0.0259 r^-4 r^"
+  },
+  {
+   "idx": 17,
+   "fase": 1,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 10.6592,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.39 r^-2 r^ -0.0455 r^-4 r^"
+  },
+  {
+   "idx": 18,
+   "fase": 1,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.823 r^-2 r^"
+  },
+  {
+   "idx": 19,
+   "fase": 1,
+   "fam": "vortice",
+   "fonte": "relato:F",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.687199999999999,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 5,
+   "usados": [
+    "conceito:15",
+    "lei:23"
+   ],
+   "desc": "-1.33 r^-2 r^ -0.0114 r^-2*c14^1 r^ +0.086 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 20,
+   "fase": 1,
+   "fam": "mola",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "sentido",
+   "ok": true,
+   "gasto": 3.2392,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 6,
+   "usados": [
+    "conceito:15"
+   ],
+   "desc": "('1', 'c14')"
+  },
+  {
+   "idx": 21,
+   "fase": 1,
+   "fam": "vortice",
+   "fonte": "relato:F",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.4072000000000005,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 2,
+   "usados": [
+    "conceito:15",
+    "lei:23"
+   ],
+   "desc": "-1.39 r^-2 r^ -0.0119 r^-2*c14^1 r^ +0.0867 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 22,
+   "fase": 1,
+   "fam": "mola",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.32 r^1 r^"
+  },
+  {
+   "idx": 23,
+   "fase": 1,
+   "fam": "arrasto",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.6592,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.25 r^-2 r^ -0.0521 v^1 v^"
+  },
+  {
+   "idx": 24,
+   "fase": 1,
+   "fam": "einstein",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.966 r^-2 r^"
+  },
+  {
+   "idx": 25,
+   "fase": 1,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "raio_cresce",
+   "ok": true,
+   "gasto": 2.0808,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 6,
+   "usados": [],
+   "desc": "('1', 'vr')"
+  },
+  {
+   "idx": 26,
+   "fase": 1,
+   "fam": "einstein",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 10.6592,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.18 r^-2 r^ -0.0136 r^-1*v^4 r^"
+  },
+  {
+   "idx": 27,
+   "fase": 1,
+   "fam": "mola",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.3992,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 2,
+   "usados": [],
+   "desc": "-0.641 r^1 r^"
+  },
+  {
+   "idx": 28,
+   "fase": 1,
+   "fam": "arrasto",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.6592,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.14 r^-2 r^ -0.045 v^1 v^"
+  },
+  {
+   "idx": 29,
+   "fase": 1,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.21 r^-2 r^"
+  },
+  {
+   "idx": 30,
+   "fase": 1,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.51 r^-2 r^"
+  },
+  {
+   "idx": 31,
+   "fase": 1,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 175.72539999999987,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 36,
+   "usados": [
+    "conceito:15",
+    "lei:23"
+   ],
+   "desc": "-0.921 r^-2 r^ -0.00743 r^-2*c14^1 r^ +0.00528 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 32,
+   "fase": 1,
+   "fam": "oblato",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.6592,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.954 r^-2 r^ -0.0235 r^-4 r^"
+  },
+  {
+   "idx": 33,
+   "fase": 1,
+   "fam": "kepler",
+   "fonte": "relato:A",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.1 r^-2 r^"
+  },
+  {
+   "idx": 34,
+   "fase": 1,
+   "fam": "kepler",
+   "fonte": "relato:A",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.681 r^-2 r^"
+  },
+  {
+   "idx": 35,
+   "fase": 1,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "raio_cresce",
+   "ok": true,
+   "gasto": 116.32579999999999,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 29,
+   "usados": [],
+   "desc": "('1', 'vr')"
+  },
+  {
+   "idx": 36,
+   "fase": 1,
+   "fam": "vortice",
+   "fonte": "relato:F",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.4352,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 6,
+   "usados": [
+    "conceito:15",
+    "lei:23"
+   ],
+   "desc": "-0.63 r^-2 r^ -0.00884 r^-2*c14^1 r^ +0.0564 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 37,
+   "fase": 1,
+   "fam": "arrasto",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.6592,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.01 r^-2 r^ -0.0631 v^1 v^"
+  },
+  {
+   "idx": 38,
+   "fase": 1,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 14.935199999999998,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 3,
+   "usados": [
+    "conceito:58",
+    "lei:59"
+   ],
+   "desc": "-0.78 r^-2 r^ +0.05 r^-4*c57^1 r^"
+  },
+  {
+   "idx": 39,
+   "fase": 1,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 19.1952,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 2,
+   "usados": [
+    "conceito:15",
+    "lei:68"
+   ],
+   "desc": "-1.5 r^-2 r^ -0.00784 r^-4*c14^1 r^"
+  },
+  {
+   "idx": 40,
+   "fase": 2,
+   "fam": "mola",
+   "fonte": "relato:A",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.988 r^1 r^"
+  },
+  {
+   "idx": 41,
+   "fase": 2,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 237.23439999999968,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 49,
+   "usados": [],
+   "desc": "-0.594 r^-2 r^ +0.000287 r^1 r^ +0.000642 v^1 v^"
+  },
+  {
+   "idx": 42,
+   "fase": 2,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "escapa",
+   "ok": true,
+   "gasto": 74.44319999999996,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 42,
+   "usados": [
+    "conceito:13"
+   ],
+   "desc": "('1', 'c12')"
+  },
+  {
+   "idx": 43,
+   "fase": 2,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.764799999999992,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 13,
+   "usados": [
+    "conceito:58",
+    "lei:59"
+   ],
+   "desc": "-1.11 r^-2 r^ +0.0381 r^-4*c57^1 r^"
+  },
+  {
+   "idx": 44,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "raio_cresce",
+   "ok": true,
+   "gasto": 2.7408000000000006,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 21,
+   "usados": [],
+   "desc": "('1', 'vr')"
+  },
+  {
+   "idx": 45,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.78 r^-2 r^"
+  },
+  {
+   "idx": 46,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.403200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 2,
+   "usados": [],
+   "desc": "-1.57 r^-2 r^"
+  },
+  {
+   "idx": 47,
+   "fase": 2,
+   "fam": "vortice",
+   "fonte": "relato:F",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.5248,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 16,
+   "usados": [
+    "conceito:15",
+    "lei:23"
+   ],
+   "desc": "-1.48 r^-2 r^ -0.0103 r^-2*c14^1 r^ +0.071 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 48,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "periapse_direita",
+   "ok": false,
+   "gasto": 90.9264000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 77,
+   "usados": [],
+   "desc": "('2', 'x', 'vy')"
+  },
+  {
+   "idx": 49,
+   "fase": 2,
+   "fam": "mola",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.739 r^1 r^"
+  },
+  {
+   "idx": 50,
+   "fase": 2,
+   "fam": "mola",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.641 r^1 r^"
+  },
+  {
+   "idx": 51,
+   "fase": 2,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.691199999999998,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 5,
+   "usados": [
+    "conceito:58",
+    "lei:59"
+   ],
+   "desc": "-1.18 r^-2 r^ +0.0413 r^-4*c57^1 r^"
+  },
+  {
+   "idx": 52,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "escapa",
+   "ok": false,
+   "gasto": 117.83459999999998,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 41,
+   "usados": [],
+   "desc": "('1', 'v')"
+  },
+  {
+   "idx": 53,
+   "fase": 2,
+   "fam": "arrasto",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.6592,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.675 r^-2 r^ -0.0381 v^1 v^"
+  },
+  {
+   "idx": 54,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "periapse_direita",
+   "ok": false,
+   "gasto": 11.708800000000002,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 29,
+   "usados": [
+    "conceito:106"
+   ],
+   "desc": "('1', 'c105')"
+  },
+  {
+   "idx": 55,
+   "fase": 2,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 10.6592,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.745 r^-2 r^ +0.0267 r^-1 r^"
+  },
+  {
+   "idx": 56,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "relato:A",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.3 r^-2 r^"
+  },
+  {
+   "idx": 57,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.59 r^-2 r^"
+  },
+  {
+   "idx": 58,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "periapse_direita",
+   "ok": false,
+   "gasto": 14.782399999999999,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 34,
+   "usados": [
+    "conceito:15",
+    "conceito:84"
+   ],
+   "desc": "('2', 'c14', 'c83')"
+  },
+  {
+   "idx": 59,
+   "fase": 2,
+   "fam": "oblato",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 10.6672,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 2,
+   "usados": [
+    "conceito:88",
+    "lei:93"
+   ],
+   "desc": "-1.01 r^-2 r^ +0.0267 c87^-1 r^"
+  },
+  {
+   "idx": 60,
+   "fase": 2,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "sentido",
+   "ok": true,
+   "gasto": 5.2224,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 27,
+   "usados": [
+    "conceito:15"
+   ],
+   "desc": "('1', 'c14')"
+  },
+  {
+   "idx": 61,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "escapa",
+   "ok": true,
+   "gasto": 40.2784,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 44,
+   "usados": [
+    "conceito:108"
+   ],
+   "desc": "('1', 'c107')"
+  },
+  {
+   "idx": 62,
+   "fase": 2,
+   "fam": "oblato",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.6592,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.677 r^-2 r^ -0.0349 r^-4 r^"
+  },
+  {
+   "idx": 63,
+   "fase": 2,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "escapa",
+   "ok": true,
+   "gasto": 2.8008000000000006,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 22,
+   "usados": [],
+   "desc": "('2', 'r', 'v')"
+  },
+  {
+   "idx": 64,
+   "fase": 2,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 67.37439999999998,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 50,
+   "usados": [
+    "conceito:108",
+    "conceito:15"
+   ],
+   "desc": "-1.13 r^-2 r^ -0.00424 c14^1*c107^2 r^ -0.0201 vr^1*c107^1 t^"
+  },
+  {
+   "idx": 65,
+   "fase": 2,
+   "fam": "einstein",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.6672,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 2,
+   "usados": [
+    "lei:111"
+   ],
+   "desc": "-0.72 r^-2 r^ +0.00918 r^-1 r^"
+  },
+  {
+   "idx": 66,
+   "fase": 2,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "sentido",
+   "ok": true,
+   "gasto": 7.700800000000001,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 29,
+   "usados": [
+    "conceito:15"
+   ],
+   "desc": "('1', 'c14')"
+  },
+  {
+   "idx": 67,
+   "fase": 2,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 6.4112,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 3,
+   "usados": [
+    "conceito:108",
+    "conceito:15",
+    "lei:119"
+   ],
+   "desc": "-0.85 r^-2 r^ +0.000431 c14^1*c107^2 r^ +0.0112 vr^1*c107^1 t^"
+  },
+  {
+   "idx": 68,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "periapse_direita",
+   "ok": false,
+   "gasto": 115.1078,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 50,
+   "usados": [
+    "conceito:122"
+   ],
+   "desc": "('2', 'vr', 'c121')"
+  },
+  {
+   "idx": 69,
+   "fase": 2,
+   "fam": "arrasto",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.6592,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.34 r^-2 r^ -0.0362 v^1 v^"
+  },
+  {
+   "idx": 70,
+   "fase": 2,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.68 r^-2 r^"
+  },
+  {
+   "idx": 71,
+   "fase": 2,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 6.4848,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 11,
+   "usados": [
+    "conceito:15",
+    "lei:23"
+   ],
+   "desc": "-0.765 r^-2 r^ +0.00411 r^-2*c14^1 r^ -0.0411 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 72,
+   "fase": 2,
+   "fam": "einstein",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.6592,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.37 r^-2 r^ -0.0352 r^-2*v^2 r^"
+  },
+  {
+   "idx": 73,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "escapa",
+   "ok": false,
+   "gasto": 3.8816000000000006,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 31,
+   "usados": [],
+   "desc": "('2', 'r', 'v')"
+  },
+  {
+   "idx": 74,
+   "fase": 2,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.5088,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 13,
+   "usados": [
+    "conceito:108",
+    "conceito:15",
+    "lei:119"
+   ],
+   "desc": "-0.708 r^-2 r^ +0.000275 c14^1*c107^2 r^ +0.00898 vr^1*c107^1 t^"
+  },
+  {
+   "idx": 75,
+   "fase": 2,
+   "fam": "vortice",
+   "fonte": "relato:F",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.4928,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 11,
+   "usados": [
+    "conceito:15",
+    "lei:23"
+   ],
+   "desc": "-1.59 r^-2 r^ -0.0128 r^-2*c14^1 r^ +0.101 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 76,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "sentido",
+   "ok": true,
+   "gasto": 2.3416,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 5,
+   "usados": [
+    "conceito:15"
+   ],
+   "desc": "('1', 'c14')"
+  },
+  {
+   "idx": 77,
+   "fase": 2,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.3992,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 2,
+   "usados": [],
+   "desc": "-0.699 r^-2 r^"
+  },
+  {
+   "idx": 78,
+   "fase": 2,
+   "fam": "vortice",
+   "fonte": "relato:F",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.760799999999994,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 12,
+   "usados": [
+    "conceito:15",
+    "lei:23"
+   ],
+   "desc": "-1.47 r^-2 r^ -0.0102 r^-2*c14^1 r^ +0.0748 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 79,
+   "fase": 2,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 52.272800000000004,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 56,
+   "usados": [
+    "conceito:15"
+   ],
+   "desc": "-1.52 r^-2 r^ -0.177 r^-1*c14^1 r^ +0.0561 v^2*c14^1 r^ -0.0423 v^-1*vr^1 t^ +0.0168 c14^1 r^"
+  },
+  {
+   "idx": 80,
+   "fase": 3,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:vmax@5",
+   "ok": false,
+   "gasto": 118.77519999999997,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": false,
+   "acoes": 55,
+   "usados": [],
+   "desc": "('1', 'r')"
+  },
+  {
+   "idx": 81,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:varre@40",
+   "ok": true,
+   "gasto": 3.1616000000000004,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": true,
+   "acoes": 20,
+   "usados": [],
+   "desc": "('2', 'r', 'v')"
+  },
+  {
+   "idx": 82,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.34 r^-2 r^"
+  },
+  {
+   "idx": 83,
+   "fase": 3,
+   "fam": "oblato",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.6592,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.48 r^-2 r^ -0.0332 r^-4 r^"
+  },
+  {
+   "idx": 84,
+   "fase": 3,
+   "fam": "ciclotron",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 169.52020000000005,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 74,
+   "usados": [
+    "direcao:0"
+   ],
+   "desc": "+1.17 v^1 rot(v^)"
+  },
+  {
+   "idx": 85,
+   "fase": 3,
+   "fam": "ciclotron",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.5455999999999985,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 15,
+   "usados": [
+    "direcao:0",
+    "lei:160"
+   ],
+   "desc": "+1.32 v^1 rot(v^)"
+  },
+  {
+   "idx": 86,
+   "fase": 3,
+   "fam": "arrasto",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.6592,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.992 r^-2 r^ -0.0548 v^1 v^"
+  },
+  {
+   "idx": 87,
+   "fase": 3,
+   "fam": "vortice",
+   "fonte": "relato:F",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.835599999999996,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 12,
+   "usados": [
+    "conceito:15",
+    "lei:23"
+   ],
+   "desc": "-0.604 r^-2 r^ -0.0122 r^-2*c14^1 r^ +0.099 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 88,
+   "fase": 3,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 110.20679999999999,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 29,
+   "usados": [
+    "direcao:0"
+   ],
+   "desc": "-0.882 r^-2 r^ -0.0182 r^-2*v^-2 rot(v^)"
+  },
+  {
+   "idx": 89,
+   "fase": 3,
+   "fam": "ciclotron",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 2.1752000000000002,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 3,
+   "usados": [
+    "direcao:0",
+    "lei:160"
+   ],
+   "desc": "+0.802 v^1 rot(v^)"
+  },
+  {
+   "idx": 90,
+   "fase": 3,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:rmin@15",
+   "ok": false,
+   "gasto": 2.5016,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": false,
+   "acoes": 8,
+   "usados": [],
+   "desc": "('1', 'r')"
+  },
+  {
+   "idx": 91,
+   "fase": 3,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 293.15059999999977,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 55,
+   "usados": [
+    "conceito:15",
+    "lei:68"
+   ],
+   "desc": "-1.48 r^-2 r^ -0.00545 r^-4*c14^1 r^"
+  },
+  {
+   "idx": 92,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:varre@40",
+   "ok": true,
+   "gasto": 7.844000000000001,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": true,
+   "acoes": 37,
+   "usados": [],
+   "desc": "('2', 'r', 'v')"
+  },
+  {
+   "idx": 93,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.785 r^-2 r^"
+  },
+  {
+   "idx": 94,
+   "fase": 3,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "sentido",
+   "ok": true,
+   "gasto": 3.781600000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 31,
+   "usados": [
+    "conceito:15"
+   ],
+   "desc": "('1', 'c14')"
+  },
+  {
+   "idx": 95,
+   "fase": 3,
+   "fam": "einstein",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 10.6592,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.621 r^-2 r^ -0.0337 r^-4*v^3 r^"
+  },
+  {
+   "idx": 96,
+   "fase": 3,
+   "fam": "mola",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.07 r^1 r^"
+  },
+  {
+   "idx": 97,
+   "fase": 3,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "escapa",
+   "ok": false,
+   "gasto": 3.4016000000000006,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 24,
+   "usados": [],
+   "desc": "('2', 'r', 'v')"
+  },
+  {
+   "idx": 98,
+   "fase": 3,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.5436,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 10,
+   "usados": [
+    "conceito:108",
+    "conceito:13",
+    "direcao:0",
+    "lei:194"
+   ],
+   "desc": "-1.35 r^-2 r^ -0.0141 c12^1 rot(v^) -0.00149 c107^1 rot(v^)"
+  },
+  {
+   "idx": 99,
+   "fase": 3,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:varre@40",
+   "ok": true,
+   "gasto": 56.19760000000001,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": true,
+   "acoes": 82,
+   "usados": [
+    "conceito:108"
+   ],
+   "desc": "('1', 'c107')"
+  },
+  {
+   "idx": 100,
+   "fase": 3,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.725599999999998,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 5,
+   "usados": [
+    "conceito:108",
+    "conceito:13",
+    "direcao:0",
+    "lei:194"
+   ],
+   "desc": "-1.22 r^-2 r^ -0.0134 c12^1 rot(v^) +0.000801 c107^1 rot(v^)"
+  },
+  {
+   "idx": 101,
+   "fase": 3,
+   "fam": "ciclotron",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 2.1912000000000003,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 5,
+   "usados": [
+    "direcao:0",
+    "lei:160"
+   ],
+   "desc": "+0.668 v^1 rot(v^)"
+  },
+  {
+   "idx": 102,
+   "fase": 3,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.4496,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 4,
+   "usados": [
+    "conceito:108",
+    "conceito:13",
+    "direcao:0",
+    "lei:194"
+   ],
+   "desc": "-1.46 r^-2 r^ -0.0129 c12^1 rot(v^) -0.0024 c107^1 rot(v^)"
+  },
+  {
+   "idx": 103,
+   "fase": 3,
+   "fam": "mola",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.26 r^1 r^"
+  },
+  {
+   "idx": 104,
+   "fase": 3,
+   "fam": "ciclotron",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.4696,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 7,
+   "usados": [
+    "direcao:0",
+    "lei:160"
+   ],
+   "desc": "+1.28 v^1 rot(v^)"
+  },
+  {
+   "idx": 105,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:rmin@15",
+   "ok": false,
+   "gasto": 114.46499999999999,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": false,
+   "acoes": 79,
+   "usados": [
+    "conceito:207"
+   ],
+   "desc": "('1', 'c206')"
+  },
+  {
+   "idx": 106,
+   "fase": 3,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 10.789599999999995,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 12,
+   "usados": [
+    "conceito:15",
+    "lei:23"
+   ],
+   "desc": "-1.51 r^-2 r^ -0.00289 r^-2*c14^1 r^ -0.00252 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 107,
+   "fase": 3,
+   "fam": "magnetico",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:vmax@5",
+   "ok": false,
+   "gasto": 56.2224,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": false,
+   "acoes": 84,
+   "usados": [],
+   "desc": "('2', 'r', 'vr')"
+  },
+  {
+   "idx": 108,
+   "fase": 3,
+   "fam": "vortice",
+   "fonte": "relato:F",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.7096,
+   "recorrente": false,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 3,
+   "usados": [
+    "conceito:15",
+    "lei:23"
+   ],
+   "desc": "-1.59 r^-2 r^ -0.00983 r^-2*c14^1 r^ +0.0729 r^-1*vr^1 t^"
+  },
+  {
+   "idx": 109,
+   "fase": 3,
+   "fam": "ciclotron",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 2.1752000000000002,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 3,
+   "usados": [
+    "direcao:0",
+    "lei:160"
+   ],
+   "desc": "+1.11 v^1 rot(v^)"
+  },
+  {
+   "idx": 110,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.752 r^-2 r^"
+  },
+  {
+   "idx": 111,
+   "fase": 3,
+   "fam": "einstein",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 10.6592,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-0.967 r^-2 r^ -0.0209 r^-3*v^2 r^"
+  },
+  {
+   "idx": 112,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": true,
+   "gasto": 6.395200000000001,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 1,
+   "usados": [],
+   "desc": "-1.19 r^-2 r^"
+  },
+  {
+   "idx": 113,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:vmax@5",
+   "ok": false,
+   "gasto": 3.0991999999999997,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": false,
+   "acoes": 7,
+   "usados": [],
+   "desc": "('1', 'r')"
+  },
+  {
+   "idx": 114,
+   "fase": 3,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "L",
+   "molde": null,
+   "ok": false,
+   "gasto": 301.33119999999997,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 44,
+   "usados": [
+    "direcao:0"
+   ],
+   "desc": "-1.05 r^-2 r^ +0.0541 r^-3*v^1 rot(v^) -0.502 r^-4*vr^3 t^"
+  },
+  {
+   "idx": 115,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:rmin@15",
+   "ok": false,
+   "gasto": 51.32159999999999,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": false,
+   "acoes": 84,
+   "usados": [
+    "conceito:218"
+   ],
+   "desc": "('1', 'c217')"
+  },
+  {
+   "idx": 116,
+   "fase": 3,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:rmin@15",
+   "ok": false,
+   "gasto": 96.46000000000001,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": false,
+   "acoes": 82,
+   "usados": [
+    "conceito:102"
+   ],
+   "desc": "('1', 'c101')"
+  },
+  {
+   "idx": 117,
+   "fase": 3,
+   "fam": "spin_orbita",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:varre@40",
+   "ok": true,
+   "gasto": 3.5592,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": true,
+   "acoes": 15,
+   "usados": [
+    "conceito:108"
+   ],
+   "desc": "('1', 'c107')"
+  },
+  {
+   "idx": 118,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "q:vmax@5",
+   "ok": false,
+   "gasto": 119.8486,
+   "recorrente": true,
+   "lacrado": true,
+   "ok_ablacao": false,
+   "acoes": 77,
+   "usados": [],
+   "desc": "('1', 'r')"
+  },
+  {
+   "idx": 119,
+   "fase": 3,
+   "fam": "kepler",
+   "fonte": "percebido",
+   "tipo": "Q",
+   "molde": "periapse_direita",
+   "ok": true,
+   "gasto": 61.395399999999995,
+   "recorrente": true,
+   "lacrado": false,
+   "ok_ablacao": null,
+   "acoes": 80,
+   "usados": [
+    "conceito:209"
+   ],
+   "desc": "('1', 'c208')"
+  }
+ ],
+ "segundos": 44.59465026855469,
+ "n_estruturas": 186,
+ "tipos": {
+  "op": 16,
+  "aberto": 69,
+  "conceito": 58,
+  "direcao": 13,
+  "coalizao": 2,
+  "lei": 28
+ },
+ "prof_max": 3,
+ "T_final": 0.4468358838943359,
+ "tau": {
+  "lei": 23.92,
+  "conceito": 23.96
+ },
+ "fontes": {
+  "percebido": 0.9,
+  "relato:F": 0.4004256236604822
+ },
+ "escopos": [
+  {
+   "id": "op:forma",
+   "tipo": "op",
+   "n": 305,
+   "beta_medio": 0.99702606581303,
+   "p_global": 0.2613121443177961,
+   "familias_pagou": [
+    "ciclotron",
+    "einstein",
+    "magnetico",
+    "spin_orbita",
+    "vortice"
+   ],
+   "desc": "op:forma"
+  },
+  {
+   "id": "op:ajustar_base",
+   "tipo": "op",
+   "n": 97,
+   "beta_medio": 9.827679134495757,
+   "p_global": 0.0006559244295938083,
+   "familias_pagou": [
+    "arrasto",
+    "einstein",
+    "kepler",
+    "mola",
+    "oblato"
+   ],
+   "desc": "op:ajustar_base"
+  },
+  {
+   "id": "op:ajustar_ctx",
+   "tipo": "op",
+   "n": 6,
+   "beta_medio": 3.564975403740487,
+   "p_global": 0.176808431662056,
+   "familias_pagou": [
+    "magnetico"
+   ],
+   "desc": "op:ajustar_ctx"
+  },
+  {
+   "id": "op:ajustar_com",
+   "tipo": "op",
+   "n": 35,
+   "beta_medio": 14.05685814725009,
+   "p_global": 1.1610183043991272e-05,
+   "familias_pagou": [
+    "ciclotron",
+    "magnetico",
+    "vortice"
+   ],
+   "desc": "op:ajustar_com"
+  },
+  {
+   "id": "op:ajustar_amplo",
+   "tipo": "op",
+   "n": 8,
+   "beta_medio": 2.962752689337081,
+   "p_global": 0.22595103851647974,
+   "familias_pagou": [
+    "magnetico",
+    "spin_orbita"
+   ],
+   "desc": "op:ajustar_amplo"
+  },
+  {
+   "id": "op:juntar",
+   "tipo": "op",
+   "n": 206,
+   "beta_medio": 0.2406908159654211,
+   "p_global": 0.64036869140769,
+   "familias_pagou": [],
+   "desc": "op:juntar"
+  },
+  {
+   "id": "op:inventar",
+   "tipo": "op",
+   "n": 54,
+   "beta_medio": 15.685367719607568,
+   "p_global": 2.0062930008308277e-06,
+   "familias_pagou": [
+    "kepler",
+    "magnetico",
+    "mola",
+    "spin_orbita",
+    "vortice"
+   ],
+   "desc": "op:inventar"
+  },
+  {
+   "id": "op:reajustar",
+   "tipo": "op",
+   "n": 970,
+   "beta_medio": 1.1464941045885524,
+   "p_global": 0.17174837579993865,
+   "familias_pagou": [
+    "kepler",
+    "magnetico",
+    "mola",
+    "spin_orbita",
+    "vortice"
+   ],
+   "desc": "op:reajustar"
+  },
+  {
+   "id": "op:derivar",
+   "tipo": "op",
+   "n": 39,
+   "beta_medio": 4.8658612200189655,
+   "p_global": 0.002156924188432216,
+   "familias_pagou": [
+    "ciclotron",
+    "magnetico"
+   ],
+   "desc": "op:derivar"
+  },
+  {
+   "id": "op:prever_base",
+   "tipo": "op",
+   "n": 59,
+   "beta_medio": 1.497709426586078,
+   "p_global": 0.17674491304252196,
+   "familias_pagou": [
+    "kepler",
+    "magnetico"
+   ],
+   "desc": "op:prever_base"
+  },
+  {
+   "id": "op:prever_ctx",
+   "tipo": "op",
+   "n": 66,
+   "beta_medio": 1.8637662340875443,
+   "p_global": 0.15516108001174322,
+   "familias_pagou": [
+    "kepler",
+    "magnetico",
+    "spin_orbita"
+   ],
+   "desc": "op:prever_ctx"
+  },
+  {
+   "id": "op:prever_novos",
+   "tipo": "op",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": "op:prever_novos"
+  },
+  {
+   "id": "op:prever_com",
+   "tipo": "op",
+   "n": 137,
+   "beta_medio": 2.2469592722658787,
+   "p_global": 0.07580153720579404,
+   "familias_pagou": [
+    "kepler",
+    "magnetico",
+    "mola",
+    "spin_orbita"
+   ],
+   "desc": "op:prever_com"
+  },
+  {
+   "id": "op:macro",
+   "tipo": "op",
+   "n": 24,
+   "beta_medio": 2.6451186314316626,
+   "p_global": 0.1815751455841157,
+   "familias_pagou": [
+    "kepler",
+    "spin_orbita"
+   ],
+   "desc": "op:macro"
+  },
+  {
+   "id": "op:confiar",
+   "tipo": "op",
+   "n": 92,
+   "beta_medio": 3.4069683083867988,
+   "p_global": 0.12557893089240543,
+   "familias_pagou": [
+    "arrasto",
+    "ciclotron",
+    "einstein",
+    "kepler",
+    "magnetico",
+    "mola",
+    "oblato",
+    "spin_orbita"
+   ],
+   "desc": "op:confiar"
+  },
+  {
+   "id": "direcao:0",
+   "tipo": "direcao",
+   "n": 14,
+   "beta_medio": 4.469127086625947,
+   "p_global": 0.093708651876484,
+   "familias_pagou": [
+    "ciclotron",
+    "magnetico"
+   ],
+   "desc": {
+    "expr": "rot(v^)"
+   }
+  },
+  {
+   "id": "direcao:3",
+   "tipo": "direcao",
+   "n": 2,
+   "beta_medio": 4.0518574260628295,
+   "p_global": 0.16768777560824646,
+   "familias_pagou": [],
+   "desc": {
+    "expr": "(r^+v^)"
+   }
+  },
+  {
+   "id": "direcao:4",
+   "tipo": "direcao",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [],
+   "desc": {
+    "expr": "(r^-v^)"
+   }
+  },
+  {
+   "id": "direcao:5",
+   "tipo": "direcao",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [],
+   "desc": {
+    "expr": "(t^+v^)"
+   }
+  },
+  {
+   "id": "direcao:6",
+   "tipo": "direcao",
+   "n": 3,
+   "beta_medio": 3.3781961542725245,
+   "p_global": 0.192637766176484,
+   "familias_pagou": [],
+   "desc": {
+    "expr": "(t^-v^)"
+   }
+  },
+  {
+   "id": "lei:7",
+   "tipo": "lei",
+   "n": 33,
+   "beta_medio": 5.905971914747953,
+   "p_global": 0.0020114064188929055,
+   "familias_pagou": [
+    "mola"
+   ],
+   "desc": {
+    "lei": "-0.73 r^1 r^"
+   }
+  },
+  {
+   "id": "aberto:8",
+   "tipo": "aberto",
+   "n": 6,
+   "beta_medio": 4.154849507241899,
+   "p_global": 0.14481154831897383,
+   "familias_pagou": [
+    "mola"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:9",
+   "tipo": "aberto",
+   "n": 5,
+   "beta_medio": 4.2491792743414685,
+   "p_global": 0.1446212655610769,
+   "familias_pagou": [
+    "mola"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "lei:10",
+   "tipo": "lei",
+   "n": 16,
+   "beta_medio": 0.6066103566988734,
+   "p_global": 0.40596880643807937,
+   "familias_pagou": [],
+   "desc": {
+    "lei": "-0.744 r^-2 r^ -0.0356 r^-1*v^4 r^"
+   }
+  },
+  {
+   "id": "aberto:11",
+   "tipo": "aberto",
+   "n": 5,
+   "beta_medio": 2.1451244073322226,
+   "p_global": 0.277575775796358,
+   "familias_pagou": [],
+   "desc": {}
+  },
+  {
+   "id": "conceito:13",
+   "tipo": "conceito",
+   "n": 41,
+   "beta_medio": 0.9659901130578337,
+   "p_global": 0.255147917305599,
+   "familias_pagou": [
+    "magnetico"
+   ],
+   "desc": {
+    "suporte": [
+     [
+      "1/r"
+     ],
+     [
+      "vx",
+      "vx"
+     ],
+     [
+      "vy",
+      "vy"
+     ]
+    ],
+    "prof": 1
+   }
+  },
+  {
+   "id": "conceito:15",
+   "tipo": "conceito",
+   "n": 89,
+   "beta_medio": 7.6928494385193105,
+   "p_global": 2.0505810202861755e-05,
+   "familias_pagou": [
+    "kepler",
+    "magnetico",
+    "mola",
+    "spin_orbita",
+    "vortice"
+   ],
+   "desc": {
+    "suporte": [
+     [
+      "x",
+      "vy"
+     ],
+     [
+      "y",
+      "vx"
+     ]
+    ],
+    "prof": 1
+   }
+  },
+  {
+   "id": "aberto:16",
+   "tipo": "aberto",
+   "n": 5,
+   "beta_medio": 4.151421721213341,
+   "p_global": 0.13185740783518254,
+   "familias_pagou": [
+    "mola"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "lei:17",
+   "tipo": "lei",
+   "n": 26,
+   "beta_medio": 2.080058023993823,
+   "p_global": 0.15267247883783522,
+   "familias_pagou": [
+    "oblato"
+   ],
+   "desc": {
+    "lei": "-1.44 r^-2 r^ -0.0417 r^-4 r^"
+   }
+  },
+  {
+   "id": "aberto:18",
+   "tipo": "aberto",
+   "n": 5,
+   "beta_medio": 4.362086455279742,
+   "p_global": 0.1537800065346657,
+   "familias_pagou": [
+    "oblato"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "conceito:20",
+   "tipo": "conceito",
+   "n": 33,
+   "beta_medio": 0.6368068807520267,
+   "p_global": 0.36431687857234996,
+   "familias_pagou": [
+    "mola"
+   ],
+   "desc": {
+    "suporte": [
+     [
+      "c14"
+     ],
+     [
+      "y",
+      "y"
+     ],
+     [
+      "vy",
+      "vy"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:22",
+   "tipo": "conceito",
+   "n": 31,
+   "beta_medio": 0.4299499228582872,
+   "p_global": 0.4860652241726328,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "c14"
+     ],
+     [
+      "x",
+      "y"
+     ],
+     [
+      "vx",
+      "vy"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "lei:23",
+   "tipo": "lei",
+   "n": 25,
+   "beta_medio": 6.482699627562406,
+   "p_global": 0.009798238500941834,
+   "familias_pagou": [
+    "vortice"
+   ],
+   "desc": {
+    "lei": "-1.45 r^-2 r^ +0.0882 r^-2*c14^1 r^ +0.0803 r^-1*vr^1 t^"
+   }
+  },
+  {
+   "id": "aberto:24",
+   "tipo": "aberto",
+   "n": 3,
+   "beta_medio": 5.095993252625959,
+   "p_global": 0.11087341043164481,
+   "familias_pagou": [
+    "vortice"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "lei:25",
+   "tipo": "lei",
+   "n": 26,
+   "beta_medio": 4.669905129638556,
+   "p_global": 0.04594685152780938,
+   "familias_pagou": [
+    "arrasto"
+   ],
+   "desc": {
+    "lei": "-0.991 r^-2 r^ -0.0345 v^1 v^"
+   }
+  },
+  {
+   "id": "aberto:26",
+   "tipo": "aberto",
+   "n": 4,
+   "beta_medio": 4.86947177995369,
+   "p_global": 0.12618200275109584,
+   "familias_pagou": [
+    "arrasto"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "lei:27",
+   "tipo": "lei",
+   "n": 15,
+   "beta_medio": 0.5773244402748988,
+   "p_global": 0.41923357060283717,
+   "familias_pagou": [],
+   "desc": {
+    "lei": "-1.56 r^-2 r^ -0.00754 r^-3*v^4 r^"
+   }
+  },
+  {
+   "id": "aberto:28",
+   "tipo": "aberto",
+   "n": 5,
+   "beta_medio": 2.477332625996616,
+   "p_global": 0.26350448208315613,
+   "familias_pagou": [],
+   "desc": {}
+  },
+  {
+   "id": "lei:29",
+   "tipo": "lei",
+   "n": 14,
+   "beta_medio": 0.6113510616831194,
+   "p_global": 0.4104588266106742,
+   "familias_pagou": [],
+   "desc": {
+    "lei": "-1.19 r^-2 r^ -0.0427 r^-3*v^1 r^"
+   }
+  },
+  {
+   "id": "aberto:30",
+   "tipo": "aberto",
+   "n": 3,
+   "beta_medio": 3.4096728521224215,
+   "p_global": 0.20076801607899822,
+   "familias_pagou": [],
+   "desc": {}
+  },
+  {
+   "id": "aberto:31",
+   "tipo": "aberto",
+   "n": 4,
+   "beta_medio": 4.878094473431771,
+   "p_global": 0.12775277288505968,
+   "familias_pagou": [
+    "oblato"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "lei:32",
+   "tipo": "lei",
+   "n": 36,
+   "beta_medio": 4.033421183314151,
+   "p_global": 0.09301751643331148,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {
+    "lei": "-1.23 r^-2 r^"
+   }
+  },
+  {
+   "id": "aberto:33",
+   "tipo": "aberto",
+   "n": 4,
+   "beta_medio": 4.844678235704963,
+   "p_global": 0.1309635501626614,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:34",
+   "tipo": "aberto",
+   "n": 4,
+   "beta_medio": 4.7132034181595515,
+   "p_global": 0.11899590971811645,
+   "familias_pagou": [
+    "mola"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:35",
+   "tipo": "aberto",
+   "n": 6,
+   "beta_medio": 3.7821817064236622,
+   "p_global": 0.17880533860808542,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:36",
+   "tipo": "aberto",
+   "n": 4,
+   "beta_medio": 4.878094473431771,
+   "p_global": 0.12775277288505968,
+   "familias_pagou": [
+    "oblato"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:37",
+   "tipo": "aberto",
+   "n": 4,
+   "beta_medio": 3.1493293482305487,
+   "p_global": 0.21724195312114747,
+   "familias_pagou": [],
+   "desc": {}
+  },
+  {
+   "id": "aberto:38",
+   "tipo": "aberto",
+   "n": 5,
+   "beta_medio": 3.7366181324395855,
+   "p_global": 0.18002547434557173,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:39",
+   "tipo": "aberto",
+   "n": 4,
+   "beta_medio": 4.824205572045408,
+   "p_global": 0.13054339837436527,
+   "familias_pagou": [
+    "mola"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:40",
+   "tipo": "aberto",
+   "n": 5,
+   "beta_medio": 4.372013043649151,
+   "p_global": 0.14817828287098758,
+   "familias_pagou": [
+    "arrasto"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:41",
+   "tipo": "aberto",
+   "n": 3,
+   "beta_medio": 3.4096728521224215,
+   "p_global": 0.20076801607899822,
+   "familias_pagou": [],
+   "desc": {}
+  },
+  {
+   "id": "aberto:42",
+   "tipo": "aberto",
+   "n": 4,
+   "beta_medio": 3.1493293482305487,
+   "p_global": 0.21724195312114747,
+   "familias_pagou": [],
+   "desc": {}
+  },
+  {
+   "id": "aberto:43",
+   "tipo": "aberto",
+   "n": 4,
+   "beta_medio": 4.820412482071842,
+   "p_global": 0.12476661967231914,
+   "familias_pagou": [
+    "mola"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:44",
+   "tipo": "aberto",
+   "n": 4,
+   "beta_medio": 4.840228239004293,
+   "p_global": 0.12475341275377491,
+   "familias_pagou": [
+    "arrasto"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:45",
+   "tipo": "aberto",
+   "n": 4,
+   "beta_medio": 4.875282340753726,
+   "p_global": 0.13142341190535228,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:46",
+   "tipo": "aberto",
+   "n": 5,
+   "beta_medio": 3.7366181324395855,
+   "p_global": 0.18002547434557173,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "conceito:48",
+   "tipo": "conceito",
+   "n": 34,
+   "beta_medio": 0.36151986097911754,
+   "p_global": 0.5285960419317457,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "c14"
+     ],
+     [
+      "c14",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:50",
+   "tipo": "conceito",
+   "n": 27,
+   "beta_medio": 0.558486748036473,
+   "p_global": 0.41162092706668435,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "c14"
+     ],
+     [
+      "x",
+      "x"
+     ],
+     [
+      "vx",
+      "vx"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:52",
+   "tipo": "conceito",
+   "n": 27,
+   "beta_medio": 0.558486748036473,
+   "p_global": 0.41162092706668435,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "c14"
+     ],
+     [
+      "x",
+      "y"
+     ],
+     [
+      "vx",
+      "vy"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:54",
+   "tipo": "conceito",
+   "n": 29,
+   "beta_medio": 0.5387469995713982,
+   "p_global": 0.4202660843552259,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "c14"
+     ],
+     [
+      "y",
+      "y"
+     ],
+     [
+      "vy",
+      "vy"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:56",
+   "tipo": "conceito",
+   "n": 29,
+   "beta_medio": 0.5561843754573502,
+   "p_global": 0.4128530444395643,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "y",
+      "y"
+     ],
+     [
+      "vx",
+      "vx"
+     ],
+     [
+      "r",
+      "r"
+     ]
+    ],
+    "prof": 1
+   }
+  },
+  {
+   "id": "conceito:58",
+   "tipo": "conceito",
+   "n": 45,
+   "beta_medio": 1.3404024838371784,
+   "p_global": 0.11701069092590342,
+   "familias_pagou": [
+    "spin_orbita"
+   ],
+   "desc": {
+    "suporte": [
+     [
+      "c14"
+     ],
+     [
+      "c14",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "lei:59",
+   "tipo": "lei",
+   "n": 14,
+   "beta_medio": 3.654131201579255,
+   "p_global": 0.1236520913452612,
+   "familias_pagou": [
+    "spin_orbita"
+   ],
+   "desc": {
+    "lei": "-1.39 r^-2 r^ +0.0485 r^-4*c57^1 r^"
+   }
+  },
+  {
+   "id": "lei:60",
+   "tipo": "lei",
+   "n": 11,
+   "beta_medio": 0.8920690898161989,
+   "p_global": 0.3489002047414043,
+   "familias_pagou": [],
+   "desc": {
+    "lei": "-1.18 r^-2 r^ -0.0658 r^-3 r^"
+   }
+  },
+  {
+   "id": "aberto:61",
+   "tipo": "aberto",
+   "n": 3,
+   "beta_medio": 5.1742565231350115,
+   "p_global": 0.11412471329956889,
+   "familias_pagou": [
+    "oblato"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "lei:62",
+   "tipo": "lei",
+   "n": 11,
+   "beta_medio": 0.8158044520691217,
+   "p_global": 0.3654046671535804,
+   "familias_pagou": [],
+   "desc": {
+    "lei": "-1.56 r^-2 r^ -0.049 r^-4*c47^2 r^"
+   }
+  },
+  {
+   "id": "lei:63",
+   "tipo": "lei",
+   "n": 12,
+   "beta_medio": 0.7550831772063552,
+   "p_global": 0.36629648984070035,
+   "familias_pagou": [],
+   "desc": {
+    "lei": "-1.16 r^-2 r^ -0.000667 r^-4*c14^2 r^"
+   }
+  },
+  {
+   "id": "aberto:64",
+   "tipo": "aberto",
+   "n": 4,
+   "beta_medio": 5.466123678022642,
+   "p_global": 0.11191522741199254,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:65",
+   "tipo": "aberto",
+   "n": 3,
+   "beta_medio": 5.152968518706874,
+   "p_global": 0.11377973418001809,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "conceito:67",
+   "tipo": "conceito",
+   "n": 27,
+   "beta_medio": 0.5531295213194282,
+   "p_global": 0.4139925341817886,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "c14"
+     ],
+     [
+      "c14",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "lei:68",
+   "tipo": "lei",
+   "n": 14,
+   "beta_medio": 1.635755148733447,
+   "p_global": 0.224979940127645,
+   "familias_pagou": [
+    "spin_orbita"
+   ],
+   "desc": {
+    "lei": "-1.39 r^-2 r^ -0.00573 r^-4*c14^1 r^"
+   }
+  },
+  {
+   "id": "aberto:69",
+   "tipo": "aberto",
+   "n": 3,
+   "beta_medio": 5.178168131678595,
+   "p_global": 0.11441452639829916,
+   "familias_pagou": [
+    "arrasto"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:70",
+   "tipo": "aberto",
+   "n": 3,
+   "beta_medio": 5.161164133497779,
+   "p_global": 0.11297632985674241,
+   "familias_pagou": [
+    "spin_orbita"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:71",
+   "tipo": "aberto",
+   "n": 3,
+   "beta_medio": 5.198569788255155,
+   "p_global": 0.11450087831722205,
+   "familias_pagou": [
+    "spin_orbita"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:72",
+   "tipo": "aberto",
+   "n": 3,
+   "beta_medio": 5.122791106508602,
+   "p_global": 0.11165717582897716,
+   "familias_pagou": [
+    "mola"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "conceito:74",
+   "tipo": "conceito",
+   "n": 28,
+   "beta_medio": 0.5582409718109183,
+   "p_global": 0.41318407999612927,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "c14"
+     ],
+     [
+      "x",
+      "1/r"
+     ],
+     [
+      "vy",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:76",
+   "tipo": "conceito",
+   "n": 26,
+   "beta_medio": 0.5583036885884185,
+   "p_global": 0.4128993090125239,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "vy"
+     ],
+     [
+      "x",
+      "1/r"
+     ],
+     [
+      "vy",
+      "c57"
+     ]
+    ],
+    "prof": 3
+   }
+  },
+  {
+   "id": "conceito:78",
+   "tipo": "conceito",
+   "n": 26,
+   "beta_medio": 0.5683134086567974,
+   "p_global": 0.40894972869847923,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "c14",
+      "c57"
+     ],
+     [
+      "c57",
+      "c57"
+     ]
+    ],
+    "prof": 3
+   }
+  },
+  {
+   "id": "conceito:80",
+   "tipo": "conceito",
+   "n": 25,
+   "beta_medio": 0.575288620049146,
+   "p_global": 0.4061009267619562,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "x",
+      "vy"
+     ],
+     [
+      "y",
+      "vx"
+     ],
+     [
+      "c57",
+      "c57"
+     ]
+    ],
+    "prof": 3
+   }
+  },
+  {
+   "id": "conceito:82",
+   "tipo": "conceito",
+   "n": 28,
+   "beta_medio": 0.5755020131918961,
+   "p_global": 0.4059914915972133,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "y",
+      "1/r"
+     ],
+     [
+      "vx",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:84",
+   "tipo": "conceito",
+   "n": 28,
+   "beta_medio": 0.5578778957046416,
+   "p_global": 0.4127305094484042,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "c14"
+     ],
+     [
+      "x",
+      "1/r"
+     ],
+     [
+      "vy",
+      "c57"
+     ]
+    ],
+    "prof": 3
+   }
+  },
+  {
+   "id": "conceito:86",
+   "tipo": "conceito",
+   "n": 28,
+   "beta_medio": 0.5579953233772764,
+   "p_global": 0.4132831731615372,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "r",
+      "c14"
+     ],
+     [
+      "r",
+      "c57"
+     ],
+     [
+      "c14",
+      "c14"
+     ]
+    ],
+    "prof": 3
+   }
+  },
+  {
+   "id": "conceito:88",
+   "tipo": "conceito",
+   "n": 36,
+   "beta_medio": 0.3669720103278008,
+   "p_global": 0.5235741492634087,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "y",
+      "1/r"
+     ],
+     [
+      "vx",
+      "c57"
+     ],
+     [
+      "c14",
+      "c14"
+     ]
+    ],
+    "prof": 3
+   }
+  },
+  {
+   "id": "conceito:90",
+   "tipo": "conceito",
+   "n": 26,
+   "beta_medio": 0.5500920187148304,
+   "p_global": 0.41633261944218936,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "1/r",
+      "1/r"
+     ],
+     [
+      "1/r",
+      "c14"
+     ],
+     [
+      "1/r",
+      "c57"
+     ]
+    ],
+    "prof": 3
+   }
+  },
+  {
+   "id": "lei:91",
+   "tipo": "lei",
+   "n": 10,
+   "beta_medio": 0.8858562307324526,
+   "p_global": 0.3605254671132351,
+   "familias_pagou": [],
+   "desc": {
+    "lei": "-1.17 r^-2 r^ -0.0105 r^-4*c87^1 r^"
+   }
+  },
+  {
+   "id": "aberto:92",
+   "tipo": "aberto",
+   "n": 12,
+   "beta_medio": 1.0679658994685401,
+   "p_global": 0.32316352350196964,
+   "familias_pagou": [
+    "magnetico"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "lei:93",
+   "tipo": "lei",
+   "n": 10,
+   "beta_medio": 0.927326809615524,
+   "p_global": 0.34627162493233005,
+   "familias_pagou": [],
+   "desc": {
+    "lei": "-0.983 r^-2 r^ +0.0291 c87^-1 r^"
+   }
+  },
+  {
+   "id": "aberto:94",
+   "tipo": "aberto",
+   "n": 6,
+   "beta_medio": 3.706642975183853,
+   "p_global": 0.17644760062143486,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:95",
+   "tipo": "aberto",
+   "n": 2,
+   "beta_medio": 5.045182289761102,
+   "p_global": 0.10868677188465244,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:96",
+   "tipo": "aberto",
+   "n": 3,
+   "beta_medio": 4.464403805906314,
+   "p_global": 0.141221915795825,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:97",
+   "tipo": "aberto",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "mola"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:98",
+   "tipo": "aberto",
+   "n": 2,
+   "beta_medio": 5.211430822439468,
+   "p_global": 0.12093297483316874,
+   "familias_pagou": [
+    "mola"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "conceito:100",
+   "tipo": "conceito",
+   "n": 22,
+   "beta_medio": 0.5718319384618884,
+   "p_global": 0.409364749654558,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "c14"
+     ],
+     [
+      "y",
+      "1/r"
+     ],
+     [
+      "vx",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:102",
+   "tipo": "conceito",
+   "n": 25,
+   "beta_medio": 0.5571533414679732,
+   "p_global": 0.4151611650835831,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "y",
+      "1/r"
+     ],
+     [
+      "vx",
+      "c14"
+     ],
+     [
+      "c14",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:104",
+   "tipo": "conceito",
+   "n": 23,
+   "beta_medio": 0.5344655843192379,
+   "p_global": 0.4284245478382113,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "x",
+      "1/r"
+     ],
+     [
+      "vy",
+      "c14"
+     ],
+     [
+      "c14",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:106",
+   "tipo": "conceito",
+   "n": 26,
+   "beta_medio": 0.555879533276899,
+   "p_global": 0.414843416429739,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "x",
+      "1/r"
+     ],
+     [
+      "vy",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:108",
+   "tipo": "conceito",
+   "n": 54,
+   "beta_medio": 2.628908317960547,
+   "p_global": 0.12448810177210125,
+   "familias_pagou": [
+    "kepler",
+    "magnetico",
+    "spin_orbita"
+   ],
+   "desc": {
+    "suporte": [
+     [
+      "1/r"
+     ],
+     [
+      "vx",
+      "vx"
+     ],
+     [
+      "vy",
+      "vy"
+     ]
+    ],
+    "prof": 1
+   }
+  },
+  {
+   "id": "aberto:109",
+   "tipo": "aberto",
+   "n": 2,
+   "beta_medio": 5.184462441848928,
+   "p_global": 0.11463127242617628,
+   "familias_pagou": [
+    "arrasto"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:110",
+   "tipo": "aberto",
+   "n": 5,
+   "beta_medio": 2.1930921972934767,
+   "p_global": 0.2634349097273318,
+   "familias_pagou": [],
+   "desc": {}
+  },
+  {
+   "id": "lei:111",
+   "tipo": "lei",
+   "n": 11,
+   "beta_medio": 1.7183155757756952,
+   "p_global": 0.2499062178959038,
+   "familias_pagou": [
+    "einstein"
+   ],
+   "desc": {
+    "lei": "-0.745 r^-2 r^ +0.0267 r^-1 r^"
+   }
+  },
+  {
+   "id": "aberto:113",
+   "tipo": "aberto",
+   "n": 2,
+   "beta_medio": 5.213322717775455,
+   "p_global": 0.12066325781140062,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:114",
+   "tipo": "aberto",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:115",
+   "tipo": "aberto",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [],
+   "desc": {}
+  },
+  {
+   "id": "aberto:116",
+   "tipo": "aberto",
+   "n": 8,
+   "beta_medio": 2.6221747855190283,
+   "p_global": 0.20944725737797204,
+   "familias_pagou": [
+    "magnetico"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:117",
+   "tipo": "aberto",
+   "n": 2,
+   "beta_medio": 5.130986979797182,
+   "p_global": 0.11187908292452911,
+   "familias_pagou": [
+    "oblato"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:118",
+   "tipo": "aberto",
+   "n": 7,
+   "beta_medio": 3.08014914037269,
+   "p_global": 0.19650710129690646,
+   "familias_pagou": [
+    "magnetico"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "lei:119",
+   "tipo": "lei",
+   "n": 12,
+   "beta_medio": 1.2637508399228135,
+   "p_global": 0.30854853870015436,
+   "familias_pagou": [
+    "magnetico"
+   ],
+   "desc": {
+    "lei": "-1.13 r^-2 r^ -0.00424 c14^1*c107^2 r^ -0.0201 vr^1*c107^1 t^"
+   }
+  },
+  {
+   "id": "conceito:122",
+   "tipo": "conceito",
+   "n": 17,
+   "beta_medio": 0.7684024242007502,
+   "p_global": 0.3528451169275449,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "x",
+      "1/r"
+     ],
+     [
+      "vy",
+      "c14"
+     ],
+     [
+      "c14",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:124",
+   "tipo": "conceito",
+   "n": 15,
+   "beta_medio": 0.7852957393027841,
+   "p_global": 0.35658868054737936,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "x",
+      "1/r"
+     ],
+     [
+      "vy",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:126",
+   "tipo": "conceito",
+   "n": 16,
+   "beta_medio": 0.7596395151532164,
+   "p_global": 0.36072870360245013,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "y",
+      "1/r"
+     ],
+     [
+      "vx",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:128",
+   "tipo": "conceito",
+   "n": 16,
+   "beta_medio": 0.7596395151532164,
+   "p_global": 0.36072870360245013,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "1/r"
+     ],
+     [
+      "vx",
+      "vx"
+     ],
+     [
+      "vy",
+      "vy"
+     ]
+    ],
+    "prof": 1
+   }
+  },
+  {
+   "id": "aberto:129",
+   "tipo": "aberto",
+   "n": 2,
+   "beta_medio": 5.142905385724372,
+   "p_global": 0.11240875241843346,
+   "familias_pagou": [
+    "arrasto"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "lei:131",
+   "tipo": "lei",
+   "n": 12,
+   "beta_medio": 1.350127495265335,
+   "p_global": 0.2587893185210998,
+   "familias_pagou": [
+    "einstein"
+   ],
+   "desc": {
+    "lei": "-1.37 r^-2 r^ -0.0352 r^-2*v^2 r^"
+   }
+  },
+  {
+   "id": "aberto:132",
+   "tipo": "aberto",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "einstein"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:133",
+   "tipo": "aberto",
+   "n": 13,
+   "beta_medio": 1.165548545157134,
+   "p_global": 0.3160571569254585,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:134",
+   "tipo": "aberto",
+   "n": 2,
+   "beta_medio": 5.216763583869236,
+   "p_global": 0.12001061820214215,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "lei:135",
+   "tipo": "lei",
+   "n": 8,
+   "beta_medio": 1.1505046273935855,
+   "p_global": 0.33190068453366756,
+   "familias_pagou": [],
+   "desc": {
+    "lei": "-1.52 r^-2 r^ -0.177 r^-1*c14^1 r^ +0.0561 v^2*c14^1 r^ -0.0423 v^-1*vr^1 t^ +0.0168 c14^1 r^"
+   }
+  },
+  {
+   "id": "lei:136",
+   "tipo": "lei",
+   "n": 6,
+   "beta_medio": 1.7351175624038626,
+   "p_global": 0.29221596103517467,
+   "familias_pagou": [],
+   "desc": {
+    "lei": "-1.52 r^-2 r^ -0.0902 r^-2*v^-2 rot(v^) +0.000117 v^-4*c107^4 rot(v^)"
+   }
+  },
+  {
+   "id": "conceito:138",
+   "tipo": "conceito",
+   "n": 13,
+   "beta_medio": 0.9552464645135625,
+   "p_global": 0.33118888741751806,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "c14"
+     ],
+     [
+      "vy",
+      "vy"
+     ],
+     [
+      "c14",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:140",
+   "tipo": "conceito",
+   "n": 15,
+   "beta_medio": 0.8963388182828265,
+   "p_global": 0.33601527238202616,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "x",
+      "1/r"
+     ],
+     [
+      "vy",
+      "c14"
+     ],
+     [
+      "1/r",
+      "1/r"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:142",
+   "tipo": "conceito",
+   "n": 15,
+   "beta_medio": 0.913015989022353,
+   "p_global": 0.32974400060878023,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "1/r"
+     ],
+     [
+      "r",
+      "c14"
+     ],
+     [
+      "1/r",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "aberto:143",
+   "tipo": "aberto",
+   "n": 12,
+   "beta_medio": 1.114306594378417,
+   "p_global": 0.3314687712595807,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:144",
+   "tipo": "aberto",
+   "n": 2,
+   "beta_medio": 4.4999999999999964,
+   "p_global": 0.14285714285714296,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:145",
+   "tipo": "aberto",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "oblato"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "conceito:147",
+   "tipo": "conceito",
+   "n": 11,
+   "beta_medio": 0.9719054397562088,
+   "p_global": 0.3397763842268463,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "x"
+     ],
+     [
+      "vy"
+     ]
+    ],
+    "prof": 1
+   }
+  },
+  {
+   "id": "conceito:149",
+   "tipo": "conceito",
+   "n": 11,
+   "beta_medio": 0.9719054397562088,
+   "p_global": 0.3397763842268463,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "x",
+      "x"
+     ],
+     [
+      "x",
+      "vy"
+     ],
+     [
+      "vx",
+      "vx"
+     ]
+    ],
+    "prof": 1
+   }
+  },
+  {
+   "id": "conceito:151",
+   "tipo": "conceito",
+   "n": 12,
+   "beta_medio": 0.9277943268866029,
+   "p_global": 0.3462292291910654,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "y"
+     ],
+     [
+      "vx"
+     ]
+    ],
+    "prof": 1
+   }
+  },
+  {
+   "id": "conceito:153",
+   "tipo": "conceito",
+   "n": 13,
+   "beta_medio": 0.8741104291206183,
+   "p_global": 0.354844926779278,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "y",
+      "y"
+     ],
+     [
+      "y",
+      "vx"
+     ],
+     [
+      "vx",
+      "vx"
+     ]
+    ],
+    "prof": 1
+   }
+  },
+  {
+   "id": "conceito:155",
+   "tipo": "conceito",
+   "n": 11,
+   "beta_medio": 1.0435399306819406,
+   "p_global": 0.33334406353059715,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "y",
+      "y"
+     ],
+     [
+      "y",
+      "vx"
+     ],
+     [
+      "vy",
+      "vy"
+     ]
+    ],
+    "prof": 1
+   }
+  },
+  {
+   "id": "conceito:157",
+   "tipo": "conceito",
+   "n": 13,
+   "beta_medio": 0.893805842518592,
+   "p_global": 0.3474970492483885,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "c14"
+     ],
+     [
+      "y",
+      "vx"
+     ],
+     [
+      "r",
+      "r"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:159",
+   "tipo": "conceito",
+   "n": 16,
+   "beta_medio": 0.5195731631856666,
+   "p_global": 0.45312676354537346,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "vx",
+      "vx"
+     ],
+     [
+      "vy",
+      "vy"
+     ]
+    ],
+    "prof": 1
+   }
+  },
+  {
+   "id": "lei:160",
+   "tipo": "lei",
+   "n": 13,
+   "beta_medio": 6.857841958908893,
+   "p_global": 0.024847464012390557,
+   "familias_pagou": [
+    "ciclotron"
+   ],
+   "desc": {
+    "lei": "+1.17 v^1 rot(v^)"
+   }
+  },
+  {
+   "id": "lei:161",
+   "tipo": "lei",
+   "n": 4,
+   "beta_medio": 2.8123487652059063,
+   "p_global": 0.216174201257344,
+   "familias_pagou": [],
+   "desc": {
+    "lei": "-1.18 r^-2 r^ +1.4e-05 c158^3 r^"
+   }
+  },
+  {
+   "id": "direcao:162",
+   "tipo": "direcao",
+   "n": 2,
+   "beta_medio": 4.015286010300221,
+   "p_global": 0.1633223566114638,
+   "familias_pagou": [],
+   "desc": {
+    "expr": "(r^+rot(v^))"
+   }
+  },
+  {
+   "id": "direcao:163",
+   "tipo": "direcao",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [],
+   "desc": {
+    "expr": "(r^-rot(v^))"
+   }
+  },
+  {
+   "id": "direcao:164",
+   "tipo": "direcao",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [],
+   "desc": {
+    "expr": "(t^+rot(v^))"
+   }
+  },
+  {
+   "id": "direcao:166",
+   "tipo": "direcao",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [],
+   "desc": {
+    "expr": "(v^+rot(v^))"
+   }
+  },
+  {
+   "id": "direcao:167",
+   "tipo": "direcao",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [],
+   "desc": {
+    "expr": "(v^-rot(v^))"
+   }
+  },
+  {
+   "id": "aberto:168",
+   "tipo": "aberto",
+   "n": 2,
+   "beta_medio": 5.1390522158881,
+   "p_global": 0.1122339432573544,
+   "familias_pagou": [
+    "arrasto"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "conceito:170",
+   "tipo": "conceito",
+   "n": 12,
+   "beta_medio": 1.1529263607079734,
+   "p_global": 0.29180606730502745,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "y",
+      "1/r"
+     ],
+     [
+      "vx",
+      "c14"
+     ],
+     [
+      "c14",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:172",
+   "tipo": "conceito",
+   "n": 12,
+   "beta_medio": 1.1121399767869007,
+   "p_global": 0.298755286517341,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "x",
+      "vy"
+     ],
+     [
+      "c14",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:174",
+   "tipo": "conceito",
+   "n": 11,
+   "beta_medio": 1.1484886159270715,
+   "p_global": 0.29941563617780664,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "r"
+     ],
+     [
+      "r",
+      "c14"
+     ],
+     [
+      "c14",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:176",
+   "tipo": "conceito",
+   "n": 12,
+   "beta_medio": 1.0990704399374192,
+   "p_global": 0.29970816308106624,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "vx"
+     ],
+     [
+      "y",
+      "1/r"
+     ],
+     [
+      "c14",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:178",
+   "tipo": "conceito",
+   "n": 14,
+   "beta_medio": 0.9847373637995981,
+   "p_global": 0.31366764436079003,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "1/r"
+     ],
+     [
+      "1/r",
+      "c14"
+     ],
+     [
+      "c14",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:180",
+   "tipo": "conceito",
+   "n": 10,
+   "beta_medio": 1.2069523318837168,
+   "p_global": 0.2927340255801775,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "vy"
+     ],
+     [
+      "x",
+      "1/r"
+     ],
+     [
+      "c14",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:182",
+   "tipo": "conceito",
+   "n": 12,
+   "beta_medio": 1.1226511708246796,
+   "p_global": 0.2978131697964106,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "1/r",
+      "1/r"
+     ],
+     [
+      "1/r",
+      "c14"
+     ],
+     [
+      "c14",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:184",
+   "tipo": "conceito",
+   "n": 12,
+   "beta_medio": 1.019888046034494,
+   "p_global": 0.311398653902922,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "x",
+      "1/r"
+     ],
+     [
+      "vy",
+      "c14"
+     ],
+     [
+      "c14",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:186",
+   "tipo": "conceito",
+   "n": 12,
+   "beta_medio": 1.0765822704064878,
+   "p_global": 0.30832968830577595,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "1/r"
+     ],
+     [
+      "vx",
+      "vx"
+     ],
+     [
+      "vy",
+      "vy"
+     ]
+    ],
+    "prof": 1
+   }
+  },
+  {
+   "id": "lei:187",
+   "tipo": "lei",
+   "n": 7,
+   "beta_medio": 3.1358126875245604,
+   "p_global": 0.1770834101925193,
+   "familias_pagou": [
+    "magnetico"
+   ],
+   "desc": {
+    "lei": "-0.882 r^-2 r^ -0.0182 r^-2*v^-2 rot(v^)"
+   }
+  },
+  {
+   "id": "aberto:188",
+   "tipo": "aberto",
+   "n": 5,
+   "beta_medio": 2.1596846581001024,
+   "p_global": 0.27464041156698793,
+   "familias_pagou": [],
+   "desc": {}
+  },
+  {
+   "id": "conceito:190",
+   "tipo": "conceito",
+   "n": 12,
+   "beta_medio": 1.0635752265609004,
+   "p_global": 0.30707442016364317,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "c14"
+     ],
+     [
+      "x",
+      "1/r"
+     ],
+     [
+      "vy",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:192",
+   "tipo": "conceito",
+   "n": 10,
+   "beta_medio": 1.2069523318837168,
+   "p_global": 0.2927340255801775,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "c14"
+     ],
+     [
+      "y",
+      "1/r"
+     ],
+     [
+      "vx",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "aberto:193",
+   "tipo": "aberto",
+   "n": 8,
+   "beta_medio": 2.315033857211048,
+   "p_global": 0.2435460589484893,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "lei:194",
+   "tipo": "lei",
+   "n": 6,
+   "beta_medio": 5.934199349602551,
+   "p_global": 0.0899797320390845,
+   "familias_pagou": [
+    "magnetico"
+   ],
+   "desc": {
+    "lei": "-1.52 r^-2 r^ -0.0202 c12^1 rot(v^) -0.00512 c107^1 rot(v^)"
+   }
+  },
+  {
+   "id": "aberto:195",
+   "tipo": "aberto",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:196",
+   "tipo": "aberto",
+   "n": 9,
+   "beta_medio": 2.4978844324595078,
+   "p_global": 0.23690942718794447,
+   "familias_pagou": [
+    "spin_orbita"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "lei:197",
+   "tipo": "lei",
+   "n": 5,
+   "beta_medio": 2.181359643225081,
+   "p_global": 0.26278518574562404,
+   "familias_pagou": [],
+   "desc": {
+    "lei": "-0.621 r^-2 r^ -0.0337 r^-4*v^3 r^"
+   }
+  },
+  {
+   "id": "aberto:199",
+   "tipo": "aberto",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "mola"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:200",
+   "tipo": "aberto",
+   "n": 8,
+   "beta_medio": 1.3241845487093344,
+   "p_global": 0.3147729224605369,
+   "familias_pagou": [],
+   "desc": {}
+  },
+  {
+   "id": "aberto:201",
+   "tipo": "aberto",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "magnetico"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:203",
+   "tipo": "aberto",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "mola"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "conceito:205",
+   "tipo": "conceito",
+   "n": 8,
+   "beta_medio": 1.3789894072216529,
+   "p_global": 0.29740812866599436,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "x",
+      "1/r"
+     ],
+     [
+      "vy",
+      "c14"
+     ],
+     [
+      "c14",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:207",
+   "tipo": "conceito",
+   "n": 8,
+   "beta_medio": 1.7431493181869797,
+   "p_global": 0.26517351331177685,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "y",
+      "1/r"
+     ],
+     [
+      "vx",
+      "c14"
+     ],
+     [
+      "c14",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:209",
+   "tipo": "conceito",
+   "n": 8,
+   "beta_medio": 5.3975235603471,
+   "p_global": 0.09231269387700962,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {
+    "suporte": [
+     [
+      "x",
+      "1/r"
+     ],
+     [
+      "vy",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:211",
+   "tipo": "conceito",
+   "n": 8,
+   "beta_medio": 1.793992273100068,
+   "p_global": 0.27002357178035974,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "1/r"
+     ],
+     [
+      "vx",
+      "vx"
+     ],
+     [
+      "vy",
+      "vy"
+     ]
+    ],
+    "prof": 1
+   }
+  },
+  {
+   "id": "aberto:212",
+   "tipo": "aberto",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "lei:213",
+   "tipo": "lei",
+   "n": 2,
+   "beta_medio": 5.194335245449775,
+   "p_global": 0.11532191320771182,
+   "familias_pagou": [
+    "einstein"
+   ],
+   "desc": {
+    "lei": "-0.967 r^-2 r^ -0.0209 r^-3*v^2 r^"
+   }
+  },
+  {
+   "id": "aberto:214",
+   "tipo": "aberto",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "einstein"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:215",
+   "tipo": "aberto",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [
+    "kepler"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "aberto:216",
+   "tipo": "aberto",
+   "n": 5,
+   "beta_medio": 2.286965125064429,
+   "p_global": 0.25570422981885615,
+   "familias_pagou": [],
+   "desc": {}
+  },
+  {
+   "id": "conceito:218",
+   "tipo": "conceito",
+   "n": 7,
+   "beta_medio": 1.9693368188258278,
+   "p_global": 0.24422041224329466,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "x",
+      "x"
+     ],
+     [
+      "y",
+      "y"
+     ],
+     [
+      "c14",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "conceito:220",
+   "tipo": "conceito",
+   "n": 6,
+   "beta_medio": 2.446768234432625,
+   "p_global": 0.21796765166126075,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "y",
+      "1/r"
+     ],
+     [
+      "vx",
+      "r"
+     ],
+     [
+      "vx",
+      "c14"
+     ]
+    ],
+    "prof": 2
+   }
+  },
+  {
+   "id": "lei:221",
+   "tipo": "lei",
+   "n": 1,
+   "beta_medio": 4.5,
+   "p_global": 0.14285714285714285,
+   "familias_pagou": [],
+   "desc": {
+    "lei": "-1.05 r^-2 r^ +0.0541 r^-3*v^1 rot(v^) -0.502 r^-4*vr^3 t^"
+   }
+  },
+  {
+   "id": "conceito:223",
+   "tipo": "conceito",
+   "n": 4,
+   "beta_medio": 2.79647951330206,
+   "p_global": 0.2097160243232682,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "1/r"
+     ],
+     [
+      "vx",
+      "vx"
+     ],
+     [
+      "vy",
+      "vy"
+     ]
+    ],
+    "prof": 1
+   }
+  },
+  {
+   "id": "aberto:224",
+   "tipo": "aberto",
+   "n": 3,
+   "beta_medio": 5.188729016785152,
+   "p_global": 0.12307121830849697,
+   "familias_pagou": [
+    "spin_orbita"
+   ],
+   "desc": {}
+  },
+  {
+   "id": "conceito:227",
+   "tipo": "conceito",
+   "n": 2,
+   "beta_medio": 4.027024446948744,
+   "p_global": 0.1651796205726123,
+   "familias_pagou": [],
+   "desc": {
+    "suporte": [
+     [
+      "1/r"
+     ],
+     [
+      "vx",
+      "vx"
+     ],
+     [
+      "vy",
+      "vy"
+     ]
+    ],
+    "prof": 1
+   }
+  }
+ ]
+}

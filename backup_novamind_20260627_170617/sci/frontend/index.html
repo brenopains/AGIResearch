@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>NovaMind-Sci · Co-Scientist + AGI</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <div class="brand">
+    <span class="logo">⬢</span>
+    <span>NovaMind-Sci</span>
+    <small>Co-Scientist · Robin · NovaMind-AGI</small>
+  </div>
+  <div class="status">
+    <span id="conn-dot" class="dot dot-off"></span>
+    <span id="conn-text">offline</span>
+  </div>
+</header>
+
+<section class="control">
+  <input id="disease" type="text" placeholder="doença (ex: alopecia areata)" value="alopecia areata"/>
+
+  <div class="system-pick">
+    <label class="opt opt-unified"><input type="radio" name="sys" value="unified" checked>
+      <strong>🌟 Fusão</strong><em>AGI + Co-Scientist + Robin com Promise Score</em></label>
+    <label class="opt"><input type="radio" name="sys" value="co_scientist">
+      <strong>Normal</strong><em>Co-Scientist (clone do Google)</em></label>
+    <label class="opt"><input type="radio" name="sys" value="novamind_sci">
+      <strong>AGI</strong><em>NovaMind-Sci (personas + WM + composição)</em></label>
+    <label class="opt"><input type="radio" name="sys" value="robin">
+      <strong>Robin</strong><em>deep-dive estilo FutureHouse</em></label>
+    <label class="opt"><input type="radio" name="sys" value="both">
+      <strong>Lado a Lado</strong><em>compara Co-Sci × AGI</em></label>
+  </div>
+
+  <details class="params">
+    <summary>parâmetros avançados</summary>
+    <label>n hipóteses: <input id="p-n" type="number" value="6" min="2" max="20"></label>
+    <label>rounds: <input id="p-rounds" type="number" value="2" min="1" max="5"></label>
+    <label>torneio: <input id="p-tourn" type="number" value="2" min="1" max="5"></label>
+    <label>ciclos (AGI): <input id="p-cycles" type="number" value="12" min="3" max="50"></label>
+    <label>pop (AGI): <input id="p-pop" type="number" value="8" min="3" max="20"></label>
+  </details>
+
+  <button id="run-btn">▶ rodar</button>
+  <button id="abort-btn" style="display:none">■ cancelar</button>
+</section>
+
+<main id="workspace">
+  <div class="panes" id="panes">
+    <div class="pane" data-side="A">
+      <div class="pane-head">
+        <h2 id="pane-A-title">Co-Scientist</h2>
+        <div class="phase-strip" id="phase-A"></div>
+      </div>
+      <div class="pane-body">
+        <div class="left">
+          <div class="card-section">
+            <div class="card-section-head">
+              <h3>Hipóteses</h3>
+              <span class="counter" id="hcount-A">0</span>
+            </div>
+            <div class="cards" id="cards-A"></div>
+          </div>
+        </div>
+        <div class="right">
+          <div class="card-section">
+            <div class="card-section-head">
+              <h3>Telemetria</h3>
+              <span class="counter" id="evcount-A">0</span>
+            </div>
+            <div class="log" id="log-A"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pane" data-side="B" style="display:none">
+      <div class="pane-head">
+        <h2 id="pane-B-title">NovaMind-Sci</h2>
+        <div class="phase-strip" id="phase-B"></div>
+      </div>
+      <div class="pane-body">
+        <div class="left">
+          <div class="card-section">
+            <div class="card-section-head">
+              <h3>Hipóteses</h3>
+              <span class="counter" id="hcount-B">0</span>
+            </div>
+            <div class="drives" id="drives-B"></div>
+            <div class="cards" id="cards-B"></div>
+          </div>
+        </div>
+        <div class="right">
+          <div class="card-section">
+            <div class="card-section-head">
+              <h3>Telemetria</h3>
+              <span class="counter" id="evcount-B">0</span>
+            </div>
+            <div class="log" id="log-B"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="promise-panel" style="display:none">
+    <div class="promise-head">
+      <div class="promise-light" id="promise-light">🟡</div>
+      <div class="promise-text">
+        <h2>Indicador de Promessa <small>(p/ leigo)</small></h2>
+        <p id="promise-label">aguardando…</p>
+      </div>
+      <div class="promise-score-big" id="promise-score">—</div>
+    </div>
+    <div class="promise-signals" id="promise-signals"></div>
+    <pre class="promise-summary" id="promise-summary"></pre>
+    <div class="promise-disclaimer">
+      ⚠️ <strong>Aviso honesto:</strong> nenhum sistema AI consegue afirmar "isto é uma cura" sem validação experimental.
+      Este indicador combina <em>proxies</em>: recuperação de leads reais, convergência entre personas, ganho composicional,
+      concordância de juiz independente, e novidade contextual. <strong>Score alto = vale wet-lab. Não substitui ciência.</strong>
+    </div>
+  </div>
+
+  <div id="meta-review-panel" style="display:none">
+    <h2>Meta-Review</h2>
+    <div id="meta-review-content"></div>
+  </div>
+</main>
+
+<aside id="history">
+  <h3>Runs anteriores</h3>
+  <ul id="runs-list"></ul>
+</aside>
+
+<div id="history-modal" class="modal-overlay" style="display:none">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div>
+        <h2 id="modal-title">—</h2>
+        <div id="modal-subtitle" class="subtitle"></div>
+      </div>
+      <div class="modal-actions">
+        <a id="export-html" class="exp-btn" target="_blank">📄 HTML</a>
+        <a id="export-md"   class="exp-btn" download>📝 Markdown</a>
+        <a id="export-json" class="exp-btn" download>⬇ JSON</a>
+        <button id="modal-close" class="exp-btn close">✕</button>
+      </div>
+    </div>
+    <iframe id="modal-frame" class="modal-frame"></iframe>
+  </div>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>

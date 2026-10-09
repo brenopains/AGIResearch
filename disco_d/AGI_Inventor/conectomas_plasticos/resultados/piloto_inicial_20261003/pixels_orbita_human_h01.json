@@ -1,0 +1,124 @@
+{
+  "sha256": "f58e82806c5a14df4df2f4b9f4382ddc04acd96519f6ff7c3b7d7b5fead70a1b",
+  "genome": {
+    "leak": 0.4,
+    "input_rate": 0.003,
+    "readout_rate": 0.01,
+    "eta": 0.005,
+    "trace_decay": 0.8,
+    "decay": 0.001,
+    "hebb": 0.0,
+    "recurrent_bound": 1.2,
+    "growth_every": 16,
+    "growth_limit": 64,
+    "prune_threshold": 1e-05,
+    "rule": [
+      "add",
+      [
+        "mul",
+        [
+          "var",
+          "eligibility"
+        ],
+        [
+          "var",
+          "error"
+        ]
+      ],
+      [
+        "mul",
+        [
+          "var",
+          "decay"
+        ],
+        [
+          "var",
+          "weight"
+        ]
+      ]
+    ]
+  },
+  "node_ids": [
+    "human_h01:4115175074",
+    "human_h01:6265538743",
+    "human_h01:6339857573",
+    "human_h01:6512455193",
+    "human_h01:6585913388",
+    "human_h01:6630067314",
+    "human_h01:6687726371",
+    "human_h01:6745855427",
+    "human_h01:6760877587",
+    "human_h01:6847929362",
+    "human_h01:6862062663",
+    "human_h01:6891132578",
+    "human_h01:6891223436",
+    "human_h01:7007969925",
+    "human_h01:7051218607",
+    "human_h01:15177024529",
+    "human_h01:15423211940",
+    "human_h01:15509036952",
+    "human_h01:15596467854",
+    "human_h01:15611098023",
+    "human_h01:15669574329",
+    "human_h01:15698412012",
+    "human_h01:15829222068",
+    "human_h01:15843823453",
+    "human_h01:15859300017",
+    "human_h01:16018480589",
+    "human_h01:23968754300",
+    "human_h01:24258803018",
+    "human_h01:24621827848",
+    "human_h01:24621987921",
+    "human_h01:24723844523",
+    "human_h01:33254361721",
+    "human_h01:41407196173",
+    "human_h01:42106000375",
+    "human_h01:48354468137",
+    "human_h01:59515925713",
+    "human_h01:59574359067",
+    "human_h01:59822167793",
+    "human_h01:74659206772",
+    "human_h01:75037927665",
+    "human_h01:77420722356"
+  ],
+  "provenance": {
+    "file_sha256": "e6176e0c282a408faa4c804bd63ab50998143f7203d0937cde13746b427123cd",
+    "receipt": {
+      "url": "https://storage.googleapis.com/h01-release/data/20210729/c3/synapses/exported/export000000000000",
+      "final_url": "https://storage.googleapis.com/h01-release/data/20210729/c3/synapses/exported/export000000000000",
+      "bytes": 197344616,
+      "sha256": "e6176e0c282a408faa4c804bd63ab50998143f7203d0937cde13746b427123cd",
+      "published_checksum": "md5:15f1a2748fb57b52a67f0e7eec48b92b",
+      "time_unix": 1791047616.3564284,
+      "etag": "\"15f1a2748fb57b52a67f0e7eec48b92b\""
+    },
+    "version": "c3_20210729_shard0",
+    "row_limit": 200000,
+    "sampling_bias": "first_rows_not_representative_of_species",
+    "source": "human_h01",
+    "scanned_rows": 200000,
+    "invalid_rows": 7723,
+    "selected_nodes": 41,
+    "selected_edges": 40,
+    "selected_synapses": 40,
+    "cut_synapses_observed_in_sample": 0,
+    "all_external_connections_known": false,
+    "selection": "highest_degree_weak_component_within_biased_row_prefix",
+    "measured_neuron_dynamics": false,
+    "node_identity_scope": "reconstruction_root_or_segment"
+  },
+  "input_dim": 256,
+  "output_dim": 256,
+  "steps": 96,
+  "learn_steps": 96,
+  "grown_total": 24,
+  "cost": {
+    "edge_ops": 4800,
+    "dense_ops": 2015232,
+    "rule_edge_updates": 4800,
+    "structural_proposals": 48
+  },
+  "pending": false,
+  "model": "sparse_rate_model_imputed_signs_local_error_plasticity",
+  "biologically_calibrated": false
+}

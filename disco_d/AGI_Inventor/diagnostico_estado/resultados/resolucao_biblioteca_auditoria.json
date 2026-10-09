@@ -1,0 +1,59 @@
+{
+  "status": "local_function_library_origin_audit_passed",
+  "libraries": {
+    "breakout": {
+      "filters": 5,
+      "samples": 8192,
+      "eigenvalues": [
+        0.006052506691415694,
+        0.0021707268561670574,
+        0.00205403916231374,
+        0.00077315730885775,
+        0.0006053768742373429
+      ],
+      "applications": {
+        "breakout": {
+          "frames": 16,
+          "maximum_response_error": 1.50652530173101e-08,
+          "source_weights_changed": false
+        },
+        "pong": {
+          "frames": 16,
+          "maximum_response_error": 8.92833740273602e-09,
+          "source_weights_changed": false
+        }
+      }
+    },
+    "pong": {
+      "filters": 5,
+      "samples": 8192,
+      "eigenvalues": [
+        0.0052602164661189575,
+        0.002321310158891013,
+        0.002237845361747874,
+        0.001584376394067493,
+        0.001253697476399262
+      ],
+      "applications": {
+        "breakout": {
+          "frames": 16,
+          "maximum_response_error": 1.3975280321876227e-08,
+          "source_weights_changed": false
+        },
+        "pong": {
+          "frames": 16,
+          "maximum_response_error": 1.269690497185394e-08,
+          "source_weights_changed": false
+        }
+      }
+    }
+  },
+  "maximum_eigen_equation_residual": 1.7618285302889447e-19,
+  "maximum_independent_function_response_error": 1.50652530173101e-08,
+  "physical_calls": 0,
+  "fit_calls": 0,
+  "reuse_without_rewriting_bodies_verified": true,
+  "useful_cross_world_transfer_not_demonstrated": true,
+  "human_level_goal_achieved": false,
+  "manifest_sha256": "4eac71af91082ac06dfd40c8e37777b7d74a716631102ea682315957ef8eb5af"
+}

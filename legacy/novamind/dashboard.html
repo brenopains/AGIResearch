@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NovaMind AGI Dashboard</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0e17; color: #c8d6e5; min-height: 100vh; overflow-x: hidden; }
+.container { max-width: 1600px; margin: 0 auto; padding: 16px; }
+header { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #1e2a3a; margin-bottom: 20px; }
+header h1 { font-size: 20px; font-weight: 600; background: linear-gradient(135deg, #00d2ff, #3a7bd5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+header .subtitle { color: #576574; font-size: 12px; }
+header .status { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.active { background: #00d2ff; box-shadow: 0 0 8px #00d2ff88; }
+.status-dot.resting { background: #feca57; }
+.status-dot.error { background: #ff6b6b; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px; margin-bottom: 16px; }
+.card { background: #111827; border: 1px solid #1e2a3a; border-radius: 12px; padding: 16px; position: relative; overflow: hidden; }
+.card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, #3a7bd5, #00d2ff, transparent); opacity: 0.5; }
+.card-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: #576574; margin-bottom: 12px; }
+.metric-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 13px; }
+.metric-label { color: #8395a7; }
+.metric-value { color: #c8d6e5; font-weight: 500; }
+.metric-value.high { color: #00d2ff; }
+.metric-value.warn { color: #feca57; }
+.metric-value.low { color: #ff6b6b; }
+.bar { height: 4px; background: #1e2a3a; border-radius: 2px; margin: 6px 0; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 2px; transition: width 0.5s; }
+.bar-fill.good { background: #00d2ff; }
+.bar-fill.warn { background: #feca57; }
+.bar-fill.bad { background: #ff6b6b; }
+.bar-fill.info { background: #3a7bd5; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; margin: 2px; background: #1e2a3a; color: #8395a7; }
+.tag.active { background: #00d2ff22; color: #00d2ff; border: 1px solid #00d2ff44; }
+.tag.warn { background: #feca5722; color: #feca57; border: 1px solid #feca5744; }
+.tag.danger { background: #ff6b6b22; color: #ff6b6b; border: 1px solid #ff6b6b44; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { text-align: left; padding: 6px 4px; color: #576574; font-weight: 500; border-bottom: 1px solid #1e2a3a; }
+td { padding: 6px 4px; border-bottom: 1px solid #111827; }
+.graph-container { width: 100%; height: 200px; position: relative; }
+canvas { width: 100%; height: 100%; border-radius: 8px; background: #0a0e17; }
+.operator-chain { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.operator-chain .op { background: #1e2a3a; padding: 2px 8px; border-radius: 4px; font-size: 11px; }
+.operator-chain .arrow { color: #576574; font-size: 10px; }
+.hidden { display: none; }
+@media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div>
+      <h1>NovaMind AGI</h1>
+      <div class="subtitle">Cognitive Architecture Dashboard · HDC 10000D</div>
+    </div>
+    <div class="status">
+      <span class="status-dot active" id="statusDot"></span>
+      <span id="statusText">running</span>
+    </div>
+  </header>
+
+  <div class="grid">
+    <!-- Maestro Card -->
+    <div class="card">
+      <div class="card-title">Maestro — Cognitive State</div>
+      <div class="metric-row"><span class="metric-label">Mode</span><span class="metric-value high" id="mode">explore</span></div>
+      <div class="metric-row"><span class="metric-label">Cycle</span><span class="metric-value" id="cycle">0</span></div>
+      <div class="metric-row"><span class="metric-label">Fatigue</span><span class="metric-value" id="fatigue">0.00</span></div>
+      <div class="bar"><div class="bar-fill" id="fatigueBar" style="width:0%"></div></div>
+      <div class="metric-row"><span class="metric-label">Attention Focus</span><span class="metric-value warn" id="attention">—</span></div>
+      <div class="metric-row"><span class="metric-label">Active Operator</span><span class="metric-value" id="activeOp">—</span></div>
+      <div class="metric-row"><span class="metric-label">Emotion</span><span class="metric-value" id="emotion">neutral</span></div>
+    </div>
+
+    <!-- Error Multi-Dim Card -->
+    <div class="card">
+      <div class="card-title">Error Multi-Dimensional</div>
+      <div class="metric-row"><span class="metric-label">Prediction Error</span><span class="metric-value" id="pe">0.00</span></div>
+      <div class="bar"><div class="bar-fill bad" id="peBar" style="width:0%"></div></div>
+      <div class="metric-row"><span class="metric-label">Novelty</span><span class="metric-value warn" id="novelty">0.00</span></div>
+      <div class="bar"><div class="bar-fill warn" id="noveltyBar" style="width:0%"></div></div>
+      <div class="metric-row"><span class="metric-label">Uncertainty</span><span class="metric-value" id="uncertainty">0.00</span></div>
+      <div class="bar"><div class="bar-fill info" id="uncertaintyBar" style="width:0%"></div></div>
+      <div class="metric-row" style="margin-top:8px;"><span class="metric-label">Active Errors</span><span class="metric-value" id="nErrors">0</span></div>
+      <div class="metric-row"><span class="metric-label">Most Pressing</span><span class="metric-value warn" id="mostPressing">—</span></div>
+    </div>
+
+    <!-- SelfModel Card -->
+    <div class="card">
+      <div class="card-title">Self Model</div>
+      <div class="metric-row"><span class="metric-label">Beliefs</span><span class="metric-value" id="nBeliefs">0</span></div>
+      <div class="metric-row"><span class="metric-label">Confident</span><span class="metric-value high" id="nConfident">0</span></div>
+      <div class="metric-row"><span class="metric-label">Uncertain</span><span class="metric-value warn" id="nUncertain">0</span></div>
+      <div class="metric-row"><span class="metric-label">Strengths</span><span class="metric-value" id="strengths">—</span></div>
+      <div class="metric-row"><span class="metric-label">Weaknesses</span><span class="metric-value low" id="weaknesses">—</span></div>
+      <div class="metric-row"><span class="metric-label">Best Modality</span><span class="metric-value high" id="bestModality">—</span></div>
+      <div class="metric-row"><span class="metric-label">Autobiography</span><span class="metric-value" id="autoEpisodes">0</span></div>
+    </div>
+
+    <!-- Simulation Engine Card -->
+    <div class="card">
+      <div class="card-title">Simulation Engine</div>
+      <div class="metric-row"><span class="metric-label">Active Branches</span><span class="metric-value" id="nBranches">0</span></div>
+      <div class="metric-row"><span class="metric-label">Best Branch</span><span class="metric-value high" id="bestBranch">—</span></div>
+      <div class="metric-row"><span class="metric-label">Best Prob</span><span class="metric-value" id="bestProb">0.00</span></div>
+      <div class="bar"><div class="bar-fill good" id="bestProbBar" style="width:0%"></div></div>
+      <div class="metric-row"><span class="metric-label">Total Sims</span><span class="metric-value" id="totalSims">0</span></div>
+      <div class="metric-row"><span class="metric-label">Modes</span><span class="metric-value" style="font-size:11px;">EXPECT · CF · PLAN · IMAGINE</span></div>
+    </div>
+
+    <!-- LifeStream Card -->
+    <div class="card">
+      <div class="card-title">LifeStream</div>
+      <div class="metric-row"><span class="metric-label">Queue</span><span class="metric-value warn" id="queueSize">0</span></div>
+      <div class="metric-row"><span class="metric-label">Processed</span><span class="metric-value high" id="processedCount">0</span></div>
+      <div class="metric-row"><span class="metric-label">Sources</span><span class="metric-value" id="sources">—</span></div>
+      <div style="margin-top:8px;">
+        <div class="metric-label" style="margin-bottom:4px;">Source Reliability</div>
+        <div id="sourceReliability"></div>
+      </div>
+    </div>
+
+    <!-- Operators Card -->
+    <div class="card">
+      <div class="card-title">Cognitive Operators</div>
+      <div class="metric-row"><span class="metric-label">Base Ops</span><span class="metric-value">15</span></div>
+      <div class="metric-row"><span class="metric-label">Forged Ops</span><span class="metric-value high" id="nForged">0</span></div>
+      <div class="metric-row"><span class="metric-label">Promoted</span><span class="metric-value" id="nPromoted">0</span></div>
+      <div class="metric-row"><span class="metric-label">Discarded</span><span class="metric-value low" id="nDiscarded">0</span></div>
+      <div style="margin-top:8px;">
+        <div class="metric-label" style="margin-bottom:4px;">Recent Forged</div>
+        <div id="recentForged"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CGE Graph -->
+  <div class="card" style="margin-bottom:16px;">
+    <div class="card-title">Cognitive Graph (CGE) — Live</div>
+    <div class="metric-row" style="margin-bottom:8px;">
+      <span class="metric-label">Nodes</span><span class="metric-value high" id="cgeNodes">0</span>
+      <span class="metric-label">Edges</span><span class="metric-value" id="cgeEdges">0</span>
+    </div>
+    <div class="graph-container">
+      <canvas id="cgeCanvas"></canvas>
+    </div>
+  </div>
+
+  <!-- History Log -->
+  <div class="card">
+    <div class="card-title">Recent Activity</div>
+    <table>
+      <thead><tr><th>Cycle</th><th>Mode</th><th>Operator</th><th>Error</th><th>Energy</th></tr></thead>
+      <tbody id="activityLog"></tbody>
+    </table>
+  </div>
+
+  <!-- Mental Renderer -->
+  <div class="card" style="margin-top:16px;">
+    <div class="card-title">Mental Renderer — Thought Decoding</div>
+    <div style="display:flex; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
+      <span class="tag" onclick="renderAs('text')" style="cursor:pointer;">to_text</span>
+      <span class="tag" onclick="renderAs('code')" style="cursor:pointer;">to_code</span>
+      <span class="tag" onclick="renderAs('visual')" style="cursor:pointer;">to_visual</span>
+      <span class="tag" onclick="renderAs('speech')" style="cursor:pointer;">to_speech</span>
+    </div>
+    <pre id="rendererOutput" style="background:#0a0e17; padding:12px; border-radius:8px; font-size:12px; max-height:200px; overflow:auto; white-space:pre-wrap;"></pre>
+  </div>
+</div>
+
+<script>
+// ─── DASHBOARD STATE ───
+const state = {
+  maestro: { mode: 'explore', cycle: 142, fatigue: 0.35, attention: 'cell_4_6', op: 'explore', emotion: 'curious' },
+  error: { pe: 0.31, novelty: 0.67, uncertainty: 0.52, n_errors: 3, most_pressing: 'mtb_energy' },
+  self: { beliefs: 12, confident: 5, uncertain: 3, strengths: ['physics', 'exploration'], weaknesses: ['biology'], best_modality: 'video', auto_episodes: 24 },
+  sim: { n_branches: 5, best: 'expect_main', best_prob: 0.48, total: 37 },
+  life: { queue: 2, processed: 18, sources: ['wikipedia', 'procedural'] },
+  operators: { forged: 12, promoted: 8, discarded: 3, recent: ['anticipate', 'survey', 'experiment'] },
+  cge: { nodes: 47, edges: 156, graph: {} },
+  log: [],
+  cognitive_modes: { explore: 12, hypothesize: 5, predict: 8, test: 6, consolidate: 4, exploit: 3, reflect: 2 },
+};
+
+// ─── GENERATE MOCK GRAPH ───
+function generateGraph() {
+  const concepts = ['gravity', 'energy', 'force', 'mass', 'acceleration', 'velocity',
+    'momentum', 'inertia', 'friction', 'conductivity', 'VORIN', 'NEXIUM', 'PLUV',
+    'THAL', 'ZIND', 'FEND', 'LURK', 'KELP', 'MEXAL', 'TRUON', 'DROX', 'TREM',
+    'BROG', 'SHEEN', 'KORV', 'BREN', 'MORV', 'FLAK', 'ZURG', 'QUIL', 'source',
+    'target', 'path', 'energy_flow', 'blocking', 'amplifying', 'absorbing',
+    'directional', 'unstable', 'conditional', 'conductive'];
+
+  const nodes = concepts.slice(0, state.cge.nodes);
+  const pairs = [];
+  for (let i = 0; i < state.cge.edges; i++) {
+    const a = nodes[Math.floor(Math.random() * nodes.length)];
+    const b = nodes[Math.floor(Math.random() * nodes.length)];
+    if (a !== b) pairs.push([a, b]);
+  }
+  state.cge.graph = { nodes, pairs };
+}
+
+// ─── GENERATE ACTIVITY LOG ───
+function generateLog() {
+  const modes = ['explore', 'hypothesize', 'predict', 'test', 'consolidate', 'exploit', 'reflect'];
+  const ops = ['observe', 'compare', 'predict', 'imagine', 'generalize', 'explore', 'focus', 'test'];
+  for (let i = Math.max(0, state.maestro.cycle - 20); i <= state.maestro.cycle; i++) {
+    state.log.push({
+      cycle: i, mode: modes[i % modes.length], op: ops[i % ops.length],
+      error: (0.2 + Math.random() * 0.5).toFixed(2),
+      energy: Math.min(15.0, (i * 0.5 + Math.random()).toFixed(1))
+    });
+  }
+}
+
+// ─── UPDATE DASHBOARD ───
+function updateDashboard() {
+  const m = state.maestro, e = state.error, s = state.self, sim = state.sim, l = state.life, o = state.operators;
+
+  // Maestro
+  document.getElementById('mode').textContent = m.mode;
+  document.getElementById('mode').className = 'metric-value high';
+  document.getElementById('cycle').textContent = m.cycle;
+  document.getElementById('fatigue').textContent = m.fatigue.toFixed(2);
+  document.getElementById('fatigueBar').style.width = (m.fatigue * 100) + '%';
+  document.getElementById('fatigueBar').className = 'bar-fill ' + (m.fatigue > 0.6 ? 'bad' : 'warn');
+  document.getElementById('attention').textContent = m.attention;
+  document.getElementById('activeOp').textContent = m.op;
+  document.getElementById('emotion').textContent = m.emotion;
+
+  // Error
+  document.getElementById('pe').textContent = e.pe.toFixed(2);
+  document.getElementById('peBar').style.width = (e.pe * 100) + '%';
+  document.getElementById('novelty').textContent = e.novelty.toFixed(2);
+  document.getElementById('noveltyBar').style.width = (e.novelty * 100) + '%';
+  document.getElementById('uncertainty').textContent = e.uncertainty.toFixed(2);
+  document.getElementById('uncertaintyBar').style.width = (e.uncertainty * 100) + '%';
+  document.getElementById('nErrors').textContent = e.n_errors;
+  document.getElementById('mostPressing').textContent = e.most_pressing;
+
+  // Self
+  document.getElementById('nBeliefs').textContent = s.beliefs;
+  document.getElementById('nConfident').textContent = s.confident;
+  document.getElementById('nUncertain').textContent = s.uncertain;
+  document.getElementById('strengths').textContent = s.strengths.join(', ') || '—';
+  document.getElementById('weaknesses').textContent = s.weaknesses.join(', ') || '—';
+  document.getElementById('bestModality').textContent = s.best_modality;
+  document.getElementById('autoEpisodes').textContent = s.auto_episodes;
+
+  // Simulation
+  document.getElementById('nBranches').textContent = sim.n_branches;
+  document.getElementById('bestBranch').textContent = sim.best;
+  document.getElementById('bestProb').textContent = sim.best_prob.toFixed(2);
+  document.getElementById('bestProbBar').style.width = (sim.best_prob * 100) + '%';
+  document.getElementById('totalSims').textContent = sim.total;
+
+  // LifeStream
+  document.getElementById('queueSize').textContent = l.queue;
+  document.getElementById('processedCount').textContent = l.processed;
+  document.getElementById('sources').textContent = l.sources.join(', ');
+
+  const srcHtml = ['Wikipedia:0.95', 'YouTube Edu:0.85', 'Procedural:0.90', 'Comments:0.15', 'Ads:0.05']
+    .map(s => `<span class="tag">${s}</span>`).join(' ');
+  document.getElementById('sourceReliability').innerHTML = srcHtml;
+
+  // Operators
+  document.getElementById('nForged').textContent = o.forged;
+  document.getElementById('nPromoted').textContent = o.promoted;
+  document.getElementById('nDiscarded').textContent = o.discarded;
+  document.getElementById('recentForged').innerHTML = o.recent.map(s =>
+    `<span class="tag active">${s}</span>`).join(' ');
+
+  // CGE
+  document.getElementById('cgeNodes').textContent = state.cge.nodes;
+  document.getElementById('cgeEdges').textContent = state.cge.edges;
+
+  // Activity Log
+  const tbody = document.getElementById('activityLog');
+  tbody.innerHTML = state.log.slice(-20).reverse().map(r =>
+    `<tr><td>${r.cycle}</td><td>${r.mode}</td><td>${r.op}</td><td>${r.error}</td><td>${r.energy}</td></tr>`
+  ).join('');
+
+  // Status dot
+  const dot = document.getElementById('statusDot');
+  dot.className = 'status-dot ' + (m.fatigue > 0.7 ? 'resting' : 'active');
+  document.getElementById('statusText').textContent = m.fatigue > 0.7 ? 'resting' : 'running';
+}
+
+// ─── CGE CANVAS GRAPH ───
+function drawGraph() {
+  const canvas = document.getElementById('cgeCanvas');
+  const ctx = canvas.getContext('2d');
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width = canvas.parentElement.clientWidth;
+  canvas.height = 200;
+
+  const g = state.cge.graph;
+  if (!g || !g.nodes) return;
+
+  const w = canvas.width, h = canvas.height;
+  ctx.clearRect(0, 0, w, h);
+
+  const positions = {};
+  g.nodes.forEach((n, i) => {
+    const angle = (i / g.nodes.length) * 2 * Math.PI - Math.PI / 2;
+    const r = Math.min(w, h) * 0.35;
+    positions[n] = { x: w / 2 + r * Math.cos(angle), y: h / 2 + r * Math.sin(angle) };
+  });
+
+  // Edges
+  const drawnEdges = new Set();
+  g.pairs.forEach(([a, b]) => {
+    const key = [a, b].sort().join('_');
+    if (drawnEdges.has(key)) return;
+    drawnEdges.add(key);
+    const pa = positions[a], pb = positions[b];
+    if (!pa || !pb) return;
+    ctx.beginPath();
+    ctx.strokeStyle = '#1e2a3a';
+    ctx.lineWidth = 1;
+    ctx.moveTo(pa.x, pa.y);
+    ctx.lineTo(pb.x, pb.y);
+    ctx.stroke();
+  });
+
+  // Nodes
+  g.nodes.forEach(n => {
+    const p = positions[n];
+    if (!p) return;
+    const r = 5 + Math.random() * 3;
+    const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r * 2);
+    grad.addColorStop(0, '#00d2ff');
+    grad.addColorStop(1, '#3a7bd544');
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    if (g.nodes.indexOf(n) < 10) {
+      ctx.fillStyle = '#8395a7';
+      ctx.font = '8px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(n, p.x, p.y + r + 10);
+    }
+  });
+}
+
+// ─── MENTAL RENDERER ───
+const rendererOutputs = {
+  text: "Gravity is a force that attracts objects with mass toward each other. The strength of gravity depends on the mass of the objects and the distance between them.",
+  code: 'def simulate_gravity(mass1, mass2, distance):\n    G = 6.674e-11\n    force = G * mass1 * mass2 / (distance ** 2)\n    return force',
+  visual: '{\n  "objects": [\n    {"type": "circle", "label": "Mass", "x": 0.5, "y": 0.1},\n    {"type": "circle", "label": "Earth", "x": 0.5, "y": 0.8}\n  ],\n  "animations": [\n    {"action": "fall", "object": "Mass", "target_y": 0.8, "duration": 2.0}\n  ],\n  "labels": ["Gravity pulls mass toward Earth"]\n}',
+  speech: '{\n  "phrases": [\n    {"text": "Gravity is a force that attracts objects...", "emphasis": 0.5, "pause_after": 0.3},\n    {"text": "The strength depends on mass and distance...", "emphasis": 0.7, "pause_after": 0.5}\n  ],\n  "tone": "neutral",\n  "estimated_duration": 2.5\n}'
+};
+
+function renderAs(mode) {
+  const out = document.getElementById('rendererOutput');
+  out.textContent = rendererOutputs[mode] || 'No output for this mode';
+}
+
+// ─── MODE DISTRIBUTION CHART ───
+function drawModeChart() {
+  const el = document.createElement('canvas');
+  el.width = 300; el.height = 120;
+  const ctx = el.getContext('2d');
+  const modes = state.cognitive_modes;
+  const total = Object.values(modes).reduce((a, b) => a + b, 0);
+  const colors = ['#00d2ff', '#feca57', '#3a7bd5', '#ff6b6b', '#48dbfb', '#ff9ff3', '#54a0ff'];
+  let x = 10, y = 10;
+  Object.entries(modes).forEach(([mode, count], i) => {
+    const pct = count / total;
+    const w = pct * 280;
+    ctx.fillStyle = colors[i % colors.length];
+    ctx.fillRect(x, y, Math.max(w, 2), 16);
+    ctx.fillStyle = '#c8d6e5';
+    ctx.font = '9px sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText(`${mode} ${(pct*100).toFixed(0)}%`, x + 4, y + 12);
+    x += w + 2;
+  });
+  document.querySelector('.card:first-child')?.appendChild(el);
+}
+
+// ─── INIT ───
+generateGraph();
+generateLog();
+updateDashboard();
+drawGraph();
+drawModeChart();
+renderAs('text');
+
+window.addEventListener('resize', drawGraph);
+</script>
+</body>
+</html>

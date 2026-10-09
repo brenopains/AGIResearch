@@ -1,0 +1,1459 @@
+{
+  "status": "post_evaluation_diagnostic_complete_no_promotion",
+  "games": {
+    "breakout": {
+      "future_pairs": {
+        "known": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 23,
+                "prediction_ties": 0,
+                "mse": 0.30913302449719926,
+                "deterministic_left_tie_regret": 0.09375,
+                "fair_tie_regret": 0.09375,
+                "directional_accuracy_on_real_nonzero": 0.7391304347826086
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 23,
+                "prediction_ties": 0,
+                "mse": 0.26849909693560975,
+                "deterministic_left_tie_regret": 0.078125,
+                "fair_tie_regret": 0.078125,
+                "directional_accuracy_on_real_nonzero": 0.782608695652174
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 23,
+                "prediction_ties": 0,
+                "mse": 0.012543688149824091,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.26849909693560975,
+              "transport_squared": 0.012543688149824084,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.028090239411765465,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 29,
+                "prediction_ties": 0,
+                "mse": 0.4849993611871652,
+                "deterministic_left_tie_regret": 0.203125,
+                "fair_tie_regret": 0.203125,
+                "directional_accuracy_on_real_nonzero": 0.5517241379310345
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 29,
+                "prediction_ties": 0,
+                "mse": 0.4985759187233319,
+                "deterministic_left_tie_regret": 0.234375,
+                "fair_tie_regret": 0.234375,
+                "directional_accuracy_on_real_nonzero": 0.5172413793103449
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 29,
+                "prediction_ties": 0,
+                "mse": 0.030162325910747547,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.49857591872333185,
+              "transport_squared": 0.030162325910747426,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.04373888344691443,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 35,
+                "prediction_ties": 0,
+                "mse": 0.5114296656397748,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.7714285714285715
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 35,
+                "prediction_ties": 0,
+                "mse": 0.532650511641938,
+                "deterministic_left_tie_regret": 0.078125,
+                "fair_tie_regret": 0.078125,
+                "directional_accuracy_on_real_nonzero": 0.8857142857142857
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 35,
+                "prediction_ties": 0,
+                "mse": 0.09656888216835244,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.532650511641938,
+              "transport_squared": 0.09656888216835292,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.11778972817051617,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          }
+        },
+        "new": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.08299572710986788,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.75
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 2,
+                "mse": 0.0666646177790952,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.75
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.009730419822226232,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.06666461777909519,
+              "transport_squared": 0.009730419822226229,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.006600689508546408,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 29,
+                "prediction_ties": 0,
+                "mse": 0.7765680591904717,
+                "deterministic_left_tie_regret": 0.421875,
+                "fair_tie_regret": 0.421875,
+                "directional_accuracy_on_real_nonzero": 0.10344827586206896
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 29,
+                "prediction_ties": 2,
+                "mse": 0.6718910564003291,
+                "deterministic_left_tie_regret": 0.34375,
+                "fair_tie_regret": 0.34375,
+                "directional_accuracy_on_real_nonzero": 0.27586206896551724
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 29,
+                "prediction_ties": 0,
+                "mse": 0.029509722612435462,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.6718910564003291,
+              "transport_squared": 0.029509722612435486,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.07516728017770669,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 33,
+                "prediction_ties": 0,
+                "mse": 0.9371492475231179,
+                "deterministic_left_tie_regret": 0.296875,
+                "fair_tie_regret": 0.296875,
+                "directional_accuracy_on_real_nonzero": 0.5151515151515151
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 33,
+                "prediction_ties": 2,
+                "mse": 0.7893581213922096,
+                "deterministic_left_tie_regret": 0.203125,
+                "fair_tie_regret": 0.203125,
+                "directional_accuracy_on_real_nonzero": 0.6363636363636364
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 33,
+                "prediction_ties": 0,
+                "mse": 0.12321792903360215,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.9696969696969697
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.7893581213922097,
+              "transport_squared": 0.12321792903360212,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.02457319709730646,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          }
+        }
+      },
+      "no_generated_functions": {
+        "known": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 23,
+                "prediction_ties": 0,
+                "mse": 0.30913302449719926,
+                "deterministic_left_tie_regret": 0.09375,
+                "fair_tie_regret": 0.09375,
+                "directional_accuracy_on_real_nonzero": 0.7391304347826086
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 23,
+                "prediction_ties": 0,
+                "mse": 0.26849909693560975,
+                "deterministic_left_tie_regret": 0.078125,
+                "fair_tie_regret": 0.078125,
+                "directional_accuracy_on_real_nonzero": 0.782608695652174
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 23,
+                "prediction_ties": 0,
+                "mse": 0.012543688149824091,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.26849909693560975,
+              "transport_squared": 0.012543688149824084,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.028090239411765465,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 29,
+                "prediction_ties": 0,
+                "mse": 0.4849993611871652,
+                "deterministic_left_tie_regret": 0.203125,
+                "fair_tie_regret": 0.203125,
+                "directional_accuracy_on_real_nonzero": 0.5517241379310345
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 29,
+                "prediction_ties": 0,
+                "mse": 0.4985759187233319,
+                "deterministic_left_tie_regret": 0.234375,
+                "fair_tie_regret": 0.234375,
+                "directional_accuracy_on_real_nonzero": 0.5172413793103449
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 29,
+                "prediction_ties": 0,
+                "mse": 0.030162325910747547,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.49857591872333185,
+              "transport_squared": 0.030162325910747426,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.04373888344691443,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 35,
+                "prediction_ties": 0,
+                "mse": 0.5114296656397748,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.7714285714285715
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 35,
+                "prediction_ties": 0,
+                "mse": 0.532650511641938,
+                "deterministic_left_tie_regret": 0.078125,
+                "fair_tie_regret": 0.078125,
+                "directional_accuracy_on_real_nonzero": 0.8857142857142857
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 35,
+                "prediction_ties": 0,
+                "mse": 0.09656888216835244,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.532650511641938,
+              "transport_squared": 0.09656888216835292,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.11778972817051617,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          }
+        },
+        "new": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.08299572710986788,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.75
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 2,
+                "mse": 0.0666646177790952,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.75
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.009730419822226232,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.06666461777909519,
+              "transport_squared": 0.009730419822226229,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.006600689508546408,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 29,
+                "prediction_ties": 0,
+                "mse": 0.7765680591904717,
+                "deterministic_left_tie_regret": 0.421875,
+                "fair_tie_regret": 0.421875,
+                "directional_accuracy_on_real_nonzero": 0.10344827586206896
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 29,
+                "prediction_ties": 2,
+                "mse": 0.6718910564003291,
+                "deterministic_left_tie_regret": 0.34375,
+                "fair_tie_regret": 0.34375,
+                "directional_accuracy_on_real_nonzero": 0.27586206896551724
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 29,
+                "prediction_ties": 0,
+                "mse": 0.029509722612435462,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.6718910564003291,
+              "transport_squared": 0.029509722612435486,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.07516728017770669,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 33,
+                "prediction_ties": 0,
+                "mse": 0.9371492475231179,
+                "deterministic_left_tie_regret": 0.296875,
+                "fair_tie_regret": 0.296875,
+                "directional_accuracy_on_real_nonzero": 0.5151515151515151
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 33,
+                "prediction_ties": 2,
+                "mse": 0.7893581213922096,
+                "deterministic_left_tie_regret": 0.203125,
+                "fair_tie_regret": 0.203125,
+                "directional_accuracy_on_real_nonzero": 0.6363636363636364
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 33,
+                "prediction_ties": 0,
+                "mse": 0.12321792903360215,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.9696969696969697
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.7893581213922097,
+              "transport_squared": 0.12321792903360212,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.02457319709730646,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          }
+        }
+      },
+      "random_directions": {
+        "known": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 23,
+                "prediction_ties": 0,
+                "mse": 0.30913302449719926,
+                "deterministic_left_tie_regret": 0.09375,
+                "fair_tie_regret": 0.09375,
+                "directional_accuracy_on_real_nonzero": 0.7391304347826086
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 23,
+                "prediction_ties": 0,
+                "mse": 0.26849909693560975,
+                "deterministic_left_tie_regret": 0.078125,
+                "fair_tie_regret": 0.078125,
+                "directional_accuracy_on_real_nonzero": 0.782608695652174
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 23,
+                "prediction_ties": 0,
+                "mse": 0.012543688149824091,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.26849909693560975,
+              "transport_squared": 0.012543688149824084,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.028090239411765465,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 29,
+                "prediction_ties": 0,
+                "mse": 0.4849993611871652,
+                "deterministic_left_tie_regret": 0.203125,
+                "fair_tie_regret": 0.203125,
+                "directional_accuracy_on_real_nonzero": 0.5517241379310345
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 29,
+                "prediction_ties": 0,
+                "mse": 0.4985759187233319,
+                "deterministic_left_tie_regret": 0.234375,
+                "fair_tie_regret": 0.234375,
+                "directional_accuracy_on_real_nonzero": 0.5172413793103449
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 29,
+                "prediction_ties": 0,
+                "mse": 0.030162325910747547,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.49857591872333185,
+              "transport_squared": 0.030162325910747426,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.04373888344691443,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 35,
+                "prediction_ties": 0,
+                "mse": 0.5114296656397748,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.7714285714285715
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 35,
+                "prediction_ties": 0,
+                "mse": 0.532650511641938,
+                "deterministic_left_tie_regret": 0.078125,
+                "fair_tie_regret": 0.078125,
+                "directional_accuracy_on_real_nonzero": 0.8857142857142857
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 35,
+                "prediction_ties": 0,
+                "mse": 0.09656888216835244,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.532650511641938,
+              "transport_squared": 0.09656888216835292,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.11778972817051617,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          }
+        },
+        "new": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.08299572710986788,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.75
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 2,
+                "mse": 0.0666646177790952,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.75
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.009730419822226232,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.06666461777909519,
+              "transport_squared": 0.009730419822226229,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.006600689508546408,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 29,
+                "prediction_ties": 0,
+                "mse": 0.7765680591904717,
+                "deterministic_left_tie_regret": 0.421875,
+                "fair_tie_regret": 0.421875,
+                "directional_accuracy_on_real_nonzero": 0.10344827586206896
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 29,
+                "prediction_ties": 2,
+                "mse": 0.6718910564003291,
+                "deterministic_left_tie_regret": 0.34375,
+                "fair_tie_regret": 0.34375,
+                "directional_accuracy_on_real_nonzero": 0.27586206896551724
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 29,
+                "prediction_ties": 0,
+                "mse": 0.029509722612435462,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.6718910564003291,
+              "transport_squared": 0.029509722612435486,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.07516728017770669,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 33,
+                "prediction_ties": 0,
+                "mse": 0.9371492475231179,
+                "deterministic_left_tie_regret": 0.296875,
+                "fair_tie_regret": 0.296875,
+                "directional_accuracy_on_real_nonzero": 0.5151515151515151
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 33,
+                "prediction_ties": 2,
+                "mse": 0.7893581213922096,
+                "deterministic_left_tie_regret": 0.203125,
+                "fair_tie_regret": 0.203125,
+                "directional_accuracy_on_real_nonzero": 0.6363636363636364
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 33,
+                "prediction_ties": 0,
+                "mse": 0.12321792903360215,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.9696969696969697
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.7893581213922097,
+              "transport_squared": 0.12321792903360212,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": 0.02457319709730646,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          }
+        }
+      }
+    },
+    "pong": {
+      "future_pairs": {
+        "known": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.12097438636827251,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.7142857142857143
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.14876591554776103,
+                "deterministic_left_tie_regret": 0.0625,
+                "fair_tie_regret": 0.0625,
+                "directional_accuracy_on_real_nonzero": 0.42857142857142855
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.05418161868941228,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.14876591554776103,
+              "transport_squared": 0.054181618689412264,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.08197314786890071,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 11,
+                "prediction_ties": 0,
+                "mse": 0.45569394774004685,
+                "deterministic_left_tie_regret": 0.078125,
+                "fair_tie_regret": 0.078125,
+                "directional_accuracy_on_real_nonzero": 0.6363636363636364
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 11,
+                "prediction_ties": 0,
+                "mse": 0.45899385241050183,
+                "deterministic_left_tie_regret": 0.140625,
+                "fair_tie_regret": 0.140625,
+                "directional_accuracy_on_real_nonzero": 0.45454545454545453
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 11,
+                "prediction_ties": 0,
+                "mse": 0.09299106168037176,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.4589938524105019,
+              "transport_squared": 0.09299106168037118,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.09629096635082633,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 26,
+                "prediction_ties": 0,
+                "mse": 1.233335992305563,
+                "deterministic_left_tie_regret": 0.234375,
+                "fair_tie_regret": 0.234375,
+                "directional_accuracy_on_real_nonzero": 0.6538461538461539
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 26,
+                "prediction_ties": 0,
+                "mse": 1.3576016394597565,
+                "deterministic_left_tie_regret": 0.328125,
+                "fair_tie_regret": 0.328125,
+                "directional_accuracy_on_real_nonzero": 0.5769230769230769
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 26,
+                "prediction_ties": 0,
+                "mse": 0.21368564303532847,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 1.357601639459757,
+              "transport_squared": 0.213685643035328,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.33795129018951997,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          }
+        },
+        "new": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.10440007693912709,
+                "deterministic_left_tie_regret": 0.046875,
+                "fair_tie_regret": 0.046875,
+                "directional_accuracy_on_real_nonzero": 0.25
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 1,
+                "mse": 0.13184450316528118,
+                "deterministic_left_tie_regret": 0.046875,
+                "fair_tie_regret": 0.046875,
+                "directional_accuracy_on_real_nonzero": 0.25
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.04956587113382235,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.13184450316528118,
+              "transport_squared": 0.04956587113382248,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.07701029735997658,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 6,
+                "prediction_ties": 0,
+                "mse": 0.35882817391854976,
+                "deterministic_left_tie_regret": 0.0625,
+                "fair_tie_regret": 0.0625,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 6,
+                "prediction_ties": 1,
+                "mse": 0.44199813404057575,
+                "deterministic_left_tie_regret": 0.109375,
+                "fair_tie_regret": 0.109375,
+                "directional_accuracy_on_real_nonzero": 0.3333333333333333
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 6,
+                "prediction_ties": 0,
+                "mse": 0.07383987083042667,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.44199813404057575,
+              "transport_squared": 0.07383987083042637,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.15700983095245355,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 18,
+                "prediction_ties": 0,
+                "mse": 1.0650561699801746,
+                "deterministic_left_tie_regret": 0.25,
+                "fair_tie_regret": 0.25,
+                "directional_accuracy_on_real_nonzero": 0.3333333333333333
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 18,
+                "prediction_ties": 1,
+                "mse": 1.3252645545441806,
+                "deterministic_left_tie_regret": 0.390625,
+                "fair_tie_regret": 0.390625,
+                "directional_accuracy_on_real_nonzero": 0.16666666666666666
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 18,
+                "prediction_ties": 0,
+                "mse": 0.19718277860372624,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 1.3252645545441806,
+              "transport_squared": 0.1971827786037259,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.45739116316773215,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          }
+        }
+      },
+      "no_generated_functions": {
+        "known": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.11602083936078605,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.7142857142857143
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.14192977475577875,
+                "deterministic_left_tie_regret": 0.046875,
+                "fair_tie_regret": 0.046875,
+                "directional_accuracy_on_real_nonzero": 0.5714285714285714
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.05627092062847561,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.14192977475577878,
+              "transport_squared": 0.056270920628475725,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.08217985602346847,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 11,
+                "prediction_ties": 0,
+                "mse": 0.4522339550930443,
+                "deterministic_left_tie_regret": 0.109375,
+                "fair_tie_regret": 0.109375,
+                "directional_accuracy_on_real_nonzero": 0.5454545454545454
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 11,
+                "prediction_ties": 0,
+                "mse": 0.45466772650132214,
+                "deterministic_left_tie_regret": 0.109375,
+                "fair_tie_regret": 0.109375,
+                "directional_accuracy_on_real_nonzero": 0.5454545454545454
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 11,
+                "prediction_ties": 0,
+                "mse": 0.09760841604633216,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.45466772650132214,
+              "transport_squared": 0.09760841604633233,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.10004218745461044,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 26,
+                "prediction_ties": 0,
+                "mse": 1.3083261273418962,
+                "deterministic_left_tie_regret": 0.296875,
+                "fair_tie_regret": 0.296875,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 26,
+                "prediction_ties": 0,
+                "mse": 1.513474370028665,
+                "deterministic_left_tie_regret": 0.28125,
+                "fair_tie_regret": 0.28125,
+                "directional_accuracy_on_real_nonzero": 0.5769230769230769
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 26,
+                "prediction_ties": 0,
+                "mse": 0.28301286492456035,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 1.5134743700286646,
+              "transport_squared": 0.2830128649245616,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.48816110761133247,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          }
+        },
+        "new": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.12381247556296766,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 1,
+                "mse": 0.15057843278984318,
+                "deterministic_left_tie_regret": 0.046875,
+                "fair_tie_regret": 0.046875,
+                "directional_accuracy_on_real_nonzero": 0.25
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.057676245445933215,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.15057843278984318,
+              "transport_squared": 0.057676245445933194,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.08444220267280875,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 6,
+                "prediction_ties": 0,
+                "mse": 0.3697534126552018,
+                "deterministic_left_tie_regret": 0.0625,
+                "fair_tie_regret": 0.0625,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 6,
+                "prediction_ties": 1,
+                "mse": 0.46495262084880473,
+                "deterministic_left_tie_regret": 0.125,
+                "fair_tie_regret": 0.125,
+                "directional_accuracy_on_real_nonzero": 0.16666666666666666
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 6,
+                "prediction_ties": 0,
+                "mse": 0.10612488633446542,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.4649526208488047,
+              "transport_squared": 0.1061248863344651,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.20132409452806765,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 18,
+                "prediction_ties": 0,
+                "mse": 1.081010357350584,
+                "deterministic_left_tie_regret": 0.265625,
+                "fair_tie_regret": 0.265625,
+                "directional_accuracy_on_real_nonzero": 0.3333333333333333
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 18,
+                "prediction_ties": 1,
+                "mse": 1.3714058677425456,
+                "deterministic_left_tie_regret": 0.328125,
+                "fair_tie_regret": 0.328125,
+                "directional_accuracy_on_real_nonzero": 0.2777777777777778
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 18,
+                "prediction_ties": 0,
+                "mse": 0.3672282404035323,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 1.371405867742546,
+              "transport_squared": 0.36722824040353164,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.6576237507954932,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          }
+        }
+      },
+      "random_directions": {
+        "known": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.11609009084554583,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.7142857142857143
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.15823604418567683,
+                "deterministic_left_tie_regret": 0.046875,
+                "fair_tie_regret": 0.046875,
+                "directional_accuracy_on_real_nonzero": 0.5714285714285714
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 7,
+                "prediction_ties": 0,
+                "mse": 0.07455989662905319,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.15823604418567683,
+              "transport_squared": 0.07455989662905335,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.11670584996918429,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 11,
+                "prediction_ties": 0,
+                "mse": 0.4389194852566185,
+                "deterministic_left_tie_regret": 0.0625,
+                "fair_tie_regret": 0.0625,
+                "directional_accuracy_on_real_nonzero": 0.7272727272727273
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 11,
+                "prediction_ties": 0,
+                "mse": 0.4684255973079138,
+                "deterministic_left_tie_regret": 0.109375,
+                "fair_tie_regret": 0.109375,
+                "directional_accuracy_on_real_nonzero": 0.6363636363636364
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 11,
+                "prediction_ties": 0,
+                "mse": 0.12019552440578901,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.46842559730791383,
+              "transport_squared": 0.12019552440578916,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.1497016364570843,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 26,
+                "prediction_ties": 0,
+                "mse": 1.190111345504568,
+                "deterministic_left_tie_regret": 0.1875,
+                "fair_tie_regret": 0.1875,
+                "directional_accuracy_on_real_nonzero": 0.6923076923076923
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 26,
+                "prediction_ties": 0,
+                "mse": 1.401060426398086,
+                "deterministic_left_tie_regret": 0.328125,
+                "fair_tie_regret": 0.328125,
+                "directional_accuracy_on_real_nonzero": 0.5384615384615384
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 26,
+                "prediction_ties": 0,
+                "mse": 0.33316561509476905,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 1.401060426398086,
+              "transport_squared": 0.3331656150947703,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.5441146959882888,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          }
+        },
+        "new": {
+          "4": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.1059228080390546,
+                "deterministic_left_tie_regret": 0.015625,
+                "fair_tie_regret": 0.015625,
+                "directional_accuracy_on_real_nonzero": 0.75
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 1,
+                "mse": 0.13415208341689294,
+                "deterministic_left_tie_regret": 0.03125,
+                "fair_tie_regret": 0.03125,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 4,
+                "prediction_ties": 0,
+                "mse": 0.051493941536726526,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.13415208341689294,
+              "transport_squared": 0.05149394153672661,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.07972321691456487,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "8": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 6,
+                "prediction_ties": 0,
+                "mse": 0.3880890179671622,
+                "deterministic_left_tie_regret": 0.0625,
+                "fair_tie_regret": 0.0625,
+                "directional_accuracy_on_real_nonzero": 0.5
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 6,
+                "prediction_ties": 1,
+                "mse": 0.45084273295398464,
+                "deterministic_left_tie_regret": 0.09375,
+                "fair_tie_regret": 0.09375,
+                "directional_accuracy_on_real_nonzero": 0.3333333333333333
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 6,
+                "prediction_ties": 0,
+                "mse": 0.1065161044293321,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 0.45084273295398464,
+              "transport_squared": 0.10651610442933193,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.16926981941615493,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          },
+          "16": {
+            "queries": {
+              "composed": {
+                "count": 64,
+                "real_nonzero": 18,
+                "prediction_ties": 0,
+                "mse": 1.076290696149629,
+                "deterministic_left_tie_regret": 0.28125,
+                "fair_tie_regret": 0.28125,
+                "directional_accuracy_on_real_nonzero": 0.2777777777777778
+              },
+              "real_future_histories_oracle": {
+                "count": 64,
+                "real_nonzero": 18,
+                "prediction_ties": 1,
+                "mse": 1.295163342552042,
+                "deterministic_left_tie_regret": 0.296875,
+                "fair_tie_regret": 0.296875,
+                "directional_accuracy_on_real_nonzero": 0.3333333333333333
+              },
+              "remove_reward_error_oracle": {
+                "count": 64,
+                "real_nonzero": 18,
+                "prediction_ties": 0,
+                "mse": 0.31299660498725207,
+                "deterministic_left_tie_regret": 0.0,
+                "fair_tie_regret": 0.0,
+                "directional_accuracy_on_real_nonzero": 1.0
+              }
+            },
+            "mse_decomposition": {
+              "reward_squared": 1.295163342552042,
+              "transport_squared": 0.3129966049872529,
+              "boundary_squared": 0.0,
+              "reward_transport_cross": -0.5318692513896653,
+              "reward_boundary_cross": 0.0,
+              "transport_boundary_cross": 0.0
+            }
+          }
+        }
+      }
+    }
+  },
+  "event_count": 2304,
+  "manifest_sha256": "7246850f4c2ec97cbdd24c95dd955b6f8051ee6b388a7cae593b23fd93a3e0ae",
+  "events_sha256": "fb31670457ed0f91a23ad4d8ec9262a20011457318cab41ec3bbedf11c2497f7",
+  "maximum_identity_error": 9.325873406851315e-15,
+  "maximum_independent_forward_readout_error": 9.769962616701378e-15,
+  "wall_seconds": 4.073624099999961,
+  "fit_calls": 0,
+  "ale_calls": 0,
+  "previous_gate_preserved": "capability_gate_failed",
+  "human_level_goal_achieved": false
+}

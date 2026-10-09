@@ -1,6 +1,16 @@
 # Ignore python virtual environments
-novamind/venv/
+.cloud-transfer/
+.venv/
+
+legacy/legacy/novamind/venv/
+legacy/novamind/venv/
 venv/
+kolmo/venv/
+
+# legacy/novamind archived intact (2026-07-29) — see kolmo/ for active work.
+# Large persisted state, not useful to track going forward.
+legacy/legacy/novamind/save/
+legacy/legacy/novamind/checkpoints/
 
 # Ignore cache and compiled files
 **/__pycache__/
@@ -8,8 +18,8 @@ venv/
 **/*.pyc
 
 # Ignore large data files and logs
-novamind/wikitext_corpus.txt
-novamind/tmp/wikitext_corpus.txt
+legacy/novamind/wikitext_corpus.txt
+legacy/novamind/tmp/wikitext_corpus.txt
 **/*.log
 **/*.pt
 **/*.png
@@ -18,18 +28,18 @@ novamind/tmp/wikitext_corpus.txt
 
 # Keep experiment files in tmp/ but ignore temporary execution outputs or caches if any
 # We want to push the python scripts inside tmp/
-# So do NOT ignore novamind/tmp/ as a whole
-novamind/tmp/checkpoints/
-novamind/tmp/dataset/
-novamind/tmp/data/
-novamind/tmp/arc_data/
+# So do NOT ignore legacy/novamind/tmp/ as a whole
+legacy/novamind/tmp/checkpoints/
+legacy/novamind/tmp/dataset/
+legacy/novamind/tmp/data/
+legacy/novamind/tmp/arc_data/
 
 # Ignore node_modules (npm dependencies)
 **/node_modules/
 
 # Ignore large binary/data directories
-novamind/brainstate/
-novamind/knowledge/
+legacy/novamind/brainstate/
+legacy/novamind/knowledge/
 
 # Private recordings, transcripts and credentials
 .env

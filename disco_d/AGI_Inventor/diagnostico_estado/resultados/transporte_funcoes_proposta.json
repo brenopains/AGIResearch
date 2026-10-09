@@ -1,0 +1,46 @@
+{
+  "status": "frozen_before_new_model_fit",
+  "development_only": true,
+  "train_seed": 97,
+  "development_seed": 103,
+  "primary": "transport",
+  "arms": [
+    "transport",
+    "shuffled_targets",
+    "no_context",
+    "no_transport",
+    "permuted_actions",
+    "zero"
+  ],
+  "supports": 32,
+  "alpha": 0.05,
+  "actions": 4,
+  "horizons": [
+    4,
+    8,
+    16
+  ],
+  "primary_horizon": 16,
+  "maximum_main_wall_seconds": 120,
+  "gate": "both_games_lower_fair_tie_regret_and_delta_mse_than_all_controls",
+  "source_hashes": {
+    "transporte_funcoes.py": "1c4ec8fb0c4fefc05ef185d644ad096dbbffc0ddbe6c818ec6d269fd657802ed",
+    "piloto_transporte_funcoes.py": "7bbd3759c031665bbb4bd30dd3031895a64bb4062066aae15da6e6391f4921f1",
+    "auditar_transporte_funcoes.py": "d5602d722ac610379a63aa096d1285c56e4584ea90b7836936d3f24e16d4e44f",
+    "testes_transporte_funcoes.py": "c8d0a4fabbb1f3cbc304364ceb84f22b5d9d8e7ad368613234e08a7b74008d8e",
+    "TRANSPORTE_FUNCOES.md": "8fca5ee38ba5058d485a798900c8927f28226924c27a0199ab8b50bcdcf9f2f7",
+    "diagnosticar_semantica_prefixo.py": "bbe25badbd7e14c85885da66f73cc4b5b397c5ccf4e8b4659baad15408dd7338",
+    "resultados/breakout_transicoes_mistas_97.npz": "7d2e457c4ab4a31507bef50dc26af261dec13c1a11a02564ea63b34977384448",
+    "resultados/breakout_transicoes_mistas_97.json": "c96eed3c7d2b5b1dece1aa79cecd822d51e49d991f3997dc0dd431568070a5d6",
+    "resultados/breakout_transicoes_mistas_97.jsonl": "54b2bfe68ca88e2a7df7efa187328052e432059923c3af3ab072e48e2b03997a",
+    "resultados/breakout_transicoes_mistas_103.npz": "938b7f8ca4c3773f942d53b606b269730d8cb8bf96a4fc6eb7bfd945d5401f8e",
+    "resultados/breakout_transicoes_mistas_103.json": "3fc7e391c467736a641e59c931057427f9bf692ab64a93b2b932b225067876df",
+    "resultados/breakout_transicoes_mistas_103.jsonl": "b7de431d9cc86552b4a48894293b9866571be84f2c16b6662fddbc25202dba7b",
+    "resultados/pong_transicoes_mistas_97.npz": "842ba8b2d55d66173ad5cb56bdeac461c5670931c2ff0fc33474d45f4b482c49",
+    "resultados/pong_transicoes_mistas_97.json": "5ebc40cf248956c40ee278f856c0b1bcdbf81f3e355e826832cadb073ee88db2",
+    "resultados/pong_transicoes_mistas_97.jsonl": "b7e70774b011fb38193bdb163f47acb9bca155b2d840871daea4f81ceb2f55da",
+    "resultados/pong_transicoes_mistas_103.npz": "fc1480a1ed4df99f7a534be8dc7f33c1e154d3871117217b28b416b95b6ca49d",
+    "resultados/pong_transicoes_mistas_103.json": "fc3a9e18853e8bf808dbc424170a2fe876363fc7bf7b664cf93a19a94d9fcf4b",
+    "resultados/pong_transicoes_mistas_103.jsonl": "00f74ca36a9661cbf45c777e94d4d65c5e61c0ba9f78206cdbb9cfe190a0523c"
+  }
+}

@@ -1,0 +1,364 @@
+[
+ {
+  "minerio": "copper-ore",
+  "observacao": {
+   "mancha_antes": 43529,
+   "tick": 950463
+  },
+  "acao": {
+   "tipo": "planta_broca",
+   "x": 5.5,
+   "y": 36.5,
+   "combustivel": 50
+  },
+  "consequencia": {
+   "obtido": 24,
+   "mancha_depois": 43505,
+   "consumido": 24,
+   "ticks": 6004
+  },
+  "objetivo": "copper-ore"
+ },
+ {
+  "objetivo": "copper-plate",
+  "receita": "copper-plate",
+  "maquina": "stone-furnace",
+  "observacao": {
+   "estoque": {
+    "copper-ore": 24,
+    "copper-plate": 20
+   }
+  },
+  "acao": {
+   "planta": "stone-furnace",
+   "alimenta": {
+    "copper-ore": 1.0
+   }
+  },
+  "consequencia": {
+   "obtido": 20,
+   "ticks": 8401,
+   "status": "no_ingredients"
+  }
+ },
+ {
+  "minerio": "iron-ore",
+  "observacao": {
+   "mancha_antes": 35120,
+   "tick": 964881
+  },
+  "acao": {
+   "tipo": "planta_broca",
+   "x": -32.5,
+   "y": 31.5,
+   "combustivel": 50
+  },
+  "consequencia": {
+   "obtido": 24,
+   "mancha_depois": 35096,
+   "consumido": 24,
+   "ticks": 6004
+  },
+  "objetivo": "iron-ore"
+ },
+ {
+  "minerio": "iron-ore",
+  "observacao": {
+   "mancha_antes": 35095,
+   "tick": 970889
+  },
+  "acao": {
+   "tipo": "planta_broca",
+   "x": -32.5,
+   "y": 31.5,
+   "combustivel": 50
+  },
+  "consequencia": {
+   "obtido": 24,
+   "mancha_depois": 35071,
+   "consumido": 24,
+   "ticks": 6004
+  },
+  "objetivo": "iron-ore"
+ },
+ {
+  "objetivo": "iron-plate",
+  "receita": "iron-plate",
+  "maquina": "stone-furnace",
+  "observacao": {
+   "estoque": {
+    "copper-ore": 24,
+    "copper-plate": 20,
+    "iron-ore": 48,
+    "iron-plate": 40
+   }
+  },
+  "acao": {
+   "planta": "stone-furnace",
+   "alimenta": {
+    "iron-ore": 1.0
+   }
+  },
+  "consequencia": {
+   "obtido": 40,
+   "ticks": 8401,
+   "status": "no_ingredients"
+  }
+ },
+ {
+  "objetivo": "pipe",
+  "receita": "pipe",
+  "maquina": "assembling-machine-1",
+  "observacao": {
+   "estoque": {
+    "copper-ore": 24,
+    "copper-plate": 20,
+    "iron-ore": 48,
+    "iron-plate": 40,
+    "pipe": 24
+   }
+  },
+  "acao": {
+   "planta": "assembling-machine-1",
+   "alimenta": {
+    "iron-plate": 1.0
+   }
+  },
+  "consequencia": {
+   "obtido": 24,
+   "ticks": 8401,
+   "status": "no_power"
+  }
+ },
+ {
+  "objetivo": "iron-gear-wheel",
+  "receita": "iron-gear-wheel",
+  "maquina": "assembling-machine-1",
+  "observacao": {
+   "estoque": {
+    "copper-ore": 24,
+    "copper-plate": 20,
+    "iron-ore": 48,
+    "iron-plate": 40,
+    "pipe": 24,
+    "iron-gear-wheel": 11
+   }
+  },
+  "acao": {
+   "planta": "assembling-machine-1",
+   "alimenta": {
+    "iron-plate": 2.0
+   }
+  },
+  "consequencia": {
+   "obtido": 11,
+   "ticks": 8401,
+   "status": "no_power"
+  }
+ },
+ {
+  "objetivo": "offshore-pump",
+  "receita": "offshore-pump",
+  "maquina": "assembling-machine-1",
+  "observacao": {
+   "estoque": {
+    "copper-ore": 24,
+    "copper-plate": 20,
+    "iron-ore": 48,
+    "iron-plate": 40,
+    "pipe": 24,
+    "iron-gear-wheel": 11,
+    "offshore-pump": 2
+   }
+  },
+  "acao": {
+   "planta": "assembling-machine-1",
+   "alimenta": {
+    "iron-gear-wheel": 2.0,
+    "pipe": 3.0
+   }
+  },
+  "consequencia": {
+   "obtido": 2,
+   "ticks": 8401,
+   "status": "no_power"
+  }
+ },
+ {
+  "minerio": "stone",
+  "observacao": {
+   "mancha_antes": 37790,
+   "tick": 1045397
+  },
+  "acao": {
+   "tipo": "planta_broca",
+   "x": 14.5,
+   "y": 68.5,
+   "combustivel": 50
+  },
+  "consequencia": {
+   "obtido": 24,
+   "mancha_depois": 37766,
+   "consumido": 24,
+   "ticks": 6004
+  },
+  "objetivo": "stone"
+ },
+ {
+  "objetivo": "stone-furnace",
+  "receita": "stone-furnace",
+  "maquina": "assembling-machine-1",
+  "observacao": {
+   "estoque": {
+    "copper-ore": 24,
+    "copper-plate": 20,
+    "iron-ore": 48,
+    "iron-plate": 40,
+    "pipe": 24,
+    "iron-gear-wheel": 11,
+    "offshore-pump": 2,
+    "stone": 24,
+    "stone-furnace": 2
+   }
+  },
+  "acao": {
+   "planta": "assembling-machine-1",
+   "alimenta": {
+    "stone": 5.0
+   }
+  },
+  "consequencia": {
+   "obtido": 2,
+   "ticks": 8401,
+   "status": "no_power"
+  }
+ },
+ {
+  "objetivo": "boiler",
+  "receita": "boiler",
+  "maquina": "assembling-machine-1",
+  "observacao": {
+   "estoque": {
+    "copper-ore": 24,
+    "copper-plate": 20,
+    "iron-ore": 48,
+    "iron-plate": 40,
+    "pipe": 24,
+    "iron-gear-wheel": 11,
+    "offshore-pump": 2,
+    "stone": 24,
+    "stone-furnace": 2,
+    "boiler": 2
+   }
+  },
+  "acao": {
+   "planta": "assembling-machine-1",
+   "alimenta": {
+    "pipe": 4.0,
+    "stone-furnace": 1.0
+   }
+  },
+  "consequencia": {
+   "obtido": 2,
+   "ticks": 8401,
+   "status": "no_power"
+  }
+ },
+ {
+  "objetivo": "steam-engine",
+  "receita": "steam-engine",
+  "maquina": "assembling-machine-1",
+  "observacao": {
+   "estoque": {
+    "copper-ore": 24,
+    "copper-plate": 20,
+    "iron-ore": 48,
+    "iron-plate": 40,
+    "pipe": 24,
+    "iron-gear-wheel": 11,
+    "offshore-pump": 2,
+    "stone": 24,
+    "stone-furnace": 2,
+    "boiler": 2,
+    "steam-engine": 2
+   }
+  },
+  "acao": {
+   "planta": "assembling-machine-1",
+   "alimenta": {
+    "iron-plate": 10.0,
+    "iron-gear-wheel": 8.0,
+    "pipe": 5.0
+   }
+  },
+  "consequencia": {
+   "obtido": 2,
+   "ticks": 8372,
+   "status": "no_power"
+  }
+ },
+ {
+  "objetivo": "iron-gear-wheel",
+  "receita": "iron-gear-wheel",
+  "maquina": "assembling-machine-1",
+  "observacao": {
+   "estoque": {
+    "copper-ore": 24,
+    "copper-plate": 20,
+    "iron-ore": 48,
+    "iron-plate": 40,
+    "pipe": 24,
+    "iron-gear-wheel": 42,
+    "offshore-pump": 2,
+    "stone": 24,
+    "stone-furnace": 2,
+    "boiler": 2,
+    "steam-engine": 2
+   }
+  },
+  "acao": {
+   "planta": "assembling-machine-1",
+   "alimenta": {
+    "iron-plate": 2.0
+   }
+  },
+  "consequencia": {
+   "obtido": 31,
+   "ticks": 8401,
+   "status": "no_power"
+  }
+ },
+ {
+  "objetivo": "automation-science-pack",
+  "receita": "automation-science-pack",
+  "maquina": "assembling-machine-1",
+  "observacao": {
+   "estoque": {
+    "copper-ore": 24,
+    "copper-plate": 20,
+    "iron-ore": 48,
+    "iron-plate": 40,
+    "pipe": 24,
+    "iron-gear-wheel": 42,
+    "offshore-pump": 2,
+    "stone": 24,
+    "stone-furnace": 2,
+    "boiler": 2,
+    "steam-engine": 2,
+    "automation-science-pack": 0
+   }
+  },
+  "acao": {
+   "planta": "assembling-machine-1",
+   "alimenta": {
+    "copper-plate": 1.0,
+    "iron-gear-wheel": 1.0
+   }
+  },
+  "consequencia": {
+   "obtido": 0,
+   "ticks": 8401,
+   "status": "recipe_not_researched"
+  }
+ }
+]

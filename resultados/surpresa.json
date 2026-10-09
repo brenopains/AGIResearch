@@ -1,0 +1,62 @@
+{
+ "data": "2026-09-23",
+ "veredito": "S1 em todas as doses",
+ "S0_rho": 0.5,
+ "S0_nota": "passou EXATAMENTE na barra; e o credito por rotulo e quase plano (0,395-0,453), entao a concordancia e um teste fraco",
+ "custo_de_dispensar_rotulo": {
+  "cred_rotulo": 0.636,
+  "cred_surpresa": 0.6,
+  "diferenca": -0.036
+ },
+ "dose": [
+  {
+   "mente": 0.2,
+   "fundido": 0.573,
+   "fundido_sd": 6.4,
+   "surpresa": 0.59,
+   "surpresa_sd": 1.1,
+   "credito_ficcao": 0.249
+  },
+  {
+   "mente": 0.4,
+   "fundido": 0.502,
+   "fundido_sd": 11.6,
+   "surpresa": 0.6,
+   "surpresa_sd": 0.0,
+   "credito_ficcao": 0.0
+  },
+  {
+   "mente": 0.6,
+   "fundido": 0.449,
+   "fundido_sd": 16.9,
+   "surpresa": 0.6,
+   "surpresa_sd": 0.0,
+   "credito_ficcao": 0.0
+  },
+  {
+   "mente": 0.8,
+   "fundido": 0.432,
+   "fundido_sd": 15.6,
+   "surpresa": 0.6,
+   "surpresa_sd": 0.0,
+   "credito_ficcao": 0.0
+  },
+  {
+   "mente": 1.0,
+   "fundido": 0.346,
+   "fundido_sd": 17.0,
+   "surpresa": 0.6,
+   "surpresa_sd": 0.0,
+   "credito_ficcao": 0.0
+  }
+ ],
+ "credito_por_dominio_surpresa": {
+  "arc": 0.322,
+  "cifar": 0.345,
+  "har": 0.323,
+  "moda": 0.464,
+  "texto": 0.121
+ },
+ "comparacao_com_rotulo": "a 20% de mentira o credito por ROTULO caiu 2,5 desvios (D2, falhou a barra); o credito por SURPRESA caiu 1,1. O sinal sem rotulo protege MELHOR onde o com rotulo falhou.",
+ "defeito_nomeado": "penhasco entre 20% e 40%: o piso max(0,g) zera o dominio de uma vez. Uma fonte que mente 40% e descartada inteira, embora 60% dela seja verdadeiro — e o modo de falha D3 (defesa boa demais) que eu pre-registrei no experimento da dose."
+}

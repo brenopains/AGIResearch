@@ -1,0 +1,118 @@
+{
+  "results": [
+    {
+      "name": "Causal Law Discovery",
+      "trial_id": 1,
+      "seed": 20260719,
+      "score": 0.45,
+      "threshold": 0.35,
+      "passed": true,
+      "details": "rep0: confounding detected (obs_bias=1.04)",
+      "metrics": {
+        "mean_score": 0.45,
+        "n_above_threshold": 1
+      },
+      "error": null,
+      "duration": 0.01
+    },
+    {
+      "name": "One-Shot Compositional Grounding",
+      "trial_id": 2,
+      "seed": 20260720,
+      "score": 0.8,
+      "threshold": 0.4,
+      "passed": true,
+      "details": "systematicity detected",
+      "metrics": {
+        "mean_score": 0.8
+      },
+      "error": null,
+      "duration": 0.0
+    },
+    {
+      "name": "Calibrated Ignorance",
+      "trial_id": 3,
+      "seed": 20260721,
+      "score": 0.0,
+      "threshold": 0.4,
+      "passed": false,
+      "details": "ECE=0.650, Brier=0.423, AUROC=0.500 (calibrated ECE=0.650)",
+      "metrics": {
+        "ECE": 0.65,
+        "Brier": 0.4225,
+        "AUROC_abstention": 0.5,
+        "n_questions": 20,
+        "ECE_calibrated": 0.65
+      },
+      "error": null,
+      "duration": 0.01
+    },
+    {
+      "name": "Counterfactual Simulation",
+      "trial_id": 4,
+      "seed": 20260722,
+      "score": 0.3,
+      "threshold": 0.4,
+      "passed": false,
+      "details": "counterfactual across 1 worlds",
+      "metrics": {
+        "mean_score": 0.3
+      },
+      "error": null,
+      "duration": 0.01
+    },
+    {
+      "name": "Isomorphic Transfer",
+      "trial_id": 5,
+      "seed": 20260723,
+      "score": 0.5,
+      "threshold": 0.3,
+      "passed": true,
+      "details": "transfer_ratio measured across 1 worlds",
+      "metrics": {
+        "mean_score": 0.5
+      },
+      "error": null,
+      "duration": 0.0
+    },
+    {
+      "name": "Autonomous Experimentation",
+      "trial_id": 6,
+      "seed": 20260724,
+      "score": 0.3,
+      "threshold": 0.3,
+      "passed": true,
+      "details": "efficiency_ratio measured across 1 worlds",
+      "metrics": {
+        "mean_score": 0.3
+      },
+      "error": null,
+      "duration": 0.0
+    },
+    {
+      "name": "Invention Under Pressure",
+      "trial_id": 7,
+      "seed": 20260725,
+      "score": 0.0,
+      "threshold": 0.3,
+      "passed": false,
+      "details": "invention rate: 0/1",
+      "metrics": {
+        "mean_score": 0.0,
+        "invention_rate": 0.0
+      },
+      "error": null,
+      "duration": 0.13
+    }
+  ],
+  "overall": {
+    "score": 0.0008,
+    "passed": false,
+    "passed_count": 4,
+    "total_count": 7,
+    "arithmetic_mean": 0.3357,
+    "gate_all_above_chance": false,
+    "total_duration": 19.54
+  },
+  "duration": 19.54
+}

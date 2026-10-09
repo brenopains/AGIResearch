@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NovaMind Dashboard</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1>NovaMind <span class="subtitle">Cognitive Architecture Dashboard</span></h1>
+    <div class="header-stats">
+      <span class="stat" id="statCycle">Cycle: 0</span>
+      <span class="stat" id="statUptime">Uptime: 0s</span>
+      <span class="stat" id="statVRAM">VRAM: 0MB</span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <!-- LEFT: Chat -->
+    <div class="panel chat-panel">
+      <div class="panel-header">Chat</div>
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="chat-input">
+        <input type="text" id="inputText" placeholder="Digite sua mensagem..." autofocus>
+        <button id="btnSend">Enviar</button>
+      </div>
+    </div>
+
+    <!-- RIGHT: State panels -->
+    <div class="panel-group">
+      <!-- Metacognition -->
+      <div class="panel small">
+        <div class="panel-header">Metacognição</div>
+        <div class="panel-body" id="metaPanel">
+          <div class="gauge-row">
+            <div class="gauge"><label>Confiança</label><div class="bar"><div class="fill" id="gConfidence"></div></div><span id="vConfidence">0%</span></div>
+            <div class="gauge"><label>Coerência</label><div class="bar"><div class="fill" id="gCoherence"></div></div><span id="vCoherence">0%</span></div>
+          </div>
+          <div class="gauge-row">
+            <div class="gauge"><label>Curiosidade</label><div class="bar"><div class="fill" id="gCuriosity"></div></div><span id="vCuriosity">0%</span></div>
+            <div class="gauge"><label>Confusão</label><div class="bar"><div class="fill" id="gConfusion"></div></div><span id="vConfusion">0%</span></div>
+          </div>
+          <div class="gauge-row">
+            <div class="gauge"><label>Surpresa</label><div class="bar"><div class="fill" id="gSurprise"></div></div><span id="vSurprise">0%</span></div>
+            <div class="gauge"><label>Certeza</label><div class="bar"><div class="fill" id="gCertainty"></div></div><span id="vCertainty">0%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- World Model -->
+      <div class="panel small">
+        <div class="panel-header">Modelo de Mundo <span class="badge" id="wmBadge">0 nós, 0 arestas</span></div>
+        <div class="panel-body" id="wmPanel">
+          <div id="chainsList"><em>Nenhuma cadeia causal ainda.</em></div>
+        </div>
+      </div>
+
+      <!-- Memory -->
+      <div class="panel small">
+        <div class="panel-header">Memória <span class="badge" id="memBadge">0 episódios</span></div>
+        <div class="panel-body" id="memPanel">
+          <div id="episodesList"><em>Nenhum episódio ainda.</em></div>
+        </div>
+      </div>
+
+      <!-- Semantic Rules -->
+      <div class="panel small">
+        <div class="panel-header">Regras Semânticas <span class="badge" id="semBadge">0</span></div>
+        <div class="panel-body" id="semPanel">
+          <div id="rulesList"><em>Nenhuma regra ainda.</em></div>
+        </div>
+      </div>
+
+      <!-- Goals -->
+      <div class="panel small">
+        <div class="panel-header">Objetivos</div>
+        <div class="panel-body" id="goalsPanel">
+          <span id="goalsText">0 ativos, 0 total</span>
+          <span id="unansweredText">0 perguntas sem resposta</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
