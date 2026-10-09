@@ -31,6 +31,14 @@ Armadilhas de percepcao (de PRE_REGISTRO_etapa1.md): oclusor cinza parado por ci
 
 Na vida dela os universos se sucedem a cada 12 visitas (giro, mola_h, contragiro,
 mola, de novo giro...), sem aviso. A camera e uma so por vida.
+
+MAOS (transplante 11): numa visita ela pode, em vez de so assistir, MONTAR a cena —
+dizer onde cada coisa comeca e com que velocidade, nas coordenadas que ELA percebe
+(centro do quadro = 0, meia-largura = 1; velocidade em meias-larguras por segundo):
+    arena://k?exp=x,y,vx,vy;x,y,vx,vy;...
+A arena converte pela camera (que ela nao conhece) e roda a lei do universo daquela
+visita. O mundo impoe limites (no maximo 4 corpos, posicao dentro do quadro, rapidez
+<= MAX_VEL_EXP) e nao promete que as coisas fiquem a vista: se sairem do quadro, saem.
 """
 from __future__ import annotations
 
@@ -43,6 +51,8 @@ import numpy as np
 
 LADO = 128
 FPS = 5.0
+MAX_CORPOS_EXP = 4
+MAX_VEL_EXP = 0.6        # meias-larguras por segundo (~38 px/s): mais que isto o quadro nem acompanha
 DUR = 24.0
 C_GIRO, C_CONTRA, C_H, K_MOLA = 1.0, 1.4, 0.09, 0.25
 UNIVERSOS = ("giro", "mola_h", "contragiro", "mola")
@@ -129,6 +139,8 @@ class Episodio:
 
 
 def _desenha(img, c, raio, cor, cor2=None, eixo=None):
+    if not np.all(np.isfinite(c)):
+        return
     H, W = img.shape[:2]
     x0, x1 = max(0, int(c[0] - raio - 2)), min(W, int(c[0] + raio + 3))
     y0, y1 = max(0, int(c[1] - raio - 2)), min(H, int(c[1] + raio + 3))
@@ -146,15 +158,23 @@ def _desenha(img, c, raio, cor, cor2=None, eixo=None):
     img[y0:y1, x0:x1] = np.clip(reg * (1 - cob) + col * cob, 0, 255).astype(np.uint8)
 
 
-def episodio(mundo, rng, cam, dur=DUR, n_corpos=None, armadilhas=True, tempo_jitter=0.01):
+def episodio(mundo, rng, cam, dur=DUR, n_corpos=None, armadilhas=True, tempo_jitter=0.01, estados0=None):
+    """estados0: estados iniciais do MUNDO escolhidos por um experimento (ver de_percebido);
+    sem eles, o mundo sorteia (e so aceita quem fica a vista o video todo)."""
     A, tc = cam
     T = int(round(dur * FPS))
     tempos = np.arange(T) / FPS + rng.uniform(-tempo_jitter, tempo_jitter, T)
     tempos[0] = 0.0
     tempos = np.maximum.accumulate(tempos)
-    n = n_corpos or int(rng.choice([2, 3, 3, 3, 4]))
     corpos = []
-    for _ in range(n):
+    if estados0 is not None:
+        n = len(estados0)
+        for S0 in estados0:
+            tr = integra(mundo, np.asarray(S0, float)[None], tempos)[0]
+            corpos.append({"mundo": tr, "px": tr[:, :2] @ A.T + tc})
+    else:
+        n = n_corpos or int(rng.choice([2, 3, 3, 3, 4]))
+    for _ in range(n if estados0 is None else 0):
         for _tent in range(200):
             S0 = _estado_inicial(mundo, rng)
             tr = integra(mundo, S0[None], tempos)[0]
@@ -208,6 +228,55 @@ def universo_da_visita(k):
     return UNIVERSOS[(k // VISITAS_POR_UNIVERSO) % len(UNIVERSOS)]
 
 
+# ── maos: o experimento dela, das coordenadas que ELA percebe para o mundo ────
+def limita_experimento(estados):
+    """o que o mundo aceita: ate MAX_CORPOS_EXP corpos, posicao dentro do quadro, rapidez
+    ate MAX_VEL_EXP (coordenadas percebidas)."""
+    out = []
+    for u in list(estados)[:MAX_CORPOS_EXP]:
+        u = np.asarray(u, float)
+        if u.shape != (4,) or not np.all(np.isfinite(u)):
+            continue
+        p = np.clip(u[:2], -0.92, 0.92)
+        v = u[2:]
+        s = float(np.linalg.norm(v))
+        if s > MAX_VEL_EXP:
+            v = v * (MAX_VEL_EXP / s)
+        out.append(np.concatenate([p, v]))
+    return out
+
+
+def de_percebido(cam, u):
+    """estado percebido (x, y, vx, vy; centro 0, meia-largura 1, por segundo) -> estado do mundo."""
+    A, tc = cam
+    Ai = np.linalg.inv(A)
+    u = np.asarray(u, float)
+    x = Ai @ (u[:2] * (LADO / 2) + LADO / 2 - tc)
+    v = Ai @ (u[2:] * (LADO / 2))
+    return np.array([x[0], x[1], v[0], v[1]])
+
+
+def url_experimento(k, estados):
+    return f"arena://{int(k)}?exp=" + ";".join(",".join(f"{float(c):.4f}" for c in u)
+                                               for u in limita_experimento(estados))
+
+
+def le_url(url):
+    """'arena://k' ou 'arena://k?exp=...' -> (k, estados percebidos ou None)."""
+    corpo = str(url).split("//", 1)[1]
+    k, _, q = corpo.partition("?")
+    est = None
+    if q.startswith("exp="):
+        est = []
+        for parte in q[4:].split(";"):
+            try:
+                est.append([float(c) for c in parte.split(",")])
+            except ValueError:
+                continue
+        est = limita_experimento(est) or None
+    return int(k), est
+
+
 # ── a arena na vida dela ──────────────────────────────────────────────────────
 class ArenaViva:
     """O MUNDO da arena na pasta da vida (arena.json): quantas visitas, a semente da
@@ -237,8 +306,11 @@ class ArenaViva:
         return f"arena://{k}"
 
     def gera(self, url, dur=DUR):
-        k = int(str(url).split("//", 1)[1])
+        k, est = le_url(url)
         rng = np.random.default_rng([self.st["semente"], k])
+        if est is not None:
+            return episodio(universo_da_visita(k), rng, self.cam, dur=dur,
+                            estados0=[de_percebido(self.cam, u) for u in est])
         return episodio(universo_da_visita(k), rng, self.cam, dur=dur)
 
     def assistir(self, url, segundos, tempo_real=True):
