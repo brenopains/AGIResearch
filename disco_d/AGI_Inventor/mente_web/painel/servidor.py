@@ -89,6 +89,10 @@ class Leitor:
         self.inicio_parede = None
         self.seq = 0
         self.recentes = collections.deque(maxlen=400)   # para animar o organismo
+        self.descobertas = collections.deque(maxlen=400)   # aba DESCOBERTAS: o que ela criou, de todos os orgaos
+        self.cont_desc = collections.Counter()
+        self.n_desc = 0
+        self.lab_n = collections.Counter()               # o laboratorio por fonte (internet x arena)
 
     def atualiza(self):
         if not os.path.exists(self.arq):
@@ -111,10 +115,15 @@ class Leitor:
              "sonho": ("ligou", "deprimiu", "rejeitou"), "imaginou_e_viu": ("par",), "viu": ("n",),
              "assistiu": ("passos",), "sem_rede": (), "rede_voltou": (), "deprimiu": ("unidade",),
              "construcao": ("molde",), "barra_descoberta": ("dominio",), "aterramento": ("pedaco",),
-             "ligacao_av": (), "transplante": ("orgaos",)}
+             "ligacao_av": (), "transplante": ("orgaos",),
+             # transplante 10: o laboratorio
+             "laboratorio": ("trilhas", "crise", "conceito", "fonte"), "laboratorio_crise": ("nova_teoria", "erro_px"),
+             "laboratorio_conceito_inventado": ("formula",), "laboratorio_conceito_escolhido": ("para", "formula"),
+             "laboratorio_conceito_revisado": ("agora",), "laboratorio_reinterpretou": ("episodio",)}
 
     def _um(self, e):
         ev = e.get("ev")
+        self._descobre(e, ev)
         if ev in self.LEVES and not (ev == "nascimento" and (e.get("nivel") or 1) < 2):
             self.seq += 1
             self.recentes.append({"seq": self.seq, "ev": ev, "vida_s": e.get("vida_s", 0),
@@ -145,7 +154,9 @@ class Leitor:
             self.imagens += e.get("n", 0)
         elif ev == "assistiu":
             self.videos += 1
-            self._feed(e, f"assistiu a um vídeo ({e.get('passos', 0)} instantes de imagem e som)")
+            q = e.get("quadros", e.get("passos", 0)) or 0
+            som = " com som" if e.get("trechos_com_som") else ""
+            self._feed(e, f"assistiu a um vídeo ({q} quadros{som})" if q else "tentou assistir a um vídeo, mas não chegou imagem")
         elif ev == "pesquisa":
             b = e["barra"]
             onde = NOME_BARRA.get(b, b[1:] if b.startswith("@") else b)
@@ -192,6 +203,85 @@ class Leitor:
         elif ev == "acordou":
             self._feed(e, f"acordou com toda a memória (passo {e.get('passos')})")
 
+    def _desc(self, e, tipo, titulo, texto, evid=None):
+        self.n_desc += 1
+        self.cont_desc[tipo] += 1
+        self.descobertas.append({"id": self.n_desc, "vida_s": e.get("vida_s", 0), "t": e.get("t"), "tipo": tipo,
+                                 "titulo": titulo, "texto": texto, "evidencia": evid or {}})
+
+    def _descobre(self, e, ev):
+        """O que ela CRIOU ou DESCOBRIU (aba DESCOBERTAS), em portugues de gente. Cada linha vem
+        de um evento real do diario dela, com a evidencia que o orgao mediu."""
+        g = e.get
+        if ev == "laboratorio":
+            self.lab_n[g("fonte") or "?"] += 1
+            self.ultimo_lab = e
+        elif ev == "laboratorio_conceito_inventado":
+            self._desc(e, "conceito", f"INVENTOU {g('conceito')}",
+                       f"Achou uma grandeza que fica constante enquanto cada coisa se move, e muda de uma coisa para outra: "
+                       f"{g('formula')}. Ninguém deu essa fórmula a ela.",
+                       {"variação dentro/total (treino)": g("lam"), "idem fora do ajuste": g("lam_fora"), "placebo": g("placebo")})
+            self._feed(e, f"inventou uma grandeza que se conserva: {g('formula')}", "ouro")
+        elif ev == "laboratorio_conceito_escolhido":
+            if g("para"):
+                self._desc(e, "conceito", f"PASSOU A PENSAR COM {g('para')}",
+                           f"A teoria {g('teoria')} agora usa {g('formula')}: com ele, a previsão de onde as coisas vão "
+                           f"estar melhorou em vídeos que ficaram FORA do ajuste. Lei: {g('lei')}",
+                           {"motivo": g("motivo"), "opções (erro mediano px, bits)": g("opcoes")})
+                self._feed(e, f"passou a pensar com o conceito {g('formula')} — a previsão melhorou", "ouro")
+            else:
+                self._desc(e, "conceito", f"LARGOU {g('de')}",
+                           f"A teoria {g('teoria')} deixou de usar o conceito {g('de')}: ele não pagava mais na previsão.",
+                           {"motivo": g("motivo")})
+        elif ev == "laboratorio_conceito_revisado":
+            self._desc(e, "conceito", f"REVISOU {g('conceito')}",
+                       f"A mesma ideia, medida com mais experiência: {g('antes')}  →  {g('agora')}.",
+                       {"variação antes": g("lam_antes"), "variação agora": g("lam_agora")})
+        elif ev == "laboratorio_crise":
+            falhou = g("teoria_que_falhou")
+            self._desc(e, "teoria", f"CRISE → TEORIA {g('nova_teoria')}",
+                       (f"A teoria {falhou} não explicou um vídeo ({g('fonte')}): o próprio vídeo, sozinho, previa melhor. "
+                        if falhou is not None else "Primeira teoria de movimento dela. ")
+                       + f"Ela abriu uma teoria nova e reviu {g('reinterpretados') or 0} vídeo(s) antigo(s) com ela. Lei: {g('lei')}",
+                       {"erro da 1ª tentativa (px)": g("erro_px"), "erro ÷ palpite burro (1 = igual)": g("erro_relativo")})
+            self._feed(e, f"crise no laboratório: a teoria {falhou} falhou; nasceu a teoria {g('nova_teoria')}",
+                       "alerta" if falhou is not None else "normal")
+        elif ev == "laboratorio_reinterpretou":
+            antes = f"estava na teoria {g('de_teoria')}" if g("de_teoria") is not None else "estava sem teoria (nenhuma o explicava)"
+            self._desc(e, "teoria", "REINTERPRETOU UM VÍDEO ANTIGO",
+                       f"O vídeo {g('episodio')} {antes}; a teoria {g('para_teoria')} nova o explica melhor.",
+                       {"erro antes": g("erro_antes"), "erro agora": g("erro_agora")})
+        elif ev == "construcao":
+            self._desc(e, "linguagem", "CRIOU UMA CONSTRUÇÃO",
+                       f"Um molde de linguagem com lacuna que ela mesma montou: “{' '.join(g('molde') or [])}”, com peças "
+                       + ", ".join(f"“{p}”" for p in (g("pecas") or [])[:6]) + ".")
+        elif ev == "imaginou_e_viu":
+            self._desc(e, "linguagem", "IMAGINOU E O MUNDO CONFIRMOU",
+                       f"No sono imaginou “{''.join(g('par') or []).strip()}” (nunca tinha lido) e depois encontrou na internet.",
+                       {"confirmadas": g("confirmadas"), "placebo": g("placebo")})
+        elif ev == "aterramento" and g("acima_do_acaso"):
+            self._desc(e, "ligacao", "LIGOU PALAVRA A IMAGEM",
+                       f"“{(g('pedaco') or '').strip()}” passou a prever um padrão visual em páginas novas — acima do controle de mentira.",
+                       {"confirmações": g("confirmacoes"), "ganho (bits)": g("ganho_bits")})
+        elif ev == "ligacao_av":
+            self._desc(e, "ligacao", "LIGOU IMAGEM A SOM", "Um padrão de imagem passou a prever um padrão de som num vídeo novo.",
+                       {"confirmações": g("confirmacoes"), "no controle": g("nulo_confirmadas")})
+        elif ev == "convergencia":
+            self._desc(e, "ligacao", "TEXTO + IMAGEM + SOM", f"“{(g('pedaco') or '').strip()}” ligado a uma imagem e a um som que também se ligam entre si.")
+        elif ev == "barra_descoberta":
+            self._desc(e, "ferramenta", "ACHOU UMA FERRAMENTA", f"Uma barra de busca em {g('dominio')} que ela pode usar.")
+        elif ev == "fechou" and g("como") == "perseguida":
+            self._desc(e, "pergunta", "RESOLVEU UMA PERGUNTA", f"Foi atrás de “{(g('alvo') or '').strip()}” e passou a entender.")
+        elif ev == "nascimento" and (g("nivel") or 1) >= 4:
+            self._desc(e, "unidade", f"UNIDADE DE NÍVEL {g('nivel')}", f"“{(g('pedaco') or '').strip()}”: feita de unidades menores que ela mesma juntou.")
+        elif ev == "verbos_sonda" and (g("transporte_vence") or 0) > 0.25:
+            self._desc(e, "verbo", "UM VERBO VISUAL ATRAVESSOU CENAS",
+                       "Uma transformação tirada de uma imagem previu outra imagem mudando do mesmo jeito.",
+                       {"transporte vence": g("transporte_vence"), "por família": g("transporte_por_familia"),
+                        "composição vence": g("compor_vence")})
+        elif ev == "transplante":
+            self._desc(e, "orgao", "ÓRGÃOS NOVOS", ", ".join(g("orgaos") or []))
+
     def _feed(self, e, texto, tipo="normal"):
         self.feed.append({"vida_s": e.get("vida_s", 0), "texto": texto, "tipo": tipo})
 
@@ -209,7 +299,16 @@ class Leitor:
             alvo = (a.get("alvo_lacuna") or "").strip()
             porque = NOME_LACUNA.get(a.get("lacuna"), "quer entender")
             return f"pesquisando “{q}” em {onde}, porque {porque} “{alvo}”"
-        return NOME_ACAO.get(e, e)
+        txt = NOME_ACAO.get(e, e)
+        lab = getattr(self, "ultimo_lab", None)
+        if lab is not None and lab.get("t") == a.get("t"):       # o laboratorio analisou o video desta acao
+            if not lab.get("trilhas"):
+                txt += " — o laboratório não achou coisas para seguir nesse vídeo"
+            else:
+                txt += (f" — o laboratório seguiu {lab.get('trilhas')} coisa(s) e previu com a teoria {lab.get('teoria')}"
+                        f" (erro {_px(lab.get('primeira'))} px; o palpite burro erraria {_px(lab.get('inercia'))} px)"
+                        + ("; CRISE: abriu uma teoria nova" if lab.get("crise") else ""))
+        return txt
 
     def processo(self):
         agora = time.time()
@@ -284,6 +383,10 @@ class Leitor:
                 "pesquisas": list(self.pesquisas)[::-1],
                 "feed": list(self.feed)[::-1][:16], "curva": self.curva[-160:],
             }
+
+
+def _px(x):
+    return "—" if x is None else f"{float(x):.1f}".replace(".", ",")
 
 
 def _n(x):
@@ -395,7 +498,8 @@ class H(BaseHTTPRequestHandler):
                 ult = L.seq
             self._envia(json.dumps({"ultimo": ult, "eventos": evs}, ensure_ascii=False),
                         "application/json; charset=utf-8")
-        elif self.path.split("?")[0] in ("/api/olho.jpg", "/api/palavras_visuais.jpg", "/api/verbos.jpg"):
+        elif self.path.split("?")[0] in ("/api/olho.jpg", "/api/palavras_visuais.jpg", "/api/verbos.jpg",
+                                         "/api/lab_quadro.jpg", "/api/verbos_anim.jpg"):
             nome = self.path.split("?")[0].rsplit("/", 1)[1]
             try:
                 self._envia(open(os.path.join(L.pasta, nome), "rb").read(), "image/jpeg")
@@ -418,6 +522,19 @@ class H(BaseHTTPRequestHandler):
         elif self.path.startswith("/api/tela"):
             try:
                 v = json.load(open(os.path.join(L.pasta, "tela.json"), encoding="utf-8"))
+                v["atraso_s"] = round(time.time() - v.get("quando", 0), 1)
+            except Exception:
+                v = {"indisponivel": True}
+            self._envia(json.dumps(v, ensure_ascii=False), "application/json; charset=utf-8")
+        elif self.path.startswith("/api/descobertas"):
+            L.atualiza()
+            with L.lock:
+                v = {"contagem": dict(L.cont_desc), "lista": list(L.descobertas)[::-1], "laboratorio_por_fonte": dict(L.lab_n)}
+            self._envia(json.dumps(v, ensure_ascii=False, default=str), "application/json; charset=utf-8")
+        elif self.path.startswith("/api/lab_vivo") or self.path.startswith("/api/holograma"):
+            nome = "laboratorio_vivo.json" if self.path.startswith("/api/lab_vivo") else "holograma.json"
+            try:
+                v = json.load(open(os.path.join(L.pasta, nome), encoding="utf-8"))
                 v["atraso_s"] = round(time.time() - v.get("quando", 0), 1)
             except Exception:
                 v = {"indisponivel": True}

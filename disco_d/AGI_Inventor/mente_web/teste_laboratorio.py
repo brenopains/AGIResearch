@@ -83,6 +83,10 @@ try:
     m2.detalhe()
     det = json.load(open(os.path.join(pasta, "detalhe.json"), encoding="utf-8"))
     assert "laboratorio" in det, "painel sem o laboratorio"
+    for arq in ("laboratorio_vivo.json", "holograma.json", "lab_quadro.jpg"):      # telas LABORATORIO e HOLOGRAMA
+        assert os.path.exists(os.path.join(pasta, arq)), f"painel sem {arq}"
+    h = json.load(open(os.path.join(pasta, "holograma.json"), encoding="utf-8"))
+    assert h["teorias"] and h["teorias"][0]["cenas"], "holograma sem cena de teoria"
     erros = [ln for ln in open(os.path.join(pasta, "ontogenia.jsonl"), encoding="utf-8")
              if json.loads(ln)["ev"] in ("erro", "erro_orgao") or json.loads(ln)["ev"].endswith("_falhou")]
     assert not erros, "erros no diario:\n" + "".join(erros[:5])

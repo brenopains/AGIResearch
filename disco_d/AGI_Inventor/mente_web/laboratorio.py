@@ -322,7 +322,8 @@ def percebe(quadros, tempos, religa=True):
         out.append({"t": t.astype(np.float32), "p": ((T["p"] - centro) / (L / 2)).astype(np.float32),
                     "quebras": [int(x) for x in T["quebras"]], "k": T["k"].astype(np.int32),
                     "cor": [int(c) for c in T["cor"]]})
-    return {"trilhas": out, "motivo": "ok" if out else "sem_objetos", "eventos": eventos, "L": L}
+    return {"trilhas": out, "motivo": "ok" if out else "sem_objetos", "eventos": eventos, "L": L,
+            "forma": [int(forma[0]), int(forma[1])]}
 
 
 # ═════════════════════════════════════════════════════════════════════════════
@@ -1182,7 +1183,8 @@ class Laboratorio:
         self.n_ep += 1
         self.contas["episodios"] += 1
         self.eps[eid] = {"id": eid, "fonte": fonte, "url": str(url)[:160], "quando": time.time(), "t_vida": int(t_vida),
-                         "L": per["L"], "trilhas": [{k: tr[k] for k in ("t", "p", "quebras")} for tr in per["trilhas"]],
+                         "L": per["L"], "forma": per.get("forma"),
+                         "trilhas": [{k: tr[k] for k in ("t", "p", "quebras")} for tr in per["trilhas"]],
                          "teoria": None, "erro": None}
         self.ordem.append(eid)
         d = self._der(eid)
@@ -1252,6 +1254,93 @@ class Laboratorio:
                     self._consenso(T, T["membros"][-1])
                 feitas += 1
         return feitas
+
+    # ── vitrine e holograma: SO LEITURA, para o painel (nada aqui decide nada) ──
+    def _caminho(self, lei, z0, ts):
+        """a mesma rolagem da previsao, guardando a posicao nos instantes pedidos."""
+        z = np.asarray(z0, float).copy()[None]
+        out, t = [], 0.0
+        for tt in ts:
+            while t < tt - 1e-9:
+                h = min(DT_ROLA, tt - t)
+                z[:, 2:] += acel_lei(lei, z, self.conceitos) * h
+                z[:, :2] += z[:, 2:] * h
+                z = np.clip(z, -20, 20)
+                t += h
+            out.append(z[0, :2].copy())
+        return np.array(out)
+
+    def vitrine(self, eid, n=8):
+        """o episodio recem-analisado como ela o viu: as trilhas das coisas que seguiu e, para
+        alguns instantes, o caminho que a teoria dela PREVIU para os 2 s seguintes, o da inercia
+        e onde a coisa de fato estava. Coordenadas normalizadas (centro do quadro, meia-largura 1)."""
+        ep = self.eps.get(eid)
+        if ep is None:
+            return None
+        d = self._der(eid)
+        T = self.teorias.get(ep.get("teoria"))
+        trilhas = []
+        for tr in ep["trilhas"]:
+            P = tr["p"].astype(float)
+            sel = np.linspace(0, len(P) - 1, min(len(P), 120)).astype(int)
+            trilhas.append(P[sel].round(4).tolist())
+        prev = []
+        if len(d["z0"]):
+            for i in np.linspace(0, len(d["z0"]) - 1, min(n, len(d["z0"]))).astype(int):
+                ts = np.linspace(0, float(d["dt"][i]), 9)
+                prev.append({"de": d["z0"][i, :2].round(4).tolist(),
+                             "teoria": self._caminho(T["lei"], d["z0"][i], ts).round(4).tolist() if T else None,
+                             "inercia": self._caminho(None, d["z0"][i], ts).round(4).tolist(),
+                             "real": d["alvo"][i].round(4).tolist(), "trilha": int(d["trilha"][i])})
+        return {"episodio": eid, "fonte": ep["fonte"], "url": ep["url"], "forma": ep.get("forma"),
+                "teoria": ep.get("teoria"), "conceito": T["lei"].get("conceito") if T else None,
+                "lei": formula_lei(T["lei"]) if T else None, "erro_1a_px": ep.get("erro_1a"),
+                "inercia_px": ep.get("inercia"), "trilhas": trilhas, "previsoes": prev}
+
+    def holograma(self, max_teorias=6, max_cenas=2, max_traj=4, max_conceitos=8):
+        """O que ela IMAGINA com o que aprendeu — e so com isso. Para cada teoria: cenas REAIS da
+        memoria dela e a mesma cena IMAGINADA pela lei dela a partir do primeiro instante de cada
+        coisa (quanto tempo a imaginacao fica perto do real e honesto). Para cada conceito: o valor
+        dele ao longo de trajetorias reais (linha reta = se conserva) e onde elas passaram."""
+        out = {"teorias": [], "conceitos": []}
+        for T in sorted(self.teorias.values(), key=lambda T: -len(T["membros"]))[:max_teorias]:
+            cenas = []
+            for e in T["membros"][-max_cenas:]:
+                ep = self.eps[e]
+                tracks = []
+                for tr in ep["trilhas"][:max_traj]:
+                    Zc, okc = estados_causais(tr)
+                    idx = np.nonzero(okc)[0]
+                    if not len(idx):
+                        continue
+                    i0 = int(idx[0])
+                    t = tr["t"].astype(float)[i0:] - float(tr["t"][i0])
+                    P = tr["p"].astype(float)[i0:]
+                    sel = np.linspace(0, len(t) - 1, min(len(t), 48)).astype(int)
+                    tracks.append({"t": t[sel].round(2).tolist(), "real": P[sel].round(4).tolist(),
+                                   "imaginado": self._caminho(T["lei"], Zc[i0], t[sel]).round(4).tolist()})
+                if tracks:
+                    cenas.append({"episodio": e, "fonte": ep["fonte"], "url": ep["url"], "trilhas": tracks})
+            out["teorias"].append({"id": T["id"], "episodios": len(T["membros"]),
+                                   "conceito": T["lei"].get("conceito") if T["lei"] else None,
+                                   "lei": formula_lei(T["lei"]), "cenas": cenas})
+        for cid, c in list(self.conceitos.items())[-max_conceitos:]:
+            usam = [T for T in self.teorias.values() if T["lei"] and T["lei"].get("conceito") == cid]
+            fonte = usam or [T for T in self.teorias.values() if T["id"] in c["teorias"]]
+            trajs = []
+            for T in fonte[:2]:
+                for e in T["membros"][-3:]:
+                    for Z in self._der(e)["trajs"]:
+                        if len(trajs) >= 6 or len(Z) < MIN_PONTOS:
+                            continue
+                        q = valor_conceito(c, Z)
+                        sel = np.linspace(0, len(Z) - 1, min(len(Z), 48)).astype(int)
+                        trajs.append({"pos": Z[sel, :2].round(4).tolist(), "q": q[sel].round(4).tolist()})
+            out["conceitos"].append({"id": cid, "formula": formula_conceito(c), "lam": round(c["lam"], 5),
+                                     "teorias": sorted(c["teorias"]), "em_uso": bool(usam),
+                                     "revisoes": c.get("revisoes", 0), "nasceu": c.get("nasceu"),
+                                     "placebo": c.get("placebo", False), "trajetorias": trajs})
+        return out
 
     # ── o que mostrar (painel) ────────────────────────────────────────────────
     def resumo(self):

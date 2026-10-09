@@ -3664,3 +3664,37 @@ Critérios na vida: PRE_REGISTRO_vida1.md, transplante 10.
    o protocolo da `linguagem.py`.
 5. **O laboratório na economia.** O progresso dele entra na moeda única, mas só depois
    de medir A2 e A3 na vida real.
+
+
+### 24.8 O painel: três telas novas, só com dados reais (2026-10-09, noite)
+
+O pedido foi acompanhar, sem rolar a tela, o que ela faz de verdade. Cada tela abaixo lê
+o que a mente publica; nada é animação inventada.
+- **LABORATÓRIO:** o último vídeo analisado. Mostra as trilhas das coisas que ela
+  seguiu (inclusive atrás de obstáculos), o que a teoria dela previu para 2 s depois
+  (antes de aprender com o vídeo), o palpite burro e onde a coisa estava de verdade.
+  Ao lado: as leis que ela escreveu, os conceitos com o valor ao longo de trajetórias
+  reais (linha reta = se conserva), o placar e a linha do tempo de crises e revisões.
+- **DESCOBERTAS:** tudo o que ela criou, de todos os órgãos: conceitos, teorias e
+  crises, construções de linguagem, imaginação confirmada, ligações entre sentidos,
+  verbos que atravessam cenas, ferramentas, perguntas resolvidas. Cada cartão traz a
+  evidência que o órgão mediu, com filtro por tipo e páginas.
+- **HOLOGRAMA:** clicar e ver o que ela imagina.
+  - **Uma lei:** a cena real da memória dela ao lado da mesma cena rodada pela lei
+    dela, a partir do mesmo começo.
+  - **Um conceito:** as trajetórias reais coloridas pelo valor dele.
+  - **Um verbo visual:** o córtex dela aplicando a transformação 0 a 6 vezes numa
+    imagem dela.
+  - **Uma construção:** o molde de linguagem com as peças confirmadas.
+
+Declarado na própria tela: ela não representa profundidade; o que aprendeu é plano +
+tempo, então não há 3D.
+
+A frase AGORA também passou a contar o que o laboratório fez com o vídeo, e a aba
+"O que ela vê" mostra a arena ao vivo.
+
+Conferido:
+- 0 erros de JavaScript nas seis abas.
+- `teste_laboratorio.py` exige os arquivos das telas.
+- Uma vida registrada, re-rodada com o código final, saiu idêntica ao registro (72/72
+  episódios): o painel não mudou o órgão.
