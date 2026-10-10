@@ -346,6 +346,46 @@ def percebe(quadros, tempos, religa=True):
             "forma": [int(forma[0]), int(forma[1])]}
 
 
+def frente(fundo, percepcao):
+    """PROFUNDIDADE pela oclusao (o primeiro degrau do 3D): onde as coisas SOMEM e reaparecem
+    (as juncoes que a permanencia religou), o caminho escondido passa por tras de algo. Se esse
+    caminho cai numa regiao do fundo que NAO e a cor dominante dele (onde as coisas aparecem),
+    essa regiao esta NA FRENTE das coisas. -> mascara (H, W) bool ou None.
+    Regra (checagem dev 101-103, arena): basta o caminho escondido de uma juncao inteira (7
+    pontos) cair numa regiao, que tenha a maioria dos pontos escondidos fora da cor dominante.
+    Distancias entre camadas NAO existem aqui: so a ORDEM (quem esconde quem)."""
+    H, W = fundo.shape[:2]
+    L = max(H, W)
+    centro = np.array([W / 2, H / 2])
+    pts = []
+    for tr in percepcao.get("trilhas", []):
+        for q in tr["quebras"]:
+            a, b = tr["p"][q - 1].astype(float), tr["p"][q].astype(float)
+            for u in np.linspace(0.2, 0.8, 7):
+                pts.append((a + u * (b - a)) * (L / 2) + centro)
+    if not pts:
+        return None
+    qz = (fundo.astype(np.int32) // 24)
+    chave = qz[..., 0] * 10000 + qz[..., 1] * 100 + qz[..., 2]
+    uniq, inv = np.unique(chave, return_inverse=True)
+    dominante = uniq[np.bincount(inv.ravel()).argmax()]
+    votos = collections.Counter()
+    for x, y in pts:
+        xi, yi = int(round(x)), int(round(y))
+        if 0 <= xi < W and 0 <= yi < H and chave[yi, xi] != dominante:
+            votos[int(chave[yi, xi])] += 1
+    if not votos:
+        return None
+    c, n = votos.most_common(1)[0]
+    if n < 7 or n < 0.5 * sum(votos.values()):
+        return None
+    rot, _n = ndimage.label(chave == c)
+    ids = {int(rot[int(round(y)), int(round(x))]) for x, y in pts
+           if 0 <= int(round(x)) < W and 0 <= int(round(y)) < H and chave[int(round(y)), int(round(x))] == c}
+    ids.discard(0)
+    return np.isin(rot, list(ids)) if ids else None
+
+
 def cena(quadros, percepcao, raio=5):
     """O que a IMAGINACAO precisa de um video que ela viu: o FUNDO (o que fica parado) e a
     APARENCIA de cada coisa que ela seguiu (um recorte em volta dela no meio da trilha, com a
@@ -377,12 +417,13 @@ def cena(quadros, percepcao, raio=5):
             sprites.append((rec.copy(), mask))
     if not sprites:
         return None
-    return {"fundo": fundo, "sprites": sprites, "L": L, "forma": forma}
+    return {"fundo": fundo, "sprites": sprites, "L": L, "forma": forma, "frente": frente(fundo, percepcao)}
 
 
-def desenha_cena(c, posicoes):
+def desenha_cena(c, posicoes, profundidade=False):
     """um quadro: o fundo da cena com cada coisa colada onde a imaginacao a pos.
-    posicoes: (n, 2) normalizadas (centro 0, meia-largura 1)."""
+    posicoes: (n, 2) normalizadas (centro 0, meia-largura 1). profundidade=True: o que ela
+    deduziu estar NA FRENTE (frente()) e redesenhado por cima das coisas."""
     img = c["fundo"].copy()
     H, W = c["forma"][:2]
     L = c["L"]
@@ -400,6 +441,8 @@ def desenha_cena(c, posicoes):
         reg = img[y0 + b0:y0 + b1, x0 + a0:x0 + a1]
         m = mask[b0:b1, a0:a1]
         reg[m] = rec[b0:b1, a0:a1][m]
+    if profundidade and c.get("frente") is not None:
+        img[c["frente"]] = c["fundo"][c["frente"]]
     return img
 
 
@@ -1577,14 +1620,14 @@ class Laboratorio:
                 Z0 = Z0[ok]
         return Z0[:n]
 
-    def imagina_video(self, c, estados, lei, ts):
+    def imagina_video(self, c, estados, lei, ts, profundidade=False):
         """O FILME que ela imagina: as coisas da cena c, comecando nos estados dados, movidas
         pela lei (None = 'nada acelera'), desenhadas sobre o fundo nos instantes ts.
         -> (quadros uint8 [T,H,W,3], posicoes [n,T,2])"""
         ts = np.asarray(ts, float)
         P = self._posicoes(lei, np.asarray(estados, float), tuple(ts[ts > 0]))
         P = np.concatenate([np.asarray(estados, float)[:, None, :2], P], 1) if ts[0] <= 0 else P
-        return np.stack([desenha_cena(c, P[:, k]) for k in range(P.shape[1])]), P
+        return np.stack([desenha_cena(c, P[:, k], profundidade) for k in range(P.shape[1])]), P
 
     def video_mental(self, rng, fonte="arena", n=3, dur=6.0, fps=5.0):
         """Para o painel: um filme que ela IMAGINA agora, com a teoria atual da fonte, numa cena
@@ -1599,7 +1642,7 @@ class Laboratorio:
         if Z0 is None:
             return None
         ts = np.arange(int(dur * fps) + 1) / fps
-        qs, P = self.imagina_video(cenas[e], Z0, T["lei"], ts)
+        qs, P = self.imagina_video(cenas[e], Z0, T["lei"], ts, profundidade=True)
         _qi, Pi = self.imagina_video(cenas[e], Z0, None, ts)
         return {"quadros": qs, "teoria": T["id"], "lei": formula_lei(T["lei"]),
                 "conceito": T["lei"].get("conceito"), "cena_do_episodio": int(e), "fonte": self.eps.get(e, {}).get("fonte"),

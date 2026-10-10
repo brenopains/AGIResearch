@@ -158,9 +158,11 @@ def _desenha(img, c, raio, cor, cor2=None, eixo=None):
     img[y0:y1, x0:x1] = np.clip(reg * (1 - cob) + col * cob, 0, 255).astype(np.uint8)
 
 
-def episodio(mundo, rng, cam, dur=DUR, n_corpos=None, armadilhas=True, tempo_jitter=0.01, estados0=None):
+def episodio(mundo, rng, cam, dur=DUR, n_corpos=None, armadilhas=True, tempo_jitter=0.01, estados0=None,
+             oclusor=None):
     """estados0: estados iniciais do MUNDO escolhidos por um experimento (ver de_percebido);
-    sem eles, o mundo sorteia (e so aceita quem fica a vista o video todo)."""
+    sem eles, o mundo sorteia (e so aceita quem fica a vista o video todo). oclusor: (x, y,
+    w, h) fixo (so o avaliador usa, para comparar com a mesma cena)."""
     A, tc = cam
     T = int(round(dur * FPS))
     tempos = np.arange(T) / FPS + rng.uniform(-tempo_jitter, tempo_jitter, T)
@@ -183,7 +185,9 @@ def episodio(mundo, rng, cam, dur=DUR, n_corpos=None, armadilhas=True, tempo_jit
                 break
         corpos.append({"mundo": tr, "px": px})
     oc = None
-    if armadilhas and rng.random() < 0.5:
+    if oclusor is not None:
+        oc = tuple(float(v) for v in oclusor)
+    elif armadilhas and rng.random() < 0.5:
         ox, oy = rng.uniform(30, LADO - 54, 2)
         oc = (float(ox), float(oy), 24.0, 24.0)
     cores = [PALETA[i] for i in rng.choice(len(PALETA), n, replace=False)]
