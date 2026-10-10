@@ -1092,6 +1092,45 @@ class Laboratorio:
         else:
             T["lei"] = self._lei(T["membros"], T["lei"]["conceito"], T["lei"]["termos"])
         self._ruido(T)
+        self._marca_historia(T)
+
+    def _marca_historia(self, T):
+        """o modelo se refinando: guarda a lei cada vez que ela MUDA de forma (so registro; nada
+        aqui decide) -> [episodio, formula, ruido mediano px, videos que explica]."""
+        f = formula_lei(T["lei"])
+        h = T.setdefault("historia", [])
+        if not h or h[-1][1] != f:
+            r = T.get("ruido_px")
+            h.append([self.contas["episodios"], f, round(float(np.median(r)), 2) if r is not None and len(r) else None,
+                      len(T["membros"])])
+            del h[:-30]
+            # a EPOCA: a lei como era (e o conceito como era), para imaginar o mesmo comeco com ela depois
+            import copy
+            c = T["lei"].get("conceito") if T["lei"] else None
+            ep = T.setdefault("epocas", [])
+            ep.append({"episodio": self.contas["episodios"], "videos": len(T["membros"]), "lei": copy.deepcopy(T["lei"]),
+                       "conceito": copy.deepcopy(self.conceitos[c]) if c is not None and c in self.conceitos else None})
+            if len(ep) > 6:
+                del ep[1:len(ep) - 5]                # a primeira e as 5 mais recentes
+
+    def caminho_da_epoca(self, epoca, z0, ts):
+        """o comeco z0 imaginado pela lei de uma EPOCA (com o conceito como ele era naquela epoca)."""
+        lei = epoca["lei"]
+        conc = dict(self.conceitos)
+        if lei is not None and lei.get("conceito") is not None and epoca.get("conceito") is not None:
+            conc[lei["conceito"]] = epoca["conceito"]
+        z = np.asarray(z0, float).copy()[None]
+        out, t = [], 0.0
+        for tt in ts:
+            while t < tt - 1e-9:
+                h = min(DT_ROLA, tt - t)
+                if lei is not None:
+                    z[:, 2:] += acel_lei(lei, z, conc) * h
+                z[:, :2] += z[:, 2:] * h
+                z = np.clip(z, -20, 20)
+                t += h
+            out.append(z[0, :2].copy())
+        return np.array(out)
 
     # ── conceitos ─────────────────────────────────────────────────────────────
     def _inventar(self, T):
@@ -1197,6 +1236,7 @@ class Laboratorio:
             c0, _tab = self._escolhe_conceito(T, [eid])
         T["lei"] = self._lei([eid], c0)
         self._ruido(T)
+        self._marca_historia(T)
         return T
 
     def _move(self, eid, T, erro):
