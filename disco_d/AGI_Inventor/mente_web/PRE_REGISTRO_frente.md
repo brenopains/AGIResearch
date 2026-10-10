@@ -48,4 +48,18 @@ de verdade lá é a vida. Isto é ordem de camadas (2,5D), não 3D.
 
 ## RESULTADO
 
-(preenchido depois da rodada registrada, sem mudar nada acima)
+Rodada registrada em 10/10/2026, sementes 20261310–20261319, 10 vidas, 120 s
+(`resultados/frente_registrada.json`). Nada acima foi mudado depois.
+
+| critério | resultado | veredito |
+|---|---|---|
+| **F1** detecção | 88/114 episódios com oclusor (0.77) | **PASSA** |
+| **F2** forma certa | 88/88 com IoU ≥ 0,8 (mediano 1.0) | **PASSA** |
+| **F3** não inventa | 0/126 episódios sem oclusor | **PASSA** |
+| **F4** a imaginação respeita | 10/10 vidas | **PASSA** |
+
+As quatro previsões se confirmaram. Ela deduz, de quadros planos, QUAL parte do mundo está na
+frente das coisas — sem que ninguém diga, só pelo que some e reaparece — e quando acha, acha a
+forma exata; nunca inventa uma frente onde não há. E a imaginação que respeita essa ordem prevê o
+filme real melhor do que a achatada em todas as vidas. Lembrando o limite: é o caso fácil
+(oclusor liso sobre fundo liso) e é ordem de camadas (2,5D), não distância.
