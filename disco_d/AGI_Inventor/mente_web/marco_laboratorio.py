@@ -8,8 +8,10 @@ A mente nunca soube o que a arena e. Este instrumento sabe (a camera sai da seme
 arena) e pergunta, com estados percebidos de episodios NOVOS de cada universo:
   - que conceitos ela inventou, e quais deles SAO s^2 ou h (|corr| >= 0,99);
   - que conceito a teoria que explica cada universo usa hoje;
-  - quantas vezes ela foi a arena, e o que o laboratorio fez com os videos da internet.
-Criterios do transplante 10: PRE_REGISTRO_vida1.md.
+  - quantas vezes ela foi a arena, e o que o laboratorio fez com os videos da internet;
+  - (transplante 11) quantos experimentos ela montou, e se o FILME que ela imagina com a
+    teoria atual bate com o filme real da arena melhor do que imaginar tudo reto.
+Criterios dos transplantes 10 e 11: PRE_REGISTRO_vida1.md.
 """
 from __future__ import annotations
 
@@ -68,6 +70,28 @@ def main():
         nome = "= s² (rapidez ao quadrado)" if ids["s2"] >= 0.99 else "= h (momento angular)" if ids["h"] >= 0.99 else ""
         print(f"  {cid}: {LB.formula_conceito(c):50s} |corr s²| {ids['s2']:.3f} |corr h| {ids['h']:.3f} {nome}"
               f"  teorias {sorted(c['teorias'])} revisoes {c.get('revisoes', 0)}")
+    print(f"experimentos que ela montou: {lab.contas.get('experimentos', 0)} "
+          f"(decisivos {lab.contas.get('experimentos_decisivos', 0)}); cenas guardadas: {len(getattr(lab, 'cenas', {}))}")
+    T = lab.teoria_atual("arena")
+    cenas = getattr(lab, "cenas", {})
+    if T is not None and cenas:
+        from experimento_sonho import compara_filmes
+        uni = AR.universo_da_visita(max(st["visitas"] - 1, 0))
+        rf = np.random.default_rng([st["semente"], 99])
+        lei, reto = [], []
+        for d in range(10):
+            Z0 = lab.estados_imaginaveis(T, 3, rf)
+            if Z0 is None:
+                break
+            c = cenas[sorted(cenas)[int(rf.integers(len(cenas)))]]
+            ep = AR.episodio(uni, np.random.default_rng([st["semente"], 99000 + d]), cam, dur=6.0, armadilhas=False,
+                             estados0=[AR.de_percebido(cam, u) for u in Z0])
+            tt = np.asarray(ep.tempos, float)
+            lei.append(compara_filmes(lab.imagina_video(c, Z0, T["lei"], tt)[0], ep.quadros)[1])
+            reto.append(compara_filmes(lab.imagina_video(c, Z0, None, tt)[0], ep.quadros)[1])
+        if lei:
+            print(f"filme imaginado x real no universo atual ({uni}), aos 2 s: lei dela {np.median(lei):.6f} x reto "
+                  f"{np.median(reto):.6f}; a lei vence em {sum(a < b for a, b in zip(lei, reto))}/{len(lei)} filmes")
     print("teorias e de onde vieram os episodios delas (universo da arena pela visita):")
     for tid, T in sorted(lab.teorias.items(), key=lambda kv: -len(kv[1]["membros"])):
         uni = collections.Counter()

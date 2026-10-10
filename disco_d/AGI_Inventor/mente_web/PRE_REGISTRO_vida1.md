@@ -480,3 +480,52 @@ falha de L1); o laboratório não fala com a linguagem nem com os verbos visuais
 Painel (só leitura, nada entra em decisão): abas LABORATÓRIO, DESCOBERTAS e HOLOGRAMA,
 com os arquivos `laboratorio_vivo.json`, `lab_quadro.jpg`, `holograma.json` e
 `verbos_anim.jpg` que a mente publica.
+
+## Transplante 11 (10/10 ~00h) — MÃOS, VÍDEO MENTAL e o laboratório NA ECONOMIA (PRÉ-REGISTRO)
+
+Origem: o pedido do usuario (09/10: "ela deveria ir sozinha", imaginação universal, "um
+vídeo mental") e a segunda revisão do GPT (experimentos que separam teorias rivais).
+
+Órgãos (todos em `laboratorio.py`, seções 5 e 6; `arena.py` aceita `?exp=`):
+1. **Laboratório na moeda única**: cada episódio paga o PROGRESSO de aprendizagem daquela
+   região do mundo (a 1ª tentativa, sempre fora da amostra, contra a mediana das 10
+   anteriores da mesma fonte e do mesmo tipo — assistido ou montado), em [−1, 1].
+2. **Ação "experimentar"** (aparece quando há teoria da arena): ela monta a cena onde as
+   rivais dela mais discordam; depois de ver, o laboratório julga qual rival previu melhor
+   e, se outra opção de conceito venceu, refaz a sala de espera na hora.
+3. **Vídeo mental**: o laboratório guarda a aparência das últimas 40 cenas (fundo + recorte
+   de cada coisa) e imagina filmes novos com as leis dela; o painel mostra o filme que ela
+   imagina agora (HOLOGRAMA).
+4. **Modo de divagar "sonhar_lab"**: filmes imaginados treinam o preditor de tempo do
+   córtex; o ganho é medido na surpresa do último vídeo REAL; compete com "reviver" e
+   "sonhar" pela média dos ganhos (exploração de 20%, como antes).
+NÃO muda: o algoritmo registrado do laboratório (vida registrada re-rodada: 72/72 idêntica).
+
+Validação offline ANTES:
+- Mãos (PRE_REGISTRO_experimento_ativo.md, 10 vidas): E4 PASSA (8/10, os experimentos
+  separam as rivais); E1, E2, E3 FALHAM — escolher onde as rivais mais discordam a fez prever
+  PIOR o mundo típico (5,56 px × 3,60 ao acaso × 3,27 só assistindo). Por isso
+  "experimentar" é só mais uma ação, paga pelo que rende.
+- Vídeo mental (PRE_REGISTRO_video_mental.md, 10 vidas): o filme imaginado antes bate com o
+  real melhor que "tudo reto" (10/10) e que a lei do outro mundo (10/10); sonhar com a lei
+  dela ensina a visão mais que sonhar reto (9/10), não mais que rever vídeos reais (2/10).
+Teste da mente (`teste_laboratorio.py`): + 3 experimentos forçados, progresso na moeda,
+cenas guardadas, `video_mental.jpg` publicado; `teste_compat.py` numa cópia de mente antiga: OK.
+
+Critérios na vida (medidos com `python marco_laboratorio.py vidas/viva`, que só lê, e com o
+diário):
+  B1 ESTÁVEL: nas primeiras 6 h com o transplante 11, 0 eventos `erro_orgao` (laboratório,
+     mãos) e nenhuma queda nova do guardião. Previsão 0,8.
+  B2 MÃOS (descritivo, com alarme): fração de "experimentar" entre as ações de arena
+     (porta:arena + experimentar) nas primeiras 24 h. Previsão: menor que a de porta:arena.
+     Alarme: "experimentar" acima de 50% de TODAS as ações = caça-níquel, conserto registrado.
+  B3 SONHAR COM O LAB (descritivo): fração das divagações em "sonhar_lab" e o ganho médio.
+     Previsão: vira o modo mais escolhido quando disponível (o preditor de tempo é o que mais
+     tem a aprender); se a média dos últimos 20 ganhos ficar negativa, ela mesma para.
+  B4 IMAGINAÇÃO CONFERIDA NA VIDA: com ≥ 24 visitas à arena desde o transplante, o filme
+     imaginado pela teoria atual vence o "tudo reto" em ≥ 8 de 10 filmes (marco, universo
+     atual). Previsão 0,7 (cai se a teoria atual for uma hipótese recém-nascida de uma troca).
+Limites declarados: imaginação plana + tempo (sem 3D); só coisas que se movem contra um fundo
+parado; a aparência é colada, não gerada (ela não inventa coisas que nunca viu, só lugares e
+movimentos novos para elas); o filme não tem som; e o conceito do laboratório ainda não fala
+com a linguagem nem com os verbos visuais (identidade conceitual entre órgãos: próximo passo).
