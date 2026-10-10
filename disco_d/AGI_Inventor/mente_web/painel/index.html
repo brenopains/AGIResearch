@@ -240,6 +240,13 @@
   .pager { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
   .pager button:disabled { opacity: .35; cursor: default; }
   #holo { grid-template-columns: minmax(240px, .85fr) minmax(0, 2.4fr) minmax(230px, .9fr); }
+  #neuro3d { grid-template-columns: minmax(220px,.8fr) minmax(0,2.7fr) minmax(230px,.85fr); }
+  #neuro-canvas { display:block; width:100%; height:100%; min-height:65vh; cursor:grab; outline:none; }
+  #neuro-vazio { position:absolute; top:35%; left:14%; right:14%; text-align:center; color:var(--apagado); line-height:1.7; pointer-events:none; }
+  #neuro-vazio strong { color:var(--texto); font-size:17px; }
+  .neuro-ferramentas { position:absolute; bottom:60px; left:16px; right:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; font-size:11px; }
+  .neuro-ferramentas label { display:flex; gap:8px; align-items:center; } .neuro-ferramentas input { max-width:130px; }
+  @media(max-width:1000px) { #neuro3d { grid-template-columns:1fr; } }
   #mundos { grid-template-columns: minmax(240px, .85fr) minmax(0, 2.4fr) minmax(250px, .95fr); }
   #mundos-canvas { width: 100%; height: 100%; cursor: grab; } #mundos-canvas:active { cursor: grabbing; }
   .mundos-botoes { position: absolute; top: 38px; left: 0; right: 0; display: flex; gap: 6px; justify-content: center; }
@@ -279,6 +286,7 @@
       <button type="button" data-aba="desc">DESCOBERTAS</button>
       <button type="button" data-aba="holo">HOLOGRAMA</button>
       <button type="button" data-aba="mundos">MUNDOS</button>
+      <button type="button" data-aba="neuro3d">NEURO3D</button>
     </nav>
     <div class="direita">
       <span id="pilula" class="pilula DORMINDO">…</span>
@@ -360,6 +368,18 @@
       <p class="nota">Tudo aqui é desenhado só a partir do que ela aprendeu: posições reais vêm da memória dela (vídeos que ela assistiu); o caminho imaginado é a lei DELA rodando a partir do mesmo começo; as imagens dos verbos são o córtex DELA aplicando a transformação. Nada é animação inventada. Profundidade: só a ORDEM de camadas que ela deduziu de quem esconde quem (2,5D, ver aba MUNDOS); distâncias e 3D de verdade ela não tem.</p></section>
   </main>
 
+  <main id="neuro3d" hidden>
+    <section class="quadro"><h2>CENAS ESPACIAIS <span>memoria persistente</span></h2><div id="neuro-lista" class="holo-lista"></div><div id="neuro-tentativas" class="nota"></div></section>
+    <section class="quadro sem-borda palco-holo" style="min-height:65vh">
+      <canvas id="neuro-canvas" aria-label="Navegacao pela geometria tridimensional inferida"></canvas>
+      <div class="holo-titulo">NEURO3D <span style="font-size:12px">· reconstrução multivista</span></div>
+      <div id="neuro-vazio"><strong>Ainda não há uma cena 3D reconstruída.</strong><p>Ela precisa observar diferentes vistas de um ambiente com estrutura visual suficiente. As regiões desconhecidas ficam vazias.</p></div>
+      <div class="neuro-ferramentas"><button id="neuro-origem" class="voz" type="button">VISTA INICIAL</button><button id="neuro-evidencia" class="voz" type="button">VER SUPORTE</button><label>Vistas recebidas <input id="neuro-tempo" type="range" min="0" max="0" value="0" aria-label="Selecionar vista observada"></label></div>
+      <div class="holo-legenda">Arraste para olhar · roda para aproximar · WASD para navegar · Q/E para subir/descer</div>
+    </section>
+    <section class="quadro"><h2>O QUE ELA REPRESENTOU</h2><div id="neuro-info" class="holo-info"></div></section>
+  </main>
+
   <main id="mundos" hidden>
     <section class="quadro"><h2>MODELOS DE MUNDO DELA <span>clique</span></h2><div class="holo-lista" id="mundos-lista"></div></section>
     <section class="quadro sem-borda palco-holo"><canvas id="mundos-canvas" aria-label="holodeck: um modelo de mundo dela, decodificado"></canvas>
@@ -403,13 +423,13 @@ setInterval(() => { $("relogio").textContent = new Date().toLocaleTimeString("pt
 
 /* ---------- abas ---------- */
 const abas = document.querySelectorAll(".abas button");
-const ABAS = ["geral", "organismo", "ve", "lab", "desc", "holo", "mundos"];
+const ABAS = ["geral", "organismo", "ve", "lab", "desc", "holo", "mundos", "neuro3d"];
 function mostra(a) { abas.forEach((b) => b.classList.toggle("ativa", b.dataset.aba === a));
   ABAS.forEach((k) => { $(k).hidden = a !== k; });
   history.replaceState(null, "", a === "geral" ? "#" : "#" + a);
   if (typeof novasAbas === "function") setTimeout(() => novasAbas(a), 0); }
 abas.forEach((b) => b.addEventListener("click", () => mostra(b.dataset.aba)));
-const abaDoHash = () => ({"#organismo": "organismo", "#ve": "ve", "#lab": "lab", "#desc": "desc", "#holo": "holo", "#mundos": "mundos"}[location.hash] || "geral");
+const abaDoHash = () => ({"#organismo": "organismo", "#ve": "ve", "#lab": "lab", "#desc": "desc", "#holo": "holo", "#mundos": "mundos", "#neuro3d": "neuro3d"}[location.hash] || "geral");
 mostra(abaDoHash());
 addEventListener("hashchange", () => mostra(abaDoHash()));
 
@@ -1586,5 +1606,6 @@ $("pausa").addEventListener("click", async () => {
   setTimeout(() => { b.disabled = false; puxaEstado(); }, 2500);
 });
 </script>
+<script src="/neuro3d.js"></script>
 </body>
 </html>

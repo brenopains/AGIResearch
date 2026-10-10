@@ -509,7 +509,10 @@ class H(BaseHTTPRequestHandler):
             p = acha_vida()
             if p != L.pasta:
                 L = Leitor(p)
-        if self.path.startswith("/api/estado"):
+        if self.path.split("?")[0] == "/neuro3d.js":
+            with open(os.path.join(AQUI, "neuro3d.js"), "rb") as f:
+                self._envia(f.read(), "application/javascript; charset=utf-8")
+        elif self.path.startswith("/api/estado"):
             self._envia(json.dumps(L.estado(), ensure_ascii=False), "application/json; charset=utf-8")
         elif self.path.startswith("/api/eventos"):
             L.atualiza()
@@ -555,6 +558,19 @@ class H(BaseHTTPRequestHandler):
             with L.lock:
                 v = {"contagem": dict(L.cont_desc), "lista": list(L.descobertas)[::-1], "laboratorio_por_fonte": dict(L.lab_n)}
             self._envia(json.dumps(v, ensure_ascii=False, default=str), "application/json; charset=utf-8")
+        elif self.path.split("?")[0] in ("/api/espacial",) or self.path.startswith("/api/espacial/"):
+            url = self.path.split("?")[0]
+            nome = "indice.json" if url == "/api/espacial" else url.rsplit("/", 1)[-1] + ".json"
+            if nome != "indice.json" and not re.fullmatch(r"[a-f0-9]{16}\.json", nome):
+                self.send_response(404)
+                self.end_headers()
+                return
+            try:
+                with open(os.path.join(L.pasta, "espacial", nome), encoding="utf-8") as f:
+                    v = json.load(f)
+            except (OSError, ValueError):
+                v = {"cenas": [], "tentativas": [], "indisponivel": True}
+            self._envia(json.dumps(v, ensure_ascii=False), "application/json; charset=utf-8")
         elif self.path.startswith("/api/mundos/"):            # transplante 12: imagens dos modelos de mundo
             nome = os.path.basename(self.path.split("?")[0][len("/api/mundos/"):])
             arq = os.path.join(L.pasta, "mundos", nome)
@@ -604,10 +620,9 @@ class H(BaseHTTPRequestHandler):
             import subprocess
             import tempfile
             saida = os.path.join(tempfile.gettempdir(), "mente_relatorio.wav")
-            cmd = [x.replace("{saida}", saida).replace("{python}", sys.executable).replace("{voz}", os.path.join(RAIZ, "..", "voz"))
-                   for x in json.load(open(cfg, encoding="utf-8"))["comando"]]
+            cmd = [x.replace("{saida}", saida) for x in json.load(open(cfg, encoding="utf-8"))["comando"]]
             subprocess.run(cmd, input=fala(L, L.estado()).encode("utf-8"), timeout=120,
-                           creationflags=0x08000000 if os.name == "nt" else 0)
+                           creationflags=0x08000000)
             self._envia(open(saida, "rb").read(), "audio/wav")
         elif self.path.startswith("/api/organismo"):
             arq = os.path.join(L.pasta, "telemetria.json")
