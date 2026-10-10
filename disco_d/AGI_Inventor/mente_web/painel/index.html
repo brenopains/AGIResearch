@@ -741,8 +741,8 @@ function cognicaoHtml(c) {
       + linha("aposta burra: “o mais frequente”", r.frequente || 0, n) + linha("aposta burra: “repete o último”", r.ultimo || 0, n)
       + `<p class="nota">Regras mais escolhidas: ${Object.entries(c.regras_vistas || {}).map(([k, v]) => k + " " + v + "×").join(", ") || "—"}. ${fmt(n)} previsões feitas antes de ver.</p>`,
       "O princípio do núcleo do ARC (a explicação mais curta) rodando sobre os vídeos que ela vê. Só conta como inferência o que bate as duas apostas burras.")}
-    ${caixa("DIVAGAR E VOLTAR PARA RELER", `<div class="opcao"><span>vezes que ela se voltou para dentro (revivendo / sonhando acordada)</span><em>${fmt(dv.reviver || 0)} / ${fmt(dv.sonhar || 0)}</em></div>
-      <div class="opcao"><span>ganho médio no presente (revivendo / sonhando)</span><em>${dv.reviver ? ((dv.reviver_ganho_x1000 || 0) / dv.reviver / 1000).toFixed(4) : "—"} / ${dv.sonhar ? ((dv.sonhar_ganho_x1000 || 0) / dv.sonhar / 1000).toFixed(4) : "—"}</em></div>
+    ${caixa("DIVAGAR E VOLTAR PARA RELER", `<div class="opcao"><span>vezes que ela se voltou para dentro (revivendo / sonhando acordada / filmes das leis dela)</span><em>${fmt(dv.reviver || 0)} / ${fmt(dv.sonhar || 0)} / ${fmt(dv.sonhar_lab || 0)}</em></div>
+      <div class="opcao"><span>ganho médio no presente (revivendo / sonhando / filmes das leis)</span><em>${dv.reviver ? ((dv.reviver_ganho_x1000 || 0) / dv.reviver / 1000).toFixed(4) : "—"} / ${dv.sonhar ? ((dv.sonhar_ganho_x1000 || 0) / dv.sonhar / 1000).toFixed(4) : "—"} / ${dv.sonhar_lab ? ((dv.sonhar_lab_ganho_x1000 || 0) / dv.sonhar_lab / 1000).toFixed(4) : "—"}</em></div>
       <div class="opcao"><span>releu o que não entendeu (páginas) · progresso médio</span><em>${fmt((rl.verdadeira || {}).n || 0)} · ${(rl.verdadeira || {}).progresso_medio ?? "—"}</em></div>
       <div class="opcao"><span>placebo: releu um trecho que tinha entendido · progresso</span><em>${fmt((rl.placebo || {}).n || 0)} · ${(rl.placebo || {}).progresso_medio ?? "—"}</em></div>`,
       "Ela divaga no tédio (quando as últimas experiências renderam pouco), e a chance de divagar é a fração das divagações recentes que AJUDARAM a ver o presente. Reler o que confundiu é comparado com reler, de placebo, o que já estava claro.")}</div>`;
@@ -1125,7 +1125,7 @@ const MOTIVO = {fundo_instavel: "a câmera mexia (nada fica parado ao fundo): el
   sem_objetos: "nada se movia contra o fundo", olho_pequeno: "vídeo pequeno demais para seguir coisas", curto: "vídeo curto demais",
   sem_previsao: "as trilhas foram curtas demais para prever 2 s"};
 let labVivo = null, labImg = null, labImgQ = 0, holo = null, holoSel = null, holoT0 = performance.now();
-let verbosAnim = null, verbosAnimT = 0, descs = null, filtroDesc = "todas", paginaDesc = 0;
+let verbosAnim = null, verbosAnimT = 0, descs = null, filtroDesc = "todas", paginaDesc = 0, filmeImg = null, filmeQ = 0, holoClicou = false;
 
 function novasAbas(a) { if (a === "lab") { puxaDetalhe(); puxaLab(); puxaHolo(); } if (a === "desc") puxaDesc(); if (a === "holo") { puxaDetalhe(); puxaHolo(); } }
 
@@ -1261,12 +1261,15 @@ $("desc-antigas").addEventListener("click", () => { paginaDesc += 1; renderDesc(
 async function puxaHolo() {
   if ($("holo").hidden && $("lab").hidden) return;
   try { const v = await (await fetch("/api/holograma")).json(); holo = v.indisponivel ? null : v; } catch (e) {}
+  const vm = holo && holo.video_mental;
+  if (vm && vm.quando !== filmeQ) { filmeQ = vm.quando; const im = new Image(); im.onload = () => { filmeImg = im; listaHolo(); }; im.onerror = () => {}; im.src = "/api/video_mental.jpg?t=" + vm.quando; }
   if (Date.now() - verbosAnimT > 30000) { verbosAnimT = Date.now(); const im = new Image(); im.onload = () => { verbosAnim = im; listaHolo(); }; im.onerror = () => {}; im.src = "/api/verbos_anim.jpg?t=" + verbosAnimT; }
   listaHolo(); if (!$("lab").hidden) listasLab();
 }
 setInterval(puxaHolo, 10000);
 function itensHolo() {
   const it = [];
+  if (holo && holo.video_mental && filmeImg) it.push({tipo: "filme", id: "filme", rot: `filme · teoria ${holo.video_mental.teoria}`, d: holo.video_mental});
   ((holo && holo.teorias) || []).forEach((t) => it.push({tipo: "teoria", id: "t" + t.id, rot: `teoria ${t.id} · ${t.episodios} vídeos`, d: t}));
   ((holo && holo.conceitos) || []).forEach((c) => it.push({tipo: "conceito", id: "c" + c.id, rot: `${c.id}${c.em_uso ? " · em uso" : ""}`, d: c}));
   if (verbosAnim) { const ns = (det && det.verbos && det.verbos.verbos) || []; for (let j = 0; j < Math.min(6, verbosAnim.height / 64 | 0); j++)
@@ -1276,18 +1279,23 @@ function itensHolo() {
 }
 function listaHolo() {
   if ($("holo").hidden) return;
-  const it = itensHolo(), grupos = {teoria: "LEIS QUE ELA ESCREVEU", conceito: "CONCEITOS QUE ELA INVENTOU", verbo: "VERBOS VISUAIS (o córtex dela)", construcao: "CONSTRUÇÕES DE LINGUAGEM"};
-  if (!holoSel || !it.find((x) => x.id === holoSel.id)) holoSel = it[0] || null;
+  const it = itensHolo(), grupos = {filme: "FILME QUE ELA IMAGINA AGORA", teoria: "LEIS QUE ELA ESCREVEU", conceito: "CONCEITOS QUE ELA INVENTOU", verbo: "VERBOS VISUAIS (o córtex dela)", construcao: "CONSTRUÇÕES DE LINGUAGEM"};
+  if (!holoSel || !it.find((x) => x.id === holoSel.id) || (!holoClicou && it[0] && holoSel.id !== it[0].id)) holoSel = it[0] || null;
   else holoSel = it.find((x) => x.id === holoSel.id);
   $("holo-lista").innerHTML = Object.entries(grupos).map(([k, nome]) => { const xs = it.filter((x) => x.tipo === k);
     return `<div class="holo-grupo"><h4>${nome}</h4><div class="itens">${xs.length ? xs.map((x) => `<button type="button" class="holo-item ${holoSel && holoSel.id === x.id ? "ativo" : ""}" data-id="${x.id}" title="${esc(x.rot)}">${esc(x.rot)}</button>`).join("") : '<span class="vazio" style="font-size:11px">ainda nada</span>'}</div></div>`; }).join("");
-  $("holo-lista").querySelectorAll(".holo-item").forEach((bt) => bt.addEventListener("click", () => { holoSel = it.find((x) => x.id === bt.dataset.id); holoT0 = performance.now(); listaHolo(); }));
+  $("holo-lista").querySelectorAll(".holo-item").forEach((bt) => bt.addEventListener("click", () => { holoClicou = true; holoSel = it.find((x) => x.id === bt.dataset.id); holoT0 = performance.now(); listaHolo(); }));
   infoHolo();
 }
 function infoHolo() {
   const s = holoSel, el = $("holo-info");
   if (!s) { el.innerHTML = '<p class="vazio">ela ainda não aprendeu nada que dê para imaginar aqui: leis e conceitos nascem no laboratório; verbos, quando o córtex dela junta experiência de vídeo e de olhar</p>'; $("holo-titulo").textContent = "HOLOGRAMA"; $("holo-legenda").textContent = ""; return; }
-  if (s.tipo === "teoria") { const t = s.d, c0 = t.cenas[0] || {};
+  if (s.tipo === "filme") { const v = s.d;
+    $("holo-titulo").textContent = "VÍDEO MENTAL · UM FILME QUE ELA NUNCA VIU";
+    $("holo-legenda").innerHTML = '<b style="color:rgb(79,216,255)">ciano</b>: o caminho que a lei DELA dá a cada coisa · <b style="color:#9ab">cinza tracejado</b>: se nada acelerasse · <b style="color:rgb(255,140,60)">laranja</b>: onde cada coisa começa';
+    el.innerHTML = `<p>Ela pegou uma cena que viu (vídeo <b>${v.cena_do_episodio}</b>, ${esc(v.fonte || "")}): o fundo e a aparência de cada coisa, recortados dos pixels reais. Pôs as coisas em <b>começos que nunca viu</b> e moveu cada uma, quadro a quadro, pela lei que ela mesma escreveu:</p><p class="formula">${esc(v.lei)}</p>
+      <p>Conceito em uso: <b>${esc(v.conceito || "nenhum")}</b>. Nada aqui é animação feita à mão: posição = a mesma conta que ela usa para prever; aparência = pixels de um vídeo dela. Conferido contra filmes reais da arena (PRE_REGISTRO_video_mental.md).</p>`; }
+  else if (s.tipo === "teoria") { const t = s.d, c0 = t.cenas[0] || {};
     $("holo-titulo").textContent = `TEORIA ${t.id} · O QUE ELA IMAGINA`;
     $("holo-legenda").innerHTML = '<b style="color:#fff">branco</b>: o que aconteceu de verdade (memória dela) · <b style="color:rgb(79,216,255)">ciano</b>: o que a lei DELA imagina a partir do mesmo começo';
     el.innerHTML = `<p><b>Lei escrita por ela</b> (aceleração a partir da posição x, y e da velocidade vx, vy${t.conceito ? ", e do conceito q" : ""}):</p><p class="formula">${esc(t.lei)}</p>
@@ -1320,7 +1328,22 @@ function holoQuadro() {
   if (!reduz) { g.strokeStyle = "rgba(79,216,255,.25)"; g.beginPath(); g.arc(cx, cy, R * 1.24, t * .4, t * .4 + 1.1); g.stroke(); g.beginPath(); g.arc(cx, cy, R * 1.24, t * .4 + 3.1, t * .4 + 4.2); g.stroke(); }
   const s = holoSel; if (!s) return;
   const P = (p) => [cx + p[0] * R, cy + p[1] * R];
-  if (s.tipo === "teoria") {
+  if (s.tipo === "filme" && filmeImg) {
+    const v = s.d, n = v.n_quadros || 1, fw = filmeImg.width / n, fh = filmeImg.height, fps = v.fps || 5;
+    const k = Math.floor(t * fps) % (n + Math.round(fps)), q = Math.min(k, n - 1), lado = Math.min(R * 1.9, h * 0.8);
+    const x0 = cx - lado / 2, y0 = cy - lado / 2 - 10, H_ = v.forma[0], W_ = v.forma[1], L = Math.max(H_, W_), sc = lado / L;
+    g.imageSmoothingEnabled = false; g.shadowColor = "rgba(79,216,255,.6)"; g.shadowBlur = 22;
+    g.drawImage(filmeImg, q * fw, 0, fw, fh, x0 + (L - W_) / 2 * sc, y0 + (L - H_) / 2 * sc, W_ * sc, H_ * sc); g.shadowBlur = 0;
+    g.strokeStyle = "rgba(79,216,255,.35)"; g.strokeRect(x0, y0, lado, lado);
+    const Pq = (p) => [x0 + (p[0] * L / 2 + L / 2) * sc, y0 + (p[1] * L / 2 + L / 2) * sc];
+    (v.inercia || []).forEach((cam) => { g.setLineDash([3, 5]); g.strokeStyle = "rgba(160,180,190,.55)"; g.lineWidth = 1.2; g.beginPath();
+      cam.forEach((p, j) => { const a = Pq(p); j ? g.lineTo(a[0], a[1]) : g.moveTo(a[0], a[1]); }); g.stroke(); g.setLineDash([]); });
+    (v.caminhos || []).forEach((cam) => { g.strokeStyle = "rgba(79,216,255,.85)"; g.lineWidth = 2; g.beginPath();
+      for (let j = 0; j <= Math.min(q, cam.length - 1); j++) { const a = Pq(cam[j]); j ? g.lineTo(a[0], a[1]) : g.moveTo(a[0], a[1]); } g.stroke(); });
+    (v.estados || []).forEach((u) => { const a = Pq(u); g.strokeStyle = "rgb(255,140,60)"; g.lineWidth = 1.6; g.strokeRect(a[0] - 6, a[1] - 6, 12, 12); });
+    g.fillStyle = "rgba(223,247,255,.85)"; g.font = "12px JetBrains Mono, Consolas"; g.textAlign = "left";
+    g.fillText(`imaginado · t = ${(q / fps).toFixed(1)} s · teoria ${v.teoria}`, 16, h - 34);
+  } else if (s.tipo === "teoria") {
     const cenas = s.d.cenas || []; if (!cenas.length) return;
     const dur = Math.max(...cenas.flatMap((c) => c.trilhas.map((tr) => tr.t[tr.t.length - 1] || 1)));
     const volta = Math.floor(t / (dur / 2 + 1.5)), cena = cenas[volta % cenas.length], tt = (t % (dur / 2 + 1.5)) * 2;

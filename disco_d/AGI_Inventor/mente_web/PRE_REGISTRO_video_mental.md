@@ -73,4 +73,41 @@ sobre a lei dela.
 
 ## RESULTADO
 
-(preenchido depois da rodada registrada, sem mudar nada acima)
+Rodada registrada em 09/10/2026, sementes 20261210–20261219, 10 vidas, 367 s
+(`resultados/sonho_registrada.json`). Nada acima foi mudado depois.
+
+| critério | resultado | veredito | previsto |
+|---|---|---|---|
+| **V0** verdade < reto (o instrumento enxerga lei) | 8/10 vidas | **PASSA** | falha (~80%) — **errei** |
+| **S1** sonhar a lei dela < sonhar reto | 9/10 vidas; razão das medianas 0,957 | **PASSA** | "sem valor" — errei junto com V0 |
+| **S2** sonhar a lei dela < rever | 2/10 vidas; razão 0,990 | **FALHA** | — |
+| **M1** filme imaginado < filme reto (2 s) | 10/10 vidas; mediana 0,00047 × 0,00069 | **PASSA** | passa (~85%) |
+| **M2** lei dela < lei do outro mundo (mola_h, 2 s) | 10/10 vidas; 0,00057 × 0,00075 | **PASSA** | passa (~75%) |
+
+Surpresa de teste (mediana entre vidas): sem treino extra 0,0757 · REVER 0,0550 · SONHO_LEI
+0,0545 · SONHO_INERCIA 0,0569 · SONHO_VERDADE 0,0567. Filme imaginado × real, por horizonte
+(giro / mola_h): lei 0,00025-0,00040-0,00059 / 0,00029-0,00057-0,00067; reto 0,00035-0,00069-0,00083
+/ 0,00041-0,00075-0,00075. Erro da lei dela aos 2 s nos filmes: mediana ~3,9 px no giro e ~5,5 px
+na mola_h (uma vida com teoria ruim no giro: 26 px).
+
+**O que isto quer dizer.**
+1. **A imaginação dela carrega conhecimento real.** O filme que ela imagina ANTES de ver
+   (aparência real das coisas, começos novos, movimento pela lei que ela descobriu) bate com o
+   filme que o mundo de fato roda melhor do que imaginar tudo reto e melhor do que imaginar
+   com a lei do outro mundo — em todas as 10 vidas, nos dois mundos, nos três horizontes.
+2. **Sonhar com a lei ensina a visão — um pouco.** O preditor de tempo do córtex treinado com
+   os filmes da lei dela antecipa vídeos REAIS novos ~4% melhor do que treinado com filmes
+   "tudo reto" (9/10). Mas não melhor do que rever os vídeos reais que ela já tinha (2/10): o
+   sonho é bom, a lembrança real ainda é melhor. (Curioso, registrado sem explicar: o sonho
+   com a lei VERDADEIRA não superou o com a lei dela — os começos foram escolhidos para ficar à
+   vista sob a lei DELA, e sob a verdadeira às vezes saíam do quadro.)
+3. Minha previsão para V0 estava errada: com 3 vidas de dev a diferença sumia no ruído; com 10,
+   aparece.
+
+**Consequência na mente viva.** O vídeo mental entra como imaginação mostrada no painel (aba
+HOLOGRAMA, "FILME QUE ELA IMAGINA AGORA"). E entra um modo novo de divagar, "sonhar com o
+laboratório" (treina o preditor de tempo com filmes da lei dela) — não por regra: ele
+compete com os outros modos e só fica se a economia dela medir ganho no PRESENTE (surpresa
+do último vídeo real dela, fora do treino). Na mente viva não existe "rever" para o preditor de
+tempo (ela não guarda vídeos inteiros, só olhadas), então a comparação que vale lá é sonhar ×
+não sonhar; S2 diz que, se um dia ela guardar vídeos, rever pode ser melhor.

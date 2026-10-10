@@ -522,7 +522,7 @@ class H(BaseHTTPRequestHandler):
             self._envia(json.dumps({"ultimo": ult, "eventos": evs}, ensure_ascii=False),
                         "application/json; charset=utf-8")
         elif self.path.split("?")[0] in ("/api/olho.jpg", "/api/palavras_visuais.jpg", "/api/verbos.jpg",
-                                         "/api/lab_quadro.jpg", "/api/verbos_anim.jpg"):
+                                         "/api/lab_quadro.jpg", "/api/verbos_anim.jpg", "/api/video_mental.jpg"):
             nome = self.path.split("?")[0].rsplit("/", 1)[1]
             try:
                 self._envia(open(os.path.join(L.pasta, nome), "rb").read(), "image/jpeg")
