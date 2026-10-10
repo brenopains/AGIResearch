@@ -37,6 +37,8 @@
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(program));
     posBuffer=gl.createBuffer(); colorBuffer=gl.createBuffer(); supportBuffer=gl.createBuffer();
     gl.enable(gl.DEPTH_TEST);
+    // Cor observada na face frontal nao e evidencia da aparencia do verso.
+    gl.enable(gl.CULL_FACE); gl.cullFace(gl.BACK); gl.frontFace(gl.CW);
   }
   function upload(buffer, attribute, array, size) {
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(array), gl.STATIC_DRAW);
