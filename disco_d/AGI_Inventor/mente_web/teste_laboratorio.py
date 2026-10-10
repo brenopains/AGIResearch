@@ -29,6 +29,17 @@ try:
         for f in ("PARAR", "REINICIAR"):
             if os.path.exists(os.path.join(pasta, f)):
                 os.remove(os.path.join(pasta, f))
+    # O diario da vida copiada contem a historia anterior ao transplante.
+    # As verificacoes abaixo cobrem os eventos produzidos por ESTA execucao.
+    diario = os.path.join(pasta, "ontogenia.jsonl")
+    inicio_diario = os.path.getsize(diario) if os.path.exists(diario) else 0
+
+    def eventos_desta_execucao():
+        with open(diario, "rb") as f:
+            f.seek(inicio_diario)
+            for linha in f:
+                yield json.loads(linha)
+
     rng = np.random.default_rng(0)
 
     class CorpoFalso:
@@ -75,8 +86,8 @@ try:
     m.dorme()
     m.salva()
     lab = m.lab
-    exps = [json.loads(ln) for ln in open(os.path.join(pasta, "ontogenia.jsonl"), encoding="utf-8")
-            if '"experimento' in ln or '"laboratorio_experimento"' in ln]
+    exps = [e for e in eventos_desta_execucao()
+            if e["ev"].startswith("experimento") or e["ev"] == "laboratorio_experimento"]
     propostos = [e for e in exps if e["ev"] == "experimento_proposto"]
     assert propostos, f"nenhum experimento proposto: {[e['ev'] for e in exps]}"
     assert lab.contas.get("experimentos", 0) >= 1, f"nenhum experimento julgado: {lab.contas}"
@@ -102,8 +113,8 @@ try:
     assert h["teorias"] and h["teorias"][0]["cenas"], "holograma sem cena de teoria"
     assert h.get("video_mental") and os.path.exists(os.path.join(pasta, "video_mental.jpg")), "sem video mental"
     assert m2.lab.cenas, "laboratorio nao guardou a aparencia das cenas"
-    erros = [ln for ln in open(os.path.join(pasta, "ontogenia.jsonl"), encoding="utf-8")
-             if json.loads(ln)["ev"] in ("erro", "erro_orgao") or json.loads(ln)["ev"].endswith("_falhou")]
+    erros = [json.dumps(e, ensure_ascii=False) + "\n" for e in eventos_desta_execucao()
+             if e["ev"] in ("erro", "erro_orgao") or e["ev"].endswith("_falhou")]
     assert not erros, "erros no diario:\n" + "".join(erros[:5])
     print(f"OK: escolhas livres {escolhas}; laboratorio {m2.lab.contas}; teorias {len(m2.lab.teorias)}; "
           f"arena.json visitas {m2._arena().st['visitas']}")

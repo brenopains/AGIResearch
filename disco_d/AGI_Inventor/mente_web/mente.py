@@ -89,6 +89,11 @@ try:                                    # transplante 12: os modelos de mundo pa
 except Exception:
     MUNDOS = None
 
+try:
+    import espacial as ESPACIAL
+except ImportError:
+    ESPACIAL = None
+
 LARGURA = 3.0            # nucleo de contexto (organismo, vida 2)
 N0 = 2.0                 # prior Beta
 KAPPA0 = N0              # peso inicial da populacao como prior; depois APRENDIDO
@@ -1523,7 +1528,10 @@ class Mente:
         melhor = None
         opcoes = []
         for e in self.disponiveis(pg):
-            v = self._theta(self._reg(self.regs, e), x0) * self._p_funciona(e) / self._custo(e)
+            # O posterior de exploracao ja aprende se ganho/segundo superou o
+            # tipico da vida (passo). Dividir de novo pelo tempo de viagem
+            # impedia as portas lentas de competir com um mundo local barato.
+            v = self._theta(self._reg(self.regs, e), x0) * self._p_funciona(e)
             opcoes.append((e, v, None))
             if melhor is None or v > melhor[0]:
                 melhor = (v, e, None, x0)
@@ -1905,6 +1913,7 @@ class Mente:
             gen = self.corpo.assistir(u, self.MAX_ASSISTIR)
         lab_q, lab_t = [], []                          # transplante 10: o video, de novo, pelo laboratorio
         recentes_q = []
+        espacial_q, espacial_t = [], []
         for tm, quadro, audio in gen:
             if t_1o is None:
                 t_1o = time.time()                    # daqui em diante e ela ASSISTINDO (residencia)
@@ -1912,6 +1921,10 @@ class Mente:
             if quadro is not None and LAB is not None and len(lab_q) < 600 and (not lab_t or tm > lab_t[-1]):
                 lab_q.append(LAB.reduz(quadro))
                 lab_t.append(float(tm))
+            if quadro is not None and not na_arena and ESPACIAL is not None and len(espacial_q) < 32:
+                if not espacial_t or tm - espacial_t[-1] >= .8:
+                    espacial_q.append(ESPACIAL.retina(quadro))
+                    espacial_t.append(float(tm))
             if quadro is not None and na_arena:
                 self._mostra_arena(np.asarray(quadro), tm)
             if quadro is not None:
@@ -2014,6 +2027,14 @@ class Mente:
         if t_1o is not None:
             self._residencia = getattr(self, "_residencia", 0.0) + time.time() - t_1o
         lab_r = self._laboratorio(lab_q, lab_t, "arena" if na_arena else "video", u if na_arena else pg.url)
+        if espacial_q:
+            try:
+                if getattr(self, "_espacial", None) is None:
+                    self._espacial = ESPACIAL.MemoriaEspacial(self.pasta)
+                sr = self._espacial.observa(espacial_q, espacial_t, pg.url)
+                self.ev("memoria_espacial", **sr)
+            except Exception as e:
+                self.ev("erro_orgao", orgao="espacial", msg=str(e)[:200])
         if len(surpresas) >= 20:                   # cada quadro foi PREVISTO antes de ser visto
             s0 = float(np.mean(surpresas[:10]))
             self._soma_ganho(float(np.clip((s0 - np.mean(surpresas[-10:])) / (s0 + 1e-9), -1, 1)))
@@ -2647,7 +2668,10 @@ class Mente:
         pasta = os.path.join(self.pasta, sub) if sub else self.pasta
         os.makedirs(pasta, exist_ok=True)
         estado = {k: v for k, v in self.__dict__.items() if k not in ("corpo", "texto", "log", "cortex", "verbos", "lab")
-                  and k not in ("_imag_pend", "_arena_mundo", "_exp_pendente", "_quadros_recentes", "_mundos_cache")}
+                  and k not in ("_imag_pend", "_arena_mundo", "_exp_pendente", "_quadros_recentes", "_mundos_cache", "_espacial")}
+        if sub and os.path.exists(os.path.join(self.pasta, "espacial")):
+            import shutil
+            shutil.copytree(os.path.join(self.pasta, "espacial"), os.path.join(pasta, "espacial"), dirs_exist_ok=True)
         if getattr(self, "lab", None) is not None:
             self._salva_lab(pasta, comprimido=bool(sub))
         if self.cortex is not None:

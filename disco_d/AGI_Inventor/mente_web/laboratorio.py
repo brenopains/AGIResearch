@@ -1339,6 +1339,7 @@ class Laboratorio:
         if not per["trilhas"]:
             self.contas["sem_objetos"] += 1
             return {"motivo": per["motivo"], "trilhas": 0}
+        prevista = self.teoria_atual(fonte)  # escolha causal: so episodios anteriores
         eid = self.n_ep
         self.n_ep += 1
         self.contas["episodios"] += 1
@@ -1360,10 +1361,15 @@ class Laboratorio:
         cands = sorted(self.teorias.values(), key=lambda T: -T["usada"])[:30]
         errs = [(self._razao_ep(T["lei"], [eid])[0], self._erro_ep(T["lei"], [eid])[0], T) for T in cands]
         errs = [z for z in errs if z[0] is not None]
-        melhor = min(errs, key=lambda z: z[0]) if errs else None      # a PREVISAO: a melhor teoria, qualquer
-        res.update(inercia=round(inercia, 3), primeira=round(melhor[1] if melhor else inercia, 3),
-                   razao=round(melhor[0], 4) if melhor else 1.0, teoria_prevista=melhor[2]["id"] if melhor else None)
-        self.eps[eid].update(erro_1a=res["primeira"], inercia=inercia, razao_1a=res["razao"])
+        melhor = min(errs, key=lambda z: z[0]) if errs else None      # classificacao retrospectiva para aprender
+        erro_prev = self._erro_ep(prevista["lei"], [eid])[0] if prevista else inercia
+        razao_prev = self._razao_ep(prevista["lei"], [eid])[0] if prevista else 1.0
+        res.update(inercia=round(inercia, 3), primeira=round(erro_prev, 3),
+                   razao=round(razao_prev, 4), teoria_prevista=prevista["id"] if prevista else None,
+                   criterio_primeira="teoria_anterior_da_fonte",
+                   melhor_retrospectiva=melhor[2]["id"] if melhor else None)
+        self.eps[eid].update(erro_1a=res["primeira"], inercia=inercia, razao_1a=res["razao"],
+                             criterio_primeira=res["criterio_primeira"])
         m_tr = self._m(eid)
         expl = [z for z in errs if self._explica(z[2], eid, z[0], z[1])]
         expl = min(expl, key=lambda z: z[0]) if expl else None
@@ -1616,7 +1622,8 @@ class Laboratorio:
         for e in reversed(self.ordem):
             x = self.eps[e]
             if e != eid and x["fonte"] == ep["fonte"] and ("?exp=" in x["url"]) == montado \
-                    and x.get("razao_1a") is not None:
+                    and x.get("razao_1a") is not None \
+                    and x.get("criterio_primeira") == ep.get("criterio_primeira"):
                 prev.append(x["razao_1a"])
                 if len(prev) >= n:
                     break
