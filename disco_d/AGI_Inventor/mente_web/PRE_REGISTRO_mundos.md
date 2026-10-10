@@ -83,4 +83,26 @@ fielmente E ele está certo sobre o mundo nos pontos medidos. Não mostram que e
 
 ## RESULTADO
 
-(preenchido depois da rodada registrada, sem mudar nada acima)
+Rodada registrada em 10/10/2026, sementes 20261320–20261329, 10 vidas, 238 s
+(`resultados/mundos_registrada.json`). Nada acima foi mudado depois.
+
+| critério | resultado | veredito |
+|---|---|---|
+| **W1** um mundo é um mundo | 39/41 mundos puros (0.95); todo universo coberto em 10/10 vidas | **PASSA** |
+| **W2** setas onde ela viu | cosseno mediano ≥ 0,999 em 10/10 vidas | **PASSA** |
+| **W3** vale onde ela nunca viu | cosseno mediano ≥ 0,998 em 10/10 vidas | **PASSA** |
+| **W4** frases certas | 41/41 mundos (giro 10/10, mola_h 11/11, contragiro 10/10, mola 10/10) | **PASSA** |
+| **W5** imaginar daqui | lei < inércia em 10/10 vidas | **PASSA** |
+| **W6** refinamento real | última época < primeira em 10/10 vidas (de -6.9 a -0.7 px de diferença) | **PASSA** |
+
+As seis previsões se confirmaram. Na arena, quando ela tem um modelo de mundo:
+- ele é um mundo de verdade (os vídeos de uma teoria vêm de um universo só);
+- as regras que a tela desenha apontam como as verdadeiras, também onde ela nunca viu nada;
+- as frases de leigo estão certas em todos os 41 mundos, incluindo o sentido do giro e o centro
+  invisível;
+- imaginar de um começo novo acerta mais que "nada acelera";
+- o "refinando" mostra um refinamento real: a versão final da lei prevê vídeos novos melhor que a
+  primeira em todas as vidas.
+
+O limite declarado acima continua valendo: é a arena (leis simples e exatas). Na internet, só a
+vida mostra.
