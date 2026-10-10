@@ -3698,3 +3698,88 @@ Conferido:
 - `teste_laboratorio.py` exige os arquivos das telas.
 - Uma vida registrada, re-rodada com o código final, saiu idêntica ao registro (72/72
   episódios): o painel não mudou o órgão.
+
+## 25 · Mãos, vídeo mental e o laboratório na economia (2026-10-09/10) — `D:/AGI_Inventor/mente_web`
+
+Pedido do usuario: ela deve ir sozinha ao laboratório; a imaginação deve ser universal ("um
+vídeo mental"); e as duas ideias da segunda revisão do GPT (experimentos que separam teorias
+rivais; identidade de conceito entre órgãos). Tudo pré-registrado antes das sementes que
+valem; as falhas ficam escritas como as vitórias.
+
+### 25.1 Ela já ia sozinha; agora também age
+
+O laboratório nunca precisou ser rodado à mão: todo vídeo que ela assiste passa por ele, e ir
+à arena é escolha dela (transplante 10). O que faltava era (a) o laboratório PAGAR na moeda
+única e (b) ela poder MEXER no mundo.
+- **Moeda única**: progresso de aprendizagem (Oudeyer, Kaplan e Hafner 2007) — a 1ª tentativa
+  do episódio contra a mediana das 10 anteriores da mesma fonte e tipo.
+- **Mãos** (`arena://k?exp=x,y,vx,vy;...`): ela diz onde cada coisa começa e com que
+  velocidade, nas coordenadas que ELA percebe; a arena converte pela câmera que ela não
+  conhece. As rivais: a teoria atual, a mesma com outra opção de conceito, e re-ajustes em
+  reamostras das trajetórias dela. O experimento: a intervenção (uma situação vista, com a
+  rapidez ×0,7–1,3 e a direção girada ou invertida) onde elas mais discordam, à vista sob
+  todas, que os olhos dela acompanham, sem coisas que se encostem.
+
+### 25.2 Resultado das mãos (PRE_REGISTRO_experimento_ativo.md, 10 vidas)
+
+| | erro de teste (px, mundo típico) |
+|---|---|
+| só assistir (PASSIVO) | 3,27 |
+| montar ao acaso (ALEATORIO) | 3,60 |
+| montar onde as rivais discordam (ATIVO) | **5,56** |
+
+E4 passa (8/10: os experimentos dela separam as rivais de verdade); E1, E2, E3 falham.
+Escolher pela discordância a deixou PIOR no mundo típico: a discordância mora onde ela tem
+menos dados, e a lei passa a servir ao canto. É o viés da "amostragem por incerteza", agora
+medido contra controle. Três defeitos de projeto saíram no dev, antes do registro: corrida de
+rapidez (ela pedia o que não conseguia rastrear e repetia para sempre), borda do quadro e
+corpos que se fundiam. Consequência: "experimentar" entra só como mais uma ação na economia.
+Próxima forma a testar: redução esperada do erro nas situações TÍPICAS (ponderada pela
+densidade do que ela vê), não discordância pura.
+
+### 25.3 Vídeo mental (PRE_REGISTRO_video_mental.md, 10 vidas)
+
+O laboratório guarda a aparência das cenas (fundo + recorte real de cada coisa, ~13 KB) e
+imagina filmes que ela nunca viu: as coisas em começos novos, movidas quadro a quadro pela lei
+dela. Nada é animação feita à mão.
+- **O filme imaginado ANTES bate com o real**: melhor que "tudo reto" em 10/10 vidas e que a
+  lei do outro mundo em 10/10, nos horizontes de 1, 2 e 3 s.
+- **Sonhar ensina a visão, um pouco**: o preditor de tempo do córtex treinado com esses
+  filmes antecipa vídeos reais novos ~4% melhor que treinado com filmes "tudo reto" (9/10;
+  a condição V0, "a lei verdadeira vence o reto", passou 8/10 — eu tinha previsto que
+  falharia). Mas não vence rever vídeos reais (2/10).
+Na vida: o filme aparece no HOLOGRAMA; e "sonhar_lab" virou um modo de divagar que compete
+com os outros pelo ganho medido na surpresa do último vídeo real.
+
+### 25.4 O que isto é, e o que ainda não é
+
+- É imaginação **composicional e conferida**: N coisas, aparência real, lugares e
+  movimentos novos, leis descobertas por ela, checada contra o mundo.
+- Não é ainda imaginação universal: é plano + tempo (sem 3D), só coisas que se movem contra
+  fundo parado, sem som, e não gera aparências que nunca viu. Roteiros multimodais pediriam a
+  ponte linguagem → cena, que não existe.
+- A outra ideia do GPT — **identidade de um conceito entre órgãos** (o mesmo c0 reconhecido no
+  texto, nos verbos visuais e no laboratório) — NÃO foi feita nesta rodada. É o próximo degrau
+  natural (24.7, item 3) e precisa de pré-registro próprio.
+
+### 25.5 Painel
+
+LABORATÓRIO: o experimento desenhado (onde ela pôs cada coisa, a velocidade pedida, o que cada
+rival previa, quem acertou), placar e linha do tempo com experimentos. DESCOBERTAS: cartões
+de experimento só quando confirmam a teoria ou favorecem outro conceito, em português de
+gente. HOLOGRAMA: "FILME QUE ELA IMAGINA AGORA" (padrão), com o caminho da lei dela e o "tudo
+reto" por cima. Verificado com capturas de tela: 0 erros de JavaScript.
+
+### 25.6 Placa de vídeo e quando avaliar "nível humano"
+
+- **GPU (RTX 3050)**: hoje não é o gargalo — o córtex tem ~70 mil parâmetros em numpy e o
+  laboratório é álgebra pequena; o tempo dela é o tempo real dos vídeos e da internet. A GPU
+  passa a valer quando o córtex crescer (mais resolução, mais quadros/s para o laboratório,
+  item 1 de 24.7). Caminho: portar o córtex para torch com volta automática para numpy, teto
+  de memória e lote pequeno para não afogar o PC — testado no PC dele, porque aqui não há CUDA.
+- **Quando avaliar**: por marcos, não por horas. Primeiro os critérios da vida (A1–A4, B1–B4)
+  em 24–48 h. "Nível humano" só se diz com testes EXTERNOS que ela nunca viu (raciocínio
+  físico, abstração, linguagem), comparados com humanos e com outros sistemas, e replicados
+  por outra pessoa. O que ela tem hoje — descobrir, reutilizar e revisar conceitos a partir de
+  pixels, agir para separar hipóteses, imaginar filmes conferidos contra o real — é resultado
+  de pesquisa publicável como tal, não "nível humano".
