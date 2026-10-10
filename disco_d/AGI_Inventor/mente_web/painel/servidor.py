@@ -12,6 +12,7 @@ from __future__ import annotations
 import collections
 import json
 import os
+import re
 import sys
 import threading
 import time
@@ -554,6 +555,21 @@ class H(BaseHTTPRequestHandler):
             with L.lock:
                 v = {"contagem": dict(L.cont_desc), "lista": list(L.descobertas)[::-1], "laboratorio_por_fonte": dict(L.lab_n)}
             self._envia(json.dumps(v, ensure_ascii=False, default=str), "application/json; charset=utf-8")
+        elif self.path.startswith("/api/mundos/"):            # transplante 12: imagens dos modelos de mundo
+            nome = os.path.basename(self.path.split("?")[0][len("/api/mundos/"):])
+            arq = os.path.join(L.pasta, "mundos", nome)
+            if re.fullmatch(r"[A-Za-z0-9_.-]+\.png", nome or "") and os.path.exists(arq):
+                self._envia(open(arq, "rb").read(), "image/png")
+            else:
+                self.send_response(404)
+                self.end_headers()
+        elif self.path.startswith("/api/mundos"):
+            try:
+                v = json.load(open(os.path.join(L.pasta, "mundos.json"), encoding="utf-8"))
+                v["atraso_s"] = round(time.time() - v.get("quando", 0), 1)
+            except Exception:
+                v = {"indisponivel": True}
+            self._envia(json.dumps(v, ensure_ascii=False), "application/json; charset=utf-8")
         elif self.path.startswith("/api/lab_vivo") or self.path.startswith("/api/holograma"):
             nome = "laboratorio_vivo.json" if self.path.startswith("/api/lab_vivo") else "holograma.json"
             try:

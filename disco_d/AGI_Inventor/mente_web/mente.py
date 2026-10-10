@@ -84,6 +84,10 @@ try:                                       # transplante 10: sem scipy, o labora
     import laboratorio as LAB
 except Exception:                          # noqa: BLE001
     ARENA = LAB = None
+try:                                    # transplante 12: os modelos de mundo para o painel
+    import mundos as MUNDOS
+except Exception:
+    MUNDOS = None
 
 LARGURA = 3.0            # nucleo de contexto (organismo, vida 2)
 N0 = 2.0                 # prior Beta
@@ -2042,6 +2046,36 @@ class Mente:
         if itens and protos:
             self._aterra(itens, protos, u + pg.url, abre=[p for p in self._pedacos(leg) if p in self.E
                                                          and len(p) >= 4][:2])
+        # transplante 12: o TEXTO ligado as TRANSFORMACOES que ela viu acontecer (o verbo visual
+        # mais frequente do video); nulo: o verbo do video ANTERIOR (outro video, mesmo texto)
+        if itens and Vseq:
+            vv = collections.Counter(Vseq).most_common(1)[0][0]
+            if getattr(self, "gv", None) is None:
+                self.gv, self.gv_nulo = Assoc(), Assoc()
+            nV = max(len(self.vocab_verbos.P), 2)
+            _g, novas_v = self.gv.observa([(s_, ("verbo", int(vv))) for s_ in itens], u + pg.url, nV)
+            vant = getattr(self, "_verbo_video_anterior", None)
+            if vant is not None:
+                self.gv_nulo.observa([(s_, ("verbo", int(vant))) for s_ in itens], u + pg.url, nV)
+            self._verbo_video_anterior = int(vv)
+            for (s_, pr_) in novas_v:
+                self.ev("ligou_transformacao", pedaco=txt(s_), verbo=int(pr_[1]), confirmacoes=self.gv.c[(s_, pr_)][1],
+                        nulo_confirmadas=len(self.gv_nulo.conf))
+        # transplante 12: NOMES para os mundos fisicos — o texto da pagina ligado a TEORIA do laboratorio
+        # que explicou o video; nulo: a teoria do video anterior (mesmo texto, outro mundo)
+        tid_ = lab_r.get("teoria") if isinstance(lab_r, dict) else None
+        if itens and tid_ is not None:
+            if getattr(self, "gt", None) is None:
+                self.gt, self.gt_nulo = Assoc(), Assoc()
+            nT = max(len(self.lab.teorias), 2) if getattr(self, "lab", None) is not None else 2
+            _g, novas_t = self.gt.observa([(s_, ("t", int(tid_))) for s_ in itens], u + pg.url, nT)
+            tant = getattr(self, "_teoria_video_anterior", None)
+            if tant is not None and tant != tid_:
+                self.gt_nulo.observa([(s_, ("t", int(tant))) for s_ in itens], u + pg.url, nT)
+            self._teoria_video_anterior = int(tid_)
+            for (s_, pr_) in novas_t:
+                self.ev("rotulou_mundo", pedaco=txt(s_), teoria=int(pr_[1]), confirmacoes=self.gt.c[(s_, pr_)][1],
+                        nulo_confirmadas=len(self.gt_nulo.conf))
         if regra_atual is not None:
             self.regras_vistas[regra_atual[0]] += 1
             self.ev("regra_do_video", regra=INF.descreve(regra_atual), tipo=regra_atual[0], verbos=Vseq[-30:],
@@ -2554,6 +2588,18 @@ class Mente:
                     with open(arq_h + ".tmp", "w", encoding="utf-8") as f:
                         json.dump(h, f, ensure_ascii=False)
                     _troca(arq_h + ".tmp", arq_h)
+            # transplante 12: os MODELOS DE MUNDO dela, decodificados (aba MUNDOS; so leitura)
+            if MUNDOS is not None and agora - getattr(self, "_mundos_t", 0.0) > 60:
+                self._mundos_t = agora
+                try:
+                    t_m = time.time()
+                    if getattr(self, "_mundos_cache", None) is None:
+                        self._mundos_cache = {}
+                    r_m = MUNDOS.publica(self, self.pasta, self._mundos_cache)
+                    d["mundos"] = {"fisicos": len(r_m["fisicos"]), "conceitos": len(r_m["conceitos"]),
+                                   "segundos": round(time.time() - t_m, 2)}
+                except Exception as e:
+                    self.ev("detalhe_falhou", orgao="mundos", msg=str(e)[:160])
             self._detalhe_extra(d)
             arq = os.path.join(self.pasta, "detalhe.json")
             with open(arq + ".tmp", "w", encoding="utf-8") as f:
@@ -2601,7 +2647,7 @@ class Mente:
         pasta = os.path.join(self.pasta, sub) if sub else self.pasta
         os.makedirs(pasta, exist_ok=True)
         estado = {k: v for k, v in self.__dict__.items() if k not in ("corpo", "texto", "log", "cortex", "verbos", "lab")
-                  and k not in ("_imag_pend", "_arena_mundo", "_exp_pendente", "_quadros_recentes")}
+                  and k not in ("_imag_pend", "_arena_mundo", "_exp_pendente", "_quadros_recentes", "_mundos_cache")}
         if getattr(self, "lab", None) is not None:
             self._salva_lab(pasta, comprimido=bool(sub))
         if self.cortex is not None:
