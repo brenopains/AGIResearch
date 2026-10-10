@@ -100,6 +100,8 @@ try:
         assert os.path.exists(os.path.join(pasta, arq)), f"painel sem {arq}"
     h = json.load(open(os.path.join(pasta, "holograma.json"), encoding="utf-8"))
     assert h["teorias"] and h["teorias"][0]["cenas"], "holograma sem cena de teoria"
+    assert h.get("video_mental") and os.path.exists(os.path.join(pasta, "video_mental.jpg")), "sem video mental"
+    assert m2.lab.cenas, "laboratorio nao guardou a aparencia das cenas"
     erros = [ln for ln in open(os.path.join(pasta, "ontogenia.jsonl"), encoding="utf-8")
              if json.loads(ln)["ev"] in ("erro", "erro_orgao") or json.loads(ln)["ev"].endswith("_falhou")]
     assert not erros, "erros no diario:\n" + "".join(erros[:5])
