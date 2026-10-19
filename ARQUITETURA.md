@@ -976,9 +976,7 @@ dela vale mais que qualquer um dos três resultados.
 
 ### O que aconteceu
 
-**`fluido.py` — F0, 0/400.** Escrito a partir do relato falado do usuário
-resolvendo o ARC: cinco dos catorze relatos falavam de líquido ("como eu coloco
-água num copo", "lava caindo tipo no Minecraft"). Quatro variantes: `retem`,
+**`fluido.py` — F0, 0/400.** Escrito a partir do relato falado do usuário. Quatro variantes: `retem`,
 `molha`, `interior`, `cercado`. Nenhuma ajustou o treino em nenhuma tarefa.
 
 O traço na `184a9768`, que o censo tinha marcado como `novas_enchem`:
@@ -1969,7 +1967,7 @@ e o argumento empírico de que o verificador é inegociável.
 ## 9 · O alfabeto deixa de ser meu: um proponente que não sou eu (2026-09-12)
 
 O usuário nomeou o gargalo com precisão: *"se a gente continuar desenhando tudo
-ao invés de resolver o ponto que causa essa falha/gap, não vamos evoluir muito"*.
+ao invés de resolver o ponto que causa essa falha/, não vamos evoluir muito"*.
 O ponto é que **o único canal de estrutura nova neste projeto sou eu escrevendo
 primitivas**. Cada defeito que eu conserto sobe o teto um degrau e para. Três
 frentes foram abertas contra isso ao mesmo tempo, e as três têm portão escrito
@@ -1986,13 +1984,6 @@ offload parcial. A lição operacional virou memória: confirmar hardware com du
 ferramentas antes de decidir arquitetura em cima dele.
 
 ### O juiz: a desconfiança do usuário virou portão
-
-O usuário desconfia do modelo local — *"uma mente parada no tempo com dados da
-humanidade e poucos parâmetros"* — e aceita o modelo como **fonte de informação**,
-não como autoridade. E a restrição é literal: o sistema lê o próprio código *"não
-pra modificá-lo ... mas para identificar falhas, rodar suas próprias simulações,
-criar seu próprio modelo talvez, aprender a programar, a entender contexto mesmo
-escrito, entender lógica"*.
 
 Desconfiança é hipótese testável. `juiz_modelo.py` mede a única coisa que decide
 se um modelo local pode ser proponente de **arquitetura**: ele raciocina sobre um
@@ -2058,7 +2049,7 @@ Nada é escrito em `descricao.py`.
 
 ### A terceira frente: HDC como analogia, não como importação
 
-`proponente.py` responde à pergunta do usuário — *"por que não fazemos um usando
+`proponente.py` responde à pergunta do usuário — *"por que não usamos
 HDC?"*. A resposta honesta é que HDC **não importa conhecimento**: ele recombina
 e recupera o que já passou. Não substitui o modelo como canal, mas é exatamente a
 peça da **analogia** — uma memória que se atualiza a cada experiência e diz "este
@@ -2801,8 +2792,7 @@ anunciado de um sorteio só, sem par, não foi medido. Os pareados sobrevivem.
 
 ## 14 · A âncora externa, e onde o pipeline perde (2026-09-19)
 
-O usuário afirmou que já temos uma mente artificial geral. Toda comparação de HAR
-até aqui era **interna** — 0,560 contra maioria 0,187 e contra o nulo de tempo
+Toda comparação de HAR até aqui era **interna** — 0,560 contra maioria 0,187 e contra o nulo de tempo
 embaralhado. Nenhuma contra terceiros. A base do UCI traz os 561 atributos de
 engenharia dos autores, então dá para **rodar** a linha publicada.
 
@@ -3061,7 +3051,6 @@ eixos independentes: `aritmetica` funciona nos 5 mundos e está em 0 pilhas;
 
 ### 17.4 Gradiente na admissão, e por que ele não bastou
 
-Auditoria pedida pelo usuário ("como tu ainda tá escrevendo primitiva?"):
 **23 codecs no núcleo, 23 escritos por mim, 0 vindos de geração**; nenhum
 módulo de geração é carregado por `montar()`. A geração produz; a seleção nunca
 adota.
@@ -3283,8 +3272,7 @@ previsto fora do ARC-1. ARC-1 de avaliação em andamento.
 
 ### 18.6 A virada: extrair do mundo humano
 
-O usuário, no mesmo dia: "ARC pra mim é um brinquedo, quero curar doenças,
-resolver problemas reais"; o que falta é "extração de nutriente cognitivo" de
+O usuário, no mesmo dia: "o que falta é "extração de nutriente cognitivo" de
 mundo humano — vídeo, áudio, gameplay, xadrez, texto — organizado em HDC com
 procedência, sonho que simula, "sem um deus escrevendo à mão".
 
@@ -3533,7 +3521,6 @@ altura (32×32 cinza). Próximos órgãos, a transplantar com ela viva:
    marginal, Charnov 1976) — a régua da vida resolve a armadilha, mas não aprende
    quando um ambiente genuinamente diferente vale a pena;
 4. olhos melhores (mais resolução, cor, movimento) sem semântica pronta.
-
 
 ## 24 · A mente viva ganha um laboratório: descobrir, reutilizar, revisar (2026-10-09) — `D:/AGI_Inventor/mente_web`
 
