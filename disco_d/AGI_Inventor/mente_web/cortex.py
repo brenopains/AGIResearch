@@ -271,6 +271,14 @@ class Cortex:
         self.passos_tempo += 1
         return perda
 
+    def surpresa(self, Z):
+        """erro medio da previsao do mapa do proximo quadro num trecho [T,8,8,32], sem aprender."""
+        Z = np.asarray(Z, np.float32)
+        if len(Z) < 3:
+            return None
+        pr, _c = self._tempo(np.concatenate([Z[:-2], Z[1:-1]], -1))
+        return float(((pr - Z[2:]) ** 2).mean())
+
     # ── saliencia: onde ela ainda nao sabe ver ──────────────────────────────
     def saliencia(self, tela, passo=48):
         """tela RGB uint8 [H,W,3] em resolucao total. Olha a tela a MEIA resolucao em

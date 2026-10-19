@@ -42,6 +42,22 @@ O QUE MUDOU DA v0 (a vida de 5 min que ficou presa pesquisando "port", "ver",
 6. BARRAS DESCOBERTAS: alem das 5 dadas, todo formulario GET de um campo que
    ela encontra vira uma barra possivel; ela aprende quais servem.
 
+TRANSPLANTE 10 (09/10): o LABORATORIO (laboratorio.py) e a porta ARENA (arena.py). Todo
+video que ela assiste — da internet ou da arena — passa tambem pelo laboratorio: objetos
+pela continuidade, episodios crus guardados, teorias de movimento com crise e reanalise,
+conceitos inventados julgados pelo que pagam. A arena e um mundo fisico cujas leis trocam
+sem aviso. O laboratorio aprende e e medido; NAO entra na economia dela neste transplante.
+
+TRANSPLANTE 11 (09/10): MAOS, VIDEO MENTAL e o laboratorio NA ECONOMIA. (1) Cada episodio do laboratorio
+paga na moeda unica o PROGRESSO de aprendizagem daquela regiao (1a tentativa, sempre fora da
+amostra, contra a mediana das 10 anteriores da mesma fonte e tipo). (2) Acao nova
+"experimentar": quando ha teoria da arena, ela pode MONTAR a cena (laboratorio.
+propoe_experimento: onde e com que velocidade por cada coisa para as rivais dela mais
+discordarem) em vez de so assistir; depois de ver, o laboratorio julga qual rival previu
+melhor. Nao ha regra dizendo quando experimentar: a economia dela decide pelo que paga.
+(3) VIDEO MENTAL: o laboratorio guarda a aparencia do que ela viu (fundo + cada coisa) e
+imagina filmes novos com as leis dela (aba HOLOGRAMA; teste em PRE_REGISTRO_video_mental.md).
+
 ESQUECER: o dado bruto passa. Ficam modelo de bytes, estruturas, fusoes,
 prototipos, associacoes, lacunas (com suas janelas) e resumos.
 """
@@ -61,7 +77,22 @@ import cortex as CX
 import digestao as G
 import inferencia as INF
 import verbos as VB
-from corpo import BARRAS, PORTAS, Corpo, dominio
+from corpo import BARRAS, PORTAS, Corpo, Pagina, dominio
+
+try:                                       # transplante 10: sem scipy, o laboratorio fica desligado
+    import arena as ARENA
+    import laboratorio as LAB
+except Exception:                          # noqa: BLE001
+    ARENA = LAB = None
+try:                                    # transplante 12: os modelos de mundo para o painel
+    import mundos as MUNDOS
+except Exception:
+    MUNDOS = None
+
+try:
+    import espacial as ESPACIAL
+except ImportError:
+    ESPACIAL = None
 
 LARGURA = 3.0            # nucleo de contexto (organismo, vida 2)
 N0 = 2.0                 # prior Beta
@@ -285,6 +316,9 @@ class Mente:
         self.corpo_mem = collections.deque(maxlen=600)         # (dx, dy, tau): o olho mexeu e o que mudou
         self.tau_video = collections.deque(maxlen=300)         # mudancas que o MUNDO fez
         self.corpo_aval = []
+        # transplante 10: o laboratorio (laboratorio.pkl, fora do estado.pkl) e a arena (arena.json: o MUNDO)
+        self.lab = None
+        self.lab_ultimos = collections.deque(maxlen=30)
         self.kappa = KAPPA0
         self.hist_prog = {"texto": [], "midia": [], "lacuna": []}
         self.hist_surp_bloco = []
@@ -579,11 +613,148 @@ class Mente:
                         self.sondas = (self.sondas + [sonda])[-60:]
                         self.ev("verbos_sonda", **sonda)
             corpo_r = self._corpo_avalia() if n_sono % 5 == 0 else None
+            if getattr(self, "lab", None) is not None:
+                t_l = time.time()
+                n_lab = self.lab.sono()
+                if n_lab:
+                    self.ev("laboratorio_sono", teorias_revistas=n_lab, segundos=round(time.time() - t_l, 2))
             self.ev("sono_orgaos", imaginadas=len(feitas), exemplos=[txt(a + b) for a, b in feitas[:4]],
                     orcamento_imaginacao=self.orcamento_imag, imaginacao_confirmada=dict(self.confirm_txt),
                     treinos_verbos=treinos, verbos=len(self.vocab_verbos.P), imaginacao_visual=dict(self.imag_vis))
         except Exception as e:
             self.ev("erro_orgao", msg=str(e)[:200])
+
+    # ── transplante 10: LABORATORIO e ARENA ───────────────────────────────────
+    def _lab(self):
+        if LAB is None:
+            return None
+        if getattr(self, "lab", None) is None:
+            arq = os.path.join(self.pasta, "laboratorio.pkl")
+            for a in (arq, arq + ".anterior"):
+                if os.path.exists(a):
+                    try:
+                        with open(a, "rb") as f:
+                            self.lab = pickle.load(f)
+                        break
+                    except Exception:
+                        continue
+            if getattr(self, "lab", None) is None:
+                self.lab = LAB.Laboratorio(int(self.rng.integers(1 << 30)))
+                self.ev("laboratorio_nasceu", nota="objetos pela continuidade, episodios crus, teorias com crise e "
+                                                   "reanalise, conceitos julgados pelo que pagam")
+        self.lab.ev = self.ev
+        return self.lab
+
+    def _arena(self):
+        if getattr(self, "_arena_mundo", None) is None:
+            self._arena_mundo = ARENA.ArenaViva(self.pasta)
+        return self._arena_mundo
+
+    def _pagina_arena(self):
+        url = self._arena().nova_visita()
+        return Pagina(url, "arena.local", tipo="arena", origem="porta:arena", midias=[("video", url, b"")])
+
+    def _pagina_experimento(self):
+        """MAOS: o laboratorio propoe a cena que mais separa as rivais dela; a arena a monta.
+        Sem proposta possivel (sem rivais, nenhum candidato valido): uma visita comum."""
+        url = self._arena().nova_visita()
+        try:
+            lab = self._lab()
+            rv = lab.rivais("arena")
+            prop = lab.propoe_experimento(rv) if len(rv) >= 2 else None
+        except Exception as e:
+            rv, prop = [], None
+            self.ev("erro_orgao", orgao="maos", msg=str(e)[:200])
+        if prop is None:
+            self.ev("experimento_sem_proposta", rivais=len(rv))
+            return Pagina(url, "arena.local", tipo="arena", origem="experimentar", midias=[("video", url, b"")])
+        url = ARENA.url_experimento(int(url.split("//", 1)[1]), prop["estados"])
+        self._exp_pendente = {"url": url, "rivais": rv, "proposta": prop}
+        self.ev("experimento_proposto", teoria=prop["teoria"], rivais=prop["rivais"][:8], estados=prop["estados"],
+                divergencia_px=prop["divergencia_px"], divergencia_tipica_px=prop["divergencia_tipica_px"],
+                ruido_teoria_px=prop["ruido_teoria_px"], candidatos_validos=prop["candidatos_validos"])
+        return Pagina(url, "arena.local", tipo="arena", origem="experimentar", midias=[("video", url, b"")])
+
+    def _laboratorio(self, quadros, tempos, fonte, url):
+        """o video que ela acabou de assistir, de novo, pelo laboratorio (depois de assistir:
+        o tempo conta como o dela com a experiencia, nao como viagem)."""
+        if LAB is None or len(quadros) < LAB.MIN_PONTOS:
+            return None
+        lab = self._lab()
+        if any(lab.eps[e]["url"] == str(url)[:160] for e in lab.ordem[-200:]):
+            return None                            # rever o mesmo video nao e episodio novo
+        t0 = time.time()
+        try:
+            per = LAB.percebe(quadros, tempos)
+            r = lab.observa(quadros, tempos, fonte=fonte, url=url, t_vida=self.t, percepcao=per)
+            if r.get("episodio") is not None:          # video mental: a aparencia do que ela viu
+                lab.guarda_cena(r["episodio"], LAB.cena(quadros, per))
+            pend = getattr(self, "_exp_pendente", None)
+            if pend is not None and pend["url"] == str(url):
+                self._exp_pendente = None
+                x = lab.resolve_experimento(r.get("episodio"), pend["rivais"], pend["proposta"])
+                if x is not None:
+                    r["experimento"] = {k: x[k] for k in ("vencedora", "tipo", "bits_vencedora", "discriminacao_bits",
+                                                          "decisivo", "revisou")}
+            # transplante 11: o laboratorio paga na moeda unica o PROGRESSO daquela regiao do mundo
+            g = lab.progresso(r["episodio"]) if r.get("episodio") is not None else None
+            if g is not None:
+                r["progresso"] = round(g, 3)
+                self._soma_ganho(g)
+            r["segundos"] = round(time.time() - t0, 2)
+            r["fonte"] = fonte
+            self.lab_ultimos.append({"t": self.t, **{k: v for k, v in r.items() if k != "motivo" or v != "ok"}})
+            self.ev("laboratorio", **r)
+            self._publica_lab(r, quadros[-1] if len(quadros) else None)
+        except Exception as e:                  # um orgao novo nunca pode matar a mente
+            r = None
+            self.ev("erro_orgao", orgao="laboratorio", msg=str(e)[:200])
+        self._residencia = getattr(self, "_residencia", 0.0) + time.time() - t0
+        return r
+
+    def _publica_lab(self, r, quadro):
+        """o que o laboratorio acabou de fazer, para o painel: o ultimo quadro do video, as
+        trilhas das coisas que ela seguiu e o que a teoria dela PREVIU contra o que aconteceu.
+        So leitura: nada disto entra em decisao."""
+        try:
+            v = self.lab.vitrine(r["episodio"]) if r.get("episodio") is not None else None
+            info = {"quando": time.time(), "t": self.t, "vitrine": v,
+                    "resultado": {k: r.get(k) for k in ("motivo", "trilhas", "pontos", "religou", "crise", "teoria",
+                                                        "conceito", "primeira", "inercia", "fonte", "segundos",
+                                                        "progresso", "experimento")}}
+            ue = getattr(self.lab, "ultimo_experimento", None)
+            if ue is not None and ue.get("episodio") == r.get("episodio"):
+                info["experimento"] = ue
+            if quadro is not None:
+                arq = os.path.join(self.pasta, "lab_quadro.jpg")
+                with open(arq + ".tmp", "wb") as f:
+                    f.write(CX.jpg_de(np.asarray(quadro, np.uint8), 90))
+                os.replace(arq + ".tmp", arq)
+            arq = os.path.join(self.pasta, "laboratorio_vivo.json")
+            with open(arq + ".tmp", "w", encoding="utf-8") as f:
+                json.dump(info, f, ensure_ascii=False)
+            _troca(arq + ".tmp", arq)
+        except Exception as e:
+            self.ev("detalhe_falhou", orgao="laboratorio_vivo", msg=str(e)[:160])
+
+    def _mostra_arena(self, q, tm):
+        """o painel ve o que ela ve na arena (o navegador continua na ultima pagina)."""
+        try:
+            if time.time() - getattr(self, "_arena_t", 0.0) < 0.4:
+                return
+            self._arena_t = time.time()
+            arq = os.path.join(self.pasta, "tela.jpg")
+            with open(arq + ".tmp", "wb") as f:
+                f.write(CX.jpg_de(np.kron(q, np.ones((4, 4, 1), np.uint8)), 85))
+            os.replace(arq + ".tmp", arq)
+            info = {"quando": time.time(), "url": "arena", "largura": 512, "altura": 512, "rolagem": 0,
+                    "altura_pagina": 512, "foco": None, "clique": None, "imagens": [], "modo": "video",
+                    "nota": f"assistindo a arena {tm:.0f}s", "caixa": [0, 0, 512, 512], "t_video": round(tm, 1)}
+            with open(os.path.join(self.pasta, "tela.json.tmp"), "w", encoding="utf-8") as f:
+                json.dump(info, f, ensure_ascii=False)
+            os.replace(os.path.join(self.pasta, "tela.json.tmp"), os.path.join(self.pasta, "tela.json"))
+        except Exception:
+            pass
 
     def _divagar(self):
         """DIVAGAR (o 'modo padrao' do cerebro: Killingsworth e Gilbert 2010 acharam gente
@@ -603,16 +774,42 @@ class Mente:
         _z, e0, _r = cx.ve(agora)
         vb = self.verbos
         gd = getattr(self, "ganhos_divagar", None) or {"reviver": [], "sonhar": []}
+        gd.setdefault("sonhar_lab", [])
         self.ganhos_divagar = gd
         pode_sonhar = vb is not None and vb.passos >= 100 and len(self.vocab_verbos.P)
-        if pode_sonhar and self.rng.random() < 0.2:                      # explora
-            modo = ["reviver", "sonhar"][int(self.rng.integers(2))]
-        elif pode_sonhar and gd["sonhar"] and gd["reviver"]:
-            modo = max(("reviver", "sonhar"), key=lambda m_: float(np.mean(gd[m_][-20:])))
+        # transplante 11: sonhar com o LABORATORIO = filmes imaginados pela lei dela treinam o
+        # preditor de tempo; o ganho e medido no ultimo video REAL (PRE_REGISTRO_video_mental.md)
+        lab = getattr(self, "lab", None)
+        pode_lab = (lab is not None and getattr(lab, "cenas", None) and getattr(self, "_quadros_recentes", None) is not None
+                    and (lab.teoria_atual("arena") is not None or lab.teoria_atual("video") is not None))
+        modos = ["reviver"] + (["sonhar"] if pode_sonhar else []) + (["sonhar_lab"] if pode_lab else [])
+        if len(modos) > 1 and self.rng.random() < 0.2:                   # explora
+            modo = modos[int(self.rng.integers(len(modos)))]
+        elif any(not gd[m_] for m_ in modos):
+            modo = next(m_ for m_ in modos[::-1] if not gd[m_])             # experimenta o que nunca tentou
         else:
-            modo = "sonhar" if (pode_sonhar and not gd["sonhar"]) else "reviver"
+            modo = max(modos, key=lambda m_: float(np.mean(gd[m_][-20:])))
         mostrar = cx.mem[int(velhas[0])]
-        if modo == "reviver":
+        ganho_tempo = None
+        if modo == "sonhar_lab":
+            fonte = "arena" if lab.teoria_atual("arena") is not None else "video"
+            vm = lab.video_mental(self.rng, fonte=fonte)
+            if vm is None:
+                modo = "reviver"
+            else:
+                Zd = cx.ve(np.stack([CX.reduz(q) for q in vm["quadros"]]))[0]
+                Zr = cx.ve(self._quadros_recentes)[0]
+                s0 = cx.surpresa(Zr)
+                for _p in range(10):
+                    a = int(self.rng.integers(0, max(1, len(Zd) - 12)))
+                    cx.aprende_tempo(Zd[a:a + 12])
+                s1 = cx.surpresa(Zr)
+                ganho_tempo = float((s0 - s1) / (s0 + 1e-9))
+                imag = CX.reduz(vm["quadros"][len(vm["quadros"]) // 2])
+                mostrar = CX.reduz(vm["quadros"][0])
+        if modo == "sonhar_lab":
+            pass
+        elif modo == "reviver":
             for lote in (velhas[:16], velhas[16:]):
                 cx.aprende(cx.mem[lote])
             imag = None
@@ -628,14 +825,16 @@ class Mente:
             cx.aprende(np.stack(imgs))
             imag = imgs[0]
         _z, e1, rec = cx.ve(agora, reconstroi=True)
-        ganho = float((e0.mean() - e1.mean()) / (e0.mean() + 1e-9))
+        ganho = float((e0.mean() - e1.mean()) / (e0.mean() + 1e-9)) if ganho_tempo is None else ganho_tempo
         gd[modo] = (gd[modo] + [ganho])[-60:]
         self.divagacoes[modo] += 1
         self.divagacoes[modo + "_ganho_x1000"] += int(round(1000 * ganho))
-        self._mostra_olho(mostrar, rec[0], imag, rotulo3=("sonhou_acordada" if imag is not None else None),
+        self._mostra_olho(mostrar, rec[0], imag, rotulo3=("sonhou_com_o_laboratorio" if modo == "sonhar_lab" else
+                                                          "sonhou_acordada" if imag is not None else None),
                           info={"tipo": "divagando", "modo": modo, "forca": True})
         if hasattr(self.corpo, "_mostra"):
             self.corpo._mostra(nota="divagando: " + ("imaginando o que já viu, transformado" if modo == "sonhar"
+                                                     else "imaginando um filme com as leis dela" if modo == "sonhar_lab"
                                                      else "revivendo o que já viu"), extra={"modo": "divagando"})
         self.ev("divagou", modo=modo, ganho_no_presente=round(ganho, 5), chance_de_divagar=round(self._chance_divagar(), 3))
         return ganho, "divagacao"
@@ -1308,6 +1507,11 @@ class Mente:
 
     def disponiveis(self, pg):
         out = [f"porta:{p}" for p in PORTAS]
+        if LAB is not None:
+            out.append("porta:arena")              # transplante 10
+            lab = getattr(self, "lab", None)
+            if lab is not None and lab.teoria_atual("arena") is not None:
+                out.append("experimentar")         # transplante 11: montar a cena na arena
         if self.corpo.pode_voltar():                 # botao "voltar" so acende com historico
             out.append("voltar")
         if pg is not None and pg.links:
@@ -1324,7 +1528,10 @@ class Mente:
         melhor = None
         opcoes = []
         for e in self.disponiveis(pg):
-            v = self._theta(self._reg(self.regs, e), x0) * self._p_funciona(e) / self._custo(e)
+            # O posterior de exploracao ja aprende se ganho/segundo superou o
+            # tipico da vida (passo). Dividir de novo pelo tempo de viagem
+            # impedia as portas lentas de competir com um mundo local barato.
+            v = self._theta(self._reg(self.regs, e), x0) * self._p_funciona(e)
             opcoes.append((e, v, None))
             if melhor is None or v > melhor[0]:
                 melhor = (v, e, None, x0)
@@ -1427,7 +1634,11 @@ class Mente:
             ctrl = self._controles(key)
             self._congeladas = set([key] + ctrl)
             u_a = {k: self._u(k) for k in [key] + ctrl}
-        if estr.startswith("porta:"):
+        if estr == "porta:arena":
+            nova = self._pagina_arena()
+        elif estr == "experimentar":
+            nova = self._pagina_experimento()
+        elif estr.startswith("porta:"):
             nova = self.corpo.aleatorio(estr.split(":")[1])
         elif estr == "voltar":
             nova = self.corpo.voltar()
@@ -1477,8 +1688,8 @@ class Mente:
             elif estr == "porta:imagem" and nova.midias:
                 prog, _u = self._ver(nova)            # a porta das imagens: abrir = olhar
                 modal = "midia"
-            if estr == "porta:video" and nova.midias:
-                prog, _u = self._assistir(nova)       # a porta dos videos: abrir = assistir
+            if estr in ("porta:video", "porta:arena", "experimentar") and nova.midias:
+                prog, _u = self._assistir(nova)       # a porta dos videos (e a da arena): abrir = assistir
                 modal = "midia"
         if nova is not None and nova.tipo == "erro" and nova.origem == "sem_rede":
             # o MUNDO sumiu (nao foi a ferramenta que falhou): nada de aprender que
@@ -1680,6 +1891,7 @@ class Mente:
             return None, None
         tipo, u, leg = ms[int(self.rng.integers(len(ms)))]
         nav = getattr(self.corpo, "_pg", None)
+        na_arena = str(u).startswith("arena://")
         if str(u).startswith("el:") and (nav is None or nav.url != pg.url):
             if self.corpo.abrir(pg.url, empilha=False).tipo == "erro":   # o video e DESTA pagina
                 return None, None
@@ -1695,13 +1907,31 @@ class Mente:
         regua = float(np.median(hv)) if len(hv) >= 10 else None
         motivo, t0, nq, ouviu = "acabou", time.time(), 0, 0
         t_1o = None
-        gen = self.corpo.assistir(u, self.MAX_ASSISTIR)
+        if na_arena:
+            gen = self._arena().assistir(u, self.MAX_ASSISTIR, tempo_real=os.environ.get("MENTE_ARENA_RAPIDA") != "1")
+        else:
+            gen = self.corpo.assistir(u, self.MAX_ASSISTIR)
+        lab_q, lab_t = [], []                          # transplante 10: o video, de novo, pelo laboratorio
+        recentes_q = []
+        espacial_q, espacial_t = [], []
         for tm, quadro, audio in gen:
             if t_1o is None:
                 t_1o = time.time()                    # daqui em diante e ela ASSISTINDO (residencia)
             fid, pred_img, surpresa = None, None, None
+            if quadro is not None and LAB is not None and len(lab_q) < 600 and (not lab_t or tm > lab_t[-1]):
+                lab_q.append(LAB.reduz(quadro))
+                lab_t.append(float(tm))
+            if quadro is not None and not na_arena and ESPACIAL is not None and len(espacial_q) < 32:
+                if not espacial_t or tm - espacial_t[-1] >= .8:
+                    espacial_q.append(ESPACIAL.retina(quadro))
+                    espacial_t.append(float(tm))
+            if quadro is not None and na_arena:
+                self._mostra_arena(np.asarray(quadro), tm)
             if quadro is not None:
                 q64 = self._rgb64(quadro)
+                recentes_q.append(q64)
+                if len(recentes_q) > 40:
+                    del recentes_q[0]
                 if len(Z) >= 2:
                     xq = q64.astype(np.float32) / 255.0
                     zp, pred_img = cx.preve(Z[-2], Z[-1], imagina=(nq % 2 == 0), mu=float(xq.mean()),
@@ -1773,7 +2003,7 @@ class Mente:
             if band is not None:
                 ouviu += 1
             seq.append((fid, aid))
-            if quadro is not None and nq % 2 == 1 and hasattr(self.corpo, "_mostra"):
+            if quadro is not None and nq % 2 == 1 and hasattr(self.corpo, "_mostra") and not na_arena:
                 self.corpo._mostra(nota=f"assistindo {tm:.0f}s" + (" · ouvindo" if band is not None else " · sem som"),
                                    extra={"modo": "video", "caixa": getattr(self.corpo, "video_caixa", None),
                                           "t_video": round(tm, 1), "som": None if band is None else [round(float(v), 2) for v in band],
@@ -1792,8 +2022,19 @@ class Mente:
                 motivo = "habituou"
                 break
         gen.close()
+        if len(Z) >= 12:                     # o presente do preditor de tempo (fora do sonho): o ultimo video real
+            self._quadros_recentes = np.stack(recentes_q[-40:])
         if t_1o is not None:
             self._residencia = getattr(self, "_residencia", 0.0) + time.time() - t_1o
+        lab_r = self._laboratorio(lab_q, lab_t, "arena" if na_arena else "video", u if na_arena else pg.url)
+        if espacial_q:
+            try:
+                if getattr(self, "_espacial", None) is None:
+                    self._espacial = ESPACIAL.MemoriaEspacial(self.pasta)
+                sr = self._espacial.observa(espacial_q, espacial_t, pg.url)
+                self.ev("memoria_espacial", **sr)
+            except Exception as e:
+                self.ev("erro_orgao", orgao="espacial", msg=str(e)[:200])
         if len(surpresas) >= 20:                   # cada quadro foi PREVISTO antes de ser visto
             s0 = float(np.mean(surpresas[:10]))
             self._soma_ganho(float(np.clip((s0 - np.mean(surpresas[-10:])) / (s0 + 1e-9), -1, 1)))
@@ -1826,6 +2067,36 @@ class Mente:
         if itens and protos:
             self._aterra(itens, protos, u + pg.url, abre=[p for p in self._pedacos(leg) if p in self.E
                                                          and len(p) >= 4][:2])
+        # transplante 12: o TEXTO ligado as TRANSFORMACOES que ela viu acontecer (o verbo visual
+        # mais frequente do video); nulo: o verbo do video ANTERIOR (outro video, mesmo texto)
+        if itens and Vseq:
+            vv = collections.Counter(Vseq).most_common(1)[0][0]
+            if getattr(self, "gv", None) is None:
+                self.gv, self.gv_nulo = Assoc(), Assoc()
+            nV = max(len(self.vocab_verbos.P), 2)
+            _g, novas_v = self.gv.observa([(s_, ("verbo", int(vv))) for s_ in itens], u + pg.url, nV)
+            vant = getattr(self, "_verbo_video_anterior", None)
+            if vant is not None:
+                self.gv_nulo.observa([(s_, ("verbo", int(vant))) for s_ in itens], u + pg.url, nV)
+            self._verbo_video_anterior = int(vv)
+            for (s_, pr_) in novas_v:
+                self.ev("ligou_transformacao", pedaco=txt(s_), verbo=int(pr_[1]), confirmacoes=self.gv.c[(s_, pr_)][1],
+                        nulo_confirmadas=len(self.gv_nulo.conf))
+        # transplante 12: NOMES para os mundos fisicos — o texto da pagina ligado a TEORIA do laboratorio
+        # que explicou o video; nulo: a teoria do video anterior (mesmo texto, outro mundo)
+        tid_ = lab_r.get("teoria") if isinstance(lab_r, dict) else None
+        if itens and tid_ is not None:
+            if getattr(self, "gt", None) is None:
+                self.gt, self.gt_nulo = Assoc(), Assoc()
+            nT = max(len(self.lab.teorias), 2) if getattr(self, "lab", None) is not None else 2
+            _g, novas_t = self.gt.observa([(s_, ("t", int(tid_))) for s_ in itens], u + pg.url, nT)
+            tant = getattr(self, "_teoria_video_anterior", None)
+            if tant is not None and tant != tid_:
+                self.gt_nulo.observa([(s_, ("t", int(tant))) for s_ in itens], u + pg.url, nT)
+            self._teoria_video_anterior = int(tid_)
+            for (s_, pr_) in novas_t:
+                self.ev("rotulou_mundo", pedaco=txt(s_), teoria=int(pr_[1]), confirmacoes=self.gt.c[(s_, pr_)][1],
+                        nulo_confirmadas=len(self.gt_nulo.conf))
         if regra_atual is not None:
             self.regras_vistas[regra_atual[0]] += 1
             self.ev("regra_do_video", regra=INF.descreve(regra_atual), tipo=regra_atual[0], verbos=Vseq[-30:],
@@ -1836,6 +2107,7 @@ class Mente:
                 surpresa_inicio=round(float(np.mean(surpresas[:10])), 4) if surpresas else None,
                 surpresa_fim=round(float(np.mean(surpresas[-10:])), 4) if surpresas else None,
                 apertou_play=info.get("clicou"), precisou_da_mao=info.get("mao"),
+                laboratorio=None if lab_r is None else {k: lab_r.get(k) for k in ("trilhas", "crise", "teoria", "conceito", "primeira", "inercia")},
                 site_bloqueia_som=info.get("sem_som_do_site"), legenda=txt(leg)[:80],
                 palavras_visuais=len(self.olho.P), prototipos_a=len(self.aud.P), progresso=prog)
         return prog, u
@@ -2165,6 +2437,12 @@ class Mente:
                                      "confirmadas": {"real": self.confirm_txt["real"], "nulo": self.confirm_txt["nulo"]},
                                      "construcoes": len(self.construcoes), "orcamento": self.orcamento_imag,
                                      "moldes": [" ".join(txt(x) if x else "___" for x in k) for k in list(self.construcoes)[-8:]]}
+            if getattr(self, "lab", None) is not None:
+                c = self.lab.contas
+                tel["laboratorio"] = {k: c.get(k, 0) for k in ("episodios", "crises", "explicados", "reinterpretados",
+                                                               "conceitos_inventados", "conceitos_reusados", "religacoes",
+                                                               "experimentos", "experimentos_decisivos")}
+                tel["laboratorio"]["teorias"] = len(self.lab.teorias)
             self._telemetria_extra(tel)
             if agora - getattr(self, "_det_t", 0.0) > 10:
                 self._det_t = agora
@@ -2272,6 +2550,19 @@ class Mente:
                 with open(arq_v + ".tmp", "wb") as f:
                     f.write(CX.jpg_de(np.concatenate(linhas, 0), 85))
                 os.replace(arq_v + ".tmp", arq_v)
+                if agora - getattr(self, "_anim_t", 0.0) > 30:      # HOLOGRAMA: cada verbo aplicado 0..6 vezes
+                    self._anim_t = agora
+                    filas = []
+                    for j in ordem_v:
+                        m_, fila = zr.copy(), [ref]
+                        for _k in range(6):
+                            m_ = vb.aplica(m_, self.vocab_verbos.P[j], 1)
+                            fila.append(self.cortex.desenha(m_[None], mu_, sd_)[0])
+                        filas.append(np.concatenate(fila, 1))
+                    arq_a = os.path.join(self.pasta, "verbos_anim.jpg")
+                    with open(arq_a + ".tmp", "wb") as f:
+                        f.write(CX.jpg_de(np.concatenate(filas, 0), 88))
+                    os.replace(arq_a + ".tmp", arq_a)
                 verbos_info = {"passos": vb.passos, "curva": vb.curva[-120:], "pares": vb.n_pares, "trincas": vb.n_trincas,
                                "verbos": [{"id": int(j), "n": int(self.vocab_verbos.n[j])} for j in ordem_v],
                                "total": int(len(self.vocab_verbos.P)), "imaginacao_visual": dict(self.imag_vis),
@@ -2298,6 +2589,38 @@ class Mente:
                     "construcoes": [{"molde": " ".join(txt(x) if x else "___" for x in k), "pecas": [txt(x) for x in list(v)[:8]]}
                                     for k, v in list(self.construcoes.items())[-8:]],
                     "orcamento": self.orcamento_imag}
+            if getattr(self, "lab", None) is not None:
+                d["laboratorio"] = {**self.lab.resumo(), "ultimos": list(self.lab_ultimos)[-10:]}
+                if agora - getattr(self, "_holo_t", 0.0) > 30:      # HOLOGRAMA: so o que ela aprendeu de verdade
+                    self._holo_t = agora
+                    h = self.lab.holograma()
+                    h["quando"] = agora
+                    vm = self.lab.video_mental(np.random.default_rng(int(agora)))   # o filme que ela imagina agora
+                    if vm is not None:
+                        folha = np.concatenate(list(vm.pop("quadros")), 1)
+                        arq_v = os.path.join(self.pasta, "video_mental.jpg")
+                        with open(arq_v + ".tmp", "wb") as f:
+                            f.write(CX.jpg_de(folha, 88))
+                        os.replace(arq_v + ".tmp", arq_v)
+                        vm["n_quadros"] = int(folha.shape[1] // max(vm["forma"][1], 1))
+                        vm["quando"] = agora
+                        h["video_mental"] = vm
+                    arq_h = os.path.join(self.pasta, "holograma.json")
+                    with open(arq_h + ".tmp", "w", encoding="utf-8") as f:
+                        json.dump(h, f, ensure_ascii=False)
+                    _troca(arq_h + ".tmp", arq_h)
+            # transplante 12: os MODELOS DE MUNDO dela, decodificados (aba MUNDOS; so leitura)
+            if MUNDOS is not None and agora - getattr(self, "_mundos_t", 0.0) > 60:
+                self._mundos_t = agora
+                try:
+                    t_m = time.time()
+                    if getattr(self, "_mundos_cache", None) is None:
+                        self._mundos_cache = {}
+                    r_m = MUNDOS.publica(self, self.pasta, self._mundos_cache)
+                    d["mundos"] = {"fisicos": len(r_m["fisicos"]), "conceitos": len(r_m["conceitos"]),
+                                   "segundos": round(time.time() - t_m, 2)}
+                except Exception as e:
+                    self.ev("detalhe_falhou", orgao="mundos", msg=str(e)[:160])
             self._detalhe_extra(d)
             arq = os.path.join(self.pasta, "detalhe.json")
             with open(arq + ".tmp", "w", encoding="utf-8") as f:
@@ -2344,8 +2667,13 @@ class Mente:
         Fotografias saem comprimidas (o modelo de bytes e quase todo zero)."""
         pasta = os.path.join(self.pasta, sub) if sub else self.pasta
         os.makedirs(pasta, exist_ok=True)
-        estado = {k: v for k, v in self.__dict__.items() if k not in ("corpo", "texto", "log", "cortex", "verbos")
-                  and k != "_imag_pend"}
+        estado = {k: v for k, v in self.__dict__.items() if k not in ("corpo", "texto", "log", "cortex", "verbos", "lab")
+                  and k not in ("_imag_pend", "_arena_mundo", "_exp_pendente", "_quadros_recentes", "_mundos_cache", "_espacial")}
+        if sub and os.path.exists(os.path.join(self.pasta, "espacial")):
+            import shutil
+            shutil.copytree(os.path.join(self.pasta, "espacial"), os.path.join(pasta, "espacial"), dirs_exist_ok=True)
+        if getattr(self, "lab", None) is not None:
+            self._salva_lab(pasta, comprimido=bool(sub))
         if self.cortex is not None:
             self.cortex.salva(os.path.join(pasta, "cortex.npz"))
         if self.verbos is not None:
@@ -2373,6 +2701,25 @@ class Mente:
                 os.replace(tmp, final)
         self.ev("salvou", onde=sub or ".")
 
+    def _salva_lab(self, pasta, comprimido=False):
+        """o laboratorio fica num arquivo dele (atomico, com a versao anterior)."""
+        try:
+            ev, self.lab.ev = self.lab.ev, None
+            arq = os.path.join(pasta, "laboratorio.pkl" + (".gz" if comprimido else ""))
+            if comprimido:
+                import gzip
+                with gzip.open(arq, "wb", compresslevel=3) as f:
+                    pickle.dump(self.lab, f)
+            else:
+                with open(arq + ".tmp", "wb") as f:
+                    pickle.dump(self.lab, f)
+                if os.path.exists(arq):
+                    os.replace(arq, arq + ".anterior")
+                os.replace(arq + ".tmp", arq)
+            self.lab.ev = ev
+        except Exception as e:
+            self.ev("erro_orgao", orgao="laboratorio_salvar", msg=str(e)[:200])
+
     @classmethod
     def carrega(cls, pasta, semente, log=True):
         m = cls(semente, pasta, registrar=log)
@@ -2398,7 +2745,7 @@ class Mente:
         bl = estado.pop("bytes_lidos")
         estado.pop("pasta", None)
         novos = [k for k in m.__dict__ if k not in estado and not k.startswith("_")
-                 and k not in ("corpo", "texto", "log", "pasta", "cortex", "verbos")]
+                 and k not in ("corpo", "texto", "log", "pasta", "cortex", "verbos", "lab")]
         m.__dict__.update(estado)
         if estado.get("cortex_versao", 1) < CX.VERSAO and "olho" in estado:
             m._migra_cortex()
