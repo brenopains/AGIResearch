@@ -3521,3 +3521,252 @@ altura (32×32 cinza). Próximos órgãos, a transplantar com ela viva:
    marginal, Charnov 1976) — a régua da vida resolve a armadilha, mas não aprende
    quando um ambiente genuinamente diferente vale a pena;
 4. olhos melhores (mais resolução, cor, movimento) sem semântica pronta.
+
+## 24 · A mente viva ganha um laboratório: descobrir, reutilizar, revisar (2026-10-09) — `D:/AGI_Inventor/mente_web`
+
+### 24.1 A revisão externa, conferida contra o código
+
+O GPT leu este documento inteiro e o código da mente viva. Conferido aqui:
+- **Procede:** os órgãos que passaram nos controles (`inventa`, `caderno`, `autonomo`,
+  `conceito_util`, `representacao/percepcao`, `sob_demanda`, `linguagem`, `encarnar`)
+  não eram importados por `mente.py` nem `mente2.py`.
+- **Procede, e é por regra:** a vida contínua é a v1 com transplantes. A v1 venceu as
+  gêmeas por 4 × 0 pela regra registrada antes do resultado (PRE_REGISTRO_vida1.md). A
+  plasticidade da v2 ficou fora por essa regra, não por esquecimento.
+- **Procede:** a seção 23 estava velha nos olhos. Desde os transplantes 5 e 6 a mente
+  tem fóvea colorida de 64×64 e córtex v2 (mapa 8×8×32), não "32×32 cinza".
+- O marco proposto foi adotado como teste: **ela descobrir um conceito que ninguém deu,
+  reutilizá-lo num problema diferente e revisá-lo quando o mundo o contradiz.**
+
+### 24.2 O órgão — `laboratorio.py` + `arena.py`
+
+São seis mecanismos medidos, num laço só. Todos rodam sobre o que ela assiste:
+1. **Objetos pela continuidade:** fundo = mediana no tempo; objeto = região conexa do
+   que difere dele; identidade por atribuição ótima. **Permanência:** o que some por até
+   3 s e reaparece onde iria estar é a mesma coisa.
+2. **Hipocampo de episódios crus:** guarda o que viu, não as conclusões. Tudo é
+   re-derivado do cru.
+3. **Teorias:** aceleração como combinação de termos do estado, com seleção por BIC.
+   **Primeira tentativa:** ela prevê a posição 2 s adiante antes de aprender com o
+   episódio.
+4. **Crise:** a teoria entra em crise quando o próprio vídeo, sozinho, prevê melhor que
+   ela (bits pareados por trajetória) ou quando o erro é anômalo nas duas escalas.
+   **Resposta:** reanálise por consenso, que **reinterpreta** episódios guardados.
+5. **Conceito:** combinações esparsas de até 4 monômios que se conservam em
+   trajetórias fora do ajuste. Os candidatos vão para uma **sala de espera** e são
+   julgados pelo que pagam na previsão. Quando a mesma ideia volta mais precisa, o
+   conceito é **revisado**.
+6. **Vocabulário compartilhado:** um conceito inventado num mundo serve a outro.
+
+A **arena** tem 4 mundos que trocam sem aviso: giro (precisa de s²), mola_h (precisa de
+h), contragiro (outra lei, o mesmo s²) e mola (h e a energia se conservam, mas a lei
+não precisa deles). A câmera é afim e desconhecida, há um oclusor e dois corpos podem
+ter a mesma cor.
+
+### 24.3 Desenvolvimento: onze defeitos meus, achados antes de registrar
+
+Isto rodou só nas sementes de desenvolvimento 101–103; a lista completa está em
+PRE_REGISTRO_laboratorio.md. O que mais ensinou:
+- **Inventor conjunto x esparso.** O inventor conjunto de 14 termos (o da Etapa 1, a
+  30 quadros/s) dava s² com correlação de só 0,68 a 5 quadros/s. A volta ao esparso do
+  `inventa.py` resolveu.
+- **Poucas trajetórias.** Com 3 arcos, *qualquer* forma quadrática "se conserva".
+- **A régua por mediana** premiava o que se conserva só na maioria (o centro do círculo
+  de quem gira numa velocidade parecida).
+- **Utilidade pareada.** Uma trajetória que explodia decidia a utilidade pela média dos
+  quadrados; a comparação passou a ser trajetória a trajetória.
+- **Hipótese-sumidouro.** Uma hipótese frouxa, nascida de uma crise falsa, "explicava"
+  mal o mundo seguinte e escondia a troca.
+- **Limiar fixo de ruído.** Todo limiar fixo confundiu "vídeo difícil" com "outro
+  mundo". Ficou o critério de bits: o episódio sozinho contra a teoria.
+
+### 24.4 Resultado registrado (10 vidas, sementes nunca tocadas)
+
+```
+L2  revisa para h quando o mundo muda              9/10   PASSA
+L4  recusa conceito conservado que não paga         9/10   PASSA
+L5  o conceito paga: 1ª tentativa 2,57 × 4,82 px   10/10   PASSA  (0,53×; inércia 13,3 px)
+L7a crise nos 5 episódios após cada troca          10/10   PASSA
+L7b reconhece o mundo de volta, sem crise           9/10   PASSA
+L9  reutilizar paga (início do contragiro)         10/10   PASSA
+P1  permanência: religar 0,71 × congelada 0,18             PASSA
+C1  controle: pontos permutados, nada aceito       10/10   PASSA
+L1  s² EXATO (|corr| ≥ 0,99) no fim do giro         5/10   FALHA  (+2 com 0,97 e 0,94)
+L3  o MESMO conceito, exato, no contragiro          5/10   FALHA
+L6  placebo não paga: 0,88× (exigia ≥ 0,90)                FALHA  (COMPLETO bate placebo 10/10)
+L8  reanalisar vence acumular conclusões            6/10   FALHA  (razão 0,81)
+```
+
+**A leitura.**
+- **Revisar e pagar:** passam com folga.
+- **Identidade exata do primeiro conceito:** falha. O s² do giro sai muitas vezes
+  aproximado (0,83 a 0,97); ainda assim paga e é reutilizado. O que transferiu foi uma
+  ideia **útil**, nem sempre a **exata**.
+- **Causa medida:** a 5 quadros/s a velocidade é ruidosa. Numa vida de desenvolvimento,
+  o s² verdadeiro se conservava 6× pior que nas outras.
+- **Placebo:** dá parte do ganho (12%), o "mais variáveis" que o `inventa` já tinha
+  visto. A maior parte do ganho é estrutura.
+- **Caderno:** o +36 do caderno **não** se repetiu neste substrato. Fica como resultado
+  fraco.
+
+### 24.5 Tradução cruzada: o que isto é, e o que ainda não é
+
+O conceito nasce num mundo, resolve o problema e passa a mudar como **outro** problema é
+visto. No contragiro, o vocabulário vindo do giro baixou o erro do início em 10/10.
+Também foi pedido um teste com três braços sob o mesmo orçamento: sem transferência,
+com transferência e placebo. Esse teste é este experimento.
+
+O que **não** é:
+- **Tradução entre órgãos diferentes:** o verbo visual τ, a lei do laboratório e a
+  palavra ainda não se falam. Aqui a tradução acontece dentro de um mesmo tipo de
+  experiência (trajetórias de objetos).
+- **Agir no mundo:** ela só assiste.
+
+### 24.6 Ligado à vida (transplante 10)
+
+Todo vídeo da internet passa também pelo laboratório. A arena virou uma porta da
+economia e paga como qualquer vídeo; o laboratório não entra na moeda única neste
+transplante. O painel ganhou o órgão LABORATÓRIO, com as teorias, as leis escritas por
+ela, os conceitos e as crises.
+
+Para conferir:
+- `teste_laboratorio.py`: mente nova, ou cópia da viva; salva, acorda, 0 erros.
+- `marco_laboratorio.py vidas/viva`: confere os conceitos dela contra a verdade da
+  arena, só lendo.
+
+Critérios na vida: PRE_REGISTRO_vida1.md, transplante 10.
+
+### 24.7 Próximos degraus, na ordem em que eu faria
+
+1. **Olhos mais rápidos para o laboratório.** Quadros da arena a 15–30/s só para o
+   laboratório (o córtex continua a 5/s). É a causa medida da L1. O teste é o mesmo
+   pré-registro com as mesmas sementes.
+2. **Agir na arena** (corpo próprio). Um "empurrar" com comando conhecido; as teorias
+   viram modelo de mundo para escolher o experimento. É o teste da bola e da caixa da
+   revisão externa: a regularidade descoberta com um objeto prevê o outro.
+3. **Tradução entre órgãos.** A pergunta é se o conceito do laboratório prevê a
+   sequência de verbos visuais τ do mesmo vídeo melhor que o placebo — a primeira ponte
+   entre duas linguagens internas diferentes.
+4. **Palavras na arena.** Eventos nomeados (empurrar, girar) aterrados nas teorias, com
+   o protocolo da `linguagem.py`.
+5. **O laboratório na economia.** O progresso dele entra na moeda única, mas só depois
+   de medir A2 e A3 na vida real.
+
+
+### 24.8 O painel: três telas novas, só com dados reais (2026-10-09, noite)
+
+O pedido foi acompanhar, sem rolar a tela, o que ela faz de verdade. Cada tela abaixo lê
+o que a mente publica; nada é animação inventada.
+- **LABORATÓRIO:** o último vídeo analisado. Mostra as trilhas das coisas que ela
+  seguiu (inclusive atrás de obstáculos), o que a teoria dela previu para 2 s depois
+  (antes de aprender com o vídeo), o palpite burro e onde a coisa estava de verdade.
+  Ao lado: as leis que ela escreveu, os conceitos com o valor ao longo de trajetórias
+  reais (linha reta = se conserva), o placar e a linha do tempo de crises e revisões.
+- **DESCOBERTAS:** tudo o que ela criou, de todos os órgãos: conceitos, teorias e
+  crises, construções de linguagem, imaginação confirmada, ligações entre sentidos,
+  verbos que atravessam cenas, ferramentas, perguntas resolvidas. Cada cartão traz a
+  evidência que o órgão mediu, com filtro por tipo e páginas.
+- **HOLOGRAMA:** clicar e ver o que ela imagina.
+  - **Uma lei:** a cena real da memória dela ao lado da mesma cena rodada pela lei
+    dela, a partir do mesmo começo.
+  - **Um conceito:** as trajetórias reais coloridas pelo valor dele.
+  - **Um verbo visual:** o córtex dela aplicando a transformação 0 a 6 vezes numa
+    imagem dela.
+  - **Uma construção:** o molde de linguagem com as peças confirmadas.
+
+Declarado na própria tela: ela não representa profundidade; o que aprendeu é plano +
+tempo, então não há 3D.
+
+A frase AGORA também passou a contar o que o laboratório fez com o vídeo, e a aba
+"O que ela vê" mostra a arena ao vivo.
+
+Conferido:
+- 0 erros de JavaScript nas seis abas.
+- `teste_laboratorio.py` exige os arquivos das telas.
+- Uma vida registrada, re-rodada com o código final, saiu idêntica ao registro (72/72
+  episódios): o painel não mudou o órgão.
+
+## 25 · Mãos, vídeo mental e o laboratório na economia (2026-10-09/10) — `D:/AGI_Inventor/mente_web`
+
+Pedido do usuario: ela deve ir sozinha ao laboratório; a imaginação deve ser universal ("um
+vídeo mental"); e as duas ideias da segunda revisão do GPT (experimentos que separam teorias
+rivais; identidade de conceito entre órgãos). Tudo pré-registrado antes das sementes que
+valem; as falhas ficam escritas como as vitórias.
+
+### 25.1 Ela já ia sozinha; agora também age
+
+O laboratório nunca precisou ser rodado à mão: todo vídeo que ela assiste passa por ele, e ir
+à arena é escolha dela (transplante 10). O que faltava era (a) o laboratório PAGAR na moeda
+única e (b) ela poder MEXER no mundo.
+- **Moeda única**: progresso de aprendizagem (Oudeyer, Kaplan e Hafner 2007) — a 1ª tentativa
+  do episódio contra a mediana das 10 anteriores da mesma fonte e tipo.
+- **Mãos** (`arena://k?exp=x,y,vx,vy;...`): ela diz onde cada coisa começa e com que
+  velocidade, nas coordenadas que ELA percebe; a arena converte pela câmera que ela não
+  conhece. As rivais: a teoria atual, a mesma com outra opção de conceito, e re-ajustes em
+  reamostras das trajetórias dela. O experimento: a intervenção (uma situação vista, com a
+  rapidez ×0,7–1,3 e a direção girada ou invertida) onde elas mais discordam, à vista sob
+  todas, que os olhos dela acompanham, sem coisas que se encostem.
+
+### 25.2 Resultado das mãos (PRE_REGISTRO_experimento_ativo.md, 10 vidas)
+
+| | erro de teste (px, mundo típico) |
+|---|---|
+| só assistir (PASSIVO) | 3,27 |
+| montar ao acaso (ALEATORIO) | 3,60 |
+| montar onde as rivais discordam (ATIVO) | **5,56** |
+
+E4 passa (8/10: os experimentos dela separam as rivais de verdade); E1, E2, E3 falham.
+Escolher pela discordância a deixou PIOR no mundo típico: a discordância mora onde ela tem
+menos dados, e a lei passa a servir ao canto. É o viés da "amostragem por incerteza", agora
+medido contra controle. Três defeitos de projeto saíram no dev, antes do registro: corrida de
+rapidez (ela pedia o que não conseguia rastrear e repetia para sempre), borda do quadro e
+corpos que se fundiam. Consequência: "experimentar" entra só como mais uma ação na economia.
+Próxima forma a testar: redução esperada do erro nas situações TÍPICAS (ponderada pela
+densidade do que ela vê), não discordância pura.
+
+### 25.3 Vídeo mental (PRE_REGISTRO_video_mental.md, 10 vidas)
+
+O laboratório guarda a aparência das cenas (fundo + recorte real de cada coisa, ~13 KB) e
+imagina filmes que ela nunca viu: as coisas em começos novos, movidas quadro a quadro pela lei
+dela. Nada é animação feita à mão.
+- **O filme imaginado ANTES bate com o real**: melhor que "tudo reto" em 10/10 vidas e que a
+  lei do outro mundo em 10/10, nos horizontes de 1, 2 e 3 s.
+- **Sonhar ensina a visão, um pouco**: o preditor de tempo do córtex treinado com esses
+  filmes antecipa vídeos reais novos ~4% melhor que treinado com filmes "tudo reto" (9/10;
+  a condição V0, "a lei verdadeira vence o reto", passou 8/10 — eu tinha previsto que
+  falharia). Mas não vence rever vídeos reais (2/10).
+Na vida: o filme aparece no HOLOGRAMA; e "sonhar_lab" virou um modo de divagar que compete
+com os outros pelo ganho medido na surpresa do último vídeo real.
+
+### 25.4 O que isto é, e o que ainda não é
+
+- É imaginação **composicional e conferida**: N coisas, aparência real, lugares e
+  movimentos novos, leis descobertas por ela, checada contra o mundo.
+- Não é ainda imaginação universal: é plano + tempo (sem 3D), só coisas que se movem contra
+  fundo parado, sem som, e não gera aparências que nunca viu. Roteiros multimodais pediriam a
+  ponte linguagem → cena, que não existe.
+- A outra ideia do GPT — **identidade de um conceito entre órgãos** (o mesmo c0 reconhecido no
+  texto, nos verbos visuais e no laboratório) — NÃO foi feita nesta rodada. É o próximo degrau
+  natural (24.7, item 3) e precisa de pré-registro próprio.
+
+### 25.5 Painel
+
+LABORATÓRIO: o experimento desenhado (onde ela pôs cada coisa, a velocidade pedida, o que cada
+rival previa, quem acertou), placar e linha do tempo com experimentos. DESCOBERTAS: cartões
+de experimento só quando confirmam a teoria ou favorecem outro conceito, em português de
+gente. HOLOGRAMA: "FILME QUE ELA IMAGINA AGORA" (padrão), com o caminho da lei dela e o "tudo
+reto" por cima. Verificado com capturas de tela: 0 erros de JavaScript.
+
+### 25.6 Placa de vídeo e quando avaliar "nível humano"
+
+- **GPU (RTX 3050)**: hoje não é o gargalo — o córtex tem ~70 mil parâmetros em numpy e o
+  laboratório é álgebra pequena; o tempo dela é o tempo real dos vídeos e da internet. A GPU
+  passa a valer quando o córtex crescer (mais resolução, mais quadros/s para o laboratório,
+  item 1 de 24.7). Caminho: portar o córtex para torch com volta automática para numpy, teto
+  de memória e lote pequeno para não afogar o PC — testado no PC dele, porque aqui não há CUDA.
+- **Quando avaliar**: por marcos, não por horas. Primeiro os critérios da vida (A1–A4, B1–B4)
+  em 24–48 h. "Nível humano" só se diz com testes EXTERNOS que ela nunca viu (raciocínio
+  físico, abstração, linguagem), comparados com humanos e com outros sistemas, e replicados
+  por outra pessoa. O que ela tem hoje — descobrir, reutilizar e revisar conceitos a partir de
+  pixels, agir para separar hipóteses, imaginar filmes conferidos contra o real — é resultado
+  de pesquisa publicável como tal, não "nível humano".
